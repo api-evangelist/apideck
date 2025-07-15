@@ -1,52 +1,64 @@
-# Solo.io (solo-io)
-Cloud-native API management and service connectivity to automate security, observability, resiliency, and traffic control for any API or workload in any environment.
+# Apideck (apideck)
+Apideck is the leading Unified API that doesnt store sensitive customer data. Build and maintain native integrations into your product with an exceptional Developer Experience. 
 
-**URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-evangelist/solo-io/refs/heads/main/apis.yml)
+**URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-evangelist/apideck/refs/heads/main/apis.yml)
 
 ## Scope
 
-- **Type:** Contract 
-- **Position:** Consuming 
+- **Type:** Index 
+- **Position:** Consumer 
 - **Access:** 3rd-Party 
 
 ## Tags:
 
- - Management, Security, Observability, Resiliency, Traffic Control, Platform, Automation, Analytics, Monetization, Gateways, AI Gateway, Service Mesh
+ - Unified API, Integrations
 
 ## Timestamps
 
-- **Created:** 2025-01-08 
-- **Modified:** 2025-06-09 
+- **Created:** 2025-07-15 
+- **Modified:** 2025-07-15 
 
 ## APIs
 
-### Solo.io
-Fully connect your APIs and services from end  to end user and win in the cloud-native era.
+### Apideck
+Apideck is the leading Unified API that doesnt store sensitive customer data. Build and maintain native integrations into your product with an exceptional Developer Experience. 
 
-**Human URL:** [https://www.solo.io/](https://www.solo.io/)
+**Human URL:** [ https://www.apideck.com/]( https://www.apideck.com/)
 
 
 #### Tags:
 
- - Management, Security, Observability, Resiliency, Traffic Control, Platform, Automation, Analytics, Monetization, Gateways, AI Gateway, Service Mesh
+ - Unified API, Integrations
 
 #### Properties
 
-- [Documentation](https://www.solo.io/)
+- [Documentation]( https://www.apideck.com/)
 
 ## Common Properties
 
-- [Customers](https://www.solo.io/customers)
-- [CaseStudies](https://www.solo.io/resources/case-study)
-- [Blog](https://www.solo.io/blog)
-- [Documentation](https://www.solo.io/docs)
-- [WhitePapers](https://www.solo.io/resources/white-paper)
-- [Videos](https://www.solo.io/resources/video)
-- [Webinars](https://www.solo.io/resources/webinar)
-- [eBooks](https://www.solo.io/resources/ebook)
-- [Partners](https://www.solo.io/partners)
-- [Support](https://www.solo.io/company/get-support)
-- [Pricing](https://www.solo.io/pricing)
+- [Website](https://www.apideck.com/)
+- [Documentation](https://developers.apideck.com/)
+- [SDKs](https://developers.apideck.com/sdks/node)
+- [Guide](https://developers.apideck.com/guides)
+- [Integrations](https://developers.apideck.com/connectors)
+- [Integrations](https://developers.apideck.com/connectors)
+- [Explorer](https://developers.apideck.com/api-explorer)
+- [Login](https://platform.apideck.com/login)
+- [SignUp](https://platform.apideck.com/login)
+- [Support](https://help.apideck.com/)
+- [ChangeLog](https://developers.apideck.com/changelog)
+- [Errors](https://developers.apideck.com/errors)
+- [Examples](https://developers.apideck.com/samples)
+- [UseCases](https://developers.apideck.com/use-cases)
+- [Security](https://compliance.apideck.com/?_gl=1*1od5jy9*_gcl_au*MTUxOTE3MDcxMC4xNzUyNjE1MTc3)
+- [Compliance](https://compliance.apideck.com/?_gl=1*1od5jy9*_gcl_au*MTUxOTE3MDcxMC4xNzUyNjE1MTc3)
+- [PrivacyPolicy](https://compliance.apideck.com/privacy-policy)
+- [TermsOfService](https://compliance.apideck.com/terms)
+- [ServiceLevelAgreement](https://compliance.apideck.com/sla)
+- [GDPR](https://compliance.apideck.com/gdpr)
+- [Pricing](https://www.apideck.com/pricing)
+- [Status](https://status.apideck.com/)
+- [Blog](https://www.apideck.com/blog)
 
 ## Maintainers
 
