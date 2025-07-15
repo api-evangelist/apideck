@@ -3,31 +3,128 @@ url: >-
   https://raw.githubusercontent.com/api-evangelist/apideck/refs/heads/main/apis.yml
 apis:
   - aid: apideck:apideck
-    name: APIDeck
+    name: Apideck
     tags:
       - Unified API
-    humanURL: https://www.apideck.com/
+      - Integrations
+    humanURL: ' https://www.apideck.com/'
     properties:
-      - url: https://www.apideck.com/
+      - url: ' https://www.apideck.com/'
         type: Documentation
     description: >-
-      Apideck is a hydrated, real‑time Unified API platform designed to simplify and accelerate integrations for SaaS companies and developers. Instead of building and maintaining dozens of separate connectors, you can integrate once with Apideck and access a standardized REST API that connects to 135+ services—CRMs, accounting tools, HRIS, e‑commerce, file storage, and more—all in real time with no data caching.
-name: APIDeck
+      Apideck is the leading Unified API that doesnt store sensitive customer
+      data. Build and maintain native integrations into your product with an
+      exceptional Developer Experience. 
+name: Apideck
 tags:
   - Unified API
-type: Contract
+  - Integrations
+type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
-created: '2025-01-08'
-modified: '2025-06-09'
-position: Consuming
+created: '2025-07-15'
+modified: '2025-07-15'
+position: Consumer
 description: >-
-  Apideck is a hydrated, real‑time Unified API platform designed to simplify and accelerate integrations for SaaS companies and developers. Instead of building and maintaining dozens of separate connectors, you can integrate once with Apideck and access a standardized REST API that connects to 135+ services—CRMs, accounting tools, HRIS, e‑commerce, file storage, and more—all in real time with no data caching.
+  Apideck is the leading Unified API that doesnt store sensitive customer data.
+  Build and maintain native integrations into your product with an exceptional
+  Developer Experience. 
 maintainers:
   - FN: Kin Lane
     email: info@apievangelist.com
 specificationVersion: '0.19'
 common:
-  - name: Customers | APIDeck
+  - name: The Realtime Unified API
     description: 'null'
     url: https://www.apideck.com/
+    type: Website
+  - name: Developer Docs - Apideck
+    description: 'null'
+    url: https://developers.apideck.com/
+    type: Documentation
+  - name: Typescript SDK - Apideck
+    description: 'null'
+    url: https://developers.apideck.com/sdks/node
+    type: SDKs
+  - name: Guides & tutorials - Apideck
+    description: 'null'
+    url: https://developers.apideck.com/guides
+    type: Guide
+  - name: Connectors - Apideck
+    description: 'null'
+    url: https://developers.apideck.com/connectors
+    type: Integrations
+  - name: Connectors - Apideck
+    description: 'null'
+    url: https://developers.apideck.com/connectors
+    type: Integrations
+  - name: API Explorer - Apideck
+    description: 'null'
+    url: https://developers.apideck.com/api-explorer
+    type: Explorer
+  - name: none
+    description: 'null'
+    url: https://platform.apideck.com/login
+    type: Login
+  - name: none
+    description: 'null'
+    url: https://platform.apideck.com/login
+    type: SignUp
+  - name: Apideck Help Center
+    description: 'null'
+    url: https://help.apideck.com/
+    type: Support
+  - name: API Changelog - Apideck
+    description: 'null'
+    url: https://developers.apideck.com/changelog
+    type: ChangeLog
+  - name: Errors - Apideck
+    description: 'null'
+    url: https://developers.apideck.com/errors
+    type: Errors
+  - name: Samples & integration examples - Apideck
+    description: 'null'
+    url: https://developers.apideck.com/samples
+    type: Examples
+  - name: Use cases & examples - Apideck
+    description: 'null'
+    url: https://developers.apideck.com/use-cases
+    type: UseCases
+  - name: Welcome to our Compliance Center | Apideck Compliance Center
+    description: 'null'
+    url: >-
+      https://compliance.apideck.com/?_gl=1*1od5jy9*_gcl_au*MTUxOTE3MDcxMC4xNzUyNjE1MTc3
+    type: Security
+  - name: Welcome to our Compliance Center | Apideck Compliance Center
+    description: 'null'
+    url: >-
+      https://compliance.apideck.com/?_gl=1*1od5jy9*_gcl_au*MTUxOTE3MDcxMC4xNzUyNjE1MTc3
+    type: Compliance
+  - name: Privacy Policy | Apideck Compliance Center
+    description: 'null'
+    url: https://compliance.apideck.com/privacy-policy
+    type: PrivacyPolicy
+  - name: Terms | Apideck Compliance Center
+    description: 'null'
+    url: https://compliance.apideck.com/terms
+    type: TermsOfService
+  - name: SLA | Apideck Compliance Center
+    description: 'null'
+    url: https://compliance.apideck.com/sla
+    type: ServiceLevelAgreement
+  - name: GDPR (EU) | Apideck Compliance Center
+    description: 'null'
+    url: https://compliance.apideck.com/gdpr
+    type: GDPR
+  - name: Apideck Unify - Pricing
+    description: 'null'
+    url: https://www.apideck.com/pricing
+    type: Pricing
+  - name: Apideck Status
+    description: 'null'
+    url: https://status.apideck.com/
+    type: Status
+  - name: Apideck Blog
+    description: 'null'
+    url: https://www.apideck.com/blog
+    type: Blog
