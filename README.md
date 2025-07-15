@@ -59,6 +59,8 @@ Apideck is the leading Unified API that doesnt store sensitive customer data. B
 - [Pricing](https://www.apideck.com/pricing)
 - [Status](https://status.apideck.com/)
 - [Blog](https://www.apideck.com/blog)
+- [Features](undefined)
+- [Integrations](undefined)
 
 ## Maintainers
 
