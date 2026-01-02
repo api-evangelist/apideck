@@ -12,9 +12,7 @@ apis:
       - url: ' https://www.apideck.com/'
         type: Documentation
     description: >-
-      Apideck is the leading Unified API that doesnt store sensitive customer
-      data. Build and maintain native integrations into your product with an
-      exceptional Developer Experience. 
+      Apideck is the leading Unified API that doesn't store sensitive customer data. Build and maintain native integrations into your product with an exceptional Developer Experience. 
 name: Apideck
 tags:
   - Unified API
@@ -26,7 +24,7 @@ created: '2025-07-15'
 modified: '2025-07-15'
 position: Consumer
 description: >-
-  Apideck is the leading Unified API that doesnt store sensitive customer data.
+  Apideck is the leading Unified API that doesn't store sensitive customer data.
   Build and maintain native integrations into your product with an exceptional
   Developer Experience. 
 maintainers:
