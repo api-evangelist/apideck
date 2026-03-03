@@ -23,6 +23,8 @@ access: 3rd-Party
 created: '2025-07-15'
 modified: '2025-07-15'
 position: Consumer
+segments:
+  - Unified_API
 description: >-
   Apideck is the leading Unified API that doesn't store sensitive customer data.
   Build and maintain native integrations into your product with an exceptional
