@@ -30,7 +30,7 @@ apis:
     properties:
       - url: https://developers.apideck.com/apis/accounting/reference
         type: Documentation
-      - url: https://specs.apideck.com/accounting.yml
+      - url: openapi/apideck-accounting-openapi.yml
         type: OpenAPI
     description: >-
       The Apideck Accounting API is a unified API for managing financial
@@ -49,7 +49,7 @@ apis:
     properties:
       - url: https://developers.apideck.com/apis/crm/reference
         type: Documentation
-      - url: https://specs.apideck.com/crm.yml
+      - url: openapi/apideck-crm-openapi.yml
         type: OpenAPI
     description: >-
       The Apideck CRM API is a unified API for managing customer relationships
@@ -68,7 +68,7 @@ apis:
     properties:
       - url: https://developers.apideck.com/apis/hris/reference
         type: Documentation
-      - url: https://specs.apideck.com/hris.yml
+      - url: openapi/apideck-hris-openapi.yml
         type: OpenAPI
     description: >-
       The Apideck HRIS API is a unified API for managing human resources data
@@ -106,7 +106,7 @@ apis:
     properties:
       - url: https://developers.apideck.com/apis/file-storage/reference
         type: Documentation
-      - url: https://specs.apideck.com/file-storage.yml
+      - url: openapi/apideck-file-storage-openapi.yml
         type: OpenAPI
     description: >-
       The Apideck File Storage API is a unified API for handling cloud file
@@ -281,7 +281,7 @@ type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 created: '2025-07-15'
-modified: '2026-03-03'
+modified: '2026-04-01'
 position: Consumer
 segments:
   - Unified_API
