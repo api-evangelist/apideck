@@ -4814,11 +4814,6 @@ components:
 security:
   - apiKey: []
 tags:
-  - name: Employees
-    description: An Employee represents a worker, including personal details, employment dates, job title, department, manager, compensation, and contact info.
-    x-apideck-resource-id: employees
-    x-apideck-model:
-      $ref: '#/components/schemas/Employee'
   - name: Companies
     description: A Company represents an employing organization, including legal name, display name, addresses, and status.
     x-apideck-resource-id: companies
@@ -4829,11 +4824,6 @@ tags:
     x-apideck-resource-id: departments
     x-apideck-model:
       $ref: '#/components/schemas/Department'
-  - name: Payrolls
-    description: A Payroll represents a pay run, including pay period dates, total amounts, status, and linked company.
-    x-apideck-resource-id: payrolls
-    x-apideck-model:
-      $ref: '#/components/schemas/Payroll'
   - name: Employee Payrolls
     description: An Employee Payroll represents an individual's pay details for a period, including gross pay, deductions, taxes, and net pay.
     x-apideck-resource-id: employee-payrolls
@@ -4844,6 +4834,16 @@ tags:
     x-apideck-resource-id: employee-schedules
     x-apideck-model:
       $ref: '#/components/schemas/EmployeeSchedules'
+  - name: Employees
+    description: An Employee represents a worker, including personal details, employment dates, job title, department, manager, compensation, and contact info.
+    x-apideck-resource-id: employees
+    x-apideck-model:
+      $ref: '#/components/schemas/Employee'
+  - name: Payrolls
+    description: A Payroll represents a pay run, including pay period dates, total amounts, status, and linked company.
+    x-apideck-resource-id: payrolls
+    x-apideck-model:
+      $ref: '#/components/schemas/Payroll'
   - name: Time Off Requests
     description: A Time Off Request represents an absence request, including type (vacation, sick), dates, status, and approval information.
     x-apideck-resource-id: time-off-requests

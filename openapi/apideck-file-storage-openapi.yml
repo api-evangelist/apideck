@@ -2692,6 +2692,16 @@ components:
 security:
   - apiKey: []
 tags:
+  - name: Drive Groups
+    description: Drive Groups resource represents the groups of drives in the cloud storage service. It provides methods for managing and accessing the drive groups, such as creating, deleting, and listing drive groups. A drive group is a logical grouping of drives, which can be used to manage the drives in the cloud storage service.
+    x-apideck-resource-id: drive-groups
+    x-apideck-model:
+      $ref: '#/components/schemas/DriveGroup'
+  - name: Drives
+    description: Drives resource represents logical containers for storing folders and files in the cloud storage service. It provides methods for managing and accessing the drives, such as creating, deleting, and listing drives.
+    x-apideck-resource-id: drives
+    x-apideck-model:
+      $ref: '#/components/schemas/Drive'
   - name: Files
     description: Files resource represents files stored in the cloud storage services. It provides methods for managing and accessing the files, such as uploading, downloading, and deleting files. For more information on uploads, refer to the [file upload guide](/guides/file-upload).
     x-apideck-resource-id: files
@@ -2712,16 +2722,6 @@ tags:
     x-apideck-resource-id: upload-sessions
     x-apideck-model:
       $ref: '#/components/schemas/UploadSession'
-  - name: Drives
-    description: Drives resource represents logical containers for storing folders and files in the cloud storage service. It provides methods for managing and accessing the drives, such as creating, deleting, and listing drives.
-    x-apideck-resource-id: drives
-    x-apideck-model:
-      $ref: '#/components/schemas/Drive'
-  - name: Drive Groups
-    description: Drive Groups resource represents the groups of drives in the cloud storage service. It provides methods for managing and accessing the drive groups, such as creating, deleting, and listing drive groups. A drive group is a logical grouping of drives, which can be used to manage the drives in the cloud storage service.
-    x-apideck-resource-id: drive-groups
-    x-apideck-model:
-      $ref: '#/components/schemas/DriveGroup'
 paths:
   /file-storage/files:
     get:

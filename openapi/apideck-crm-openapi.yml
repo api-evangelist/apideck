@@ -43,6 +43,16 @@ tags:
     x-apideck-resource-id: contacts
     x-apideck-model:
       $ref: '#/components/schemas/Contact'
+  - name: Custom Object Schemas
+    description: The Custom Object Schema resource represents the schema of a custom object.
+    x-apideck-resource-id: custom-object-schemas
+    x-apideck-model:
+      $ref: '#/components/schemas/CustomObjectSchema'
+  - name: Custom Objects
+    description: The Custom Object resource represents user-defined data structures in Salesforce, allowing storage of custom records with specific fields, relationships, and business logic tailored to unique organizational needs.
+    x-apideck-resource-id: custom-objects
+    x-apideck-model:
+      $ref: '#/components/schemas/CustomObject'
   - name: Leads
     description: The Lead resource represents individuals or businesses that have shown interest in a company's products or services, including contact information and potential deal opportunities.
     x-apideck-resource-id: leads
@@ -68,16 +78,6 @@ tags:
     x-apideck-resource-id: users
     x-apideck-model:
       $ref: '#/components/schemas/User'
-  - name: Custom Object Schemas
-    description: The Custom Object Schema resource represents the schema of a custom object.
-    x-apideck-resource-id: custom-object-schemas
-    x-apideck-model:
-      $ref: '#/components/schemas/CustomObjectSchema'
-  - name: Custom Objects
-    description: The Custom Object resource represents user-defined data structures in Salesforce, allowing storage of custom records with specific fields, relationships, and business logic tailored to unique organizational needs.
-    x-apideck-resource-id: custom-objects
-    x-apideck-model:
-      $ref: '#/components/schemas/CustomObject'
 components:
   schemas:
     ActivitiesFilter:

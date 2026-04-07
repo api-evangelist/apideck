@@ -5,8 +5,8 @@ apis:
   - aid: apideck:apideck
     name: Apideck
     tags:
-      - Unified API
       - Integrations
+      - Unified API
     humanURL: ' https://www.apideck.com/'
     baseURL: https://unify.apideck.com
     properties:
@@ -21,10 +21,10 @@ apis:
   - aid: apideck:accounting-api
     name: Apideck Accounting API
     tags:
-      - Unified API
       - Accounting
       - Invoices
       - Payments
+      - Unified API
     humanURL: https://developers.apideck.com/apis/accounting/reference
     baseURL: https://unify.apideck.com
     properties:
@@ -40,10 +40,10 @@ apis:
   - aid: apideck:crm-api
     name: Apideck CRM API
     tags:
-      - Unified API
-      - CRM
       - Contacts
+      - CRM
       - Leads
+      - Unified API
     humanURL: https://developers.apideck.com/apis/crm/reference
     baseURL: https://unify.apideck.com
     properties:
@@ -59,10 +59,10 @@ apis:
   - aid: apideck:hris-api
     name: Apideck HRIS API
     tags:
-      - Unified API
+      - Employees
       - HRIS
       - Human Resources
-      - Employees
+      - Unified API
     humanURL: https://developers.apideck.com/apis/hris/reference
     baseURL: https://unify.apideck.com
     properties:
@@ -78,10 +78,10 @@ apis:
   - aid: apideck:ats-api
     name: Apideck ATS API
     tags:
-      - Unified API
-      - ATS
       - Applicant Tracking
+      - ATS
       - Recruitment
+      - Unified API
     humanURL: https://developers.apideck.com/apis/ats/reference
     baseURL: https://unify.apideck.com
     properties:
@@ -97,10 +97,10 @@ apis:
   - aid: apideck:file-storage-api
     name: Apideck File Storage API
     tags:
-      - Unified API
-      - File Storage
       - Cloud Storage
+      - File Storage
       - Files
+      - Unified API
     humanURL: https://developers.apideck.com/apis/file-storage/reference
     baseURL: https://unify.apideck.com
     properties:
@@ -116,10 +116,10 @@ apis:
   - aid: apideck:ecommerce-api
     name: Apideck Ecommerce API
     tags:
-      - Unified API
       - Ecommerce
       - Orders
       - Products
+      - Unified API
     humanURL: https://developers.apideck.com/apis/ecommerce/reference
     baseURL: https://unify.apideck.com
     properties:
@@ -134,10 +134,10 @@ apis:
   - aid: apideck:pos-api
     name: Apideck POS API
     tags:
-      - Unified API
-      - POS
-      - Point of Sale
       - Payments
+      - Point of Sale
+      - POS
+      - Unified API
     humanURL: https://developers.apideck.com/apis/pos/reference
     baseURL: https://unify.apideck.com
     properties:
@@ -153,10 +153,10 @@ apis:
   - aid: apideck:issue-tracking-api
     name: Apideck Issue Tracking API
     tags:
-      - Unified API
       - Issue Tracking
-      - Tickets
       - Project Management
+      - Tickets
+      - Unified API
     humanURL: https://developers.apideck.com/apis/issue-tracking/reference
     baseURL: https://unify.apideck.com
     properties:
@@ -171,10 +171,10 @@ apis:
   - aid: apideck:lead-api
     name: Apideck Lead API
     tags:
-      - Unified API
       - Leads
-      - Sales
       - Marketing
+      - Sales
+      - Unified API
     humanURL: https://developers.apideck.com/apis/lead/reference
     baseURL: https://unify.apideck.com
     properties:
@@ -190,9 +190,9 @@ apis:
   - aid: apideck:sms-api
     name: Apideck SMS API
     tags:
-      - Unified API
-      - SMS
       - Messaging
+      - SMS
+      - Unified API
     humanURL: https://developers.apideck.com/apis/sms/reference
     baseURL: https://unify.apideck.com
     properties:
@@ -207,10 +207,10 @@ apis:
   - aid: apideck:vault-api
     name: Apideck Vault API
     tags:
-      - Unified API
       - Authentication
-      - OAuth
       - Credentials
+      - OAuth
+      - Unified API
     humanURL: https://developers.apideck.com/apis/vault/reference
     baseURL: https://unify.apideck.com
     properties:
@@ -225,9 +225,9 @@ apis:
   - aid: apideck:webhook-api
     name: Apideck Webhook API
     tags:
+      - Events
       - Unified API
       - Webhooks
-      - Events
     humanURL: https://developers.apideck.com/apis/webhook/reference
     baseURL: https://unify.apideck.com
     properties:
@@ -242,9 +242,9 @@ apis:
   - aid: apideck:connector-api
     name: Apideck Connector API
     tags:
-      - Unified API
       - Connectors
       - Integrations
+      - Unified API
     humanURL: https://developers.apideck.com/apis/connector/reference
     baseURL: https://unify.apideck.com
     properties:
@@ -259,9 +259,9 @@ apis:
   - aid: apideck:proxy-api
     name: Apideck Proxy API
     tags:
-      - Unified API
-      - Proxy
       - Monitoring
+      - Proxy
+      - Unified API
     humanURL: https://developers.apideck.com/apis/proxy/reference
     baseURL: https://unify.apideck.com
     properties:
@@ -275,8 +275,8 @@ apis:
       enabling API traffic logging and monitoring for every API call.
 name: Apideck
 tags:
-  - Unified API
   - Integrations
+  - Unified API
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
