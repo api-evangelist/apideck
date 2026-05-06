@@ -1,5 +1,6 @@
 specification: FinOps Framework
 specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
 alignedWith:
   framework: FinOps Foundation Framework
   frameworkUrl: https://www.finops.org/framework/
@@ -8,243 +9,91 @@ alignedWith:
   dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
 provider: Apideck
 providerId: apideck
-publisherName: Apideck
-serviceCategory: API
+publisherName: Apideck B.V.
+serviceCategory: Integrations / Unified API
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: true
 tags:
+  - FinOps
+  - FOCUS
   - Integrations
   - Unified API
-  - FinOps
-  - Cost Management
-  - FOCUS
-description: FinOps framework definition for the Apideck API surface. Provides a FOCUS-aligned mapping
-  for cost allocation, usage measurement, and unit-economics reporting across the provider's APIs.
-principles:
-  - name: Visibility
-    description: Make API consumption costs visible to engineering, product, and finance teams in near
-      real-time.
-  - name: Allocation
-    description: Tag every chargeable API call with the consuming team, environment, application, and
-      feature so cost can be allocated.
-  - name: Optimization
-    description: Continuously evaluate request patterns, caching, batching, and tier selection to reduce
-      cost per useful unit of work.
-  - name: Accountability
-    description: Establish budget owners and chargeback or showback flows for each consuming team.
-domains:
-  - name: Understand Usage and Cost
-    capabilities:
-      - Data Ingestion
-      - Allocation
-      - Reporting and Analytics
-      - Anomaly Management
-  - name: Quantify Business Value
-    capabilities:
-      - Planning and Estimating
-      - Forecasting
-      - Budgeting
-      - Benchmarking
-      - Unit Economics
-  - name: Optimize Usage and Cost
-    capabilities:
-      - Architecting for Cloud
-      - Rate Optimization
-      - Workload Optimization
-      - Cloud Sustainability
-      - Licensing and SaaS
-  - name: Manage the FinOps Practice
-    capabilities:
-      - FinOps Practice Operations
-      - FinOps Education and Enablement
-      - Invoicing and Chargeback
-      - Onboarding Workloads
-      - Intersecting Disciplines
+description: FOCUS-aligned FinOps view for Apideck. Charges are tier-based subscriptions denominated in
+  EUR with the primary cost driver being Active Consumers (end-customers connecting third-party SaaS via
+  Apideck) and number of Unified API categories enabled.
+sources:
+  - https://www.apideck.com/pricing
 billingModel:
-  pricingCategory: Usage-Based
+  pricingCategory: Tiered Subscription
   billingFrequency: Monthly
-  billingCurrency: USD
+  billingCurrency: EUR
   chargeCategories:
-    - Usage
     - Purchase
-    - Tax
-    - Credit
+    - Usage
     - Adjustment
-  chargeFrequency: Recurring
 focusColumns:
-  ServiceName: Apideck
-  ServiceCategory: Developer Tools / API
+  ServiceName: Apideck Unify
+  ServiceCategory: Integrations / Unified API
   ProviderName: Apideck
-  PublisherName: Apideck
-  InvoiceIssuerName: Apideck
-  PricingCategory: Usage-Based
-  PricingUnit: request
-  BillingCurrency: USD
-  ChargeCategory: Usage
+  PublisherName: Apideck B.V.
+  InvoiceIssuerName: Apideck B.V.
+  BillingCurrency: EUR
+  ChargeCategory: Purchase
+  PricingCategory: Tiered Subscription
 meters:
+  - name: subscription_month
+    description: Monthly subscription line for the active plan tier (Launch, Scale, Enterprise)
+    unit: month
+    aggregation: sum
+    dimensions:
+      - plan_tier
+  - name: active_consumers
+    description: Count of unique end-customer consumers (Active Consumers) using Apideck-mediated connections
+      in the billing period; the primary tier sizing dimension.
+    unit: consumer
+    aggregation: max
+    dimensions:
+      - plan_tier
+      - api_category
+  - name: unified_api_categories
+    description: Number of Unified API categories enabled on the account (1 on Launch, up to 3 on Scale,
+      unlimited on Enterprise).
+    unit: category
+    aggregation: max
+    dimensions:
+      - plan_tier
   - name: api_requests
-    description: Count of billable API requests
+    description: Count of requests served through Apideck Unify and Proxy APIs (telemetry; not directly
+      billed at Launch/Scale tiers).
     unit: request
     aggregation: sum
     dimensions:
-      - api
-      - endpoint
-      - tier
-      - region
+      - api_category
       - consumer
-  - name: data_egress
-    description: Bytes returned over the network in API responses
-    unit: GB
+      - connector
+  - name: connector_calls
+    description: Calls forwarded to downstream connectors (Salesforce, QuickBooks, HubSpot, etc.) for
+      cost attribution against connector-specific quotas.
+    unit: request
     aggregation: sum
     dimensions:
-      - api
-      - region
+      - connector
       - consumer
-  - name: compute_seconds
-    description: Server-side compute consumed by the request, where applicable
-    unit: second
-    aggregation: sum
-    dimensions:
-      - api
-      - endpoint
-      - tier
-apis:
-  - name: Apideck
-    baseURL: https://unify.apideck.com
-    tags:
-      - Integrations
-      - Unified API
-    serviceName: Apideck
-    serviceCategory: API
-  - name: Apideck Accounting API
-    baseURL: https://unify.apideck.com
-    tags:
-      - Accounting
-      - Invoices
-      - Payments
-      - Unified API
-    serviceName: Apideck Accounting API
-    serviceCategory: API
-  - name: Apideck CRM API
-    baseURL: https://unify.apideck.com
-    tags:
-      - Contacts
-      - CRM
-      - Leads
-      - Unified API
-    serviceName: Apideck CRM API
-    serviceCategory: API
-  - name: Apideck HRIS API
-    baseURL: https://unify.apideck.com
-    tags:
-      - Employees
-      - HRIS
-      - Human Resources
-      - Unified API
-    serviceName: Apideck HRIS API
-    serviceCategory: API
-  - name: Apideck ATS API
-    baseURL: https://unify.apideck.com
-    tags:
-      - Applicant Tracking
-      - ATS
-      - Recruitment
-      - Unified API
-    serviceName: Apideck ATS API
-    serviceCategory: API
-  - name: Apideck File Storage API
-    baseURL: https://unify.apideck.com
-    tags:
-      - Cloud Storage
-      - File Storage
-      - Files
-      - Unified API
-    serviceName: Apideck File Storage API
-    serviceCategory: API
-  - name: Apideck Ecommerce API
-    baseURL: https://unify.apideck.com
-    tags:
-      - Ecommerce
-      - Orders
-      - Products
-      - Unified API
-    serviceName: Apideck Ecommerce API
-    serviceCategory: API
-  - name: Apideck POS API
-    baseURL: https://unify.apideck.com
-    tags:
-      - Payments
-      - Point of Sale
-      - POS
-      - Unified API
-    serviceName: Apideck POS API
-    serviceCategory: API
-  - name: Apideck Issue Tracking API
-    baseURL: https://unify.apideck.com
-    tags:
-      - Issue Tracking
-      - Project Management
-      - Tickets
-      - Unified API
-    serviceName: Apideck Issue Tracking API
-    serviceCategory: API
-  - name: Apideck Lead API
-    baseURL: https://unify.apideck.com
-    tags:
-      - Leads
-      - Marketing
-      - Sales
-      - Unified API
-    serviceName: Apideck Lead API
-    serviceCategory: API
-  - name: Apideck SMS API
-    baseURL: https://unify.apideck.com
-    tags:
-      - Messaging
-      - SMS
-      - Unified API
-    serviceName: Apideck SMS API
-    serviceCategory: API
-  - name: Apideck Vault API
-    baseURL: https://unify.apideck.com
-    tags:
-      - Authentication
-      - Credentials
-      - OAuth
-      - Unified API
-    serviceName: Apideck Vault API
-    serviceCategory: API
-  - name: Apideck Webhook API
-    baseURL: https://unify.apideck.com
-    tags:
-      - Events
-      - Unified API
-      - Webhooks
-    serviceName: Apideck Webhook API
-    serviceCategory: API
-  - name: Apideck Connector API
-    baseURL: https://unify.apideck.com
-    tags:
-      - Connectors
-      - Integrations
-      - Unified API
-    serviceName: Apideck Connector API
-    serviceCategory: API
-  - name: Apideck Proxy API
-    baseURL: https://unify.apideck.com
-    tags:
-      - Monitoring
-      - Proxy
-      - Unified API
-    serviceName: Apideck Proxy API
-    serviceCategory: API
-unitEconomics:
-  - name: Cost per 1K Requests
-    metric: billed_cost / (api_requests / 1000)
-    target: TBD
-  - name: Cost per Active Consumer
-    metric: billed_cost / active_consumers
-    target: TBD
+principles:
+  - name: Visibility
+    description: Use the Apideck dashboard logs and Vault per-consumer usage views to attribute API call
+      counts and connector traffic per end-customer.
+  - name: Allocation
+    description: Tag spend by Active Consumer (end-customer), product line, and Unified API category.
+      Active Consumer count is the primary tier-sizing axis and should be reviewed monthly.
+  - name: Optimization
+    description: Right-size the plan against actual Active Consumers; consolidate to fewer Unified API
+      categories on Scale; switch to annual billing for the 10% discount; minimize Proxy API calls when
+      a Unified endpoint exists.
+  - name: Accountability
+    description: Integrations or Platform team owns the Apideck contract; product owners get showback
+      based on Active Consumers attributable to their product surface.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
