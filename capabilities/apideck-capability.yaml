@@ -1,0 +1,1802 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Apideck Accounting API
+  description: 'Welcome to the Accounting API. You can use this API to access all Accounting API endpoints. ## Base URL The
+    base URL for all API requests is `https://unify.apideck.com` ## Headers Custom headers that are expected as part of the
+    request. Note that [RFC7230](https://tools.ietf.org/html/rfc7230) states header names are case insensitive. | Name | Type
+    | Required | Description | | --------------------- | ------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------
+    | | x-apideck-con'
+  tags:
+  - Apideck
+  - API
+  created: '2026-05-06'
+  modified: '2026-05-06'
+capability:
+  consumes:
+  - type: http
+    namespace: apideck
+    baseUri: https://unify.apideck.com
+    description: Apideck Accounting API HTTP API.
+    authentication:
+      type: apikey
+      in: header
+      name: Authorization
+      value: '{{APIDECK_TOKEN}}'
+    resources:
+    - name: accounting-tax-rates
+      path: /accounting/tax-rates
+      operations:
+      - name: taxratesall
+        method: GET
+        description: Apideck List Tax Rates
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: taxratesadd
+        method: POST
+        description: Apideck Create Tax Rate
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: accounting-tax-rates-id
+      path: /accounting/tax-rates/{id}
+      operations:
+      - name: taxratesone
+        method: GET
+        description: Apideck Get Tax Rate
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: taxratesupdate
+        method: PATCH
+        description: Apideck Update Tax Rate
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: taxratesdelete
+        method: DELETE
+        description: Apideck Delete Tax Rate
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: accounting-bills
+      path: /accounting/bills
+      operations:
+      - name: billsall
+        method: GET
+        description: Apideck List Bills
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: billsadd
+        method: POST
+        description: Apideck Create Bill
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: accounting-bills-id
+      path: /accounting/bills/{id}
+      operations:
+      - name: billsone
+        method: GET
+        description: Apideck Get Bill
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: billsupdate
+        method: PATCH
+        description: Apideck Update Bill
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: billsdelete
+        method: DELETE
+        description: Apideck Delete Bill
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: accounting-invoices
+      path: /accounting/invoices
+      operations:
+      - name: invoicesall
+        method: GET
+        description: Apideck List Invoices
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: invoicesadd
+        method: POST
+        description: Apideck Create Invoice
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: accounting-invoices-id
+      path: /accounting/invoices/{id}
+      operations:
+      - name: invoicesone
+        method: GET
+        description: Apideck Get Invoice
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: invoicesupdate
+        method: PATCH
+        description: Apideck Update Invoice
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: invoicesdelete
+        method: DELETE
+        description: Apideck Delete Invoice
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: accounting-ledger-accounts
+      path: /accounting/ledger-accounts
+      operations:
+      - name: ledgeraccountsall
+        method: GET
+        description: Apideck List Ledger Accounts
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: ledgeraccountsadd
+        method: POST
+        description: Apideck Create Ledger Account
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: accounting-ledger-accounts-id
+      path: /accounting/ledger-accounts/{id}
+      operations:
+      - name: ledgeraccountsone
+        method: GET
+        description: Apideck Get Ledger Account
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: ledgeraccountsupdate
+        method: PATCH
+        description: Apideck Update Ledger Account
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: ledgeraccountsdelete
+        method: DELETE
+        description: Apideck Delete Ledger Account
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: accounting-invoice-items
+      path: /accounting/invoice-items
+      operations:
+      - name: invoiceitemsall
+        method: GET
+        description: Apideck List Invoice Items
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: invoiceitemsadd
+        method: POST
+        description: Apideck Create Invoice Item
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: accounting-invoice-items-id
+      path: /accounting/invoice-items/{id}
+      operations:
+      - name: invoiceitemsone
+        method: GET
+        description: Apideck Get Invoice Item
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: invoiceitemsupdate
+        method: PATCH
+        description: Apideck Update Invoice Item
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: invoiceitemsdelete
+        method: DELETE
+        description: Apideck Delete Invoice Item
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: accounting-credit-notes
+      path: /accounting/credit-notes
+      operations:
+      - name: creditnotesall
+        method: GET
+        description: Apideck List Credit Notes
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: creditnotesadd
+        method: POST
+        description: Apideck Create Credit Note
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: accounting-credit-notes-id
+      path: /accounting/credit-notes/{id}
+      operations:
+      - name: creditnotesone
+        method: GET
+        description: Apideck Get Credit Note
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: creditnotesupdate
+        method: PATCH
+        description: Apideck Update Credit Note
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: creditnotesdelete
+        method: DELETE
+        description: Apideck Delete Credit Note
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: accounting-customers
+      path: /accounting/customers
+      operations:
+      - name: customersall
+        method: GET
+        description: Apideck List Customers
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: customersadd
+        method: POST
+        description: Apideck Create Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: accounting-customers-id
+      path: /accounting/customers/{id}
+      operations:
+      - name: customersone
+        method: GET
+        description: Apideck Get Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: customersupdate
+        method: PATCH
+        description: Apideck Update Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: customersdelete
+        method: DELETE
+        description: Apideck Delete Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: accounting-suppliers
+      path: /accounting/suppliers
+      operations:
+      - name: suppliersall
+        method: GET
+        description: Apideck List Suppliers
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: suppliersadd
+        method: POST
+        description: Apideck Create Supplier
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: accounting-suppliers-id
+      path: /accounting/suppliers/{id}
+      operations:
+      - name: suppliersone
+        method: GET
+        description: Apideck Get Supplier
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: suppliersupdate
+        method: PATCH
+        description: Apideck Update Supplier
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: suppliersdelete
+        method: DELETE
+        description: Apideck Delete Supplier
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: accounting-payments
+      path: /accounting/payments
+      operations:
+      - name: paymentsall
+        method: GET
+        description: Apideck List Payments
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: paymentsadd
+        method: POST
+        description: Apideck Create Payment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: accounting-payments-id
+      path: /accounting/payments/{id}
+      operations:
+      - name: paymentsone
+        method: GET
+        description: Apideck Get Payment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: paymentsupdate
+        method: PATCH
+        description: Apideck Update Payment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: paymentsdelete
+        method: DELETE
+        description: Apideck Delete Payment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: accounting-refunds
+      path: /accounting/refunds
+      operations:
+      - name: refundsall
+        method: GET
+        description: Apideck List Refunds
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: refundsadd
+        method: POST
+        description: Apideck Create Refund
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: accounting-refunds-id
+      path: /accounting/refunds/{id}
+      operations:
+      - name: refundsone
+        method: GET
+        description: Apideck Get Refund
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: refundsupdate
+        method: PATCH
+        description: Apideck Update Refund
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: refundsdelete
+        method: DELETE
+        description: Apideck Delete Refund
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: accounting-company-info
+      path: /accounting/company-info
+      operations:
+      - name: companyinfoone
+        method: GET
+        description: Apideck Get company info
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: accounting-companies
+      path: /accounting/companies
+      operations:
+      - name: companiesall
+        method: GET
+        description: Apideck List companies
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: accounting-balance-sheet
+      path: /accounting/balance-sheet
+      operations:
+      - name: balancesheetone
+        method: GET
+        description: Apideck Get BalanceSheet
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: accounting-profit-and-loss
+      path: /accounting/profit-and-loss
+      operations:
+      - name: profitandlossone
+        method: GET
+        description: Apideck Get Profit and Loss
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: accounting-journal-entries
+      path: /accounting/journal-entries
+      operations:
+      - name: journalentriesall
+        method: GET
+        description: Apideck List Journal Entries
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: journalentriesadd
+        method: POST
+        description: Apideck Create Journal Entry
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: accounting-journal-entries-id
+      path: /accounting/journal-entries/{id}
+      operations:
+      - name: journalentriesone
+        method: GET
+        description: Apideck Get Journal Entry
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: journalentriesupdate
+        method: PATCH
+        description: Apideck Update Journal Entry
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: journalentriesdelete
+        method: DELETE
+        description: Apideck Delete Journal Entry
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: accounting-purchase-orders
+      path: /accounting/purchase-orders
+      operations:
+      - name: purchaseordersall
+        method: GET
+        description: Apideck List Purchase Orders
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    port: 8080
+    namespace: apideck-rest
+    description: REST adapter for Apideck Accounting API.
+    resources:
+    - path: /accounting/tax-rates
+      name: taxratesall
+      operations:
+      - method: GET
+        name: taxratesall
+        description: Apideck List Tax Rates
+        call: apideck.taxratesall
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /accounting/tax-rates
+      name: taxratesadd
+      operations:
+      - method: POST
+        name: taxratesadd
+        description: Apideck Create Tax Rate
+        call: apideck.taxratesadd
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /accounting/tax-rates/{id}
+      name: taxratesone
+      operations:
+      - method: GET
+        name: taxratesone
+        description: Apideck Get Tax Rate
+        call: apideck.taxratesone
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /accounting/tax-rates/{id}
+      name: taxratesupdate
+      operations:
+      - method: PATCH
+        name: taxratesupdate
+        description: Apideck Update Tax Rate
+        call: apideck.taxratesupdate
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /accounting/tax-rates/{id}
+      name: taxratesdelete
+      operations:
+      - method: DELETE
+        name: taxratesdelete
+        description: Apideck Delete Tax Rate
+        call: apideck.taxratesdelete
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /accounting/bills
+      name: billsall
+      operations:
+      - method: GET
+        name: billsall
+        description: Apideck List Bills
+        call: apideck.billsall
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /accounting/bills
+      name: billsadd
+      operations:
+      - method: POST
+        name: billsadd
+        description: Apideck Create Bill
+        call: apideck.billsadd
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /accounting/bills/{id}
+      name: billsone
+      operations:
+      - method: GET
+        name: billsone
+        description: Apideck Get Bill
+        call: apideck.billsone
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /accounting/bills/{id}
+      name: billsupdate
+      operations:
+      - method: PATCH
+        name: billsupdate
+        description: Apideck Update Bill
+        call: apideck.billsupdate
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /accounting/bills/{id}
+      name: billsdelete
+      operations:
+      - method: DELETE
+        name: billsdelete
+        description: Apideck Delete Bill
+        call: apideck.billsdelete
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /accounting/invoices
+      name: invoicesall
+      operations:
+      - method: GET
+        name: invoicesall
+        description: Apideck List Invoices
+        call: apideck.invoicesall
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /accounting/invoices
+      name: invoicesadd
+      operations:
+      - method: POST
+        name: invoicesadd
+        description: Apideck Create Invoice
+        call: apideck.invoicesadd
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /accounting/invoices/{id}
+      name: invoicesone
+      operations:
+      - method: GET
+        name: invoicesone
+        description: Apideck Get Invoice
+        call: apideck.invoicesone
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /accounting/invoices/{id}
+      name: invoicesupdate
+      operations:
+      - method: PATCH
+        name: invoicesupdate
+        description: Apideck Update Invoice
+        call: apideck.invoicesupdate
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /accounting/invoices/{id}
+      name: invoicesdelete
+      operations:
+      - method: DELETE
+        name: invoicesdelete
+        description: Apideck Delete Invoice
+        call: apideck.invoicesdelete
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /accounting/ledger-accounts
+      name: ledgeraccountsall
+      operations:
+      - method: GET
+        name: ledgeraccountsall
+        description: Apideck List Ledger Accounts
+        call: apideck.ledgeraccountsall
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /accounting/ledger-accounts
+      name: ledgeraccountsadd
+      operations:
+      - method: POST
+        name: ledgeraccountsadd
+        description: Apideck Create Ledger Account
+        call: apideck.ledgeraccountsadd
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /accounting/ledger-accounts/{id}
+      name: ledgeraccountsone
+      operations:
+      - method: GET
+        name: ledgeraccountsone
+        description: Apideck Get Ledger Account
+        call: apideck.ledgeraccountsone
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /accounting/ledger-accounts/{id}
+      name: ledgeraccountsupdate
+      operations:
+      - method: PATCH
+        name: ledgeraccountsupdate
+        description: Apideck Update Ledger Account
+        call: apideck.ledgeraccountsupdate
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /accounting/ledger-accounts/{id}
+      name: ledgeraccountsdelete
+      operations:
+      - method: DELETE
+        name: ledgeraccountsdelete
+        description: Apideck Delete Ledger Account
+        call: apideck.ledgeraccountsdelete
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /accounting/invoice-items
+      name: invoiceitemsall
+      operations:
+      - method: GET
+        name: invoiceitemsall
+        description: Apideck List Invoice Items
+        call: apideck.invoiceitemsall
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /accounting/invoice-items
+      name: invoiceitemsadd
+      operations:
+      - method: POST
+        name: invoiceitemsadd
+        description: Apideck Create Invoice Item
+        call: apideck.invoiceitemsadd
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /accounting/invoice-items/{id}
+      name: invoiceitemsone
+      operations:
+      - method: GET
+        name: invoiceitemsone
+        description: Apideck Get Invoice Item
+        call: apideck.invoiceitemsone
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /accounting/invoice-items/{id}
+      name: invoiceitemsupdate
+      operations:
+      - method: PATCH
+        name: invoiceitemsupdate
+        description: Apideck Update Invoice Item
+        call: apideck.invoiceitemsupdate
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /accounting/invoice-items/{id}
+      name: invoiceitemsdelete
+      operations:
+      - method: DELETE
+        name: invoiceitemsdelete
+        description: Apideck Delete Invoice Item
+        call: apideck.invoiceitemsdelete
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /accounting/credit-notes
+      name: creditnotesall
+      operations:
+      - method: GET
+        name: creditnotesall
+        description: Apideck List Credit Notes
+        call: apideck.creditnotesall
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /accounting/credit-notes
+      name: creditnotesadd
+      operations:
+      - method: POST
+        name: creditnotesadd
+        description: Apideck Create Credit Note
+        call: apideck.creditnotesadd
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /accounting/credit-notes/{id}
+      name: creditnotesone
+      operations:
+      - method: GET
+        name: creditnotesone
+        description: Apideck Get Credit Note
+        call: apideck.creditnotesone
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /accounting/credit-notes/{id}
+      name: creditnotesupdate
+      operations:
+      - method: PATCH
+        name: creditnotesupdate
+        description: Apideck Update Credit Note
+        call: apideck.creditnotesupdate
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /accounting/credit-notes/{id}
+      name: creditnotesdelete
+      operations:
+      - method: DELETE
+        name: creditnotesdelete
+        description: Apideck Delete Credit Note
+        call: apideck.creditnotesdelete
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /accounting/customers
+      name: customersall
+      operations:
+      - method: GET
+        name: customersall
+        description: Apideck List Customers
+        call: apideck.customersall
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /accounting/customers
+      name: customersadd
+      operations:
+      - method: POST
+        name: customersadd
+        description: Apideck Create Customer
+        call: apideck.customersadd
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /accounting/customers/{id}
+      name: customersone
+      operations:
+      - method: GET
+        name: customersone
+        description: Apideck Get Customer
+        call: apideck.customersone
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /accounting/customers/{id}
+      name: customersupdate
+      operations:
+      - method: PATCH
+        name: customersupdate
+        description: Apideck Update Customer
+        call: apideck.customersupdate
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /accounting/customers/{id}
+      name: customersdelete
+      operations:
+      - method: DELETE
+        name: customersdelete
+        description: Apideck Delete Customer
+        call: apideck.customersdelete
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /accounting/suppliers
+      name: suppliersall
+      operations:
+      - method: GET
+        name: suppliersall
+        description: Apideck List Suppliers
+        call: apideck.suppliersall
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /accounting/suppliers
+      name: suppliersadd
+      operations:
+      - method: POST
+        name: suppliersadd
+        description: Apideck Create Supplier
+        call: apideck.suppliersadd
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /accounting/suppliers/{id}
+      name: suppliersone
+      operations:
+      - method: GET
+        name: suppliersone
+        description: Apideck Get Supplier
+        call: apideck.suppliersone
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /accounting/suppliers/{id}
+      name: suppliersupdate
+      operations:
+      - method: PATCH
+        name: suppliersupdate
+        description: Apideck Update Supplier
+        call: apideck.suppliersupdate
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /accounting/suppliers/{id}
+      name: suppliersdelete
+      operations:
+      - method: DELETE
+        name: suppliersdelete
+        description: Apideck Delete Supplier
+        call: apideck.suppliersdelete
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /accounting/payments
+      name: paymentsall
+      operations:
+      - method: GET
+        name: paymentsall
+        description: Apideck List Payments
+        call: apideck.paymentsall
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /accounting/payments
+      name: paymentsadd
+      operations:
+      - method: POST
+        name: paymentsadd
+        description: Apideck Create Payment
+        call: apideck.paymentsadd
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /accounting/payments/{id}
+      name: paymentsone
+      operations:
+      - method: GET
+        name: paymentsone
+        description: Apideck Get Payment
+        call: apideck.paymentsone
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /accounting/payments/{id}
+      name: paymentsupdate
+      operations:
+      - method: PATCH
+        name: paymentsupdate
+        description: Apideck Update Payment
+        call: apideck.paymentsupdate
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /accounting/payments/{id}
+      name: paymentsdelete
+      operations:
+      - method: DELETE
+        name: paymentsdelete
+        description: Apideck Delete Payment
+        call: apideck.paymentsdelete
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /accounting/refunds
+      name: refundsall
+      operations:
+      - method: GET
+        name: refundsall
+        description: Apideck List Refunds
+        call: apideck.refundsall
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /accounting/refunds
+      name: refundsadd
+      operations:
+      - method: POST
+        name: refundsadd
+        description: Apideck Create Refund
+        call: apideck.refundsadd
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /accounting/refunds/{id}
+      name: refundsone
+      operations:
+      - method: GET
+        name: refundsone
+        description: Apideck Get Refund
+        call: apideck.refundsone
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /accounting/refunds/{id}
+      name: refundsupdate
+      operations:
+      - method: PATCH
+        name: refundsupdate
+        description: Apideck Update Refund
+        call: apideck.refundsupdate
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /accounting/refunds/{id}
+      name: refundsdelete
+      operations:
+      - method: DELETE
+        name: refundsdelete
+        description: Apideck Delete Refund
+        call: apideck.refundsdelete
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /accounting/company-info
+      name: companyinfoone
+      operations:
+      - method: GET
+        name: companyinfoone
+        description: Apideck Get company info
+        call: apideck.companyinfoone
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /accounting/companies
+      name: companiesall
+      operations:
+      - method: GET
+        name: companiesall
+        description: Apideck List companies
+        call: apideck.companiesall
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /accounting/balance-sheet
+      name: balancesheetone
+      operations:
+      - method: GET
+        name: balancesheetone
+        description: Apideck Get BalanceSheet
+        call: apideck.balancesheetone
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /accounting/profit-and-loss
+      name: profitandlossone
+      operations:
+      - method: GET
+        name: profitandlossone
+        description: Apideck Get Profit and Loss
+        call: apideck.profitandlossone
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /accounting/journal-entries
+      name: journalentriesall
+      operations:
+      - method: GET
+        name: journalentriesall
+        description: Apideck List Journal Entries
+        call: apideck.journalentriesall
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /accounting/journal-entries
+      name: journalentriesadd
+      operations:
+      - method: POST
+        name: journalentriesadd
+        description: Apideck Create Journal Entry
+        call: apideck.journalentriesadd
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /accounting/journal-entries/{id}
+      name: journalentriesone
+      operations:
+      - method: GET
+        name: journalentriesone
+        description: Apideck Get Journal Entry
+        call: apideck.journalentriesone
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /accounting/journal-entries/{id}
+      name: journalentriesupdate
+      operations:
+      - method: PATCH
+        name: journalentriesupdate
+        description: Apideck Update Journal Entry
+        call: apideck.journalentriesupdate
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /accounting/journal-entries/{id}
+      name: journalentriesdelete
+      operations:
+      - method: DELETE
+        name: journalentriesdelete
+        description: Apideck Delete Journal Entry
+        call: apideck.journalentriesdelete
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /accounting/purchase-orders
+      name: purchaseordersall
+      operations:
+      - method: GET
+        name: purchaseordersall
+        description: Apideck List Purchase Orders
+        call: apideck.purchaseordersall
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: apideck-mcp
+    transport: http
+    description: MCP adapter for Apideck Accounting API for AI agent use.
+    tools:
+    - name: taxratesall
+      description: Apideck List Tax Rates
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: apideck.taxratesall
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: taxratesadd
+      description: Apideck Create Tax Rate
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: apideck.taxratesadd
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: taxratesone
+      description: Apideck Get Tax Rate
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: apideck.taxratesone
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: taxratesupdate
+      description: Apideck Update Tax Rate
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: apideck.taxratesupdate
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: taxratesdelete
+      description: Apideck Delete Tax Rate
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: apideck.taxratesdelete
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: billsall
+      description: Apideck List Bills
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: apideck.billsall
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: billsadd
+      description: Apideck Create Bill
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: apideck.billsadd
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: billsone
+      description: Apideck Get Bill
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: apideck.billsone
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: billsupdate
+      description: Apideck Update Bill
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: apideck.billsupdate
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: billsdelete
+      description: Apideck Delete Bill
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: apideck.billsdelete
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: invoicesall
+      description: Apideck List Invoices
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: apideck.invoicesall
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: invoicesadd
+      description: Apideck Create Invoice
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: apideck.invoicesadd
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: invoicesone
+      description: Apideck Get Invoice
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: apideck.invoicesone
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: invoicesupdate
+      description: Apideck Update Invoice
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: apideck.invoicesupdate
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: invoicesdelete
+      description: Apideck Delete Invoice
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: apideck.invoicesdelete
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: ledgeraccountsall
+      description: Apideck List Ledger Accounts
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: apideck.ledgeraccountsall
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: ledgeraccountsadd
+      description: Apideck Create Ledger Account
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: apideck.ledgeraccountsadd
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: ledgeraccountsone
+      description: Apideck Get Ledger Account
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: apideck.ledgeraccountsone
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: ledgeraccountsupdate
+      description: Apideck Update Ledger Account
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: apideck.ledgeraccountsupdate
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: ledgeraccountsdelete
+      description: Apideck Delete Ledger Account
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: apideck.ledgeraccountsdelete
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: invoiceitemsall
+      description: Apideck List Invoice Items
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: apideck.invoiceitemsall
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: invoiceitemsadd
+      description: Apideck Create Invoice Item
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: apideck.invoiceitemsadd
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: invoiceitemsone
+      description: Apideck Get Invoice Item
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: apideck.invoiceitemsone
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: invoiceitemsupdate
+      description: Apideck Update Invoice Item
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: apideck.invoiceitemsupdate
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: invoiceitemsdelete
+      description: Apideck Delete Invoice Item
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: apideck.invoiceitemsdelete
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: creditnotesall
+      description: Apideck List Credit Notes
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: apideck.creditnotesall
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: creditnotesadd
+      description: Apideck Create Credit Note
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: apideck.creditnotesadd
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: creditnotesone
+      description: Apideck Get Credit Note
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: apideck.creditnotesone
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: creditnotesupdate
+      description: Apideck Update Credit Note
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: apideck.creditnotesupdate
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: creditnotesdelete
+      description: Apideck Delete Credit Note
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: apideck.creditnotesdelete
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: customersall
+      description: Apideck List Customers
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: apideck.customersall
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: customersadd
+      description: Apideck Create Customer
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: apideck.customersadd
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: customersone
+      description: Apideck Get Customer
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: apideck.customersone
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: customersupdate
+      description: Apideck Update Customer
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: apideck.customersupdate
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: customersdelete
+      description: Apideck Delete Customer
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: apideck.customersdelete
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: suppliersall
+      description: Apideck List Suppliers
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: apideck.suppliersall
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: suppliersadd
+      description: Apideck Create Supplier
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: apideck.suppliersadd
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: suppliersone
+      description: Apideck Get Supplier
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: apideck.suppliersone
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: suppliersupdate
+      description: Apideck Update Supplier
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: apideck.suppliersupdate
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: suppliersdelete
+      description: Apideck Delete Supplier
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: apideck.suppliersdelete
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: paymentsall
+      description: Apideck List Payments
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: apideck.paymentsall
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: paymentsadd
+      description: Apideck Create Payment
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: apideck.paymentsadd
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: paymentsone
+      description: Apideck Get Payment
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: apideck.paymentsone
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: paymentsupdate
+      description: Apideck Update Payment
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: apideck.paymentsupdate
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: paymentsdelete
+      description: Apideck Delete Payment
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: apideck.paymentsdelete
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: refundsall
+      description: Apideck List Refunds
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: apideck.refundsall
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: refundsadd
+      description: Apideck Create Refund
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: apideck.refundsadd
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: refundsone
+      description: Apideck Get Refund
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: apideck.refundsone
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: refundsupdate
+      description: Apideck Update Refund
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: apideck.refundsupdate
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: refundsdelete
+      description: Apideck Delete Refund
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: apideck.refundsdelete
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: companyinfoone
+      description: Apideck Get company info
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: apideck.companyinfoone
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: companiesall
+      description: Apideck List companies
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: apideck.companiesall
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: balancesheetone
+      description: Apideck Get BalanceSheet
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: apideck.balancesheetone
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: profitandlossone
+      description: Apideck Get Profit and Loss
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: apideck.profitandlossone
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: journalentriesall
+      description: Apideck List Journal Entries
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: apideck.journalentriesall
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: journalentriesadd
+      description: Apideck Create Journal Entry
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: apideck.journalentriesadd
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: journalentriesone
+      description: Apideck Get Journal Entry
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: apideck.journalentriesone
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: journalentriesupdate
+      description: Apideck Update Journal Entry
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: apideck.journalentriesupdate
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: journalentriesdelete
+      description: Apideck Delete Journal Entry
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: apideck.journalentriesdelete
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: purchaseordersall
+      description: Apideck List Purchase Orders
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: apideck.purchaseordersall
+      outputParameters:
+      - type: object
+        mapping: $.
+binds:
+- namespace: env
+  keys:
+    APIDECK_TOKEN: APIDECK_TOKEN
