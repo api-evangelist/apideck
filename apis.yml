@@ -289,6 +289,107 @@ description: >-
   Apideck is the leading Unified API that doesn't store sensitive customer data.
   Build and maintain native integrations into your product with an exceptional
   Developer Experience.
+integrations:
+  - name: Exact Online Accounting live
+  - name: FreeAgent Accounting live
+  - name: Fortnox Accounting live
+  - name: Visma eAccounting Accounting live
+  - name: MRI Software Accounting live
+  - name: Pennylane Accounting live
+  - name: Digits Accounting live
+  - name: Sage Intacct Accounting live
+  - name: Paychex HRIS live
+  - name: Acerta HRIS live
+  - name: SD Worx HRIS live
+  - name: Sympa HRIS live
+  - name: Fourth HRIS live
+  - name: Personio HRIS live
+  - name: CIPHR HRIS live
+  - name: Teamleader CRM + 1 live
+  - name: Zendesk Sell CRM + 1 live
+  - name: ActiveCampaign CRM + 1 live
+  - name: Salesforce CRM + 1 live
+  - name: HubSpot CRM + 2 live
+  - name: Zoho CRM CRM + 1 live
+  - name: Blackbaud CRM live
+  - name: Flexmail CRM + 2 live
+  - name: Lightspeed Ecommerce live
+  - name: Etsy Ecommerce live
+  - name: WooCommerce Ecommerce live
+  - name: Lightspeed eCom (C-Series) Ecommerce live
+  - name: Shopify (Public App) Ecommerce live
+  - name: BigCommerce Ecommerce live
+  - name: bol.com Ecommerce live
+  - name: eBay Ecommerce live
+  - name: Freshteam ATS + 1 live
+  - name: Lever ATS live
+  - name: Teamtailor ATS live
+  - name: Tellent Recruitee ATS live
+  - name: SAP SuccessFactors ATS + 1 live
+  - name: Workable ATS live
+  - name: Workday Accounting + 2 live
+  - name: GitLab Issue Tracking live
+  - name: Linear Multiworkspace Issue Tracking live
+  - name: Jira Issue Tracking + 1 live
+  - name: GitHub Issue Tracking live
+  - name: GitLab server (on-prem) Issue Tracking live
+  - name: Linear Issue Tracking live
+  - name: OneDrive File Storage live
+  - name: Act CRM live
+  - name: ADP iHCM HRIS live
+  - name: Zoho People HRIS live
+  - name: PayFit HRIS live
+  - name: OneLogin HRIS live
+  - name: Copper CRM + 1 live
+  - name: Salesflare CRM + 1 live
+  - name: Plivo SMS live
+  - name: BambooHR HRIS live
+  - name: IRIS Cascade HR HRIS live
+  - name: Deel HRIS live
+  - name: Yuki Accounting live
+  - name: JumpCloud HRIS live
+  - name: Intuit Enterprise Suite Accounting live
+  - name: Cezanne HR HRIS live
+  - name: Wave Accounting live
+  - name: Xero Accounting live
+  - name: Simployer One HRIS live
+  - name: MessageBird SMS live
+  - name: Remote HRIS live
+  - name: Visma Nmbrs HRIS live
+  - name: Visma Netvisor Accounting live
+  - name: Access Financials Accounting live
+  - name: Telnyx SMS live
+  - name: Google Drive File Storage live
+  - name: Folk CRM live
+  - name: Ceridian Dayforce HRIS live
+  - name: Sage Business Cloud Accounting Accounting live
+  - name: AFAS Software Accounting + 1 live
+  - name: FreshBooks Accounting live
+  - name: Lucca HRIS live
+  - name: SD Worx (Web service) HRIS live
+  - name: CatalystOne HRIS live
+  - name: Holded Accounting + 2 live
+  - name: Liantis HRIS live
+  - name: Rillet Accounting live
+  - name: ADP Workforce Now HRIS live
+  - name: banqUP Accounting live
+  - name: Shopify Ecommerce live
+  - name: Namely HRIS live
+  - name: Folks HR HRIS live
+  - name: Paylocity HRIS live
+  - name: Attio CRM live
+  - name: Close CRM + 1 live
+  - name: Homerun HR HRIS live
+  - name: Clear Books Accounting live
+  - name: DATEV Unternehmen Online Accounting live
+  - name: NetSuite Accounting live
+  - name: Factorial HRIS live
+  - name: Amazon Seller Central Ecommerce live
+  - name: Spiris Accounting live
+  - name: Slack Lead + 1 live
+  - name: People HR HRIS live
+  - name: QuickBooks Accounting live
+  - name: Google Workspace HRIS live
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
