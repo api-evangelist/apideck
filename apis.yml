@@ -508,7 +508,7 @@ common:
   - name: Apideck Status
     description: 'null'
     url: https://status.apideck.com/
-    type: Status
+    type: StatusPage
   - name: Apideck Blog
     description: 'null'
     url: https://www.apideck.com/blog
