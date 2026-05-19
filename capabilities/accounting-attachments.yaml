@@ -1,0 +1,196 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Apideck Accounting API — Attachments
+  description: 'Apideck Accounting API — Attachments. 5 operations. Lead operation: Apideck List Attachments. Self-contained
+    Naftiko capability covering one Apideck business surface.'
+  tags:
+  - Apideck
+  - Attachments
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    APIDECK_API_KEY: APIDECK_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: accounting-attachments
+    baseUri: https://unify.apideck.com
+    description: Apideck Accounting API — Attachments business capability. Self-contained, no shared references.
+    resources:
+    - name: accounting-attachments-reference_type-reference_id
+      path: /accounting/attachments/{reference_type}/{reference_id}
+      operations:
+      - name: attachmentsall
+        method: GET
+        description: Apideck List Attachments
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: attachmentsupload
+        method: POST
+        description: Apideck Upload attachment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: accounting-attachments-reference_type-reference_id-id
+      path: /accounting/attachments/{reference_type}/{reference_id}/{id}
+      operations:
+      - name: attachmentsone
+        method: GET
+        description: Apideck Get Attachment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: attachmentsdelete
+        method: DELETE
+        description: Apideck Delete Attachment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: accounting-attachments-reference_type-reference_id-id-download
+      path: /accounting/attachments/{reference_type}/{reference_id}/{id}/download
+      operations:
+      - name: attachmentsdownload
+        method: GET
+        description: Apideck Download Attachment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.APIDECK_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: accounting-attachments-rest
+    port: 8080
+    description: REST adapter for Apideck Accounting API — Attachments. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/accounting/attachments/{reference-type}/{reference-id}
+      name: accounting-attachments-reference-type-reference-id
+      description: REST surface for accounting-attachments-reference_type-reference_id.
+      operations:
+      - method: GET
+        name: attachmentsall
+        description: Apideck List Attachments
+        call: accounting-attachments.attachmentsall
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: attachmentsupload
+        description: Apideck Upload attachment
+        call: accounting-attachments.attachmentsupload
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/accounting/attachments/{reference-type}/{reference-id}/{id}
+      name: accounting-attachments-reference-type-reference-id-id
+      description: REST surface for accounting-attachments-reference_type-reference_id-id.
+      operations:
+      - method: GET
+        name: attachmentsone
+        description: Apideck Get Attachment
+        call: accounting-attachments.attachmentsone
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: attachmentsdelete
+        description: Apideck Delete Attachment
+        call: accounting-attachments.attachmentsdelete
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/accounting/attachments/{reference-type}/{reference-id}/{id}/download
+      name: accounting-attachments-reference-type-reference-id-id-download
+      description: REST surface for accounting-attachments-reference_type-reference_id-id-download.
+      operations:
+      - method: GET
+        name: attachmentsdownload
+        description: Apideck Download Attachment
+        call: accounting-attachments.attachmentsdownload
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: accounting-attachments-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Apideck Accounting API — Attachments. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: apideck-list-attachments
+      description: Apideck List Attachments
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: accounting-attachments.attachmentsall
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-upload-attachment
+      description: Apideck Upload attachment
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: accounting-attachments.attachmentsupload
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-get-attachment
+      description: Apideck Get Attachment
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: accounting-attachments.attachmentsone
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-delete-attachment
+      description: Apideck Delete Attachment
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: accounting-attachments.attachmentsdelete
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-download-attachment
+      description: Apideck Download Attachment
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: accounting-attachments.attachmentsdownload
+      outputParameters:
+      - type: object
+        mapping: $.

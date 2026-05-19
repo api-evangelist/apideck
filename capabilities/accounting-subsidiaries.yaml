@@ -1,0 +1,199 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Apideck Accounting API — Subsidiaries
+  description: 'Apideck Accounting API — Subsidiaries. 5 operations. Lead operation: Apideck List Subsidiaries. Self-contained
+    Naftiko capability covering one Apideck business surface.'
+  tags:
+  - Apideck
+  - Subsidiaries
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    APIDECK_API_KEY: APIDECK_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: accounting-subsidiaries
+    baseUri: https://unify.apideck.com
+    description: Apideck Accounting API — Subsidiaries business capability. Self-contained, no shared references.
+    resources:
+    - name: accounting-subsidiaries
+      path: /accounting/subsidiaries
+      operations:
+      - name: subsidiariesall
+        method: GET
+        description: Apideck List Subsidiaries
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: subsidiariesadd
+        method: POST
+        description: Apideck Create Subsidiary
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: accounting-subsidiaries-id
+      path: /accounting/subsidiaries/{id}
+      operations:
+      - name: subsidiariesone
+        method: GET
+        description: Apideck Get Subsidiary
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: subsidiariesupdate
+        method: PATCH
+        description: Apideck Update Subsidiary
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: subsidiariesdelete
+        method: DELETE
+        description: Apideck Delete Subsidiary
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.APIDECK_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: accounting-subsidiaries-rest
+    port: 8080
+    description: REST adapter for Apideck Accounting API — Subsidiaries. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/accounting/subsidiaries
+      name: accounting-subsidiaries
+      description: REST surface for accounting-subsidiaries.
+      operations:
+      - method: GET
+        name: subsidiariesall
+        description: Apideck List Subsidiaries
+        call: accounting-subsidiaries.subsidiariesall
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: subsidiariesadd
+        description: Apideck Create Subsidiary
+        call: accounting-subsidiaries.subsidiariesadd
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/accounting/subsidiaries/{id}
+      name: accounting-subsidiaries-id
+      description: REST surface for accounting-subsidiaries-id.
+      operations:
+      - method: GET
+        name: subsidiariesone
+        description: Apideck Get Subsidiary
+        call: accounting-subsidiaries.subsidiariesone
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: subsidiariesupdate
+        description: Apideck Update Subsidiary
+        call: accounting-subsidiaries.subsidiariesupdate
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: subsidiariesdelete
+        description: Apideck Delete Subsidiary
+        call: accounting-subsidiaries.subsidiariesdelete
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: accounting-subsidiaries-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Apideck Accounting API — Subsidiaries. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: apideck-list-subsidiaries
+      description: Apideck List Subsidiaries
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: accounting-subsidiaries.subsidiariesall
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-create-subsidiary
+      description: Apideck Create Subsidiary
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: accounting-subsidiaries.subsidiariesadd
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-get-subsidiary
+      description: Apideck Get Subsidiary
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: accounting-subsidiaries.subsidiariesone
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-update-subsidiary
+      description: Apideck Update Subsidiary
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: accounting-subsidiaries.subsidiariesupdate
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-delete-subsidiary
+      description: Apideck Delete Subsidiary
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: accounting-subsidiaries.subsidiariesdelete
+      outputParameters:
+      - type: object
+        mapping: $.

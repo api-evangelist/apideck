@@ -1,0 +1,199 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Apideck CRM API — Leads
+  description: 'Apideck CRM API — Leads. 5 operations. Lead operation: Apideck List leads. Self-contained Naftiko capability
+    covering one Apideck business surface.'
+  tags:
+  - Apideck
+  - Leads
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    APIDECK_API_KEY: APIDECK_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: crm-leads
+    baseUri: https://unify.apideck.com
+    description: Apideck CRM API — Leads business capability. Self-contained, no shared references.
+    resources:
+    - name: crm-leads
+      path: /crm/leads
+      operations:
+      - name: leadsall
+        method: GET
+        description: Apideck List leads
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: leadsadd
+        method: POST
+        description: Apideck Create lead
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: crm-leads-id
+      path: /crm/leads/{id}
+      operations:
+      - name: leadsone
+        method: GET
+        description: Apideck Get lead
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: leadsupdate
+        method: PATCH
+        description: Apideck Update lead
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: leadsdelete
+        method: DELETE
+        description: Apideck Delete lead
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.APIDECK_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: crm-leads-rest
+    port: 8080
+    description: REST adapter for Apideck CRM API — Leads. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/crm/leads
+      name: crm-leads
+      description: REST surface for crm-leads.
+      operations:
+      - method: GET
+        name: leadsall
+        description: Apideck List leads
+        call: crm-leads.leadsall
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: leadsadd
+        description: Apideck Create lead
+        call: crm-leads.leadsadd
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/crm/leads/{id}
+      name: crm-leads-id
+      description: REST surface for crm-leads-id.
+      operations:
+      - method: GET
+        name: leadsone
+        description: Apideck Get lead
+        call: crm-leads.leadsone
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: leadsupdate
+        description: Apideck Update lead
+        call: crm-leads.leadsupdate
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: leadsdelete
+        description: Apideck Delete lead
+        call: crm-leads.leadsdelete
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: crm-leads-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Apideck CRM API — Leads. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: apideck-list-leads
+      description: Apideck List leads
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: crm-leads.leadsall
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-create-lead
+      description: Apideck Create lead
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: crm-leads.leadsadd
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-get-lead
+      description: Apideck Get lead
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: crm-leads.leadsone
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-update-lead
+      description: Apideck Update lead
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: crm-leads.leadsupdate
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-delete-lead
+      description: Apideck Delete lead
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: crm-leads.leadsdelete
+      outputParameters:
+      - type: object
+        mapping: $.

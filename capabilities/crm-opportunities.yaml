@@ -1,0 +1,199 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Apideck CRM API — Opportunities
+  description: 'Apideck CRM API — Opportunities. 5 operations. Lead operation: Apideck List opportunities. Self-contained
+    Naftiko capability covering one Apideck business surface.'
+  tags:
+  - Apideck
+  - Opportunities
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    APIDECK_API_KEY: APIDECK_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: crm-opportunities
+    baseUri: https://unify.apideck.com
+    description: Apideck CRM API — Opportunities business capability. Self-contained, no shared references.
+    resources:
+    - name: crm-opportunities
+      path: /crm/opportunities
+      operations:
+      - name: opportunitiesall
+        method: GET
+        description: Apideck List opportunities
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: opportunitiesadd
+        method: POST
+        description: Apideck Create opportunity
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: crm-opportunities-id
+      path: /crm/opportunities/{id}
+      operations:
+      - name: opportunitiesone
+        method: GET
+        description: Apideck Get opportunity
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: opportunitiesupdate
+        method: PATCH
+        description: Apideck Update opportunity
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: opportunitiesdelete
+        method: DELETE
+        description: Apideck Delete opportunity
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.APIDECK_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: crm-opportunities-rest
+    port: 8080
+    description: REST adapter for Apideck CRM API — Opportunities. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/crm/opportunities
+      name: crm-opportunities
+      description: REST surface for crm-opportunities.
+      operations:
+      - method: GET
+        name: opportunitiesall
+        description: Apideck List opportunities
+        call: crm-opportunities.opportunitiesall
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: opportunitiesadd
+        description: Apideck Create opportunity
+        call: crm-opportunities.opportunitiesadd
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/crm/opportunities/{id}
+      name: crm-opportunities-id
+      description: REST surface for crm-opportunities-id.
+      operations:
+      - method: GET
+        name: opportunitiesone
+        description: Apideck Get opportunity
+        call: crm-opportunities.opportunitiesone
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: opportunitiesupdate
+        description: Apideck Update opportunity
+        call: crm-opportunities.opportunitiesupdate
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: opportunitiesdelete
+        description: Apideck Delete opportunity
+        call: crm-opportunities.opportunitiesdelete
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: crm-opportunities-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Apideck CRM API — Opportunities. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: apideck-list-opportunities
+      description: Apideck List opportunities
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: crm-opportunities.opportunitiesall
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-create-opportunity
+      description: Apideck Create opportunity
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: crm-opportunities.opportunitiesadd
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-get-opportunity
+      description: Apideck Get opportunity
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: crm-opportunities.opportunitiesone
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-update-opportunity
+      description: Apideck Update opportunity
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: crm-opportunities.opportunitiesupdate
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-delete-opportunity
+      description: Apideck Delete opportunity
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: crm-opportunities.opportunitiesdelete
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,199 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Apideck Accounting API — Bill Payments
+  description: 'Apideck Accounting API — Bill Payments. 5 operations. Lead operation: Apideck List Bill Payments. Self-contained
+    Naftiko capability covering one Apideck business surface.'
+  tags:
+  - Apideck
+  - Bill Payments
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    APIDECK_API_KEY: APIDECK_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: accounting-bill-payments
+    baseUri: https://unify.apideck.com
+    description: Apideck Accounting API — Bill Payments business capability. Self-contained, no shared references.
+    resources:
+    - name: accounting-bill-payments
+      path: /accounting/bill-payments
+      operations:
+      - name: billpaymentsall
+        method: GET
+        description: Apideck List Bill Payments
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: billpaymentsadd
+        method: POST
+        description: Apideck Create Bill Payment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: accounting-bill-payments-id
+      path: /accounting/bill-payments/{id}
+      operations:
+      - name: billpaymentsone
+        method: GET
+        description: Apideck Get Bill Payment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: billpaymentsupdate
+        method: PATCH
+        description: Apideck Update Bill Payment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: billpaymentsdelete
+        method: DELETE
+        description: Apideck Delete Bill Payment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.APIDECK_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: accounting-bill-payments-rest
+    port: 8080
+    description: REST adapter for Apideck Accounting API — Bill Payments. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/accounting/bill-payments
+      name: accounting-bill-payments
+      description: REST surface for accounting-bill-payments.
+      operations:
+      - method: GET
+        name: billpaymentsall
+        description: Apideck List Bill Payments
+        call: accounting-bill-payments.billpaymentsall
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: billpaymentsadd
+        description: Apideck Create Bill Payment
+        call: accounting-bill-payments.billpaymentsadd
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/accounting/bill-payments/{id}
+      name: accounting-bill-payments-id
+      description: REST surface for accounting-bill-payments-id.
+      operations:
+      - method: GET
+        name: billpaymentsone
+        description: Apideck Get Bill Payment
+        call: accounting-bill-payments.billpaymentsone
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: billpaymentsupdate
+        description: Apideck Update Bill Payment
+        call: accounting-bill-payments.billpaymentsupdate
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: billpaymentsdelete
+        description: Apideck Delete Bill Payment
+        call: accounting-bill-payments.billpaymentsdelete
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: accounting-bill-payments-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Apideck Accounting API — Bill Payments. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: apideck-list-bill-payments
+      description: Apideck List Bill Payments
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: accounting-bill-payments.billpaymentsall
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-create-bill-payment
+      description: Apideck Create Bill Payment
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: accounting-bill-payments.billpaymentsadd
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-get-bill-payment
+      description: Apideck Get Bill Payment
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: accounting-bill-payments.billpaymentsone
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-update-bill-payment
+      description: Apideck Update Bill Payment
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: accounting-bill-payments.billpaymentsupdate
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-delete-bill-payment
+      description: Apideck Delete Bill Payment
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: accounting-bill-payments.billpaymentsdelete
+      outputParameters:
+      - type: object
+        mapping: $.

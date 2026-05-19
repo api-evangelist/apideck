@@ -1,0 +1,199 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Apideck HRIS API — Employees
+  description: 'Apideck HRIS API — Employees. 5 operations. Lead operation: Apideck List Employees. Self-contained Naftiko
+    capability covering one Apideck business surface.'
+  tags:
+  - Apideck
+  - Employees
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    APIDECK_API_KEY: APIDECK_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: hris-employees
+    baseUri: https://unify.apideck.com
+    description: Apideck HRIS API — Employees business capability. Self-contained, no shared references.
+    resources:
+    - name: hris-employees
+      path: /hris/employees
+      operations:
+      - name: employeesall
+        method: GET
+        description: Apideck List Employees
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: employeesadd
+        method: POST
+        description: Apideck Create Employee
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: hris-employees-id
+      path: /hris/employees/{id}
+      operations:
+      - name: employeesone
+        method: GET
+        description: Apideck Get Employee
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: employeesupdate
+        method: PATCH
+        description: Apideck Update Employee
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: employeesdelete
+        method: DELETE
+        description: Apideck Delete Employee
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.APIDECK_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: hris-employees-rest
+    port: 8080
+    description: REST adapter for Apideck HRIS API — Employees. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/hris/employees
+      name: hris-employees
+      description: REST surface for hris-employees.
+      operations:
+      - method: GET
+        name: employeesall
+        description: Apideck List Employees
+        call: hris-employees.employeesall
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: employeesadd
+        description: Apideck Create Employee
+        call: hris-employees.employeesadd
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/hris/employees/{id}
+      name: hris-employees-id
+      description: REST surface for hris-employees-id.
+      operations:
+      - method: GET
+        name: employeesone
+        description: Apideck Get Employee
+        call: hris-employees.employeesone
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: employeesupdate
+        description: Apideck Update Employee
+        call: hris-employees.employeesupdate
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: employeesdelete
+        description: Apideck Delete Employee
+        call: hris-employees.employeesdelete
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: hris-employees-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Apideck HRIS API — Employees. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: apideck-list-employees
+      description: Apideck List Employees
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: hris-employees.employeesall
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-create-employee
+      description: Apideck Create Employee
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: hris-employees.employeesadd
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-get-employee
+      description: Apideck Get Employee
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: hris-employees.employeesone
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-update-employee
+      description: Apideck Update Employee
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: hris-employees.employeesupdate
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-delete-employee
+      description: Apideck Delete Employee
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: hris-employees.employeesdelete
+      outputParameters:
+      - type: object
+        mapping: $.

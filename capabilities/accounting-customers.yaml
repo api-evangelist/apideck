@@ -1,0 +1,199 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Apideck Accounting API — Customers
+  description: 'Apideck Accounting API — Customers. 5 operations. Lead operation: Apideck List Customers. Self-contained Naftiko
+    capability covering one Apideck business surface.'
+  tags:
+  - Apideck
+  - Customers
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    APIDECK_API_KEY: APIDECK_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: accounting-customers
+    baseUri: https://unify.apideck.com
+    description: Apideck Accounting API — Customers business capability. Self-contained, no shared references.
+    resources:
+    - name: accounting-customers
+      path: /accounting/customers
+      operations:
+      - name: customersall
+        method: GET
+        description: Apideck List Customers
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: customersadd
+        method: POST
+        description: Apideck Create Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: accounting-customers-id
+      path: /accounting/customers/{id}
+      operations:
+      - name: customersone
+        method: GET
+        description: Apideck Get Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: customersupdate
+        method: PATCH
+        description: Apideck Update Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: customersdelete
+        method: DELETE
+        description: Apideck Delete Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.APIDECK_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: accounting-customers-rest
+    port: 8080
+    description: REST adapter for Apideck Accounting API — Customers. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/accounting/customers
+      name: accounting-customers
+      description: REST surface for accounting-customers.
+      operations:
+      - method: GET
+        name: customersall
+        description: Apideck List Customers
+        call: accounting-customers.customersall
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: customersadd
+        description: Apideck Create Customer
+        call: accounting-customers.customersadd
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/accounting/customers/{id}
+      name: accounting-customers-id
+      description: REST surface for accounting-customers-id.
+      operations:
+      - method: GET
+        name: customersone
+        description: Apideck Get Customer
+        call: accounting-customers.customersone
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: customersupdate
+        description: Apideck Update Customer
+        call: accounting-customers.customersupdate
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: customersdelete
+        description: Apideck Delete Customer
+        call: accounting-customers.customersdelete
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: accounting-customers-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Apideck Accounting API — Customers. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: apideck-list-customers
+      description: Apideck List Customers
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: accounting-customers.customersall
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-create-customer
+      description: Apideck Create Customer
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: accounting-customers.customersadd
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-get-customer
+      description: Apideck Get Customer
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: accounting-customers.customersone
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-update-customer
+      description: Apideck Update Customer
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: accounting-customers.customersupdate
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-delete-customer
+      description: Apideck Delete Customer
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: accounting-customers.customersdelete
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,72 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Apideck Accounting API — Companies
+  description: 'Apideck Accounting API — Companies. 1 operations. Lead operation: Apideck List companies. Self-contained Naftiko
+    capability covering one Apideck business surface.'
+  tags:
+  - Apideck
+  - Companies
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    APIDECK_API_KEY: APIDECK_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: accounting-companies
+    baseUri: https://unify.apideck.com
+    description: Apideck Accounting API — Companies business capability. Self-contained, no shared references.
+    resources:
+    - name: accounting-companies
+      path: /accounting/companies
+      operations:
+      - name: companiesall
+        method: GET
+        description: Apideck List companies
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.APIDECK_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: accounting-companies-rest
+    port: 8080
+    description: REST adapter for Apideck Accounting API — Companies. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/accounting/companies
+      name: accounting-companies
+      description: REST surface for accounting-companies.
+      operations:
+      - method: GET
+        name: companiesall
+        description: Apideck List companies
+        call: accounting-companies.companiesall
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: accounting-companies-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Apideck Accounting API — Companies. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: apideck-list-companies
+      description: Apideck List companies
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: accounting-companies.companiesall
+      outputParameters:
+      - type: object
+        mapping: $.

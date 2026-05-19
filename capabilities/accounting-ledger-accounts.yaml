@@ -1,0 +1,199 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Apideck Accounting API — Ledger Accounts
+  description: 'Apideck Accounting API — Ledger Accounts. 5 operations. Lead operation: Apideck List Ledger Accounts. Self-contained
+    Naftiko capability covering one Apideck business surface.'
+  tags:
+  - Apideck
+  - Ledger Accounts
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    APIDECK_API_KEY: APIDECK_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: accounting-ledger-accounts
+    baseUri: https://unify.apideck.com
+    description: Apideck Accounting API — Ledger Accounts business capability. Self-contained, no shared references.
+    resources:
+    - name: accounting-ledger-accounts
+      path: /accounting/ledger-accounts
+      operations:
+      - name: ledgeraccountsall
+        method: GET
+        description: Apideck List Ledger Accounts
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: ledgeraccountsadd
+        method: POST
+        description: Apideck Create Ledger Account
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: accounting-ledger-accounts-id
+      path: /accounting/ledger-accounts/{id}
+      operations:
+      - name: ledgeraccountsone
+        method: GET
+        description: Apideck Get Ledger Account
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: ledgeraccountsupdate
+        method: PATCH
+        description: Apideck Update Ledger Account
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: ledgeraccountsdelete
+        method: DELETE
+        description: Apideck Delete Ledger Account
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.APIDECK_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: accounting-ledger-accounts-rest
+    port: 8080
+    description: REST adapter for Apideck Accounting API — Ledger Accounts. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/accounting/ledger-accounts
+      name: accounting-ledger-accounts
+      description: REST surface for accounting-ledger-accounts.
+      operations:
+      - method: GET
+        name: ledgeraccountsall
+        description: Apideck List Ledger Accounts
+        call: accounting-ledger-accounts.ledgeraccountsall
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: ledgeraccountsadd
+        description: Apideck Create Ledger Account
+        call: accounting-ledger-accounts.ledgeraccountsadd
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/accounting/ledger-accounts/{id}
+      name: accounting-ledger-accounts-id
+      description: REST surface for accounting-ledger-accounts-id.
+      operations:
+      - method: GET
+        name: ledgeraccountsone
+        description: Apideck Get Ledger Account
+        call: accounting-ledger-accounts.ledgeraccountsone
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: ledgeraccountsupdate
+        description: Apideck Update Ledger Account
+        call: accounting-ledger-accounts.ledgeraccountsupdate
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: ledgeraccountsdelete
+        description: Apideck Delete Ledger Account
+        call: accounting-ledger-accounts.ledgeraccountsdelete
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: accounting-ledger-accounts-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Apideck Accounting API — Ledger Accounts. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: apideck-list-ledger-accounts
+      description: Apideck List Ledger Accounts
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: accounting-ledger-accounts.ledgeraccountsall
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-create-ledger-account
+      description: Apideck Create Ledger Account
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: accounting-ledger-accounts.ledgeraccountsadd
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-get-ledger-account
+      description: Apideck Get Ledger Account
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: accounting-ledger-accounts.ledgeraccountsone
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-update-ledger-account
+      description: Apideck Update Ledger Account
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: accounting-ledger-accounts.ledgeraccountsupdate
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-delete-ledger-account
+      description: Apideck Delete Ledger Account
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: accounting-ledger-accounts.ledgeraccountsdelete
+      outputParameters:
+      - type: object
+        mapping: $.

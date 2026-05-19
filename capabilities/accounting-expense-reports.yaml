@@ -1,0 +1,199 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Apideck Accounting API — Expense Reports
+  description: 'Apideck Accounting API — Expense Reports. 5 operations. Lead operation: Apideck List Expense Reports. Self-contained
+    Naftiko capability covering one Apideck business surface.'
+  tags:
+  - Apideck
+  - Expense Reports
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    APIDECK_API_KEY: APIDECK_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: accounting-expense-reports
+    baseUri: https://unify.apideck.com
+    description: Apideck Accounting API — Expense Reports business capability. Self-contained, no shared references.
+    resources:
+    - name: accounting-expense-reports
+      path: /accounting/expense-reports
+      operations:
+      - name: expensereportsall
+        method: GET
+        description: Apideck List Expense Reports
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: expensereportsadd
+        method: POST
+        description: Apideck Create Expense Report
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: accounting-expense-reports-id
+      path: /accounting/expense-reports/{id}
+      operations:
+      - name: expensereportsone
+        method: GET
+        description: Apideck Get Expense Report
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: expensereportsupdate
+        method: PATCH
+        description: Apideck Update Expense Report
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: expensereportsdelete
+        method: DELETE
+        description: Apideck Delete Expense Report
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.APIDECK_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: accounting-expense-reports-rest
+    port: 8080
+    description: REST adapter for Apideck Accounting API — Expense Reports. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/accounting/expense-reports
+      name: accounting-expense-reports
+      description: REST surface for accounting-expense-reports.
+      operations:
+      - method: GET
+        name: expensereportsall
+        description: Apideck List Expense Reports
+        call: accounting-expense-reports.expensereportsall
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: expensereportsadd
+        description: Apideck Create Expense Report
+        call: accounting-expense-reports.expensereportsadd
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/accounting/expense-reports/{id}
+      name: accounting-expense-reports-id
+      description: REST surface for accounting-expense-reports-id.
+      operations:
+      - method: GET
+        name: expensereportsone
+        description: Apideck Get Expense Report
+        call: accounting-expense-reports.expensereportsone
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: expensereportsupdate
+        description: Apideck Update Expense Report
+        call: accounting-expense-reports.expensereportsupdate
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: expensereportsdelete
+        description: Apideck Delete Expense Report
+        call: accounting-expense-reports.expensereportsdelete
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: accounting-expense-reports-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Apideck Accounting API — Expense Reports. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: apideck-list-expense-reports
+      description: Apideck List Expense Reports
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: accounting-expense-reports.expensereportsall
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-create-expense-report
+      description: Apideck Create Expense Report
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: accounting-expense-reports.expensereportsadd
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-get-expense-report
+      description: Apideck Get Expense Report
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: accounting-expense-reports.expensereportsone
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-update-expense-report
+      description: Apideck Update Expense Report
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: accounting-expense-reports.expensereportsupdate
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-delete-expense-report
+      description: Apideck Delete Expense Report
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: accounting-expense-reports.expensereportsdelete
+      outputParameters:
+      - type: object
+        mapping: $.

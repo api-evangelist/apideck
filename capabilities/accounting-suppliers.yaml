@@ -1,0 +1,199 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Apideck Accounting API — Suppliers
+  description: 'Apideck Accounting API — Suppliers. 5 operations. Lead operation: Apideck List Suppliers. Self-contained Naftiko
+    capability covering one Apideck business surface.'
+  tags:
+  - Apideck
+  - Suppliers
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    APIDECK_API_KEY: APIDECK_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: accounting-suppliers
+    baseUri: https://unify.apideck.com
+    description: Apideck Accounting API — Suppliers business capability. Self-contained, no shared references.
+    resources:
+    - name: accounting-suppliers
+      path: /accounting/suppliers
+      operations:
+      - name: suppliersall
+        method: GET
+        description: Apideck List Suppliers
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: suppliersadd
+        method: POST
+        description: Apideck Create Supplier
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: accounting-suppliers-id
+      path: /accounting/suppliers/{id}
+      operations:
+      - name: suppliersone
+        method: GET
+        description: Apideck Get Supplier
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: suppliersupdate
+        method: PATCH
+        description: Apideck Update Supplier
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: suppliersdelete
+        method: DELETE
+        description: Apideck Delete Supplier
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.APIDECK_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: accounting-suppliers-rest
+    port: 8080
+    description: REST adapter for Apideck Accounting API — Suppliers. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/accounting/suppliers
+      name: accounting-suppliers
+      description: REST surface for accounting-suppliers.
+      operations:
+      - method: GET
+        name: suppliersall
+        description: Apideck List Suppliers
+        call: accounting-suppliers.suppliersall
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: suppliersadd
+        description: Apideck Create Supplier
+        call: accounting-suppliers.suppliersadd
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/accounting/suppliers/{id}
+      name: accounting-suppliers-id
+      description: REST surface for accounting-suppliers-id.
+      operations:
+      - method: GET
+        name: suppliersone
+        description: Apideck Get Supplier
+        call: accounting-suppliers.suppliersone
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: suppliersupdate
+        description: Apideck Update Supplier
+        call: accounting-suppliers.suppliersupdate
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: suppliersdelete
+        description: Apideck Delete Supplier
+        call: accounting-suppliers.suppliersdelete
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: accounting-suppliers-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Apideck Accounting API — Suppliers. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: apideck-list-suppliers
+      description: Apideck List Suppliers
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: accounting-suppliers.suppliersall
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-create-supplier
+      description: Apideck Create Supplier
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: accounting-suppliers.suppliersadd
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-get-supplier
+      description: Apideck Get Supplier
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: accounting-suppliers.suppliersone
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-update-supplier
+      description: Apideck Update Supplier
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: accounting-suppliers.suppliersupdate
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-delete-supplier
+      description: Apideck Delete Supplier
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: accounting-suppliers.suppliersdelete
+      outputParameters:
+      - type: object
+        mapping: $.

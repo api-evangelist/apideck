@@ -1,0 +1,199 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Apideck CRM API — Notes
+  description: 'Apideck CRM API — Notes. 5 operations. Lead operation: Apideck List notes. Self-contained Naftiko capability
+    covering one Apideck business surface.'
+  tags:
+  - Apideck
+  - Notes
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    APIDECK_API_KEY: APIDECK_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: crm-notes
+    baseUri: https://unify.apideck.com
+    description: Apideck CRM API — Notes business capability. Self-contained, no shared references.
+    resources:
+    - name: crm-notes
+      path: /crm/notes
+      operations:
+      - name: notesall
+        method: GET
+        description: Apideck List notes
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: notesadd
+        method: POST
+        description: Apideck Create note
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: crm-notes-id
+      path: /crm/notes/{id}
+      operations:
+      - name: notesone
+        method: GET
+        description: Apideck Get note
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: notesupdate
+        method: PATCH
+        description: Apideck Update note
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: notesdelete
+        method: DELETE
+        description: Apideck Delete note
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.APIDECK_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: crm-notes-rest
+    port: 8080
+    description: REST adapter for Apideck CRM API — Notes. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/crm/notes
+      name: crm-notes
+      description: REST surface for crm-notes.
+      operations:
+      - method: GET
+        name: notesall
+        description: Apideck List notes
+        call: crm-notes.notesall
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: notesadd
+        description: Apideck Create note
+        call: crm-notes.notesadd
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/crm/notes/{id}
+      name: crm-notes-id
+      description: REST surface for crm-notes-id.
+      operations:
+      - method: GET
+        name: notesone
+        description: Apideck Get note
+        call: crm-notes.notesone
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: notesupdate
+        description: Apideck Update note
+        call: crm-notes.notesupdate
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: notesdelete
+        description: Apideck Delete note
+        call: crm-notes.notesdelete
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: crm-notes-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Apideck CRM API — Notes. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: apideck-list-notes
+      description: Apideck List notes
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: crm-notes.notesall
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-create-note
+      description: Apideck Create note
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: crm-notes.notesadd
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-get-note
+      description: Apideck Get note
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: crm-notes.notesone
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-update-note
+      description: Apideck Update note
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: crm-notes.notesupdate
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-delete-note
+      description: Apideck Delete note
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: crm-notes.notesdelete
+      outputParameters:
+      - type: object
+        mapping: $.

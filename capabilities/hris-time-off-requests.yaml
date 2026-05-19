@@ -1,0 +1,199 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Apideck HRIS API — Time Off Requests
+  description: 'Apideck HRIS API — Time Off Requests. 5 operations. Lead operation: Apideck List Time Off Requests. Self-contained
+    Naftiko capability covering one Apideck business surface.'
+  tags:
+  - Apideck
+  - Time Off Requests
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    APIDECK_API_KEY: APIDECK_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: hris-time-off-requests
+    baseUri: https://unify.apideck.com
+    description: Apideck HRIS API — Time Off Requests business capability. Self-contained, no shared references.
+    resources:
+    - name: hris-time-off-requests
+      path: /hris/time-off-requests
+      operations:
+      - name: timeoffrequestsall
+        method: GET
+        description: Apideck List Time Off Requests
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: timeoffrequestsadd
+        method: POST
+        description: Apideck Create Time Off Request
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: hris-time-off-requests-employees-employee_id-time-off-requests-id
+      path: /hris/time-off-requests/employees/{employee_id}/time-off-requests/{id}
+      operations:
+      - name: timeoffrequestsone
+        method: GET
+        description: Apideck Get Time Off Request
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: timeoffrequestsupdate
+        method: PATCH
+        description: Apideck Update Time Off Request
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: timeoffrequestsdelete
+        method: DELETE
+        description: Apideck Delete Time Off Request
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.APIDECK_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: hris-time-off-requests-rest
+    port: 8080
+    description: REST adapter for Apideck HRIS API — Time Off Requests. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/hris/time-off-requests
+      name: hris-time-off-requests
+      description: REST surface for hris-time-off-requests.
+      operations:
+      - method: GET
+        name: timeoffrequestsall
+        description: Apideck List Time Off Requests
+        call: hris-time-off-requests.timeoffrequestsall
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: timeoffrequestsadd
+        description: Apideck Create Time Off Request
+        call: hris-time-off-requests.timeoffrequestsadd
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/hris/time-off-requests/employees/{employee-id}/time-off-requests/{id}
+      name: hris-time-off-requests-employees-employee-id-time-off-requests-id
+      description: REST surface for hris-time-off-requests-employees-employee_id-time-off-requests-id.
+      operations:
+      - method: GET
+        name: timeoffrequestsone
+        description: Apideck Get Time Off Request
+        call: hris-time-off-requests.timeoffrequestsone
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: timeoffrequestsupdate
+        description: Apideck Update Time Off Request
+        call: hris-time-off-requests.timeoffrequestsupdate
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: timeoffrequestsdelete
+        description: Apideck Delete Time Off Request
+        call: hris-time-off-requests.timeoffrequestsdelete
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: hris-time-off-requests-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Apideck HRIS API — Time Off Requests. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: apideck-list-time-off-requests
+      description: Apideck List Time Off Requests
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: hris-time-off-requests.timeoffrequestsall
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-create-time-off-request
+      description: Apideck Create Time Off Request
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: hris-time-off-requests.timeoffrequestsadd
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-get-time-off-request
+      description: Apideck Get Time Off Request
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: hris-time-off-requests.timeoffrequestsone
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-update-time-off-request
+      description: Apideck Update Time Off Request
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: hris-time-off-requests.timeoffrequestsupdate
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-delete-time-off-request
+      description: Apideck Delete Time Off Request
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: hris-time-off-requests.timeoffrequestsdelete
+      outputParameters:
+      - type: object
+        mapping: $.

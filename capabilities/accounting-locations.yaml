@@ -1,0 +1,199 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Apideck Accounting API — Locations
+  description: 'Apideck Accounting API — Locations. 5 operations. Lead operation: Apideck List Locations. Self-contained Naftiko
+    capability covering one Apideck business surface.'
+  tags:
+  - Apideck
+  - Locations
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    APIDECK_API_KEY: APIDECK_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: accounting-locations
+    baseUri: https://unify.apideck.com
+    description: Apideck Accounting API — Locations business capability. Self-contained, no shared references.
+    resources:
+    - name: accounting-locations
+      path: /accounting/locations
+      operations:
+      - name: locationsall
+        method: GET
+        description: Apideck List Locations
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: locationsadd
+        method: POST
+        description: Apideck Create Location
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: accounting-locations-id
+      path: /accounting/locations/{id}
+      operations:
+      - name: locationsone
+        method: GET
+        description: Apideck Get Location
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: locationsupdate
+        method: PATCH
+        description: Apideck Update Location
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: locationsdelete
+        method: DELETE
+        description: Apideck Delete Location
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.APIDECK_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: accounting-locations-rest
+    port: 8080
+    description: REST adapter for Apideck Accounting API — Locations. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/accounting/locations
+      name: accounting-locations
+      description: REST surface for accounting-locations.
+      operations:
+      - method: GET
+        name: locationsall
+        description: Apideck List Locations
+        call: accounting-locations.locationsall
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: locationsadd
+        description: Apideck Create Location
+        call: accounting-locations.locationsadd
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/accounting/locations/{id}
+      name: accounting-locations-id
+      description: REST surface for accounting-locations-id.
+      operations:
+      - method: GET
+        name: locationsone
+        description: Apideck Get Location
+        call: accounting-locations.locationsone
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: locationsupdate
+        description: Apideck Update Location
+        call: accounting-locations.locationsupdate
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: locationsdelete
+        description: Apideck Delete Location
+        call: accounting-locations.locationsdelete
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: accounting-locations-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Apideck Accounting API — Locations. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: apideck-list-locations
+      description: Apideck List Locations
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: accounting-locations.locationsall
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-create-location
+      description: Apideck Create Location
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: accounting-locations.locationsadd
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-get-location
+      description: Apideck Get Location
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: accounting-locations.locationsone
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-update-location
+      description: Apideck Update Location
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: accounting-locations.locationsupdate
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-delete-location
+      description: Apideck Delete Location
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: accounting-locations.locationsdelete
+      outputParameters:
+      - type: object
+        mapping: $.

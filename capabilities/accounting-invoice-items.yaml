@@ -1,0 +1,199 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Apideck Accounting API — Invoice Items
+  description: 'Apideck Accounting API — Invoice Items. 5 operations. Lead operation: Apideck List Invoice Items. Self-contained
+    Naftiko capability covering one Apideck business surface.'
+  tags:
+  - Apideck
+  - Invoice Items
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    APIDECK_API_KEY: APIDECK_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: accounting-invoice-items
+    baseUri: https://unify.apideck.com
+    description: Apideck Accounting API — Invoice Items business capability. Self-contained, no shared references.
+    resources:
+    - name: accounting-invoice-items
+      path: /accounting/invoice-items
+      operations:
+      - name: invoiceitemsall
+        method: GET
+        description: Apideck List Invoice Items
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: invoiceitemsadd
+        method: POST
+        description: Apideck Create Invoice Item
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: accounting-invoice-items-id
+      path: /accounting/invoice-items/{id}
+      operations:
+      - name: invoiceitemsone
+        method: GET
+        description: Apideck Get Invoice Item
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: invoiceitemsupdate
+        method: PATCH
+        description: Apideck Update Invoice Item
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: invoiceitemsdelete
+        method: DELETE
+        description: Apideck Delete Invoice Item
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.APIDECK_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: accounting-invoice-items-rest
+    port: 8080
+    description: REST adapter for Apideck Accounting API — Invoice Items. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/accounting/invoice-items
+      name: accounting-invoice-items
+      description: REST surface for accounting-invoice-items.
+      operations:
+      - method: GET
+        name: invoiceitemsall
+        description: Apideck List Invoice Items
+        call: accounting-invoice-items.invoiceitemsall
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: invoiceitemsadd
+        description: Apideck Create Invoice Item
+        call: accounting-invoice-items.invoiceitemsadd
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/accounting/invoice-items/{id}
+      name: accounting-invoice-items-id
+      description: REST surface for accounting-invoice-items-id.
+      operations:
+      - method: GET
+        name: invoiceitemsone
+        description: Apideck Get Invoice Item
+        call: accounting-invoice-items.invoiceitemsone
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: invoiceitemsupdate
+        description: Apideck Update Invoice Item
+        call: accounting-invoice-items.invoiceitemsupdate
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: invoiceitemsdelete
+        description: Apideck Delete Invoice Item
+        call: accounting-invoice-items.invoiceitemsdelete
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: accounting-invoice-items-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Apideck Accounting API — Invoice Items. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: apideck-list-invoice-items
+      description: Apideck List Invoice Items
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: accounting-invoice-items.invoiceitemsall
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-create-invoice-item
+      description: Apideck Create Invoice Item
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: accounting-invoice-items.invoiceitemsadd
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-get-invoice-item
+      description: Apideck Get Invoice Item
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: accounting-invoice-items.invoiceitemsone
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-update-invoice-item
+      description: Apideck Update Invoice Item
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: accounting-invoice-items.invoiceitemsupdate
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-delete-invoice-item
+      description: Apideck Delete Invoice Item
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: accounting-invoice-items.invoiceitemsdelete
+      outputParameters:
+      - type: object
+        mapping: $.

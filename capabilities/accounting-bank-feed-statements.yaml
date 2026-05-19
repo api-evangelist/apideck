@@ -1,0 +1,199 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Apideck Accounting API — Bank Feed Statements
+  description: 'Apideck Accounting API — Bank Feed Statements. 5 operations. Lead operation: Apideck List Bank Feed Statements.
+    Self-contained Naftiko capability covering one Apideck business surface.'
+  tags:
+  - Apideck
+  - Bank Feed Statements
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    APIDECK_API_KEY: APIDECK_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: accounting-bank-feed-statements
+    baseUri: https://unify.apideck.com
+    description: Apideck Accounting API — Bank Feed Statements business capability. Self-contained, no shared references.
+    resources:
+    - name: accounting-bank-feed-statements
+      path: /accounting/bank-feed-statements
+      operations:
+      - name: bankfeedstatementsall
+        method: GET
+        description: Apideck List Bank Feed Statements
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: bankfeedstatementsadd
+        method: POST
+        description: Apideck Create Bank Feed Statement
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: accounting-bank-feed-statements-id
+      path: /accounting/bank-feed-statements/{id}
+      operations:
+      - name: bankfeedstatementsone
+        method: GET
+        description: Apideck Get Bank Feed Statement
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: bankfeedstatementsupdate
+        method: PATCH
+        description: Apideck Update Bank Feed Statement
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: bankfeedstatementsdelete
+        method: DELETE
+        description: Apideck Delete Bank Feed Statement
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.APIDECK_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: accounting-bank-feed-statements-rest
+    port: 8080
+    description: REST adapter for Apideck Accounting API — Bank Feed Statements. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/accounting/bank-feed-statements
+      name: accounting-bank-feed-statements
+      description: REST surface for accounting-bank-feed-statements.
+      operations:
+      - method: GET
+        name: bankfeedstatementsall
+        description: Apideck List Bank Feed Statements
+        call: accounting-bank-feed-statements.bankfeedstatementsall
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: bankfeedstatementsadd
+        description: Apideck Create Bank Feed Statement
+        call: accounting-bank-feed-statements.bankfeedstatementsadd
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/accounting/bank-feed-statements/{id}
+      name: accounting-bank-feed-statements-id
+      description: REST surface for accounting-bank-feed-statements-id.
+      operations:
+      - method: GET
+        name: bankfeedstatementsone
+        description: Apideck Get Bank Feed Statement
+        call: accounting-bank-feed-statements.bankfeedstatementsone
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: bankfeedstatementsupdate
+        description: Apideck Update Bank Feed Statement
+        call: accounting-bank-feed-statements.bankfeedstatementsupdate
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: bankfeedstatementsdelete
+        description: Apideck Delete Bank Feed Statement
+        call: accounting-bank-feed-statements.bankfeedstatementsdelete
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: accounting-bank-feed-statements-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Apideck Accounting API — Bank Feed Statements. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: apideck-list-bank-feed-statements
+      description: Apideck List Bank Feed Statements
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: accounting-bank-feed-statements.bankfeedstatementsall
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-create-bank-feed-statement
+      description: Apideck Create Bank Feed Statement
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: accounting-bank-feed-statements.bankfeedstatementsadd
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-get-bank-feed-statement
+      description: Apideck Get Bank Feed Statement
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: accounting-bank-feed-statements.bankfeedstatementsone
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-update-bank-feed-statement
+      description: Apideck Update Bank Feed Statement
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: accounting-bank-feed-statements.bankfeedstatementsupdate
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-delete-bank-feed-statement
+      description: Apideck Delete Bank Feed Statement
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: accounting-bank-feed-statements.bankfeedstatementsdelete
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,72 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Apideck Accounting API — Aged Creditors
+  description: 'Apideck Accounting API — Aged Creditors. 1 operations. Lead operation: Apideck Get Aged Creditors. Self-contained
+    Naftiko capability covering one Apideck business surface.'
+  tags:
+  - Apideck
+  - Aged Creditors
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    APIDECK_API_KEY: APIDECK_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: accounting-aged-creditors
+    baseUri: https://unify.apideck.com
+    description: Apideck Accounting API — Aged Creditors business capability. Self-contained, no shared references.
+    resources:
+    - name: accounting-aged-creditors
+      path: /accounting/aged-creditors
+      operations:
+      - name: agedcreditorsone
+        method: GET
+        description: Apideck Get Aged Creditors
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.APIDECK_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: accounting-aged-creditors-rest
+    port: 8080
+    description: REST adapter for Apideck Accounting API — Aged Creditors. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/accounting/aged-creditors
+      name: accounting-aged-creditors
+      description: REST surface for accounting-aged-creditors.
+      operations:
+      - method: GET
+        name: agedcreditorsone
+        description: Apideck Get Aged Creditors
+        call: accounting-aged-creditors.agedcreditorsone
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: accounting-aged-creditors-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Apideck Accounting API — Aged Creditors. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: apideck-get-aged-creditors
+      description: Apideck Get Aged Creditors
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: accounting-aged-creditors.agedcreditorsone
+      outputParameters:
+      - type: object
+        mapping: $.

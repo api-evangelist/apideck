@@ -1,0 +1,199 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Apideck Accounting API — Refunds
+  description: 'Apideck Accounting API — Refunds. 5 operations. Lead operation: Apideck List Refunds. Self-contained Naftiko
+    capability covering one Apideck business surface.'
+  tags:
+  - Apideck
+  - Refunds
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    APIDECK_API_KEY: APIDECK_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: accounting-refunds
+    baseUri: https://unify.apideck.com
+    description: Apideck Accounting API — Refunds business capability. Self-contained, no shared references.
+    resources:
+    - name: accounting-refunds
+      path: /accounting/refunds
+      operations:
+      - name: refundsall
+        method: GET
+        description: Apideck List Refunds
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: refundsadd
+        method: POST
+        description: Apideck Create Refund
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: accounting-refunds-id
+      path: /accounting/refunds/{id}
+      operations:
+      - name: refundsone
+        method: GET
+        description: Apideck Get Refund
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: refundsupdate
+        method: PATCH
+        description: Apideck Update Refund
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: refundsdelete
+        method: DELETE
+        description: Apideck Delete Refund
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.APIDECK_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: accounting-refunds-rest
+    port: 8080
+    description: REST adapter for Apideck Accounting API — Refunds. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/accounting/refunds
+      name: accounting-refunds
+      description: REST surface for accounting-refunds.
+      operations:
+      - method: GET
+        name: refundsall
+        description: Apideck List Refunds
+        call: accounting-refunds.refundsall
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: refundsadd
+        description: Apideck Create Refund
+        call: accounting-refunds.refundsadd
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/accounting/refunds/{id}
+      name: accounting-refunds-id
+      description: REST surface for accounting-refunds-id.
+      operations:
+      - method: GET
+        name: refundsone
+        description: Apideck Get Refund
+        call: accounting-refunds.refundsone
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: refundsupdate
+        description: Apideck Update Refund
+        call: accounting-refunds.refundsupdate
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: refundsdelete
+        description: Apideck Delete Refund
+        call: accounting-refunds.refundsdelete
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: accounting-refunds-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Apideck Accounting API — Refunds. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: apideck-list-refunds
+      description: Apideck List Refunds
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: accounting-refunds.refundsall
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-create-refund
+      description: Apideck Create Refund
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: accounting-refunds.refundsadd
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-get-refund
+      description: Apideck Get Refund
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: accounting-refunds.refundsone
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-update-refund
+      description: Apideck Update Refund
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: accounting-refunds.refundsupdate
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-delete-refund
+      description: Apideck Delete Refund
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: accounting-refunds.refundsdelete
+      outputParameters:
+      - type: object
+        mapping: $.

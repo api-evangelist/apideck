@@ -1,0 +1,199 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Apideck Accounting API — Bank Feed Accounts
+  description: 'Apideck Accounting API — Bank Feed Accounts. 5 operations. Lead operation: Apideck List Bank Feed Accounts.
+    Self-contained Naftiko capability covering one Apideck business surface.'
+  tags:
+  - Apideck
+  - Bank Feed Accounts
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    APIDECK_API_KEY: APIDECK_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: accounting-bank-feed-accounts
+    baseUri: https://unify.apideck.com
+    description: Apideck Accounting API — Bank Feed Accounts business capability. Self-contained, no shared references.
+    resources:
+    - name: accounting-bank-feed-accounts
+      path: /accounting/bank-feed-accounts
+      operations:
+      - name: bankfeedaccountsall
+        method: GET
+        description: Apideck List Bank Feed Accounts
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: bankfeedaccountsadd
+        method: POST
+        description: Apideck Create Bank Feed Account
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: accounting-bank-feed-accounts-id
+      path: /accounting/bank-feed-accounts/{id}
+      operations:
+      - name: bankfeedaccountsone
+        method: GET
+        description: Apideck Get Bank Feed Account
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: bankfeedaccountsupdate
+        method: PATCH
+        description: Apideck Update Bank Feed Account
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: bankfeedaccountsdelete
+        method: DELETE
+        description: Apideck Delete Bank Feed Account
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.APIDECK_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: accounting-bank-feed-accounts-rest
+    port: 8080
+    description: REST adapter for Apideck Accounting API — Bank Feed Accounts. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/accounting/bank-feed-accounts
+      name: accounting-bank-feed-accounts
+      description: REST surface for accounting-bank-feed-accounts.
+      operations:
+      - method: GET
+        name: bankfeedaccountsall
+        description: Apideck List Bank Feed Accounts
+        call: accounting-bank-feed-accounts.bankfeedaccountsall
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: bankfeedaccountsadd
+        description: Apideck Create Bank Feed Account
+        call: accounting-bank-feed-accounts.bankfeedaccountsadd
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/accounting/bank-feed-accounts/{id}
+      name: accounting-bank-feed-accounts-id
+      description: REST surface for accounting-bank-feed-accounts-id.
+      operations:
+      - method: GET
+        name: bankfeedaccountsone
+        description: Apideck Get Bank Feed Account
+        call: accounting-bank-feed-accounts.bankfeedaccountsone
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: bankfeedaccountsupdate
+        description: Apideck Update Bank Feed Account
+        call: accounting-bank-feed-accounts.bankfeedaccountsupdate
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: bankfeedaccountsdelete
+        description: Apideck Delete Bank Feed Account
+        call: accounting-bank-feed-accounts.bankfeedaccountsdelete
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: accounting-bank-feed-accounts-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Apideck Accounting API — Bank Feed Accounts. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: apideck-list-bank-feed-accounts
+      description: Apideck List Bank Feed Accounts
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: accounting-bank-feed-accounts.bankfeedaccountsall
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-create-bank-feed-account
+      description: Apideck Create Bank Feed Account
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: accounting-bank-feed-accounts.bankfeedaccountsadd
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-get-bank-feed-account
+      description: Apideck Get Bank Feed Account
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: accounting-bank-feed-accounts.bankfeedaccountsone
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-update-bank-feed-account
+      description: Apideck Update Bank Feed Account
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: accounting-bank-feed-accounts.bankfeedaccountsupdate
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-delete-bank-feed-account
+      description: Apideck Delete Bank Feed Account
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: accounting-bank-feed-accounts.bankfeedaccountsdelete
+      outputParameters:
+      - type: object
+        mapping: $.

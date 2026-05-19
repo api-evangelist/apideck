@@ -1,0 +1,199 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Apideck File storage API — Drives
+  description: 'Apideck File storage API — Drives. 5 operations. Lead operation: Apideck List Drives. Self-contained Naftiko
+    capability covering one Apideck business surface.'
+  tags:
+  - Apideck
+  - Drives
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    APIDECK_API_KEY: APIDECK_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: file-storage-drives
+    baseUri: https://unify.apideck.com
+    description: Apideck File storage API — Drives business capability. Self-contained, no shared references.
+    resources:
+    - name: file-storage-drives
+      path: /file-storage/drives
+      operations:
+      - name: drivesall
+        method: GET
+        description: Apideck List Drives
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: drivesadd
+        method: POST
+        description: Apideck Create Drive
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: file-storage-drives-id
+      path: /file-storage/drives/{id}
+      operations:
+      - name: drivesone
+        method: GET
+        description: Apideck Get Drive
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: drivesupdate
+        method: PATCH
+        description: Apideck Update Drive
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: drivesdelete
+        method: DELETE
+        description: Apideck Delete Drive
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.APIDECK_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: file-storage-drives-rest
+    port: 8080
+    description: REST adapter for Apideck File storage API — Drives. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/file-storage/drives
+      name: file-storage-drives
+      description: REST surface for file-storage-drives.
+      operations:
+      - method: GET
+        name: drivesall
+        description: Apideck List Drives
+        call: file-storage-drives.drivesall
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: drivesadd
+        description: Apideck Create Drive
+        call: file-storage-drives.drivesadd
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/file-storage/drives/{id}
+      name: file-storage-drives-id
+      description: REST surface for file-storage-drives-id.
+      operations:
+      - method: GET
+        name: drivesone
+        description: Apideck Get Drive
+        call: file-storage-drives.drivesone
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: drivesupdate
+        description: Apideck Update Drive
+        call: file-storage-drives.drivesupdate
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: drivesdelete
+        description: Apideck Delete Drive
+        call: file-storage-drives.drivesdelete
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: file-storage-drives-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Apideck File storage API — Drives. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: apideck-list-drives
+      description: Apideck List Drives
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: file-storage-drives.drivesall
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-create-drive
+      description: Apideck Create Drive
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: file-storage-drives.drivesadd
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-get-drive
+      description: Apideck Get Drive
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: file-storage-drives.drivesone
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-update-drive
+      description: Apideck Update Drive
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: file-storage-drives.drivesupdate
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-delete-drive
+      description: Apideck Delete Drive
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: file-storage-drives.drivesdelete
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,199 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Apideck HRIS API — Departments
+  description: 'Apideck HRIS API — Departments. 5 operations. Lead operation: Apideck List Departments. Self-contained Naftiko
+    capability covering one Apideck business surface.'
+  tags:
+  - Apideck
+  - Departments
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    APIDECK_API_KEY: APIDECK_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: hris-departments
+    baseUri: https://unify.apideck.com
+    description: Apideck HRIS API — Departments business capability. Self-contained, no shared references.
+    resources:
+    - name: hris-departments
+      path: /hris/departments
+      operations:
+      - name: departmentsall
+        method: GET
+        description: Apideck List Departments
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: departmentsadd
+        method: POST
+        description: Apideck Create Department
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: hris-departments-id
+      path: /hris/departments/{id}
+      operations:
+      - name: departmentsone
+        method: GET
+        description: Apideck Get Department
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: departmentsupdate
+        method: PATCH
+        description: Apideck Update Department
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: departmentsdelete
+        method: DELETE
+        description: Apideck Delete Department
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.APIDECK_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: hris-departments-rest
+    port: 8080
+    description: REST adapter for Apideck HRIS API — Departments. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/hris/departments
+      name: hris-departments
+      description: REST surface for hris-departments.
+      operations:
+      - method: GET
+        name: departmentsall
+        description: Apideck List Departments
+        call: hris-departments.departmentsall
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: departmentsadd
+        description: Apideck Create Department
+        call: hris-departments.departmentsadd
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/hris/departments/{id}
+      name: hris-departments-id
+      description: REST surface for hris-departments-id.
+      operations:
+      - method: GET
+        name: departmentsone
+        description: Apideck Get Department
+        call: hris-departments.departmentsone
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: departmentsupdate
+        description: Apideck Update Department
+        call: hris-departments.departmentsupdate
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: departmentsdelete
+        description: Apideck Delete Department
+        call: hris-departments.departmentsdelete
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: hris-departments-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Apideck HRIS API — Departments. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: apideck-list-departments
+      description: Apideck List Departments
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: hris-departments.departmentsall
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-create-department
+      description: Apideck Create Department
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: hris-departments.departmentsadd
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-get-department
+      description: Apideck Get Department
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: hris-departments.departmentsone
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-update-department
+      description: Apideck Update Department
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: hris-departments.departmentsupdate
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-delete-department
+      description: Apideck Delete Department
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: hris-departments.departmentsdelete
+      outputParameters:
+      - type: object
+        mapping: $.

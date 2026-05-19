@@ -1,0 +1,199 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Apideck Accounting API — Quotes
+  description: 'Apideck Accounting API — Quotes. 5 operations. Lead operation: Apideck List Quotes. Self-contained Naftiko
+    capability covering one Apideck business surface.'
+  tags:
+  - Apideck
+  - Quotes
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    APIDECK_API_KEY: APIDECK_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: accounting-quotes
+    baseUri: https://unify.apideck.com
+    description: Apideck Accounting API — Quotes business capability. Self-contained, no shared references.
+    resources:
+    - name: accounting-quotes
+      path: /accounting/quotes
+      operations:
+      - name: quotesall
+        method: GET
+        description: Apideck List Quotes
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: quotesadd
+        method: POST
+        description: Apideck Create Quote
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: accounting-quotes-id
+      path: /accounting/quotes/{id}
+      operations:
+      - name: quotesone
+        method: GET
+        description: Apideck Get Quote
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: quotesupdate
+        method: PATCH
+        description: Apideck Update Quote
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: quotesdelete
+        method: DELETE
+        description: Apideck Delete Quote
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.APIDECK_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: accounting-quotes-rest
+    port: 8080
+    description: REST adapter for Apideck Accounting API — Quotes. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/accounting/quotes
+      name: accounting-quotes
+      description: REST surface for accounting-quotes.
+      operations:
+      - method: GET
+        name: quotesall
+        description: Apideck List Quotes
+        call: accounting-quotes.quotesall
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: quotesadd
+        description: Apideck Create Quote
+        call: accounting-quotes.quotesadd
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/accounting/quotes/{id}
+      name: accounting-quotes-id
+      description: REST surface for accounting-quotes-id.
+      operations:
+      - method: GET
+        name: quotesone
+        description: Apideck Get Quote
+        call: accounting-quotes.quotesone
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: quotesupdate
+        description: Apideck Update Quote
+        call: accounting-quotes.quotesupdate
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: quotesdelete
+        description: Apideck Delete Quote
+        call: accounting-quotes.quotesdelete
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: accounting-quotes-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Apideck Accounting API — Quotes. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: apideck-list-quotes
+      description: Apideck List Quotes
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: accounting-quotes.quotesall
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-create-quote
+      description: Apideck Create Quote
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: accounting-quotes.quotesadd
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-get-quote
+      description: Apideck Get Quote
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: accounting-quotes.quotesone
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-update-quote
+      description: Apideck Update Quote
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: accounting-quotes.quotesupdate
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-delete-quote
+      description: Apideck Delete Quote
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: accounting-quotes.quotesdelete
+      outputParameters:
+      - type: object
+        mapping: $.

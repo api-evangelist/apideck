@@ -1,0 +1,305 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Apideck File storage API — Files
+  description: 'Apideck File storage API — Files. 8 operations. Lead operation: Apideck List Files. Self-contained Naftiko
+    capability covering one Apideck business surface.'
+  tags:
+  - Apideck
+  - Files
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    APIDECK_API_KEY: APIDECK_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: file-storage-files
+    baseUri: https://unify.apideck.com
+    description: Apideck File storage API — Files business capability. Self-contained, no shared references.
+    resources:
+    - name: file-storage-files
+      path: /file-storage/files
+      operations:
+      - name: filesall
+        method: GET
+        description: Apideck List Files
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: filesupload
+        method: POST
+        description: Apideck Upload file
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: file-storage-files-search
+      path: /file-storage/files/search
+      operations:
+      - name: filessearch
+        method: POST
+        description: Apideck Search Files
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: file-storage-files-id
+      path: /file-storage/files/{id}
+      operations:
+      - name: filesone
+        method: GET
+        description: Apideck Get File
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: filesupdate
+        method: PATCH
+        description: Apideck Rename or move File
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: filesdelete
+        method: DELETE
+        description: Apideck Delete File
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: file-storage-files-id-download
+      path: /file-storage/files/{id}/download
+      operations:
+      - name: filesdownload
+        method: GET
+        description: Apideck Download File
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: file-storage-files-id-export
+      path: /file-storage/files/{id}/export
+      operations:
+      - name: filesexport
+        method: GET
+        description: Apideck Export File
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.APIDECK_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: file-storage-files-rest
+    port: 8080
+    description: REST adapter for Apideck File storage API — Files. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/file-storage/files
+      name: file-storage-files
+      description: REST surface for file-storage-files.
+      operations:
+      - method: GET
+        name: filesall
+        description: Apideck List Files
+        call: file-storage-files.filesall
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: filesupload
+        description: Apideck Upload file
+        call: file-storage-files.filesupload
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/file-storage/files/search
+      name: file-storage-files-search
+      description: REST surface for file-storage-files-search.
+      operations:
+      - method: POST
+        name: filessearch
+        description: Apideck Search Files
+        call: file-storage-files.filessearch
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/file-storage/files/{id}
+      name: file-storage-files-id
+      description: REST surface for file-storage-files-id.
+      operations:
+      - method: GET
+        name: filesone
+        description: Apideck Get File
+        call: file-storage-files.filesone
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: filesupdate
+        description: Apideck Rename or move File
+        call: file-storage-files.filesupdate
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: filesdelete
+        description: Apideck Delete File
+        call: file-storage-files.filesdelete
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/file-storage/files/{id}/download
+      name: file-storage-files-id-download
+      description: REST surface for file-storage-files-id-download.
+      operations:
+      - method: GET
+        name: filesdownload
+        description: Apideck Download File
+        call: file-storage-files.filesdownload
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/file-storage/files/{id}/export
+      name: file-storage-files-id-export
+      description: REST surface for file-storage-files-id-export.
+      operations:
+      - method: GET
+        name: filesexport
+        description: Apideck Export File
+        call: file-storage-files.filesexport
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: file-storage-files-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Apideck File storage API — Files. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: apideck-list-files
+      description: Apideck List Files
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: file-storage-files.filesall
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-upload-file
+      description: Apideck Upload file
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: file-storage-files.filesupload
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-search-files
+      description: Apideck Search Files
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: file-storage-files.filessearch
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-get-file
+      description: Apideck Get File
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: file-storage-files.filesone
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-rename-move-file
+      description: Apideck Rename or move File
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: file-storage-files.filesupdate
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-delete-file
+      description: Apideck Delete File
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: file-storage-files.filesdelete
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-download-file
+      description: Apideck Download File
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: file-storage-files.filesdownload
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apideck-export-file
+      description: Apideck Export File
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: file-storage-files.filesexport
+      outputParameters:
+      - type: object
+        mapping: $.
