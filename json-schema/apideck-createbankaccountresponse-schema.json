@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateBankAccountResponse",
+  "title": "CreateBankAccountResponse",
+  "type": "object",
+  "x-apideck-schema-id": "CreateBankAccountResponse",
+  "additionalProperties": false,
+  "required": [
+    "status_code",
+    "status",
+    "data"
+  ],
+  "properties": {
+    "status_code": {
+      "type": "integer",
+      "description": "HTTP Response Status Code",
+      "example": 201
+    },
+    "status": {
+      "type": "string",
+      "description": "HTTP Response Status",
+      "example": "Created"
+    },
+    "service": {
+      "type": "string",
+      "description": "Apideck ID of service provider",
+      "example": "quickbooks"
+    },
+    "resource": {
+      "type": "string",
+      "description": "Unified API resource name",
+      "example": "bank-accounts"
+    },
+    "operation": {
+      "type": "string",
+      "description": "Operation performed",
+      "example": "add"
+    },
+    "data": {
+      "$ref": "#/components/schemas/UnifiedId"
+    }
+  }
+}

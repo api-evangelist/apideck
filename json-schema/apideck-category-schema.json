@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Category",
+  "title": "Category",
+  "type": "object",
+  "x-apideck-schema-id": "Category",
+  "x-apideck-weights": {
+    "id": "medium",
+    "display_id": "low",
+    "name": "critical",
+    "status": "critical",
+    "type": "critical"
+  },
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/Id"
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the category.",
+      "example": "Insurance",
+      "nullable": false
+    },
+    "display_id": {
+      "type": "string",
+      "title": "Display ID",
+      "description": "Display ID of the category",
+      "example": "12345",
+      "nullable": true
+    },
+    "type": {
+      "type": "string",
+      "description": "The type of the category.",
+      "example": "expense",
+      "x-apideck-enum-id": "category.type",
+      "enum": [
+        "supplier",
+        "expense",
+        "revenue",
+        "customer"
+      ],
+      "nullable": false
+    },
+    "status": {
+      "type": "string",
+      "title": "Category status",
+      "description": "Based on the status some functionality is enabled or disabled.",
+      "x-apideck-enum-id": "category.status",
+      "enum": [
+        "active",
+        "inactive"
+      ],
+      "example": "active"
+    },
+    "custom_mappings": {
+      "$ref": "#/components/schemas/CustomMappings"
+    },
+    "row_version": {
+      "$ref": "#/components/schemas/RowVersion"
+    },
+    "updated_by": {
+      "$ref": "#/components/schemas/UpdatedBy"
+    },
+    "created_by": {
+      "$ref": "#/components/schemas/CreatedBy"
+    },
+    "updated_at": {
+      "$ref": "#/components/schemas/UpdatedAt"
+    },
+    "created_at": {
+      "$ref": "#/components/schemas/CreatedAt"
+    },
+    "pass_through": {
+      "$ref": "#/components/schemas/PassThroughBody"
+    }
+  }
+}

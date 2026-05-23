@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/LinkedFolder",
+  "title": "LinkedFolder",
+  "type": "object",
+  "x-apideck-schema-id": "LinkedFolder",
+  "x-apideck-weights": {
+    "id": "critical"
+  },
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/Id"
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the folder",
+      "example": "Personal",
+      "nullable": true
+    }
+  },
+  "required": [
+    "id"
+  ]
+}

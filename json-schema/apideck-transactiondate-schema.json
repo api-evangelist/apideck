@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TransactionDate",
+  "title": "Transaction Date",
+  "description": "The date of the transaction - YYYY:MM::DDThh:mm:ss.sTZD",
+  "type": "string",
+  "format": "date-time",
+  "example": "2021-05-01T12:00:00.000Z",
+  "nullable": true
+}

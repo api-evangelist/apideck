@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BalanceByTransaction",
+  "title": "Balance by Transaction",
+  "type": "object",
+  "x-apideck-schema-id": "BalanceByTransaction",
+  "additionalProperties": false,
+  "x-apideck-weights": {
+    "transaction_id": "critical",
+    "transaction_date": "high",
+    "transaction_type": "high",
+    "transaction_number": "medium",
+    "due_date": "high",
+    "original_amount": "high",
+    "outstanding_balance": "critical"
+  },
+  "properties": {
+    "transaction_id": {
+      "type": "string",
+      "title": "Transaction ID",
+      "description": "Unique identifier for the transaction.",
+      "example": "INV-1001",
+      "nullable": false
+    },
+    "transaction_date": {
+      "type": "string",
+      "format": "date",
+      "title": "Transaction Date",
+      "description": "Date of the transaction.",
+      "example": "2024-01-15",
+      "nullable": false
+    },
+    "transaction_type": {
+      "type": "string",
+      "title": "Transaction Type",
+      "description": "Type of the transaction.",
+      "example": "invoice",
+      "x-apideck-enum-id": "balances_by_transactions.transaction_type",
+      "enum": [
+        "invoice",
+        "credit_note",
+        "bill",
+        "payment",
+        "bill_payment"
+      ],
+      "nullable": false
+    },
+    "due_date": {
+      "type": "string",
+      "format": "date",
+      "title": "Due Date",
+      "description": "Due date of the transaction.",
+      "example": "2024-02-15",
+      "nullable": false
+    },
+    "original_amount": {
+      "type": "number",
+      "title": "Original Amount",
+      "description": "Original amount of the transaction.",
+      "example": 1000,
+      "nullable": false
+    },
+    "outstanding_balance": {
+      "type": "number",
+      "title": "Outstanding Balance",
+      "description": "Outstanding balance of the transaction.",
+      "example": 800,
+      "nullable": false
+    },
+    "transaction_number": {
+      "type": "string",
+      "title": "Transaction Number",
+      "description": "Transaction number of the transaction.",
+      "example": "INV-1001",
+      "nullable": false
+    }
+  }
+}

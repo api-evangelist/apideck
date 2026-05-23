@@ -1,0 +1,232 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/InvoiceLineItem",
+  "title": "Invoice Line Item",
+  "type": "object",
+  "x-apideck-schema-id": "InvoiceLineItem",
+  "additionalProperties": false,
+  "x-apideck-weights": {
+    "id": "high",
+    "row_id": "edge-case",
+    "code": "medium",
+    "line_number": "medium",
+    "description": "high",
+    "type": "medium",
+    "tax_amount": "high",
+    "total_amount": "high",
+    "quantity": "high",
+    "unit_price": "high",
+    "unit_of_measure": "edge-case",
+    "discount_percentage": "low",
+    "discount_amount": "low",
+    "service_date": "medium",
+    "category_id": "low",
+    "location_id": "low",
+    "department_id": "low",
+    "subsidiary_id": "edge-case",
+    "shipping_id": "edge-case",
+    "memo": "low",
+    "prepaid": "edge-case",
+    "tax_applicable_on": "edge-case",
+    "tax_recoverability": "edge-case",
+    "tax_method": "edge-case",
+    "worktags": "edge-case",
+    "item": "high",
+    "tax_rate": "medium",
+    "ledger_account": "low",
+    "tracking_categories": "low",
+    "custom_fields": "medium",
+    "row_version": "edge-case",
+    "created_at": "edge-case",
+    "updated_at": "high",
+    "updated_by": "edge-case",
+    "created_by": "edge-case"
+  },
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/WritableId"
+    },
+    "row_id": {
+      "type": "string",
+      "title": "Row ID",
+      "description": "Row ID",
+      "example": "12345"
+    },
+    "code": {
+      "type": "string",
+      "title": "Item code",
+      "description": "User defined item code",
+      "example": "120-C",
+      "nullable": true
+    },
+    "line_number": {
+      "$ref": "#/components/schemas/LineNumber"
+    },
+    "description": {
+      "type": "string",
+      "title": "Description",
+      "description": "User defined description",
+      "example": "Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.",
+      "nullable": true
+    },
+    "type": {
+      "type": "string",
+      "title": "Type",
+      "description": "Item type",
+      "example": "sales_item",
+      "x-apideck-enum-id": "invoices.lines-items.type",
+      "enum": [
+        "sales_item",
+        "discount",
+        "info",
+        "sub_total",
+        "service",
+        "other"
+      ],
+      "nullable": true
+    },
+    "tax_amount": {
+      "type": "number",
+      "title": "Tax amount",
+      "description": "Tax amount",
+      "example": 27500,
+      "nullable": true
+    },
+    "total_amount": {
+      "type": "number",
+      "title": "Total amount",
+      "description": "Total amount of the line item",
+      "example": 27500,
+      "nullable": true
+    },
+    "quantity": {
+      "$ref": "#/components/schemas/Quantity"
+    },
+    "unit_price": {
+      "$ref": "#/components/schemas/UnitPrice"
+    },
+    "unit_of_measure": {
+      "$ref": "#/components/schemas/UnitOfMeasure"
+    },
+    "discount_percentage": {
+      "type": "number",
+      "title": "Discount Percentage",
+      "description": "Discount percentage applied to the line item when supported downstream.",
+      "example": 0.01,
+      "nullable": true
+    },
+    "discount_amount": {
+      "type": "number",
+      "title": "Discount Amount",
+      "description": "Discount amount applied to the line item when supported downstream.",
+      "example": 19.99,
+      "nullable": true
+    },
+    "service_date": {
+      "type": "string",
+      "format": "date",
+      "title": "Service Date",
+      "description": "Date on which the service was provided or performed - YYYY-MM-DD.",
+      "example": "2024-01-15",
+      "nullable": true
+    },
+    "category_id": {
+      "type": "string",
+      "title": "Category ID",
+      "description": "ID of the category of the line item",
+      "example": "12345",
+      "nullable": true
+    },
+    "location_id": {
+      "$ref": "#/components/schemas/LocationId"
+    },
+    "department_id": {
+      "$ref": "#/components/schemas/DepartmentId"
+    },
+    "subsidiary_id": {
+      "$ref": "#/components/schemas/SubsidiaryId"
+    },
+    "shipping_id": {
+      "type": "string",
+      "title": "Shipping ID",
+      "description": "ID of the shipping of the line item",
+      "example": "12345",
+      "nullable": true
+    },
+    "memo": {
+      "type": "string",
+      "title": "Memo",
+      "description": "Memo",
+      "example": "Some memo",
+      "nullable": true
+    },
+    "prepaid": {
+      "type": "boolean",
+      "title": "Prepaid",
+      "description": "Whether the line item is prepaid",
+      "example": true,
+      "nullable": true
+    },
+    "item": {
+      "$ref": "#/components/schemas/LinkedInvoiceItem"
+    },
+    "tax_applicable_on": {
+      "type": "string",
+      "title": "Tax Applicable On",
+      "description": "Tax applicable on",
+      "example": "Domestic_Purchase_of_Goods_and_Services",
+      "nullable": true
+    },
+    "tax_recoverability": {
+      "type": "string",
+      "title": "Tax Recoverability",
+      "description": "Tax recoverability",
+      "example": "Fully_Recoverable",
+      "nullable": true
+    },
+    "tax_method": {
+      "type": "string",
+      "title": "Tax method",
+      "description": "Method of tax calculation",
+      "example": "Due_to_Supplier",
+      "nullable": true
+    },
+    "worktags": {
+      "type": "array",
+      "description": "Worktags of the line item. This is currently only supported in Workday.",
+      "items": {
+        "$ref": "#/components/schemas/LinkedWorktag"
+      }
+    },
+    "tax_rate": {
+      "$ref": "#/components/schemas/LinkedTaxRate"
+    },
+    "tracking_categories": {
+      "$ref": "#/components/schemas/LinkedTrackingCategories"
+    },
+    "ledger_account": {
+      "$ref": "#/components/schemas/LinkedLedgerAccount"
+    },
+    "custom_fields": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/CustomField"
+      }
+    },
+    "row_version": {
+      "$ref": "#/components/schemas/RowVersion"
+    },
+    "updated_by": {
+      "$ref": "#/components/schemas/UpdatedBy"
+    },
+    "created_by": {
+      "$ref": "#/components/schemas/CreatedBy"
+    },
+    "created_at": {
+      "$ref": "#/components/schemas/CreatedAt"
+    },
+    "updated_at": {
+      "$ref": "#/components/schemas/UpdatedAt"
+    }
+  }
+}

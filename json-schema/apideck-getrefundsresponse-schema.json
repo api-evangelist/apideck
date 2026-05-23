@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetRefundsResponse",
+  "title": "GetRefundsResponse",
+  "type": "object",
+  "x-apideck-schema-id": "GetRefundsResponse",
+  "required": [
+    "status_code",
+    "status",
+    "service",
+    "resource",
+    "operation",
+    "data"
+  ],
+  "properties": {
+    "status_code": {
+      "type": "integer",
+      "description": "HTTP Response Status Code",
+      "example": 200
+    },
+    "status": {
+      "type": "string",
+      "description": "HTTP Response Status",
+      "example": "OK"
+    },
+    "service": {
+      "type": "string",
+      "description": "Apideck ID of service provider",
+      "example": "quickbooks"
+    },
+    "resource": {
+      "type": "string",
+      "description": "Unified API resource name",
+      "example": "refunds"
+    },
+    "operation": {
+      "type": "string",
+      "description": "Operation performed",
+      "example": "all"
+    },
+    "data": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Refund"
+      }
+    },
+    "meta": {
+      "$ref": "#/components/schemas/Meta"
+    },
+    "links": {
+      "$ref": "#/components/schemas/Links"
+    },
+    "_raw": {
+      "$ref": "#/components/schemas/Raw"
+    }
+  }
+}

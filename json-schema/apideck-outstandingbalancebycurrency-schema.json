@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/OutstandingBalanceByCurrency",
+  "title": "Outstanding Balance by Currency",
+  "type": "object",
+  "x-apideck-schema-id": "OutstandingBalanceByCurrency",
+  "additionalProperties": false,
+  "x-apideck-weights": {
+    "currency": "high",
+    "balances_by_period": "critical"
+  },
+  "properties": {
+    "currency": {
+      "$ref": "#/components/schemas/Currency"
+    },
+    "total_amount": {
+      "type": "number",
+      "title": "Total Amount",
+      "description": "Total amount of the outstanding balance."
+    },
+    "balances_by_period": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/BalanceByPeriod"
+      }
+    }
+  }
+}

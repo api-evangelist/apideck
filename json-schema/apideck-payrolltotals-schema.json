@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PayrollTotals",
+  "title": "PayrollTotals",
+  "type": "object",
+  "description": "The overview of the payroll totals.",
+  "x-apideck-schema-id": "PayrollTotals",
+  "properties": {
+    "company_debit": {
+      "type": "number",
+      "description": "The total company debit for the payroll.",
+      "example": 27992.49,
+      "nullable": true
+    },
+    "tax_debit": {
+      "type": "number",
+      "description": "The total tax debit for the payroll.",
+      "example": 8655.32,
+      "nullable": true
+    },
+    "check_amount": {
+      "type": "number",
+      "description": "The total check amount for the payroll.",
+      "example": 27966.23,
+      "nullable": true
+    },
+    "net_pay": {
+      "type": "number",
+      "description": "The net pay amount for the payroll.",
+      "example": 19337.17,
+      "nullable": true
+    },
+    "gross_pay": {
+      "type": "number",
+      "description": "The gross pay amount for the payroll.",
+      "example": 27966.23,
+      "nullable": true
+    },
+    "employer_taxes": {
+      "type": "number",
+      "description": "The total amount of employer paid taxes for the payroll.",
+      "example": 2038.93,
+      "nullable": true
+    },
+    "employee_taxes": {
+      "type": "number",
+      "description": "The total amount of employee paid taxes for the payroll.",
+      "example": 6616.39,
+      "nullable": true
+    },
+    "employer_benefit_contributions": {
+      "type": "number",
+      "description": "The total amount of company contributed benefits for the payroll.",
+      "example": 0,
+      "nullable": true
+    },
+    "employee_benefit_deductions": {
+      "type": "number",
+      "description": "The total amount of employee deducted benefits for the payroll.",
+      "example": 0,
+      "nullable": true
+    }
+  }
+}

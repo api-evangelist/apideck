@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Attachment",
+  "title": "Attachment",
+  "type": "object",
+  "x-apideck-schema-id": "Attachment",
+  "x-apideck-weights": {
+    "id": "critical",
+    "display_id": "edge-case",
+    "name": "critical",
+    "mime_type": "medium",
+    "size": "medium",
+    "reference": "critical",
+    "description": "medium",
+    "folder_id": "edge-case",
+    "updated_by": "edge-case",
+    "created_by": "edge-case",
+    "updated_at": "medium",
+    "created_at": "medium"
+  },
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/Id"
+    },
+    "display_id": {
+      "type": "string",
+      "description": "The display id of the file",
+      "example": "sample ID",
+      "nullable": true
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the file",
+      "example": "sample.jpg",
+      "nullable": true
+    },
+    "mime_type": {
+      "type": "string",
+      "description": "The MIME type of the file.",
+      "example": "image/jpeg",
+      "nullable": true
+    },
+    "size": {
+      "type": "integer",
+      "x-apideck-schema-id": "AttachmentSize",
+      "description": "The size of the file in bytes",
+      "example": 1810673,
+      "nullable": true
+    },
+    "reference": {
+      "$ref": "#/components/schemas/AttachmentReference"
+    },
+    "description": {
+      "type": "string",
+      "description": "Optional description of the file",
+      "example": "A sample image",
+      "nullable": true
+    },
+    "parent_folder_id": {
+      "type": "string",
+      "description": "The folder id where this attachment belong to",
+      "example": "123",
+      "nullable": true
+    },
+    "updated_by": {
+      "$ref": "#/components/schemas/UpdatedBy"
+    },
+    "created_by": {
+      "$ref": "#/components/schemas/CreatedBy"
+    },
+    "updated_at": {
+      "$ref": "#/components/schemas/UpdatedAt"
+    },
+    "created_at": {
+      "$ref": "#/components/schemas/CreatedAt"
+    },
+    "pass_through": {
+      "$ref": "#/components/schemas/PassThroughBody"
+    }
+  }
+}

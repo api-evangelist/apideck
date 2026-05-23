@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TotalAmount",
+  "title": "Total Amount",
+  "description": "The total amount of the transaction or record",
+  "type": "number",
+  "example": 49.99,
+  "nullable": true
+}

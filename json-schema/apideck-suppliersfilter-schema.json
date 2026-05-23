@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SuppliersFilter",
+  "title": "SuppliersFilter",
+  "type": "object",
+  "x-apideck-schema-id": "SuppliersFilter",
+  "example": {
+    "company_name": "SpaceX",
+    "display_name": "Elon Musk",
+    "first_name": "Elon",
+    "last_name": "Musk",
+    "email": "elon@musk.com",
+    "updated_since": "2020-09-30T07:43:32.000Z"
+  },
+  "properties": {
+    "company_name": {
+      "type": "string",
+      "title": "Company Name",
+      "description": "Company Name of supplier to search for",
+      "example": "SpaceX"
+    },
+    "display_name": {
+      "type": "string",
+      "title": "Display Name",
+      "description": "Display Name of supplier to search for",
+      "example": "Techno King"
+    },
+    "first_name": {
+      "type": "string",
+      "title": "First Name",
+      "description": "First name of supplier to search for",
+      "example": "Elon"
+    },
+    "last_name": {
+      "type": "string",
+      "title": "Last Name",
+      "description": "Last name of supplier to search for",
+      "example": "Musk"
+    },
+    "email": {
+      "type": "string",
+      "title": "Email",
+      "description": "Email of supplier to search for",
+      "example": "elon@spacex.com"
+    },
+    "updated_since": {
+      "type": "string",
+      "title": "Updated since (timestamp)",
+      "format": "date-time",
+      "example": "2020-09-30T07:43:32.000Z"
+    }
+  },
+  "additionalProperties": false
+}

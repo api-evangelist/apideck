@@ -1,0 +1,124 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ExpenseCategory",
+  "title": "ExpenseCategory",
+  "type": "object",
+  "x-apideck-schema-id": "ExpenseCategory",
+  "additionalProperties": false,
+  "x-apideck-weights": {
+    "id": "critical",
+    "display_id": "medium",
+    "name": "critical",
+    "code": "medium",
+    "description": "high",
+    "status": "critical",
+    "account": "critical",
+    "offset_account": "edge-case",
+    "tax_rate": "medium",
+    "rate_required": "low",
+    "default_rate": "low",
+    "custom_mappings": "low",
+    "downstream_id": "low",
+    "row_version": "low",
+    "updated_by": "edge-case",
+    "created_by": "edge-case",
+    "updated_at": "medium",
+    "created_at": "medium",
+    "pass_through": "low"
+  },
+  "required": [
+    "name"
+  ],
+  "x-apideck-strict-required": [
+    "id",
+    "name",
+    "status"
+  ],
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/Id"
+    },
+    "display_id": {
+      "$ref": "#/components/schemas/DisplayId"
+    },
+    "name": {
+      "type": "string",
+      "title": "Name",
+      "description": "The name of the expense category.",
+      "example": "Travel"
+    },
+    "code": {
+      "type": "string",
+      "title": "Code",
+      "description": "The code or external identifier of the expense category.",
+      "example": "TRAVEL-001",
+      "nullable": true
+    },
+    "description": {
+      "type": "string",
+      "title": "Description",
+      "description": "The description of the expense category.",
+      "example": "Travel-related expenses including flights, hotels, and ground transportation.",
+      "nullable": true
+    },
+    "status": {
+      "type": "string",
+      "title": "Status",
+      "description": "The status of the expense category.",
+      "x-apideck-enum-id": "expense_categories.status",
+      "enum": [
+        "active",
+        "inactive"
+      ],
+      "example": "active",
+      "nullable": true
+    },
+    "account": {
+      "$ref": "#/components/schemas/LinkedLedgerAccount"
+    },
+    "offset_account": {
+      "$ref": "#/components/schemas/LinkedLedgerAccount"
+    },
+    "tax_rate": {
+      "$ref": "#/components/schemas/LinkedTaxRate"
+    },
+    "rate_required": {
+      "type": "boolean",
+      "title": "Rate Required",
+      "description": "Whether the expense category requires rate/quantity entry (e.g. mileage at $/mile).",
+      "example": false,
+      "nullable": true
+    },
+    "default_rate": {
+      "type": "number",
+      "title": "Default Rate",
+      "description": "Default rate when rate_required is true (e.g. 0.67 for mileage).",
+      "example": 0.67,
+      "nullable": true
+    },
+    "custom_mappings": {
+      "$ref": "#/components/schemas/CustomMappings"
+    },
+    "downstream_id": {
+      "$ref": "#/components/schemas/DownstreamId"
+    },
+    "row_version": {
+      "$ref": "#/components/schemas/RowVersion"
+    },
+    "updated_by": {
+      "$ref": "#/components/schemas/UpdatedBy"
+    },
+    "created_by": {
+      "$ref": "#/components/schemas/CreatedBy"
+    },
+    "updated_at": {
+      "$ref": "#/components/schemas/UpdatedAt"
+    },
+    "created_at": {
+      "$ref": "#/components/schemas/CreatedAt"
+    },
+    "pass_through": {
+      "$ref": "#/components/schemas/PassThroughBody"
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SocialSecurityNumber",
+  "title": "Social Security Number",
+  "type": "string",
+  "description": "A unique identifier assigned by the government. This field is considered sensitive information and may be subject to special security and privacy restrictions.",
+  "example": "123456789",
+  "nullable": true
+}

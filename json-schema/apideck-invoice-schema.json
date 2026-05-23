@@ -1,0 +1,348 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Invoice",
+  "title": "Invoice",
+  "type": "object",
+  "x-apideck-schema-id": "Invoice",
+  "additionalProperties": false,
+  "x-apideck-weights": {
+    "id": "critical",
+    "downstream_id": "low",
+    "display_id": "low",
+    "type": "high",
+    "number": "high",
+    "customer": "high",
+    "company_id": "middle",
+    "location_id": "low",
+    "department_id": "low",
+    "invoice_date": "edge-case",
+    "due_date": "edge-case",
+    "terms": "low",
+    "terms_id": "edge-case",
+    "po_number": "low",
+    "reference": "low",
+    "status": "critical",
+    "invoice_sent": "low",
+    "currency": "medium",
+    "currency_rate": "low",
+    "tax_inclusive": "low",
+    "sub_total": "high",
+    "total_tax": "high",
+    "tax_code": "medium",
+    "discount_percentage": "medium",
+    "discount_amount": "medium",
+    "total": "critical",
+    "balance": "high",
+    "deposit": "low",
+    "customer_memo": "low",
+    "line_items": "critical",
+    "billing_address": "high",
+    "shipping_address": "medium",
+    "template_id": "edge-case",
+    "source_document_url": "edge-case",
+    "payment_method": "low",
+    "channel": "low",
+    "language": "low",
+    "accounting_by_row": "edge-case",
+    "bank_account": "low",
+    "ledger_account": "edge-case",
+    "tracking_category": "low",
+    "tracking_categories": "low",
+    "row_version": "edge-case",
+    "custom_fields": "medium",
+    "updated_by": "low",
+    "created_by": "low",
+    "created_at": "high",
+    "updated_at": "high"
+  },
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/Id"
+    },
+    "downstream_id": {
+      "$ref": "#/components/schemas/DownstreamId"
+    },
+    "display_id": {
+      "$ref": "#/components/schemas/DisplayId"
+    },
+    "type": {
+      "type": "string",
+      "title": "Invoice type",
+      "description": "Invoice type",
+      "x-apideck-enum-id": "invoices.type",
+      "enum": [
+        "standard",
+        "credit",
+        "service",
+        "product",
+        "supplier",
+        "other"
+      ],
+      "example": "service",
+      "nullable": true
+    },
+    "number": {
+      "type": "string",
+      "title": "Invoice number",
+      "description": "Invoice number.",
+      "example": "OIT00546",
+      "nullable": true
+    },
+    "customer": {
+      "$ref": "#/components/schemas/LinkedCustomer"
+    },
+    "company_id": {
+      "$ref": "#/components/schemas/AccountingCompanyId"
+    },
+    "location_id": {
+      "$ref": "#/components/schemas/LocationId"
+    },
+    "department_id": {
+      "$ref": "#/components/schemas/DepartmentId"
+    },
+    "invoice_date": {
+      "type": "string",
+      "title": "Invoice date",
+      "description": "Date invoice was issued - YYYY-MM-DD.",
+      "format": "date",
+      "example": "2020-09-30",
+      "nullable": true
+    },
+    "due_date": {
+      "type": "string",
+      "title": "Due date",
+      "description": "The invoice due date is the date on which a payment or invoice is scheduled to be received by the seller - YYYY-MM-DD.",
+      "format": "date",
+      "example": "2020-09-30",
+      "nullable": true
+    },
+    "terms": {
+      "type": "string",
+      "title": "Terms",
+      "description": "Terms of payment.",
+      "example": "Net 30 days",
+      "nullable": true
+    },
+    "terms_id": {
+      "$ref": "#/components/schemas/TermsId"
+    },
+    "po_number": {
+      "type": "string",
+      "title": "Purchase Order number",
+      "description": "A PO Number uniquely identifies a purchase order and is generally defined by the buyer. The buyer will match the PO number in the invoice to the Purchase Order.",
+      "example": "90000117",
+      "nullable": true
+    },
+    "reference": {
+      "$ref": "#/components/schemas/Reference"
+    },
+    "status": {
+      "type": "string",
+      "title": "Status",
+      "description": "Invoice status",
+      "example": "draft",
+      "x-apideck-enum-id": "invoices.status",
+      "enum": [
+        "draft",
+        "submitted",
+        "authorised",
+        "partially_paid",
+        "paid",
+        "unpaid",
+        "void",
+        "credit",
+        "deleted",
+        "posted"
+      ],
+      "nullable": true
+    },
+    "invoice_sent": {
+      "type": "boolean",
+      "title": "Invoice Sent",
+      "description": "Invoice sent to contact/customer.",
+      "example": true
+    },
+    "currency": {
+      "$ref": "#/components/schemas/Currency"
+    },
+    "currency_rate": {
+      "$ref": "#/components/schemas/CurrencyRate"
+    },
+    "tax_inclusive": {
+      "$ref": "#/components/schemas/TaxInclusive"
+    },
+    "sub_total": {
+      "title": "Sub-total amount",
+      "description": "Sub-total amount, normally before tax.",
+      "type": "number",
+      "example": 27500,
+      "nullable": true
+    },
+    "total_tax": {
+      "type": "number",
+      "title": "Total tax amount",
+      "description": "Total tax amount applied to this invoice.",
+      "example": 2500,
+      "nullable": true
+    },
+    "tax_code": {
+      "type": "string",
+      "title": "Tax Code",
+      "description": "Applicable tax id/code override if tax is not supplied on a line item basis.",
+      "example": "1234",
+      "nullable": true
+    },
+    "discount_percentage": {
+      "type": "number",
+      "title": "Discount Percent",
+      "description": "Discount percentage applied to this invoice.",
+      "example": 5.5,
+      "nullable": true
+    },
+    "discount_amount": {
+      "type": "number",
+      "title": "Discount Amount",
+      "description": "Discount amount applied to this invoice.",
+      "example": 25,
+      "nullable": true
+    },
+    "total": {
+      "type": "number",
+      "title": "Total amount",
+      "description": "Total amount of invoice, including tax.",
+      "example": 27500,
+      "nullable": true
+    },
+    "balance": {
+      "type": "number",
+      "title": "Balance",
+      "description": "Balance of invoice due.",
+      "example": 27500,
+      "nullable": true
+    },
+    "deposit": {
+      "type": "number",
+      "title": "Deposit",
+      "description": "Amount of deposit made to this invoice.",
+      "example": 0,
+      "nullable": true
+    },
+    "customer_memo": {
+      "type": "string",
+      "title": "Customer memo",
+      "description": "Customer memo",
+      "example": "Thank you for your business and have a great day!",
+      "nullable": true
+    },
+    "tracking_category": {
+      "$ref": "#/components/schemas/DeprecatedLinkedTrackingCategory"
+    },
+    "tracking_categories": {
+      "$ref": "#/components/schemas/LinkedTrackingCategories"
+    },
+    "line_items": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/InvoiceLineItem"
+      }
+    },
+    "billing_address": {
+      "$ref": "#/components/schemas/Address"
+    },
+    "shipping_address": {
+      "$ref": "#/components/schemas/Address"
+    },
+    "template_id": {
+      "type": "string",
+      "title": "Template",
+      "description": "Optional invoice template",
+      "example": "123456",
+      "nullable": true
+    },
+    "source_document_url": {
+      "type": "string",
+      "title": "Source document URL",
+      "description": "URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.",
+      "example": "https://www.invoicesolution.com/invoice/123456",
+      "nullable": true
+    },
+    "payment_allocations": {
+      "type": "array",
+      "title": "Payments",
+      "description": "IDs of payments made on the invoice",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "123456",
+            "title": "ID",
+            "description": "ID of the payment",
+            "nullable": false
+          },
+          "allocated_amount": {
+            "type": "number",
+            "example": 1000,
+            "title": "Amount",
+            "description": "Amount of the payment allocated to the invoice",
+            "nullable": true
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Date",
+            "description": "Date of the payment",
+            "example": "2020-09-30T07:43:32.000Z",
+            "nullable": true
+          }
+        }
+      },
+      "nullable": true
+    },
+    "payment_method": {
+      "$ref": "#/components/schemas/PaymentMethod"
+    },
+    "channel": {
+      "$ref": "#/components/schemas/Channel"
+    },
+    "language": {
+      "$ref": "#/components/schemas/Language"
+    },
+    "accounting_by_row": {
+      "$ref": "#/components/schemas/AccountingByRow"
+    },
+    "bank_account": {
+      "$ref": "#/components/schemas/BankAccount"
+    },
+    "ledger_account": {
+      "$ref": "#/components/schemas/LinkedLedgerAccount"
+    },
+    "custom_mappings": {
+      "$ref": "#/components/schemas/CustomMappings"
+    },
+    "custom_fields": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/CustomField"
+      }
+    },
+    "row_version": {
+      "$ref": "#/components/schemas/RowVersion"
+    },
+    "updated_by": {
+      "$ref": "#/components/schemas/UpdatedBy"
+    },
+    "created_by": {
+      "$ref": "#/components/schemas/CreatedBy"
+    },
+    "updated_at": {
+      "$ref": "#/components/schemas/UpdatedAt"
+    },
+    "created_at": {
+      "$ref": "#/components/schemas/CreatedAt"
+    },
+    "pass_through": {
+      "$ref": "#/components/schemas/PassThroughBody"
+    }
+  }
+}

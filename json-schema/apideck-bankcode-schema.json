@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BankCode",
+  "title": "Bank Code",
+  "type": "string",
+  "description": "Bank code assigned by central bank",
+  "example": "BNH",
+  "nullable": true
+}

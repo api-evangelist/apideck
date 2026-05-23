@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Reference",
+  "title": "Reference",
+  "type": "string",
+  "description": "Optional reference identifier for the transaction.",
+  "example": "INV-2024-001",
+  "nullable": true
+}

@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BankAccountFilter",
+  "title": "BankAccountFilter",
+  "type": "object",
+  "x-apideck-schema-id": "BankAccountFilter",
+  "additionalProperties": false,
+  "properties": {
+    "account_type": {
+      "type": "string",
+      "title": "Account Type",
+      "description": "Filter by account type",
+      "x-apideck-enum-id": "bank_accounts.account_type",
+      "enum": [
+        "checking",
+        "savings",
+        "credit_card",
+        "money_market",
+        "line_of_credit",
+        "other",
+        "cash"
+      ],
+      "example": "checking"
+    }
+  }
+}

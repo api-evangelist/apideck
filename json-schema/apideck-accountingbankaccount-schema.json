@@ -1,0 +1,170 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AccountingBankAccount",
+  "title": "AccountingBankAccount",
+  "type": "object",
+  "x-apideck-schema-id": "AccountingBankAccount",
+  "additionalProperties": false,
+  "x-apideck-weights": {
+    "id": "critical",
+    "downstream_id": "edge-case",
+    "display_id": "edge-case",
+    "name": "high",
+    "account_number": "critical",
+    "account_type": "high",
+    "ledger_account": "low",
+    "bank_name": "medium",
+    "currency": "high",
+    "balance": "high",
+    "available_balance": "medium",
+    "overdraft_limit": "medium",
+    "routing_number": "medium",
+    "iban": "high",
+    "bic": "medium",
+    "bsb_number": "edge-case",
+    "branch_identifier": "low",
+    "bank_code": "low",
+    "country": "medium",
+    "status": "high",
+    "description": "low",
+    "created_at": "low",
+    "updated_at": "low",
+    "created_by": "low",
+    "updated_by": "low"
+  },
+  "required": [
+    "id"
+  ],
+  "x-apideck-strict-required": [
+    "name"
+  ],
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/Id"
+    },
+    "downstream_id": {
+      "$ref": "#/components/schemas/DownstreamId"
+    },
+    "display_id": {
+      "type": "string",
+      "title": "Display ID",
+      "description": "Display ID for the bank account",
+      "example": "BA-001",
+      "nullable": true
+    },
+    "name": {
+      "$ref": "#/components/schemas/BankAccountName"
+    },
+    "account_number": {
+      "$ref": "#/components/schemas/BankAccountNumber"
+    },
+    "account_type": {
+      "type": "string",
+      "title": "Account Type",
+      "description": "The type of bank account",
+      "x-apideck-enum-id": "bank_accounts.account_type",
+      "enum": [
+        "checking",
+        "savings",
+        "credit_card",
+        "money_market",
+        "line_of_credit",
+        "other",
+        "cash"
+      ],
+      "example": "checking"
+    },
+    "ledger_account": {
+      "$ref": "#/components/schemas/LinkedLedgerAccount"
+    },
+    "bank_name": {
+      "$ref": "#/components/schemas/BankName"
+    },
+    "currency": {
+      "$ref": "#/components/schemas/Currency"
+    },
+    "balance": {
+      "type": "number",
+      "title": "Current Balance",
+      "description": "The current balance of the bank account",
+      "example": 25000,
+      "nullable": true
+    },
+    "available_balance": {
+      "type": "number",
+      "title": "Available Balance",
+      "description": "The available balance (considering pending transactions and overdraft)",
+      "example": 24500,
+      "nullable": true
+    },
+    "overdraft_limit": {
+      "type": "number",
+      "title": "Overdraft Limit",
+      "description": "The overdraft limit for the account",
+      "example": 5000,
+      "nullable": true
+    },
+    "routing_number": {
+      "$ref": "#/components/schemas/RoutingNumber"
+    },
+    "iban": {
+      "$ref": "#/components/schemas/IBAN"
+    },
+    "bic": {
+      "$ref": "#/components/schemas/BIC"
+    },
+    "bsb_number": {
+      "$ref": "#/components/schemas/BSBNumber"
+    },
+    "branch_identifier": {
+      "$ref": "#/components/schemas/BranchIdentifier"
+    },
+    "bank_code": {
+      "$ref": "#/components/schemas/BankCode"
+    },
+    "country": {
+      "$ref": "#/components/schemas/Country"
+    },
+    "status": {
+      "type": "string",
+      "title": "Status",
+      "description": "The status of the bank account",
+      "x-apideck-enum-id": "bank_accounts.status",
+      "enum": [
+        "active",
+        "inactive",
+        "closed"
+      ],
+      "example": "active",
+      "nullable": true
+    },
+    "description": {
+      "type": "string",
+      "title": "Description",
+      "description": "Description or notes about the bank account",
+      "example": "Primary operating account for daily transactions",
+      "nullable": true
+    },
+    "custom_fields": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/CustomField"
+      }
+    },
+    "custom_mappings": {
+      "$ref": "#/components/schemas/CustomMappings"
+    },
+    "created_at": {
+      "$ref": "#/components/schemas/CreatedAt"
+    },
+    "updated_at": {
+      "$ref": "#/components/schemas/UpdatedAt"
+    },
+    "created_by": {
+      "$ref": "#/components/schemas/CreatedBy"
+    },
+    "updated_by": {
+      "$ref": "#/components/schemas/UpdatedBy"
+    }
+  }
+}

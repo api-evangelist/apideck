@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/IBAN",
+  "title": "IBAN",
+  "type": "string",
+  "description": "International Bank Account Number",
+  "example": "GB33BUKB20201555555555",
+  "nullable": true
+}

@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Tax",
+  "title": "Tax",
+  "type": "object",
+  "x-apideck-schema-id": "Tax",
+  "x-apideck-weights": {
+    "name": "high",
+    "employer": "high",
+    "amount": "high"
+  },
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name of the tax.",
+      "example": "CA State Income Tax",
+      "nullable": true
+    },
+    "employer": {
+      "type": "boolean",
+      "description": "Paid by employer.",
+      "example": false,
+      "nullable": true
+    },
+    "amount": {
+      "type": "number",
+      "description": "The amount of the tax.",
+      "example": 1.97,
+      "nullable": true
+    }
+  }
+}

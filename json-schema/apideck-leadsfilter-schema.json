@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/LeadsFilter",
+  "title": "LeadsFilter",
+  "type": "object",
+  "x-apideck-schema-id": "LeadsFilter",
+  "example": {
+    "first_name": "Elon",
+    "last_name": "Musk",
+    "email": "elon@tesla.com",
+    "phone_number": "1234567890"
+  },
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the lead to filter on",
+      "example": "Elon Musk"
+    },
+    "first_name": {
+      "type": "string",
+      "description": "First name of the lead to filter on",
+      "example": "Elon"
+    },
+    "last_name": {
+      "type": "string",
+      "description": "Last name of the lead to filter on",
+      "example": "Musk"
+    },
+    "email": {
+      "type": "string",
+      "description": "E-mail of the lead to filter on",
+      "example": "elon@tesla.com"
+    },
+    "phone_number": {
+      "type": "string",
+      "description": "Phone number of the lead to filter on",
+      "example": "1234567890"
+    }
+  },
+  "additionalProperties": false
+}

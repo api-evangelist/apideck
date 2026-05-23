@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ProfitAndLossFilter",
+  "title": "ProfitAndLossFilter",
+  "type": "object",
+  "x-apideck-schema-id": "ProfitAndLossFilter",
+  "example": {
+    "customer_id": "123abc",
+    "start_date": "2021-01-01",
+    "end_date": "2021-12-31",
+    "location_id": "123",
+    "accounting_method": "accrual"
+  },
+  "properties": {
+    "customer_id": {
+      "type": "string",
+      "title": "Customer Id",
+      "description": "Filter by customer id",
+      "example": "123abc"
+    },
+    "start_date": {
+      "type": "string",
+      "title": "Start date",
+      "description": "Filter by start date. If start date is given, end date is required.",
+      "example": "2021-01-01"
+    },
+    "end_date": {
+      "type": "string",
+      "title": "End date",
+      "description": "Filter by end date. If end date is given, start date is required.",
+      "example": "2021-12-31"
+    },
+    "location_id": {
+      "type": "string",
+      "title": "Location ID",
+      "description": "Filter by location id",
+      "example": "123"
+    },
+    "accounting_method": {
+      "x-apideck-enum-id": "profit-and-loss.accounting-method",
+      "type": "string",
+      "title": "Accounting Method",
+      "description": "The accounting method used for the report: cash or accrual.",
+      "example": "accrual",
+      "enum": [
+        "cash",
+        "accrual"
+      ]
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/LinkedExpenseCategory",
+  "title": "LinkedExpenseCategory",
+  "type": "object",
+  "x-apideck-schema-id": "LinkedExpenseCategory",
+  "description": "The expense category this entity is linked to.",
+  "x-apideck-weights": {
+    "id": "medium",
+    "downstream_id": "edge-case",
+    "display_id": "medium",
+    "name": "medium"
+  },
+  "properties": {
+    "id": {
+      "type": "string",
+      "title": "Expense Category ID",
+      "description": "The ID of the expense category.",
+      "example": "12345"
+    },
+    "downstream_id": {
+      "type": "string",
+      "title": "Downstream ID",
+      "description": "The third-party API ID of the expense category.",
+      "example": "12345",
+      "nullable": true
+    },
+    "display_id": {
+      "type": "string",
+      "title": "Display ID",
+      "description": "The display ID of the expense category.",
+      "example": "Airfare",
+      "nullable": true
+    },
+    "name": {
+      "type": "string",
+      "title": "Name",
+      "description": "The name of the expense category.",
+      "example": "Airfare",
+      "nullable": true
+    }
+  }
+}

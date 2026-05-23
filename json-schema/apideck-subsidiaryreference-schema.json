@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SubsidiaryReference",
+  "title": "SubsidiaryReference",
+  "type": "object",
+  "x-apideck-schema-id": "SubsidiaryReference",
+  "x-apideck-weights": {
+    "id": "critical",
+    "name": "low"
+  },
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/Id"
+    },
+    "name": {
+      "$ref": "#/components/schemas/CompanyName"
+    }
+  }
+}

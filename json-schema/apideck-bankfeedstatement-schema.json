@@ -1,0 +1,171 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BankFeedStatement",
+  "title": "BankFeedStatement",
+  "type": "object",
+  "x-apideck-schema-id": "BankFeedStatement",
+  "additionalProperties": false,
+  "x-apideck-weights": {
+    "id": "critical",
+    "bank_feed_account_id": "critical",
+    "status": "high",
+    "start_date": "high",
+    "end_date": "high",
+    "start_balance": "medium",
+    "start_balance_credit_or_debit": "medium",
+    "end_balance": "medium",
+    "end_balance_credit_or_debit": "medium",
+    "transactions": "critical",
+    "created_at": "low",
+    "updated_at": "low",
+    "updated_by": "low",
+    "created_by": "low"
+  },
+  "required": [
+    "id"
+  ],
+  "x-apideck-strict-required": [
+    "bank_feed_account_id",
+    "status",
+    "start_date",
+    "end_date"
+  ],
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/Id"
+    },
+    "bank_feed_account_id": {
+      "type": "string",
+      "title": "Bank Feed Account ID",
+      "description": "The ID of the bank feed account this statement belongs to.",
+      "example": "acc_456"
+    },
+    "status": {
+      "type": "string",
+      "title": "Statement Status",
+      "description": "The current status of the bank feed statement.",
+      "x-apideck-enum-id": "bank_feed_statements.status",
+      "enum": [
+        "pending",
+        "rejected",
+        "success"
+      ],
+      "example": "pending"
+    },
+    "start_date": {
+      "type": "string",
+      "title": "Start Date",
+      "description": "Start date of the bank feed statement.",
+      "format": "date-time",
+      "example": "2021-05-01T12:00:00.000Z"
+    },
+    "end_date": {
+      "type": "string",
+      "format": "date-time",
+      "title": "End Date",
+      "description": "End date of the bank feed statement.",
+      "example": "2025-01-31T12:00:00.000Z"
+    },
+    "start_balance": {
+      "type": "number",
+      "title": "Start Balance",
+      "description": "Balance amount at the start of the period.",
+      "example": 10500.25
+    },
+    "start_balance_credit_or_debit": {
+      "$ref": "#/components/schemas/CreditOrDebit"
+    },
+    "end_balance": {
+      "type": "number",
+      "title": "End Balance",
+      "description": "Balance amount at the end of the period.",
+      "example": 9800.5
+    },
+    "end_balance_credit_or_debit": {
+      "$ref": "#/components/schemas/CreditOrDebit"
+    },
+    "transactions": {
+      "type": "array",
+      "title": "Bank Feed Statement Transactions",
+      "description": "List of transactions in the bank feed statement.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "posted_date": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Posted Date",
+            "description": "The date of the transaction - YYYY:MM::DDThh:mm:ss.sTZD",
+            "example": "2025-01-15T12:00:00.000Z"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description",
+            "description": "A description of the transaction.",
+            "example": "Payment received from ACME Corp"
+          },
+          "amount": {
+            "type": "number",
+            "title": "Transaction Amount",
+            "description": "The amount of the transaction.",
+            "example": 250
+          },
+          "credit_or_debit": {
+            "$ref": "#/components/schemas/CreditOrDebit"
+          },
+          "source_transaction_id": {
+            "type": "string",
+            "title": "Source Transaction ID",
+            "description": "The ID of the source transaction.",
+            "example": "txn_987"
+          },
+          "counterparty": {
+            "type": "string",
+            "title": "Counterparty",
+            "description": "The counterparty of the transaction.",
+            "example": "ACME Corp"
+          },
+          "reference": {
+            "type": "string",
+            "title": "Reference",
+            "description": "The reference of the transaction.",
+            "example": "INV-2025-01"
+          },
+          "transaction_type": {
+            "type": "string",
+            "title": "Transaction Type",
+            "description": "Type of transaction.",
+            "x-apideck-enum-id": "bank_feed_statements.transaction_type",
+            "enum": [
+              "credit",
+              "debit",
+              "deposit",
+              "transfer",
+              "payment",
+              "other"
+            ],
+            "example": "payment"
+          }
+        },
+        "required": [
+          "posted_date",
+          "amount",
+          "credit_or_debit",
+          "source_transaction_id"
+        ]
+      }
+    },
+    "created_at": {
+      "$ref": "#/components/schemas/CreatedAt"
+    },
+    "created_by": {
+      "$ref": "#/components/schemas/CreatedBy"
+    },
+    "updated_at": {
+      "$ref": "#/components/schemas/UpdatedAt"
+    },
+    "updated_by": {
+      "$ref": "#/components/schemas/UpdatedBy"
+    }
+  }
+}

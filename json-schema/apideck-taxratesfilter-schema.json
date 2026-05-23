@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TaxRatesFilter",
+  "title": "TaxRatesFilter",
+  "type": "object",
+  "x-apideck-schema-id": "TaxRatesFilter",
+  "example": {
+    "assets": true,
+    "equity": true,
+    "expenses": true,
+    "liabilities": true,
+    "revenue": true
+  },
+  "properties": {
+    "assets": {
+      "type": "boolean",
+      "title": "Assets",
+      "description": "Boolean to describe if tax rate can be used for asset accounts",
+      "example": true
+    },
+    "equity": {
+      "type": "boolean",
+      "title": "Equity",
+      "description": "Boolean to describe if tax rate can be used for equity accounts",
+      "example": true
+    },
+    "expenses": {
+      "type": "boolean",
+      "title": "Expenses",
+      "description": "Boolean to describe if tax rate can be used for expense accounts",
+      "example": true
+    },
+    "liabilities": {
+      "type": "boolean",
+      "title": "Liabilities",
+      "description": "Boolean to describe if tax rate can be used for liability accounts",
+      "example": true
+    },
+    "revenue": {
+      "type": "boolean",
+      "title": "Revenue",
+      "description": "Boolean to describe if tax rate can be used for revenue accounts",
+      "example": true
+    }
+  },
+  "additionalProperties": false
+}

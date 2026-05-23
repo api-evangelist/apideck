@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AccountingWebhookEvent",
+  "title": "AccountingWebhookEvent",
+  "x-sdk-exclude": true,
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/WebhookEvent/allOf/0"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "event_type": {
+          "$ref": "#/components/schemas/AccountingEventType"
+        }
+      }
+    }
+  ]
+}

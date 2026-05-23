@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/LinkedTrackingCategory",
+  "title": "LinkedTrackingCategory",
+  "type": "object",
+  "x-apideck-schema-id": "LinkedTrackingCategory",
+  "x-apideck-weights": {
+    "id": "critical",
+    "code": "medium"
+  },
+  "nullable": true,
+  "properties": {
+    "id": {
+      "title": "Tracking Category ID",
+      "description": "The unique identifier for the tracking category.",
+      "type": "string",
+      "example": "123456"
+    },
+    "code": {
+      "type": "string",
+      "title": "Tracking Category Code",
+      "description": "The code of the tracking category.",
+      "example": "100",
+      "nullable": true
+    },
+    "name": {
+      "type": "string",
+      "title": "Tracking Category Name",
+      "description": "The name of the tracking category.",
+      "example": "New York",
+      "nullable": true
+    },
+    "parent_id": {
+      "type": "string",
+      "title": "Parent Tracking Category ID",
+      "description": "The unique identifier for the parent tracking category.",
+      "example": "123456"
+    },
+    "parent_name": {
+      "type": "string",
+      "title": "Parent Tracking Category Name",
+      "description": "The name of the parent tracking category.",
+      "example": "New York",
+      "nullable": true
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/InvoiceResponse",
+  "title": "InvoiceResponse",
+  "type": "object",
+  "x-apideck-schema-id": "InvoiceResponse",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/Id"
+    },
+    "downstream_id": {
+      "$ref": "#/components/schemas/DownstreamId"
+    }
+  }
+}

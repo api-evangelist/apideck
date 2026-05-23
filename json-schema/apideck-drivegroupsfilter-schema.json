@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DriveGroupsFilter",
+  "title": "DriveGroupsFilter",
+  "type": "object",
+  "x-apideck-schema-id": "DriveGroupsFilter",
+  "properties": {
+    "parent_group_id": {
+      "type": "string",
+      "description": "ID of the drive group to filter on",
+      "example": "1234"
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/EmployeeSchedules",
+  "title": "EmployeeSchedules",
+  "type": "object",
+  "x-apideck-schema-id": "EmployeeSchedules",
+  "properties": {
+    "employee": {
+      "$ref": "#/components/schemas/Employee"
+    },
+    "schedules": {
+      "type": "array",
+      "nullable": true,
+      "items": {
+        "$ref": "#/components/schemas/Schedule"
+      }
+    }
+  }
+}

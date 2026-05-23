@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Subsidiary",
+  "title": "Subsidiary",
+  "type": "object",
+  "x-apideck-schema-id": "Subsidiary",
+  "x-apideck-weights": {
+    "id": "medium",
+    "name": "critical",
+    "status": "critical",
+    "display_id": "low",
+    "downstream_id": "low",
+    "address": "medium",
+    "parent_id": "medium",
+    "currencies": "medium"
+  },
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/Id"
+    },
+    "parent_id": {
+      "$ref": "#/components/schemas/WritableId"
+    },
+    "name": {
+      "$ref": "#/components/schemas/CompanyName"
+    },
+    "display_id": {
+      "type": "string",
+      "title": "Display ID",
+      "description": "Display ID of the subsidiary",
+      "example": "12345",
+      "nullable": true
+    },
+    "downstream_id": {
+      "$ref": "#/components/schemas/DownstreamId"
+    },
+    "status": {
+      "type": "string",
+      "title": "Subsidiary status",
+      "description": "Based on the status some functionality is enabled or disabled.",
+      "x-apideck-enum-id": "subsidiary.status",
+      "enum": [
+        "active",
+        "inactive"
+      ],
+      "example": "active"
+    },
+    "address": {
+      "$ref": "#/components/schemas/Address"
+    },
+    "currencies": {
+      "type": "array",
+      "title": "Currencies",
+      "description": "List of currencies supported by this subsidiary",
+      "items": {
+        "$ref": "#/components/schemas/Currency"
+      },
+      "nullable": true
+    },
+    "custom_mappings": {
+      "$ref": "#/components/schemas/CustomMappings"
+    },
+    "row_version": {
+      "$ref": "#/components/schemas/RowVersion"
+    },
+    "updated_by": {
+      "$ref": "#/components/schemas/UpdatedBy"
+    },
+    "created_by": {
+      "$ref": "#/components/schemas/CreatedBy"
+    },
+    "updated_at": {
+      "$ref": "#/components/schemas/UpdatedAt"
+    },
+    "created_at": {
+      "$ref": "#/components/schemas/CreatedAt"
+    },
+    "pass_through": {
+      "$ref": "#/components/schemas/PassThroughBody"
+    }
+  }
+}

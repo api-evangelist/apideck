@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Team",
+  "title": "Team",
+  "type": "object",
+  "x-apideck-schema-id": "Team",
+  "description": "The team the person is currently in.",
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier of the team.",
+      "example": "1234",
+      "nullable": true
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the team.",
+      "example": "Full Stack Engineers",
+      "nullable": true
+    }
+  },
+  "nullable": true
+}

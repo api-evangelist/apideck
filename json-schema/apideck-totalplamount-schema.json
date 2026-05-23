@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TotalPLAmount",
+  "title": "Total Amount",
+  "description": "The aggregated total of all accounts within this category.",
+  "type": "number",
+  "example": 1000,
+  "nullable": true
+}

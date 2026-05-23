@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CategoriesFilter",
+  "title": "CategoriesFilter",
+  "type": "object",
+  "x-apideck-schema-id": "CategoriesFilter",
+  "example": {
+    "type": "expense"
+  },
+  "properties": {
+    "type": {
+      "type": "string",
+      "title": "Type",
+      "description": "The type of the category.",
+      "example": "expense",
+      "x-apideck-enum-id": "category.type",
+      "enum": [
+        "supplier",
+        "expense",
+        "revenue",
+        "customer"
+      ],
+      "nullable": false
+    }
+  },
+  "additionalProperties": false
+}

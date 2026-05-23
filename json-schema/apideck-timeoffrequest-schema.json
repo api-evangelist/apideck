@@ -1,0 +1,172 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TimeOffRequest",
+  "title": "TimeOffRequest",
+  "type": "object",
+  "additionalProperties": false,
+  "x-apideck-weights": {
+    "id": "high",
+    "employee_id": "high",
+    "policy_id": "low",
+    "status": "high",
+    "description": "medium",
+    "start_date": "high",
+    "end_date": "high",
+    "request_date": "medium",
+    "request_type": "medium",
+    "approval_date": "medium",
+    "units": "medium",
+    "amount": "medium",
+    "notes": "low",
+    "updated_by": "edge-case",
+    "created_by": "edge-case",
+    "updated_at": "medium",
+    "created_at": "medium",
+    "policy_type": "edge-case",
+    "day_part": "edge-case"
+  },
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/Id"
+    },
+    "employee_id": {
+      "$ref": "#/components/schemas/EmployeeId"
+    },
+    "policy_id": {
+      "type": "string",
+      "title": "Policy ID",
+      "description": "ID of the policy",
+      "example": "12345",
+      "nullable": true
+    },
+    "status": {
+      "type": "string",
+      "title": "Status",
+      "enum": [
+        "requested",
+        "approved",
+        "declined",
+        "cancelled",
+        "deleted",
+        "other"
+      ],
+      "description": "The status of the time off request.",
+      "x-apideck-enum-id": "time-off-requests.status",
+      "example": "approved",
+      "nullable": true
+    },
+    "description": {
+      "type": "string",
+      "title": "Description",
+      "description": "Description of the time off request.",
+      "example": "Enjoying some sun.",
+      "nullable": true
+    },
+    "start_date": {
+      "type": "string",
+      "description": "The start date of the time off request.",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+      "example": "2022-04-01",
+      "nullable": true
+    },
+    "end_date": {
+      "type": "string",
+      "description": "The end date of the time off request.",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+      "example": "2022-04-01",
+      "nullable": true
+    },
+    "request_date": {
+      "type": "string",
+      "description": "The date the request was made.",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+      "example": "2022-03-21",
+      "nullable": true
+    },
+    "request_type": {
+      "type": "string",
+      "enum": [
+        "vacation",
+        "sick",
+        "personal",
+        "jury_duty",
+        "volunteer",
+        "bereavement",
+        "other"
+      ],
+      "description": "The type of request",
+      "x-apideck-enum-id": "time-off-requests.type",
+      "example": "vacation",
+      "nullable": true
+    },
+    "approval_date": {
+      "type": "string",
+      "description": "The date the request was approved",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+      "example": "2022-03-21",
+      "nullable": true
+    },
+    "units": {
+      "type": "string",
+      "enum": [
+        "days",
+        "hours",
+        "other"
+      ],
+      "description": "The unit of time off requested. Possible values include: `hours`, `days`, or `other`.",
+      "x-apideck-enum-id": "time-off-requests.units",
+      "example": "hours",
+      "nullable": true
+    },
+    "amount": {
+      "type": "number",
+      "description": "The amount of time off requested.",
+      "example": 3.5,
+      "nullable": true
+    },
+    "day_part": {
+      "type": "string",
+      "description": "The day part of the time off request.",
+      "example": "morning",
+      "nullable": true
+    },
+    "notes": {
+      "type": "object",
+      "properties": {
+        "employee": {
+          "type": "string",
+          "title": "Employee note",
+          "example": "Relaxing on the beach for a few hours.",
+          "nullable": true
+        },
+        "manager": {
+          "type": "string",
+          "title": "Manager note",
+          "example": "Enjoy!",
+          "nullable": true
+        }
+      }
+    },
+    "custom_mappings": {
+      "$ref": "#/components/schemas/CustomMappings"
+    },
+    "updated_by": {
+      "$ref": "#/components/schemas/UpdatedBy"
+    },
+    "created_by": {
+      "$ref": "#/components/schemas/CreatedBy"
+    },
+    "updated_at": {
+      "$ref": "#/components/schemas/UpdatedAt"
+    },
+    "created_at": {
+      "$ref": "#/components/schemas/CreatedAt"
+    },
+    "pass_through": {
+      "$ref": "#/components/schemas/PassThroughBody"
+    },
+    "policy_type": {
+      "$ref": "#/components/schemas/PolicyType"
+    }
+  }
+}

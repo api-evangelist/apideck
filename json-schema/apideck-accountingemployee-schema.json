@@ -1,0 +1,247 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AccountingEmployee",
+  "title": "AccountingEmployee",
+  "type": "object",
+  "x-apideck-schema-id": "AccountingEmployee",
+  "additionalProperties": false,
+  "x-apideck-weights": {
+    "id": "critical",
+    "downstream_id": "low",
+    "display_id": "high",
+    "first_name": "critical",
+    "last_name": "critical",
+    "display_name": "critical",
+    "emails": "high",
+    "employee_number": "high",
+    "job_title": "medium",
+    "status": "critical",
+    "is_contractor": "medium",
+    "department": "medium",
+    "location": "medium",
+    "manager": "medium",
+    "hire_date": "medium",
+    "termination_date": "medium",
+    "gender": "low",
+    "birth_date": "low",
+    "subsidiary": "medium",
+    "tracking_categories": "low",
+    "currency": "edge-case",
+    "notes": "low",
+    "addresses": "low",
+    "phone_numbers": "low",
+    "bank_account": "medium",
+    "custom_fields": "medium",
+    "custom_mappings": "low",
+    "row_version": "low",
+    "updated_at": "medium",
+    "created_at": "medium",
+    "pass_through": "low"
+  },
+  "x-apideck-strict-required": [
+    "id",
+    "first_name",
+    "last_name",
+    "status"
+  ],
+  "x-apideck-strict-any-of": [
+    {
+      "required": [
+        "first_name"
+      ]
+    },
+    {
+      "required": [
+        "last_name"
+      ]
+    },
+    {
+      "required": [
+        "display_name"
+      ]
+    }
+  ],
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/Id"
+    },
+    "downstream_id": {
+      "$ref": "#/components/schemas/DownstreamId"
+    },
+    "display_id": {
+      "$ref": "#/components/schemas/DisplayId"
+    },
+    "first_name": {
+      "type": "string",
+      "title": "First Name",
+      "description": "The first name of the employee.",
+      "example": "John",
+      "nullable": true
+    },
+    "last_name": {
+      "type": "string",
+      "title": "Last Name",
+      "description": "The last name of the employee.",
+      "example": "Doe",
+      "nullable": true
+    },
+    "display_name": {
+      "type": "string",
+      "title": "Display Name",
+      "description": "The display name of the employee.",
+      "example": "John Doe",
+      "nullable": true
+    },
+    "emails": {
+      "type": "array",
+      "title": "Email Addresses",
+      "description": "Email addresses of the employee.",
+      "items": {
+        "$ref": "#/components/schemas/Email"
+      }
+    },
+    "employee_number": {
+      "type": "string",
+      "title": "Employee Number",
+      "description": "The employee number or identifier.",
+      "example": "EMP-001",
+      "nullable": true
+    },
+    "job_title": {
+      "type": "string",
+      "title": "Job Title",
+      "description": "The job title of the employee.",
+      "example": "Senior Accountant",
+      "nullable": true
+    },
+    "status": {
+      "type": "string",
+      "title": "Employee Status",
+      "description": "The status of the employee.",
+      "x-apideck-enum-id": "accounting_employees.status",
+      "enum": [
+        "active",
+        "inactive",
+        "terminated"
+      ],
+      "example": "active",
+      "nullable": true
+    },
+    "is_contractor": {
+      "type": "boolean",
+      "title": "Is Contractor",
+      "description": "Whether the employee is a contractor.",
+      "example": false,
+      "nullable": true
+    },
+    "department": {
+      "$ref": "#/components/schemas/LinkedDepartment"
+    },
+    "location": {
+      "$ref": "#/components/schemas/LinkedLocation"
+    },
+    "manager": {
+      "type": "object",
+      "title": "Manager",
+      "description": "The manager of the employee.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "Manager ID",
+          "description": "A unique identifier for the manager.",
+          "example": "12345"
+        },
+        "name": {
+          "type": "string",
+          "title": "Manager Name",
+          "description": "The name of the manager.",
+          "example": "Jane Smith",
+          "nullable": true
+        }
+      }
+    },
+    "hire_date": {
+      "type": "string",
+      "title": "Hire Date",
+      "description": "The date the employee was hired.",
+      "format": "date",
+      "example": "2020-01-15",
+      "nullable": true
+    },
+    "termination_date": {
+      "type": "string",
+      "title": "Termination Date",
+      "description": "The date the employee was terminated.",
+      "format": "date",
+      "example": "2025-12-31",
+      "nullable": true
+    },
+    "gender": {
+      "$ref": "#/components/schemas/Gender"
+    },
+    "birth_date": {
+      "type": "string",
+      "title": "Birth Date",
+      "description": "The date of birth of the employee.",
+      "format": "date",
+      "example": "1990-05-20",
+      "nullable": true
+    },
+    "subsidiary": {
+      "$ref": "#/components/schemas/LinkedSubsidiary"
+    },
+    "tracking_categories": {
+      "$ref": "#/components/schemas/LinkedTrackingCategories"
+    },
+    "currency": {
+      "$ref": "#/components/schemas/Currency"
+    },
+    "notes": {
+      "type": "string",
+      "title": "Notes",
+      "description": "Notes about the employee.",
+      "example": "Some notes about this employee",
+      "nullable": true
+    },
+    "addresses": {
+      "type": "array",
+      "title": "Addresses",
+      "description": "Addresses of the employee.",
+      "items": {
+        "$ref": "#/components/schemas/Address"
+      }
+    },
+    "phone_numbers": {
+      "type": "array",
+      "title": "Phone Numbers",
+      "description": "Phone numbers of the employee.",
+      "items": {
+        "$ref": "#/components/schemas/PhoneNumber"
+      }
+    },
+    "bank_account": {
+      "$ref": "#/components/schemas/BankAccount"
+    },
+    "custom_fields": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/CustomField"
+      }
+    },
+    "custom_mappings": {
+      "$ref": "#/components/schemas/CustomMappings"
+    },
+    "row_version": {
+      "$ref": "#/components/schemas/RowVersion"
+    },
+    "updated_at": {
+      "$ref": "#/components/schemas/UpdatedAt"
+    },
+    "created_at": {
+      "$ref": "#/components/schemas/CreatedAt"
+    },
+    "pass_through": {
+      "$ref": "#/components/schemas/PassThroughBody"
+    }
+  }
+}

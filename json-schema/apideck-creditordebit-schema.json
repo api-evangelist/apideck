@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreditOrDebit",
+  "title": "Credit or Debit",
+  "type": "string",
+  "description": "Whether the amount is a credit or debit.",
+  "x-apideck-enum-id": "accounting.credit_or_debit",
+  "enum": [
+    "credit",
+    "debit"
+  ],
+  "example": "debit"
+}

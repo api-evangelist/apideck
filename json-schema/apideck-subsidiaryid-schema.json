@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SubsidiaryId",
+  "title": "Subsidiary ID",
+  "type": "string",
+  "description": "The ID of the subsidiary",
+  "example": "12345",
+  "nullable": true,
+  "readOnly": false
+}

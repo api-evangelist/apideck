@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateFolderRequest",
+  "title": "CreateFolderRequest",
+  "type": "object",
+  "x-apideck-schema-id": "CreateFolderRequest",
+  "additionalProperties": false,
+  "required": [
+    "name",
+    "parent_folder_id"
+  ],
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/Id"
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the folder.",
+      "example": "Documents"
+    },
+    "description": {
+      "type": "string",
+      "description": "Optional description of the folder.",
+      "example": "My Personal Documents"
+    },
+    "parent_folder_id": {
+      "$ref": "#/components/schemas/ParentFolderId"
+    },
+    "drive_id": {
+      "type": "string",
+      "description": "ID of the drive to create the folder in.",
+      "example": "1234"
+    },
+    "pass_through": {
+      "$ref": "#/components/schemas/PassThroughBody"
+    }
+  }
+}

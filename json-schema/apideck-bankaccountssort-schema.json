@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BankAccountsSort",
+  "title": "BankAccountsSort",
+  "type": "object",
+  "x-apideck-schema-id": "BankAccountsSort",
+  "additionalProperties": false,
+  "properties": {
+    "by": {
+      "type": "string",
+      "title": "Sort By",
+      "description": "The field to sort by",
+      "x-apideck-enum-id": "bank_accounts.sort_by",
+      "enum": [
+        "created_at",
+        "updated_at"
+      ],
+      "example": "updated_at",
+      "default": "updated_at"
+    },
+    "direction": {
+      "$ref": "#/components/schemas/SortDirection"
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ProfitAndLossType",
+  "title": "Profit and Loss Type",
+  "description": "The type of profit and loss",
+  "type": "string",
+  "example": "Section",
+  "nullable": true,
+  "x-apideck-enum-id": "profit_and_loss.type",
+  "enum": [
+    "Section",
+    "Record"
+  ]
+}

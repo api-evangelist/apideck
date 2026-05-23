@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/OpportunitiesFilter",
+  "title": "OpportunitiesFilter",
+  "type": "object",
+  "x-apideck-schema-id": "OpportunitiesFilter",
+  "example": {
+    "status": "Completed",
+    "monetary_amount": 75000
+  },
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Title of the opportunity to filter on",
+      "example": "Tesla deal"
+    },
+    "status": {
+      "type": "string",
+      "description": "Status to filter on",
+      "example": "Completed"
+    },
+    "monetary_amount": {
+      "type": "number",
+      "description": "Monetary amount to filter on",
+      "example": 75000
+    },
+    "win_probability": {
+      "type": "number",
+      "description": "Win probability to filter on",
+      "example": 50
+    },
+    "company_id": {
+      "type": "string",
+      "description": "Company ID to filter on",
+      "example": "1234"
+    },
+    "owner_id": {
+      "type": "string",
+      "description": "Owner ID to filter on",
+      "example": "1234"
+    },
+    "primary_contact_id": {
+      "type": "string",
+      "description": "Primary contact ID to filter on",
+      "example": "1234"
+    }
+  },
+  "additionalProperties": false
+}

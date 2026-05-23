@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CompanyId",
+  "title": "Company ID",
+  "type": "string",
+  "description": "The unique identifier of the company.",
+  "example": "23456",
+  "nullable": true
+}

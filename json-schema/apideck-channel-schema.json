@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Channel",
+  "title": "Channel",
+  "type": "string",
+  "description": "The channel through which the transaction is processed.",
+  "nullable": true,
+  "example": "email"
+}

@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FileStorageWebhookEvent",
+  "title": "FileStorageWebhookEvent",
+  "allOf": [
+    {
+      "type": "object",
+      "x-apideck-schema-id": "WebhookEvent",
+      "properties": {
+        "event_id": {
+          "type": "string",
+          "description": "Unique reference to this request event",
+          "example": "9755c355-56c3-4a2f-a2da-86ff4411fccb"
+        },
+        "unified_api": {
+          "description": "Name of Apideck Unified API",
+          "x-apideck-enum-id": "unified_api",
+          "enum": [
+            "accounting",
+            "ats",
+            "calendar",
+            "crm",
+            "csp",
+            "customer-support",
+            "ecommerce",
+            "email",
+            "email-marketing",
+            "expense-management",
+            "file-storage",
+            "form",
+            "hris",
+            "lead",
+            "payroll",
+            "pos",
+            "procurement",
+            "project-management",
+            "script",
+            "sms",
+            "spreadsheet",
+            "team-messaging",
+            "issue-tracking",
+            "time-registration",
+            "transactional-email",
+            "vault",
+            "data-warehouse"
+          ],
+          "example": "crm",
+          "type": "string"
+        },
+        "service_id": {
+          "type": "string",
+          "description": "Service provider identifier",
+          "example": "close"
+        },
+        "consumer_id": {
+          "type": "string",
+          "example": "test_consumer_id",
+          "description": "Unique consumer identifier. You can freely choose a consumer ID yourself. Most of the time, this is an ID of your internal data model that represents a user or account in your system (for example account:12345). If the consumer doesn't exist yet, Vault will upsert a consumer based on your ID."
+        },
+        "entity_id": {
+          "type": "string",
+          "description": "The service provider's ID of the entity that triggered this event",
+          "example": "123456ASDF"
+        },
+        "entity_type": {
+          "type": "string",
+          "description": "The type entity that triggered this event",
+          "example": "Company"
+        },
+        "entity_url": {
+          "type": "string",
+          "description": "The url to retrieve entity detail.",
+          "example": "https://unify.apideck.com/crm/contacts/123456"
+        },
+        "execution_attempt": {
+          "type": "number",
+          "description": "The current count this request event has been attempted",
+          "example": 2
+        },
+        "occurred_at": {
+          "type": "string",
+          "description": "ISO Datetime for when the original event occurred",
+          "example": "2021-10-01T03:14:55.419Z"
+        }
+      }
+    },
+    {
+      "properties": {
+        "event_type": {
+          "$ref": "#/components/schemas/FileStorageEventType"
+        }
+      },
+      "type": "object"
+    }
+  ],
+  "x-sdk-exclude": true
+}

@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Rebilling",
+  "title": "Rebilling",
+  "type": "object",
+  "x-apideck-schema-id": "Rebilling",
+  "description": "Rebilling metadata for this line item.",
+  "nullable": true,
+  "x-apideck-weights": {
+    "rebillable": "high",
+    "rebill_status": "medium",
+    "linked_transaction_id": "high",
+    "linked_transaction_line_id": "high"
+  },
+  "properties": {
+    "rebillable": {
+      "type": "boolean",
+      "title": "Rebillable",
+      "description": "Whether this line item is eligible for rebilling.",
+      "example": true
+    },
+    "rebill_status": {
+      "type": "string",
+      "title": "Rebill Status",
+      "x-apideck-enum-id": "rebill-status",
+      "description": "Status of the rebilling process for this line item.",
+      "enum": [
+        "pending",
+        "billed",
+        "voided"
+      ],
+      "example": "billed",
+      "nullable": true
+    },
+    "linked_transaction_id": {
+      "type": "string",
+      "title": "Linked Transaction ID",
+      "description": "The ID of the transaction this line item was rebilled to.",
+      "example": "txn_abc123",
+      "nullable": true
+    },
+    "linked_transaction_line_id": {
+      "type": "string",
+      "title": "Linked Transaction Line ID",
+      "description": "The ID of the line item in the rebilled transaction.",
+      "example": "line_xyz789",
+      "nullable": true
+    }
+  }
+}

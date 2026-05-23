@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/EmployeesFilter",
+  "title": "EmployeesFilter",
+  "type": "object",
+  "x-apideck-schema-id": "EmployeesFilter",
+  "example": {
+    "company_id": "1234",
+    "email": "elon@tesla.com",
+    "first_name": "Elon",
+    "last_name": "Musk",
+    "title": "Manager",
+    "manager_id": "1234",
+    "employment_status": "active",
+    "employee_number": "123456-AB",
+    "department_id": "1234",
+    "city": "San Francisco",
+    "country": "US"
+  },
+  "properties": {
+    "company_id": {
+      "type": "string",
+      "description": "Company ID to filter on",
+      "example": "1234"
+    },
+    "email": {
+      "type": "string",
+      "description": "Email to filter on",
+      "example": "elon@tesla.com"
+    },
+    "first_name": {
+      "type": "string",
+      "description": "First Name to filter on",
+      "example": "Elon"
+    },
+    "title": {
+      "type": "string",
+      "description": "Job title to filter on",
+      "example": "Manager"
+    },
+    "last_name": {
+      "type": "string",
+      "description": "Last Name to filter on",
+      "example": "Musk"
+    },
+    "manager_id": {
+      "type": "string",
+      "description": "Manager id to filter on",
+      "example": "1234"
+    },
+    "employment_status": {
+      "type": "string",
+      "description": "Employment status to filter on",
+      "example": "active",
+      "enum": [
+        "active",
+        "inactive",
+        "terminated",
+        "other"
+      ]
+    },
+    "employee_number": {
+      "type": "string",
+      "description": "Employee number to filter on",
+      "example": "123456-AB"
+    },
+    "department_id": {
+      "type": "string",
+      "description": "ID of the department to filter on",
+      "example": "1234"
+    },
+    "city": {
+      "type": "string",
+      "description": "City to filter on",
+      "example": "San Francisco"
+    },
+    "country": {
+      "type": "string",
+      "description": "Country to filter on",
+      "example": "US"
+    }
+  },
+  "additionalProperties": false
+}

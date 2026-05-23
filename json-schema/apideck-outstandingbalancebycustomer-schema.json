@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/OutstandingBalanceByCustomer",
+  "title": "Outstanding Balance",
+  "type": "object",
+  "x-apideck-schema-id": "OutstandingBalanceByCustomer",
+  "additionalProperties": false,
+  "x-apideck-weights": {
+    "customer_id": "high",
+    "customer_name": "high",
+    "outstanding_balances_by_currency": "critical"
+  },
+  "properties": {
+    "customer_id": {
+      "type": "string",
+      "title": "Customer ID",
+      "description": "Unique identifier for the customer.",
+      "example": "123"
+    },
+    "customer_name": {
+      "type": "string",
+      "title": "Customer Name",
+      "description": "Full name of the customer.",
+      "example": "Super Store"
+    },
+    "outstanding_balances_by_currency": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/OutstandingBalanceByCurrency"
+      }
+    }
+  }
+}

@@ -1,0 +1,390 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Activity",
+  "title": "Activity",
+  "type": "object",
+  "x-apideck-schema-id": "Activity",
+  "additionalProperties": false,
+  "required": [
+    "type"
+  ],
+  "x-apideck-weights": {
+    "id": "critical",
+    "downstream_id": "edge-case",
+    "activity_datetime": "high",
+    "duration_seconds": "medium",
+    "user_id": "edge-case",
+    "account_id": "edge-case",
+    "contact_id": "edge-case",
+    "company_id": "edge-case",
+    "lead_id": "edge-case",
+    "opportunity_id": "edge-case",
+    "owner_id": "high",
+    "campaign_id": "edge-case",
+    "case_id": "edge-case",
+    "asset_id": "edge-case",
+    "contract_id": "edge-case",
+    "product_id": "edge-case",
+    "solution_id": "edge-case",
+    "custom_object_id": "edge-case",
+    "type": "critical",
+    "title": "critical",
+    "description": "medium",
+    "note": "medium",
+    "location": "medium",
+    "location_address": "medium",
+    "all_day_event": "medium",
+    "private": "low",
+    "group_event": "edge-case",
+    "event_sub_type": "medium",
+    "group_event_type": "edge-case",
+    "child": "low",
+    "archived": "low",
+    "deleted": "low",
+    "show_as": "edge-case",
+    "done": "medium",
+    "start_datetime": "high",
+    "end_datetime": "high",
+    "duration_minutes": "edge-case",
+    "activity_date": "medium",
+    "end_date": "medium",
+    "attendees": "edge-case",
+    "reminder_set": "edge-case",
+    "reminder_datetime": "edge-case",
+    "video_conference_url": "edge-case",
+    "video_conference_id": "edge-case",
+    "updated_at": "high"
+  },
+  "properties": {
+    "id": {
+      "description": "The unique identifier of the activity",
+      "type": "string",
+      "readOnly": true,
+      "example": "12345"
+    },
+    "downstream_id": {
+      "type": "string",
+      "description": "The third-party API ID of original entity",
+      "example": "12345",
+      "nullable": true,
+      "readOnly": true
+    },
+    "activity_datetime": {
+      "description": "The date and time of the activity",
+      "type": "string",
+      "example": "2021-05-01T12:00:00.000Z",
+      "nullable": true
+    },
+    "duration_seconds": {
+      "description": "The duration of the activity in seconds",
+      "type": "integer",
+      "example": 1800,
+      "minimum": 0,
+      "nullable": true
+    },
+    "user_id": {
+      "description": "The user related to the activity",
+      "type": "string",
+      "example": "12345",
+      "nullable": true
+    },
+    "account_id": {
+      "description": "The account related to the activity",
+      "type": "string",
+      "example": "12345",
+      "nullable": true
+    },
+    "contact_id": {
+      "description": "The contact related to the activity",
+      "type": "string",
+      "example": "12345",
+      "nullable": true
+    },
+    "company_id": {
+      "description": "The company related to the activity",
+      "type": "string",
+      "example": "12345",
+      "nullable": true
+    },
+    "opportunity_id": {
+      "description": "The opportunity related to the activity",
+      "type": "string",
+      "example": "12345",
+      "nullable": true
+    },
+    "lead_id": {
+      "description": "The lead related to the activity",
+      "type": "string",
+      "example": "12345",
+      "nullable": true
+    },
+    "owner_id": {
+      "description": "The owner of the activity",
+      "type": "string",
+      "example": "12345",
+      "nullable": true
+    },
+    "campaign_id": {
+      "description": "The campaign related to the activity",
+      "type": "string",
+      "example": "12345",
+      "nullable": true
+    },
+    "case_id": {
+      "description": "The case related to the activity",
+      "type": "string",
+      "example": "12345",
+      "nullable": true
+    },
+    "asset_id": {
+      "description": "The asset related to the activity",
+      "type": "string",
+      "example": "12345",
+      "nullable": true
+    },
+    "contract_id": {
+      "description": "The contract related to the activity",
+      "type": "string",
+      "example": "12345",
+      "nullable": true
+    },
+    "product_id": {
+      "description": "The product related to the activity",
+      "type": "string",
+      "example": "12345",
+      "nullable": true
+    },
+    "solution_id": {
+      "description": "The solution related to the activity",
+      "type": "string",
+      "example": "12345",
+      "nullable": true
+    },
+    "custom_object_id": {
+      "description": "The custom object related to the activity",
+      "type": "string",
+      "example": "12345",
+      "nullable": true
+    },
+    "type": {
+      "description": "The type of the activity",
+      "type": "string",
+      "x-apideck-enum-id": "activities.type",
+      "enum": [
+        "call",
+        "meeting",
+        "email",
+        "note",
+        "task",
+        "deadline",
+        "send-letter",
+        "send-quote",
+        "other"
+      ],
+      "example": "meeting",
+      "nullable": true
+    },
+    "title": {
+      "description": "The title of the activity",
+      "type": "string",
+      "example": "Meeting",
+      "nullable": true
+    },
+    "description": {
+      "description": "A description of the activity",
+      "type": "string",
+      "example": "More info about the meeting",
+      "nullable": true
+    },
+    "note": {
+      "description": "An internal note about the activity",
+      "title": "Note (internal)",
+      "type": "string",
+      "example": "An internal note about the meeting",
+      "nullable": true
+    },
+    "location": {
+      "description": "The location of the activity",
+      "type": "string",
+      "example": "Space",
+      "nullable": true
+    },
+    "location_address": {
+      "$ref": "#/components/schemas/Address"
+    },
+    "all_day_event": {
+      "description": "Whether the Activity is an all day event or not",
+      "type": "boolean",
+      "example": false,
+      "nullable": true
+    },
+    "private": {
+      "description": "Whether the Activity is private or not",
+      "type": "boolean",
+      "example": true,
+      "nullable": true
+    },
+    "group_event": {
+      "description": "Whether the Activity is a group event or not",
+      "type": "boolean",
+      "example": true,
+      "nullable": true
+    },
+    "event_sub_type": {
+      "description": "The sub type of the group event",
+      "type": "string",
+      "example": "debrief",
+      "nullable": true
+    },
+    "group_event_type": {
+      "description": "The type of the group event",
+      "type": "string",
+      "example": "Proposed",
+      "nullable": true
+    },
+    "child": {
+      "description": "Whether the activity is a child of another activity or not",
+      "type": "boolean",
+      "example": false,
+      "nullable": true
+    },
+    "archived": {
+      "description": "Whether the activity is archived or not",
+      "type": "boolean",
+      "example": false,
+      "nullable": true
+    },
+    "deleted": {
+      "description": "Whether the activity is deleted or not",
+      "type": "boolean",
+      "example": false,
+      "nullable": true
+    },
+    "show_as": {
+      "type": "string",
+      "x-apideck-enum-id": "activities.show_as",
+      "enum": [
+        "free",
+        "busy"
+      ],
+      "example": "busy",
+      "nullable": true
+    },
+    "done": {
+      "title": "Done",
+      "description": "Whether the Activity is done or not",
+      "type": "boolean",
+      "example": false,
+      "nullable": true
+    },
+    "start_datetime": {
+      "description": "The start date and time of the activity",
+      "type": "string",
+      "example": "2021-05-01T12:00:00.000Z",
+      "nullable": true
+    },
+    "end_datetime": {
+      "description": "The end date and time of the activity",
+      "type": "string",
+      "example": "2021-05-01T12:30:00.000Z",
+      "nullable": true
+    },
+    "duration_minutes": {
+      "description": "The duration of the activity in minutes",
+      "type": "integer",
+      "example": 30,
+      "nullable": true,
+      "readOnly": true
+    },
+    "activity_date": {
+      "description": "The date of the activity",
+      "type": "string",
+      "example": "2021-05-01",
+      "nullable": true
+    },
+    "end_date": {
+      "description": "The end date of the activity",
+      "type": "string",
+      "example": "2021-05-01",
+      "nullable": true
+    },
+    "recurrent": {
+      "description": "Whether the activity is recurrent or not",
+      "type": "boolean",
+      "example": false
+    },
+    "reminder_datetime": {
+      "description": "The date and time of the reminder",
+      "type": "string",
+      "example": "2021-05-01T17:00:00.000Z",
+      "nullable": true
+    },
+    "reminder_set": {
+      "description": "Whether the reminder is set or not",
+      "type": "boolean",
+      "example": false,
+      "nullable": true
+    },
+    "video_conference_url": {
+      "description": "The URL of the video conference",
+      "title": "Meeting URL",
+      "type": "string",
+      "example": "https://meet.example.com/j/88120759396",
+      "nullable": true
+    },
+    "video_conference_id": {
+      "description": "The ID of the video conference",
+      "title": "Meeting ID",
+      "type": "string",
+      "example": "zoom:88120759396",
+      "nullable": true
+    },
+    "custom_fields": {
+      "description": "Custom fields of the activity",
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/CustomField"
+      }
+    },
+    "attendees": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/ActivityAttendee"
+      }
+    },
+    "custom_mappings": {
+      "$ref": "#/components/schemas/CustomMappings"
+    },
+    "updated_by": {
+      "description": "The user who last updated the activity",
+      "type": "string",
+      "example": "12345",
+      "readOnly": true,
+      "nullable": true
+    },
+    "created_by": {
+      "description": "The user who created the activity",
+      "type": "string",
+      "example": "12345",
+      "readOnly": true,
+      "nullable": true
+    },
+    "updated_at": {
+      "description": "The date and time when the activity was last updated",
+      "type": "string",
+      "example": "2020-09-30T07:43:32.000Z",
+      "readOnly": true,
+      "nullable": true
+    },
+    "created_at": {
+      "description": "The date and time when the activity was created",
+      "type": "string",
+      "example": "2020-09-30T07:43:32.000Z",
+      "readOnly": true,
+      "nullable": true
+    },
+    "pass_through": {
+      "$ref": "#/components/schemas/PassThroughBody"
+    }
+  }
+}

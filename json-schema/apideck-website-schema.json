@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Website",
+  "title": "Website",
+  "type": "object",
+  "x-apideck-schema-id": "Website",
+  "required": [
+    "url"
+  ],
+  "additionalProperties": false,
+  "x-apideck-weights": {
+    "url": "critical",
+    "type": "critical",
+    "id": "edge-case"
+  },
+  "properties": {
+    "id": {
+      "description": "Unique identifier for the website",
+      "type": "string",
+      "example": "12345",
+      "nullable": true
+    },
+    "url": {
+      "description": "The website URL",
+      "type": "string",
+      "example": "http://example.com",
+      "minLength": 1
+    },
+    "type": {
+      "description": "The type of website",
+      "type": "string",
+      "x-apideck-enum-id": "websites.type",
+      "enum": [
+        "primary",
+        "secondary",
+        "work",
+        "personal",
+        "other"
+      ],
+      "example": "primary",
+      "nullable": true
+    }
+  }
+}

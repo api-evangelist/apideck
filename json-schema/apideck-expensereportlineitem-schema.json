@@ -1,0 +1,154 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ExpenseReportLineItem",
+  "title": "ExpenseReportLineItem",
+  "type": "object",
+  "x-apideck-schema-id": "ExpenseReportLineItem",
+  "additionalProperties": false,
+  "x-apideck-weights": {
+    "id": "high",
+    "line_number": "medium",
+    "expense_category": "critical",
+    "account": "critical",
+    "description": "medium",
+    "quantity": "medium",
+    "unit_price": "medium",
+    "amount": "critical",
+    "tax_rate": "medium",
+    "tax_amount": "high",
+    "total_amount": "high",
+    "transaction_date": "high",
+    "billable": "medium",
+    "reimbursable": "medium",
+    "customer": "medium",
+    "department": "medium",
+    "location": "medium",
+    "tracking_categories": "low",
+    "receipt_url": "low",
+    "currency": "edge-case",
+    "updated_by": "edge-case",
+    "created_by": "edge-case",
+    "updated_at": "edge-case",
+    "created_at": "edge-case"
+  },
+  "required": [
+    "amount"
+  ],
+  "x-apideck-strict-required": [
+    "amount"
+  ],
+  "x-apideck-strict-any-of": [
+    {
+      "required": [
+        "expense_category"
+      ]
+    },
+    {
+      "required": [
+        "account"
+      ]
+    }
+  ],
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/Id"
+    },
+    "line_number": {
+      "$ref": "#/components/schemas/LineNumber"
+    },
+    "expense_category": {
+      "$ref": "#/components/schemas/LinkedExpenseCategory"
+    },
+    "account": {
+      "$ref": "#/components/schemas/LinkedLedgerAccount"
+    },
+    "description": {
+      "type": "string",
+      "title": "Description",
+      "description": "The description of the expense line item.",
+      "example": "Flight to New York",
+      "nullable": true
+    },
+    "quantity": {
+      "$ref": "#/components/schemas/Quantity"
+    },
+    "unit_price": {
+      "$ref": "#/components/schemas/UnitPrice"
+    },
+    "amount": {
+      "type": "number",
+      "title": "Amount",
+      "description": "The amount of the expense line item.",
+      "example": 275
+    },
+    "tax_rate": {
+      "$ref": "#/components/schemas/LinkedTaxRate"
+    },
+    "tax_amount": {
+      "$ref": "#/components/schemas/TaxAmount"
+    },
+    "total_amount": {
+      "type": "number",
+      "title": "Total Amount",
+      "description": "The total amount of the expense line item including tax.",
+      "example": 302.5,
+      "nullable": true
+    },
+    "transaction_date": {
+      "type": "string",
+      "title": "Transaction Date",
+      "description": "The date of the individual expense.",
+      "format": "date",
+      "example": "2024-05-15",
+      "nullable": true
+    },
+    "billable": {
+      "type": "boolean",
+      "title": "Billable",
+      "description": "Whether the expense is billable to a customer.",
+      "example": true,
+      "nullable": true
+    },
+    "reimbursable": {
+      "type": "boolean",
+      "title": "Reimbursable",
+      "description": "Whether the expense is reimbursable to the employee.",
+      "example": true,
+      "nullable": true
+    },
+    "customer": {
+      "$ref": "#/components/schemas/LinkedCustomer"
+    },
+    "department": {
+      "$ref": "#/components/schemas/LinkedDepartment"
+    },
+    "location": {
+      "$ref": "#/components/schemas/LinkedLocation"
+    },
+    "tracking_categories": {
+      "$ref": "#/components/schemas/LinkedTrackingCategories"
+    },
+    "receipt_url": {
+      "type": "string",
+      "title": "Receipt URL",
+      "description": "URL to the receipt or attachment for this expense line.",
+      "example": "https://example.com/receipts/123.pdf",
+      "nullable": true
+    },
+    "currency": {
+      "$ref": "#/components/schemas/Currency"
+    },
+    "updated_by": {
+      "$ref": "#/components/schemas/UpdatedBy"
+    },
+    "created_by": {
+      "$ref": "#/components/schemas/CreatedBy"
+    },
+    "updated_at": {
+      "$ref": "#/components/schemas/UpdatedAt"
+    },
+    "created_at": {
+      "$ref": "#/components/schemas/CreatedAt"
+    }
+  }
+}

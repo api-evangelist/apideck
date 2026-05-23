@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Meta",
+  "title": "Meta",
+  "type": "object",
+  "x-apideck-schema-id": "Meta",
+  "description": "Response metadata",
+  "properties": {
+    "items_on_page": {
+      "type": "integer",
+      "description": "Number of items returned in the data property of the response",
+      "example": 50
+    },
+    "cursors": {
+      "type": "object",
+      "description": "Cursors to navigate to previous or next pages through the API",
+      "properties": {
+        "previous": {
+          "type": "string",
+          "description": "Cursor to navigate to the previous page of results through the API",
+          "example": "em9oby1jcm06OnBhZ2U6OjE=",
+          "nullable": true
+        },
+        "current": {
+          "type": "string",
+          "description": "Cursor to navigate to the current page of results through the API",
+          "example": "em9oby1jcm06OnBhZ2U6OjI=",
+          "nullable": true
+        },
+        "next": {
+          "type": "string",
+          "description": "Cursor to navigate to the next page of results through the API",
+          "example": "em9oby1jcm06OnBhZ2U6OjM=",
+          "nullable": true
+        }
+      }
+    }
+  }
+}

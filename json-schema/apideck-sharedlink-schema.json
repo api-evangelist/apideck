@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SharedLink",
+  "title": "SharedLink",
+  "type": "object",
+  "x-apideck-schema-id": "SharedLink",
+  "x-apideck-weights": {
+    "url": "critical",
+    "download_url": "high",
+    "target_id": "critical",
+    "target": "critical",
+    "scope": "high",
+    "password_protected": "low",
+    "password": "low",
+    "expires_at": "high",
+    "updated_at": "medium",
+    "created_at": "medium"
+  },
+  "additionalProperties": false,
+  "required": [
+    "target_id"
+  ],
+  "properties": {
+    "url": {
+      "type": "string",
+      "example": "https://www.box.com/s/vspke7y05sb214wjokpk",
+      "description": "The URL that can be used to view the file.",
+      "readOnly": true,
+      "nullable": true
+    },
+    "download_url": {
+      "type": "string",
+      "example": "https://www.box.com/shared/static/rh935iit6ewrmw0unyul.jpeg",
+      "description": "The URL that can be used to download the file.",
+      "nullable": true
+    },
+    "target_id": {
+      "type": "string",
+      "writeOnly": true,
+      "description": "The ID of the file or folder to link.",
+      "nullable": true
+    },
+    "target": {
+      "$ref": "#/components/schemas/SharedLinkTarget"
+    },
+    "scope": {
+      "type": "string",
+      "x-apideck-enum-id": "files.scope",
+      "enum": [
+        "public",
+        "company"
+      ],
+      "example": "company",
+      "description": "The scope of the shared link.",
+      "nullable": true
+    },
+    "password_protected": {
+      "type": "boolean",
+      "readOnly": true,
+      "description": "Indicated if the shared link is password protected.",
+      "nullable": true
+    },
+    "password": {
+      "type": "string",
+      "writeOnly": true,
+      "nullable": true,
+      "description": "Optional password for the shared link."
+    },
+    "expires_at": {
+      "$ref": "#/components/schemas/ExpiresAt"
+    },
+    "updated_at": {
+      "$ref": "#/components/schemas/UpdatedAt"
+    },
+    "created_at": {
+      "$ref": "#/components/schemas/CreatedAt"
+    },
+    "pass_through": {
+      "$ref": "#/components/schemas/PassThroughBody"
+    }
+  }
+}

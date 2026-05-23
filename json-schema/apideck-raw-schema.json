@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Raw",
+  "title": "raw",
+  "type": "object",
+  "x-apideck-schema-id": "Raw",
+  "description": "Raw response from the integration when raw=true query param is provided",
+  "nullable": true,
+  "additionalProperties": true
+}

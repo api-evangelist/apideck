@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DownstreamId",
+  "title": "DownstreamId",
+  "type": "string",
+  "description": "The third-party API ID of original entity",
+  "example": "12345",
+  "nullable": true,
+  "readOnly": true
+}

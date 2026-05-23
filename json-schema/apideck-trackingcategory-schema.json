@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TrackingCategory",
+  "title": "TrackingCategory",
+  "type": "object",
+  "x-apideck-schema-id": "TrackingCategory",
+  "x-apideck-weights": {
+    "id": "medium",
+    "parent_id": "low",
+    "parent_name": "low",
+    "name": "critical",
+    "status": "critical",
+    "code": "low",
+    "subsidiaries": "edge-case"
+  },
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/Id"
+    },
+    "parent_id": {
+      "$ref": "#/components/schemas/WritableId"
+    },
+    "parent_name": {
+      "type": "string",
+      "description": "The name of the parent tracking category.",
+      "example": "Area",
+      "nullable": true
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the tracking category.",
+      "example": "Department",
+      "nullable": false
+    },
+    "code": {
+      "type": "string",
+      "description": "The code of the tracking category.",
+      "example": "100",
+      "nullable": true
+    },
+    "status": {
+      "type": "string",
+      "title": "Tracking Category status",
+      "description": "Based on the status some functionality is enabled or disabled.",
+      "x-apideck-enum-id": "tracking_categories.status",
+      "enum": [
+        "active",
+        "inactive"
+      ],
+      "example": "active"
+    },
+    "custom_mappings": {
+      "$ref": "#/components/schemas/CustomMappings"
+    },
+    "row_version": {
+      "$ref": "#/components/schemas/RowVersion"
+    },
+    "updated_by": {
+      "$ref": "#/components/schemas/UpdatedBy"
+    },
+    "created_by": {
+      "$ref": "#/components/schemas/CreatedBy"
+    },
+    "updated_at": {
+      "$ref": "#/components/schemas/UpdatedAt"
+    },
+    "created_at": {
+      "$ref": "#/components/schemas/CreatedAt"
+    },
+    "pass_through": {
+      "$ref": "#/components/schemas/PassThroughBody"
+    },
+    "subsidiaries": {
+      "type": "array",
+      "title": "Subsidiaries",
+      "description": "The subsidiaries the account belongs to.",
+      "items": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Subsidiary ID",
+            "description": "The ID of the subsidiary."
+          }
+        }
+      }
+    }
+  }
+}

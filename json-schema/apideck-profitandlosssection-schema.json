@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ProfitAndLossSection",
+  "title": "ProfitAndLossSection",
+  "type": "object",
+  "x-apideck-schema-id": "ProfitAndLossSection",
+  "x-apideck-weights": {
+    "id": "medium",
+    "code": "medium",
+    "title": "high",
+    "type": "medium",
+    "total": "critical",
+    "records": "critical"
+  },
+  "required": [
+    "total"
+  ],
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/Id"
+    },
+    "code": {
+      "$ref": "#/components/schemas/AccountCode"
+    },
+    "title": {
+      "$ref": "#/components/schemas/AccountName"
+    },
+    "type": {
+      "$ref": "#/components/schemas/ProfitAndLossType"
+    },
+    "total": {
+      "$ref": "#/components/schemas/TotalPLAmount"
+    },
+    "records": {
+      "$ref": "#/components/schemas/ProfitAndLossRecords"
+    }
+  },
+  "example": {
+    "id": "123",
+    "code": "123",
+    "title": "Operating Income",
+    "type": "Section",
+    "total": 60000,
+    "records": [
+      {
+        "id": "123",
+        "code": "123",
+        "title": "Product Sales",
+        "type": "Record",
+        "total": 200000
+      }
+    ]
+  }
+}

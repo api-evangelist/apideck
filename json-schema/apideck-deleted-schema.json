@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Deleted",
+  "title": "Deleted",
+  "type": "boolean",
+  "description": "Flag to indicate if the object is deleted.",
+  "example": true,
+  "nullable": true
+}

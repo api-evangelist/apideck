@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PaymentMethodReference",
+  "title": "Payment method reference",
+  "type": "string",
+  "description": "Optional reference message returned by payment method on processing",
+  "nullable": true,
+  "example": "123456"
+}

@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BankFeedAccount",
+  "title": "BankFeedAccount",
+  "type": "object",
+  "x-apideck-schema-id": "BankFeedAccount",
+  "additionalProperties": false,
+  "x-apideck-weights": {
+    "id": "critical",
+    "bank_account_type": "high",
+    "source_account_id": "high",
+    "target_account_id": "high",
+    "target_account_name": "high",
+    "target_account_number": "high",
+    "currency": "medium",
+    "feed_status": "medium",
+    "country": "medium",
+    "created_at": "low",
+    "updated_at": "low",
+    "updated_by": "low",
+    "created_by": "low"
+  },
+  "required": [
+    "id"
+  ],
+  "x-apideck-strict-required": [
+    "bank_account_type",
+    "source_account_id"
+  ],
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/Id"
+    },
+    "bank_account_type": {
+      "type": "string",
+      "title": "Bank Account Type",
+      "description": "Type of the bank account.",
+      "x-apideck-enum-id": "bank_feed_accounts.account_type",
+      "enum": [
+        "bank",
+        "credit_card"
+      ],
+      "example": "bank"
+    },
+    "source_account_id": {
+      "type": "string",
+      "title": "Source Account ID",
+      "description": "The source account's unique identifier.",
+      "example": "src_456"
+    },
+    "target_account_id": {
+      "type": "string",
+      "title": "Target Account ID",
+      "description": "The target account's unique identifier in the accounting connector.",
+      "example": "tgt_789"
+    },
+    "target_account_name": {
+      "type": "string",
+      "title": "Target Account Name",
+      "description": "Name associated with the target account.",
+      "example": "Main Company Checking"
+    },
+    "target_account_number": {
+      "type": "string",
+      "title": "Target Account Number",
+      "description": "Account number of the destination bank account.",
+      "example": "NL91ABNA0417164300"
+    },
+    "currency": {
+      "$ref": "#/components/schemas/Currency"
+    },
+    "feed_status": {
+      "type": "string",
+      "title": "Feed Status",
+      "description": "Current status of the bank feed.",
+      "x-apideck-enum-id": "bank_feeds.status",
+      "enum": [
+        "pending",
+        "rejected"
+      ],
+      "example": "pending"
+    },
+    "country": {
+      "$ref": "#/components/schemas/Country"
+    },
+    "custom_fields": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/CustomField"
+      }
+    },
+    "custom_mappings": {
+      "$ref": "#/components/schemas/CustomMappings"
+    },
+    "created_at": {
+      "$ref": "#/components/schemas/CreatedAt"
+    },
+    "updated_at": {
+      "$ref": "#/components/schemas/UpdatedAt"
+    },
+    "updated_by": {
+      "$ref": "#/components/schemas/UpdatedBy"
+    },
+    "created_by": {
+      "$ref": "#/components/schemas/CreatedBy"
+    }
+  }
+}

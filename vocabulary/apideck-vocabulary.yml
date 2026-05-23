@@ -1,0 +1,105 @@
+name: Apideck Domain Vocabulary
+provider: Apideck
+providerId: apideck
+description: Tag-derived vocabulary for the Apideck API surface; sourced from openapi/ tags.
+terms:
+- term: Aged Creditors
+  description: Aged Creditors is a report showing amounts owed to suppliers, grouped by aging periods (current, 30, 60, 90+
+    days) with supplier details.
+- term: Aged Debtors
+  description: Aged Debtors is a report showing amounts owed by customers, grouped by aging periods (current, 30, 60, 90+
+    days) with customer details.
+- term: Attachments
+  description: An Attachment represents a file linked to an accounting document, including file name, URL, content type, and
+    the parent record reference.
+- term: Balance Sheet
+  description: A Balance Sheet report shows the financial position at a point in time, including totals for assets, liabilities,
+    and equity accounts.
+- term: Bank Accounts
+  description: A Bank Account represents a financial account, including account name, number, type (checking, savings, credit
+    card), currency, and balance.
+- term: Bank Feed Accounts
+  description: A Bank Feed Account represents a connected financial institution account, including account details and connection
+    status for transaction imports.
+- term: Bank Feed Statements
+  description: A Bank Feed Statement contains imported transaction data from a connected bank account, including statement
+    period and transaction details.
+- term: Bill Payments
+  description: A Bill Payment represents money paid to a supplier, including amount, date, payment method, and allocation
+    to one or more bills.
+- term: Bills
+  description: A Bill represents an invoice from a supplier, including line items, amounts, due date, payment status, and
+    linked supplier.
+- term: Categories
+  description: A Category represents a product or service grouping, including name and type for organizing invoice and bill
+    line items.
+- term: Companies
+  description: List companies accessible through the current connection. Only available for multi-company connectors.
+- term: Company Info
+  description: Company Info contains the organization's profile data including legal name, addresses, tax identifiers, currency,
+    and fiscal year settings.
+- term: Credit Notes
+  description: A Credit Note represents a reduction in the amount owed by a customer, including line items, amounts, and the
+    linked customer or invoice.
+- term: Customers
+  description: A Customer represents a buyer or client, including contact details, billing and shipping addresses, tax information,
+    and payment terms.
+- term: Departments
+  description: A Department represents an organizational unit, including name, code, and parent department for hierarchical
+    structures.
+- term: Employees
+  description: An Employee represents an individual within the organization for accounting purposes, including name, department,
+    hire date, and employment status.
+- term: Expense Categories
+  description: An Expense Category classifies types of expenses within the organization, such as travel, meals, or office
+    supplies. Used to categorize expense report line items.
+- term: Expense Reports
+  description: An Expense Report is a collection of expense line items submitted by an employee for reimbursement, including
+    amounts, categories, and approval status.
+- term: Expenses
+  description: An Expense represents a business expenditure, including amount, date, category, payment method, merchant, and
+    account allocation.
+- term: Invoice Items
+  description: An Invoice Item represents a reusable product or service that can be added to invoices, including name, description,
+    price, and tax settings.
+- term: Invoices
+  description: An Invoice represents a sales document sent to customers, including line items, taxes, discounts, totals, due
+    date, and payment status.
+- term: Journal Entries
+  description: A Journal Entry represents a manual accounting entry with debit and credit line items, memo, posting date,
+    and status.
+- term: Ledger Accounts
+  description: A Ledger Account represents an entry in the chart of accounts, including name, code, type (asset, liability,
+    equity, revenue, expense), and balance.
+- term: Locations
+  description: A Location represents a physical business site, including name, address, and status for multi-location tracking.
+- term: Payments
+  description: A Payment represents money received from a customer, including amount, date, payment method, and allocation
+    to one or more invoices.
+- term: Profit and Loss
+  description: A Profit and Loss report shows financial performance over a period, including revenue, cost of sales, expenses,
+    and net income.
+- term: Projects
+  description: A Project represents a job or engagement, including name, customer, budget amounts, budget hours, billing method,
+    status, and profitability data.
+- term: Purchase Orders
+  description: A Purchase Order represents a request to buy goods or services from a supplier, including line items, amounts,
+    delivery date, and status.
+- term: Quotes
+  description: A Quote represents a sales estimate sent to customers, including line items, amounts, expiry date, and status
+    before conversion to invoice.
+- term: Refunds
+  description: A Refund represents money returned to a customer, supporting both itemized refunds (with line items) and allocation-based
+    refunds (applied to invoices, credit notes, or overpayments).
+- term: Subsidiaries
+  description: A Subsidiary represents a child company within an organization, including name, status, and parent company
+    relationship.
+- term: Suppliers
+  description: A Supplier represents a vendor or service provider, including contact information, addresses, tax details,
+    and payment terms.
+- term: Tax Rates
+  description: A Tax Rate defines a tax percentage applied to transactions, including name, rate, tax type, and applicable
+    regions or conditions.
+- term: Tracking Categories
+  description: A Tracking Category represents a classification dimension for reporting, including name, code, status, and
+    parent category for hierarchies.

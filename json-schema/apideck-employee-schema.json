@@ -1,0 +1,489 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Employee",
+  "title": "Employee",
+  "type": "object",
+  "x-apideck-schema-id": "Employee",
+  "x-apideck-weights": {
+    "id": "medium",
+    "downstream_id": "medium",
+    "first_name": "critical",
+    "last_name": "critical",
+    "middle_name": "medium",
+    "display_name": "edge-case",
+    "preferred_name": "medium",
+    "initials": "low",
+    "salutation": "medium",
+    "title": "critical",
+    "marital_status": "medium",
+    "partner": "low",
+    "division": "medium",
+    "division_id": "low",
+    "department": "low",
+    "department_id": "critical",
+    "department_name": "low",
+    "team": "critical",
+    "company_id": "critical",
+    "company_name": "medium",
+    "employment_start_date": "critical",
+    "employment_end_date": "critical",
+    "leaving_reason": "edge-case",
+    "employee_number": "critical",
+    "employment_status": "critical",
+    "employment_role": "critical",
+    "manager": "critical",
+    "ethnicity": "critical",
+    "gender": "critical",
+    "direct_reports": "edge-case",
+    "social_security_number": "edge-case",
+    "birthday": "critical",
+    "deceased_on": "low",
+    "country_of_birth": "high",
+    "description": "edge-case",
+    "pronouns": "medium",
+    "preferred_language": "high",
+    "languages": "low",
+    "nationalities": "high",
+    "photo_url": "medium",
+    "timezone": "low",
+    "source": "edge-case",
+    "source_id": "edge-case",
+    "jobs": "critical",
+    "record_url": "low",
+    "compensations": "critical",
+    "works_remote": "low",
+    "addresses": "critical",
+    "phone_numbers": "critical",
+    "emails": "critical",
+    "custom_fields": "critical",
+    "social_links": "edge-case",
+    "bank_accounts": "high",
+    "tax_code": "edge-case",
+    "tax_id": "edge-case",
+    "dietary_preference": "edge-case",
+    "food_allergies": "edge-case",
+    "tags": "low",
+    "probation_period": "low",
+    "row_version": "edge-case",
+    "deleted": "medium",
+    "updated_by": "edge-case",
+    "created_by": "edge-case",
+    "updated_at": "high",
+    "created_at": "medium"
+  },
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/WritableId"
+    },
+    "downstream_id": {
+      "$ref": "#/components/schemas/DownstreamId"
+    },
+    "first_name": {
+      "$ref": "#/components/schemas/FirstName"
+    },
+    "last_name": {
+      "$ref": "#/components/schemas/LastName"
+    },
+    "middle_name": {
+      "$ref": "#/components/schemas/MiddleName"
+    },
+    "display_name": {
+      "title": "Display name",
+      "description": "The name used to display the employee, often a combination of their first and last names.",
+      "type": "string",
+      "example": "Technoking",
+      "nullable": true
+    },
+    "preferred_name": {
+      "title": "Preferred name",
+      "description": "The name the employee prefers to be addressed by, which may be different from their legal name.",
+      "type": "string",
+      "example": "Elon Musk",
+      "nullable": true
+    },
+    "initials": {
+      "$ref": "#/components/schemas/Initials"
+    },
+    "salutation": {
+      "$ref": "#/components/schemas/Salutation"
+    },
+    "title": {
+      "$ref": "#/components/schemas/Title"
+    },
+    "marital_status": {
+      "title": "Marital status",
+      "description": "The marital status of the employee.",
+      "type": "string",
+      "example": "married",
+      "nullable": true
+    },
+    "partner": {
+      "$ref": "#/components/schemas/Person"
+    },
+    "division": {
+      "$ref": "#/components/schemas/Division"
+    },
+    "division_id": {
+      "title": "Division ID",
+      "type": "string",
+      "description": "Unique identifier of the division this employee belongs to.",
+      "example": "12345",
+      "nullable": true
+    },
+    "department": {
+      "$ref": "#/components/schemas/DeprecatedDepartment"
+    },
+    "department_id": {
+      "title": "Department ID",
+      "type": "string",
+      "description": "Unique identifier of the department ID this employee belongs to.",
+      "example": "12345",
+      "nullable": true
+    },
+    "department_name": {
+      "title": "Department Name",
+      "type": "string",
+      "description": "Name of the department this employee belongs to.",
+      "example": "12345",
+      "nullable": true
+    },
+    "team": {
+      "$ref": "#/components/schemas/Team"
+    },
+    "company_id": {
+      "$ref": "#/components/schemas/CompanyId"
+    },
+    "company_name": {
+      "$ref": "#/components/schemas/CompanyName"
+    },
+    "employment_start_date": {
+      "type": "string",
+      "title": "Employee start date",
+      "description": "A Start Date is the date that the employee started working at the company",
+      "example": "2021-10-26",
+      "nullable": true
+    },
+    "employment_end_date": {
+      "type": "string",
+      "title": "Employee end date",
+      "description": "An End Date is the date that the employee ended working at the company",
+      "example": "2028-10-26",
+      "nullable": true
+    },
+    "leaving_reason": {
+      "type": "string",
+      "description": "The reason because the employment ended.",
+      "example": "resigned",
+      "x-apideck-enum-id": "employees.leaving_reason",
+      "enum": [
+        "dismissed",
+        "resigned",
+        "redundancy",
+        "retired",
+        "other"
+      ],
+      "nullable": true
+    },
+    "employee_number": {
+      "$ref": "#/components/schemas/EmployeeNumber"
+    },
+    "employment_status": {
+      "$ref": "#/components/schemas/EmploymentStatus"
+    },
+    "employment_role": {
+      "x-apideck-weights": {
+        "type": "critical",
+        "sub_type": "medium"
+      },
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "title": "Employment type",
+          "description": "The type of employment relationship the employee has with the organization.",
+          "x-apideck-enum-id": "employees.employment_role.type",
+          "enum": [
+            "contractor",
+            "employee",
+            "freelance",
+            "temp",
+            "internship",
+            "other"
+          ],
+          "nullable": true
+        },
+        "sub_type": {
+          "type": "string",
+          "title": "Employment sub type",
+          "description": "The work schedule of the employee.",
+          "x-apideck-enum-id": "employees.employment_role.sub_type",
+          "enum": [
+            "full_time",
+            "part_time",
+            "hourly",
+            "other",
+            "not_specified"
+          ],
+          "nullable": true
+        }
+      }
+    },
+    "ethnicity": {
+      "type": "string",
+      "description": "The ethnicity of the employee",
+      "example": "African American",
+      "nullable": true
+    },
+    "manager": {
+      "x-apideck-weights": {
+        "id": "critical",
+        "name": "medium",
+        "first_name": "medium",
+        "last_name": "medium",
+        "email": "medium",
+        "employment_status": "low"
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/components/schemas/WritableId"
+        },
+        "name": {
+          "title": "Manager name",
+          "description": "The name of the manager, often a combination of their first and last names.",
+          "type": "string",
+          "example": "Elon Musk",
+          "nullable": true
+        },
+        "first_name": {
+          "$ref": "#/components/schemas/FirstName"
+        },
+        "last_name": {
+          "$ref": "#/components/schemas/LastName"
+        },
+        "email": {
+          "type": "string",
+          "title": "Email address",
+          "description": "The email address of the manager.",
+          "format": "email",
+          "example": "elon@musk.com",
+          "nullable": true
+        },
+        "employment_status": {
+          "$ref": "#/components/schemas/EmploymentStatus"
+        }
+      }
+    },
+    "direct_reports": {
+      "type": "array",
+      "title": "Direct reports",
+      "description": "Direct reports is an array of ids that reflect the individuals in an organizational hierarchy who are directly supervised by this specific employee.",
+      "items": {
+        "type": "string"
+      },
+      "example": [
+        "a0d636c6-43b3-4bde-8c70-85b707d992f4",
+        "a98lfd96-43b3-4bde-8c70-85b707d992e6"
+      ],
+      "nullable": true
+    },
+    "social_security_number": {
+      "$ref": "#/components/schemas/SocialSecurityNumber"
+    },
+    "birthday": {
+      "$ref": "#/components/schemas/Birthday"
+    },
+    "deceased_on": {
+      "$ref": "#/components/schemas/DeceasedOn"
+    },
+    "country_of_birth": {
+      "$ref": "#/components/schemas/Country"
+    },
+    "description": {
+      "$ref": "#/components/schemas/Description"
+    },
+    "gender": {
+      "$ref": "#/components/schemas/Gender"
+    },
+    "pronouns": {
+      "$ref": "#/components/schemas/Pronouns"
+    },
+    "preferred_language": {
+      "$ref": "#/components/schemas/Language"
+    },
+    "languages": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Language"
+      }
+    },
+    "nationalities": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Nationality"
+      }
+    },
+    "photo_url": {
+      "$ref": "#/components/schemas/PhotoUrl"
+    },
+    "timezone": {
+      "$ref": "#/components/schemas/Timezone"
+    },
+    "source": {
+      "title": "Source",
+      "type": "string",
+      "description": "When the employee is imported as a new hire, this field indicates what system (e.g. the name of the ATS) this employee was imported from.",
+      "example": "lever",
+      "nullable": true
+    },
+    "source_id": {
+      "title": "Source ID",
+      "type": "string",
+      "description": "Unique identifier of the employee in the system this employee was imported from (e.g. the ID in the ATS).",
+      "example": "12345",
+      "nullable": true
+    },
+    "record_url": {
+      "$ref": "#/components/schemas/RecordUrl"
+    },
+    "jobs": {
+      "type": "array",
+      "nullable": true,
+      "items": {
+        "$ref": "#/components/schemas/EmployeeJob"
+      }
+    },
+    "compensations": {
+      "type": "array",
+      "nullable": true,
+      "items": {
+        "$ref": "#/components/schemas/EmployeeCompensation"
+      }
+    },
+    "works_remote": {
+      "title": "Remote",
+      "description": "Indicates if the employee works from a remote location.",
+      "type": "boolean",
+      "example": true,
+      "nullable": true
+    },
+    "addresses": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Address"
+      }
+    },
+    "phone_numbers": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/PhoneNumber"
+      }
+    },
+    "emails": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Email"
+      }
+    },
+    "custom_fields": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/CustomField"
+      }
+    },
+    "social_links": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/SocialLink"
+      }
+    },
+    "bank_accounts": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/BankAccount"
+      }
+    },
+    "tax_code": {
+      "title": "Tax Code",
+      "type": "string",
+      "example": "1111",
+      "nullable": true
+    },
+    "tax_id": {
+      "title": "Tax ID",
+      "type": "string",
+      "example": "234-32-0000",
+      "nullable": true
+    },
+    "dietary_preference": {
+      "type": "string",
+      "title": "Dietary preference",
+      "description": "Indicate the employee's dietary preference.",
+      "example": "Veggie",
+      "nullable": true
+    },
+    "food_allergies": {
+      "type": "array",
+      "title": "Food allergies",
+      "description": "Indicate the employee's food allergies.",
+      "items": {
+        "type": "string"
+      },
+      "example": [
+        "No allergies"
+      ],
+      "nullable": true
+    },
+    "probation_period": {
+      "type": "object",
+      "title": "Probation period",
+      "properties": {
+        "start_date": {
+          "type": "string",
+          "title": "Probation start date",
+          "description": "The date that the employee started their probation period at the company.",
+          "example": "2021-10-01",
+          "format": "date",
+          "nullable": true
+        },
+        "end_date": {
+          "type": "string",
+          "title": "Probation end date",
+          "description": "The date that the employee ended their probation period at the company.",
+          "example": "2021-11-28",
+          "format": "date",
+          "nullable": true
+        }
+      }
+    },
+    "tags": {
+      "$ref": "#/components/schemas/Tags"
+    },
+    "custom_mappings": {
+      "$ref": "#/components/schemas/CustomMappings"
+    },
+    "row_version": {
+      "$ref": "#/components/schemas/RowVersion"
+    },
+    "deleted": {
+      "$ref": "#/components/schemas/Deleted"
+    },
+    "updated_by": {
+      "$ref": "#/components/schemas/UpdatedBy"
+    },
+    "created_by": {
+      "$ref": "#/components/schemas/CreatedBy"
+    },
+    "updated_at": {
+      "$ref": "#/components/schemas/UpdatedAt"
+    },
+    "created_at": {
+      "$ref": "#/components/schemas/CreatedAt"
+    },
+    "pass_through": {
+      "$ref": "#/components/schemas/PassThroughBody"
+    }
+  }
+}

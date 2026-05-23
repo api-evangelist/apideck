@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BankAccountsFilter",
+  "title": "BankAccountsFilter",
+  "type": "object",
+  "x-apideck-schema-id": "BankAccountsFilter",
+  "additionalProperties": false,
+  "properties": {
+    "name": {
+      "type": "string",
+      "title": "Name",
+      "description": "Filter by bank account name",
+      "example": "Main Operating"
+    },
+    "account_type": {
+      "type": "string",
+      "title": "Account Type",
+      "description": "Filter by account type",
+      "x-apideck-enum-id": "bank_accounts.account_type",
+      "enum": [
+        "checking",
+        "savings",
+        "credit_card",
+        "money_market",
+        "line_of_credit",
+        "other",
+        "cash"
+      ],
+      "example": "checking"
+    },
+    "status": {
+      "type": "string",
+      "title": "Status",
+      "description": "Filter by account status",
+      "x-apideck-enum-id": "bank_accounts.status",
+      "enum": [
+        "active",
+        "inactive",
+        "closed"
+      ],
+      "example": "active"
+    }
+  }
+}

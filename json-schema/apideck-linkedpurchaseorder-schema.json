@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/LinkedPurchaseOrder",
+  "title": "LinkedPurchaseOrder",
+  "type": "object",
+  "x-apideck-schema-id": "LinkedPurchaseOrder",
+  "x-apideck-weights": {
+    "id": "medium",
+    "line_id": "medium",
+    "line_number": "medium"
+  },
+  "nullable": true,
+  "properties": {
+    "id": {
+      "title": "Purchase Order ID",
+      "description": "The unique identifier for the purchase order.",
+      "type": "string",
+      "example": "123456"
+    },
+    "line_id": {
+      "type": "string",
+      "title": "Purchase Order Line ID",
+      "description": "The unique identifier for the purchase order line.",
+      "example": "123456",
+      "nullable": true
+    },
+    "line_number": {
+      "type": "string",
+      "title": "Purchase Order Line Number",
+      "description": "The line number of the purchase order line.",
+      "example": "1",
+      "nullable": true
+    }
+  }
+}

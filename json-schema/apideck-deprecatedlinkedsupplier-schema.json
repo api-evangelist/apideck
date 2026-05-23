@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DeprecatedLinkedSupplier",
+  "title": "Linked Supplier",
+  "type": "object",
+  "x-apideck-schema-id": "DeprecatedLinkedSupplier",
+  "description": "The supplier this entity is linked to.",
+  "x-apideck-weights": {
+    "id": "medium",
+    "display_id": "medium",
+    "display_name": "high",
+    "company_name": "edge-case",
+    "address": "low"
+  },
+  "nullable": true,
+  "deprecated": true,
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/Id"
+    },
+    "display_id": {
+      "type": "string",
+      "title": "Display ID",
+      "description": "The display ID of the supplier.",
+      "example": "SUPP00101",
+      "nullable": true,
+      "readOnly": true
+    },
+    "display_name": {
+      "type": "string",
+      "title": "Display Name",
+      "description": "The display name of the supplier.",
+      "example": "Windsurf Shop",
+      "nullable": true
+    },
+    "company_name": {
+      "type": "string",
+      "title": "Company Name",
+      "description": "The company name of the supplier.",
+      "example": "The boring company",
+      "nullable": true,
+      "readOnly": true
+    },
+    "address": {
+      "$ref": "#/components/schemas/Address"
+    }
+  }
+}

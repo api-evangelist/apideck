@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SharedLinkTarget",
+  "title": "SharedLinkTarget",
+  "type": "object",
+  "x-apideck-schema-id": "SharedLinkTarget",
+  "additionalProperties": false,
+  "required": [
+    "id"
+  ],
+  "x-apideck-weights": {
+    "id": "critical"
+  },
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/Id"
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the file",
+      "example": "sample.jpg",
+      "nullable": true
+    },
+    "type": {
+      "$ref": "#/components/schemas/FileType"
+    }
+  },
+  "readOnly": true
+}

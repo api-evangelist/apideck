@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Benefit",
+  "title": "Benefit",
+  "type": "object",
+  "x-apideck-schema-id": "Benefit",
+  "x-apideck-weights": {
+    "name": "critical",
+    "employee_deduction": "high",
+    "employer_contribution": "high"
+  },
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name of the benefit.",
+      "nullable": true,
+      "example": "Health Insurance"
+    },
+    "employee_deduction": {
+      "type": "number",
+      "description": "The amount deducted for benefit.",
+      "nullable": true,
+      "example": 142.94
+    },
+    "employer_contribution": {
+      "type": "number",
+      "description": "The amount of employer contribution.",
+      "nullable": true,
+      "example": 141.14
+    }
+  }
+}

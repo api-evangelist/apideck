@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Title",
+  "title": "Job title",
+  "type": "string",
+  "description": "The job title of the person.",
+  "example": "CEO",
+  "nullable": true
+}

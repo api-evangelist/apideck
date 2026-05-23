@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RefundsFilter",
+  "title": "RefundsFilter",
+  "type": "object",
+  "x-apideck-schema-id": "RefundsFilter",
+  "x-graphql-type-name": "RefundsFilter",
+  "example": {
+    "updated_since": "2020-09-30T07:43:32.000Z",
+    "customer_id": "123abc"
+  },
+  "properties": {
+    "updated_since": {
+      "type": "string",
+      "title": "Updated since (timestamp)",
+      "format": "date-time",
+      "example": "2020-09-30T07:43:32.000Z"
+    },
+    "customer_id": {
+      "type": "string",
+      "title": "Customer ID",
+      "description": "Filter by customer id",
+      "example": "123abc"
+    }
+  },
+  "additionalProperties": false
+}

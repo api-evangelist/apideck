@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/HrisEventType",
+  "title": "HrisEventType",
+  "type": "string",
+  "enum": [
+    "*",
+    "hris.employee.created",
+    "hris.employee.updated",
+    "hris.employee.terminated",
+    "hris.employee.deleted",
+    "hris.company.created",
+    "hris.company.updated",
+    "hris.company.deleted"
+  ],
+  "example": "hris.employee.created"
+}

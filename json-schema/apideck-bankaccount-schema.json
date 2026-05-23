@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BankAccount",
+  "title": "BankAccount",
+  "type": "object",
+  "x-apideck-schema-id": "BankAccount",
+  "additionalProperties": false,
+  "x-apideck-weights": {
+    "account_number": "critical",
+    "account_name": "medium",
+    "account_type": "medium",
+    "iban": "high",
+    "bic": "medium",
+    "bsb_number": "edge-case",
+    "branch_identifier": "low",
+    "bank_code": "low",
+    "bank_name": "medium",
+    "currency": "medium",
+    "country": "low"
+  },
+  "properties": {
+    "bank_name": {
+      "$ref": "#/components/schemas/BankName"
+    },
+    "account_number": {
+      "$ref": "#/components/schemas/BankAccountNumber"
+    },
+    "account_name": {
+      "$ref": "#/components/schemas/BankAccountName"
+    },
+    "account_type": {
+      "type": "string",
+      "title": "Account Type",
+      "x-apideck-enum-id": "bank-accounts.account_type",
+      "enum": [
+        "bank_account",
+        "credit_card",
+        "other"
+      ],
+      "description": "The type of bank account.",
+      "example": "credit_card",
+      "nullable": true
+    },
+    "iban": {
+      "$ref": "#/components/schemas/IBAN"
+    },
+    "bic": {
+      "$ref": "#/components/schemas/BIC"
+    },
+    "routing_number": {
+      "$ref": "#/components/schemas/RoutingNumber"
+    },
+    "bsb_number": {
+      "$ref": "#/components/schemas/BSBNumber"
+    },
+    "branch_identifier": {
+      "$ref": "#/components/schemas/BranchIdentifier"
+    },
+    "bank_code": {
+      "$ref": "#/components/schemas/BankCode"
+    },
+    "currency": {
+      "$ref": "#/components/schemas/Currency"
+    },
+    "country": {
+      "$ref": "#/components/schemas/Country"
+    }
+  }
+}

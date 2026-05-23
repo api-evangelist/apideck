@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/InvoiceItemsSort",
+  "title": "InvoiceItemsSort",
+  "type": "object",
+  "x-apideck-schema-id": "InvoiceItemsSort",
+  "example": {
+    "by": "updated_at",
+    "direction": "desc"
+  },
+  "properties": {
+    "by": {
+      "type": "string",
+      "x-apideck-enum-id": "invoice_items.sort_by",
+      "description": "The field on which to sort the Invoice Items",
+      "enum": [
+        "created_at",
+        "updated_at"
+      ],
+      "example": "updated_at"
+    },
+    "direction": {
+      "$ref": "#/components/schemas/SortDirection"
+    }
+  },
+  "additionalProperties": false
+}

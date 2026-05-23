@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BranchIdentifier",
+  "title": "Branch Identifier",
+  "type": "string",
+  "description": "Bank branch identifier",
+  "example": "001",
+  "nullable": true
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PaymentUnit",
+  "title": "Payment Unit",
+  "type": "string",
+  "description": "Unit of measurement for employee compensation.",
+  "x-apideck-enum-id": "payment_unit",
+  "enum": [
+    "hour",
+    "week",
+    "month",
+    "year",
+    "paycheck",
+    "other"
+  ],
+  "example": "year",
+  "nullable": true
+}

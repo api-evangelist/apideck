@@ -1,0 +1,218 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Refund",
+  "title": "Refund",
+  "type": "object",
+  "x-apideck-schema-id": "Refund",
+  "x-apideck-weights": {
+    "id": "critical",
+    "number": "medium",
+    "customer": "critical",
+    "company_id": "medium",
+    "currency": "critical",
+    "currency_rate": "edge-case",
+    "tax_inclusive": "low",
+    "sub_total": "edge-case",
+    "total_amount": "critical",
+    "total_tax": "edge-case",
+    "refund_date": "critical",
+    "status": "high",
+    "type": "high",
+    "payment_method": "high",
+    "payment_method_reference": "medium",
+    "payment_method_id": "edge-case",
+    "account": "critical",
+    "line_items": "medium",
+    "allocations": "high",
+    "note": "low",
+    "reference": "medium",
+    "billing_address": "edge-case",
+    "shipping_address": "edge-case",
+    "department": "low",
+    "location": "low",
+    "tracking_categories": "low",
+    "tax_code": "low",
+    "discount_percentage": "edge-case",
+    "discount_amount": "edge-case",
+    "customer_memo": "edge-case",
+    "custom_fields": "medium",
+    "row_version": "edge-case",
+    "updated_by": "edge-case",
+    "created_by": "edge-case",
+    "created_at": "medium",
+    "updated_at": "medium"
+  },
+  "required": [
+    "id",
+    "total_amount"
+  ],
+  "x-apideck-strict-required": [
+    "total_amount",
+    "customer"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "title": "Refund ID",
+      "description": "Unique identifier representing the refund",
+      "example": "123456",
+      "readOnly": true
+    },
+    "number": {
+      "type": "string",
+      "title": "Refund number",
+      "description": "Reference number for the refund.",
+      "example": "RF-00001",
+      "nullable": true
+    },
+    "customer": {
+      "$ref": "#/components/schemas/LinkedCustomer"
+    },
+    "company_id": {
+      "$ref": "#/components/schemas/AccountingCompanyId"
+    },
+    "currency": {
+      "$ref": "#/components/schemas/Currency"
+    },
+    "currency_rate": {
+      "$ref": "#/components/schemas/CurrencyRate"
+    },
+    "tax_inclusive": {
+      "$ref": "#/components/schemas/TaxInclusive"
+    },
+    "sub_total": {
+      "$ref": "#/components/schemas/SubTotal"
+    },
+    "total_amount": {
+      "$ref": "#/components/schemas/TotalAmount"
+    },
+    "total_tax": {
+      "$ref": "#/components/schemas/TotalTax"
+    },
+    "refund_date": {
+      "type": "string",
+      "title": "Refund Date",
+      "description": "The date of the refund - YYYY-MM-DDThh:mm:ss.sTZD",
+      "format": "date-time",
+      "example": "2021-05-01T12:00:00.000Z",
+      "nullable": true
+    },
+    "status": {
+      "$ref": "#/components/schemas/RefundStatus"
+    },
+    "type": {
+      "$ref": "#/components/schemas/RefundType"
+    },
+    "payment_method": {
+      "$ref": "#/components/schemas/PaymentMethod"
+    },
+    "payment_method_reference": {
+      "$ref": "#/components/schemas/PaymentMethodReference"
+    },
+    "payment_method_id": {
+      "$ref": "#/components/schemas/WritableId"
+    },
+    "account": {
+      "$ref": "#/components/schemas/LinkedLedgerAccount"
+    },
+    "line_items": {
+      "type": "array",
+      "description": "Line items for itemized refunds (type: refund_receipt). Used when the refund includes product/service details with quantities and pricing. Supported by QBO RefundReceipt and NetSuite CashRefund.",
+      "items": {
+        "$ref": "#/components/schemas/InvoiceLineItem"
+      }
+    },
+    "allocations": {
+      "type": "array",
+      "description": "Allocations linking refund to existing documents (invoices, credit notes, overpayments). Used for credit_note_refund and cash_refund types where the refund is applied against prior transactions. Supported by Sage Intacct and Zoho Books.",
+      "items": {
+        "$ref": "#/components/schemas/Allocation"
+      }
+    },
+    "tax_code": {
+      "type": "string",
+      "title": "Tax Code",
+      "description": "Applicable tax id/code override if tax is not supplied on a line item basis.",
+      "example": "1234",
+      "nullable": true
+    },
+    "discount_percentage": {
+      "type": "number",
+      "title": "Discount Percent",
+      "description": "Discount percentage applied to this refund.",
+      "example": 5.5,
+      "nullable": true
+    },
+    "discount_amount": {
+      "type": "number",
+      "title": "Discount Amount",
+      "description": "Discount amount applied to this refund.",
+      "example": 25,
+      "nullable": true
+    },
+    "note": {
+      "type": "string",
+      "title": "Note",
+      "description": "Optional note to be associated with the refund.",
+      "example": "Refund for returned items",
+      "nullable": true
+    },
+    "customer_memo": {
+      "type": "string",
+      "title": "Customer memo",
+      "description": "Customer memo",
+      "example": "Thank you for your business and have a great day!",
+      "nullable": true
+    },
+    "reference": {
+      "type": "string",
+      "title": "Reference",
+      "description": "Optional reference message for the refund.",
+      "example": "REF-123456",
+      "nullable": true
+    },
+    "billing_address": {
+      "$ref": "#/components/schemas/Address"
+    },
+    "shipping_address": {
+      "$ref": "#/components/schemas/Address"
+    },
+    "department": {
+      "$ref": "#/components/schemas/LinkedDepartment"
+    },
+    "location": {
+      "$ref": "#/components/schemas/LinkedLocation"
+    },
+    "tracking_categories": {
+      "$ref": "#/components/schemas/LinkedTrackingCategories"
+    },
+    "custom_mappings": {
+      "$ref": "#/components/schemas/CustomMappings"
+    },
+    "custom_fields": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/CustomField"
+      }
+    },
+    "row_version": {
+      "$ref": "#/components/schemas/RowVersion"
+    },
+    "updated_by": {
+      "$ref": "#/components/schemas/UpdatedBy"
+    },
+    "created_by": {
+      "$ref": "#/components/schemas/CreatedBy"
+    },
+    "updated_at": {
+      "$ref": "#/components/schemas/UpdatedAt"
+    },
+    "created_at": {
+      "$ref": "#/components/schemas/CreatedAt"
+    },
+    "pass_through": {
+      "$ref": "#/components/schemas/PassThroughBody"
+    }
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/InvoiceItemsFilter",
+  "title": "InvoiceItemsFilter",
+  "type": "object",
+  "x-apideck-schema-id": "InvoiceItemsFilter",
+  "example": {
+    "updated_since": "2020-09-30T07:43:32.000Z",
+    "name": "Widgets Large",
+    "type": "service",
+    "transaction_type": "sale"
+  },
+  "properties": {
+    "updated_since": {
+      "type": "string",
+      "title": "Updated since (timestamp)",
+      "format": "date-time",
+      "example": "2020-09-30T07:43:32.000Z"
+    },
+    "name": {
+      "type": "string",
+      "title": "Name",
+      "description": "Name of Invoice Items to search for",
+      "example": "Widgets Large"
+    },
+    "type": {
+      "type": "string",
+      "title": "Invoice item type",
+      "example": "service",
+      "description": "The type of invoice item, indicating whether it is an inventory item, a service, or another type.",
+      "x-apideck-enum-id": "accounting.invoice_items_type",
+      "enum": [
+        "inventory",
+        "service",
+        "other"
+      ],
+      "nullable": true
+    },
+    "transaction_type": {
+      "type": "string",
+      "title": "Transaction type",
+      "example": "sale",
+      "description": "The kind of transaction, indicating whether it is a sales transaction or a purchase transaction.",
+      "x-apideck-enum-id": "accounting.transaction_type",
+      "enum": [
+        "sale",
+        "purchase"
+      ],
+      "nullable": true
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,322 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Company",
+  "title": "Company",
+  "type": "object",
+  "x-apideck-schema-id": "Company",
+  "x-apideck-weights": {
+    "id": "critical",
+    "name": "critical",
+    "interaction_count": "edge-case",
+    "owner_id": "high",
+    "image": "low",
+    "description": "medium",
+    "vat_number": "high",
+    "currency": "medium",
+    "status": "high",
+    "fax": "low",
+    "annual_revenue": "low",
+    "number_of_employees": "low",
+    "industry": "medium",
+    "ownership": "low",
+    "sales_tax_number": "medium",
+    "payee_number": "edge-case",
+    "abn_or_tfn": "edge-case",
+    "abn_branch": "edge-case",
+    "acn": "edge-case",
+    "first_name": "edge-case",
+    "last_name": "edge-case",
+    "parent_id": "edge-case",
+    "bank_accounts": "medium",
+    "websites": "medium",
+    "addresses": "high",
+    "social_links": "low",
+    "phone_numbers": "high",
+    "emails": "high",
+    "row_type": "edge-case",
+    "custom_fields": "medium",
+    "tags": "low",
+    "read_only": "low",
+    "last_activity_at": "low",
+    "deleted": "medium",
+    "salutation": "edge-case",
+    "birthday": "edge-case",
+    "updated_by": "edge-case",
+    "created_by": "edge-case",
+    "updated_at": "high",
+    "created_at": "medium"
+  },
+  "required": [
+    "name"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "description": "Unique identifier for the company",
+      "type": "string",
+      "readOnly": true,
+      "example": "12345"
+    },
+    "name": {
+      "title": "Name",
+      "description": "Name of the company",
+      "type": "string",
+      "example": "SpaceX",
+      "nullable": true
+    },
+    "interaction_count": {
+      "description": "Number of interactions",
+      "type": "integer",
+      "example": 1,
+      "readOnly": true,
+      "nullable": true
+    },
+    "owner_id": {
+      "description": "Owner ID",
+      "type": "string",
+      "example": "12345",
+      "nullable": true
+    },
+    "image": {
+      "description": "The Image URL of the company",
+      "type": "string",
+      "example": "https://www.spacex.com/static/images/share.jpg",
+      "nullable": true
+    },
+    "description": {
+      "description": "A description of the company",
+      "type": "string",
+      "example": "Space Exploration Technologies Corp. is an American aerospace manufacturer, space transportation services and communications company headquartered in Hawthorne, California.",
+      "nullable": true
+    },
+    "vat_number": {
+      "description": "The VAT number of the company",
+      "type": "string",
+      "example": "BE0689615164",
+      "nullable": true
+    },
+    "currency": {
+      "$ref": "#/components/schemas/Currency"
+    },
+    "status": {
+      "description": "The status of the company",
+      "type": "string",
+      "example": "Open",
+      "nullable": true
+    },
+    "fax": {
+      "description": "The fax number of the company",
+      "type": "string",
+      "example": "+12129876543",
+      "nullable": true
+    },
+    "annual_revenue": {
+      "description": "The annual revenue of the company",
+      "type": "string",
+      "example": "+$35m",
+      "nullable": true
+    },
+    "number_of_employees": {
+      "description": "Number of employees",
+      "type": "string",
+      "example": "500-1000",
+      "nullable": true
+    },
+    "industry": {
+      "description": "The industry represents the type of business the company is in.",
+      "type": "string",
+      "example": "Apparel",
+      "nullable": true
+    },
+    "ownership": {
+      "description": "The ownership indicates the type of ownership of the company.",
+      "type": "string",
+      "example": "Public",
+      "nullable": true
+    },
+    "sales_tax_number": {
+      "title": "Sales tax number",
+      "description": "A sales tax number is a unique number that identifies a company for tax purposes.",
+      "type": "string",
+      "example": "12456EN",
+      "nullable": true
+    },
+    "payee_number": {
+      "title": "Payee number",
+      "description": "A payee number is a unique number that identifies a payee for tax purposes.",
+      "type": "string",
+      "example": "78932EN",
+      "nullable": true
+    },
+    "abn_or_tfn": {
+      "title": "ABN or TFN",
+      "description": "An ABN is necessary for operating a business, while a TFN (Tax File Number) is required for any person working in Australia.",
+      "type": "string",
+      "example": "46 115 614 695",
+      "nullable": true
+    },
+    "abn_branch": {
+      "title": "ABN Branch",
+      "description": "An ABN Branch (also known as a GST Branch) is used if part of your business needs to account for GST separately from its parent entity.",
+      "type": "string",
+      "example": "123",
+      "nullable": true
+    },
+    "acn": {
+      "title": "ACN",
+      "description": "The Australian Company Number (ACN) is a nine digit number with the last digit being a check digit calculated using a modified modulus 10 calculation. ASIC has adopted a convention of always printing and displaying the ACN in the format XXX XXX XXX; three blocks of three characters, each block separated by a blank.",
+      "type": "string",
+      "example": "XXX XXX XXX",
+      "nullable": true
+    },
+    "first_name": {
+      "$ref": "#/components/schemas/FirstName"
+    },
+    "last_name": {
+      "$ref": "#/components/schemas/LastName"
+    },
+    "parent_id": {
+      "description": "Parent ID",
+      "type": "string",
+      "readOnly": true,
+      "nullable": true,
+      "example": "22345"
+    },
+    "bank_accounts": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/BankAccount"
+      }
+    },
+    "websites": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Website"
+      }
+    },
+    "addresses": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Address"
+      }
+    },
+    "social_links": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/SocialLink"
+      }
+    },
+    "phone_numbers": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/PhoneNumber"
+      }
+    },
+    "emails": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Email"
+      }
+    },
+    "row_type": {
+      "x-apideck-weights": {
+        "id": "critical",
+        "name": "medium"
+      },
+      "type": "object",
+      "title": "Company Row Type",
+      "properties": {
+        "id": {
+          "type": "string",
+          "example": "12345",
+          "nullable": true
+        },
+        "name": {
+          "type": "string",
+          "example": "Customer Account",
+          "nullable": true
+        }
+      }
+    },
+    "custom_fields": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/CustomField"
+      }
+    },
+    "tags": {
+      "$ref": "#/components/schemas/Tags"
+    },
+    "read_only": {
+      "description": "Whether the company is read-only or not",
+      "type": "boolean",
+      "title": "Read-only",
+      "example": false,
+      "nullable": true
+    },
+    "last_activity_at": {
+      "description": "Last activity date",
+      "type": "string",
+      "format": "date-time",
+      "example": "2020-09-30T07:43:32.000Z",
+      "readOnly": true,
+      "nullable": true
+    },
+    "deleted": {
+      "description": "Whether the company is deleted or not",
+      "type": "boolean",
+      "example": false,
+      "readOnly": true
+    },
+    "salutation": {
+      "type": "string",
+      "description": "A formal salutation for the person. For example, 'Mr', 'Mrs'",
+      "example": "Mr",
+      "nullable": true
+    },
+    "birthday": {
+      "type": "string",
+      "title": "Birth Date",
+      "description": "The date of birth of the person.",
+      "example": "2000-08-12",
+      "format": "date",
+      "nullable": true
+    },
+    "custom_mappings": {
+      "$ref": "#/components/schemas/CustomMappings"
+    },
+    "updated_by": {
+      "description": "Updated by user ID",
+      "type": "string",
+      "example": "12345",
+      "readOnly": true,
+      "nullable": true
+    },
+    "created_by": {
+      "description": "Created by user ID",
+      "type": "string",
+      "example": "12345",
+      "readOnly": true,
+      "nullable": true
+    },
+    "updated_at": {
+      "description": "Last updated date",
+      "type": "string",
+      "format": "date-time",
+      "example": "2020-09-30T07:43:32.000Z",
+      "readOnly": true,
+      "nullable": true
+    },
+    "created_at": {
+      "description": "Creation date",
+      "type": "string",
+      "format": "date-time",
+      "example": "2020-09-30T07:43:32.000Z",
+      "readOnly": true,
+      "nullable": true
+    },
+    "pass_through": {
+      "$ref": "#/components/schemas/PassThroughBody"
+    }
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DriveGroup",
+  "title": "DriveGroup",
+  "type": "object",
+  "x-apideck-schema-id": "DriveGroup",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "name"
+  ],
+  "x-apideck-weights": {
+    "id": "critical",
+    "name": "critical",
+    "updated_at": "critical",
+    "updated_by": "edge-case",
+    "created_at": "critical",
+    "created_by": "edge-case"
+  },
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/Id"
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the drive group",
+      "example": "accounting"
+    },
+    "display_name": {
+      "type": "string",
+      "description": "The display name of the drive group",
+      "example": "accounting",
+      "nullable": true
+    },
+    "description": {
+      "$ref": "#/components/schemas/Description"
+    },
+    "custom_mappings": {
+      "$ref": "#/components/schemas/CustomMappings"
+    },
+    "updated_by": {
+      "$ref": "#/components/schemas/UpdatedBy"
+    },
+    "created_by": {
+      "$ref": "#/components/schemas/CreatedBy"
+    },
+    "updated_at": {
+      "$ref": "#/components/schemas/UpdatedAt"
+    },
+    "created_at": {
+      "$ref": "#/components/schemas/CreatedAt"
+    },
+    "pass_through": {
+      "$ref": "#/components/schemas/PassThroughBody"
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BalanceSheetAccount",
+  "title": "Balance Sheet Account",
+  "type": "object",
+  "x-apideck-schema-id": "BalanceSheetAccount",
+  "x-apideck-weights": {
+    "account_id": "critical",
+    "name": "high",
+    "value": "critical",
+    "items": "medium"
+  },
+  "description": "A balance sheet account represents the financial position of a company at a specific point in time.",
+  "additionalProperties": false,
+  "properties": {
+    "account_id": {
+      "$ref": "#/components/schemas/AccountId"
+    },
+    "code": {
+      "$ref": "#/components/schemas/AccountCode"
+    },
+    "name": {
+      "$ref": "#/components/schemas/AccountName"
+    },
+    "value": {
+      "$ref": "#/components/schemas/Amount"
+    },
+    "items": {
+      "$ref": "#/components/schemas/BalanceSheetAccounts"
+    }
+  }
+}

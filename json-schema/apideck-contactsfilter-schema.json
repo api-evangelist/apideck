@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ContactsFilter",
+  "title": "ContactsFilter",
+  "type": "object",
+  "x-apideck-schema-id": "ContactsFilter",
+  "example": {
+    "first_name": "Elon",
+    "last_name": "Musk",
+    "email": "elon@tesla.com",
+    "company_id": "12345",
+    "owner_id": "12345",
+    "updated_since": "2020-09-30T07:43:32.000Z",
+    "created_since": "2020-09-30T07:43:32.000Z"
+  },
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the contact to filter on",
+      "example": "Elon Musk"
+    },
+    "first_name": {
+      "type": "string",
+      "description": "First name of the contact to filter on",
+      "example": "Elon"
+    },
+    "last_name": {
+      "type": "string",
+      "description": "Last name of the contact to filter on",
+      "example": "Musk"
+    },
+    "email": {
+      "type": "string",
+      "description": "Email of the contact to filter on",
+      "example": "elon@tesla.com"
+    },
+    "phone_number": {
+      "type": "string",
+      "description": "Phone number of the contact to filter on",
+      "example": "111-111-1111"
+    },
+    "company_id": {
+      "type": "string",
+      "description": "Unique identifier for the associated company of the contact to filter on",
+      "example": "12345"
+    },
+    "owner_id": {
+      "type": "string",
+      "description": "Unique identifier for the owner of the contact to filter on",
+      "example": "12345"
+    },
+    "updated_since": {
+      "type": "string",
+      "title": "Updated since (timestamp)",
+      "format": "date-time",
+      "example": "2020-09-30T07:43:32.000Z"
+    },
+    "created_since": {
+      "type": "string",
+      "title": "Created since (timestamp)",
+      "format": "date-time",
+      "example": "2020-09-30T07:43:32.000Z"
+    }
+  },
+  "additionalProperties": false
+}

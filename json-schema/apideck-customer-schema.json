@@ -1,0 +1,244 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Customer",
+  "title": "Customer",
+  "type": "object",
+  "x-apideck-schema-id": "Customer",
+  "x-apideck-weights": {
+    "id": "critical",
+    "downstream_id": "edge-case",
+    "display_id": "edge-case",
+    "display_name": "edge-case",
+    "company_name": "high",
+    "company_id": "medium",
+    "customer_category": "edge-case",
+    "title": "high",
+    "first_name": "high",
+    "middle_name": "low",
+    "last_name": "high",
+    "suffix": "low",
+    "individual": "medium",
+    "addresses": "high",
+    "phone_numbers": "high",
+    "emails": "high",
+    "websites": "medium",
+    "bank_accounts": "high",
+    "notes": "low",
+    "tax_rate": "medium",
+    "tax_number": "medium",
+    "taxable": "medium",
+    "currency": "medium",
+    "account": "medium",
+    "status": "high",
+    "payment_method": "edge-case",
+    "terms": "edge-case",
+    "terms_id": "edge-case",
+    "channel": "edge-case",
+    "updated_by": "edge-case",
+    "created_by": "edge-case",
+    "updated_at": "medium",
+    "created_at": "medium",
+    "row_version": "edge-case"
+  },
+  "additionalProperties": false,
+  "required": [
+    "id"
+  ],
+  "x-apideck-strict-required": [
+    "emails",
+    "addresses",
+    "phone_numbers",
+    "status",
+    "updated_at"
+  ],
+  "x-apideck-strict-any-of": [
+    {
+      "required": [
+        "first_name",
+        "last_name"
+      ]
+    },
+    {
+      "required": [
+        "company_name"
+      ]
+    }
+  ],
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/Id"
+    },
+    "downstream_id": {
+      "$ref": "#/components/schemas/DownstreamId"
+    },
+    "display_id": {
+      "type": "string",
+      "title": "Display ID",
+      "description": "Display ID",
+      "example": "EMP00101",
+      "nullable": true
+    },
+    "display_name": {
+      "type": "string",
+      "title": "Display Name",
+      "description": "Display name",
+      "example": "Windsurf Shop",
+      "nullable": true
+    },
+    "company_name": {
+      "$ref": "#/components/schemas/CompanyName"
+    },
+    "company_id": {
+      "$ref": "#/components/schemas/AccountingCompanyId"
+    },
+    "customer_category": {
+      "type": "string",
+      "title": "Customer Category",
+      "description": "The category/type of the customer",
+      "example": "Insurance",
+      "nullable": true
+    },
+    "title": {
+      "$ref": "#/components/schemas/Title"
+    },
+    "first_name": {
+      "$ref": "#/components/schemas/FirstName"
+    },
+    "middle_name": {
+      "$ref": "#/components/schemas/MiddleName"
+    },
+    "last_name": {
+      "$ref": "#/components/schemas/LastName"
+    },
+    "suffix": {
+      "$ref": "#/components/schemas/Suffix"
+    },
+    "individual": {
+      "type": "boolean",
+      "title": "Is individual",
+      "description": "Is this an individual or business customer",
+      "example": true,
+      "nullable": true
+    },
+    "project": {
+      "type": "boolean",
+      "title": "Is project",
+      "description": "If true, indicates this is a Project.",
+      "example": false,
+      "nullable": true
+    },
+    "addresses": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Address"
+      }
+    },
+    "phone_numbers": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/PhoneNumber"
+      }
+    },
+    "emails": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Email"
+      }
+    },
+    "websites": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Website"
+      }
+    },
+    "bank_accounts": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/BankAccount"
+      }
+    },
+    "notes": {
+      "type": "string",
+      "title": "Notes",
+      "description": "Some notes about this customer",
+      "example": "Some notes about this customer",
+      "nullable": true
+    },
+    "tax_rate": {
+      "$ref": "#/components/schemas/LinkedTaxRate"
+    },
+    "tax_number": {
+      "$ref": "#/components/schemas/TaxNumber"
+    },
+    "taxable": {
+      "$ref": "#/components/schemas/Taxable"
+    },
+    "currency": {
+      "$ref": "#/components/schemas/Currency"
+    },
+    "account": {
+      "$ref": "#/components/schemas/LinkedLedgerAccount"
+    },
+    "parent": {
+      "$ref": "#/components/schemas/LinkedParentCustomer"
+    },
+    "status": {
+      "type": "string",
+      "title": "Status",
+      "description": "Customer status",
+      "nullable": true,
+      "example": "active",
+      "x-apideck-enum-id": "customers.status",
+      "enum": [
+        "active",
+        "inactive",
+        "archived",
+        "gdpr-erasure-request",
+        "unknown"
+      ]
+    },
+    "payment_method": {
+      "$ref": "#/components/schemas/PaymentMethod"
+    },
+    "terms": {
+      "type": "string",
+      "title": "Terms",
+      "description": "Terms of payment.",
+      "example": "Net 30 days",
+      "nullable": true
+    },
+    "terms_id": {
+      "$ref": "#/components/schemas/TermsId"
+    },
+    "channel": {
+      "$ref": "#/components/schemas/Channel"
+    },
+    "custom_fields": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/CustomField"
+      }
+    },
+    "custom_mappings": {
+      "$ref": "#/components/schemas/CustomMappings"
+    },
+    "updated_by": {
+      "$ref": "#/components/schemas/UpdatedBy"
+    },
+    "created_by": {
+      "$ref": "#/components/schemas/CreatedBy"
+    },
+    "updated_at": {
+      "$ref": "#/components/schemas/UpdatedAt"
+    },
+    "created_at": {
+      "$ref": "#/components/schemas/CreatedAt"
+    },
+    "row_version": {
+      "$ref": "#/components/schemas/RowVersion"
+    },
+    "pass_through": {
+      "$ref": "#/components/schemas/PassThroughBody"
+    }
+  }
+}

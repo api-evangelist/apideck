@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ProfitAndLossRecords",
+  "title": "ProfitAndLossRecords",
+  "type": "array",
+  "x-apideck-schema-id": "ProfitAndLossRecords",
+  "x-speakeasy-type-override": "any",
+  "nullable": true,
+  "items": {
+    "anyOf": [
+      {
+        "$ref": "#/components/schemas/ProfitAndLossSection"
+      },
+      {
+        "$ref": "#/components/schemas/ProfitAndLossRecord"
+      }
+    ]
+  }
+}

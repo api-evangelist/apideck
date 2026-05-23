@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RefundType",
+  "title": "Refund Type",
+  "type": "string",
+  "description": "Type of refund. `refund_receipt` for itemized refunds with product/service lines and payment (QBO RefundReceipt, NetSuite CashRefund). `cash_refund` for cash-out refunds with GL distribution or allocations (Sage Intacct). `credit_note_refund` for refunds applied against a credit note (Zoho Books).",
+  "x-apideck-enum-id": "refunds.type",
+  "enum": [
+    "refund_receipt",
+    "cash_refund",
+    "credit_note_refund"
+  ],
+  "example": "refund_receipt"
+}

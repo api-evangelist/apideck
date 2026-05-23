@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/EmployeeCompensation",
+  "title": "compensation",
+  "x-apideck-weights": {
+    "id": "critical",
+    "job_id": "medium",
+    "rate": "high",
+    "payment_unit": "medium",
+    "currency": "high",
+    "flsa_status": "edge-case",
+    "effective_date": "low",
+    "payment_frequency": "medium"
+  },
+  "x-apideck-strict-required": [
+    "rate",
+    "currency",
+    "payment_unit"
+  ],
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/IdOrNull"
+    },
+    "job_id": {
+      "type": "string",
+      "title": "Job ID",
+      "description": "The ID of the job to which the compensation belongs.",
+      "example": "12345",
+      "nullable": true,
+      "readOnly": true
+    },
+    "rate": {
+      "type": "number",
+      "title": "Rate",
+      "description": "The amount paid per payment unit.",
+      "readOnly": false,
+      "nullable": true,
+      "example": 72000
+    },
+    "payment_unit": {
+      "$ref": "#/components/schemas/PaymentUnit"
+    },
+    "currency": {
+      "$ref": "#/components/schemas/Currency"
+    },
+    "flsa_status": {
+      "type": "string",
+      "readOnly": false,
+      "nullable": true,
+      "description": "The FLSA status for this compensation.",
+      "x-apideck-enum-id": "employees.compensations.flsa_status",
+      "enum": [
+        "exempt",
+        "salaried-nonexempt",
+        "nonexempt",
+        "owner",
+        "other"
+      ]
+    },
+    "effective_date": {
+      "type": "string",
+      "readOnly": false,
+      "nullable": true,
+      "title": "Effective date",
+      "description": "The date on which a change to an employee's compensation takes effect.",
+      "example": "2020-08-12"
+    },
+    "payment_frequency": {
+      "$ref": "#/components/schemas/PaymentFrequency"
+    }
+  },
+  "example": {
+    "id": "3404301363494309004",
+    "job_id": "3490439050957906679",
+    "rate": 50,
+    "payment_unit": "hour",
+    "flsa_status": "nonexempt",
+    "effective_date": "2021-06-11"
+  }
+}

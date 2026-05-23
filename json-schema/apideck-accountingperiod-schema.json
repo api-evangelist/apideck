@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AccountingPeriod",
+  "title": "Accounting period",
+  "type": "string",
+  "description": "Accounting period",
+  "example": "01-24",
+  "nullable": true
+}

@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/LinkedTaxDetail",
+  "title": "LinkedTaxDetail",
+  "type": "object",
+  "x-apideck-schema-id": "LinkedTaxDetail",
+  "x-apideck-weights": {
+    "type": "low",
+    "number": "critical",
+    "is_transaction_tax": "low",
+    "is_primary_tax": "low"
+  },
+  "nullable": true,
+  "properties": {
+    "type": {
+      "type": "string",
+      "title": "Tax Type",
+      "description": "The type of tax.",
+      "example": "GST on Purchases"
+    },
+    "number": {
+      "type": "string",
+      "title": "Tax Number",
+      "description": "The number of the tax.",
+      "example": "123456",
+      "nullable": true
+    },
+    "is_transaction_tax": {
+      "type": "boolean",
+      "title": "Is Transaction Tax",
+      "description": "Whether the tax is a transaction tax.",
+      "example": true
+    },
+    "is_primary_tax": {
+      "type": "boolean",
+      "title": "Is Primary Tax",
+      "description": "Whether the tax is a primary tax.",
+      "example": true
+    }
+  }
+}

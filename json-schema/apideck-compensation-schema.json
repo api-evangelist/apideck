@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Compensation",
+  "title": "Compensation",
+  "type": "object",
+  "x-apideck-schema-id": "Compensation",
+  "x-apideck-weights": {
+    "employee_id": "critical",
+    "net_pay": "high",
+    "gross_pay": "critical",
+    "taxes": "high",
+    "deductions": "high",
+    "benefits": "high"
+  },
+  "required": [
+    "employee_id"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "employee_id": {
+      "$ref": "#/components/schemas/IdOrNull"
+    },
+    "net_pay": {
+      "type": "number",
+      "description": "The employee's net pay. Only available when payroll has been processed",
+      "nullable": true,
+      "example": 2199.93
+    },
+    "gross_pay": {
+      "type": "number",
+      "description": "The employee's gross pay. Only available when payroll has been processed",
+      "nullable": true,
+      "example": 3000
+    },
+    "taxes": {
+      "type": "array",
+      "description": "An array of employer and employee taxes for the pay period.",
+      "nullable": true,
+      "items": {
+        "$ref": "#/components/schemas/Tax"
+      }
+    },
+    "deductions": {
+      "type": "array",
+      "description": "An array of employee deductions for the pay period.",
+      "nullable": true,
+      "items": {
+        "$ref": "#/components/schemas/Deduction"
+      }
+    },
+    "benefits": {
+      "type": "array",
+      "description": "An array of employee benefits for the pay period.",
+      "nullable": true,
+      "items": {
+        "$ref": "#/components/schemas/Benefit"
+      }
+    }
+  }
+}

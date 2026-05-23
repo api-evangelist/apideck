@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PhoneNumber",
+  "title": "PhoneNumber",
+  "type": "object",
+  "x-apideck-schema-id": "PhoneNumber",
+  "required": [
+    "number"
+  ],
+  "additionalProperties": false,
+  "x-apideck-weights": {
+    "number": "critical",
+    "type": "critical",
+    "id": "edge-case",
+    "country_code": "edge-case",
+    "area_code": "edge-case",
+    "extension": "edge-case"
+  },
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier of the phone number",
+      "example": "12345",
+      "nullable": true
+    },
+    "country_code": {
+      "title": "Country code",
+      "description": "The country code of the phone number, e.g. +1",
+      "type": "string",
+      "example": "1",
+      "nullable": true
+    },
+    "area_code": {
+      "title": "Area code",
+      "description": "The area code of the phone number, e.g. 323",
+      "type": "string",
+      "example": "323",
+      "nullable": true
+    },
+    "number": {
+      "type": "string",
+      "title": "Phone number",
+      "description": "The phone number",
+      "example": "111-111-1111",
+      "minLength": 1
+    },
+    "extension": {
+      "type": "string",
+      "title": "Phone extension",
+      "description": "The extension of the phone number",
+      "example": "105",
+      "nullable": true
+    },
+    "type": {
+      "type": "string",
+      "description": "The type of phone number",
+      "x-apideck-enum-id": "phone_numbers.type",
+      "enum": [
+        "primary",
+        "secondary",
+        "home",
+        "work",
+        "office",
+        "mobile",
+        "assistant",
+        "fax",
+        "direct-dial-in",
+        "personal",
+        "billing",
+        "other"
+      ],
+      "example": "primary",
+      "nullable": true
+    }
+  }
+}

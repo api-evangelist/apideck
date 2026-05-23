@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/HrisWebhookEvent",
+  "title": "HrisWebhookEvent",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/WebhookEvent"
+    },
+    {
+      "properties": {
+        "event_type": {
+          "$ref": "#/components/schemas/HrisEventType"
+        }
+      },
+      "type": "object"
+    }
+  ],
+  "x-sdk-exclude": true
+}

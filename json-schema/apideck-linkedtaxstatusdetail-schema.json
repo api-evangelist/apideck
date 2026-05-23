@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/LinkedTaxStatusDetail",
+  "title": "LinkedTaxStatusDetail",
+  "type": "object",
+  "x-apideck-schema-id": "LinkedTaxStatusDetail",
+  "x-apideck-weights": {
+    "country": "critical",
+    "transaction_tax_status": "critical"
+  },
+  "nullable": true,
+  "properties": {
+    "country": {
+      "type": "string",
+      "title": "Country",
+      "description": "The country of the tax status.",
+      "example": "US"
+    },
+    "transaction_tax_status": {
+      "type": "string",
+      "title": "Transaction Tax Status",
+      "description": "The transaction tax status.",
+      "example": "taxable",
+      "nullable": true
+    }
+  }
+}

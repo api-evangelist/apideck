@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CopyFolderRequest",
+  "title": "CopyFolderRequest",
+  "type": "object",
+  "x-apideck-schema-id": "CopyFolderRequest",
+  "required": [
+    "parent_folder_id"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/Id"
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the folder.",
+      "example": "Documents"
+    },
+    "parent_folder_id": {
+      "$ref": "#/components/schemas/ParentFolderId"
+    },
+    "pass_through": {
+      "$ref": "#/components/schemas/PassThroughBody"
+    }
+  }
+}

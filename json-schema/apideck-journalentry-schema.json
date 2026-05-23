@@ -1,0 +1,184 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/JournalEntry",
+  "title": "JournalEntry",
+  "type": "object",
+  "additionalProperties": false,
+  "x-apideck-weights": {
+    "id": "critical",
+    "downstream_id": "low",
+    "source_id": "low",
+    "display_id": "low",
+    "title": "medium",
+    "currency_rate": "low",
+    "currency": "medium",
+    "company_id": "medium",
+    "line_items": "medium",
+    "status": "medium",
+    "memo": "low",
+    "posted_at": "low",
+    "journal_symbol": "edge-case",
+    "tax_type": "edge-case",
+    "tax_code": "edge-case",
+    "number": "medium",
+    "tracking_categories": "low",
+    "accounting_period": "low",
+    "source_type": "edge-case",
+    "updated_by": "edge-case",
+    "created_by": "edge-case",
+    "updated_at": "medium",
+    "created_at": "medium",
+    "row_version": "edge-case",
+    "custom_fields": "medium",
+    "tax_inclusive": "medium"
+  },
+  "x-apideck-strict-required": [
+    "line_items"
+  ],
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/Id"
+    },
+    "downstream_id": {
+      "$ref": "#/components/schemas/DownstreamId"
+    },
+    "display_id": {
+      "type": "string",
+      "title": "Display ID",
+      "description": "Display ID of the journal entry",
+      "example": "12345",
+      "nullable": true
+    },
+    "title": {
+      "type": "string",
+      "title": "Journal entry title",
+      "description": "Journal entry title",
+      "example": "Purchase Invoice-Inventory (USD): 2019/02/01 Batch Summary Entry",
+      "nullable": true
+    },
+    "currency_rate": {
+      "$ref": "#/components/schemas/CurrencyRate"
+    },
+    "currency": {
+      "$ref": "#/components/schemas/Currency"
+    },
+    "company_id": {
+      "$ref": "#/components/schemas/AccountingCompanyId"
+    },
+    "line_items": {
+      "type": "array",
+      "minItems": 2,
+      "description": "Requires a minimum of 2 line items that sum to 0",
+      "items": {
+        "$ref": "#/components/schemas/JournalEntryLineItem"
+      }
+    },
+    "status": {
+      "type": "string",
+      "title": "Status",
+      "description": "Journal entry status",
+      "example": "draft",
+      "x-apideck-enum-id": "journal_entries.status",
+      "enum": [
+        "draft",
+        "pending_approval",
+        "approved",
+        "posted",
+        "voided",
+        "rejected",
+        "deleted",
+        "other"
+      ],
+      "nullable": true
+    },
+    "memo": {
+      "type": "string",
+      "title": "Memo",
+      "description": "Reference for the journal entry.",
+      "example": "Thank you for your business and have a great day!",
+      "nullable": true
+    },
+    "posted_at": {
+      "type": "string",
+      "title": "Posted at (timestamp)",
+      "description": "This is the date on which the journal entry was added. This can be different from the creation date and can also be backdated.",
+      "format": "date-time",
+      "example": "2020-09-30T07:43:32.000Z"
+    },
+    "journal_symbol": {
+      "type": "string",
+      "title": "Journal symbol",
+      "description": "Journal symbol of the entry. For example IND for indirect costs",
+      "example": "IND",
+      "nullable": true
+    },
+    "tax_type": {
+      "type": "string",
+      "title": "Tax Type",
+      "description": "Deprecated \u2014 use line_items[].tax_type for per-line tax applicability. Kept as fallback: applies to all lines that do not set their own tax_type.",
+      "example": "sales",
+      "nullable": true,
+      "deprecated": true
+    },
+    "tax_code": {
+      "$ref": "#/components/schemas/TaxCode"
+    },
+    "number": {
+      "type": "string",
+      "title": "Journal entry number",
+      "description": "Journal entry number.",
+      "example": "OIT00546",
+      "nullable": true
+    },
+    "tracking_categories": {
+      "$ref": "#/components/schemas/LinkedTrackingCategories"
+    },
+    "accounting_period": {
+      "$ref": "#/components/schemas/AccountingPeriod"
+    },
+    "tax_inclusive": {
+      "$ref": "#/components/schemas/TaxInclusive"
+    },
+    "source_type": {
+      "type": "string",
+      "title": "Source Type",
+      "description": "The source type of the journal entry",
+      "example": "manual",
+      "nullable": true
+    },
+    "source_id": {
+      "type": "string",
+      "title": "Source ID",
+      "description": "A unique identifier for the source of the journal entry",
+      "example": "12345",
+      "nullable": true
+    },
+    "custom_mappings": {
+      "$ref": "#/components/schemas/CustomMappings"
+    },
+    "updated_by": {
+      "$ref": "#/components/schemas/UpdatedBy"
+    },
+    "created_by": {
+      "$ref": "#/components/schemas/CreatedBy"
+    },
+    "updated_at": {
+      "$ref": "#/components/schemas/UpdatedAt"
+    },
+    "created_at": {
+      "$ref": "#/components/schemas/CreatedAt"
+    },
+    "row_version": {
+      "$ref": "#/components/schemas/RowVersion"
+    },
+    "custom_fields": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/CustomField"
+      }
+    },
+    "pass_through": {
+      "$ref": "#/components/schemas/PassThroughBody"
+    }
+  }
+}

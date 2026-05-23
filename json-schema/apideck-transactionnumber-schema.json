@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TransactionNumber",
+  "title": "Transaction number",
+  "type": "string",
+  "description": "Number associated with the transaction",
+  "example": "123456",
+  "nullable": true
+}

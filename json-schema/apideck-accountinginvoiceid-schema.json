@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AccountingInvoiceId",
+  "title": "Invoice Id",
+  "description": "The unique identifier for the invoice.",
+  "type": "string",
+  "example": "123456",
+  "readOnly": true
+}

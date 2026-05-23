@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UpdatedBy",
+  "title": "Updated by",
+  "type": "string",
+  "description": "The user who last updated the object.",
+  "example": "12345",
+  "readOnly": true,
+  "nullable": true
+}

@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateUploadSessionRequest",
+  "title": "CreateUploadSessionRequest",
+  "type": "object",
+  "x-apideck-schema-id": "CreateUploadSessionRequest",
+  "additionalProperties": false,
+  "required": [
+    "name",
+    "parent_folder_id",
+    "size"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name of the file.",
+      "example": "Documents"
+    },
+    "parent_folder_id": {
+      "$ref": "#/components/schemas/ParentFolderId"
+    },
+    "drive_id": {
+      "type": "string",
+      "description": "ID of the drive to upload to.",
+      "example": "1234"
+    },
+    "size": {
+      "$ref": "#/components/schemas/FileSize"
+    },
+    "pass_through": {
+      "$ref": "#/components/schemas/PassThroughBody"
+    }
+  }
+}

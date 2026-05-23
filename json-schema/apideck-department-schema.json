@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Department",
+  "title": "Department",
+  "type": "object",
+  "x-apideck-schema-id": "Department",
+  "x-apideck-weights": {
+    "id": "critical",
+    "parent_id": "medium",
+    "name": "critical",
+    "code": "medium",
+    "description": "low",
+    "updated_by": "edge-case",
+    "created_by": "edge-case",
+    "updated_at": "medium",
+    "created_at": "medium"
+  },
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/Id"
+    },
+    "parent_id": {
+      "description": "Parent ID",
+      "type": "string",
+      "readOnly": true,
+      "nullable": true,
+      "example": "22345"
+    },
+    "name": {
+      "title": "Name",
+      "description": "Department name",
+      "type": "string",
+      "example": "R&D",
+      "nullable": true
+    },
+    "code": {
+      "title": "Code",
+      "type": "string",
+      "example": "2",
+      "nullable": true
+    },
+    "description": {
+      "title": "Description",
+      "type": "string",
+      "example": "R&D",
+      "nullable": true
+    },
+    "custom_mappings": {
+      "$ref": "#/components/schemas/CustomMappings"
+    },
+    "updated_by": {
+      "$ref": "#/components/schemas/UpdatedBy"
+    },
+    "created_by": {
+      "$ref": "#/components/schemas/CreatedBy"
+    },
+    "updated_at": {
+      "$ref": "#/components/schemas/UpdatedAt"
+    },
+    "created_at": {
+      "$ref": "#/components/schemas/CreatedAt"
+    },
+    "pass_through": {
+      "$ref": "#/components/schemas/PassThroughBody"
+    }
+  }
+}

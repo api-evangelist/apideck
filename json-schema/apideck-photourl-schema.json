@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PhotoUrl",
+  "title": "Photo URL",
+  "type": "string",
+  "description": "The URL of the photo of a person.",
+  "example": "https://unavatar.io/elon-musk",
+  "nullable": true
+}

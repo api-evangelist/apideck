@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Links",
+  "title": "Links",
+  "type": "object",
+  "x-apideck-schema-id": "Links",
+  "description": "Links to navigate to previous or next pages through the API",
+  "properties": {
+    "previous": {
+      "type": "string",
+      "description": "Link to navigate to the previous page through the API",
+      "example": "https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjE%3D",
+      "nullable": true
+    },
+    "current": {
+      "type": "string",
+      "description": "Link to navigate to the current page through the API",
+      "example": "https://unify.apideck.com/crm/companies"
+    },
+    "next": {
+      "type": "string",
+      "description": "Link to navigate to the previous page through the API",
+      "example": "https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjM",
+      "nullable": true
+    }
+  }
+}

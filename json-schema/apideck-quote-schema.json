@@ -1,0 +1,240 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Quote",
+  "title": "Quote",
+  "type": "object",
+  "x-apideck-schema-id": "Quote",
+  "additionalProperties": false,
+  "x-apideck-weights": {
+    "id": "critical",
+    "downstream_id": "low",
+    "type": "high",
+    "number": "high",
+    "customer": "high",
+    "invoice_id": "medium",
+    "sales_order_id": "medium",
+    "company_id": "medium",
+    "department_id": "low",
+    "project_id": "medium",
+    "quote_date": "edge-case",
+    "expiry_date": "edge-case",
+    "terms": "low",
+    "terms_id": "edge-case",
+    "reference": "low",
+    "status": "critical",
+    "currency": "medium",
+    "currency_rate": "low",
+    "tax_inclusive": "low",
+    "sub_total": "high",
+    "total_tax": "high",
+    "tax_code": "medium",
+    "discount_percentage": "medium",
+    "discount_amount": "medium",
+    "total": "critical",
+    "customer_memo": "low",
+    "line_items": "critical",
+    "billing_address": "high",
+    "shipping_address": "medium",
+    "tracking_categories": "medium",
+    "template_id": "edge-case",
+    "source_document_url": "edge-case",
+    "custom_fields": "medium",
+    "row_version": "low",
+    "updated_by": "low",
+    "created_by": "low",
+    "created_at": "high",
+    "updated_at": "high",
+    "pass_through": "low"
+  },
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/Id"
+    },
+    "downstream_id": {
+      "$ref": "#/components/schemas/DownstreamId"
+    },
+    "number": {
+      "type": "string",
+      "title": "Quote number",
+      "description": "Quote number.",
+      "example": "QT00546",
+      "nullable": true
+    },
+    "customer": {
+      "$ref": "#/components/schemas/LinkedCustomer"
+    },
+    "invoice_id": {
+      "$ref": "#/components/schemas/AccountingInvoiceId"
+    },
+    "sales_order_id": {
+      "$ref": "#/components/schemas/AccountingSalesOrderId"
+    },
+    "company_id": {
+      "$ref": "#/components/schemas/AccountingCompanyId"
+    },
+    "department_id": {
+      "$ref": "#/components/schemas/DepartmentId"
+    },
+    "project_id": {
+      "$ref": "#/components/schemas/AccountingProjectId"
+    },
+    "quote_date": {
+      "type": "string",
+      "title": "Quote date",
+      "description": "Date quote was issued - YYYY-MM-DD.",
+      "format": "date",
+      "example": "2020-09-30",
+      "nullable": true
+    },
+    "expiry_date": {
+      "type": "string",
+      "title": "Expiry date",
+      "description": "The date until which the quote is valid - YYYY-MM-DD.",
+      "format": "date",
+      "example": "2020-10-30",
+      "nullable": true
+    },
+    "terms": {
+      "type": "string",
+      "title": "Terms",
+      "description": "Terms of the quote.",
+      "example": "Valid for 30 days",
+      "nullable": true
+    },
+    "terms_id": {
+      "$ref": "#/components/schemas/TermsId"
+    },
+    "reference": {
+      "$ref": "#/components/schemas/Reference"
+    },
+    "status": {
+      "type": "string",
+      "title": "Status",
+      "description": "Quote status",
+      "example": "draft",
+      "x-apideck-enum-id": "quotes.status",
+      "enum": [
+        "draft",
+        "sent",
+        "accepted",
+        "rejected",
+        "expired",
+        "converted",
+        "void",
+        "deleted"
+      ],
+      "nullable": true
+    },
+    "currency": {
+      "$ref": "#/components/schemas/Currency"
+    },
+    "currency_rate": {
+      "$ref": "#/components/schemas/CurrencyRate"
+    },
+    "tax_inclusive": {
+      "$ref": "#/components/schemas/TaxInclusive"
+    },
+    "sub_total": {
+      "title": "Sub-total amount",
+      "description": "Sub-total amount, normally before tax.",
+      "type": "number",
+      "example": 27500,
+      "nullable": true
+    },
+    "total_tax": {
+      "type": "number",
+      "title": "Total tax amount",
+      "description": "Total tax amount applied to this quote.",
+      "example": 2500,
+      "nullable": true
+    },
+    "tax_code": {
+      "type": "string",
+      "title": "Tax Code",
+      "description": "Applicable tax id/code override if tax is not supplied on a line item basis.",
+      "example": "1234",
+      "nullable": true
+    },
+    "discount_percentage": {
+      "type": "number",
+      "title": "Discount Percent",
+      "description": "Discount percentage applied to this quote.",
+      "example": 5.5,
+      "nullable": true
+    },
+    "discount_amount": {
+      "type": "number",
+      "title": "Discount Amount",
+      "description": "Discount amount applied to this quote.",
+      "example": 25,
+      "nullable": true
+    },
+    "total": {
+      "type": "number",
+      "title": "Total amount",
+      "description": "Total amount of quote, including tax.",
+      "example": 27500,
+      "nullable": true
+    },
+    "customer_memo": {
+      "type": "string",
+      "title": "Customer memo",
+      "description": "Customer memo",
+      "example": "Thank you for considering our services!",
+      "nullable": true
+    },
+    "line_items": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/QuoteLineItem"
+      }
+    },
+    "billing_address": {
+      "$ref": "#/components/schemas/Address"
+    },
+    "shipping_address": {
+      "$ref": "#/components/schemas/Address"
+    },
+    "tracking_categories": {
+      "$ref": "#/components/schemas/LinkedTrackingCategories"
+    },
+    "template_id": {
+      "type": "string",
+      "title": "Template",
+      "description": "Optional quote template",
+      "example": "123456",
+      "nullable": true
+    },
+    "source_document_url": {
+      "type": "string",
+      "title": "Source document URL",
+      "description": "URL link to a source document - shown as 'Go to [appName]' in the downstream app.",
+      "example": "https://www.quotesolution.com/quote/123456",
+      "nullable": true
+    },
+    "custom_fields": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/CustomField"
+      }
+    },
+    "row_version": {
+      "$ref": "#/components/schemas/RowVersion"
+    },
+    "updated_by": {
+      "$ref": "#/components/schemas/UpdatedBy"
+    },
+    "created_by": {
+      "$ref": "#/components/schemas/CreatedBy"
+    },
+    "updated_at": {
+      "$ref": "#/components/schemas/UpdatedAt"
+    },
+    "created_at": {
+      "$ref": "#/components/schemas/CreatedAt"
+    },
+    "pass_through": {
+      "$ref": "#/components/schemas/PassThroughBody"
+    }
+  }
+}

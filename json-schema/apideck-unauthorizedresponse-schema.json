@@ -1,0 +1,112 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UnauthorizedResponse",
+  "title": "UnauthorizedResponse",
+  "type": "object",
+  "x-apideck-schema-id": "Unauthorized",
+  "properties": {
+    "status_code": {
+      "type": "number",
+      "description": "HTTP status code",
+      "example": 401
+    },
+    "error": {
+      "type": "string",
+      "description": "Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)",
+      "example": "Unauthorized"
+    },
+    "type_name": {
+      "type": "string",
+      "description": "The type of error returned",
+      "example": "UnauthorizedError"
+    },
+    "message": {
+      "type": "string",
+      "description": "A human-readable message providing more details about the error.",
+      "example": "Unauthorized Request",
+      "x-speakeasy-error-message": true
+    },
+    "detail": {
+      "anyOf": [
+        {
+          "type": "string",
+          "example": "Missing authentication"
+        },
+        {
+          "type": "object",
+          "x-speakeasy-detail": true,
+          "properties": {
+            "type": {
+              "type": "string",
+              "description": "Error type identifier",
+              "example": "refresh_token_connector_error"
+            },
+            "message": {
+              "type": "string",
+              "description": "Detailed error message",
+              "example": "Token refresh failed"
+            },
+            "debug": {
+              "type": "object",
+              "description": "Debug information including request/response details and OAuth timing metadata",
+              "properties": {
+                "request": {
+                  "type": "object",
+                  "description": "HTTP request details"
+                },
+                "response": {
+                  "type": "object",
+                  "description": "HTTP response details"
+                },
+                "message": {
+                  "type": "string",
+                  "description": "Error message from downstream provider or network layer"
+                },
+                "code": {
+                  "type": "string",
+                  "description": "Error code (e.g., ETIMEDOUT, ECONNREFUSED)"
+                },
+                "credentials_expire_at_ms": {
+                  "type": "number",
+                  "description": "Unix timestamp (milliseconds) when credentials will be deleted if not refreshed. Only present for non-recoverable errors (401, 400). Credentials are preserved indefinitely for recoverable/network errors.",
+                  "example": 1620172800000
+                },
+                "retry_after_ms": {
+                  "type": "number",
+                  "description": "Unix timestamp (milliseconds) when token refresh retry is allowed after cooldown period expires.",
+                  "example": 1620000030000
+                },
+                "cooldown_remaining_ms": {
+                  "type": "number",
+                  "description": "Milliseconds remaining in cooldown period before retry is allowed.",
+                  "example": 30000
+                }
+              }
+            }
+          },
+          "example": {
+            "type": "refresh_token_connector_error",
+            "message": "Token refresh failed with 401 error",
+            "debug": {
+              "response": {
+                "statusCode": 401,
+                "data": {
+                  "error": "invalid_grant"
+                }
+              },
+              "credentials_expire_at_ms": 1620172800000,
+              "retry_after_ms": 1620000030000,
+              "cooldown_remaining_ms": 30000
+            }
+          }
+        }
+      ],
+      "description": "Contains parameter or domain specific information related to the error and why it occurred."
+    },
+    "ref": {
+      "type": "string",
+      "description": "Link to documentation of error type",
+      "example": "https://developers.apideck.com/errors#unauthorizederror"
+    }
+  }
+}

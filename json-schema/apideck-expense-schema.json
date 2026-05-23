@@ -1,0 +1,234 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Expense",
+  "title": "Expense",
+  "type": "object",
+  "x-apideck-schema-id": "Expense",
+  "additionalProperties": false,
+  "x-apideck-weights": {
+    "id": "critical",
+    "display_id": "high",
+    "transaction_date": "critical",
+    "account_id": "critical",
+    "account": "critical",
+    "supplier_id": "high",
+    "supplier": "high",
+    "line_items": "high",
+    "currency": "high",
+    "type": "high",
+    "number": "medium",
+    "memo": "medium",
+    "total_amount": "medium",
+    "sub_total": "high",
+    "total_tax": "high",
+    "tax_inclusive": "medium",
+    "tracking_categories": "medium",
+    "currency_rate": "edge-case",
+    "company_id": "edge-case",
+    "location": "medium",
+    "department_id": "medium",
+    "department": "medium",
+    "payment_type": "medium",
+    "tax_rate": "medium",
+    "reference": "medium",
+    "custom_fields": "medium",
+    "source_document_url": "low",
+    "custom_mappings": "low",
+    "pass_through": "low",
+    "status": "medium",
+    "updated_at": "medium",
+    "created_at": "medium",
+    "updated_by": "low",
+    "created_by": "low",
+    "row_version": "low"
+  },
+  "required": [
+    "transaction_date",
+    "line_items"
+  ],
+  "x-apideck-strict-required": [
+    "transaction_date",
+    "line_items"
+  ],
+  "x-apideck-strict-any-of": [
+    {
+      "required": [
+        "account_id"
+      ]
+    },
+    {
+      "required": [
+        "account"
+      ]
+    }
+  ],
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/Id"
+    },
+    "display_id": {
+      "$ref": "#/components/schemas/DisplayId"
+    },
+    "number": {
+      "type": "string",
+      "title": "Number",
+      "description": "Number.",
+      "example": "OIT00546",
+      "nullable": true
+    },
+    "transaction_date": {
+      "$ref": "#/components/schemas/TransactionDate"
+    },
+    "account_id": {
+      "title": "Account ID",
+      "description": "The unique identifier for the ledger account that this expense should be credited to. Deprecated, use account instead.",
+      "type": "string",
+      "example": "123456",
+      "deprecated": true
+    },
+    "account": {
+      "$ref": "#/components/schemas/LinkedFinancialAccount"
+    },
+    "supplier_id": {
+      "type": "string",
+      "title": "Supplier ID",
+      "description": "The ID of the supplier this entity is linked to. Deprecated, use supplier instead.",
+      "example": "12345",
+      "deprecated": true
+    },
+    "supplier": {
+      "$ref": "#/components/schemas/LinkedSupplier"
+    },
+    "company_id": {
+      "$ref": "#/components/schemas/AccountingCompanyId"
+    },
+    "location": {
+      "$ref": "#/components/schemas/LinkedLocation"
+    },
+    "department_id": {
+      "$ref": "#/components/schemas/DepartmentId"
+    },
+    "department": {
+      "$ref": "#/components/schemas/LinkedDepartment"
+    },
+    "payment_type": {
+      "type": "string",
+      "title": "Payment type",
+      "description": "The type of payment for the expense.",
+      "x-apideck-enum-id": "expenses.payment_type",
+      "enum": [
+        "cash",
+        "check",
+        "credit_card",
+        "other"
+      ],
+      "example": "cash",
+      "nullable": true
+    },
+    "currency": {
+      "$ref": "#/components/schemas/Currency"
+    },
+    "currency_rate": {
+      "$ref": "#/components/schemas/CurrencyRate"
+    },
+    "type": {
+      "type": "string",
+      "title": "Expense type",
+      "description": "The type of expense.",
+      "x-apideck-enum-id": "expenses.type",
+      "enum": [
+        "expense",
+        "refund"
+      ],
+      "example": "expense",
+      "nullable": true
+    },
+    "memo": {
+      "type": "string",
+      "title": "Memo",
+      "description": "The memo of the expense.",
+      "example": "For travel expenses incurred on 2024-05-15",
+      "nullable": true
+    },
+    "tax_rate": {
+      "$ref": "#/components/schemas/LinkedTaxRate"
+    },
+    "tax_inclusive": {
+      "$ref": "#/components/schemas/TaxInclusive"
+    },
+    "sub_total": {
+      "$ref": "#/components/schemas/SubTotal"
+    },
+    "total_tax": {
+      "$ref": "#/components/schemas/TotalTax"
+    },
+    "total_amount": {
+      "type": "number",
+      "title": "Total amount",
+      "description": "The total amount of the expense line item.",
+      "example": 275,
+      "nullable": true
+    },
+    "tracking_categories": {
+      "$ref": "#/components/schemas/LinkedTrackingCategories"
+    },
+    "line_items": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Expense line items linked to this expense.",
+      "items": {
+        "$ref": "#/components/schemas/ExpenseLineItem"
+      }
+    },
+    "reference": {
+      "$ref": "#/components/schemas/Reference"
+    },
+    "source_document_url": {
+      "type": "string",
+      "title": "Source document URL",
+      "description": "URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.",
+      "example": "https://www.invoicesolution.com/expense/123456",
+      "nullable": true
+    },
+    "custom_fields": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/CustomField"
+      }
+    },
+    "custom_mappings": {
+      "$ref": "#/components/schemas/CustomMappings"
+    },
+    "status": {
+      "type": "string",
+      "title": "Status",
+      "description": "Expense status",
+      "example": "draft",
+      "x-apideck-enum-id": "expenses.status",
+      "enum": [
+        "draft",
+        "posted",
+        "voided"
+      ],
+      "nullable": true
+    },
+    "updated_at": {
+      "$ref": "#/components/schemas/UpdatedAt"
+    },
+    "created_at": {
+      "$ref": "#/components/schemas/CreatedAt"
+    },
+    "row_version": {
+      "$ref": "#/components/schemas/RowVersion"
+    },
+    "updated_by": {
+      "$ref": "#/components/schemas/UpdatedBy"
+    },
+    "created_by": {
+      "$ref": "#/components/schemas/CreatedBy"
+    },
+    "pass_through": {
+      "$ref": "#/components/schemas/PassThroughBody"
+    }
+  }
+}

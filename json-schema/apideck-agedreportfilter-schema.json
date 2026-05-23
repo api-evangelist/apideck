@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AgedReportFilter",
+  "title": "AgedReportFilter",
+  "type": "object",
+  "x-apideck-schema-id": "AgedReportFilter",
+  "example": {
+    "supplier_id": "123abc",
+    "customer_id": "123abc",
+    "report_as_of_date": "2024-01-01",
+    "period_count": 3,
+    "period_length": 30
+  },
+  "properties": {
+    "customer_id": {
+      "type": "string",
+      "title": "Customer Id",
+      "description": "Filter by customer id",
+      "example": "123abc"
+    },
+    "supplier_id": {
+      "type": "string",
+      "title": "Supplier Id",
+      "description": "Filter by supplier id",
+      "example": "123abc"
+    },
+    "report_as_of_date": {
+      "type": "string",
+      "title": "Report As Of Date",
+      "description": "The cutoff date for considering transactions",
+      "example": "2024-01-01"
+    },
+    "period_count": {
+      "title": "Period Count",
+      "description": "Number of periods to split the aged creditors report into",
+      "example": 3,
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 12
+    },
+    "period_length": {
+      "title": "Period Length",
+      "description": "Length of each period in days",
+      "example": 30,
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 365
+    }
+  },
+  "additionalProperties": false
+}

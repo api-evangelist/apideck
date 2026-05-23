@@ -1,0 +1,126 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UnifiedFile",
+  "title": "UnifiedFile",
+  "type": "object",
+  "x-apideck-schema-id": "UnifiedFile",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "name",
+    "type"
+  ],
+  "x-apideck-weights": {
+    "id": "critical",
+    "name": "critical",
+    "type": "critical",
+    "mime_type": "high",
+    "downloadable": "high",
+    "size": "high",
+    "parent_folders": "high",
+    "parent_folders_complete": "critical",
+    "updated_at": "critical",
+    "created_at": "high",
+    "downstream_id": "edge-case"
+  },
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/Id"
+    },
+    "downstream_id": {
+      "$ref": "#/components/schemas/DownstreamId"
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the file",
+      "example": "sample.jpg",
+      "nullable": true
+    },
+    "description": {
+      "type": "string",
+      "description": "Optional description of the file",
+      "example": "A sample image",
+      "nullable": true
+    },
+    "type": {
+      "$ref": "#/components/schemas/FileType"
+    },
+    "path": {
+      "type": "string",
+      "description": "The full path of the file or folder (includes the file name)",
+      "example": "/Documents/sample.jpg",
+      "nullable": true
+    },
+    "mime_type": {
+      "type": "string",
+      "description": "The MIME type of the file.",
+      "example": "image/jpeg",
+      "nullable": true
+    },
+    "downloadable": {
+      "type": "boolean",
+      "description": "Whether the current user can download this file"
+    },
+    "size": {
+      "$ref": "#/components/schemas/FileSize"
+    },
+    "owner": {
+      "$ref": "#/components/schemas/Owner"
+    },
+    "parent_folders": {
+      "type": "array",
+      "description": "The parent folders of the file, starting from the root",
+      "items": {
+        "$ref": "#/components/schemas/LinkedFolder"
+      }
+    },
+    "parent_folders_complete": {
+      "type": "boolean",
+      "description": "Whether the list of parent folders is complete. Some connectors only return the direct parent of a file"
+    },
+    "permissions": {
+      "type": "object",
+      "description": "Permissions the current user has on this file.",
+      "properties": {
+        "download": {
+          "type": "boolean",
+          "description": "Whether the current user can download this file."
+        }
+      }
+    },
+    "exportable": {
+      "type": "boolean",
+      "description": "Whether the current file is exportable to other file formats. This property is relevant for proprietary file formats such as Google Docs or Dropbox Paper."
+    },
+    "export_formats": {
+      "type": "array",
+      "description": "The available file formats when exporting this file.",
+      "example": [
+        "application/pdf",
+        "application/vnd.oasis.opendocument.presentation",
+        "text/plain"
+      ],
+      "items": {
+        "type": "string",
+        "example": "application/pdf",
+        "description": "An available file format (typically MIME type) to export this file."
+      },
+      "nullable": true
+    },
+    "custom_mappings": {
+      "$ref": "#/components/schemas/CustomMappings"
+    },
+    "updated_by": {
+      "$ref": "#/components/schemas/UpdatedBy"
+    },
+    "created_by": {
+      "$ref": "#/components/schemas/CreatedBy"
+    },
+    "updated_at": {
+      "$ref": "#/components/schemas/UpdatedAt"
+    },
+    "created_at": {
+      "$ref": "#/components/schemas/CreatedAt"
+    }
+  }
+}

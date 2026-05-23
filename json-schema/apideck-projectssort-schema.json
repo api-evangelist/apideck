@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ProjectsSort",
+  "title": "ProjectsSort",
+  "type": "object",
+  "x-apideck-schema-id": "ProjectsSort",
+  "properties": {
+    "by": {
+      "type": "string",
+      "title": "Sort by",
+      "description": "The field to sort by",
+      "x-apideck-enum-id": "projects.sort_by",
+      "enum": [
+        "name",
+        "status",
+        "start_date",
+        "end_date",
+        "budget_amount",
+        "actual_amount",
+        "created_at",
+        "updated_at"
+      ],
+      "example": "name"
+    },
+    "direction": {
+      "$ref": "#/components/schemas/SortDirection"
+    }
+  }
+}

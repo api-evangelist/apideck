@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Owner",
+  "title": "Owner",
+  "type": "object",
+  "x-apideck-schema-id": "Owner",
+  "readOnly": true,
+  "x-apideck-weights": {
+    "id": "critical"
+  },
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "ID of the owner",
+      "example": "12345",
+      "readOnly": true
+    },
+    "email": {
+      "type": "string",
+      "description": "Email of the owner",
+      "example": "hello@apideck.com",
+      "readOnly": true,
+      "nullable": true
+    },
+    "name": {
+      "type": "string",
+      "description": "Name of the owner",
+      "example": "Elon Musk",
+      "readOnly": true,
+      "nullable": true
+    }
+  }
+}

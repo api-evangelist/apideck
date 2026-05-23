@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Person",
+  "title": "Person",
+  "type": "object",
+  "x-apideck-schema-id": "Person",
+  "x-apideck-weights": {
+    "id": "low",
+    "first_name": "critical",
+    "last_name": "critical",
+    "middle_name": "low",
+    "gender": "medium",
+    "initials": "medium",
+    "birthday": "low",
+    "deceased_on": "low"
+  },
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/IdOrNull"
+    },
+    "first_name": {
+      "$ref": "#/components/schemas/FirstName"
+    },
+    "last_name": {
+      "$ref": "#/components/schemas/LastName"
+    },
+    "middle_name": {
+      "$ref": "#/components/schemas/MiddleName"
+    },
+    "gender": {
+      "$ref": "#/components/schemas/Gender"
+    },
+    "initials": {
+      "type": "string",
+      "title": "Initials",
+      "description": "Initials of the person",
+      "example": "EM",
+      "nullable": true
+    },
+    "birthday": {
+      "type": "string",
+      "description": "Date of birth",
+      "example": "2000-08-12",
+      "format": "date",
+      "nullable": true
+    },
+    "deceased_on": {
+      "type": "string",
+      "description": "Date of death",
+      "example": "2000-08-12",
+      "format": "date",
+      "nullable": true
+    },
+    "custom_mappings": {
+      "$ref": "#/components/schemas/CustomMappings"
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/EmployeeId",
+  "title": "Employee ID",
+  "type": "string",
+  "description": "ID of the employee",
+  "example": "12345",
+  "nullable": true
+}

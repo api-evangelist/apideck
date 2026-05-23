@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/LinkedAttachment",
+  "title": "LinkedAttachment",
+  "type": "object",
+  "x-apideck-schema-id": "LinkedAttachment",
+  "x-apideck-weights": {
+    "name": "critical",
+    "content": "critical",
+    "mime_type": "medium",
+    "is_compressed": "low",
+    "encoding": "low",
+    "notes": "low"
+  },
+  "nullable": true,
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name of the file",
+      "example": "sample.jpg",
+      "nullable": true
+    },
+    "mime_type": {
+      "type": "string",
+      "description": "The MIME type of the file.",
+      "example": "image/jpeg",
+      "nullable": true
+    },
+    "is_compressed": {
+      "type": "boolean",
+      "description": "Whether the file is c ompressed.",
+      "example": false,
+      "nullable": true
+    },
+    "encoding": {
+      "type": "string",
+      "description": "The encoding of the file.",
+      "example": "base64",
+      "nullable": true
+    },
+    "content": {
+      "type": "string",
+      "description": "The content of the file.",
+      "example": "data:image/jpeg;base64,...",
+      "nullable": true
+    },
+    "notes": {
+      "type": "string",
+      "description": "The notes of the file.",
+      "example": "A sample image",
+      "nullable": true
+    }
+  }
+}

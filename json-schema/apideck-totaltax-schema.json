@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TotalTax",
+  "title": "Total tax amount",
+  "description": "Total tax amount applied to this transaction.",
+  "type": "number",
+  "example": 25,
+  "nullable": true
+}

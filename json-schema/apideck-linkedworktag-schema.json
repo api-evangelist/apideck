@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/LinkedWorktag",
+  "title": "LinkedWorktag",
+  "type": "object",
+  "x-apideck-schema-id": "LinkedWorktag",
+  "x-apideck-weights": {
+    "id": "critical",
+    "value": "critical"
+  },
+  "nullable": true,
+  "properties": {
+    "id": {
+      "type": "string",
+      "title": "Worktag ID",
+      "description": "The unique identifier for the worktag.",
+      "example": "123456"
+    },
+    "value": {
+      "type": "string",
+      "title": "Worktag Value",
+      "description": "The value of the worktag.",
+      "example": "New York",
+      "nullable": true
+    }
+  }
+}

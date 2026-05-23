@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CustomObject",
+  "title": "CustomObject",
+  "type": "object",
+  "x-apideck-schema-id": "CustomObject",
+  "x-apideck-weights": {
+    "id": "high",
+    "name": "high",
+    "description": "medium",
+    "fields": "critical",
+    "owner_id": "medium",
+    "updated_by": "edge-case",
+    "created_by": "edge-case",
+    "updated_at": "medium",
+    "created_at": "medium"
+  },
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "description": "The unique identifier of the custom object",
+      "type": "string",
+      "readOnly": true,
+      "example": "co_12345"
+    },
+    "owner_id": {
+      "description": "The unique identifier of the owner of the custom object",
+      "type": "string",
+      "readOnly": true,
+      "example": "user_12345"
+    },
+    "name": {
+      "description": "The name of the custom object",
+      "type": "string",
+      "example": "project",
+      "nullable": true
+    },
+    "fields": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "name"
+          },
+          "value": {
+            "type": "string",
+            "example": "string"
+          }
+        }
+      }
+    },
+    "updated_by": {
+      "description": "The unique identifier of the user who last updated the custom object",
+      "type": "string",
+      "readOnly": true,
+      "example": "user_12345"
+    },
+    "created_by": {
+      "description": "The unique identifier of the user who created the custom object",
+      "type": "string",
+      "readOnly": true,
+      "example": "user_12345"
+    },
+    "updated_at": {
+      "description": "The timestamp when the custom object was last updated",
+      "type": "string",
+      "example": "2020-09-30T07:43:32.000Z",
+      "readOnly": true,
+      "nullable": true
+    },
+    "created_at": {
+      "description": "The timestamp when the custom object was created",
+      "type": "string",
+      "example": "2020-09-30T07:43:32.000Z",
+      "readOnly": true,
+      "nullable": true
+    },
+    "pass_through": {
+      "$ref": "#/components/schemas/PassThroughBody"
+    }
+  }
+}

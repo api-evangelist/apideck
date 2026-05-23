@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PassThroughQuery",
+  "title": "PassThroughQuery",
+  "type": "object",
+  "additionalProperties": true,
+  "properties": {
+    "example_downstream_property": {
+      "type": "string",
+      "description": "All passthrough query parameters are passed along to the connector as is (?pass_through[search]=leads becomes ?search=leads)"
+    }
+  },
+  "example": {
+    "search": "San Francisco"
+  }
+}

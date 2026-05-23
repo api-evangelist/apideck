@@ -1,0 +1,262 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ExpenseReport",
+  "title": "ExpenseReport",
+  "type": "object",
+  "x-apideck-schema-id": "ExpenseReport",
+  "additionalProperties": false,
+  "x-apideck-weights": {
+    "id": "critical",
+    "display_id": "high",
+    "number": "medium",
+    "title": "high",
+    "employee": "critical",
+    "status": "critical",
+    "transaction_date": "critical",
+    "posting_date": "low",
+    "due_date": "medium",
+    "currency": "high",
+    "currency_rate": "edge-case",
+    "sub_total": "high",
+    "total_tax": "high",
+    "total_amount": "critical",
+    "reimbursable_amount": "medium",
+    "memo": "medium",
+    "department": "medium",
+    "location": "medium",
+    "account": "medium",
+    "accounting_period": "low",
+    "line_items": "critical",
+    "subsidiary": "medium",
+    "tracking_categories": "medium",
+    "tax_inclusive": "edge-case",
+    "approved_by": "low",
+    "custom_fields": "medium",
+    "custom_mappings": "low",
+    "row_version": "low",
+    "updated_by": "edge-case",
+    "created_by": "edge-case",
+    "updated_at": "medium",
+    "created_at": "medium",
+    "pass_through": "low"
+  },
+  "required": [
+    "employee",
+    "transaction_date",
+    "line_items"
+  ],
+  "x-apideck-strict-required": [
+    "id",
+    "employee",
+    "transaction_date",
+    "line_items",
+    "status",
+    "total_amount"
+  ],
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/Id"
+    },
+    "display_id": {
+      "$ref": "#/components/schemas/DisplayId"
+    },
+    "number": {
+      "type": "string",
+      "title": "Number",
+      "description": "The expense report number.",
+      "example": "ER-001",
+      "nullable": true
+    },
+    "title": {
+      "type": "string",
+      "title": "Title",
+      "description": "Title or purpose of the expense report.",
+      "example": "Q1 Business Travel",
+      "nullable": true
+    },
+    "employee": {
+      "type": "object",
+      "title": "Employee",
+      "description": "The employee who submitted the expense report.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "Employee ID",
+          "description": "A unique identifier for the employee.",
+          "example": "12345"
+        },
+        "display_name": {
+          "type": "string",
+          "title": "Employee Display Name",
+          "description": "The display name of the employee.",
+          "example": "John Doe",
+          "nullable": true
+        }
+      }
+    },
+    "status": {
+      "type": "string",
+      "title": "Status",
+      "description": "The status of the expense report.",
+      "x-apideck-enum-id": "expense_reports.status",
+      "enum": [
+        "draft",
+        "submitted",
+        "approved",
+        "reimbursed",
+        "rejected",
+        "reversed",
+        "voided"
+      ],
+      "example": "submitted",
+      "nullable": true
+    },
+    "transaction_date": {
+      "$ref": "#/components/schemas/TransactionDate"
+    },
+    "posting_date": {
+      "type": "string",
+      "title": "Posting Date",
+      "description": "The date the expense report was posted to the general ledger.",
+      "format": "date",
+      "example": "2024-06-01",
+      "nullable": true
+    },
+    "due_date": {
+      "type": "string",
+      "title": "Due Date",
+      "description": "Date when reimbursement is due.",
+      "format": "date",
+      "example": "2024-06-15",
+      "nullable": true
+    },
+    "currency": {
+      "$ref": "#/components/schemas/Currency"
+    },
+    "currency_rate": {
+      "$ref": "#/components/schemas/CurrencyRate"
+    },
+    "sub_total": {
+      "$ref": "#/components/schemas/SubTotal"
+    },
+    "total_tax": {
+      "$ref": "#/components/schemas/TotalTax"
+    },
+    "total_amount": {
+      "type": "number",
+      "title": "Total Amount",
+      "description": "Total amount of all expense lines including tax.",
+      "example": 1250.75,
+      "nullable": true
+    },
+    "reimbursable_amount": {
+      "type": "number",
+      "title": "Reimbursable Amount",
+      "description": "Total reimbursable amount (may differ from total if some expenses are non-reimbursable).",
+      "example": 1100,
+      "nullable": true
+    },
+    "memo": {
+      "type": "string",
+      "title": "Memo",
+      "description": "The memo of the expense report.",
+      "example": "Business travel expenses for Q1 client meetings",
+      "nullable": true
+    },
+    "department": {
+      "$ref": "#/components/schemas/LinkedDepartment"
+    },
+    "location": {
+      "$ref": "#/components/schemas/LinkedLocation"
+    },
+    "account": {
+      "$ref": "#/components/schemas/LinkedLedgerAccount"
+    },
+    "accounting_period": {
+      "type": "object",
+      "title": "Accounting Period",
+      "description": "The accounting period the expense report is posted to.",
+      "nullable": true,
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "Accounting Period ID",
+          "description": "A unique identifier for the accounting period.",
+          "example": "12345"
+        },
+        "name": {
+          "type": "string",
+          "title": "Accounting Period Name",
+          "description": "The name of the accounting period.",
+          "example": "Q1 2024",
+          "nullable": true
+        }
+      }
+    },
+    "line_items": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Expense line items linked to this expense report.",
+      "items": {
+        "$ref": "#/components/schemas/ExpenseReportLineItem"
+      }
+    },
+    "subsidiary": {
+      "$ref": "#/components/schemas/LinkedSubsidiary"
+    },
+    "tracking_categories": {
+      "$ref": "#/components/schemas/LinkedTrackingCategories"
+    },
+    "tax_inclusive": {
+      "$ref": "#/components/schemas/TaxInclusive"
+    },
+    "approved_by": {
+      "type": "object",
+      "title": "Approved By",
+      "description": "The person who approved the expense report.",
+      "nullable": true,
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "Approver ID",
+          "description": "A unique identifier for the approver.",
+          "example": "12345"
+        },
+        "display_name": {
+          "type": "string",
+          "title": "Approver Display Name",
+          "description": "The display name of the approver.",
+          "example": "Jane Smith",
+          "nullable": true
+        }
+      }
+    },
+    "custom_fields": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/CustomField"
+      }
+    },
+    "custom_mappings": {
+      "$ref": "#/components/schemas/CustomMappings"
+    },
+    "row_version": {
+      "$ref": "#/components/schemas/RowVersion"
+    },
+    "updated_by": {
+      "$ref": "#/components/schemas/UpdatedBy"
+    },
+    "created_by": {
+      "$ref": "#/components/schemas/CreatedBy"
+    },
+    "updated_at": {
+      "$ref": "#/components/schemas/UpdatedAt"
+    },
+    "created_at": {
+      "$ref": "#/components/schemas/CreatedAt"
+    },
+    "pass_through": {
+      "$ref": "#/components/schemas/PassThroughBody"
+    }
+  }
+}

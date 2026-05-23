@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BalanceSheetAccounts",
+  "title": "Balance Sheet Accounts",
+  "type": "array",
+  "x-apideck-schema-id": "BalanceSheetAccounts",
+  "x-speakeasy-type-override": "any",
+  "description": "A list of balance sheet accounts",
+  "nullable": true,
+  "items": {
+    "anyOf": [
+      {
+        "$ref": "#/components/schemas/BalanceSheetAccount"
+      },
+      {
+        "$ref": "#/components/schemas/BalanceSheetAccountRecord"
+      }
+    ]
+  }
+}

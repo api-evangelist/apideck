@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/LinkedBankAccount",
+  "title": "LinkedBankAccount",
+  "type": "object",
+  "x-apideck-schema-id": "LinkedBankAccount",
+  "additionalProperties": false,
+  "nullable": true,
+  "x-apideck-weights": {
+    "id": "medium",
+    "name": "medium",
+    "account_number": "medium",
+    "bank_name": "low"
+  },
+  "properties": {
+    "id": {
+      "title": "Bank Account ID",
+      "description": "The unique identifier for the bank account.",
+      "type": "string",
+      "example": "ba_123456"
+    },
+    "name": {
+      "$ref": "#/components/schemas/BankAccountName"
+    },
+    "account_number": {
+      "$ref": "#/components/schemas/BankAccountNumber"
+    },
+    "bank_name": {
+      "$ref": "#/components/schemas/BankName"
+    }
+  }
+}

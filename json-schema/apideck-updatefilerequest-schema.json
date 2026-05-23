@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UpdateFileRequest",
+  "title": "UpdateFileRequest",
+  "type": "object",
+  "x-apideck-schema-id": "UpdateFileRequest",
+  "additionalProperties": false,
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name of the file.",
+      "example": "New Name.pdf"
+    },
+    "description": {
+      "type": "string",
+      "description": "Optional description of the file.",
+      "example": "Renamed PDF Document"
+    },
+    "parent_folder_id": {
+      "$ref": "#/components/schemas/ParentFolderId"
+    },
+    "pass_through": {
+      "$ref": "#/components/schemas/PassThroughBody"
+    }
+  }
+}

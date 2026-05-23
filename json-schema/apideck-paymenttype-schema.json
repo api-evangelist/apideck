@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PaymentType",
+  "title": "Payment Type",
+  "type": "string",
+  "description": "Type of payment",
+  "x-apideck-enum-id": "payments.type",
+  "enum": [
+    "accounts_receivable",
+    "accounts_payable",
+    "accounts_receivable_credit",
+    "accounts_payable_credit",
+    "accounts_receivable_overpayment",
+    "accounts_payable_overpayment",
+    "accounts_receivable_prepayment",
+    "accounts_payable_prepayment"
+  ],
+  "example": "accounts_receivable"
+}

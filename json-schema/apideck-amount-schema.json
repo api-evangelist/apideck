@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Amount",
+  "title": "Amount",
+  "description": "The amount or value of the item",
+  "type": "number",
+  "example": 1000,
+  "readOnly": true
+}

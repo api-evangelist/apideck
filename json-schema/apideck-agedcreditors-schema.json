@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AgedCreditors",
+  "title": "AgedCreditors",
+  "type": "object",
+  "x-apideck-schema-id": "AgedCreditors",
+  "additionalProperties": false,
+  "x-apideck-weights": {
+    "report_generated_at": "critical",
+    "report_as_of_date": "high",
+    "period_count": "medium",
+    "period_length": "medium",
+    "outstanding_balances": "critical"
+  },
+  "properties": {
+    "report_generated_at": {
+      "$ref": "#/components/schemas/ReportGeneratedAt"
+    },
+    "report_as_of_date": {
+      "$ref": "#/components/schemas/ReportAsOfDate"
+    },
+    "period_count": {
+      "$ref": "#/components/schemas/PeriodCount"
+    },
+    "period_length": {
+      "$ref": "#/components/schemas/PeriodLength"
+    },
+    "outstanding_balances": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/OutstandingBalanceBySupplier"
+      }
+    }
+  }
+}

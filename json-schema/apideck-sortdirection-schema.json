@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SortDirection",
+  "title": "SortDirection",
+  "type": "string",
+  "x-apideck-schema-id": "SortDirection",
+  "description": "The direction in which to sort the results",
+  "x-apideck-enum-id": "sort_direction",
+  "enum": [
+    "asc",
+    "desc"
+  ],
+  "default": "asc"
+}

@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BIC",
+  "title": "BIC/SWIFT Code",
+  "type": "string",
+  "description": "Bank Identifier Code / SWIFT Code",
+  "example": "CHASUS33",
+  "nullable": true
+}

@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FirstName",
+  "title": "First name",
+  "type": "string",
+  "description": "The first name of the person.",
+  "example": "Elon",
+  "nullable": true
+}

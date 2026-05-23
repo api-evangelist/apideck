@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DisplayId",
+  "title": "Display id",
+  "type": "string",
+  "description": "Id to be displayed.",
+  "example": "123456",
+  "nullable": true
+}

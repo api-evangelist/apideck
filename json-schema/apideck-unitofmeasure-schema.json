@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UnitOfMeasure",
+  "title": "Unit of measure",
+  "type": "string",
+  "description": "Description of the unit type the item is sold as, ie: kg, hour.",
+  "example": "pc.",
+  "nullable": true
+}

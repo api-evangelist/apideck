@@ -1,0 +1,227 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BillLineItem",
+  "title": "Bill Line Item",
+  "type": "object",
+  "x-apideck-schema-id": "BillLineItem",
+  "additionalProperties": false,
+  "x-apideck-weights": {
+    "id": "high",
+    "row_id": "edge-case",
+    "code": "medium",
+    "line_number": "medium",
+    "description": "high",
+    "type": "medium",
+    "tax_amount": "high",
+    "total_amount": "high",
+    "retention_amount": "edge-case",
+    "payment_amount": "low",
+    "quantity": "high",
+    "unit_price": "high",
+    "unit_of_measure": "edge-case",
+    "discount_percentage": "low",
+    "discount_amount": "low",
+    "location_id": "low",
+    "department_id": "low",
+    "subsidiary_id": "low",
+    "category_id": "edge-case",
+    "shipping_id": "edge-case",
+    "memo": "low",
+    "prepaid": "edge-case",
+    "tax_applicable_on": "edge-case",
+    "tax_recoverability": "edge-case",
+    "tax_method": "edge-case",
+    "item": "high",
+    "tax_rate": "medium",
+    "ledger_account": "low",
+    "purchase_order": "low",
+    "tracking_categories": "low",
+    "customer": "low",
+    "rebilling": "medium",
+    "row_version": "edge-case",
+    "created_at": "edge-case",
+    "updated_at": "high",
+    "updated_by": "edge-case",
+    "created_by": "edge-case",
+    "worktags": "edge-case"
+  },
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/Id"
+    },
+    "row_id": {
+      "type": "string",
+      "title": "Row ID",
+      "description": "Row ID",
+      "example": "12345"
+    },
+    "code": {
+      "type": "string",
+      "title": "Item code",
+      "description": "User defined item code",
+      "example": "120-C",
+      "nullable": true
+    },
+    "line_number": {
+      "$ref": "#/components/schemas/LineNumber"
+    },
+    "description": {
+      "type": "string",
+      "title": "Description",
+      "description": "User defined description",
+      "example": "Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.",
+      "nullable": true
+    },
+    "type": {
+      "$ref": "#/components/schemas/LineItemType"
+    },
+    "tax_amount": {
+      "$ref": "#/components/schemas/TaxAmount"
+    },
+    "total_amount": {
+      "type": "number",
+      "title": "Total amount",
+      "description": "Total amount of the line item",
+      "example": 27500,
+      "nullable": true
+    },
+    "quantity": {
+      "$ref": "#/components/schemas/Quantity"
+    },
+    "unit_price": {
+      "$ref": "#/components/schemas/UnitPrice"
+    },
+    "unit_of_measure": {
+      "$ref": "#/components/schemas/UnitOfMeasure"
+    },
+    "discount_percentage": {
+      "type": "number",
+      "title": "Discount Percentage",
+      "description": "Discount percentage applied to the line item when supported downstream.",
+      "example": 0.01,
+      "nullable": true
+    },
+    "discount_amount": {
+      "type": "number",
+      "title": "Discount Amount",
+      "description": "Discount amount applied to the line item when supported downstream.",
+      "example": 19.99,
+      "nullable": true
+    },
+    "location_id": {
+      "$ref": "#/components/schemas/LocationId"
+    },
+    "department_id": {
+      "$ref": "#/components/schemas/DepartmentId"
+    },
+    "subsidiary_id": {
+      "$ref": "#/components/schemas/SubsidiaryId"
+    },
+    "category_id": {
+      "type": "string",
+      "title": "Category ID",
+      "description": "ID of the category of the line item",
+      "example": "12345",
+      "nullable": true
+    },
+    "shipping_id": {
+      "type": "string",
+      "title": "Shipping ID",
+      "description": "ID of the shipping of the line item",
+      "example": "12345",
+      "nullable": true
+    },
+    "memo": {
+      "type": "string",
+      "title": "Memo",
+      "description": "Memo",
+      "example": "Some memo",
+      "nullable": true
+    },
+    "prepaid": {
+      "type": "boolean",
+      "title": "Prepaid",
+      "description": "Whether the line item is prepaid",
+      "example": true,
+      "nullable": true
+    },
+    "tax_applicable_on": {
+      "type": "string",
+      "title": "Tax Applicable On",
+      "description": "Tax applicable on",
+      "example": "Domestic_Purchase_of_Goods_and_Services",
+      "nullable": true
+    },
+    "tax_recoverability": {
+      "type": "string",
+      "title": "Tax Recoverability",
+      "description": "Tax recoverability",
+      "example": "Fully_Recoverable",
+      "nullable": true
+    },
+    "tax_method": {
+      "type": "string",
+      "title": "Tax method",
+      "description": "Method of tax calculation",
+      "example": "Due_to_Supplier",
+      "nullable": true
+    },
+    "retention_amount": {
+      "type": "number",
+      "title": "Retention amount",
+      "description": "Retention amount",
+      "example": 1000,
+      "nullable": true
+    },
+    "payment_amount": {
+      "type": "number",
+      "title": "Payment amount",
+      "description": "Payment amount",
+      "example": 1000,
+      "nullable": true
+    },
+    "item": {
+      "$ref": "#/components/schemas/LinkedInvoiceItem"
+    },
+    "tax_rate": {
+      "$ref": "#/components/schemas/LinkedTaxRate"
+    },
+    "ledger_account": {
+      "$ref": "#/components/schemas/LinkedLedgerAccount"
+    },
+    "purchase_order": {
+      "$ref": "#/components/schemas/LinkedPurchaseOrder"
+    },
+    "tracking_categories": {
+      "$ref": "#/components/schemas/LinkedTrackingCategories"
+    },
+    "customer": {
+      "$ref": "#/components/schemas/LinkedCustomer"
+    },
+    "rebilling": {
+      "$ref": "#/components/schemas/Rebilling"
+    },
+    "row_version": {
+      "$ref": "#/components/schemas/RowVersion"
+    },
+    "updated_by": {
+      "$ref": "#/components/schemas/UpdatedBy"
+    },
+    "created_by": {
+      "$ref": "#/components/schemas/CreatedBy"
+    },
+    "created_at": {
+      "$ref": "#/components/schemas/CreatedAt"
+    },
+    "updated_at": {
+      "$ref": "#/components/schemas/UpdatedAt"
+    },
+    "worktags": {
+      "type": "array",
+      "description": "A list of linked worktags. This is only supported for Workday.",
+      "items": {
+        "$ref": "#/components/schemas/LinkedWorktag"
+      }
+    }
+  }
+}

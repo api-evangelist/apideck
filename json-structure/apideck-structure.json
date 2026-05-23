@@ -1,0 +1,4604 @@
+{
+  "provider": "Apideck",
+  "providerId": "apideck",
+  "kind": "json-structure",
+  "description": "Structural overview of the Apideck API surface; extracted from openapi/.",
+  "schemaCount": 377,
+  "operationCount": 143,
+  "schemas": [
+    {
+      "name": "AccountCode",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "AccountId",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "AccountName",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "Amount",
+      "type": "number",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "AccountingByRow",
+      "type": "boolean",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "AccountingBankAccount",
+      "type": "object",
+      "propertyCount": 27,
+      "required": [
+        "id"
+      ]
+    },
+    {
+      "name": "AccountingCustomer",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "AccountingEmployee",
+      "type": "object",
+      "propertyCount": 31,
+      "required": []
+    },
+    {
+      "name": "AccountingEmployeesFilter",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "GetAccountingEmployeeResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "GetAccountingEmployeesResponse",
+      "type": "object",
+      "propertyCount": 9,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "CreateAccountingEmployeeResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "UpdateAccountingEmployeeResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "DeleteAccountingEmployeeResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "AccountingInvoiceId",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "AccountingSalesOrderId",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "AccountingProjectId",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "AccountingEventType",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "AccountingWebhookEvent",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "AccountingConnectionCompany",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "id",
+        "name"
+      ]
+    },
+    {
+      "name": "Active",
+      "type": "boolean",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "Address",
+      "type": "object",
+      "propertyCount": 25,
+      "required": []
+    },
+    {
+      "name": "BadRequestResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "BalanceSheet",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "reports"
+      ]
+    },
+    {
+      "name": "BalanceSheetAccount",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "BalanceSheetAccounts",
+      "type": "array",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "BalanceSheetAccountRecord",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "BalanceSheetFilter",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "BankAccount",
+      "type": "object",
+      "propertyCount": 12,
+      "required": []
+    },
+    {
+      "name": "BankAccountName",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "BankAccountNumber",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "BankName",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "BIC",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "IBAN",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "RoutingNumber",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "BSBNumber",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "BranchIdentifier",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "BankCode",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "BankAccountFilter",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "BankAccountsFilter",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "BankAccountsSort",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "Bill",
+      "type": "object",
+      "propertyCount": 51,
+      "required": []
+    },
+    {
+      "name": "BillLineItem",
+      "type": "object",
+      "propertyCount": 38,
+      "required": []
+    },
+    {
+      "name": "BillsFilter",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "BillsSort",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "Channel",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "Company",
+      "type": "object",
+      "propertyCount": 42,
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "name": "AccountingCompanyId",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "CompanyInfo",
+      "type": "object",
+      "propertyCount": 24,
+      "required": []
+    },
+    {
+      "name": "CompanyName",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "Contact",
+      "type": "object",
+      "propertyCount": 41,
+      "required": []
+    },
+    {
+      "name": "CreateBankAccountResponse",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "status_code",
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "CreateBillResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "CreateCreditNoteResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "CreateCustomerResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "CreateInvoiceItemResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "CreateInvoiceResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "CreateJournalEntryResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "CreateLedgerAccountResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "CreatePaymentResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "CreatePurchaseOrderResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "CreateSupplierResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "CreateTaxRateResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "CreatedAt",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "CreatedBy",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "CreditNote",
+      "type": "object",
+      "propertyCount": 37,
+      "required": [
+        "id",
+        "total_amount"
+      ]
+    },
+    {
+      "name": "CreditNotesFilter",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "CreditNotesSort",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "Currency",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "CurrencyRate",
+      "type": "number",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "CustomField",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "Customer",
+      "type": "object",
+      "propertyCount": 39,
+      "required": [
+        "id"
+      ]
+    },
+    {
+      "name": "CustomersFilter",
+      "type": "object",
+      "propertyCount": 8,
+      "required": []
+    },
+    {
+      "name": "CustomersSort",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "DeleteBankAccountResponse",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "status_code",
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "DeleteBillResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "DeleteCreditNoteResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "DeleteCustomerResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "DeleteInvoiceItemResponse",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "DeleteInvoiceResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "DeleteJournalEntryResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "DeleteLedgerAccountResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "DeletePaymentResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "DeletePurchaseOrderResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "DeleteSubsidiaryResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "DeleteSupplierResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "DeleteTaxRateResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "AccountingDepartment",
+      "type": "object",
+      "propertyCount": 15,
+      "required": []
+    },
+    {
+      "name": "AccountingDepartmentsFilter",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "AccountingLocationsFilter",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "DiscountPercentage",
+      "type": "number",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "DownstreamId",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "DueDate",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "Email",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "email"
+      ]
+    },
+    {
+      "name": "FirstName",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "Gender",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetBalanceSheetResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "GetBillResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "GetBillsResponse",
+      "type": "object",
+      "propertyCount": 9,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "GetCompanyInfoResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "GetCompaniesResponse",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "GetCreditNoteResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "GetCreditNotesResponse",
+      "type": "object",
+      "propertyCount": 9,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "GetBankAccountResponse",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "status_code",
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "GetBankAccountsResponse",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "status_code",
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "GetCustomerResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "GetCustomersResponse",
+      "type": "object",
+      "propertyCount": 9,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "GetInvoiceItemResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "GetInvoiceItemsResponse",
+      "type": "object",
+      "propertyCount": 9,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "GetInvoiceResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "GetInvoicesResponse",
+      "type": "object",
+      "propertyCount": 9,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "GetJournalEntriesResponse",
+      "type": "object",
+      "propertyCount": 9,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "GetJournalEntryResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "GetLedgerAccountResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "GetLedgerAccountsResponse",
+      "type": "object",
+      "propertyCount": 9,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "GetPaymentResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "GetPaymentsResponse",
+      "type": "object",
+      "propertyCount": 9,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "GetProfitAndLossResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "GetPurchaseOrderResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "GetPurchaseOrdersResponse",
+      "type": "object",
+      "propertyCount": 9,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "CreateSubsidiaryResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "GetSubsidiariesResponse",
+      "type": "object",
+      "propertyCount": 9,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "GetSubsidiaryResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "GetAccountingLocationsResponse",
+      "type": "object",
+      "propertyCount": 9,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "GetAccountingLocationResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "CreateAccountingLocationResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "DeleteAccountingLocationResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "UpdateAccountingLocationResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "GetAccountingDepartmentsResponse",
+      "type": "object",
+      "propertyCount": 9,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "GetAccountingDepartmentResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "CreateAccountingDepartmentResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "DeleteAccountingDepartmentResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "UpdateAccountingDepartmentResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "GetSupplierResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "GetSuppliersResponse",
+      "type": "object",
+      "propertyCount": 9,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "GetTaxRateResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "GetTaxRatesResponse",
+      "type": "object",
+      "propertyCount": 9,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "Id",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "Invoice",
+      "type": "object",
+      "propertyCount": 51,
+      "required": []
+    },
+    {
+      "name": "InvoiceItem",
+      "type": "object",
+      "propertyCount": 34,
+      "required": []
+    },
+    {
+      "name": "InvoiceItemAssetAccount",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "InvoiceItemExpenseAccount",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "InvoiceItemIncomeAccount",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "InvoiceItemsFilter",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "InvoiceItemFilter",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "InvoiceItemsSort",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "InvoiceLineItem",
+      "type": "object",
+      "propertyCount": 35,
+      "required": []
+    },
+    {
+      "name": "InvoiceResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "InvoicesFilter",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "InvoicesSort",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "JournalEntry",
+      "type": "object",
+      "propertyCount": 28,
+      "required": []
+    },
+    {
+      "name": "JournalEntriesFilter",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "JournalEntriesSort",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "JournalEntryLineItem",
+      "type": "object",
+      "propertyCount": 18,
+      "required": [
+        "ledger_account",
+        "type"
+      ]
+    },
+    {
+      "name": "Language",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "LastName",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "LedgerAccount",
+      "type": "object",
+      "propertyCount": 34,
+      "required": []
+    },
+    {
+      "name": "LedgerAccounts",
+      "type": "array",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "LedgerAccountsFilter",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "LedgerAccountsSort",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "LinkedAttachment",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "LinkedBankAccount",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "LinkedCustomer",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "LinkedEmployee",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "LinkedExpenseCategory",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "LinkedInvoiceItem",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "LinkedLedgerAccount",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "LinkedFinancialAccount",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "LinkedPurchaseOrder",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "LinkedParentCustomer",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "id"
+      ]
+    },
+    {
+      "name": "LinkedSupplier",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "LinkedTaxRate",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "LinkedTrackingCategory",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "LinkedLocation",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "LinkedDepartment",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "LinkedSubsidiary",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "LinkedWorktag",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "LinkedTaxDetail",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "LinkedTaxStatusDetail",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "DeprecatedLinkedTrackingCategory",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "Links",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "AccountingLocation",
+      "type": "object",
+      "propertyCount": 16,
+      "required": []
+    },
+    {
+      "name": "Meta",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "MiddleName",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "Name",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "NotFoundResponse",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "NotImplementedResponse",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "PassThroughBody",
+      "type": "array",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "PassThroughQuery",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "Payment",
+      "type": "object",
+      "propertyCount": 32,
+      "required": [
+        "id",
+        "total_amount",
+        "transaction_date"
+      ]
+    },
+    {
+      "name": "PaymentMethod",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "PaymentRequiredResponse",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "PaymentsFilter",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "PaymentsSort",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "PhoneNumber",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "number"
+      ]
+    },
+    {
+      "name": "ProfitAndLoss",
+      "type": "object",
+      "propertyCount": 16,
+      "required": [
+        "report_name",
+        "income",
+        "expenses"
+      ]
+    },
+    {
+      "name": "ProfitAndLossFilter",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "ProfitAndLossRecord",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "total"
+      ]
+    },
+    {
+      "name": "ProfitAndLossRecords",
+      "type": "array",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ProfitAndLossSection",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "total"
+      ]
+    },
+    {
+      "name": "PurchaseOrder",
+      "type": "object",
+      "propertyCount": 49,
+      "required": []
+    },
+    {
+      "name": "PurchaseOrdersFilter",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "PurchaseOrdersSort",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "Refund",
+      "type": "object",
+      "propertyCount": 38,
+      "required": [
+        "id",
+        "total_amount"
+      ]
+    },
+    {
+      "name": "RefundsFilter",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "RefundsSort",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "RefundStatus",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "RefundType",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetRefundResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "GetRefundsResponse",
+      "type": "object",
+      "propertyCount": 9,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "CreateRefundResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "UpdateRefundResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "DeleteRefundResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "Quantity",
+      "type": "number",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "RowVersion",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "SalesTaxNumber",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "SocialLink",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "url"
+      ]
+    },
+    {
+      "name": "SortDirection",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "Subsidiary",
+      "type": "object",
+      "propertyCount": 15,
+      "required": []
+    },
+    {
+      "name": "SubsidiaryReference",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "Suffix",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "Supplier",
+      "type": "object",
+      "propertyCount": 43,
+      "required": [
+        "id"
+      ]
+    },
+    {
+      "name": "SuppliersFilter",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "SuppliersSort",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "Tags",
+      "type": "array",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "CustomMappings",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "TaxCode",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "TaxInclusive",
+      "type": "boolean",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "TermsId",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "TaxNumber",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "Taxable",
+      "type": "boolean",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "SubTotal",
+      "type": "number",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "TotalTax",
+      "type": "number",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "TaxAmount",
+      "type": "number",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "TaxRate",
+      "type": "object",
+      "propertyCount": 24,
+      "required": []
+    },
+    {
+      "name": "TaxRatesFilter",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "Title",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "TooManyRequestsResponse",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "UnauthorizedResponse",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "UnexpectedErrorResponse",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "UnifiedId",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "id"
+      ]
+    },
+    {
+      "name": "UnitOfMeasure",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "UnitPrice",
+      "type": "number",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "UnprocessableResponse",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "UpdateBankAccountResponse",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "status_code",
+        "status",
+        "data"
+      ]
+    },
+    {
+      "name": "UpdateBillResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "UpdateCreditNoteResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "UpdateCustomerResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "UpdateInvoiceItemsResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "UpdateInvoiceResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "UpdateJournalEntryResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "UpdateLedgerAccountResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "UpdatePaymentResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "UpdatePurchaseOrderResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "UpdateSubsidiaryResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "UpdateSupplierResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "UpdateTaxRateResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "UpdatedAt",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "UpdatedBy",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "Website",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "url"
+      ]
+    },
+    {
+      "name": "WritableId",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "Attachment",
+      "type": "object",
+      "propertyCount": 13,
+      "required": []
+    },
+    {
+      "name": "AttachmentReference",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "AttachmentReferenceType",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAttachmentsResponse",
+      "type": "object",
+      "propertyCount": 9,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "CreateAttachmentRequest",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "name": "CreateAttachmentResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "DeleteAttachmentResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "GetAttachmentResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "Allocation",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "TrackingCategory",
+      "type": "object",
+      "propertyCount": 14,
+      "required": []
+    },
+    {
+      "name": "GetTrackingCategoryResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "GetTrackingCategoriesResponse",
+      "type": "object",
+      "propertyCount": 9,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "CreateTrackingCategoryResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "UpdateTrackingCategoryResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "DeleteTrackingCategoryResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "LinkedTrackingCategories",
+      "type": "array",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "LineNumber",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "LineItemType",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "AccountingPeriod",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "TotalAmount",
+      "type": "number",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "TransactionReference",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "PaymentMethodReference",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "TransactionDate",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "DeprecatedLinkedSupplier",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "IsReconciled",
+      "type": "boolean",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "PaymentStatus",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "PaymentType",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "TransactionNote",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "TransactionNumber",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetBillPaymentResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "GetBillPaymentsResponse",
+      "type": "object",
+      "propertyCount": 9,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "CreateBillPaymentResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "UpdateBillPaymentResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "DeleteBillPaymentResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "BillPayment",
+      "type": "object",
+      "propertyCount": 29,
+      "required": [
+        "id",
+        "total_amount",
+        "transaction_date"
+      ]
+    },
+    {
+      "name": "DisplayId",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "CreateExpenseResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "DeleteExpenseResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "GetExpenseResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "GetExpensesResponse",
+      "type": "object",
+      "propertyCount": 9,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "Expense",
+      "type": "object",
+      "propertyCount": 35,
+      "required": [
+        "transaction_date",
+        "line_items"
+      ]
+    },
+    {
+      "name": "ExpenseLineItem",
+      "type": "object",
+      "propertyCount": 20,
+      "required": [
+        "total_amount"
+      ]
+    },
+    {
+      "name": "ExpenseCategory",
+      "type": "object",
+      "propertyCount": 19,
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "name": "ExpenseCategoriesFilter",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "GetExpenseCategoryResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "GetExpenseCategoriesResponse",
+      "type": "object",
+      "propertyCount": 9,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "CreateExpenseCategoryResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "UpdateExpenseCategoryResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "DeleteExpenseCategoryResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "ExpenseReport",
+      "type": "object",
+      "propertyCount": 33,
+      "required": [
+        "employee",
+        "transaction_date",
+        "line_items"
+      ]
+    },
+    {
+      "name": "ExpenseReportLineItem",
+      "type": "object",
+      "propertyCount": 24,
+      "required": [
+        "amount"
+      ]
+    },
+    {
+      "name": "ExpenseReportsFilter",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "GetExpenseReportResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "GetExpenseReportsResponse",
+      "type": "object",
+      "propertyCount": 9,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "CreateExpenseReportResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "UpdateExpenseReportResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "DeleteExpenseReportResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "UpdateExpenseResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "OutstandingBalanceByCustomer",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "OutstandingBalanceBySupplier",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "OutstandingBalanceByCurrency",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "BalanceByPeriod",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "BalanceByTransaction",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "AgedCreditors",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "AgedDebtors",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "PeriodLength",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "PeriodCount",
+      "type": "integer",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ReportAsOfDate",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ReportGeneratedAt",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "GetAgedCreditorsResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "GetAgedDebtorsResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "AgedReportFilter",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "TotalPLAmount",
+      "type": "number",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "Raw",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ProfitAndLossType",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ProfitAndLossIndicator",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "DepartmentId",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "LocationId",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "SubsidiaryId",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "CreditOrDebit",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "BankFeedAccount",
+      "type": "object",
+      "propertyCount": 15,
+      "required": [
+        "id"
+      ]
+    },
+    {
+      "name": "BankFeedStatement",
+      "type": "object",
+      "propertyCount": 14,
+      "required": [
+        "id"
+      ]
+    },
+    {
+      "name": "CreateBankFeedAccountResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "DeleteBankFeedAccountResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "GetBankFeedAccountResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "GetBankFeedAccountsResponse",
+      "type": "object",
+      "propertyCount": 9,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "UpdateBankFeedAccountResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "CreateBankFeedStatementResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "DeleteBankFeedStatementResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "GetBankFeedStatementResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "GetBankFeedStatementsResponse",
+      "type": "object",
+      "propertyCount": 9,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "UpdateBankFeedStatementResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "Rebilling",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "Reference",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "Category",
+      "type": "object",
+      "propertyCount": 12,
+      "required": []
+    },
+    {
+      "name": "CategoriesFilter",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "GetCategoryResponse",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "GetCategoriesResponse",
+      "type": "object",
+      "propertyCount": 9,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "Country",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "WebhookEvent",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "CreateQuoteResponse",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "DeleteQuoteResponse",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "GetQuoteResponse",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "GetQuotesResponse",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "Quote",
+      "type": "object",
+      "propertyCount": 38,
+      "required": []
+    },
+    {
+      "name": "QuoteLineItem",
+      "type": "object",
+      "propertyCount": 27,
+      "required": []
+    },
+    {
+      "name": "UpdateQuoteResponse",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "ExpensesFilter",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "CreateProjectResponse",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "DeleteProjectResponse",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "GetProjectResponse",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "GetProjectsResponse",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    },
+    {
+      "name": "Project",
+      "type": "object",
+      "propertyCount": 44,
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "name": "ProjectsFilter",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "ProjectsSort",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "UpdateProjectResponse",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "status_code",
+        "status",
+        "service",
+        "resource",
+        "operation",
+        "data"
+      ]
+    }
+  ],
+  "operations": [
+    {
+      "method": "GET",
+      "path": "/accounting/tax-rates",
+      "operationId": "taxRatesAll",
+      "summary": "Apideck List Tax Rates",
+      "tags": [
+        "Tax Rates"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/accounting/tax-rates",
+      "operationId": "taxRatesAdd",
+      "summary": "Apideck Create Tax Rate",
+      "tags": [
+        "Tax Rates"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/accounting/tax-rates/{id}",
+      "operationId": "taxRatesOne",
+      "summary": "Apideck Get Tax Rate",
+      "tags": [
+        "Tax Rates"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/accounting/tax-rates/{id}",
+      "operationId": "taxRatesDelete",
+      "summary": "Apideck Delete Tax Rate",
+      "tags": [
+        "Tax Rates"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/accounting/tax-rates/{id}",
+      "operationId": "taxRatesUpdate",
+      "summary": "Apideck Update Tax Rate",
+      "tags": [
+        "Tax Rates"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/accounting/bills",
+      "operationId": "billsAll",
+      "summary": "Apideck List Bills",
+      "tags": [
+        "Bills"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/accounting/bills",
+      "operationId": "billsAdd",
+      "summary": "Apideck Create Bill",
+      "tags": [
+        "Bills"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/accounting/bills/{id}",
+      "operationId": "billsOne",
+      "summary": "Apideck Get Bill",
+      "tags": [
+        "Bills"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/accounting/bills/{id}",
+      "operationId": "billsDelete",
+      "summary": "Apideck Delete Bill",
+      "tags": [
+        "Bills"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/accounting/bills/{id}",
+      "operationId": "billsUpdate",
+      "summary": "Apideck Update Bill",
+      "tags": [
+        "Bills"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/accounting/invoices",
+      "operationId": "invoicesAll",
+      "summary": "Apideck List Invoices",
+      "tags": [
+        "Invoices"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/accounting/invoices",
+      "operationId": "invoicesAdd",
+      "summary": "Apideck Create Invoice",
+      "tags": [
+        "Invoices"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/accounting/invoices/{id}",
+      "operationId": "invoicesOne",
+      "summary": "Apideck Get Invoice",
+      "tags": [
+        "Invoices"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/accounting/invoices/{id}",
+      "operationId": "invoicesDelete",
+      "summary": "Apideck Delete Invoice",
+      "tags": [
+        "Invoices"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/accounting/invoices/{id}",
+      "operationId": "invoicesUpdate",
+      "summary": "Apideck Update Invoice",
+      "tags": [
+        "Invoices"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/accounting/ledger-accounts",
+      "operationId": "ledgerAccountsAll",
+      "summary": "Apideck List Ledger Accounts",
+      "tags": [
+        "Ledger Accounts"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/accounting/ledger-accounts",
+      "operationId": "ledgerAccountsAdd",
+      "summary": "Apideck Create Ledger Account",
+      "tags": [
+        "Ledger Accounts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/accounting/ledger-accounts/{id}",
+      "operationId": "ledgerAccountsOne",
+      "summary": "Apideck Get Ledger Account",
+      "tags": [
+        "Ledger Accounts"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/accounting/ledger-accounts/{id}",
+      "operationId": "ledgerAccountsDelete",
+      "summary": "Apideck Delete Ledger Account",
+      "tags": [
+        "Ledger Accounts"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/accounting/ledger-accounts/{id}",
+      "operationId": "ledgerAccountsUpdate",
+      "summary": "Apideck Update Ledger Account",
+      "tags": [
+        "Ledger Accounts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/accounting/invoice-items",
+      "operationId": "invoiceItemsAll",
+      "summary": "Apideck List Invoice Items",
+      "tags": [
+        "Invoice Items"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/accounting/invoice-items",
+      "operationId": "invoiceItemsAdd",
+      "summary": "Apideck Create Invoice Item",
+      "tags": [
+        "Invoice Items"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/accounting/invoice-items/{id}",
+      "operationId": "invoiceItemsOne",
+      "summary": "Apideck Get Invoice Item",
+      "tags": [
+        "Invoice Items"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/accounting/invoice-items/{id}",
+      "operationId": "invoiceItemsDelete",
+      "summary": "Apideck Delete Invoice Item",
+      "tags": [
+        "Invoice Items"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/accounting/invoice-items/{id}",
+      "operationId": "invoiceItemsUpdate",
+      "summary": "Apideck Update Invoice Item",
+      "tags": [
+        "Invoice Items"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/accounting/credit-notes",
+      "operationId": "creditNotesAll",
+      "summary": "Apideck List Credit Notes",
+      "tags": [
+        "Credit Notes"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/accounting/credit-notes",
+      "operationId": "creditNotesAdd",
+      "summary": "Apideck Create Credit Note",
+      "tags": [
+        "Credit Notes"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/accounting/credit-notes/{id}",
+      "operationId": "creditNotesOne",
+      "summary": "Apideck Get Credit Note",
+      "tags": [
+        "Credit Notes"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/accounting/credit-notes/{id}",
+      "operationId": "creditNotesDelete",
+      "summary": "Apideck Delete Credit Note",
+      "tags": [
+        "Credit Notes"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/accounting/credit-notes/{id}",
+      "operationId": "creditNotesUpdate",
+      "summary": "Apideck Update Credit Note",
+      "tags": [
+        "Credit Notes"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/accounting/customers",
+      "operationId": "customersAll",
+      "summary": "Apideck List Customers",
+      "tags": [
+        "Customers"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/accounting/customers",
+      "operationId": "customersAdd",
+      "summary": "Apideck Create Customer",
+      "tags": [
+        "Customers"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/accounting/customers/{id}",
+      "operationId": "customersOne",
+      "summary": "Apideck Get Customer",
+      "tags": [
+        "Customers"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/accounting/customers/{id}",
+      "operationId": "customersDelete",
+      "summary": "Apideck Delete Customer",
+      "tags": [
+        "Customers"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/accounting/customers/{id}",
+      "operationId": "customersUpdate",
+      "summary": "Apideck Update Customer",
+      "tags": [
+        "Customers"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/accounting/suppliers",
+      "operationId": "suppliersAll",
+      "summary": "Apideck List Suppliers",
+      "tags": [
+        "Suppliers"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/accounting/suppliers",
+      "operationId": "suppliersAdd",
+      "summary": "Apideck Create Supplier",
+      "tags": [
+        "Suppliers"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/accounting/suppliers/{id}",
+      "operationId": "suppliersOne",
+      "summary": "Apideck Get Supplier",
+      "tags": [
+        "Suppliers"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/accounting/suppliers/{id}",
+      "operationId": "suppliersDelete",
+      "summary": "Apideck Delete Supplier",
+      "tags": [
+        "Suppliers"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/accounting/suppliers/{id}",
+      "operationId": "suppliersUpdate",
+      "summary": "Apideck Update Supplier",
+      "tags": [
+        "Suppliers"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/accounting/payments",
+      "operationId": "paymentsAll",
+      "summary": "Apideck List Payments",
+      "tags": [
+        "Payments"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/accounting/payments",
+      "operationId": "paymentsAdd",
+      "summary": "Apideck Create Payment",
+      "tags": [
+        "Payments"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/accounting/payments/{id}",
+      "operationId": "paymentsOne",
+      "summary": "Apideck Get Payment",
+      "tags": [
+        "Payments"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/accounting/payments/{id}",
+      "operationId": "paymentsDelete",
+      "summary": "Apideck Delete Payment",
+      "tags": [
+        "Payments"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/accounting/payments/{id}",
+      "operationId": "paymentsUpdate",
+      "summary": "Apideck Update Payment",
+      "tags": [
+        "Payments"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/accounting/refunds",
+      "operationId": "refundsAll",
+      "summary": "Apideck List Refunds",
+      "tags": [
+        "Refunds"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/accounting/refunds",
+      "operationId": "refundsAdd",
+      "summary": "Apideck Create Refund",
+      "tags": [
+        "Refunds"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/accounting/refunds/{id}",
+      "operationId": "refundsOne",
+      "summary": "Apideck Get Refund",
+      "tags": [
+        "Refunds"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/accounting/refunds/{id}",
+      "operationId": "refundsDelete",
+      "summary": "Apideck Delete Refund",
+      "tags": [
+        "Refunds"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/accounting/refunds/{id}",
+      "operationId": "refundsUpdate",
+      "summary": "Apideck Update Refund",
+      "tags": [
+        "Refunds"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/accounting/company-info",
+      "operationId": "companyInfoOne",
+      "summary": "Apideck Get company info",
+      "tags": [
+        "Company Info"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/accounting/companies",
+      "operationId": "companiesAll",
+      "summary": "Apideck List companies",
+      "tags": [
+        "Companies"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/accounting/balance-sheet",
+      "operationId": "balanceSheetOne",
+      "summary": "Apideck Get BalanceSheet",
+      "tags": [
+        "Balance Sheet"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/accounting/profit-and-loss",
+      "operationId": "profitAndLossOne",
+      "summary": "Apideck Get Profit and Loss",
+      "tags": [
+        "Profit and Loss"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/accounting/journal-entries",
+      "operationId": "journalEntriesAll",
+      "summary": "Apideck List Journal Entries",
+      "tags": [
+        "Journal Entries"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/accounting/journal-entries",
+      "operationId": "journalEntriesAdd",
+      "summary": "Apideck Create Journal Entry",
+      "tags": [
+        "Journal Entries"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/accounting/journal-entries/{id}",
+      "operationId": "journalEntriesOne",
+      "summary": "Apideck Get Journal Entry",
+      "tags": [
+        "Journal Entries"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/accounting/journal-entries/{id}",
+      "operationId": "journalEntriesDelete",
+      "summary": "Apideck Delete Journal Entry",
+      "tags": [
+        "Journal Entries"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/accounting/journal-entries/{id}",
+      "operationId": "journalEntriesUpdate",
+      "summary": "Apideck Update Journal Entry",
+      "tags": [
+        "Journal Entries"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/accounting/purchase-orders",
+      "operationId": "purchaseOrdersAll",
+      "summary": "Apideck List Purchase Orders",
+      "tags": [
+        "Purchase Orders"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/accounting/purchase-orders",
+      "operationId": "purchaseOrdersAdd",
+      "summary": "Apideck Create Purchase Order",
+      "tags": [
+        "Purchase Orders"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/accounting/purchase-orders/{id}",
+      "operationId": "purchaseOrdersOne",
+      "summary": "Apideck Get Purchase Order",
+      "tags": [
+        "Purchase Orders"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/accounting/purchase-orders/{id}",
+      "operationId": "purchaseOrdersDelete",
+      "summary": "Apideck Delete Purchase Order",
+      "tags": [
+        "Purchase Orders"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/accounting/purchase-orders/{id}",
+      "operationId": "purchaseOrdersUpdate",
+      "summary": "Apideck Update Purchase Order",
+      "tags": [
+        "Purchase Orders"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/accounting/subsidiaries",
+      "operationId": "subsidiariesAll",
+      "summary": "Apideck List Subsidiaries",
+      "tags": [
+        "Subsidiaries"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/accounting/subsidiaries",
+      "operationId": "subsidiariesAdd",
+      "summary": "Apideck Create Subsidiary",
+      "tags": [
+        "Subsidiaries"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/accounting/subsidiaries/{id}",
+      "operationId": "subsidiariesOne",
+      "summary": "Apideck Get Subsidiary",
+      "tags": [
+        "Subsidiaries"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/accounting/subsidiaries/{id}",
+      "operationId": "subsidiariesDelete",
+      "summary": "Apideck Delete Subsidiary",
+      "tags": [
+        "Subsidiaries"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/accounting/subsidiaries/{id}",
+      "operationId": "subsidiariesUpdate",
+      "summary": "Apideck Update Subsidiary",
+      "tags": [
+        "Subsidiaries"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/accounting/locations",
+      "operationId": "locationsAll",
+      "summary": "Apideck List Locations",
+      "tags": [
+        "Locations"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/accounting/locations",
+      "operationId": "locationsAdd",
+      "summary": "Apideck Create Location",
+      "tags": [
+        "Locations"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/accounting/locations/{id}",
+      "operationId": "locationsOne",
+      "summary": "Apideck Get Location",
+      "tags": [
+        "Locations"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/accounting/locations/{id}",
+      "operationId": "locationsDelete",
+      "summary": "Apideck Delete Location",
+      "tags": [
+        "Locations"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/accounting/locations/{id}",
+      "operationId": "locationsUpdate",
+      "summary": "Apideck Update Location",
+      "tags": [
+        "Locations"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/accounting/departments",
+      "operationId": "departmentsAll",
+      "summary": "Apideck List Departments",
+      "tags": [
+        "Departments"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/accounting/departments",
+      "operationId": "departmentsAdd",
+      "summary": "Apideck Create Department",
+      "tags": [
+        "Departments"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/accounting/departments/{id}",
+      "operationId": "departmentsOne",
+      "summary": "Apideck Get Department",
+      "tags": [
+        "Departments"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/accounting/departments/{id}",
+      "operationId": "departmentsDelete",
+      "summary": "Apideck Delete Department",
+      "tags": [
+        "Departments"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/accounting/departments/{id}",
+      "operationId": "departmentsUpdate",
+      "summary": "Apideck Update Department",
+      "tags": [
+        "Departments"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/accounting/attachments/{reference_type}/{reference_id}",
+      "operationId": "attachmentsAll",
+      "summary": "Apideck List Attachments",
+      "tags": [
+        "Attachments"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/accounting/attachments/{reference_type}/{reference_id}",
+      "operationId": "attachmentsUpload",
+      "summary": "Apideck Upload attachment",
+      "tags": [
+        "Attachments"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/accounting/attachments/{reference_type}/{reference_id}/{id}",
+      "operationId": "attachmentsOne",
+      "summary": "Apideck Get Attachment",
+      "tags": [
+        "Attachments"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/accounting/attachments/{reference_type}/{reference_id}/{id}",
+      "operationId": "attachmentsDelete",
+      "summary": "Apideck Delete Attachment",
+      "tags": [
+        "Attachments"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/accounting/attachments/{reference_type}/{reference_id}/{id}/download",
+      "operationId": "attachmentsDownload",
+      "summary": "Apideck Download Attachment",
+      "tags": [
+        "Attachments"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/accounting/bank-accounts",
+      "operationId": "bankAccountsAll",
+      "summary": "Apideck List Bank Accounts",
+      "tags": [
+        "Bank Accounts"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/accounting/bank-accounts",
+      "operationId": "bankAccountsAdd",
+      "summary": "Apideck Create Bank Account",
+      "tags": [
+        "Bank Accounts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/accounting/bank-accounts/{id}",
+      "operationId": "bankAccountsOne",
+      "summary": "Apideck Get Bank Account",
+      "tags": [
+        "Bank Accounts"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/accounting/bank-accounts/{id}",
+      "operationId": "bankAccountsDelete",
+      "summary": "Apideck Delete Bank Account",
+      "tags": [
+        "Bank Accounts"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/accounting/bank-accounts/{id}",
+      "operationId": "bankAccountsUpdate",
+      "summary": "Apideck Update Bank Account",
+      "tags": [
+        "Bank Accounts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/accounting/tracking-categories",
+      "operationId": "trackingCategoriesAll",
+      "summary": "Apideck List Tracking Categories",
+      "tags": [
+        "Tracking Categories"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/accounting/tracking-categories",
+      "operationId": "trackingCategoriesAdd",
+      "summary": "Apideck Create Tracking Category",
+      "tags": [
+        "Tracking Categories"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/accounting/tracking-categories/{id}",
+      "operationId": "trackingCategoriesOne",
+      "summary": "Apideck Get Tracking Category",
+      "tags": [
+        "Tracking Categories"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/accounting/tracking-categories/{id}",
+      "operationId": "trackingCategoriesDelete",
+      "summary": "Apideck Delete Tracking Category",
+      "tags": [
+        "Tracking Categories"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/accounting/tracking-categories/{id}",
+      "operationId": "trackingCategoriesUpdate",
+      "summary": "Apideck Update Tracking Category",
+      "tags": [
+        "Tracking Categories"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/accounting/bill-payments",
+      "operationId": "billPaymentsAll",
+      "summary": "Apideck List Bill Payments",
+      "tags": [
+        "Bill Payments"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/accounting/bill-payments",
+      "operationId": "billPaymentsAdd",
+      "summary": "Apideck Create Bill Payment",
+      "tags": [
+        "Bill Payments"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/accounting/bill-payments/{id}",
+      "operationId": "billPaymentsOne",
+      "summary": "Apideck Get Bill Payment",
+      "tags": [
+        "Bill Payments"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/accounting/bill-payments/{id}",
+      "operationId": "billPaymentsDelete",
+      "summary": "Apideck Delete Bill Payment",
+      "tags": [
+        "Bill Payments"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/accounting/bill-payments/{id}",
+      "operationId": "billPaymentsUpdate",
+      "summary": "Apideck Update Bill Payment",
+      "tags": [
+        "Bill Payments"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/accounting/expenses",
+      "operationId": "expensesAll",
+      "summary": "Apideck List Expenses",
+      "tags": [
+        "Expenses"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/accounting/expenses",
+      "operationId": "expensesAdd",
+      "summary": "Apideck Create Expense",
+      "tags": [
+        "Expenses"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/accounting/expenses/{id}",
+      "operationId": "expensesOne",
+      "summary": "Apideck Get Expense",
+      "tags": [
+        "Expenses"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/accounting/expenses/{id}",
+      "operationId": "expensesDelete",
+      "summary": "Apideck Delete Expense",
+      "tags": [
+        "Expenses"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/accounting/expenses/{id}",
+      "operationId": "expensesUpdate",
+      "summary": "Apideck Update Expense",
+      "tags": [
+        "Expenses"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/accounting/aged-creditors",
+      "operationId": "agedCreditorsOne",
+      "summary": "Apideck Get Aged Creditors",
+      "tags": [
+        "Aged Creditors"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/accounting/aged-debtors",
+      "operationId": "agedDebtorsOne",
+      "summary": "Apideck Get Aged Debtors",
+      "tags": [
+        "Aged Debtors"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/accounting/bank-feed-accounts",
+      "operationId": "bankFeedAccountsAll",
+      "summary": "Apideck List Bank Feed Accounts",
+      "tags": [
+        "Bank Feed Accounts"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/accounting/bank-feed-accounts",
+      "operationId": "bankFeedAccountsAdd",
+      "summary": "Apideck Create Bank Feed Account",
+      "tags": [
+        "Bank Feed Accounts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/accounting/bank-feed-accounts/{id}",
+      "operationId": "bankFeedAccountsOne",
+      "summary": "Apideck Get Bank Feed Account",
+      "tags": [
+        "Bank Feed Accounts"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/accounting/bank-feed-accounts/{id}",
+      "operationId": "bankFeedAccountsDelete",
+      "summary": "Apideck Delete Bank Feed Account",
+      "tags": [
+        "Bank Feed Accounts"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/accounting/bank-feed-accounts/{id}",
+      "operationId": "bankFeedAccountsUpdate",
+      "summary": "Apideck Update Bank Feed Account",
+      "tags": [
+        "Bank Feed Accounts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/accounting/bank-feed-statements",
+      "operationId": "bankFeedStatementsAll",
+      "summary": "Apideck List Bank Feed Statements",
+      "tags": [
+        "Bank Feed Statements"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/accounting/bank-feed-statements",
+      "operationId": "bankFeedStatementsAdd",
+      "summary": "Apideck Create Bank Feed Statement",
+      "tags": [
+        "Bank Feed Statements"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/accounting/bank-feed-statements/{id}",
+      "operationId": "bankFeedStatementsOne",
+      "summary": "Apideck Get Bank Feed Statement",
+      "tags": [
+        "Bank Feed Statements"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/accounting/bank-feed-statements/{id}",
+      "operationId": "bankFeedStatementsDelete",
+      "summary": "Apideck Delete Bank Feed Statement",
+      "tags": [
+        "Bank Feed Statements"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/accounting/bank-feed-statements/{id}",
+      "operationId": "bankFeedStatementsUpdate",
+      "summary": "Apideck Update Bank Feed Statement",
+      "tags": [
+        "Bank Feed Statements"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/accounting/categories",
+      "operationId": "categoriesAll",
+      "summary": "Apideck List Categories",
+      "tags": [
+        "Categories"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/accounting/categories/{id}",
+      "operationId": "categoriesOne",
+      "summary": "Apideck Get Category",
+      "tags": [
+        "Categories"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/accounting/quotes",
+      "operationId": "quotesAll",
+      "summary": "Apideck List Quotes",
+      "tags": [
+        "Quotes"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/accounting/quotes",
+      "operationId": "quotesAdd",
+      "summary": "Apideck Create Quote",
+      "tags": [
+        "Quotes"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/accounting/quotes/{id}",
+      "operationId": "quotesOne",
+      "summary": "Apideck Get Quote",
+      "tags": [
+        "Quotes"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/accounting/quotes/{id}",
+      "operationId": "quotesDelete",
+      "summary": "Apideck Delete Quote",
+      "tags": [
+        "Quotes"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/accounting/quotes/{id}",
+      "operationId": "quotesUpdate",
+      "summary": "Apideck Update Quote",
+      "tags": [
+        "Quotes"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/accounting/projects",
+      "operationId": "projectsAll",
+      "summary": "Apideck List projects",
+      "tags": [
+        "Projects"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/accounting/projects",
+      "operationId": "projectsAdd",
+      "summary": "Apideck Create project",
+      "tags": [
+        "Projects"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/accounting/projects/{id}",
+      "operationId": "projectsOne",
+      "summary": "Apideck Get project",
+      "tags": [
+        "Projects"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/accounting/projects/{id}",
+      "operationId": "projectsDelete",
+      "summary": "Apideck Delete project",
+      "tags": [
+        "Projects"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/accounting/projects/{id}",
+      "operationId": "projectsUpdate",
+      "summary": "Apideck Update project",
+      "tags": [
+        "Projects"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/accounting/employees",
+      "operationId": "employeesAll",
+      "summary": "Apideck List Employees",
+      "tags": [
+        "Employees"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/accounting/employees",
+      "operationId": "employeesAdd",
+      "summary": "Apideck Create Employee",
+      "tags": [
+        "Employees"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/accounting/employees/{id}",
+      "operationId": "employeesOne",
+      "summary": "Apideck Get Employee",
+      "tags": [
+        "Employees"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/accounting/employees/{id}",
+      "operationId": "employeesDelete",
+      "summary": "Apideck Delete Employee",
+      "tags": [
+        "Employees"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/accounting/employees/{id}",
+      "operationId": "employeesUpdate",
+      "summary": "Apideck Update Employee",
+      "tags": [
+        "Employees"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/accounting/expense-categories",
+      "operationId": "expenseCategoriesAll",
+      "summary": "Apideck List Expense Categories",
+      "tags": [
+        "Expense Categories"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/accounting/expense-categories",
+      "operationId": "expenseCategoriesAdd",
+      "summary": "Apideck Create Expense Category",
+      "tags": [
+        "Expense Categories"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/accounting/expense-categories/{id}",
+      "operationId": "expenseCategoriesOne",
+      "summary": "Apideck Get Expense Category",
+      "tags": [
+        "Expense Categories"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/accounting/expense-categories/{id}",
+      "operationId": "expenseCategoriesDelete",
+      "summary": "Apideck Delete Expense Category",
+      "tags": [
+        "Expense Categories"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/accounting/expense-categories/{id}",
+      "operationId": "expenseCategoriesUpdate",
+      "summary": "Apideck Update Expense Category",
+      "tags": [
+        "Expense Categories"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/accounting/expense-reports",
+      "operationId": "expenseReportsAll",
+      "summary": "Apideck List Expense Reports",
+      "tags": [
+        "Expense Reports"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/accounting/expense-reports",
+      "operationId": "expenseReportsAdd",
+      "summary": "Apideck Create Expense Report",
+      "tags": [
+        "Expense Reports"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/accounting/expense-reports/{id}",
+      "operationId": "expenseReportsOne",
+      "summary": "Apideck Get Expense Report",
+      "tags": [
+        "Expense Reports"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/accounting/expense-reports/{id}",
+      "operationId": "expenseReportsDelete",
+      "summary": "Apideck Delete Expense Report",
+      "tags": [
+        "Expense Reports"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/accounting/expense-reports/{id}",
+      "operationId": "expenseReportsUpdate",
+      "summary": "Apideck Update Expense Report",
+      "tags": [
+        "Expense Reports"
+      ]
+    }
+  ]
+}

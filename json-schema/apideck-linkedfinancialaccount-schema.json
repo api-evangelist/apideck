@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/LinkedFinancialAccount",
+  "title": "LinkedFinancialAccount",
+  "type": "object",
+  "x-apideck-schema-id": "LinkedFinancialAccount",
+  "additionalProperties": false,
+  "nullable": true,
+  "description": "A flexible account reference that can represent a ledger account (GL account), a bank account, or an employee payable account, depending on the connector's requirements.",
+  "x-apideck-weights": {
+    "id": "critical",
+    "type": "high",
+    "code": "medium",
+    "account_number": "medium",
+    "name": "medium",
+    "display_id": "low",
+    "downstream_id": "low"
+  },
+  "properties": {
+    "id": {
+      "type": "string",
+      "title": "Account ID",
+      "description": "The unique identifier for the account. This can be a ledger account ID or bank account ID depending on the `type` field.",
+      "example": "123456"
+    },
+    "type": {
+      "type": "string",
+      "title": "Account Type",
+      "description": "The type of account being referenced. Use `ledger_account` for GL accounts from the chart of accounts, or `bank_account` for bank account entities. When not specified, the connector will use its default behavior.",
+      "x-apideck-enum-id": "linked-financial-account.type",
+      "enum": [
+        "ledger_account",
+        "bank_account",
+        "employee"
+      ],
+      "example": "ledger_account",
+      "nullable": true
+    },
+    "code": {
+      "$ref": "#/components/schemas/AccountCode"
+    },
+    "display_id": {
+      "$ref": "#/components/schemas/DisplayId"
+    },
+    "account_number": {
+      "$ref": "#/components/schemas/BankAccountNumber"
+    },
+    "name": {
+      "$ref": "#/components/schemas/AccountName"
+    },
+    "downstream_id": {
+      "$ref": "#/components/schemas/DownstreamId"
+    }
+  }
+}

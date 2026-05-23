@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TransactionReference",
+  "title": "Transaction Reference",
+  "description": "Optional transaction reference message ie: Debit remittance detail.",
+  "type": "string",
+  "example": "123456",
+  "nullable": true
+}

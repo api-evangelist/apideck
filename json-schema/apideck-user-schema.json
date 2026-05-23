@@ -1,0 +1,170 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/User",
+  "title": "User",
+  "type": "object",
+  "x-apideck-schema-id": "User",
+  "x-apideck-weights": {
+    "id": "critical",
+    "parent_id": "edge-case",
+    "username": "medium",
+    "first_name": "high",
+    "last_name": "high",
+    "title": "high",
+    "division": "medium",
+    "department": "medium",
+    "company_name": "medium",
+    "employee_number": "medium",
+    "description": "low",
+    "image": "medium",
+    "language": "medium",
+    "status": "high",
+    "password": "medium",
+    "addresses": "high",
+    "phone_numbers": "high",
+    "emails": "high",
+    "updated_at": "medium",
+    "created_at": "medium"
+  },
+  "required": [
+    "emails"
+  ],
+  "x-pii": [
+    "username",
+    "first_name",
+    "last_name",
+    "email"
+  ],
+  "properties": {
+    "id": {
+      "description": "The unique identifier for the user",
+      "type": "string",
+      "example": "12345",
+      "readOnly": true
+    },
+    "parent_id": {
+      "description": "The parent user id",
+      "type": "string",
+      "example": "54321",
+      "nullable": true
+    },
+    "username": {
+      "description": "The username of the user",
+      "type": "string",
+      "example": "masterofcoin",
+      "nullable": true
+    },
+    "first_name": {
+      "$ref": "#/components/schemas/FirstName"
+    },
+    "last_name": {
+      "$ref": "#/components/schemas/LastName"
+    },
+    "title": {
+      "type": "string",
+      "title": "Job title",
+      "description": "The job title of the person.",
+      "example": "CEO",
+      "nullable": true
+    },
+    "division": {
+      "type": "string",
+      "title": "Division",
+      "description": "The division the person is currently in. Usually a collection of departments or teams or regions.",
+      "example": "Europe",
+      "nullable": true
+    },
+    "department": {
+      "type": "string",
+      "title": "Department",
+      "description": "The department the person is currently in. [Deprecated](https://developers.apideck.com/changelog) in favor of the dedicated department_id and department_name field.",
+      "example": "R&D",
+      "nullable": true,
+      "deprecated": true
+    },
+    "company_name": {
+      "type": "string",
+      "title": "Company name",
+      "description": "The name of the company.",
+      "example": "SpaceX",
+      "nullable": true
+    },
+    "employee_number": {
+      "type": "string",
+      "title": "Employee number",
+      "description": "An Employee Number, Employee ID or Employee Code, is a unique number that has been assigned to each individual staff member within a company.",
+      "example": "123456-AB",
+      "nullable": true
+    },
+    "description": {
+      "type": "string",
+      "title": "Description",
+      "description": "A description of the object.",
+      "example": "A description",
+      "nullable": true
+    },
+    "image": {
+      "description": "The URL of the user's avatar",
+      "type": "string",
+      "example": "https://logo.clearbit.com/spacex.com?s=128",
+      "nullable": true
+    },
+    "language": {
+      "type": "string",
+      "example": "EN",
+      "description": "language code according to ISO 639-1. For the United States - EN",
+      "nullable": true
+    },
+    "status": {
+      "description": "The status of the user",
+      "type": "string",
+      "example": "active",
+      "nullable": true
+    },
+    "password": {
+      "description": "The password of the user",
+      "type": "string",
+      "example": "supersecretpassword",
+      "writeOnly": true,
+      "nullable": true
+    },
+    "addresses": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Address"
+      }
+    },
+    "phone_numbers": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/PhoneNumber"
+      }
+    },
+    "emails": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Email"
+      }
+    },
+    "custom_mappings": {
+      "$ref": "#/components/schemas/CustomMappings"
+    },
+    "updated_at": {
+      "description": "The date and time when the user was last updated.",
+      "type": "string",
+      "example": "2017-08-12T20:43:21.291Z",
+      "readOnly": true,
+      "nullable": true
+    },
+    "created_at": {
+      "description": "The date and time when the user was created.",
+      "type": "string",
+      "example": "2017-08-12T20:43:21.291Z",
+      "readOnly": true,
+      "nullable": true
+    },
+    "pass_through": {
+      "$ref": "#/components/schemas/PassThroughBody"
+    }
+  }
+}

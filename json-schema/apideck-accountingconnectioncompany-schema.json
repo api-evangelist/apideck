@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AccountingConnectionCompany",
+  "title": "AccountingConnectionCompany",
+  "type": "object",
+  "x-apideck-schema-id": "AccountingConnectionCompany",
+  "additionalProperties": false,
+  "description": "Represents a company/tenant/organization accessible through the current connection. Used for multi-company connectors where a single OAuth connection provides access to multiple companies.",
+  "x-apideck-weights": {
+    "id": "critical",
+    "name": "critical"
+  },
+  "required": [
+    "id",
+    "name"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "title": "Company ID",
+      "description": "Unique identifier for the company in the downstream system. Use this value in the x-apideck-company-id header to scope requests to this company.",
+      "example": "12345"
+    },
+    "name": {
+      "type": "string",
+      "title": "Company Name",
+      "description": "Display name of the company",
+      "example": "Acme Corporation"
+    }
+  }
+}

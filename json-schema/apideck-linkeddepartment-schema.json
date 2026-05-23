@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/LinkedDepartment",
+  "title": "LinkedDepartment",
+  "type": "object",
+  "x-apideck-schema-id": "LinkedDepartment",
+  "x-apideck-weights": {
+    "id": "critical",
+    "display_id": "medium",
+    "name": "medium",
+    "downstream_id": "low"
+  },
+  "nullable": true,
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/Id"
+    },
+    "display_id": {
+      "$ref": "#/components/schemas/DisplayId"
+    },
+    "name": {
+      "$ref": "#/components/schemas/Name"
+    },
+    "downstream_id": {
+      "$ref": "#/components/schemas/DownstreamId"
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PeriodCount",
+  "title": "Period Count",
+  "type": "integer",
+  "description": "Number of aging periods shown in the report.",
+  "example": 4,
+  "default": 4
+}

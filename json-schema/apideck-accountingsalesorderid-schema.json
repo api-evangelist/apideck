@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AccountingSalesOrderId",
+  "title": "Sales Order ID",
+  "type": "string",
+  "description": "The unique identifier for the sales order.",
+  "example": "123456",
+  "nullable": true
+}

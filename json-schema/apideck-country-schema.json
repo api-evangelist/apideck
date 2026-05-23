@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Country",
+  "title": "Country Code",
+  "type": "string",
+  "example": "US",
+  "description": "Country code according to ISO 3166-1 alpha-2.",
+  "minLength": 2,
+  "maxLength": 2,
+  "nullable": true
+}

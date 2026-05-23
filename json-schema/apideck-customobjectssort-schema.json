@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CustomObjectsSort",
+  "title": "CustomObjectsSort",
+  "type": "object",
+  "x-apideck-schema-id": "CustomObjectSort",
+  "example": {
+    "by": "created_at",
+    "direction": "desc"
+  },
+  "properties": {
+    "by": {
+      "type": "string",
+      "x-apideck-enum-id": "custom_objects.sort_by",
+      "description": "The field on which to sort the Custom Objects",
+      "enum": [
+        "created_at",
+        "updated_at",
+        "name"
+      ],
+      "example": "created_at"
+    },
+    "direction": {
+      "$ref": "#/components/schemas/SortDirection"
+    }
+  },
+  "additionalProperties": false
+}

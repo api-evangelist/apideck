@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Division",
+  "title": "Division",
+  "type": "string",
+  "description": "The division the person is currently in. Usually a collection of departments or teams or regions.",
+  "example": "Europe",
+  "nullable": true
+}

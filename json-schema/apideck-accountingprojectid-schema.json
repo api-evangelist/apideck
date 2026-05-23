@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AccountingProjectId",
+  "title": "Project ID",
+  "type": "string",
+  "description": "The unique identifier for the linked project.",
+  "example": "12345"
+}

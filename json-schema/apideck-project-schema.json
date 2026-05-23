@@ -1,0 +1,417 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Project",
+  "title": "Project",
+  "type": "object",
+  "x-apideck-schema-id": "Project",
+  "additionalProperties": false,
+  "x-apideck-weights": {
+    "id": "critical",
+    "downstream_id": "edge-case",
+    "name": "critical",
+    "display_id": "medium",
+    "reference_id": "medium",
+    "description": "medium",
+    "status": "high",
+    "active": "high",
+    "project_type": "medium",
+    "priority": "medium",
+    "completion_percentage": "medium",
+    "completion_date": "medium",
+    "start_date": "medium",
+    "end_date": "medium",
+    "customer": "high",
+    "department": "medium",
+    "company_id": "medium",
+    "owner_id": "medium",
+    "parent_project": "low",
+    "currency": "medium",
+    "budget_amount": "medium",
+    "approved_amount": "medium",
+    "actual_amount": "low",
+    "budget_hours": "medium",
+    "actual_hours": "low",
+    "hourly_rate": "medium",
+    "billing_method": "medium",
+    "is_billable": "medium",
+    "phase": "medium",
+    "tax_rate": "medium",
+    "tracking_categories": "medium",
+    "custom_fields": "medium",
+    "tags": "low",
+    "notes": "low",
+    "contract_number": "medium",
+    "profit_margin": "medium",
+    "schedule_status": "medium",
+    "addresses": "medium",
+    "team_size": "low",
+    "updated_by": "edge-case",
+    "created_by": "edge-case",
+    "updated_at": "medium",
+    "created_at": "medium",
+    "row_version": "edge-case"
+  },
+  "required": [
+    "name"
+  ],
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/Id"
+    },
+    "downstream_id": {
+      "$ref": "#/components/schemas/DownstreamId"
+    },
+    "name": {
+      "type": "string",
+      "title": "Project name",
+      "description": "Name of the project",
+      "example": "Website Redesign Project",
+      "minLength": 1
+    },
+    "display_id": {
+      "type": "string",
+      "title": "Display ID",
+      "description": "User-friendly project identifier",
+      "example": "PROJ-001",
+      "nullable": true
+    },
+    "reference_id": {
+      "type": "string",
+      "title": "Reference ID",
+      "description": "External reference identifier for the project",
+      "example": "WD-REF-2024-001",
+      "nullable": true
+    },
+    "description": {
+      "type": "string",
+      "title": "Description",
+      "description": "Detailed description of the project",
+      "example": "Complete redesign of the company website including new branding and improved user experience",
+      "nullable": true
+    },
+    "status": {
+      "type": "string",
+      "title": "Project Status",
+      "description": "Current status of the project",
+      "example": "active",
+      "enum": [
+        "active",
+        "completed",
+        "on_hold",
+        "cancelled",
+        "draft",
+        "in_progress",
+        "approved",
+        "other"
+      ],
+      "x-apideck-enum-id": "project.status",
+      "nullable": true
+    },
+    "active": {
+      "type": "boolean",
+      "title": "Active",
+      "description": "Indicates whether the project is currently active or inactive",
+      "example": true,
+      "nullable": true
+    },
+    "project_type": {
+      "type": "string",
+      "title": "Project Type",
+      "description": "Type or category of the project",
+      "example": "client_project",
+      "enum": [
+        "client_project",
+        "internal_project",
+        "maintenance",
+        "research_development",
+        "training",
+        "other"
+      ],
+      "x-apideck-enum-id": "project.project_type",
+      "nullable": true
+    },
+    "priority": {
+      "type": "string",
+      "title": "Priority",
+      "description": "Priority level of the project",
+      "example": "high",
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "critical"
+      ],
+      "x-apideck-enum-id": "project.priority",
+      "nullable": true
+    },
+    "completion_percentage": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "title": "Completion Percentage",
+      "description": "Percentage of project completion (0-100)",
+      "example": 75.5,
+      "nullable": true
+    },
+    "start_date": {
+      "type": "string",
+      "format": "date",
+      "title": "Start Date",
+      "description": "Start date of the project",
+      "example": "2024-01-15",
+      "nullable": true
+    },
+    "end_date": {
+      "type": "string",
+      "format": "date",
+      "title": "End Date",
+      "description": "Expected or planned end date of the project",
+      "example": "2024-06-30",
+      "nullable": true
+    },
+    "completion_date": {
+      "type": "string",
+      "format": "date",
+      "title": "End Date",
+      "description": "Actual end date of the project",
+      "example": "2024-08-06",
+      "nullable": true
+    },
+    "customer": {
+      "$ref": "#/components/schemas/LinkedCustomer"
+    },
+    "department": {
+      "type": "object",
+      "title": "Department",
+      "description": "Department or organizational unit associated with the project",
+      "nullable": true,
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "Department ID",
+          "description": "Unique identifier for the department",
+          "example": "DEPT-001"
+        },
+        "name": {
+          "type": "string",
+          "title": "Department Name",
+          "description": "Name of the department",
+          "example": "Marketing"
+        }
+      }
+    },
+    "company_id": {
+      "$ref": "#/components/schemas/AccountingCompanyId"
+    },
+    "owner_id": {
+      "type": "string",
+      "title": "Owner ID",
+      "description": "ID of the user who owns/manages this project",
+      "example": "12345",
+      "nullable": true
+    },
+    "parent_project": {
+      "type": "object",
+      "title": "Parent Project",
+      "description": "Parent project if this is a subproject",
+      "nullable": true,
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "Parent Project ID",
+          "description": "Unique identifier for the parent project",
+          "example": "PROJ-PARENT-001"
+        },
+        "name": {
+          "type": "string",
+          "title": "Parent Project Name",
+          "description": "Name of the parent project",
+          "example": "Company Website Overhaul"
+        }
+      }
+    },
+    "currency": {
+      "$ref": "#/components/schemas/Currency"
+    },
+    "budget_amount": {
+      "type": "number",
+      "multipleOf": 0.01,
+      "title": "Budget Amount",
+      "description": "Total budgeted amount for the project",
+      "example": 50000,
+      "nullable": true
+    },
+    "approved_amount": {
+      "type": "number",
+      "multipleOf": 0.01,
+      "title": "Approved Amount",
+      "description": "Approved budget amount for the project",
+      "example": 48000,
+      "nullable": true
+    },
+    "actual_amount": {
+      "type": "number",
+      "multipleOf": 0.01,
+      "title": "Actual Amount",
+      "description": "Total actual amount spent on the project",
+      "example": 45250.75,
+      "nullable": true,
+      "readOnly": true
+    },
+    "budget_hours": {
+      "type": "number",
+      "title": "Budget Hours",
+      "description": "Total budgeted hours for the project",
+      "example": 400,
+      "nullable": true
+    },
+    "actual_hours": {
+      "type": "number",
+      "title": "Actual Hours",
+      "description": "Total actual hours worked on the project",
+      "example": 385.5,
+      "nullable": true,
+      "readOnly": true
+    },
+    "hourly_rate": {
+      "type": "number",
+      "multipleOf": 0.01,
+      "title": "Hourly Rate",
+      "description": "Default hourly rate for project work",
+      "example": 125,
+      "nullable": true
+    },
+    "billing_method": {
+      "type": "string",
+      "title": "Billing Method",
+      "description": "Method used for billing this project",
+      "example": "time_and_materials",
+      "enum": [
+        "fixed_price",
+        "time_and_materials",
+        "milestone_based",
+        "retainer",
+        "non_billable"
+      ],
+      "x-apideck-enum-id": "project.billing_method",
+      "nullable": true
+    },
+    "is_billable": {
+      "type": "boolean",
+      "title": "Is Billable",
+      "description": "Indicates if the project is billable to the customer",
+      "example": true,
+      "default": true,
+      "nullable": true
+    },
+    "phase": {
+      "type": "string",
+      "title": "Project Phase",
+      "description": "Current phase of the project lifecycle",
+      "example": "execution",
+      "enum": [
+        "initiation",
+        "planning",
+        "execution",
+        "monitoring",
+        "closure",
+        "other"
+      ],
+      "x-apideck-enum-id": "project.phase",
+      "nullable": true
+    },
+    "tax_rate": {
+      "$ref": "#/components/schemas/LinkedTaxRate"
+    },
+    "tracking_categories": {
+      "$ref": "#/components/schemas/LinkedTrackingCategories"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "title": "Tags",
+      "description": "Tags associated with the project",
+      "example": [
+        "website",
+        "redesign",
+        "urgent"
+      ]
+    },
+    "notes": {
+      "type": "string",
+      "title": "Notes",
+      "description": "Additional notes about the project",
+      "example": "Client has requested modern design with mobile-first approach",
+      "nullable": true
+    },
+    "contract_number": {
+      "type": "string",
+      "title": "Contract Number",
+      "description": "Contract or agreement number associated with the project",
+      "example": "CNT-2024-001",
+      "nullable": true
+    },
+    "profit_margin": {
+      "type": "number",
+      "title": "Profit Margin",
+      "description": "Expected profit margin percentage for the project",
+      "example": 15.5,
+      "minimum": 0,
+      "maximum": 100,
+      "nullable": true
+    },
+    "schedule_status": {
+      "type": "string",
+      "title": "Schedule Status",
+      "description": "Current status of project schedule compared to plan",
+      "example": "on_schedule",
+      "enum": [
+        "ahead_of_schedule",
+        "on_schedule",
+        "behind_schedule",
+        "critical_delay"
+      ],
+      "x-apideck-enum-id": "project.schedule_status",
+      "nullable": true
+    },
+    "addresses": {
+      "type": "array",
+      "title": "Addresses",
+      "description": "An array of addresses associated with the project (billing, job site, etc.)",
+      "items": {
+        "$ref": "#/components/schemas/Address"
+      }
+    },
+    "team_size": {
+      "type": "integer",
+      "title": "Team Size",
+      "description": "Number of team members assigned to the project",
+      "example": 8,
+      "minimum": 0,
+      "nullable": true
+    },
+    "custom_fields": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/CustomField"
+      }
+    },
+    "row_version": {
+      "$ref": "#/components/schemas/RowVersion"
+    },
+    "updated_by": {
+      "$ref": "#/components/schemas/UpdatedBy"
+    },
+    "created_by": {
+      "$ref": "#/components/schemas/CreatedBy"
+    },
+    "created_at": {
+      "$ref": "#/components/schemas/CreatedAt"
+    },
+    "updated_at": {
+      "$ref": "#/components/schemas/UpdatedAt"
+    }
+  }
+}

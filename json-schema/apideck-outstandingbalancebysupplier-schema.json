@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/OutstandingBalanceBySupplier",
+  "title": "Outstanding Balance",
+  "type": "object",
+  "x-apideck-schema-id": "OutstandingBalanceBySupplier",
+  "additionalProperties": false,
+  "x-apideck-weights": {
+    "supplier_id": "high",
+    "supplier_name": "high",
+    "outstanding_balances_by_currency": "critical"
+  },
+  "properties": {
+    "supplier_id": {
+      "type": "string",
+      "title": "Supplier ID",
+      "description": "Unique identifier for the supplier.",
+      "example": "123"
+    },
+    "supplier_name": {
+      "type": "string",
+      "title": "Supplier Name",
+      "description": "Full name of the supplier.",
+      "example": "Super Store"
+    },
+    "outstanding_balances_by_currency": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/OutstandingBalanceByCurrency"
+      }
+    }
+  }
+}

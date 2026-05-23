@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BankAccountNumber",
+  "title": "Account Number",
+  "type": "string",
+  "description": "The bank account number",
+  "example": "123465",
+  "nullable": true
+}

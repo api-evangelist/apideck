@@ -1,0 +1,167 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CompanyInfo",
+  "title": "CompanyInfo",
+  "type": "object",
+  "x-apideck-schema-id": "CompanyInfo",
+  "x-apideck-weights": {
+    "id": "medium",
+    "company_name": "critical",
+    "status": "critical",
+    "legal_name": "medium",
+    "sales_tax_number": "medium",
+    "currency": "medium",
+    "language": "low",
+    "fiscal_year_start_month": "medium",
+    "company_start_date": "medium",
+    "addresses": "medium",
+    "phone_numbers": "medium",
+    "emails": "medium",
+    "default_sales_tax": "edge-case",
+    "sales_tax_enabled": "edge-case",
+    "automated_sales_tax": "edge-case",
+    "tracking_categories_enabled": "edge-case",
+    "tracking_categories_mode": "edge-case",
+    "row_version": "edge-case",
+    "updated_by": "edge-case",
+    "created_by": "edge-case",
+    "updated_at": "medium",
+    "created_at": "low"
+  },
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/Id"
+    },
+    "company_name": {
+      "$ref": "#/components/schemas/CompanyName"
+    },
+    "status": {
+      "type": "string",
+      "title": "Company status",
+      "description": "Based on the status some functionality is enabled or disabled.",
+      "x-apideck-enum-id": "company-info.status",
+      "enum": [
+        "active",
+        "inactive"
+      ],
+      "example": "active"
+    },
+    "legal_name": {
+      "type": "string",
+      "title": "Legal name",
+      "description": "The legal name of the company",
+      "example": "SpaceX Inc."
+    },
+    "country": {
+      "type": "string",
+      "example": "US",
+      "description": "country code according to ISO 3166-1 alpha-2.",
+      "nullable": true
+    },
+    "sales_tax_number": {
+      "$ref": "#/components/schemas/SalesTaxNumber"
+    },
+    "automated_sales_tax": {
+      "type": "boolean",
+      "title": "Automated sales tax",
+      "description": "Whether sales tax is calculated automatically for the company"
+    },
+    "sales_tax_enabled": {
+      "type": "boolean",
+      "title": "Sales tax enabled",
+      "description": "Whether sales tax is enabled for the company"
+    },
+    "default_sales_tax": {
+      "$ref": "#/components/schemas/TaxRate"
+    },
+    "currency": {
+      "$ref": "#/components/schemas/Currency"
+    },
+    "language": {
+      "$ref": "#/components/schemas/Language"
+    },
+    "fiscal_year_start_month": {
+      "type": "string",
+      "title": "The start month of fiscal year.",
+      "description": "The start month of fiscal year.",
+      "x-apideck-enum-id": "company-info.fiscal_year_start_month",
+      "enum": [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December"
+      ],
+      "example": "January"
+    },
+    "company_start_date": {
+      "type": "string",
+      "title": "Date when company file was created",
+      "description": "Date when company file was created",
+      "format": "date",
+      "example": "2015-06-05"
+    },
+    "addresses": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Address"
+      }
+    },
+    "phone_numbers": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/PhoneNumber"
+      }
+    },
+    "emails": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Email"
+      }
+    },
+    "custom_mappings": {
+      "$ref": "#/components/schemas/CustomMappings"
+    },
+    "tracking_categories_enabled": {
+      "type": "boolean",
+      "title": "Tracking categories enabled",
+      "description": "Whether tracking categories are enabled for the company on transactions"
+    },
+    "tracking_categories_mode": {
+      "type": "string",
+      "title": "Tracking categories mode",
+      "description": "The mode of tracking categories for the company on transactions",
+      "x-apideck-enum-id": "company-info.tracking_categories_mode",
+      "enum": [
+        "transaction",
+        "line",
+        "both",
+        "disabled"
+      ],
+      "example": "disabled"
+    },
+    "row_version": {
+      "$ref": "#/components/schemas/RowVersion"
+    },
+    "updated_by": {
+      "$ref": "#/components/schemas/UpdatedBy"
+    },
+    "created_by": {
+      "$ref": "#/components/schemas/CreatedBy"
+    },
+    "updated_at": {
+      "$ref": "#/components/schemas/UpdatedAt"
+    },
+    "created_at": {
+      "$ref": "#/components/schemas/CreatedAt"
+    }
+  }
+}

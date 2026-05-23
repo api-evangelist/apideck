@@ -1,0 +1,117 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/HrisCompany",
+  "title": "HrisCompany",
+  "type": "object",
+  "x-apideck-schema-id": "HrisCompany",
+  "required": [
+    "legal_name"
+  ],
+  "x-apideck-weights": {
+    "id": "critical",
+    "legal_name": "critical",
+    "subdomain": "low",
+    "company_number": "high",
+    "updated_at": "high",
+    "debtor_id": "edge-case",
+    "currency": "low"
+  },
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/Id"
+    },
+    "legal_name": {
+      "type": "string",
+      "example": "SpaceX",
+      "minLength": 1,
+      "nullable": true
+    },
+    "display_name": {
+      "type": "string",
+      "example": "SpaceX",
+      "minLength": 1,
+      "nullable": true
+    },
+    "subdomain": {
+      "type": "string",
+      "example": "company",
+      "minLength": 1,
+      "nullable": true
+    },
+    "status": {
+      "type": "string",
+      "example": "active",
+      "x-apideck-enum-id": "companies.status",
+      "enum": [
+        "active",
+        "inactive",
+        "trial",
+        "other"
+      ]
+    },
+    "company_number": {
+      "type": "string",
+      "title": "Company number",
+      "description": "An Company Number, Company ID or Company Code, is a unique number that has been assigned to each company.",
+      "example": "123456-AB",
+      "nullable": true
+    },
+    "currency": {
+      "$ref": "#/components/schemas/Currency"
+    },
+    "addresses": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Address"
+      }
+    },
+    "phone_numbers": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/PhoneNumber"
+      }
+    },
+    "emails": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Email"
+      }
+    },
+    "websites": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Website"
+      }
+    },
+    "debtor_id": {
+      "type": "string",
+      "example": "12345",
+      "minLength": 1,
+      "nullable": true
+    },
+    "custom_mappings": {
+      "$ref": "#/components/schemas/CustomMappings"
+    },
+    "deleted": {
+      "type": "boolean",
+      "example": false,
+      "readOnly": true
+    },
+    "updated_by": {
+      "$ref": "#/components/schemas/UpdatedBy"
+    },
+    "created_by": {
+      "$ref": "#/components/schemas/CreatedBy"
+    },
+    "updated_at": {
+      "$ref": "#/components/schemas/UpdatedAt"
+    },
+    "created_at": {
+      "$ref": "#/components/schemas/CreatedAt"
+    },
+    "pass_through": {
+      "$ref": "#/components/schemas/PassThroughBody"
+    }
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PassThroughBody",
+  "title": "PassThroughBody",
+  "type": "array",
+  "description": "The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.",
+  "items": {
+    "type": "object",
+    "properties": {
+      "service_id": {
+        "type": "string",
+        "description": "Identifier for the service to which this pass_through should be applied."
+      },
+      "operation_id": {
+        "type": "string",
+        "description": "Optional identifier for a workflow operation to which this pass_through should be applied. This is useful for Unify calls that are making more than one downstream request."
+      },
+      "extend_object": {
+        "type": "object",
+        "additionalProperties": true,
+        "description": "Simple object allowing any properties for direct extension."
+      },
+      "extend_paths": {
+        "type": "array",
+        "description": "Array of objects for structured data modifications via paths.",
+        "items": {
+          "type": "object",
+          "properties": {
+            "path": {
+              "type": "string",
+              "description": "JSONPath string specifying where to apply the value.",
+              "example": "$.nested.property"
+            },
+            "value": {
+              "description": "The value to set at the specified path, can be any type.",
+              "example": {
+                "TaxClassificationRef": {
+                  "value": "EUC-99990201-V1-00020000"
+                }
+              }
+            }
+          },
+          "required": [
+            "path",
+            "value"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    "required": [
+      "service_id"
+    ],
+    "additionalProperties": false,
+    "writeOnly": true
+  }
+}

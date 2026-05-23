@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SocialLink",
+  "title": "SocialLink",
+  "type": "object",
+  "x-apideck-schema-id": "SocialLink",
+  "required": [
+    "url"
+  ],
+  "additionalProperties": false,
+  "x-apideck-weights": {
+    "id": "edge-case",
+    "url": "critical",
+    "type": "critical"
+  },
+  "properties": {
+    "id": {
+      "description": "Unique identifier of the social link",
+      "type": "string",
+      "example": "12345",
+      "nullable": true
+    },
+    "url": {
+      "description": "URL of the social link, e.g. https://www.twitter.com/apideck",
+      "type": "string",
+      "example": "https://www.twitter.com/apideck",
+      "minLength": 1
+    },
+    "type": {
+      "description": "Type of the social link, e.g. twitter",
+      "type": "string",
+      "example": "twitter",
+      "nullable": true
+    }
+  }
+}

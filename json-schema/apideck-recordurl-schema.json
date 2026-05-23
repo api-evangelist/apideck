@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RecordUrl",
+  "title": "Record URL",
+  "type": "string",
+  "example": "https://app.intercom.io/contacts/12345",
+  "nullable": true
+}

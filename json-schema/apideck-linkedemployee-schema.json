@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/LinkedEmployee",
+  "title": "LinkedEmployee",
+  "type": "object",
+  "x-apideck-schema-id": "LinkedEmployee",
+  "description": "The employee this entity is linked to.",
+  "x-apideck-weights": {
+    "id": "medium",
+    "display_id": "medium",
+    "display_name": "medium"
+  },
+  "nullable": true,
+  "properties": {
+    "id": {
+      "type": "string",
+      "title": "Employee ID",
+      "description": "A unique identifier for an object.",
+      "example": "12345"
+    },
+    "display_id": {
+      "type": "string",
+      "title": "Display ID",
+      "description": "The display ID of the employee. For best performance, send this field (the employee number) instead of the GUID in the id field.",
+      "example": "EH",
+      "nullable": true
+    },
+    "display_name": {
+      "type": "string",
+      "title": "Display Name",
+      "description": "The display name of the employee.",
+      "example": "Ester Henderson",
+      "nullable": true
+    }
+  }
+}

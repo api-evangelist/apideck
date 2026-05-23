@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PaymentsSort",
+  "title": "PaymentsSort",
+  "type": "object",
+  "x-apideck-schema-id": "PaymentsSort",
+  "example": {
+    "by": "updated_at",
+    "direction": "desc"
+  },
+  "properties": {
+    "by": {
+      "type": "string",
+      "x-apideck-enum-id": "payments.sort_by",
+      "description": "The field on which to sort the Payments",
+      "enum": [
+        "updated_at",
+        "created_at"
+      ],
+      "example": "updated_at"
+    },
+    "direction": {
+      "$ref": "#/components/schemas/SortDirection"
+    }
+  },
+  "additionalProperties": false
+}

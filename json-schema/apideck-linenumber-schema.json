@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/LineNumber",
+  "title": "Line number",
+  "type": "integer",
+  "description": "Line number of the resource",
+  "example": 1,
+  "nullable": true
+}

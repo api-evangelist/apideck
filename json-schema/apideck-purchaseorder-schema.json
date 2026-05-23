@@ -1,0 +1,301 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PurchaseOrder",
+  "title": "PurchaseOrder",
+  "type": "object",
+  "x-apideck-schema-id": "PurchaseOrder",
+  "additionalProperties": false,
+  "x-apideck-weights": {
+    "id": "critical",
+    "downstream_id": "low",
+    "display_id": "low",
+    "po_number": "low",
+    "reference": "low",
+    "supplier": "high",
+    "company_id": "middle",
+    "location_id": "low",
+    "department_id": "low",
+    "subsidiary_id": "middle",
+    "status": "critical",
+    "issued_date": "edge-case",
+    "delivery_date": "medium",
+    "expected_arrival_date": "medium",
+    "currency": "medium",
+    "currency_rate": "low",
+    "sub_total": "high",
+    "total_tax": "high",
+    "total": "critical",
+    "tax_inclusive": "low",
+    "line_items": "critical",
+    "shipping_address": "medium",
+    "billing_address": "low",
+    "ledger_account": "edge-case",
+    "template_id": "low",
+    "discount_percentage": "low",
+    "bank_account": "low",
+    "accounting_by_row": "edge-case",
+    "due_date": "low",
+    "payment_method": "low",
+    "terms": "low",
+    "terms_id": "edge-case",
+    "amortization_type": "edge-case",
+    "tax_code": "medium",
+    "tax_method": "edge-case",
+    "issued_method": "edge-case",
+    "issued_email": "edge-case",
+    "channel": "low",
+    "memo": "low",
+    "notes": "low",
+    "custom_fields": "medium",
+    "tracking_categories": "low",
+    "row_version": "edge-case",
+    "updated_by": "low",
+    "created_by": "low",
+    "created_at": "high",
+    "updated_at": "high"
+  },
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/Id"
+    },
+    "downstream_id": {
+      "$ref": "#/components/schemas/DownstreamId"
+    },
+    "display_id": {
+      "type": "string",
+      "title": "Display ID",
+      "description": "Display ID of the purchase order",
+      "example": "12345",
+      "nullable": true
+    },
+    "po_number": {
+      "type": "string",
+      "title": "Purchase Order number",
+      "description": "A PO Number uniquely identifies a purchase order and is generally defined by the buyer.",
+      "example": "90000117",
+      "nullable": true
+    },
+    "reference": {
+      "type": "string",
+      "title": "Purchase order reference",
+      "description": "Optional purchase order reference.",
+      "example": "123456",
+      "nullable": true
+    },
+    "supplier": {
+      "$ref": "#/components/schemas/LinkedSupplier"
+    },
+    "subsidiary_id": {
+      "$ref": "#/components/schemas/SubsidiaryId"
+    },
+    "company_id": {
+      "$ref": "#/components/schemas/AccountingCompanyId"
+    },
+    "location_id": {
+      "$ref": "#/components/schemas/LocationId"
+    },
+    "department_id": {
+      "$ref": "#/components/schemas/DepartmentId"
+    },
+    "status": {
+      "type": "string",
+      "title": "Purchase order status",
+      "example": "open",
+      "x-apideck-enum-id": "purchase-orders.status",
+      "enum": [
+        "draft",
+        "open",
+        "closed",
+        "deleted",
+        "billed",
+        "other"
+      ],
+      "nullable": true
+    },
+    "issued_date": {
+      "type": "string",
+      "title": "Posted date",
+      "description": "Date purchase order was issued - YYYY-MM-DD.",
+      "format": "date",
+      "example": "2020-09-30",
+      "nullable": true
+    },
+    "delivery_date": {
+      "type": "string",
+      "title": "Delivery date",
+      "description": "The date on which the purchase order is to be delivered - YYYY-MM-DD.",
+      "format": "date",
+      "example": "2020-09-30",
+      "nullable": true
+    },
+    "expected_arrival_date": {
+      "type": "string",
+      "title": "Expected arrival date",
+      "description": "The date on which the order is expected to arrive - YYYY-MM-DD.",
+      "format": "date",
+      "example": "2020-09-30",
+      "nullable": true
+    },
+    "currency": {
+      "$ref": "#/components/schemas/Currency"
+    },
+    "currency_rate": {
+      "$ref": "#/components/schemas/CurrencyRate"
+    },
+    "sub_total": {
+      "title": "Sub-total amount",
+      "description": "Sub-total amount, normally before tax.",
+      "type": "number",
+      "example": 27500,
+      "nullable": true
+    },
+    "total_tax": {
+      "type": "number",
+      "title": "Total tax amount",
+      "description": "Total tax amount applied to this invoice.",
+      "example": 2500,
+      "nullable": true
+    },
+    "total": {
+      "type": "number",
+      "title": "Total amount",
+      "description": "Total amount of invoice, including tax.",
+      "example": 27500,
+      "nullable": true
+    },
+    "tax_inclusive": {
+      "$ref": "#/components/schemas/TaxInclusive"
+    },
+    "line_items": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/InvoiceLineItem"
+      }
+    },
+    "billing_address": {
+      "$ref": "#/components/schemas/Address"
+    },
+    "shipping_address": {
+      "$ref": "#/components/schemas/Address"
+    },
+    "ledger_account": {
+      "$ref": "#/components/schemas/LinkedLedgerAccount"
+    },
+    "template_id": {
+      "type": "string",
+      "title": "Template",
+      "description": "Optional purchase order template",
+      "example": "123456",
+      "nullable": true
+    },
+    "discount_percentage": {
+      "$ref": "#/components/schemas/DiscountPercentage"
+    },
+    "bank_account": {
+      "$ref": "#/components/schemas/BankAccount"
+    },
+    "accounting_by_row": {
+      "$ref": "#/components/schemas/AccountingByRow"
+    },
+    "due_date": {
+      "$ref": "#/components/schemas/DueDate"
+    },
+    "payment_method": {
+      "$ref": "#/components/schemas/PaymentMethod"
+    },
+    "terms": {
+      "type": "string",
+      "title": "Terms",
+      "description": "Terms of payment.",
+      "example": "Net 30 days",
+      "nullable": true
+    },
+    "terms_id": {
+      "$ref": "#/components/schemas/TermsId"
+    },
+    "amortization_type": {
+      "type": "string",
+      "title": "Amortization Type",
+      "description": "Type of amortization",
+      "x-apideck-enum-id": "purchase-orders.amortization-type",
+      "enum": [
+        "manual",
+        "receipt",
+        "schedule",
+        "other"
+      ],
+      "nullable": true
+    },
+    "tax_code": {
+      "$ref": "#/components/schemas/TaxCode"
+    },
+    "tax_method": {
+      "type": "string",
+      "title": "Tax method",
+      "description": "Method of tax calculation",
+      "example": "Due to supplier",
+      "nullable": true
+    },
+    "issued_method": {
+      "type": "string",
+      "title": "Issued method",
+      "description": "Method of issuance of the purchase order",
+      "example": "Email",
+      "nullable": true
+    },
+    "issued_email": {
+      "type": "string",
+      "title": "Issued email",
+      "description": "Email address of the person who issued the purchase order",
+      "example": "john.doe@example.com",
+      "nullable": true
+    },
+    "channel": {
+      "$ref": "#/components/schemas/Channel"
+    },
+    "memo": {
+      "type": "string",
+      "title": "Memo",
+      "description": "Message for the supplier. This text appears on the Purchase Order.",
+      "example": "Thank you for the partnership and have a great day!",
+      "nullable": true
+    },
+    "notes": {
+      "type": "string",
+      "title": "Notes",
+      "description": "Internal notes for the purchase order.",
+      "example": "This is a test purchase order",
+      "nullable": true
+    },
+    "tracking_categories": {
+      "$ref": "#/components/schemas/LinkedTrackingCategories"
+    },
+    "custom_mappings": {
+      "$ref": "#/components/schemas/CustomMappings"
+    },
+    "custom_fields": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/CustomField"
+      }
+    },
+    "row_version": {
+      "$ref": "#/components/schemas/RowVersion"
+    },
+    "updated_by": {
+      "$ref": "#/components/schemas/UpdatedBy"
+    },
+    "created_by": {
+      "$ref": "#/components/schemas/CreatedBy"
+    },
+    "updated_at": {
+      "$ref": "#/components/schemas/UpdatedAt"
+    },
+    "created_at": {
+      "$ref": "#/components/schemas/CreatedAt"
+    },
+    "pass_through": {
+      "$ref": "#/components/schemas/PassThroughBody"
+    }
+  }
+}

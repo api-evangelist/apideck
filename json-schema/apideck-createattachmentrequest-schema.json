@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateAttachmentRequest",
+  "title": "CreateAttachmentRequest",
+  "type": "object",
+  "x-apideck-schema-id": "CreateAttachmentRequest",
+  "additionalProperties": false,
+  "required": [
+    "name"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name of the file",
+      "example": "sample.jpg"
+    },
+    "description": {
+      "type": "string",
+      "description": "Optional description of the file.",
+      "example": "My Personal Documents"
+    },
+    "parent_folder_id": {
+      "type": "string",
+      "description": "The folder id where this attachment belong to",
+      "example": "123"
+    },
+    "pass_through": {
+      "$ref": "#/components/schemas/PassThroughBody"
+    }
+  }
+}

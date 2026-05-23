@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Timezone",
+  "title": "Timezone",
+  "description": "The time zone related to the resource. The value is a string containing a standard time zone identifier, e.g. Europe/London.",
+  "type": "string",
+  "example": "Europe/London",
+  "nullable": true
+}

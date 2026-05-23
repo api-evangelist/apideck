@@ -1,0 +1,128 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ActivityAttendee",
+  "title": "ActivityAttendee",
+  "type": "object",
+  "x-apideck-schema-id": "ActivityAttendee",
+  "x-pii": [
+    "name",
+    "first_name",
+    "middle_name",
+    "last_name",
+    "email_address"
+  ],
+  "x-apideck-weights": {
+    "id": "critical",
+    "name": "critical",
+    "first_name": "high",
+    "middle_name": "low",
+    "last_name": "high",
+    "prefix": "low",
+    "suffix": "edge-case",
+    "email_address": "medium",
+    "is_organizer": "medium",
+    "status": "medium",
+    "user_id": "low"
+  },
+  "properties": {
+    "id": {
+      "description": "Unique identifier for the attendee",
+      "type": "string",
+      "example": "12345",
+      "readOnly": true,
+      "nullable": true
+    },
+    "name": {
+      "description": "Full name of the attendee",
+      "type": "string",
+      "example": "Elon Musk",
+      "minLength": 1,
+      "nullable": true
+    },
+    "first_name": {
+      "description": "First name of the attendee",
+      "type": "string",
+      "example": "Elon",
+      "nullable": true
+    },
+    "middle_name": {
+      "description": "Middle name of the attendee",
+      "type": "string",
+      "example": "D.",
+      "nullable": true
+    },
+    "last_name": {
+      "description": "Last name of the attendee",
+      "type": "string",
+      "example": "Musk",
+      "nullable": true
+    },
+    "prefix": {
+      "description": "Prefix of the attendee",
+      "type": "string",
+      "example": "Mr.",
+      "nullable": true
+    },
+    "suffix": {
+      "description": "Suffix of the attendee",
+      "type": "string",
+      "example": "PhD",
+      "nullable": true
+    },
+    "email_address": {
+      "description": "Email address of the attendee",
+      "type": "string",
+      "example": "elon@musk.com",
+      "nullable": true
+    },
+    "is_organizer": {
+      "description": "Whether the attendee is the organizer of the activity",
+      "type": "boolean",
+      "example": true,
+      "nullable": true
+    },
+    "status": {
+      "description": "Status of the attendee",
+      "type": "string",
+      "x-apideck-enum-id": "activity-attendees.status",
+      "enum": [
+        "accepted",
+        "tentative",
+        "declined"
+      ],
+      "example": "accepted",
+      "nullable": true
+    },
+    "user_id": {
+      "description": "The identifier for a related user",
+      "type": "string",
+      "example": "12345",
+      "readOnly": true,
+      "nullable": true
+    },
+    "contact_id": {
+      "description": "The identifier for a related contact",
+      "type": "string",
+      "example": "12345",
+      "readOnly": true,
+      "nullable": true
+    },
+    "updated_at": {
+      "description": "The last time the attendee was updated (ISO 8601)",
+      "type": "string",
+      "format": "date-time",
+      "example": "2017-08-12T20:43:21.291Z",
+      "readOnly": true,
+      "nullable": true
+    },
+    "created_at": {
+      "description": "The time the attendee was created (ISO 8601)",
+      "type": "string",
+      "format": "date-time",
+      "example": "2017-08-12T20:43:21.291Z",
+      "readOnly": true,
+      "nullable": true
+    }
+  },
+  "additionalProperties": false
+}

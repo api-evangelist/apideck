@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ActivitiesFilter",
+  "title": "ActivitiesFilter",
+  "type": "object",
+  "x-apideck-schema-id": "ActivitiesFilter",
+  "example": {
+    "updated_since": "2020-09-30T07:43:32.000Z"
+  },
+  "properties": {
+    "company_id": {
+      "type": "string",
+      "description": "Company ID to filter on",
+      "example": "1234"
+    },
+    "owner_id": {
+      "type": "string",
+      "description": "Owner ID to filter on",
+      "example": "1234"
+    },
+    "contact_id": {
+      "type": "string",
+      "description": "Primary contact ID to filter on",
+      "example": "1234"
+    },
+    "updated_since": {
+      "type": "string",
+      "title": "Updated since (timestamp)",
+      "format": "date-time",
+      "example": "2020-09-30T07:43:32.000Z"
+    },
+    "type": {
+      "type": "string",
+      "title": "Type",
+      "description": "Type to filter on",
+      "format": "string",
+      "example": "Task"
+    }
+  },
+  "additionalProperties": false
+}

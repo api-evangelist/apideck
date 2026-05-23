@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ParentFolderId",
+  "title": "ParentFolderId",
+  "type": "string",
+  "x-apideck-schema-id": "ParentFolderId",
+  "description": "The parent folder to create the new file within. This can be an ID or a path depending on the downstream folder. Please see the connector section below to see downstream specific gotchas.",
+  "example": "1234"
+}

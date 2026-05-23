@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/EmployeesOneFilter",
+  "title": "EmployeesOneFilter",
+  "type": "object",
+  "x-apideck-schema-id": "EmployeesOneFilter",
+  "example": {
+    "company_id": "1234"
+  },
+  "properties": {
+    "company_id": {
+      "type": "string",
+      "description": "Company ID to filter on",
+      "example": "1234"
+    }
+  },
+  "additionalProperties": false
+}

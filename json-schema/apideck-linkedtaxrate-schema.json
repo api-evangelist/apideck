@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/LinkedTaxRate",
+  "title": "LinkedTaxRate",
+  "type": "object",
+  "x-apideck-schema-id": "LinkedTaxRate",
+  "additionalProperties": false,
+  "x-apideck-weights": {
+    "id": "medium",
+    "code": "medium",
+    "name": "medium",
+    "rate": "medium"
+  },
+  "properties": {
+    "id": {
+      "type": "string",
+      "title": "The ID of the object.",
+      "description": "The ID of the object.",
+      "example": "123456",
+      "nullable": true
+    },
+    "code": {
+      "type": "string",
+      "title": "Tax rate code",
+      "description": "Tax rate code",
+      "example": "N-T",
+      "nullable": true
+    },
+    "name": {
+      "type": "string",
+      "title": "Name",
+      "description": "Name of the tax rate",
+      "example": "GST on Purchases",
+      "nullable": true,
+      "readOnly": true
+    },
+    "rate": {
+      "type": "number",
+      "title": "Rate",
+      "description": "Rate of the tax rate",
+      "example": 10,
+      "nullable": true
+    }
+  }
+}

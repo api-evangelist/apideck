@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/EmployeeJob",
+  "title": "job",
+  "x-apideck-weights": {
+    "id": "critical",
+    "employee_id": "edge-case",
+    "title": "critical",
+    "role": "medium",
+    "start_date": "high",
+    "end_date": "high",
+    "compensation_rate": "medium",
+    "currency": "medium",
+    "payment_unit": "medium",
+    "hired_at": "medium",
+    "is_primary": "medium",
+    "status": "medium",
+    "location": "medium"
+  },
+  "x-apideck-schema-id": "EmployeeJob",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/IdOrNull"
+    },
+    "employee_id": {
+      "$ref": "#/components/schemas/IdOrNull"
+    },
+    "title": {
+      "$ref": "#/components/schemas/Title"
+    },
+    "role": {
+      "$ref": "#/components/schemas/JobRole"
+    },
+    "start_date": {
+      "type": "string",
+      "title": "The start date of the job.",
+      "description": "The date on which the employee starts working in their current job role.",
+      "example": "2020-08-12",
+      "format": "date",
+      "nullable": true
+    },
+    "end_date": {
+      "type": "string",
+      "title": "The end date of the job.",
+      "description": "The date on which the employee leaves or is expected to leave their current job role.",
+      "example": "2020-08-12",
+      "format": "date",
+      "nullable": true
+    },
+    "compensation_rate": {
+      "type": "number",
+      "title": "The compensation rate of the job.",
+      "description": "The rate of pay for the employee in their current job role.",
+      "example": 72000,
+      "nullable": true
+    },
+    "currency": {
+      "$ref": "#/components/schemas/Currency"
+    },
+    "payment_unit": {
+      "$ref": "#/components/schemas/PaymentUnit"
+    },
+    "hired_at": {
+      "type": "string",
+      "title": "Hired date",
+      "description": "The date on which the employee was hired by the organization",
+      "example": "2020-08-12",
+      "format": "date",
+      "nullable": true
+    },
+    "is_primary": {
+      "title": "Primary",
+      "description": "Indicates whether this the employee's primary job.",
+      "type": "boolean",
+      "example": true,
+      "nullable": true
+    },
+    "is_manager": {
+      "title": "Manager",
+      "description": "Indicates whether this the employee has a manager role.",
+      "type": "boolean",
+      "example": true,
+      "nullable": true
+    },
+    "status": {
+      "type": "string",
+      "title": "Status",
+      "enum": [
+        "active",
+        "inactive",
+        "other"
+      ],
+      "x-apideck-enum-id": "jobs.status",
+      "description": "Indicates the status of the job.",
+      "example": "active",
+      "nullable": true
+    },
+    "location": {
+      "$ref": "#/components/schemas/Address"
+    }
+  }
+}

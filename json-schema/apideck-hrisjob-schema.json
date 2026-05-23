@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/HrisJob",
+  "title": "HrisJob",
+  "type": "object",
+  "x-apideck-schema-id": "HrisJob",
+  "x-apideck-weights": {
+    "id": "critical",
+    "employee_id": "critical",
+    "title": "critical",
+    "start_date": "high",
+    "end_date": "high",
+    "employment_status": "high",
+    "is_primary": "medium",
+    "location": "medium",
+    "department": "medium"
+  },
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/IdOrNull"
+    },
+    "employee_id": {
+      "type": "string",
+      "description": "Id of the employee",
+      "nullable": true
+    },
+    "title": {
+      "$ref": "#/components/schemas/Title"
+    },
+    "start_date": {
+      "type": "string",
+      "example": "2020-08-12",
+      "format": "date",
+      "nullable": true
+    },
+    "end_date": {
+      "type": "string",
+      "example": "2020-08-12",
+      "format": "date",
+      "nullable": true
+    },
+    "employment_status": {
+      "$ref": "#/components/schemas/EmploymentStatus"
+    },
+    "department": {
+      "type": "string",
+      "example": "Brussels Office",
+      "description": "Department name",
+      "nullable": true
+    },
+    "is_primary": {
+      "title": "Primary",
+      "description": "Indicates whether this the employee's primary job.",
+      "type": "boolean",
+      "example": true,
+      "nullable": true
+    },
+    "location": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "HQ US",
+          "nullable": true
+        }
+      }
+    },
+    "custom_mappings": {
+      "$ref": "#/components/schemas/CustomMappings"
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreatedAt",
+  "title": "Created at (timestamp)",
+  "type": "string",
+  "description": "The date and time when the object was created.",
+  "format": "date-time",
+  "example": "2020-09-30T07:43:32.000Z",
+  "readOnly": true,
+  "nullable": true
+}

@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreatedBy",
+  "title": "Created by",
+  "type": "string",
+  "description": "The user who created the object.",
+  "example": "12345",
+  "readOnly": true,
+  "nullable": true
+}

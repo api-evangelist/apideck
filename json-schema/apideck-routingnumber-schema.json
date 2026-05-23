@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RoutingNumber",
+  "title": "Routing Number",
+  "type": "string",
+  "description": "Bank routing number (US)",
+  "example": "021000021",
+  "nullable": true
+}

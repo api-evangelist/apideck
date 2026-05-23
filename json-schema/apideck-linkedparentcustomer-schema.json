@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/LinkedParentCustomer",
+  "title": "LinkedParentCustomer",
+  "type": "object",
+  "x-apideck-schema-id": "LinkedParentCustomer",
+  "description": "The parent customer this entity is linked to.",
+  "x-apideck-weights": {
+    "id": "critical"
+  },
+  "nullable": true,
+  "required": [
+    "id"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "title": "Customer ID",
+      "description": "The parent ID of the customer this entity is linked to.",
+      "example": "12345"
+    },
+    "name": {
+      "type": "string",
+      "title": "Name",
+      "description": "The name of the parent customer.",
+      "example": "Windsurf Shop"
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FileType",
+  "title": "FileType",
+  "type": "string",
+  "x-apideck-schema-id": "FileType",
+  "x-apideck-enum-id": "files.type",
+  "enum": [
+    "file",
+    "folder",
+    "url"
+  ],
+  "description": "The type of resource. Could be file, folder or url",
+  "readOnly": true,
+  "example": "file",
+  "nullable": true
+}

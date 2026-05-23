@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/LinkedSubsidiary",
+  "title": "LinkedSubsidiary",
+  "type": "object",
+  "x-apideck-schema-id": "LinkedSubsidiary",
+  "x-apideck-weights": {
+    "id": "critical",
+    "display_id": "medium",
+    "name": "medium"
+  },
+  "nullable": true,
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/Id"
+    },
+    "display_id": {
+      "$ref": "#/components/schemas/DisplayId"
+    },
+    "name": {
+      "$ref": "#/components/schemas/Name"
+    }
+  }
+}

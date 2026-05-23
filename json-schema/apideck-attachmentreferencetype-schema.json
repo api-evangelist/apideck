@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AttachmentReferenceType",
+  "title": "AttachmentReferenceType",
+  "x-apideck-enum-id": "attachment.reference_type",
+  "type": "string",
+  "enum": [
+    "invoice",
+    "bill",
+    "expense",
+    "quote"
+  ]
+}

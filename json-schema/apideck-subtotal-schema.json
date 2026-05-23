@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SubTotal",
+  "title": "Subtotal amount",
+  "description": "Subtotal amount, normally before tax.",
+  "type": "number",
+  "example": 250,
+  "nullable": true
+}

@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Initials",
+  "title": "Initials",
+  "type": "string",
+  "description": "The initials of the person, usually derived from their first, middle, and last names.",
+  "example": "EM",
+  "nullable": true
+}

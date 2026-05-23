@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Salutation",
+  "title": "Salutation",
+  "type": "string",
+  "description": "A formal salutation for the person. For example, 'Mr', 'Mrs'",
+  "example": "Mr",
+  "nullable": true
+}

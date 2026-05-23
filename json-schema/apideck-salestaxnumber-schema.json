@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SalesTaxNumber",
+  "title": "Sales Tax Number",
+  "type": "string",
+  "example": "111.222.333",
+  "nullable": true
+}

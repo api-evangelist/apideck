@@ -1,0 +1,332 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/LedgerAccount",
+  "title": "LedgerAccount",
+  "type": "object",
+  "x-apideck-schema-id": "LedgerAccount",
+  "additionalProperties": false,
+  "x-apideck-weights": {
+    "id": "critical",
+    "display_id": "low",
+    "nominal_code": "low",
+    "code": "low",
+    "classification": "edge-case",
+    "type": "high",
+    "sub_type": "edge-case",
+    "name": "high",
+    "fully_qualified_name": "edge-case",
+    "description": "edge-case",
+    "opening_balance": "edge-case",
+    "current_balance": "edge-case",
+    "currency": "edge-case",
+    "tax_type": "edge-case",
+    "tax_rate": "edge-case",
+    "level": "edge-case",
+    "active": "edge-case",
+    "status": "medium",
+    "header": "edge-case",
+    "bank_account": "high",
+    "categories": "high",
+    "parent_account": "high",
+    "sub_account": "medium",
+    "sub_accounts": "medium",
+    "last_reconciliation_date": "edge-case",
+    "row_version": "edge-case",
+    "updated_by": "edge-case",
+    "created_by": "edge-case",
+    "subsidiaries": "edge-case",
+    "created_at": "low",
+    "updated_at": "high"
+  },
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/Id"
+    },
+    "display_id": {
+      "type": "string",
+      "title": "Display ID",
+      "description": "The human readable display ID used when displaying the account",
+      "example": "1-12345"
+    },
+    "nominal_code": {
+      "type": "string",
+      "title": "Nominal Code",
+      "description": "The nominal code of the ledger account.",
+      "example": "N091",
+      "nullable": true,
+      "deprecated": true
+    },
+    "code": {
+      "type": "string",
+      "title": "Code",
+      "description": "The code assigned to the account.",
+      "example": "453",
+      "nullable": true
+    },
+    "classification": {
+      "type": "string",
+      "title": "Classification",
+      "description": "The classification of account.",
+      "x-apideck-enum-id": "ledger-accounts.classification",
+      "enum": [
+        "asset",
+        "equity",
+        "expense",
+        "liability",
+        "revenue",
+        "income",
+        "other_income",
+        "other_expense",
+        "costs_of_sales",
+        "other"
+      ],
+      "example": "asset",
+      "nullable": true
+    },
+    "type": {
+      "type": "string",
+      "title": "Type",
+      "description": "The type of account.",
+      "x-apideck-enum-id": "ledger-accounts.type",
+      "enum": [
+        "accounts_payable",
+        "accounts_receivable",
+        "balancesheet",
+        "bank",
+        "costs_of_sales",
+        "credit_card",
+        "current_asset",
+        "current_liability",
+        "equity",
+        "expense",
+        "fixed_asset",
+        "non_current_asset",
+        "non_current_liability",
+        "other_asset",
+        "other_expense",
+        "other_income",
+        "other_liability",
+        "revenue",
+        "sales",
+        "other"
+      ],
+      "example": "bank"
+    },
+    "sub_type": {
+      "type": "string",
+      "title": "Sub Type",
+      "description": "The sub type of account.",
+      "example": "CHECKING_ACCOUNT",
+      "nullable": true
+    },
+    "name": {
+      "type": "string",
+      "title": "Name",
+      "description": "The name of the account.",
+      "example": "Bank account",
+      "nullable": true
+    },
+    "fully_qualified_name": {
+      "type": "string",
+      "title": "Fully Qualified Name",
+      "description": "The fully qualified name of the account.",
+      "example": "Asset.Bank.Checking_Account",
+      "nullable": true
+    },
+    "description": {
+      "type": "string",
+      "title": "Description",
+      "description": "The description of the account.",
+      "example": "Main checking account",
+      "nullable": true
+    },
+    "opening_balance": {
+      "type": "number",
+      "title": "Opening balance",
+      "description": "The opening balance of the account.",
+      "example": 75000,
+      "nullable": true
+    },
+    "current_balance": {
+      "type": "number",
+      "title": "Current balance",
+      "description": "The current balance of the account.",
+      "example": 20000,
+      "nullable": true
+    },
+    "currency": {
+      "$ref": "#/components/schemas/Currency"
+    },
+    "tax_type": {
+      "type": "string",
+      "title": "Tax Type",
+      "description": "The tax type of the account.",
+      "example": "NONE",
+      "nullable": true
+    },
+    "tax_rate": {
+      "$ref": "#/components/schemas/LinkedTaxRate"
+    },
+    "level": {
+      "type": "number",
+      "example": 1,
+      "nullable": true
+    },
+    "active": {
+      "type": "boolean",
+      "title": "Is active",
+      "description": "Whether the account is active or not.",
+      "example": true,
+      "nullable": true
+    },
+    "status": {
+      "type": "string",
+      "title": "Account status",
+      "description": "The status of the account.",
+      "x-apideck-enum-id": "ledger-accounts.status",
+      "enum": [
+        "active",
+        "inactive",
+        "archived"
+      ],
+      "example": "active",
+      "nullable": true
+    },
+    "header": {
+      "type": "boolean",
+      "title": "Is header",
+      "description": "Whether the account is a header or not.",
+      "example": true,
+      "nullable": true
+    },
+    "bank_account": {
+      "$ref": "#/components/schemas/BankAccount"
+    },
+    "categories": {
+      "type": "array",
+      "title": "Categories",
+      "description": "The categories of the account.",
+      "readOnly": true,
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true,
+            "example": "12345"
+          },
+          "name": {
+            "type": "string",
+            "title": "Category name",
+            "description": "The name of the category.",
+            "readOnly": true,
+            "example": "Finance Charges Expense"
+          }
+        }
+      }
+    },
+    "parent_account": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "Parent account ID",
+          "description": "The ID of the parent account.",
+          "example": "12345"
+        },
+        "name": {
+          "type": "string",
+          "title": "Name",
+          "description": "The name of the parent account.",
+          "example": "Bank Accounts"
+        },
+        "display_id": {
+          "type": "string",
+          "title": "Display ID",
+          "description": "The human readable display ID used when displaying the parent account",
+          "example": "1-1100"
+        }
+      }
+    },
+    "sub_account": {
+      "type": "boolean",
+      "title": "Is sub account",
+      "description": "Whether the account is a sub account or not.",
+      "example": false,
+      "nullable": true
+    },
+    "sub_accounts": {
+      "type": "array",
+      "readOnly": true,
+      "title": "Sub accounts",
+      "description": "The sub accounts of the account.",
+      "items": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Sub account ID",
+            "description": "The ID of the sub account.",
+            "readOnly": true,
+            "example": "12345"
+          },
+          "account_sub_name": {
+            "type": "string",
+            "title": "Sub Account Name",
+            "description": "The name of the sub account.",
+            "readOnly": true,
+            "example": "Petty Cash"
+          }
+        }
+      }
+    },
+    "last_reconciliation_date": {
+      "type": "string",
+      "title": "Last Reconciliation Date",
+      "description": "Reconciliation Date means the last calendar day of each Reconciliation Period.",
+      "format": "date",
+      "example": "2020-09-30",
+      "nullable": true
+    },
+    "subsidiaries": {
+      "type": "array",
+      "title": "Subsidiaries",
+      "description": "The subsidiaries the account belongs to.",
+      "items": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Subsidiary ID",
+            "description": "The ID of the subsidiary."
+          }
+        }
+      }
+    },
+    "custom_mappings": {
+      "$ref": "#/components/schemas/CustomMappings"
+    },
+    "custom_fields": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/CustomField"
+      }
+    },
+    "row_version": {
+      "$ref": "#/components/schemas/RowVersion"
+    },
+    "updated_by": {
+      "$ref": "#/components/schemas/UpdatedBy"
+    },
+    "created_by": {
+      "$ref": "#/components/schemas/CreatedBy"
+    },
+    "updated_at": {
+      "$ref": "#/components/schemas/UpdatedAt"
+    },
+    "created_at": {
+      "$ref": "#/components/schemas/CreatedAt"
+    },
+    "pass_through": {
+      "$ref": "#/components/schemas/PassThroughBody"
+    }
+  }
+}

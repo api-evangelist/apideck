@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AccountingByRow",
+  "title": "Accounting by Row",
+  "type": "boolean",
+  "description": "Indicates if accounting by row is used (true) or not (false). Accounting by row means that a separate ledger transaction is created for each row.",
+  "nullable": true,
+  "example": false
+}

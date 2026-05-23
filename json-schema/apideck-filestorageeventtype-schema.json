@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FileStorageEventType",
+  "title": "FileStorageEventType",
+  "x-apideck-enum-id": "file-storage.event_type",
+  "type": "string",
+  "enum": [
+    "*",
+    "file-storage.file.created",
+    "file-storage.file.updated",
+    "file-storage.file.deleted",
+    "file-storage.drive.updated"
+  ],
+  "example": "file-storage.file.created"
+}

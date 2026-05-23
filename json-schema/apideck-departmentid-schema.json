@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DepartmentId",
+  "title": "Department ID",
+  "type": "string",
+  "description": "The ID of the department",
+  "example": "12345",
+  "nullable": true,
+  "readOnly": false
+}

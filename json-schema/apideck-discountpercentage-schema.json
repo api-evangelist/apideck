@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DiscountPercentage",
+  "title": "Discount Percentage",
+  "type": "number",
+  "description": "Discount percentage applied to this transaction.",
+  "example": 5.5,
+  "nullable": true
+}

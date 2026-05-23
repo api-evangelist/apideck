@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/LinkedLocation",
+  "title": "LinkedLocation",
+  "type": "object",
+  "x-apideck-schema-id": "LinkedLocation",
+  "x-apideck-weights": {
+    "id": "critical",
+    "display_id": "medium",
+    "name": "medium",
+    "downstream_id": "low"
+  },
+  "nullable": true,
+  "properties": {
+    "id": {
+      "title": "Location ID",
+      "description": "The unique identifier for the location.",
+      "type": "string",
+      "example": "123456"
+    },
+    "display_id": {
+      "$ref": "#/components/schemas/DisplayId"
+    },
+    "name": {
+      "type": "string",
+      "title": "Location Name",
+      "description": "The name of the location.",
+      "example": "New York Office",
+      "nullable": true
+    },
+    "downstream_id": {
+      "$ref": "#/components/schemas/DownstreamId"
+    }
+  }
+}

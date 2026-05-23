@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/LinkedTrackingCategories",
+  "title": "Linked tracking categories",
+  "type": "array",
+  "x-apideck-schema-id": "LinkedTrackingCategories",
+  "description": "A list of linked tracking categories.",
+  "nullable": true,
+  "items": {
+    "$ref": "#/components/schemas/LinkedTrackingCategory"
+  }
+}

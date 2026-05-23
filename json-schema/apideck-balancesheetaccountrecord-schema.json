@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BalanceSheetAccountRecord",
+  "title": "Balance Sheet Account Record",
+  "type": "object",
+  "x-apideck-schema-id": "BalanceSheetAccountRecord",
+  "x-apideck-weights": {
+    "account_id": "critical",
+    "name": "high",
+    "value": "critical",
+    "items": "medium"
+  },
+  "description": "A record of a balance sheet account.",
+  "additionalProperties": false,
+  "properties": {
+    "account_id": {
+      "$ref": "#/components/schemas/AccountId"
+    },
+    "code": {
+      "$ref": "#/components/schemas/AccountCode"
+    },
+    "name": {
+      "$ref": "#/components/schemas/AccountName"
+    },
+    "value": {
+      "$ref": "#/components/schemas/Amount"
+    }
+  }
+}

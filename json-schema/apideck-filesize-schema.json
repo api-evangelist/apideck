@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FileSize",
+  "title": "FileSize",
+  "type": "integer",
+  "x-apideck-schema-id": "FileSize",
+  "description": "The size of the file in bytes",
+  "example": 1810673,
+  "nullable": true
+}

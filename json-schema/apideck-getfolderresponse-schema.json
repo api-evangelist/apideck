@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetFolderResponse",
+  "title": "GetFolderResponse",
+  "type": "object",
+  "x-apideck-schema-id": "GetFolderResponse",
+  "required": [
+    "status_code",
+    "status",
+    "service",
+    "resource",
+    "operation",
+    "data"
+  ],
+  "properties": {
+    "status_code": {
+      "type": "integer",
+      "description": "HTTP Response Status Code",
+      "example": 200
+    },
+    "status": {
+      "type": "string",
+      "description": "HTTP Response Status",
+      "example": "OK"
+    },
+    "service": {
+      "type": "string",
+      "description": "Apideck ID of service provider",
+      "example": "undefined"
+    },
+    "resource": {
+      "type": "string",
+      "description": "Unified API resource name",
+      "example": "Folders"
+    },
+    "operation": {
+      "type": "string",
+      "description": "Operation performed",
+      "example": "one"
+    },
+    "data": {
+      "$ref": "#/components/schemas/Folder"
+    },
+    "_raw": {
+      "$ref": "#/components/schemas/Raw"
+    }
+  }
+}

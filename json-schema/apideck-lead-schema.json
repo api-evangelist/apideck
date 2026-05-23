@@ -1,0 +1,219 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Lead",
+  "title": "Lead",
+  "type": "object",
+  "x-apideck-schema-id": "Lead",
+  "x-apideck-weights": {
+    "id": "critical",
+    "name": "critical",
+    "company_name": "high",
+    "owner_id": "high",
+    "owner_name": "low",
+    "company_id": "high",
+    "contact_id": "low",
+    "lead_source": "low",
+    "first_name": "high",
+    "last_name": "high",
+    "description": "low",
+    "prefix": "low",
+    "title": "high",
+    "language": "medium",
+    "status": "high",
+    "monetary_amount": "low",
+    "currency": "low",
+    "fax": "low",
+    "websites": "medium",
+    "addresses": "high",
+    "social_links": "low",
+    "phone_numbers": "high",
+    "emails": "high",
+    "custom_fields": "medium",
+    "tags": "low",
+    "updated_at": "medium",
+    "created_at": "medium"
+  },
+  "required": [
+    "name"
+  ],
+  "x-pii": [
+    "name",
+    "email",
+    "first_name",
+    "last_name"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "description": "Unique identifier for the contact.",
+      "type": "string",
+      "example": "12345",
+      "readOnly": true
+    },
+    "name": {
+      "description": "Full name of the lead.",
+      "type": "string",
+      "example": "Elon Musk"
+    },
+    "company_name": {
+      "description": "The name of the company the lead is associated with.",
+      "type": "string",
+      "example": "Spacex",
+      "nullable": true
+    },
+    "owner_id": {
+      "description": "The owner of the lead.",
+      "type": "string",
+      "example": "54321",
+      "nullable": true
+    },
+    "owner_name": {
+      "description": "The name of the owner of the lead.",
+      "type": "string",
+      "example": "John Doe",
+      "nullable": true
+    },
+    "company_id": {
+      "description": "The company the lead is associated with.",
+      "type": "string",
+      "example": "2",
+      "nullable": true
+    },
+    "contact_id": {
+      "description": "The contact the lead is associated with.",
+      "type": "string",
+      "example": "3",
+      "nullable": true
+    },
+    "lead_id": {
+      "description": "The identifier of the lead.",
+      "type": "string",
+      "example": "2",
+      "nullable": true
+    },
+    "lead_source": {
+      "description": "The source of the lead.",
+      "type": "string",
+      "example": "Cold Call",
+      "nullable": true
+    },
+    "first_name": {
+      "description": "The first name of the lead.",
+      "type": "string",
+      "example": "Elon",
+      "nullable": true
+    },
+    "last_name": {
+      "description": "The last name of the lead.",
+      "type": "string",
+      "example": "Musk",
+      "nullable": true
+    },
+    "description": {
+      "description": "The description of the lead.",
+      "type": "string",
+      "example": "A thinker",
+      "nullable": true
+    },
+    "prefix": {
+      "description": "The prefix of the lead.",
+      "type": "string",
+      "example": "Sir",
+      "nullable": true
+    },
+    "title": {
+      "description": "The job title of the lead.",
+      "type": "string",
+      "example": "CEO",
+      "nullable": true
+    },
+    "language": {
+      "type": "string",
+      "example": "EN",
+      "description": "language code according to ISO 639-1. For the United States - EN",
+      "nullable": true
+    },
+    "status": {
+      "type": "string",
+      "example": "New",
+      "nullable": true
+    },
+    "monetary_amount": {
+      "description": "The monetary amount of the lead.",
+      "type": "number",
+      "example": 75000,
+      "nullable": true
+    },
+    "currency": {
+      "$ref": "#/components/schemas/Currency"
+    },
+    "fax": {
+      "description": "The fax number of the lead.",
+      "type": "string",
+      "example": "+12129876543",
+      "nullable": true
+    },
+    "websites": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Website"
+      }
+    },
+    "addresses": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Address"
+      }
+    },
+    "social_links": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/SocialLink"
+      }
+    },
+    "phone_numbers": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/PhoneNumber"
+      }
+    },
+    "emails": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Email"
+      }
+    },
+    "custom_fields": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/CustomField"
+      },
+      "nullable": true
+    },
+    "tags": {
+      "$ref": "#/components/schemas/Tags"
+    },
+    "custom_mappings": {
+      "$ref": "#/components/schemas/CustomMappings"
+    },
+    "updated_at": {
+      "type": "string",
+      "description": "Date updated in ISO 8601 format",
+      "example": "2020-09-30T07:43:32.000Z",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}.\\d{3}Z$",
+      "readOnly": true,
+      "nullable": true
+    },
+    "created_at": {
+      "type": "string",
+      "description": "Date created in ISO 8601 format",
+      "example": "2020-09-30T07:43:32.000Z",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}.\\d{3}Z$",
+      "readOnly": true,
+      "nullable": true
+    },
+    "pass_through": {
+      "$ref": "#/components/schemas/PassThroughBody"
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TaxCode",
+  "title": "Tax Code",
+  "type": "string",
+  "description": "Applicable tax id/code override if tax is not supplied on a line item basis.",
+  "example": "1234",
+  "nullable": true
+}

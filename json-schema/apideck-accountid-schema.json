@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AccountId",
+  "title": "Account Id",
+  "description": "The unique identifier for the account.",
+  "type": "string",
+  "example": "123456",
+  "readOnly": true
+}

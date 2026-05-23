@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AccountingCompanyId",
+  "title": "CompanyId",
+  "type": "string",
+  "description": "The company ID the transaction belongs to",
+  "example": "12345",
+  "nullable": true
+}

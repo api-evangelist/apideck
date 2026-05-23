@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BalanceByPeriod",
+  "title": "Balance by Period",
+  "type": "object",
+  "x-apideck-schema-id": "BalanceByPeriod",
+  "additionalProperties": false,
+  "x-apideck-weights": {
+    "start_date": "high",
+    "end_date": "high",
+    "total_amount": "critical",
+    "balances_by_transaction": "high"
+  },
+  "properties": {
+    "start_date": {
+      "type": "string",
+      "nullable": true,
+      "title": "Start Date",
+      "description": "The starting date of the period. If not provided, it represents the oldest period, where all transactions due before the specified `end_date` are included.",
+      "format": "date",
+      "example": "2024-01-01"
+    },
+    "end_date": {
+      "type": "string",
+      "nullable": true,
+      "title": "End Date",
+      "description": "The ending date of the period. If not provided, it represents an open-ended period starting from the `start_date`, typically capturing future-dated transactions that are not yet aged.",
+      "format": "date",
+      "example": "2024-01-30"
+    },
+    "total_amount": {
+      "type": "number",
+      "title": "Total Amount",
+      "description": "Total amount of the period.",
+      "example": 1500
+    },
+    "balances_by_transaction": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/BalanceByTransaction"
+      }
+    }
+  }
+}

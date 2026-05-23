@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BSBNumber",
+  "title": "BSB Number",
+  "type": "string",
+  "description": "Bank State Branch number (Australia/New Zealand)",
+  "example": "062-001",
+  "nullable": true
+}

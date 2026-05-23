@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ExpenseReportsFilter",
+  "title": "ExpenseReportsFilter",
+  "type": "object",
+  "x-apideck-schema-id": "ExpenseReportsFilter",
+  "example": {
+    "updated_since": "2020-09-30T07:43:32.000Z",
+    "status": "submitted"
+  },
+  "properties": {
+    "updated_since": {
+      "type": "string",
+      "title": "Updated since (timestamp)",
+      "format": "date-time",
+      "example": "2020-09-30T07:43:32.000Z"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "submitted",
+        "approved",
+        "reimbursed",
+        "rejected",
+        "reversed",
+        "voided"
+      ],
+      "x-apideck-enum-id": "expense_reports.status"
+    },
+    "employee_id": {
+      "type": "string",
+      "title": "Employee ID",
+      "description": "Filter by employee ID",
+      "example": "12345"
+    }
+  },
+  "additionalProperties": false
+}

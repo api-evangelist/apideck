@@ -1,0 +1,118 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CustomField",
+  "title": "CustomField",
+  "type": "object",
+  "x-apideck-schema-id": "CustomField",
+  "additionalProperties": false,
+  "anyOf": [
+    {
+      "required": [
+        "id"
+      ]
+    },
+    {
+      "required": [
+        "name"
+      ]
+    }
+  ],
+  "x-apideck-strict-any-of": [
+    {
+      "required": [
+        "id"
+      ]
+    },
+    {
+      "required": [
+        "name"
+      ]
+    }
+  ],
+  "x-apideck-weights": {
+    "id": "critical",
+    "value": "critical",
+    "name": "medium",
+    "description": "edge-case"
+  },
+  "properties": {
+    "id": {
+      "title": "ID",
+      "description": "Unique identifier for the custom field.",
+      "type": "string",
+      "example": "2389328923893298",
+      "nullable": true
+    },
+    "name": {
+      "title": "Name",
+      "type": "string",
+      "description": "Name of the custom field.",
+      "example": "employee_level",
+      "nullable": true
+    },
+    "description": {
+      "title": "Description",
+      "type": "string",
+      "description": "More information about the custom field",
+      "example": "Employee Level",
+      "nullable": true
+    },
+    "value": {
+      "anyOf": [
+        {
+          "type": "string",
+          "example": "Uses Salesforce and Marketo",
+          "nullable": true
+        },
+        {
+          "type": "number",
+          "example": 10,
+          "nullable": true
+        },
+        {
+          "type": "boolean",
+          "example": true,
+          "nullable": true
+        },
+        {
+          "type": "object",
+          "example": {
+            "foo": "bar"
+          },
+          "nullable": true,
+          "additionalProperties": true
+        },
+        {
+          "type": "array",
+          "items": {
+            "anyOf": [
+              {
+                "type": "string",
+                "example": "Uses Salesforce and Marketo",
+                "nullable": true
+              },
+              {
+                "type": "number",
+                "example": 10,
+                "nullable": true
+              },
+              {
+                "type": "boolean",
+                "example": true,
+                "nullable": true
+              },
+              {
+                "type": "object",
+                "example": {
+                  "foo": "bar"
+                },
+                "nullable": true,
+                "additionalProperties": true
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

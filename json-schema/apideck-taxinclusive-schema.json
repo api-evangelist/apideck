@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TaxInclusive",
+  "title": "Tax inclusive",
+  "type": "boolean",
+  "description": "Amounts are including tax",
+  "example": true,
+  "nullable": true
+}

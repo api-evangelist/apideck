@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/EmploymentStatus",
+  "title": "Employment status",
+  "type": "string",
+  "example": "active",
+  "description": "The employment status of the employee, indicating whether they are currently employed, inactive, terminated, or in another status.",
+  "x-apideck-enum-id": "employees.employment_status",
+  "enum": [
+    "active",
+    "inactive",
+    "terminated",
+    "other"
+  ],
+  "nullable": true
+}

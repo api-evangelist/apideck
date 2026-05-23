@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/LineItemType",
+  "title": "Type",
+  "type": "string",
+  "description": "Line Item type",
+  "example": "expense_account",
+  "enum": [
+    "expense_item",
+    "expense_account",
+    "other"
+  ],
+  "x-apideck-enum-id": "line_items.type",
+  "nullable": true
+}

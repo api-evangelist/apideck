@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetTimeOffRequestsResponse",
+  "title": "GetTimeOffRequestsResponse",
+  "type": "object",
+  "required": [
+    "status_code",
+    "status",
+    "service",
+    "resource",
+    "operation",
+    "data"
+  ],
+  "properties": {
+    "status_code": {
+      "type": "integer",
+      "description": "HTTP Response Status Code",
+      "example": 200
+    },
+    "status": {
+      "type": "string",
+      "description": "HTTP Response Status",
+      "example": "OK"
+    },
+    "service": {
+      "type": "string",
+      "description": "Apideck ID of service provider",
+      "example": "bamboohr"
+    },
+    "resource": {
+      "type": "string",
+      "description": "Unified API resource name",
+      "example": "time-off-requests"
+    },
+    "operation": {
+      "type": "string",
+      "description": "Operation performed",
+      "example": "all"
+    },
+    "data": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/TimeOffRequest"
+      }
+    },
+    "_raw": {
+      "$ref": "#/components/schemas/Raw"
+    },
+    "meta": {
+      "$ref": "#/components/schemas/Meta"
+    },
+    "links": {
+      "$ref": "#/components/schemas/Links"
+    }
+  }
+}

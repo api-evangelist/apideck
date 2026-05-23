@@ -1,0 +1,164 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Payment",
+  "title": "Payment",
+  "type": "object",
+  "x-apideck-schema-id": "Payment",
+  "x-apideck-weights": {
+    "id": "critical",
+    "downstream_id": "medium",
+    "currency": "critical",
+    "currency_rate": "medium",
+    "total_amount": "critical",
+    "reference": "medium",
+    "payment_method": "medium",
+    "payment_method_reference": "medium",
+    "payment_method_id": "edge-case",
+    "accounts_receivable_account_type": "edge-case",
+    "accounts_receivable_account_id": "edge-case",
+    "account": "critical",
+    "transaction_date": "critical",
+    "customer": "high",
+    "supplier": "high",
+    "company_id": "medium",
+    "reconciled": "low",
+    "status": "high",
+    "type": "high",
+    "allocations": "critical",
+    "note": "low",
+    "number": "medium",
+    "tracking_categories": "low",
+    "custom_fields": "medium",
+    "row_version": "edge-case",
+    "display_id": "low",
+    "updated_by": "edge-case",
+    "created_by": "edge-case",
+    "created_at": "medium",
+    "updated_at": "medium"
+  },
+  "required": [
+    "id",
+    "total_amount",
+    "transaction_date"
+  ],
+  "x-apideck-strict-required": [
+    "total_amount",
+    "transaction_date",
+    "allocations"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/Id"
+    },
+    "downstream_id": {
+      "$ref": "#/components/schemas/DownstreamId"
+    },
+    "currency": {
+      "$ref": "#/components/schemas/Currency"
+    },
+    "currency_rate": {
+      "$ref": "#/components/schemas/CurrencyRate"
+    },
+    "total_amount": {
+      "$ref": "#/components/schemas/TotalAmount"
+    },
+    "reference": {
+      "$ref": "#/components/schemas/TransactionReference"
+    },
+    "payment_method": {
+      "$ref": "#/components/schemas/PaymentMethod"
+    },
+    "payment_method_reference": {
+      "$ref": "#/components/schemas/PaymentMethodReference"
+    },
+    "payment_method_id": {
+      "$ref": "#/components/schemas/WritableId"
+    },
+    "accounts_receivable_account_type": {
+      "deprecated": true,
+      "type": "string",
+      "title": "Type of accounts receivable account",
+      "description": "Type of accounts receivable account.",
+      "example": "Account",
+      "nullable": true
+    },
+    "accounts_receivable_account_id": {
+      "deprecated": true,
+      "type": "string",
+      "title": "Accounts receivable account id",
+      "description": "Unique identifier for the account to allocate payment to.",
+      "example": "123456",
+      "nullable": true
+    },
+    "account": {
+      "$ref": "#/components/schemas/LinkedLedgerAccount"
+    },
+    "transaction_date": {
+      "$ref": "#/components/schemas/TransactionDate"
+    },
+    "customer": {
+      "$ref": "#/components/schemas/LinkedCustomer"
+    },
+    "supplier": {
+      "$ref": "#/components/schemas/DeprecatedLinkedSupplier"
+    },
+    "company_id": {
+      "$ref": "#/components/schemas/AccountingCompanyId"
+    },
+    "reconciled": {
+      "$ref": "#/components/schemas/IsReconciled"
+    },
+    "status": {
+      "$ref": "#/components/schemas/PaymentStatus"
+    },
+    "type": {
+      "$ref": "#/components/schemas/PaymentType"
+    },
+    "allocations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Allocation"
+      }
+    },
+    "note": {
+      "$ref": "#/components/schemas/TransactionNote"
+    },
+    "number": {
+      "$ref": "#/components/schemas/TransactionNumber"
+    },
+    "tracking_categories": {
+      "$ref": "#/components/schemas/LinkedTrackingCategories"
+    },
+    "custom_fields": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/CustomField"
+      }
+    },
+    "row_version": {
+      "$ref": "#/components/schemas/RowVersion"
+    },
+    "display_id": {
+      "$ref": "#/components/schemas/DisplayId"
+    },
+    "custom_mappings": {
+      "$ref": "#/components/schemas/CustomMappings"
+    },
+    "updated_by": {
+      "$ref": "#/components/schemas/UpdatedBy"
+    },
+    "created_by": {
+      "$ref": "#/components/schemas/CreatedBy"
+    },
+    "created_at": {
+      "$ref": "#/components/schemas/CreatedAt"
+    },
+    "updated_at": {
+      "$ref": "#/components/schemas/UpdatedAt"
+    },
+    "pass_through": {
+      "$ref": "#/components/schemas/PassThroughBody"
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TransactionNote",
+  "title": "Transaction note",
+  "type": "string",
+  "description": "Note associated with the transaction",
+  "example": "Some notes about this transaction",
+  "nullable": true
+}

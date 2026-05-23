@@ -1,0 +1,461 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ProfitAndLoss",
+  "title": "ProfitAndLoss",
+  "type": "object",
+  "x-apideck-schema-id": "ProfitAndLoss",
+  "x-apideck-circular-ref": true,
+  "x-apideck-weights": {
+    "id": "medium",
+    "report_name": "medium",
+    "start_date": "low",
+    "end_date": "low",
+    "currency": "critical",
+    "income": "critical",
+    "cost_of_goods_sold": "high",
+    "expenses": "critical",
+    "other_income": "high",
+    "other_expenses": "high",
+    "uncategorized_accounts": "low",
+    "gross_profit": "medium",
+    "net_operating_income": "medium",
+    "net_income": "high",
+    "customer": "low"
+  },
+  "additionalProperties": false,
+  "required": [
+    "report_name",
+    "income",
+    "expenses"
+  ],
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/Id"
+    },
+    "report_name": {
+      "type": "string",
+      "description": "The name of the report",
+      "title": "Report Name",
+      "example": "ProfitAndLoss"
+    },
+    "start_date": {
+      "type": "string",
+      "description": "The start date of the report",
+      "title": "Start Date",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+      "example": "2017-01-01"
+    },
+    "end_date": {
+      "type": "string",
+      "description": "The end date of the report",
+      "title": "End Date",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+      "example": "2017-01-31"
+    },
+    "currency": {
+      "$ref": "#/components/schemas/Currency"
+    },
+    "income": {
+      "x-apideck-weights": {
+        "id": "medium",
+        "code": "medium",
+        "title": "high",
+        "type": "medium",
+        "total": "critical",
+        "records": "critical"
+      },
+      "type": "object",
+      "title": "Income",
+      "description": "The operating income accounts",
+      "required": [
+        "total",
+        "records"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/components/schemas/Id"
+        },
+        "code": {
+          "$ref": "#/components/schemas/AccountCode"
+        },
+        "title": {
+          "$ref": "#/components/schemas/AccountName"
+        },
+        "type": {
+          "$ref": "#/components/schemas/ProfitAndLossType"
+        },
+        "total": {
+          "$ref": "#/components/schemas/TotalPLAmount"
+        },
+        "records": {
+          "$ref": "#/components/schemas/ProfitAndLossRecords"
+        }
+      },
+      "example": {
+        "id": "123",
+        "code": "123",
+        "title": "Operating Income",
+        "type": "Section",
+        "total": 60000,
+        "records": [
+          {
+            "id": "137",
+            "title": "Sales of products",
+            "code": "137",
+            "type": "Section",
+            "total": 20000,
+            "records": [
+              {
+                "id": "13701",
+                "title": "Sales of products",
+                "code": "13701",
+                "type": "Record",
+                "total": 20000
+              }
+            ]
+          },
+          {
+            "id": "138",
+            "title": "Sales of services",
+            "code": "138",
+            "type": "Section",
+            "total": 40000,
+            "records": [
+              {
+                "id": "789",
+                "code": "789",
+                "title": "Sales of External Services",
+                "type": "Record",
+                "total": 10000
+              },
+              {
+                "id": "101",
+                "code": "101",
+                "title": "Sales of Internal Services",
+                "type": "Record",
+                "total": 30000
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "cost_of_goods_sold": {
+      "x-apideck-weights": {
+        "id": "medium",
+        "code": "medium",
+        "title": "high",
+        "type": "medium",
+        "total": "critical",
+        "records": "critical"
+      },
+      "type": "object",
+      "title": "Cost of Goods Sold",
+      "description": "The cost of goods sold accounts",
+      "required": [
+        "records"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/components/schemas/Id"
+        },
+        "code": {
+          "$ref": "#/components/schemas/AccountCode"
+        },
+        "title": {
+          "$ref": "#/components/schemas/AccountName"
+        },
+        "type": {
+          "$ref": "#/components/schemas/ProfitAndLossType"
+        },
+        "total": {
+          "$ref": "#/components/schemas/TotalPLAmount"
+        },
+        "records": {
+          "$ref": "#/components/schemas/ProfitAndLossRecords"
+        }
+      },
+      "example": {
+        "id": "123",
+        "code": "123",
+        "title": "Cost of Goods Sold",
+        "type": "Section",
+        "total": 12000,
+        "records": [
+          {
+            "id": "123",
+            "code": "123",
+            "title": "COGS Sales",
+            "type": "Record",
+            "total": 12000
+          }
+        ]
+      }
+    },
+    "expenses": {
+      "x-apideck-weights": {
+        "id": "medium",
+        "code": "medium",
+        "title": "high",
+        "type": "medium",
+        "total": "critical",
+        "records": "critical"
+      },
+      "type": "object",
+      "title": "Expenses",
+      "description": "The operating expenses accounts",
+      "required": [
+        "total",
+        "records"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/components/schemas/Id"
+        },
+        "code": {
+          "$ref": "#/components/schemas/AccountCode"
+        },
+        "title": {
+          "$ref": "#/components/schemas/AccountName"
+        },
+        "type": {
+          "$ref": "#/components/schemas/ProfitAndLossType"
+        },
+        "total": {
+          "$ref": "#/components/schemas/TotalPLAmount"
+        },
+        "records": {
+          "$ref": "#/components/schemas/ProfitAndLossRecords"
+        }
+      },
+      "example": {
+        "id": "123",
+        "code": "123",
+        "title": "Operating Expenses",
+        "type": "Section",
+        "total": 14000,
+        "records": [
+          {
+            "id": "137",
+            "title": "Maintenance",
+            "code": "137",
+            "type": "Record",
+            "total": 1000
+          },
+          {
+            "id": "138",
+            "title": "Rent",
+            "code": "138",
+            "type": "Record",
+            "total": 10000
+          },
+          {
+            "id": "789",
+            "code": "789",
+            "title": "Utilities",
+            "type": "Section",
+            "total": 3000,
+            "records": [
+              {
+                "id": "101",
+                "code": "101",
+                "title": "Electricity",
+                "type": "Record",
+                "total": 2000
+              },
+              {
+                "id": "102",
+                "code": "102",
+                "title": "Telephone",
+                "type": "Record",
+                "total": 1000
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "other_income": {
+      "x-apideck-weights": {
+        "id": "medium",
+        "code": "medium",
+        "title": "high",
+        "type": "medium",
+        "total": "critical",
+        "records": "critical"
+      },
+      "type": "object",
+      "title": "Other Income",
+      "description": "The other income accounts",
+      "required": [
+        "records"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/components/schemas/Id"
+        },
+        "code": {
+          "$ref": "#/components/schemas/AccountCode"
+        },
+        "title": {
+          "$ref": "#/components/schemas/AccountName"
+        },
+        "type": {
+          "$ref": "#/components/schemas/ProfitAndLossType"
+        },
+        "total": {
+          "$ref": "#/components/schemas/TotalPLAmount"
+        },
+        "records": {
+          "$ref": "#/components/schemas/ProfitAndLossRecords"
+        }
+      },
+      "example": {
+        "id": "123",
+        "code": "123",
+        "title": "Other Income",
+        "type": "Section",
+        "total": 3000,
+        "records": [
+          {
+            "id": "123",
+            "code": "123",
+            "title": "Interest Income",
+            "type": "Record",
+            "total": 2000
+          },
+          {
+            "id": "123",
+            "code": "123",
+            "title": "Foreign Exchange Gain",
+            "type": "Record",
+            "total": 1000
+          }
+        ]
+      }
+    },
+    "other_expenses": {
+      "x-apideck-weights": {
+        "id": "medium",
+        "code": "medium",
+        "title": "high",
+        "type": "medium",
+        "total": "critical",
+        "records": "critical"
+      },
+      "type": "object",
+      "title": "Other Expenses",
+      "description": "The other expenses accounts",
+      "required": [
+        "records"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/components/schemas/Id"
+        },
+        "code": {
+          "$ref": "#/components/schemas/AccountCode"
+        },
+        "title": {
+          "$ref": "#/components/schemas/AccountName"
+        },
+        "type": {
+          "$ref": "#/components/schemas/ProfitAndLossType"
+        },
+        "total": {
+          "$ref": "#/components/schemas/TotalPLAmount"
+        },
+        "records": {
+          "$ref": "#/components/schemas/ProfitAndLossRecords"
+        }
+      },
+      "example": {
+        "id": "123",
+        "code": "123",
+        "title": "Other Expenses",
+        "type": "Section",
+        "total": 1000,
+        "records": [
+          {
+            "id": "123",
+            "code": "123",
+            "title": "Unrealized Gain/Loss",
+            "type": "Record",
+            "total": 1000
+          }
+        ]
+      }
+    },
+    "uncategorized_accounts": {
+      "x-apideck-weights": {
+        "id": "medium",
+        "code": "medium",
+        "title": "high",
+        "type": "medium",
+        "total": "critical",
+        "records": "critical"
+      },
+      "type": "object",
+      "title": "Uncategorized Accounts",
+      "description": "The accounts not categorized in the other sections",
+      "required": [
+        "total",
+        "records"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/components/schemas/Id"
+        },
+        "code": {
+          "$ref": "#/components/schemas/AccountCode"
+        },
+        "title": {
+          "$ref": "#/components/schemas/AccountName"
+        },
+        "type": {
+          "$ref": "#/components/schemas/ProfitAndLossType"
+        },
+        "total": {
+          "$ref": "#/components/schemas/TotalPLAmount"
+        },
+        "records": {
+          "$ref": "#/components/schemas/ProfitAndLossRecords"
+        }
+      },
+      "example": {
+        "id": "123",
+        "code": "123",
+        "title": "Uncategorized Accounts",
+        "type": "Section",
+        "total": 0,
+        "records": [
+          {
+            "id": "123",
+            "code": "123",
+            "title": "Elimination Adjustments",
+            "type": "Record",
+            "total": 0
+          }
+        ]
+      }
+    },
+    "gross_profit": {
+      "$ref": "#/components/schemas/ProfitAndLossIndicator"
+    },
+    "net_operating_income": {
+      "$ref": "#/components/schemas/ProfitAndLossIndicator"
+    },
+    "net_income": {
+      "$ref": "#/components/schemas/ProfitAndLossIndicator"
+    },
+    "custom_mappings": {
+      "$ref": "#/components/schemas/CustomMappings"
+    },
+    "customer": {
+      "type": "string",
+      "description": "The customer id",
+      "title": "Customer",
+      "example": "123"
+    }
+  }
+}

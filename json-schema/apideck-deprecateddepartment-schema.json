@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DeprecatedDepartment",
+  "title": "Department",
+  "type": "string",
+  "description": "The department the person is currently in. [Deprecated](https://developers.apideck.com/changelog) in favor of the dedicated department_id and department_name field.",
+  "example": "R&D",
+  "nullable": true,
+  "deprecated": true
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PaymentFrequency",
+  "title": "Payment Frequency",
+  "type": "string",
+  "description": "Frequency of employee compensation.",
+  "x-apideck-enum-id": "payment_frequency",
+  "enum": [
+    "weekly",
+    "biweekly",
+    "monthly",
+    "pro-rata",
+    "other"
+  ],
+  "example": "monthly",
+  "nullable": true
+}

@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/JobRole",
+  "title": "Job role",
+  "type": "string",
+  "description": "The position and responsibilities of the person within the organization.",
+  "example": "Sales",
+  "nullable": true
+}

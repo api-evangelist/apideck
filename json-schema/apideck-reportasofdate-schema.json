@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ReportAsOfDate",
+  "title": "Report As Of Date",
+  "type": "string",
+  "description": "The cutoff date for transactions included in the report.",
+  "format": "date",
+  "example": "2024-11-13"
+}

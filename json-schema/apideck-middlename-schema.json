@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MiddleName",
+  "title": "Middle name",
+  "type": "string",
+  "description": "Middle name of the person.",
+  "example": "D.",
+  "nullable": true
+}

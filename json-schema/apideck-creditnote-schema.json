@@ -1,0 +1,249 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreditNote",
+  "title": "CreditNote",
+  "type": "object",
+  "x-apideck-schema-id": "CreditNote",
+  "x-apideck-weights": {
+    "id": "critical",
+    "number": "low",
+    "customer": "high",
+    "company_id": "middle",
+    "location_id": "low",
+    "department_id": "low",
+    "currency": "critical",
+    "currency_rate": "medium",
+    "tax_inclusive": "low",
+    "sub_total": "critical",
+    "total_amount": "critical",
+    "total_tax": "edge-case",
+    "tax_code": "edge-case",
+    "balance": "critical",
+    "remaining_credit": "edge-case",
+    "status": "high",
+    "reference": "low",
+    "date_issued": "edge-case",
+    "date_paid": "critical",
+    "type": "edge-case",
+    "account": "critical",
+    "line_items": "medium",
+    "allocations": "medium",
+    "note": "low",
+    "terms": "low",
+    "terms_id": "edge-case",
+    "billing_address": "low",
+    "shipping_address": "low",
+    "tracking_categories": "low",
+    "custom_fields": "medium",
+    "row_version": "edge-case",
+    "updated_by": "low",
+    "created_by": "low",
+    "created_at": "medium",
+    "updated_at": "medium"
+  },
+  "required": [
+    "id",
+    "total_amount"
+  ],
+  "x-apideck-strict-required": [
+    "total_amount",
+    "currency",
+    "customer"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "title": "Credit Note identifier",
+      "description": "Unique identifier representing the entity",
+      "example": "123456",
+      "readOnly": true
+    },
+    "number": {
+      "type": "string",
+      "title": "Credit note number",
+      "description": "Credit note number.",
+      "example": "OIT00546",
+      "nullable": true
+    },
+    "customer": {
+      "$ref": "#/components/schemas/LinkedCustomer"
+    },
+    "company_id": {
+      "$ref": "#/components/schemas/AccountingCompanyId"
+    },
+    "location_id": {
+      "$ref": "#/components/schemas/LocationId"
+    },
+    "department_id": {
+      "$ref": "#/components/schemas/DepartmentId"
+    },
+    "currency": {
+      "$ref": "#/components/schemas/Currency"
+    },
+    "currency_rate": {
+      "$ref": "#/components/schemas/CurrencyRate"
+    },
+    "tax_inclusive": {
+      "$ref": "#/components/schemas/TaxInclusive"
+    },
+    "sub_total": {
+      "title": "Sub-total amount",
+      "description": "Sub-total amount, normally before tax.",
+      "type": "number",
+      "example": 27500,
+      "nullable": true
+    },
+    "total_amount": {
+      "type": "number",
+      "title": "Total amount",
+      "description": "Amount of transaction",
+      "example": 49.99
+    },
+    "total_tax": {
+      "type": "number",
+      "title": "Total tax amount",
+      "description": "Total tax amount applied to this invoice.",
+      "example": 2500,
+      "nullable": true
+    },
+    "tax_code": {
+      "type": "string",
+      "title": "Tax Code",
+      "description": "Applicable tax id/code override if tax is not supplied on a line item basis.",
+      "example": "1234",
+      "nullable": true
+    },
+    "balance": {
+      "type": "number",
+      "title": "Balance",
+      "description": "The balance reflecting any payments made against the transaction.",
+      "example": 27500,
+      "nullable": true
+    },
+    "remaining_credit": {
+      "type": "number",
+      "title": "Remaining Credit",
+      "description": "Indicates the total credit amount still available to apply towards the payment.",
+      "example": 27500,
+      "nullable": true
+    },
+    "status": {
+      "type": "string",
+      "title": "Credit Note status",
+      "description": "Status of credit notes",
+      "x-apideck-enum-id": "credit-notes.status",
+      "enum": [
+        "draft",
+        "authorised",
+        "posted",
+        "partially_paid",
+        "paid",
+        "voided",
+        "deleted"
+      ],
+      "example": "authorised"
+    },
+    "reference": {
+      "type": "string",
+      "title": "Credit Note reference",
+      "description": "Optional reference message ie: Debit remittance detail.",
+      "example": "123456",
+      "nullable": true
+    },
+    "date_issued": {
+      "type": "string",
+      "title": "Datetime",
+      "description": "Date credit note issued - YYYY:MM::DDThh:mm:ss.sTZD",
+      "format": "date-time",
+      "example": "2021-05-01T12:00:00.000Z"
+    },
+    "date_paid": {
+      "type": "string",
+      "title": "Datetime",
+      "description": "Date credit note paid - YYYY:MM::DDThh:mm:ss.sTZD",
+      "format": "date-time",
+      "example": "2021-05-01T12:00:00.000Z",
+      "nullable": true
+    },
+    "type": {
+      "type": "string",
+      "title": "Credit Note Type",
+      "description": "Type of payment",
+      "x-apideck-enum-id": "credit-notes.type",
+      "enum": [
+        "accounts_receivable_credit",
+        "accounts_payable_credit"
+      ],
+      "example": "accounts_receivable_credit"
+    },
+    "account": {
+      "$ref": "#/components/schemas/LinkedLedgerAccount"
+    },
+    "line_items": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/InvoiceLineItem"
+      }
+    },
+    "allocations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Allocation"
+      }
+    },
+    "note": {
+      "type": "string",
+      "title": "Note",
+      "description": "Optional note to be associated with the credit note.",
+      "example": "Some notes about this credit note",
+      "nullable": true
+    },
+    "terms": {
+      "type": "string",
+      "title": "Terms",
+      "description": "Optional terms to be associated with the credit note.",
+      "example": "Some terms about this credit note",
+      "nullable": true
+    },
+    "terms_id": {
+      "$ref": "#/components/schemas/TermsId"
+    },
+    "billing_address": {
+      "$ref": "#/components/schemas/Address"
+    },
+    "shipping_address": {
+      "$ref": "#/components/schemas/Address"
+    },
+    "tracking_categories": {
+      "$ref": "#/components/schemas/LinkedTrackingCategories"
+    },
+    "custom_mappings": {
+      "$ref": "#/components/schemas/CustomMappings"
+    },
+    "custom_fields": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/CustomField"
+      }
+    },
+    "row_version": {
+      "$ref": "#/components/schemas/RowVersion"
+    },
+    "updated_by": {
+      "$ref": "#/components/schemas/UpdatedBy"
+    },
+    "created_by": {
+      "$ref": "#/components/schemas/CreatedBy"
+    },
+    "updated_at": {
+      "$ref": "#/components/schemas/UpdatedAt"
+    },
+    "created_at": {
+      "$ref": "#/components/schemas/CreatedAt"
+    },
+    "pass_through": {
+      "$ref": "#/components/schemas/PassThroughBody"
+    }
+  }
+}

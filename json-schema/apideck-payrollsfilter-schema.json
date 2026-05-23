@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PayrollsFilter",
+  "title": "PayrollsFilter",
+  "type": "object",
+  "x-apideck-schema-id": "PayrollsFilter",
+  "example": {
+    "start_date": "2022-04-08",
+    "end_date": "2022-04-21"
+  },
+  "properties": {
+    "start_date": {
+      "type": "string",
+      "description": "Return payrolls whose pay period is after the start date",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+      "example": "2022-04-08"
+    },
+    "end_date": {
+      "type": "string",
+      "description": "Return payrolls whose pay period is before the end date",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+      "example": "2022-04-21"
+    }
+  },
+  "additionalProperties": false
+}

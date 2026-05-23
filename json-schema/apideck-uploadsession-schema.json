@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UploadSession",
+  "title": "UploadSession",
+  "type": "object",
+  "x-apideck-schema-id": "UploadSession",
+  "x-apideck-weights": {
+    "id": "critical",
+    "success": "critical",
+    "part_size": "critical",
+    "parallel_upload_supported": "critical",
+    "uploaded_byte_range": "low",
+    "expires_at": "medium"
+  },
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/Id"
+    },
+    "success": {
+      "type": "boolean",
+      "description": "Indicates if the upload session was completed successfully.",
+      "example": true,
+      "readOnly": true
+    },
+    "part_size": {
+      "type": "number",
+      "description": "Size in bytes of each part of the file that you will upload. Uploaded parts need to be this size for the upload to be successful.",
+      "example": 1000000,
+      "readOnly": true
+    },
+    "parallel_upload_supported": {
+      "type": "boolean",
+      "description": "Indicates if parts of the file can uploaded in parallel.",
+      "example": true,
+      "readOnly": true
+    },
+    "uploaded_byte_range": {
+      "type": "string",
+      "description": "The range of bytes that was successfully uploaded.",
+      "example": "0-42",
+      "readOnly": true
+    },
+    "expires_at": {
+      "$ref": "#/components/schemas/ExpiresAt"
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GetEmployeeSchedulesResponse",
+  "title": "GetEmployeeSchedulesResponse",
+  "type": "object",
+  "x-apideck-schema-id": "GetEmployeeSchedulesResponse",
+  "required": [
+    "status_code",
+    "status",
+    "service",
+    "resource",
+    "operation",
+    "data"
+  ],
+  "properties": {
+    "status_code": {
+      "type": "integer",
+      "description": "HTTP Response Status Code",
+      "example": 200
+    },
+    "status": {
+      "type": "string",
+      "description": "HTTP Response Status",
+      "example": "OK"
+    },
+    "service": {
+      "type": "string",
+      "description": "Apideck ID of service provider",
+      "example": "sage-hr"
+    },
+    "resource": {
+      "type": "string",
+      "description": "Unified API resource name",
+      "example": "Employees"
+    },
+    "operation": {
+      "type": "string",
+      "description": "Operation performed",
+      "example": "all"
+    },
+    "data": {
+      "$ref": "#/components/schemas/EmployeeSchedules"
+    },
+    "_raw": {
+      "$ref": "#/components/schemas/Raw"
+    }
+  }
+}

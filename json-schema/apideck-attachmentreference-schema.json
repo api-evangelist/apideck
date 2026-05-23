@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AttachmentReference",
+  "title": "AttachmentReference",
+  "type": "object",
+  "x-apideck-schema-id": "AttachmentReference",
+  "properties": {
+    "type": {
+      "$ref": "#/components/schemas/AttachmentReferenceType"
+    },
+    "id": {
+      "$ref": "#/components/schemas/Id"
+    }
+  },
+  "additionalProperties": false
+}

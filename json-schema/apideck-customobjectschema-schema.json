@@ -1,0 +1,152 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CustomObjectSchema",
+  "title": "CustomObjectSchema",
+  "type": "object",
+  "x-apideck-schema-id": "CustomObjectSchema",
+  "x-apideck-weights": {
+    "id": "critical",
+    "name": "critical",
+    "description": "medium",
+    "fields": "high",
+    "visible": "medium",
+    "active": "medium",
+    "updated_by": "edge-case",
+    "created_by": "edge-case",
+    "updated_at": "medium",
+    "created_at": "medium"
+  },
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "description": "The unique identifier of the custom object schema",
+      "type": "string",
+      "readOnly": true,
+      "example": "cos_12345"
+    },
+    "name": {
+      "description": "The name of the custom object schema",
+      "type": "string",
+      "example": "project",
+      "nullable": true
+    },
+    "description": {
+      "description": "The description of the custom object schema",
+      "type": "string",
+      "example": "This schema defines a project custom object",
+      "nullable": true
+    },
+    "fields": {
+      "description": "The fields defined in the schema",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "field_123"
+          },
+          "name": {
+            "type": "string",
+            "example": "project_name"
+          },
+          "description": {
+            "type": "string",
+            "example": "Name of the project",
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "example": "string",
+            "x-apideck-enum-id": "custom_object_schema.field.type",
+            "enum": [
+              "string",
+              "number",
+              "integer",
+              "boolean",
+              "date",
+              "datetime",
+              "currency",
+              "email",
+              "phone",
+              "reference",
+              "select",
+              "multiselect"
+            ]
+          },
+          "required": {
+            "type": "boolean",
+            "example": true
+          },
+          "options": {
+            "type": "array",
+            "description": "Options for select and multiselect types",
+            "items": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "string",
+                  "example": "option1"
+                },
+                "label": {
+                  "type": "string",
+                  "example": "Option 1"
+                }
+              }
+            },
+            "nullable": true
+          },
+          "default_value": {
+            "description": "Default value for the field",
+            "type": "string",
+            "example": "New Project",
+            "nullable": true
+          }
+        }
+      }
+    },
+    "visible": {
+      "description": "Whether the custom object schema is visible in the UI",
+      "type": "boolean",
+      "example": true,
+      "nullable": true
+    },
+    "active": {
+      "description": "Whether the custom object schema is active",
+      "type": "boolean",
+      "example": true,
+      "nullable": true
+    },
+    "created_by": {
+      "description": "The ID of the user who created the custom object schema",
+      "type": "string",
+      "example": "12345",
+      "readOnly": true,
+      "nullable": true
+    },
+    "updated_by": {
+      "description": "The ID of the user who last updated the custom object schema",
+      "type": "string",
+      "example": "12345",
+      "readOnly": true,
+      "nullable": true
+    },
+    "updated_at": {
+      "description": "The timestamp when the custom object schema was last updated",
+      "type": "string",
+      "example": "2020-09-30T07:43:32.000Z",
+      "readOnly": true,
+      "nullable": true
+    },
+    "created_at": {
+      "description": "The timestamp when the custom object schema was created",
+      "type": "string",
+      "example": "2020-09-30T07:43:32.000Z",
+      "readOnly": true,
+      "nullable": true
+    },
+    "pass_through": {
+      "$ref": "#/components/schemas/PassThroughBody"
+    }
+  }
+}

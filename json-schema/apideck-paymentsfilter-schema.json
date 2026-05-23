@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PaymentsFilter",
+  "title": "PaymentsFilter",
+  "type": "object",
+  "x-apideck-schema-id": "PaymentsFilter",
+  "x-graphql-type-name": "PaymentsFilter",
+  "example": {
+    "updated_since": "2020-09-30T07:43:32.000Z",
+    "invoice_id": "123",
+    "supplier_id": "123",
+    "customer_id": "123abc",
+    "type": "accounts_receivable"
+  },
+  "properties": {
+    "updated_since": {
+      "type": "string",
+      "title": "Updated since (timestamp)",
+      "format": "date-time",
+      "example": "2020-09-30T07:43:32.000Z"
+    },
+    "invoice_id": {
+      "type": "string",
+      "title": "Invoice ID",
+      "example": "123"
+    },
+    "supplier_id": {
+      "type": "string",
+      "title": "Supplier ID",
+      "example": "123"
+    },
+    "customer_id": {
+      "type": "string",
+      "title": "Customer Id",
+      "description": "Filter by customer id",
+      "example": "123abc"
+    },
+    "type": {
+      "type": "string",
+      "x-apideck-enum-id": "payments.type",
+      "enum": [
+        "accounts_receivable",
+        "accounts_payable",
+        "accounts_receivable_credit",
+        "accounts_payable_credit",
+        "accounts_receivable_overpayment",
+        "accounts_payable_overpayment",
+        "accounts_receivable_prepayment",
+        "accounts_payable_prepayment"
+      ],
+      "example": "accounts_receivable"
+    }
+  },
+  "additionalProperties": false
+}

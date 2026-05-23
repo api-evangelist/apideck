@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/IdOrNull",
+  "title": "ID",
+  "type": "string",
+  "description": "A unique identifier for an object.",
+  "example": "12345",
+  "readOnly": true,
+  "nullable": true
+}

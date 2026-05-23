@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/LinkedCustomer",
+  "title": "LinkedCustomer",
+  "type": "object",
+  "x-apideck-schema-id": "LinkedCustomer",
+  "description": "The customer this entity is linked to.",
+  "x-apideck-weights": {
+    "id": "medium",
+    "display_id": "medium",
+    "display_name": "medium",
+    "name": "medium",
+    "company_name": "medium"
+  },
+  "nullable": true,
+  "properties": {
+    "id": {
+      "type": "string",
+      "title": "Customer ID",
+      "description": "The ID of the customer this entity is linked to.",
+      "example": "12345"
+    },
+    "display_id": {
+      "type": "string",
+      "title": "Display ID",
+      "description": "The display ID of the customer.",
+      "example": "CUST00101",
+      "nullable": true,
+      "readOnly": true
+    },
+    "display_name": {
+      "type": "string",
+      "title": "Display Name",
+      "description": "The display name of the customer.",
+      "example": "Windsurf Shop",
+      "nullable": true
+    },
+    "name": {
+      "type": "string",
+      "title": "Name",
+      "description": "The name of the customer. Deprecated, use display_name instead.",
+      "example": "Windsurf Shop",
+      "deprecated": true
+    },
+    "company_name": {
+      "type": "string",
+      "title": "Company Name",
+      "description": "The company name of the customer.",
+      "example": "The boring company",
+      "nullable": true,
+      "readOnly": true
+    },
+    "email": {
+      "type": "string",
+      "title": "Email",
+      "description": "The email address of the customer.",
+      "example": "boring@boring.com"
+    }
+  }
+}

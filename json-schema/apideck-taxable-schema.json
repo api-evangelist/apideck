@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Taxable",
+  "title": "Taxable",
+  "type": "boolean",
+  "description": "Whether the entity is subject to taxation",
+  "example": true,
+  "nullable": true
+}

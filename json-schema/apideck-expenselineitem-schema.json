@@ -1,0 +1,114 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ExpenseLineItem",
+  "title": "ExpenseLineItem",
+  "type": "object",
+  "x-apideck-schema-id": "ExpenseLineItem",
+  "additionalProperties": false,
+  "x-apideck-weights": {
+    "id": "high",
+    "description": "medium",
+    "type": "medium",
+    "total_amount": "high",
+    "tax_amount": "high",
+    "quantity": "high",
+    "unit_price": "high",
+    "item": "high",
+    "tax_rate": "medium",
+    "tracking_categories": "low",
+    "account_id": "critical",
+    "account": "critical",
+    "customer_id": "medium",
+    "customer": "medium",
+    "department_id": "edge-case",
+    "department": "edge-case",
+    "location_id": "edge-case",
+    "location": "edge-case",
+    "line_number": "edge-case",
+    "rebilling": "medium"
+  },
+  "required": [
+    "total_amount"
+  ],
+  "x-apideck-strict-required": [
+    "total_amount"
+  ],
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/Id"
+    },
+    "tracking_categories": {
+      "$ref": "#/components/schemas/LinkedTrackingCategories"
+    },
+    "account_id": {
+      "title": "Account ID",
+      "description": "The unique identifier for the ledger account. Deprecated, use account instead.",
+      "type": "string",
+      "example": "123456",
+      "deprecated": true
+    },
+    "account": {
+      "$ref": "#/components/schemas/LinkedLedgerAccount"
+    },
+    "customer_id": {
+      "type": "string",
+      "title": "Customer ID",
+      "description": "The ID of the customer this expense item is linked to. Deprecated in favor of `customer`.",
+      "example": "12345",
+      "deprecated": true
+    },
+    "customer": {
+      "$ref": "#/components/schemas/LinkedCustomer"
+    },
+    "department_id": {
+      "$ref": "#/components/schemas/DepartmentId"
+    },
+    "department": {
+      "$ref": "#/components/schemas/LinkedDepartment"
+    },
+    "location_id": {
+      "$ref": "#/components/schemas/LocationId"
+    },
+    "location": {
+      "$ref": "#/components/schemas/LinkedLocation"
+    },
+    "tax_rate": {
+      "$ref": "#/components/schemas/LinkedTaxRate"
+    },
+    "description": {
+      "type": "string",
+      "title": "Description",
+      "description": "The expense line item description",
+      "example": "Travel US.",
+      "nullable": true
+    },
+    "type": {
+      "$ref": "#/components/schemas/LineItemType"
+    },
+    "total_amount": {
+      "type": "number",
+      "title": "Total amount",
+      "description": "The total amount of the expense line item.",
+      "example": 275,
+      "nullable": true
+    },
+    "tax_amount": {
+      "$ref": "#/components/schemas/TaxAmount"
+    },
+    "quantity": {
+      "$ref": "#/components/schemas/Quantity"
+    },
+    "unit_price": {
+      "$ref": "#/components/schemas/UnitPrice"
+    },
+    "item": {
+      "$ref": "#/components/schemas/LinkedInvoiceItem"
+    },
+    "line_number": {
+      "$ref": "#/components/schemas/LineNumber"
+    },
+    "rebilling": {
+      "$ref": "#/components/schemas/Rebilling"
+    }
+  }
+}

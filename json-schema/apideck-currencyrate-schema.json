@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CurrencyRate",
+  "title": "Currency Exchange Rate",
+  "type": "number",
+  "description": "Currency Exchange Rate at the time entity was recorded/generated.",
+  "nullable": true,
+  "example": 0.69
+}

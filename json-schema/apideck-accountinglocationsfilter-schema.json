@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AccountingLocationsFilter",
+  "title": "AccountingLocationsFilter",
+  "type": "object",
+  "x-apideck-schema-id": "AccountingLocationsFilter",
+  "example": {
+    "subsidiary": "1"
+  },
+  "properties": {
+    "subsidiary": {
+      "type": "string",
+      "title": "Subsidiary Id",
+      "description": "Id of the subsidiary to search for",
+      "example": "1"
+    }
+  },
+  "additionalProperties": false
+}

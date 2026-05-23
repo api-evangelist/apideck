@@ -1,0 +1,192 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Schedule",
+  "title": "Schedule",
+  "type": "object",
+  "x-apideck-schema-id": "Schedule",
+  "x-apideck-weights": {
+    "id": "critical",
+    "start_date": "critical",
+    "end_date": "critical",
+    "work_pattern": "critical"
+  },
+  "required": [
+    "id",
+    "start_date",
+    "end_date",
+    "work_pattern"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/Id"
+    },
+    "start_date": {
+      "type": "string",
+      "description": "The start date, inclusive, of the schedule period.",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+      "example": "2022-04-08"
+    },
+    "end_date": {
+      "type": "string",
+      "description": "The end date, inclusive, of the schedule period.",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+      "example": "2022-04-21"
+    },
+    "work_pattern": {
+      "type": "object",
+      "properties": {
+        "odd_weeks": {
+          "type": "object",
+          "properties": {
+            "hours_monday": {
+              "type": "number",
+              "format": "double",
+              "pattern": "^(\\d{1,2})(\\.\\d{1,2})?$",
+              "example": 8,
+              "minimum": 0,
+              "maximum": 24,
+              "nullable": false,
+              "readOnly": false
+            },
+            "hours_tuesday": {
+              "type": "number",
+              "format": "double",
+              "pattern": "^(\\d{1,2})(\\.\\d{1,2})?$",
+              "example": 8,
+              "minimum": 0,
+              "maximum": 24,
+              "nullable": false,
+              "readOnly": false
+            },
+            "hours_wednesday": {
+              "type": "number",
+              "format": "double",
+              "pattern": "^(\\d{1,2})(\\.\\d{1,2})?$",
+              "example": 4,
+              "minimum": 0,
+              "maximum": 24,
+              "nullable": false,
+              "readOnly": false
+            },
+            "hours_thursday": {
+              "type": "number",
+              "format": "double",
+              "pattern": "^(\\d{1,2})(\\.\\d{1,2})?$",
+              "example": 7.5,
+              "minimum": 0,
+              "maximum": 24,
+              "nullable": false,
+              "readOnly": false
+            },
+            "hours_friday": {
+              "type": "number",
+              "format": "double",
+              "pattern": "^(\\d{1,2})(\\.\\d{1,2})?$",
+              "example": 4,
+              "minimum": 0,
+              "maximum": 24,
+              "nullable": false,
+              "readOnly": false
+            },
+            "hours_saturday": {
+              "type": "number",
+              "format": "double",
+              "pattern": "^(\\d{1,2})(\\.\\d{1,2})?$",
+              "example": 0,
+              "minimum": 0,
+              "maximum": 24,
+              "nullable": false,
+              "readOnly": false
+            },
+            "hours_sunday": {
+              "type": "number",
+              "format": "double",
+              "pattern": "^(\\d{1,2})(\\.\\d{1,2})?$",
+              "example": 0,
+              "minimum": 0,
+              "maximum": 24,
+              "nullable": false,
+              "readOnly": false
+            }
+          }
+        },
+        "even_weeks": {
+          "type": "object",
+          "properties": {
+            "hours_monday": {
+              "type": "number",
+              "format": "double",
+              "pattern": "^(\\d{1,2})(\\.\\d{1,2})?$",
+              "example": 8,
+              "minimum": 0,
+              "maximum": 24,
+              "nullable": false,
+              "readOnly": false
+            },
+            "hours_tuesday": {
+              "type": "number",
+              "format": "double",
+              "pattern": "^(\\d{1,2})(\\.\\d{1,2})?$",
+              "example": 8,
+              "minimum": 0,
+              "maximum": 24,
+              "nullable": false,
+              "readOnly": false
+            },
+            "hours_wednesday": {
+              "type": "number",
+              "format": "double",
+              "pattern": "^(\\d{1,2})(\\.\\d{1,2})?$",
+              "example": 4,
+              "minimum": 0,
+              "maximum": 24,
+              "nullable": false,
+              "readOnly": false
+            },
+            "hours_thursday": {
+              "type": "number",
+              "format": "double",
+              "pattern": "^(\\d{1,2})(\\.\\d{1,2})?$",
+              "example": 7.5,
+              "minimum": 0,
+              "maximum": 24,
+              "nullable": false,
+              "readOnly": false
+            },
+            "hours_friday": {
+              "type": "number",
+              "format": "double",
+              "pattern": "^(\\d{1,2})(\\.\\d{1,2})?$",
+              "example": 4,
+              "minimum": 0,
+              "maximum": 24,
+              "nullable": false,
+              "readOnly": false
+            },
+            "hours_saturday": {
+              "type": "number",
+              "format": "double",
+              "pattern": "^(\\d{1,2})(\\.\\d{1,2})?$",
+              "example": 0,
+              "minimum": 0,
+              "maximum": 24,
+              "nullable": false,
+              "readOnly": false
+            },
+            "hours_sunday": {
+              "type": "number",
+              "format": "double",
+              "pattern": "^(\\d{1,2})(\\.\\d{1,2})?$",
+              "example": 0,
+              "minimum": 0,
+              "maximum": 24,
+              "nullable": false,
+              "readOnly": false
+            }
+          }
+        }
+      }
+    }
+  }
+}

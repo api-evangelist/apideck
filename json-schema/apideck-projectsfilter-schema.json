@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ProjectsFilter",
+  "title": "ProjectsFilter",
+  "type": "object",
+  "x-apideck-schema-id": "ProjectsFilter",
+  "example": {
+    "name": "Website Redesign",
+    "status": "active",
+    "customer_id": "12345",
+    "is_billable": true,
+    "is_active": true,
+    "updated_since": "2020-09-30T07:43:32.000Z"
+  },
+  "properties": {
+    "name": {
+      "type": "string",
+      "title": "Project Name",
+      "description": "Name of project to search for",
+      "example": "Website Redesign"
+    },
+    "status": {
+      "type": "string",
+      "title": "Project Status",
+      "description": "Status of projects to filter by",
+      "example": "active",
+      "x-apideck-enum-id": "projects.status",
+      "enum": [
+        "active",
+        "completed",
+        "on_hold",
+        "cancelled",
+        "draft",
+        "in_progress",
+        "approved",
+        "other"
+      ]
+    },
+    "customer_id": {
+      "type": "string",
+      "title": "Customer ID",
+      "description": "Filter projects by customer ID",
+      "example": "12345"
+    },
+    "updated_since": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Updated Since",
+      "description": "Return projects modified after this date",
+      "example": "2020-09-30T07:43:32.000Z"
+    }
+  }
+}

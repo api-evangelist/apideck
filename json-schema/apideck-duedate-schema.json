@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DueDate",
+  "title": "Due date",
+  "type": "string",
+  "description": "The due date is the date on which a payment is scheduled to be received - YYYY-MM-DD.",
+  "format": "date",
+  "example": "2020-10-30",
+  "nullable": true
+}

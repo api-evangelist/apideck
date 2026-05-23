@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Tags",
+  "title": "Tags",
+  "type": "array",
+  "x-apideck-schema-id": "Tags",
+  "items": {
+    "type": "string"
+  },
+  "example": [
+    "New"
+  ],
+  "nullable": true
+}

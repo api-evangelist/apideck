@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RefundStatus",
+  "title": "Refund status",
+  "type": "string",
+  "description": "Status of refund. Maps to: QBO (limited status), NetSuite CashRefund status, Sage Intacct state (draft/posted/voided), Zoho Books vis_state.",
+  "x-apideck-enum-id": "refunds.status",
+  "enum": [
+    "draft",
+    "authorised",
+    "posted",
+    "paid",
+    "voided",
+    "deleted"
+  ],
+  "example": "paid"
+}

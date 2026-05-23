@@ -1,0 +1,235 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TaxRate",
+  "title": "TaxRate",
+  "type": "object",
+  "x-apideck-schema-id": "TaxRate",
+  "x-apideck-weights": {
+    "id": "critical",
+    "display_id": "low",
+    "name": "high",
+    "code": "edge-case",
+    "description": "low",
+    "effective_tax_rate": "critical",
+    "total_tax_rate": "high",
+    "tax_payable_account_id": "high",
+    "tax_remitted_account_id": "medium",
+    "components": "medium",
+    "type": "high",
+    "report_tax_type": "edge-case",
+    "original_tax_rate_id": "edge-case",
+    "status": "high",
+    "country": "medium",
+    "updated_by": "edge-case",
+    "created_by": "edge-case",
+    "updated_at": "medium",
+    "created_at": "low",
+    "row_version": "edge-case",
+    "subsidiaries": "edge-case"
+  },
+  "additionalProperties": false,
+  "x-apideck-strict-required": [
+    "effective_tax_rate"
+  ],
+  "x-apideck-strict-any-of": [
+    {
+      "required": [
+        "id"
+      ]
+    },
+    {
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "required": [
+        "code"
+      ]
+    }
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "ID assigned to identify this tax rate.",
+      "example": "1234",
+      "nullable": true
+    },
+    "display_id": {
+      "type": "string",
+      "title": "Display ID",
+      "description": "Display ID of the tax rate",
+      "example": "12345",
+      "nullable": true
+    },
+    "name": {
+      "type": "string",
+      "title": "Name",
+      "description": "Name assigned to identify this tax rate.",
+      "example": "GST on Purchases",
+      "minLength": 1
+    },
+    "code": {
+      "type": "string",
+      "example": "ABN",
+      "title": "Tax code",
+      "description": "Tax code assigned to identify this tax rate.",
+      "nullable": true
+    },
+    "description": {
+      "type": "string",
+      "title": "Description",
+      "description": "Description of tax rate",
+      "example": "Reduced rate GST Purchases",
+      "nullable": true
+    },
+    "effective_tax_rate": {
+      "type": "number",
+      "title": "Effective tax rate",
+      "description": "Effective tax rate",
+      "example": 10,
+      "nullable": true
+    },
+    "country": {
+      "type": "string",
+      "title": "Country",
+      "description": "Country code according to ISO 3166-1 alpha-2.",
+      "example": "US",
+      "nullable": true
+    },
+    "total_tax_rate": {
+      "type": "number",
+      "title": "Total tax rate",
+      "description": "Not compounded sum of the components of a tax rate",
+      "example": 10,
+      "nullable": true
+    },
+    "tax_payable_account_id": {
+      "type": "string",
+      "title": "Tax payable account id",
+      "description": "Unique identifier for the account for tax collected.",
+      "example": "123456",
+      "nullable": true
+    },
+    "tax_remitted_account_id": {
+      "type": "string",
+      "title": "Tax remitted account id",
+      "description": "Unique identifier for the account for tax remitted.",
+      "example": "123456",
+      "nullable": true
+    },
+    "components": {
+      "type": "array",
+      "title": "Tax components",
+      "items": {
+        "x-apideck-weights": {
+          "id": "medium",
+          "name": "medium",
+          "rate": "medium",
+          "compound": "medium"
+        },
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "TaxRate Id",
+            "example": "10",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "example": "GST",
+            "minLength": 1
+          },
+          "rate": {
+            "type": "number",
+            "title": "TaxRate",
+            "example": 10,
+            "nullable": true
+          },
+          "compound": {
+            "type": "boolean",
+            "title": "Compound",
+            "example": true,
+            "nullable": true
+          }
+        }
+      },
+      "nullable": true
+    },
+    "type": {
+      "type": "string",
+      "title": "Tax Type",
+      "description": "Tax type used to indicate the source of tax collected or paid",
+      "example": "NONE",
+      "nullable": true
+    },
+    "report_tax_type": {
+      "type": "string",
+      "title": "Report Tax Type",
+      "description": "Report Tax type to aggregate tax collected or paid for reporting purposes",
+      "example": "NONE",
+      "nullable": true
+    },
+    "original_tax_rate_id": {
+      "type": "string",
+      "title": "Original tax rate ID",
+      "description": "ID of the original tax rate from which the new tax rate is derived. Helps to understand the relationship between corresponding tax rate entities.",
+      "example": "12345",
+      "nullable": true
+    },
+    "status": {
+      "type": "string",
+      "x-apideck-enum-id": "tax-rates.status",
+      "enum": [
+        "active",
+        "inactive",
+        "archived"
+      ],
+      "title": "Tax rate status",
+      "description": "Tax rate status",
+      "example": "active",
+      "nullable": true
+    },
+    "custom_mappings": {
+      "$ref": "#/components/schemas/CustomMappings"
+    },
+    "row_version": {
+      "$ref": "#/components/schemas/RowVersion"
+    },
+    "updated_by": {
+      "$ref": "#/components/schemas/UpdatedBy"
+    },
+    "created_by": {
+      "$ref": "#/components/schemas/CreatedBy"
+    },
+    "updated_at": {
+      "$ref": "#/components/schemas/UpdatedAt"
+    },
+    "created_at": {
+      "$ref": "#/components/schemas/CreatedAt"
+    },
+    "pass_through": {
+      "$ref": "#/components/schemas/PassThroughBody"
+    },
+    "subsidiaries": {
+      "type": "array",
+      "title": "Subsidiaries",
+      "description": "The subsidiaries this belongs to.",
+      "items": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Subsidiary ID",
+            "description": "The ID of the subsidiary."
+          }
+        }
+      }
+    },
+    "custom_fields": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/CustomField"
+      }
+    }
+  }
+}

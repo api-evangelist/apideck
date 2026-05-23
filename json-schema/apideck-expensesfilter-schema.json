@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ExpensesFilter",
+  "title": "ExpensesFilter",
+  "type": "object",
+  "x-apideck-schema-id": "ExpensesFilter",
+  "example": {
+    "updated_since": "2020-09-30T07:43:32.000Z",
+    "status": "draft",
+    "type": "expense"
+  },
+  "properties": {
+    "updated_since": {
+      "type": "string",
+      "title": "Updated since (timestamp)",
+      "format": "date-time",
+      "example": "2020-09-30T07:43:32.000Z"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "posted",
+        "voided"
+      ],
+      "x-apideck-enum-id": "expenses.status"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "expense",
+        "refund"
+      ],
+      "x-apideck-enum-id": "expenses.type"
+    }
+  },
+  "additionalProperties": false
+}

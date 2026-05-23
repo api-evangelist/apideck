@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TaxAmount",
+  "title": "Tax amount",
+  "description": "Tax amount",
+  "type": "number",
+  "example": 27.5,
+  "nullable": true
+}

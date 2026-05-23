@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RowVersion",
+  "title": "Row version",
+  "type": "string",
+  "description": "A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.",
+  "example": "1-12345",
+  "nullable": true
+}

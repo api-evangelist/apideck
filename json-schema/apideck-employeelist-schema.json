@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/EmployeeList",
+  "title": "EmployeeList",
+  "type": "object",
+  "x-apideck-schema-id": "EmployeeList",
+  "x-apideck-weights": {
+    "id": "medium",
+    "first_name": "critical",
+    "last_name": "critical",
+    "updated_at": "high",
+    "created_at": "medium"
+  },
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/Id"
+    },
+    "first_name": {
+      "$ref": "#/components/schemas/FirstName"
+    },
+    "last_name": {
+      "$ref": "#/components/schemas/LastName"
+    },
+    "updated_at": {
+      "$ref": "#/components/schemas/UpdatedAt"
+    },
+    "created_at": {
+      "$ref": "#/components/schemas/CreatedAt"
+    }
+  }
+}

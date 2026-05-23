@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FilesFilter",
+  "title": "FilesFilter",
+  "type": "object",
+  "x-apideck-schema-id": "FilesFilter",
+  "properties": {
+    "drive_id": {
+      "type": "string",
+      "description": "ID of the drive to filter on",
+      "example": "1234"
+    },
+    "folder_id": {
+      "type": "string",
+      "description": "ID of the folder to filter on. The root folder has an alias \"root\"",
+      "example": "root"
+    },
+    "shared": {
+      "type": "boolean",
+      "description": "Only return files and folders that are shared",
+      "example": true
+    }
+  },
+  "additionalProperties": false
+}

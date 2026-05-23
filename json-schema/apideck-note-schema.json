@@ -1,0 +1,120 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Note",
+  "title": "Note",
+  "type": "object",
+  "x-apideck-schema-id": "Note",
+  "x-apideck-weights": {
+    "id": "critical",
+    "title": "critical",
+    "content": "critical",
+    "owner_id": "high",
+    "contact_id": "medium",
+    "company_id": "medium",
+    "opportunity_id": "medium",
+    "activity_id": "medium",
+    "lead_id": "medium",
+    "active": "low",
+    "updated_by": "edge-case",
+    "created_by": "edge-case",
+    "updated_at": "medium",
+    "created_at": "medium"
+  },
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "description": "The unique identifier of the note",
+      "type": "string",
+      "readOnly": true,
+      "example": "12345"
+    },
+    "title": {
+      "description": "The title of the note",
+      "type": "string",
+      "example": "Meeting Notes",
+      "nullable": true
+    },
+    "content": {
+      "description": "The content of the note.",
+      "type": "string",
+      "example": "Office hours are 9AM-6PM",
+      "nullable": true
+    },
+    "owner_id": {
+      "description": "The user that owns the note.",
+      "type": "string",
+      "example": "12345",
+      "nullable": true
+    },
+    "contact_id": {
+      "description": "The contact that is related to the note.",
+      "type": "string",
+      "example": "12345",
+      "nullable": true
+    },
+    "company_id": {
+      "description": "The company that is related to the note.",
+      "type": "string",
+      "example": "12345",
+      "nullable": true
+    },
+    "opportunity_id": {
+      "description": "The opportunity that is related to the note.",
+      "type": "string",
+      "example": "12345",
+      "nullable": true
+    },
+    "activity_id": {
+      "description": "The activity that is related to the note.",
+      "type": "string",
+      "example": "12345",
+      "nullable": true
+    },
+    "lead_id": {
+      "description": "The lead that is related to the note.",
+      "type": "string",
+      "example": "12345",
+      "nullable": true
+    },
+    "active": {
+      "description": "Whether the Note is active or not.",
+      "type": "boolean",
+      "example": true,
+      "nullable": true
+    },
+    "custom_mappings": {
+      "$ref": "#/components/schemas/CustomMappings"
+    },
+    "updated_by": {
+      "description": "The user that last updated the note.",
+      "type": "string",
+      "example": "12345",
+      "readOnly": true,
+      "nullable": true
+    },
+    "created_by": {
+      "description": "The user that created the note.",
+      "type": "string",
+      "example": "12345",
+      "readOnly": true,
+      "nullable": true
+    },
+    "updated_at": {
+      "description": "The timestamp when the note was last updated",
+      "type": "string",
+      "example": "2020-09-30T07:43:32.000Z",
+      "readOnly": true,
+      "nullable": true
+    },
+    "created_at": {
+      "description": "The timestamp when the note was created",
+      "type": "string",
+      "example": "2020-09-30T07:43:32.000Z",
+      "readOnly": true,
+      "nullable": true
+    },
+    "pass_through": {
+      "$ref": "#/components/schemas/PassThroughBody"
+    }
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/LinkedLedgerAccount",
+  "title": "LinkedLedgerAccount",
+  "type": "object",
+  "x-apideck-schema-id": "LinkedLedgerAccount",
+  "additionalProperties": false,
+  "x-apideck-weights": {
+    "id": "medium",
+    "nominal_code": "medium",
+    "code": "medium",
+    "name": "medium",
+    "parent_id": "low",
+    "display_id": "low"
+  },
+  "nullable": true,
+  "properties": {
+    "id": {
+      "title": "Account ID",
+      "description": "The unique identifier for the account.",
+      "type": "string",
+      "example": "123456"
+    },
+    "name": {
+      "type": "string",
+      "title": "Account Name",
+      "description": "The name of the account.",
+      "example": "Bank account",
+      "nullable": true
+    },
+    "nominal_code": {
+      "type": "string",
+      "title": "Nominal Code",
+      "description": "The nominal code of the account.",
+      "example": "N091",
+      "nullable": true
+    },
+    "code": {
+      "type": "string",
+      "title": "Code",
+      "description": "The code assigned to the account.",
+      "example": "453",
+      "nullable": true
+    },
+    "parent_id": {
+      "type": "string",
+      "title": "Parent ID",
+      "description": "The parent ID of the account.",
+      "example": "123456",
+      "nullable": true
+    },
+    "display_id": {
+      "type": "string",
+      "title": "Display ID",
+      "description": "The display ID of the account.",
+      "example": "123456",
+      "nullable": true
+    }
+  }
+}

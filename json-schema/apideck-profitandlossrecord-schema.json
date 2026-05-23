@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ProfitAndLossRecord",
+  "title": "ProfitAndLossRecord",
+  "type": "object",
+  "x-apideck-schema-id": "ProfitAndLossRecord",
+  "x-apideck-weights": {
+    "id": "high",
+    "code": "high",
+    "title": "high",
+    "type": "high",
+    "total": "critical"
+  },
+  "required": [
+    "total"
+  ],
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/Id"
+    },
+    "code": {
+      "$ref": "#/components/schemas/AccountCode"
+    },
+    "title": {
+      "$ref": "#/components/schemas/AccountName"
+    },
+    "type": {
+      "$ref": "#/components/schemas/ProfitAndLossType"
+    },
+    "value": {
+      "type": "number",
+      "example": 23992.34,
+      "deprecated": true
+    },
+    "total": {
+      "$ref": "#/components/schemas/TotalAmount"
+    }
+  },
+  "example": {
+    "id": "123",
+    "code": "123",
+    "title": "Product Sales",
+    "type": "Record",
+    "total": 60000
+  }
+}

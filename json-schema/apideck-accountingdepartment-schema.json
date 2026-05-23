@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AccountingDepartment",
+  "title": "AccountingDepartment",
+  "type": "object",
+  "x-apideck-schema-id": "AccountingDepartment",
+  "x-apideck-weights": {
+    "id": "medium",
+    "parent_id": "low",
+    "name": "critical",
+    "status": "critical",
+    "subsidiaries": "low",
+    "display_id": "medium",
+    "code": "low",
+    "downstream_id": "low"
+  },
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/Id"
+    },
+    "parent_id": {
+      "$ref": "#/components/schemas/WritableId"
+    },
+    "display_id": {
+      "$ref": "#/components/schemas/DisplayId"
+    },
+    "name": {
+      "type": "string",
+      "title": "Department name",
+      "description": "The name of the department.",
+      "example": "Sales",
+      "nullable": true
+    },
+    "status": {
+      "type": "string",
+      "title": "Department status",
+      "description": "Based on the status some functionality is enabled or disabled.",
+      "x-apideck-enum-id": "department.status",
+      "enum": [
+        "active",
+        "inactive"
+      ],
+      "example": "active"
+    },
+    "subsidiaries": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/SubsidiaryReference"
+      }
+    },
+    "code": {
+      "type": "string",
+      "title": "Department code",
+      "description": "The code of the department.",
+      "example": "123"
+    },
+    "downstream_id": {
+      "$ref": "#/components/schemas/DownstreamId"
+    },
+    "custom_mappings": {
+      "$ref": "#/components/schemas/CustomMappings"
+    },
+    "row_version": {
+      "$ref": "#/components/schemas/RowVersion"
+    },
+    "updated_by": {
+      "$ref": "#/components/schemas/UpdatedBy"
+    },
+    "created_by": {
+      "$ref": "#/components/schemas/CreatedBy"
+    },
+    "updated_at": {
+      "$ref": "#/components/schemas/UpdatedAt"
+    },
+    "created_at": {
+      "$ref": "#/components/schemas/CreatedAt"
+    },
+    "pass_through": {
+      "$ref": "#/components/schemas/PassThroughBody"
+    }
+  }
+}

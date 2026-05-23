@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Email",
+  "title": "Email",
+  "type": "object",
+  "x-apideck-schema-id": "Email",
+  "required": [
+    "email"
+  ],
+  "additionalProperties": false,
+  "x-apideck-weights": {
+    "email": "critical",
+    "type": "critical",
+    "id": "edge-case"
+  },
+  "properties": {
+    "id": {
+      "type": "string",
+      "example": "123",
+      "description": "Unique identifier for the email address",
+      "nullable": true
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address",
+      "example": "elon@musk.com",
+      "minLength": 1,
+      "nullable": true
+    },
+    "type": {
+      "type": "string",
+      "description": "Email type",
+      "x-apideck-enum-id": "emails.type",
+      "enum": [
+        "primary",
+        "secondary",
+        "work",
+        "personal",
+        "billing",
+        "other"
+      ],
+      "example": "primary",
+      "nullable": true
+    }
+  }
+}

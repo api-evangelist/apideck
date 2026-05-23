@@ -1,0 +1,141 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/JournalEntryLineItem",
+  "title": "JournalEntryLineItem",
+  "type": "object",
+  "x-apideck-schema-id": "JournalEntryLineItem",
+  "additionalProperties": false,
+  "x-apideck-weights": {
+    "id": "high",
+    "description": "medium",
+    "tax_amount": "high",
+    "sub_total": "medium",
+    "total_amount": "high",
+    "type": "critical",
+    "tax_rate": "medium",
+    "tax_type": "edge-case",
+    "tracking_category": "low",
+    "tracking_categories": "low",
+    "ledger_account": "critical",
+    "customer": "medium",
+    "supplier": "medium",
+    "department_id": "edge-case",
+    "location_id": "edge-case",
+    "line_number": "low",
+    "worktags": "edge-case"
+  },
+  "required": [
+    "ledger_account",
+    "type"
+  ],
+  "x-apideck-strict-required": [
+    "ledger_account",
+    "type"
+  ],
+  "x-apideck-strict-any-of": [
+    {
+      "required": [
+        "total_amount"
+      ]
+    },
+    {
+      "required": [
+        "sub_total"
+      ]
+    }
+  ],
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/Id"
+    },
+    "description": {
+      "type": "string",
+      "title": "Description",
+      "description": "User defined description",
+      "example": "Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.",
+      "nullable": true
+    },
+    "tax_amount": {
+      "type": "number",
+      "title": "Tax amount",
+      "description": "Tax amount",
+      "example": 27500,
+      "nullable": true
+    },
+    "sub_total": {
+      "title": "Sub-total amount",
+      "description": "Sub-total amount, normally before tax.",
+      "type": "number",
+      "example": 27500,
+      "nullable": true
+    },
+    "total_amount": {
+      "type": "number",
+      "title": "Total amount",
+      "description": "Debit entries are considered positive, and credit entries are considered negative.",
+      "example": 27500,
+      "nullable": true
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "debit",
+        "credit"
+      ],
+      "x-apideck-enum-id": "JournalEntryLineItemType",
+      "title": "Type",
+      "description": "Debit entries are considered positive, and credit entries are considered negative.",
+      "example": "debit",
+      "nullable": true
+    },
+    "tax_rate": {
+      "$ref": "#/components/schemas/LinkedTaxRate"
+    },
+    "tax_type": {
+      "type": "string",
+      "x-apideck-enum-id": "journal_entry_line_items.tax_type",
+      "enum": [
+        "sales",
+        "purchase"
+      ],
+      "title": "Tax Type",
+      "description": "The tax applicability of this line item. Overrides the root-level tax_type for this line.",
+      "example": "sales",
+      "nullable": true
+    },
+    "tracking_category": {
+      "$ref": "#/components/schemas/DeprecatedLinkedTrackingCategory"
+    },
+    "tracking_categories": {
+      "$ref": "#/components/schemas/LinkedTrackingCategories"
+    },
+    "ledger_account": {
+      "$ref": "#/components/schemas/LinkedLedgerAccount"
+    },
+    "customer": {
+      "$ref": "#/components/schemas/LinkedCustomer"
+    },
+    "supplier": {
+      "$ref": "#/components/schemas/LinkedSupplier"
+    },
+    "employee": {
+      "$ref": "#/components/schemas/LinkedEmployee"
+    },
+    "department_id": {
+      "$ref": "#/components/schemas/DepartmentId"
+    },
+    "location_id": {
+      "$ref": "#/components/schemas/LocationId"
+    },
+    "line_number": {
+      "$ref": "#/components/schemas/LineNumber"
+    },
+    "worktags": {
+      "type": "array",
+      "description": "Worktags of the line item. This is currently only supported in Workday.",
+      "items": {
+        "$ref": "#/components/schemas/LinkedWorktag"
+      }
+    }
+  }
+}

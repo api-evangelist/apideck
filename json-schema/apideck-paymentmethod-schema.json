@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PaymentMethod",
+  "title": "Payment method",
+  "type": "string",
+  "description": "Payment method used for the transaction, such as cash, credit card, bank transfer, or check",
+  "nullable": true,
+  "example": "cash"
+}
