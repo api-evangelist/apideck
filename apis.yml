@@ -820,3 +820,5 @@ common:
   - name: Zoho Books
   - name: Zoho CRM
   - name: Zoho People
+- type: LLMsTxt
+  url: https://developers.apideck.com/llms.txt
