@@ -438,7 +438,7 @@ common:
   - name: none
     description: 'null'
     url: https://platform.apideck.com/login
-    type: SignUp
+    type: Signup
   - name: Apideck Help Center
     description: 'null'
     url: https://help.apideck.com/
@@ -450,7 +450,7 @@ common:
   - name: Errors - Apideck
     description: 'null'
     url: https://developers.apideck.com/errors
-    type: Errors
+    type: ErrorCodes
   - name: Samples & integration examples - Apideck
     description: 'null'
     url: https://developers.apideck.com/samples
@@ -724,5 +724,5 @@ common:
       - name: Zoho Books
       - name: Zoho CRM
       - name: Zoho People
-  - type: LLMsTxt
+  - type: LlmsText
     url: https://developers.apideck.com/llms.txt
