@@ -1,0 +1,38 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/apideck-accounting-openapi.yml, openapi/apideck-crm-openapi.yml, openapi/apideck-file-storage-openapi.yml,
+  openapi/apideck-hris-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: apiKey
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: |+
+    To access our API, you need to sign up and obtain your unique API key. Each Unify application is assigned a single API key. You can locate your API key in the Configuration Settings section of your Apideck application. Additionally, your application’s application_id is available on the same page.
+
+    Authenticate your API requests by including your test or live secret API key in the request header.
+
+  sources:
+  - openapi/apideck-accounting-openapi.yml
+  - openapi/apideck-crm-openapi.yml
+  - openapi/apideck-file-storage-openapi.yml
+  - openapi/apideck-hris-openapi.yml
+- name: applicationId
+  type: apiKey
+  in: header
+  parameter: x-apideck-app-id
+  description: The ID of your Unify application
+  sources:
+  - openapi/apideck-crm-openapi.yml
+- name: consumerId
+  type: apiKey
+  in: header
+  parameter: x-apideck-consumer-id
+  description: The ID of the consumer which you want to get or push data from
+  sources:
+  - openapi/apideck-crm-openapi.yml

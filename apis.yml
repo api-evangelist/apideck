@@ -377,6 +377,10 @@ maintainers:
     email: kin@apievangelist.com
 specificationVersion: '0.19'
 common:
+  - type: DomainSecurity
+    url: security/apideck-domain-security.yml
+  - type: Authentication
+    url: authentication/apideck-authentication.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/apideck
   - name: The Realtime Unified API
