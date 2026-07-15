@@ -377,6 +377,8 @@ maintainers:
     email: kin@apievangelist.com
 specificationVersion: '0.19'
 common:
+  - type: AgenticAccess
+    url: agentic-access/apideck-agentic-access.yml
   - type: DomainSecurity
     url: security/apideck-domain-security.yml
   - type: Authentication
