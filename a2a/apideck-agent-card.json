@@ -1,0 +1,60 @@
+{
+  "name": "Apideck",
+  "version": "1.0.0",
+  "description": "Unified API platform that connects AI agents to 200+ SaaS apps through one API. Accounting, CRM, HRIS, ATS, File Storage, Ecommerce, and Issue Tracking.",
+  "url": "https://mcp.apideck.dev/mcp",
+  "supportedInterfaces": [
+    {
+      "url": "https://mcp.apideck.dev/mcp",
+      "transport": "https"
+    }
+  ],
+  "capabilities": [
+    "mcp",
+    "api",
+    "cli",
+    "skills"
+  ],
+  "skills": [
+    {
+      "id": "accounting",
+      "name": "Accounting API",
+      "description": "Read and write invoices, bills, payments, journal entries, tax rates, and more across 33 accounting platforms."
+    },
+    {
+      "id": "crm",
+      "name": "CRM API",
+      "description": "Manage contacts, companies, opportunities, leads, and pipelines across 21 CRM platforms."
+    },
+    {
+      "id": "hris",
+      "name": "HRIS API",
+      "description": "Access employees, departments, time off, and payroll data across 60 HR platforms."
+    },
+    {
+      "id": "file-storage",
+      "name": "File Storage API",
+      "description": "Manage files, folders, shared links, and drives across Google Drive, Dropbox, OneDrive, Box, and SharePoint."
+    },
+    {
+      "id": "ats",
+      "name": "ATS API",
+      "description": "Manage applicants, applications, and jobs across 11 applicant tracking systems."
+    },
+    {
+      "id": "ecommerce",
+      "name": "Ecommerce API",
+      "description": "Access orders, products, customers, and stores across Shopify, WooCommerce, BigCommerce, and more."
+    },
+    {
+      "id": "issue-tracking",
+      "name": "Issue Tracking API",
+      "description": "Manage tickets, collections, and comments across Jira, Linear, Asana, and more."
+    }
+  ],
+  "documentation": "https://developers.apideck.com",
+  "provider": {
+    "name": "Apideck",
+    "url": "https://www.apideck.com"
+  }
+}

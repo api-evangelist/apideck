@@ -377,6 +377,10 @@ maintainers:
     email: kin@apievangelist.com
 specificationVersion: '0.19'
 common:
+  - type: AgentCard
+    url: a2a/apideck-a2a.yml
+    name: A2A Agent Card
+    description: Agent Card served at /.well-known/agent-card.json (flavored against A2A 1.0.0).
   - type: AgenticAccess
     url: agentic-access/apideck-agentic-access.yml
   - type: DomainSecurity
