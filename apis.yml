@@ -1,261 +1,2149 @@
 aid: apideck
 url: https://raw.githubusercontent.com/api-evangelist/apideck/refs/heads/main/apis.yml
 apis:
-  - aid: apideck:apideck
-    name: Apideck
-    tags:
-      - Integrations
-      - Unified API
-    humanURL: ' https://www.apideck.com/'
-    baseURL: https://unify.apideck.com
-    properties:
-      - url: ' https://www.apideck.com/'
-        type: Documentation
-      - url: https://developers.apideck.com/apis
-        type: Documentation
-      - url: https://developers.apideck.com/get-started
-        type: GettingStarted
-    description: >-
-      Apideck is the leading Unified API that doesn't store sensitive customer data. Build and maintain native
-      integrations into your product with an exceptional Developer Experience.
-  - aid: apideck:accounting-api
-    name: Apideck Accounting API
-    tags:
-      - Accounting
-      - Invoices
-      - Payments
-      - Unified API
-    humanURL: https://developers.apideck.com/apis/accounting/reference
-    baseURL: https://unify.apideck.com
-    properties:
-      - url: https://developers.apideck.com/apis/accounting/reference
-        type: Documentation
-      - url: openapi/apideck-accounting-openapi.yml
-        type: OpenAPI
-    description: >-
-      The Apideck Accounting API is a unified API for managing financial operations including invoices, customers,
-      bills, payments, and financial reporting across multiple accounting platforms such as QuickBooks, Xero,
-      FreshBooks, and Sage.
-  - aid: apideck:crm-api
-    name: Apideck CRM API
-    tags:
-      - Contacts
-      - CRM
-      - Leads
-      - Unified API
-    humanURL: https://developers.apideck.com/apis/crm/reference
-    baseURL: https://unify.apideck.com
-    properties:
-      - url: https://developers.apideck.com/apis/crm/reference
-        type: Documentation
-      - url: openapi/apideck-crm-openapi.yml
-        type: OpenAPI
-    description: >-
-      The Apideck CRM API is a unified API for managing customer relationships through opportunities, companies, leads,
-      contacts, pipelines, notes, and activities across multiple CRM platforms such as Salesforce, HubSpot, Pipedrive,
-      and Zoho CRM.
-  - aid: apideck:hris-api
-    name: Apideck HRIS API
-    tags:
-      - Employees
-      - HRIS
-      - Human Resources
-      - Unified API
-    humanURL: https://developers.apideck.com/apis/hris/reference
-    baseURL: https://unify.apideck.com
-    properties:
-      - url: https://developers.apideck.com/apis/hris/reference
-        type: Documentation
-      - url: openapi/apideck-hris-openapi.yml
-        type: OpenAPI
-    description: >-
-      The Apideck HRIS API is a unified API for managing human resources data for employees, companies, departments, and
-      time-off requests across multiple HR platforms such as BambooHR, Personio, Workday, and SAP SuccessFactors.
-  - aid: apideck:ats-api
-    name: Apideck ATS API
-    tags:
-      - Applicant Tracking
-      - ATS
-      - Recruitment
-      - Unified API
-    humanURL: https://developers.apideck.com/apis/ats/reference
-    baseURL: https://unify.apideck.com
-    properties:
-      - url: https://developers.apideck.com/apis/ats/reference
-        type: Documentation
-      - url: https://specs.apideck.com/ats.yml
-        type: OpenAPI
-    description: >-
-      The Apideck ATS API is a unified API for handling recruitment workflows including jobs, applicants, and
-      applications across multiple applicant tracking systems such as Greenhouse, Lever, Bullhorn, Recruitee, and
-      Workable.
-  - aid: apideck:file-storage-api
-    name: Apideck File Storage API
-    tags:
-      - Cloud Storage
-      - File Storage
-      - Files
-      - Unified API
-    humanURL: https://developers.apideck.com/apis/file-storage/reference
-    baseURL: https://unify.apideck.com
-    properties:
-      - url: https://developers.apideck.com/apis/file-storage/reference
-        type: Documentation
-      - url: openapi/apideck-file-storage-openapi.yml
-        type: OpenAPI
-    description: >-
-      The Apideck File Storage API is a unified API for handling cloud file operations including files, folders, shared
-      links, and drives across multiple cloud storage platforms such as Google Drive, Dropbox, Box, OneDrive, and
-      SharePoint.
-  - aid: apideck:ecommerce-api
-    name: Apideck Ecommerce API
-    tags:
-      - Ecommerce
-      - Orders
-      - Products
-      - Unified API
-    humanURL: https://developers.apideck.com/apis/ecommerce/reference
-    baseURL: https://unify.apideck.com
-    properties:
-      - url: https://developers.apideck.com/apis/ecommerce/reference
-        type: Documentation
-      - url: https://specs.apideck.com/ecommerce.yml
-        type: OpenAPI
-    description: >-
-      The Apideck Ecommerce API is a unified API for managing orders, products, customers, and stores across multiple
-      ecommerce platforms such as Shopify, BigCommerce, WooCommerce, Magento, and Etsy.
-  - aid: apideck:pos-api
-    name: Apideck POS API
-    tags:
-      - Payments
-      - Point of Sale
-      - POS
-      - Unified API
-    humanURL: https://developers.apideck.com/apis/pos/reference
-    baseURL: https://unify.apideck.com
-    properties:
-      - url: https://developers.apideck.com/apis/pos/reference
-        type: Documentation
-      - url: https://specs.apideck.com/pos.yml
-        type: OpenAPI
-    description: >-
-      The Apideck POS API is a unified API for handling point-of-sale operations including orders, payments, items,
-      locations, merchants, and modifiers across multiple POS platforms such as Square, Clover, Lightspeed, and Toast.
-  - aid: apideck:issue-tracking-api
-    name: Apideck Issue Tracking API
-    tags:
-      - Issue Tracking
-      - Project Management
-      - Tickets
-      - Unified API
-    humanURL: https://developers.apideck.com/apis/issue-tracking/reference
-    baseURL: https://unify.apideck.com
-    properties:
-      - url: https://developers.apideck.com/apis/issue-tracking/reference
-        type: Documentation
-      - url: https://specs.apideck.com/issue-tracking.yml
-        type: OpenAPI
-    description: >-
-      The Apideck Issue Tracking API is a unified API for managing tickets, comments, collections, and tags across
-      multiple issue tracking platforms such as Jira, Linear, GitHub, and GitLab.
-  - aid: apideck:lead-api
-    name: Apideck Lead API
-    tags:
-      - Leads
-      - Marketing
-      - Sales
-      - Unified API
-    humanURL: https://developers.apideck.com/apis/lead/reference
-    baseURL: https://unify.apideck.com
-    properties:
-      - url: https://developers.apideck.com/apis/lead/reference
-        type: Documentation
-      - url: https://specs.apideck.com/lead.yml
-        type: OpenAPI
-    description: >-
-      The Apideck Lead API is a unified API for managing sales and marketing leads across multiple platforms such as
-      Salesforce, HubSpot, Pipedrive, and Zoho CRM with standardized fields for contacts, companies, and lead status.
-  - aid: apideck:sms-api
-    name: Apideck SMS API
-    tags:
-      - Messaging
-      - SMS
-      - Unified API
-    humanURL: https://developers.apideck.com/apis/sms/reference
-    baseURL: https://unify.apideck.com
-    properties:
-      - url: https://developers.apideck.com/apis/sms/reference
-        type: Documentation
-      - url: https://specs.apideck.com/sms.yml
-        type: OpenAPI
-    description: >-
-      The Apideck SMS API is a unified API for sending and managing SMS and MMS messages across multiple messaging
-      providers such as Twilio, Vonage, MessageBird, Plivo, and Telnyx.
-  - aid: apideck:vault-api
-    name: Apideck Vault API
-    tags:
-      - Authentication
-      - Credentials
-      - OAuth
-      - Unified API
-    humanURL: https://developers.apideck.com/apis/vault/reference
-    baseURL: https://unify.apideck.com
-    properties:
-      - url: https://developers.apideck.com/apis/vault/reference
-        type: Documentation
-      - url: https://specs.apideck.com/vault.yml
-        type: OpenAPI
-    description: >-
-      The Apideck Vault API handles OAuth flows, stores API keys, and refreshes access tokens from consumers. It
-      supports managed authentication through Vault JS, Hosted Vault, and direct API calls for custom implementations.
-  - aid: apideck:webhook-api
-    name: Apideck Webhook API
-    tags:
-      - Events
-      - Unified API
-      - Webhooks
-    humanURL: https://developers.apideck.com/apis/webhook/reference
-    baseURL: https://unify.apideck.com
-    properties:
-      - url: https://developers.apideck.com/apis/webhook/reference
-        type: Documentation
-      - url: https://specs.apideck.com/webhook.yml
-        type: OpenAPI
-    description: >-
-      The Apideck Webhook API enables developers to monitor and manage event subscriptions, create webhook endpoints,
-      and track delivery attempts across all unified APIs including CRM, accounting, HRIS, and more.
-  - aid: apideck:connector-api
-    name: Apideck Connector API
-    tags:
-      - Connectors
-      - Integrations
-      - Unified API
-    humanURL: https://developers.apideck.com/apis/connector/reference
-    baseURL: https://unify.apideck.com
-    properties:
-      - url: https://developers.apideck.com/apis/connector/reference
-        type: Documentation
-      - url: https://specs.apideck.com/connector.yml
-        type: OpenAPI
-    description: >-
-      The Apideck Connector API provides access to the catalog of available connectors, their supported resources, and
-      configuration details for pushing and pulling data from multiple downstream services.
-  - aid: apideck:proxy-api
-    name: Apideck Proxy API
-    tags:
-      - Monitoring
-      - Proxy
-      - Unified API
-    humanURL: https://developers.apideck.com/apis/proxy/reference
-    baseURL: https://unify.apideck.com
-    properties:
-      - url: https://developers.apideck.com/apis/proxy/reference
-        type: Documentation
-      - url: https://specs.apideck.com/proxy.yml
-        type: OpenAPI
-    description: >-
-      The Apideck Proxy API forwards requests to downstream services while automatically injecting authentication
-      credentials from stored vault data, enabling API traffic logging and monitoring for every API call.
+- aid: apideck:apideck
+  name: Apideck
+  tags:
+  - Integrations
+  - Unified API
+  humanURL: ' https://www.apideck.com/'
+  baseURL: https://unify.apideck.com
+  properties:
+  - url: ' https://www.apideck.com/'
+    type: Documentation
+  - url: https://developers.apideck.com/apis
+    type: Documentation
+  - url: https://developers.apideck.com/get-started
+    type: GettingStarted
+  description: >-
+    Apideck is the leading Unified API that doesn't store sensitive customer data. Build and maintain
+    native integrations into your product with an exceptional Developer Experience.
+- aid: apideck:apideck-activities-api
+  name: Apideck Activities API
+  description: >-
+    The Activity resource represents a logged event or task, such as a meeting, call, or email, including
+    details like type, date, duration, and associations with contacts, companies, or opportunities.
+  humanURL: ' https://www.apideck.com/'
+  baseURL: https://unify.apideck.com
+  tags:
+  - Activities
+  properties:
+  - type: OpenAPI
+    url: openapi/apideck-activities-api-openapi.yml
+  - type: Documentation
+    url: https://developers.apideck.com/apis/accounting/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/crm/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/hris/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ats/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/file-storage/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ecommerce/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/pos/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/issue-tracking/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/lead/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/sms/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/vault/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/webhook/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/connector/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/proxy/reference
+- aid: apideck:apideck-aged-creditors-api
+  name: Apideck Aged Creditors API
+  description: >-
+    Aged Creditors is a report showing amounts owed to suppliers, grouped by aging periods (current, 30,
+    60, 90+ days) with supplier details.
+  humanURL: ' https://www.apideck.com/'
+  baseURL: https://unify.apideck.com
+  tags:
+  - Aged Creditors
+  properties:
+  - type: OpenAPI
+    url: openapi/apideck-aged-creditors-api-openapi.yml
+  - type: Documentation
+    url: https://developers.apideck.com/apis/accounting/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/crm/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/hris/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ats/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/file-storage/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ecommerce/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/pos/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/issue-tracking/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/lead/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/sms/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/vault/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/webhook/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/connector/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/proxy/reference
+- aid: apideck:apideck-aged-debtors-api
+  name: Apideck Aged Debtors API
+  description: >-
+    Aged Debtors is a report showing amounts owed by customers, grouped by aging periods (current, 30,
+    60, 90+ days) with customer details.
+  humanURL: ' https://www.apideck.com/'
+  baseURL: https://unify.apideck.com
+  tags:
+  - Aged Debtors
+  properties:
+  - type: OpenAPI
+    url: openapi/apideck-aged-debtors-api-openapi.yml
+  - type: Documentation
+    url: https://developers.apideck.com/apis/accounting/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/crm/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/hris/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ats/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/file-storage/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ecommerce/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/pos/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/issue-tracking/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/lead/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/sms/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/vault/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/webhook/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/connector/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/proxy/reference
+- aid: apideck:apideck-attachments-api
+  name: Apideck Attachments API
+  description: >-
+    An Attachment represents a file linked to an accounting document, including file name, URL, content
+    type, and the parent record reference.
+  humanURL: ' https://www.apideck.com/'
+  baseURL: https://unify.apideck.com
+  tags:
+  - Attachments
+  properties:
+  - type: OpenAPI
+    url: openapi/apideck-attachments-api-openapi.yml
+  - type: Documentation
+    url: https://developers.apideck.com/apis/accounting/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/crm/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/hris/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ats/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/file-storage/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ecommerce/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/pos/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/issue-tracking/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/lead/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/sms/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/vault/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/webhook/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/connector/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/proxy/reference
+- aid: apideck:apideck-balance-sheet-api
+  name: Apideck Balance Sheet API
+  description: >-
+    A Balance Sheet report shows the financial position at a point in time, including totals for assets,
+    liabilities, and equity accounts.
+  humanURL: ' https://www.apideck.com/'
+  baseURL: https://unify.apideck.com
+  tags:
+  - Balance Sheet
+  properties:
+  - type: OpenAPI
+    url: openapi/apideck-balance-sheet-api-openapi.yml
+  - type: Documentation
+    url: https://developers.apideck.com/apis/accounting/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/crm/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/hris/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ats/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/file-storage/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ecommerce/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/pos/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/issue-tracking/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/lead/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/sms/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/vault/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/webhook/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/connector/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/proxy/reference
+- aid: apideck:apideck-bank-accounts-api
+  name: Apideck Bank Accounts API
+  description: >-
+    A Bank Account represents a financial account, including account name, number, type (checking, savings,
+    credit card), currency, and balance.
+  humanURL: ' https://www.apideck.com/'
+  baseURL: https://unify.apideck.com
+  tags:
+  - Bank Accounts
+  properties:
+  - type: OpenAPI
+    url: openapi/apideck-bank-accounts-api-openapi.yml
+  - type: Documentation
+    url: https://developers.apideck.com/apis/accounting/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/crm/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/hris/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ats/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/file-storage/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ecommerce/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/pos/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/issue-tracking/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/lead/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/sms/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/vault/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/webhook/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/connector/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/proxy/reference
+- aid: apideck:apideck-bank-feed-accounts-api
+  name: Apideck Bank Feed Accounts API
+  description: >-
+    A Bank Feed Account represents a connected financial institution account, including account details
+    and connection status for transaction imports.
+  humanURL: ' https://www.apideck.com/'
+  baseURL: https://unify.apideck.com
+  tags:
+  - Bank Feed Accounts
+  properties:
+  - type: OpenAPI
+    url: openapi/apideck-bank-feed-accounts-api-openapi.yml
+  - type: Documentation
+    url: https://developers.apideck.com/apis/accounting/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/crm/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/hris/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ats/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/file-storage/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ecommerce/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/pos/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/issue-tracking/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/lead/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/sms/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/vault/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/webhook/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/connector/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/proxy/reference
+- aid: apideck:apideck-bank-feed-statements-api
+  name: Apideck Bank Feed Statements API
+  description: >-
+    A Bank Feed Statement contains imported transaction data from a connected bank account, including
+    statement period and transaction details.
+  humanURL: ' https://www.apideck.com/'
+  baseURL: https://unify.apideck.com
+  tags:
+  - Bank Feed Statements
+  properties:
+  - type: OpenAPI
+    url: openapi/apideck-bank-feed-statements-api-openapi.yml
+  - type: Documentation
+    url: https://developers.apideck.com/apis/accounting/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/crm/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/hris/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ats/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/file-storage/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ecommerce/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/pos/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/issue-tracking/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/lead/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/sms/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/vault/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/webhook/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/connector/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/proxy/reference
+- aid: apideck:apideck-bill-payments-api
+  name: Apideck Bill Payments API
+  description: >-
+    A Bill Payment represents money paid to a supplier, including amount, date, payment method, and allocation
+    to one or more bills.
+  humanURL: ' https://www.apideck.com/'
+  baseURL: https://unify.apideck.com
+  tags:
+  - Bill Payments
+  properties:
+  - type: OpenAPI
+    url: openapi/apideck-bill-payments-api-openapi.yml
+  - type: Documentation
+    url: https://developers.apideck.com/apis/accounting/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/crm/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/hris/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ats/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/file-storage/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ecommerce/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/pos/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/issue-tracking/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/lead/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/sms/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/vault/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/webhook/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/connector/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/proxy/reference
+- aid: apideck:apideck-bills-api
+  name: Apideck Bills API
+  description: >-
+    A Bill represents an invoice from a supplier, including line items, amounts, due date, payment status,
+    and linked supplier.
+  humanURL: ' https://www.apideck.com/'
+  baseURL: https://unify.apideck.com
+  tags:
+  - Bills
+  properties:
+  - type: OpenAPI
+    url: openapi/apideck-bills-api-openapi.yml
+  - type: Documentation
+    url: https://developers.apideck.com/apis/accounting/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/crm/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/hris/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ats/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/file-storage/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ecommerce/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/pos/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/issue-tracking/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/lead/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/sms/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/vault/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/webhook/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/connector/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/proxy/reference
+- aid: apideck:apideck-categories-api
+  name: Apideck Categories API
+  description: >-
+    A Category represents a product or service grouping, including name and type for organizing invoice
+    and bill line items.
+  humanURL: ' https://www.apideck.com/'
+  baseURL: https://unify.apideck.com
+  tags:
+  - Categories
+  properties:
+  - type: OpenAPI
+    url: openapi/apideck-categories-api-openapi.yml
+  - type: Documentation
+    url: https://developers.apideck.com/apis/accounting/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/crm/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/hris/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ats/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/file-storage/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ecommerce/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/pos/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/issue-tracking/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/lead/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/sms/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/vault/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/webhook/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/connector/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/proxy/reference
+- aid: apideck:apideck-companies-api
+  name: Apideck Companies API
+  description: >-
+    List companies accessible through the current connection. Only available for multi-company connectors.
+  humanURL: ' https://www.apideck.com/'
+  baseURL: https://unify.apideck.com
+  tags:
+  - Companies
+  properties:
+  - type: OpenAPI
+    url: openapi/apideck-companies-api-openapi.yml
+  - type: Documentation
+    url: https://developers.apideck.com/apis/accounting/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/crm/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/hris/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ats/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/file-storage/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ecommerce/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/pos/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/issue-tracking/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/lead/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/sms/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/vault/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/webhook/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/connector/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/proxy/reference
+- aid: apideck:apideck-company-info-api
+  name: Apideck Company Info API
+  description: >-
+    Company Info contains the organization's profile data including legal name, addresses, tax identifiers,
+    currency, and fiscal year settings.
+  humanURL: ' https://www.apideck.com/'
+  baseURL: https://unify.apideck.com
+  tags:
+  - Company Info
+  properties:
+  - type: OpenAPI
+    url: openapi/apideck-company-info-api-openapi.yml
+  - type: Documentation
+    url: https://developers.apideck.com/apis/accounting/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/crm/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/hris/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ats/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/file-storage/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ecommerce/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/pos/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/issue-tracking/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/lead/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/sms/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/vault/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/webhook/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/connector/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/proxy/reference
+- aid: apideck:apideck-contacts-api
+  name: Apideck Contacts API
+  description: >-
+    The Contact resource represents individuals, including details such as name, contact information,
+    associated company, and activity history.
+  humanURL: ' https://www.apideck.com/'
+  baseURL: https://unify.apideck.com
+  tags:
+  - Contacts
+  properties:
+  - type: OpenAPI
+    url: openapi/apideck-contacts-api-openapi.yml
+  - type: Documentation
+    url: https://developers.apideck.com/apis/accounting/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/crm/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/hris/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ats/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/file-storage/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ecommerce/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/pos/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/issue-tracking/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/lead/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/sms/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/vault/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/webhook/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/connector/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/proxy/reference
+- aid: apideck:apideck-credit-notes-api
+  name: Apideck Credit Notes API
+  description: >-
+    A Credit Note represents a reduction in the amount owed by a customer, including line items, amounts,
+    and the linked customer or invoice.
+  humanURL: ' https://www.apideck.com/'
+  baseURL: https://unify.apideck.com
+  tags:
+  - Credit Notes
+  properties:
+  - type: OpenAPI
+    url: openapi/apideck-credit-notes-api-openapi.yml
+  - type: Documentation
+    url: https://developers.apideck.com/apis/accounting/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/crm/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/hris/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ats/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/file-storage/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ecommerce/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/pos/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/issue-tracking/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/lead/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/sms/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/vault/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/webhook/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/connector/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/proxy/reference
+- aid: apideck:apideck-custom-object-schemas-api
+  name: Apideck Custom Object Schemas API
+  description: The Custom Object Schema resource represents the schema of a custom object.
+  humanURL: ' https://www.apideck.com/'
+  baseURL: https://unify.apideck.com
+  tags:
+  - Custom Object Schemas
+  properties:
+  - type: OpenAPI
+    url: openapi/apideck-custom-object-schemas-api-openapi.yml
+  - type: Documentation
+    url: https://developers.apideck.com/apis/accounting/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/crm/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/hris/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ats/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/file-storage/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ecommerce/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/pos/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/issue-tracking/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/lead/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/sms/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/vault/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/webhook/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/connector/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/proxy/reference
+- aid: apideck:apideck-custom-objects-api
+  name: Apideck Custom Objects API
+  description: >-
+    The Custom Object resource represents user-defined data structures in Salesforce, allowing storage
+    of custom records with specific fields, relationships, and business logic tailored to unique organizational
+    needs.
+  humanURL: ' https://www.apideck.com/'
+  baseURL: https://unify.apideck.com
+  tags:
+  - Custom Objects
+  properties:
+  - type: OpenAPI
+    url: openapi/apideck-custom-objects-api-openapi.yml
+  - type: Documentation
+    url: https://developers.apideck.com/apis/accounting/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/crm/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/hris/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ats/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/file-storage/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ecommerce/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/pos/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/issue-tracking/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/lead/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/sms/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/vault/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/webhook/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/connector/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/proxy/reference
+- aid: apideck:apideck-customers-api
+  name: Apideck Customers API
+  description: >-
+    A Customer represents a buyer or client, including contact details, billing and shipping addresses,
+    tax information, and payment terms.
+  humanURL: ' https://www.apideck.com/'
+  baseURL: https://unify.apideck.com
+  tags:
+  - Customers
+  properties:
+  - type: OpenAPI
+    url: openapi/apideck-customers-api-openapi.yml
+  - type: Documentation
+    url: https://developers.apideck.com/apis/accounting/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/crm/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/hris/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ats/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/file-storage/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ecommerce/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/pos/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/issue-tracking/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/lead/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/sms/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/vault/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/webhook/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/connector/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/proxy/reference
+- aid: apideck:apideck-departments-api
+  name: Apideck Departments API
+  description: >-
+    A Department represents an organizational unit, including name, code, and parent department for hierarchical
+    structures.
+  humanURL: ' https://www.apideck.com/'
+  baseURL: https://unify.apideck.com
+  tags:
+  - Departments
+  properties:
+  - type: OpenAPI
+    url: openapi/apideck-departments-api-openapi.yml
+  - type: Documentation
+    url: https://developers.apideck.com/apis/accounting/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/crm/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/hris/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ats/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/file-storage/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ecommerce/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/pos/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/issue-tracking/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/lead/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/sms/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/vault/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/webhook/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/connector/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/proxy/reference
+- aid: apideck:apideck-drive-groups-api
+  name: Apideck Drive Groups API
+  description: >-
+    Drive Groups resource represents the groups of drives in the cloud storage service. It provides methods
+    for managing and accessing the drive groups, such as creating, deleting, and listing drive groups.
+    A drive group is a logical grouping of drives, which can be used to manage the drives in the cloud
+    storage service.
+  humanURL: ' https://www.apideck.com/'
+  baseURL: https://unify.apideck.com
+  tags:
+  - Drive Groups
+  properties:
+  - type: OpenAPI
+    url: openapi/apideck-drive-groups-api-openapi.yml
+  - type: Documentation
+    url: https://developers.apideck.com/apis/accounting/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/crm/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/hris/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ats/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/file-storage/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ecommerce/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/pos/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/issue-tracking/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/lead/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/sms/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/vault/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/webhook/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/connector/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/proxy/reference
+- aid: apideck:apideck-drives-api
+  name: Apideck Drives API
+  description: >-
+    Drives resource represents logical containers for storing folders and files in the cloud storage service.
+    It provides methods for managing and accessing the drives, such as creating, deleting, and listing
+    drives.
+  humanURL: ' https://www.apideck.com/'
+  baseURL: https://unify.apideck.com
+  tags:
+  - Drives
+  properties:
+  - type: OpenAPI
+    url: openapi/apideck-drives-api-openapi.yml
+  - type: Documentation
+    url: https://developers.apideck.com/apis/accounting/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/crm/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/hris/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ats/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/file-storage/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ecommerce/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/pos/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/issue-tracking/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/lead/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/sms/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/vault/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/webhook/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/connector/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/proxy/reference
+- aid: apideck:apideck-employee-payrolls-api
+  name: Apideck Employee Payrolls API
+  description: >-
+    An Employee Payroll represents an individual's pay details for a period, including gross pay, deductions,
+    taxes, and net pay.
+  humanURL: ' https://www.apideck.com/'
+  baseURL: https://unify.apideck.com
+  tags:
+  - Employee Payrolls
+  properties:
+  - type: OpenAPI
+    url: openapi/apideck-employee-payrolls-api-openapi.yml
+  - type: Documentation
+    url: https://developers.apideck.com/apis/accounting/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/crm/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/hris/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ats/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/file-storage/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ecommerce/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/pos/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/issue-tracking/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/lead/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/sms/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/vault/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/webhook/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/connector/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/proxy/reference
+- aid: apideck:apideck-employee-schedules-api
+  name: Apideck Employee Schedules API
+  description: >-
+    An Employee Schedule represents work time assignments, including schedule entries with start time,
+    end time, and work location.
+  humanURL: ' https://www.apideck.com/'
+  baseURL: https://unify.apideck.com
+  tags:
+  - Employee Schedules
+  properties:
+  - type: OpenAPI
+    url: openapi/apideck-employee-schedules-api-openapi.yml
+  - type: Documentation
+    url: https://developers.apideck.com/apis/accounting/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/crm/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/hris/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ats/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/file-storage/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ecommerce/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/pos/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/issue-tracking/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/lead/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/sms/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/vault/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/webhook/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/connector/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/proxy/reference
+- aid: apideck:apideck-employees-api
+  name: Apideck Employees API
+  description: >-
+    An Employee represents an individual within the organization for accounting purposes, including name,
+    department, hire date, and employment status.
+  humanURL: ' https://www.apideck.com/'
+  baseURL: https://unify.apideck.com
+  tags:
+  - Employees
+  properties:
+  - type: OpenAPI
+    url: openapi/apideck-employees-api-openapi.yml
+  - type: Documentation
+    url: https://developers.apideck.com/apis/accounting/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/crm/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/hris/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ats/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/file-storage/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ecommerce/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/pos/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/issue-tracking/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/lead/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/sms/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/vault/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/webhook/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/connector/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/proxy/reference
+- aid: apideck:apideck-expense-categories-api
+  name: Apideck Expense Categories API
+  description: >-
+    An Expense Category classifies types of expenses within the organization, such as travel, meals, or
+    office supplies. Used to categorize expense report line items.
+  humanURL: ' https://www.apideck.com/'
+  baseURL: https://unify.apideck.com
+  tags:
+  - Expense Categories
+  properties:
+  - type: OpenAPI
+    url: openapi/apideck-expense-categories-api-openapi.yml
+  - type: Documentation
+    url: https://developers.apideck.com/apis/accounting/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/crm/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/hris/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ats/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/file-storage/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ecommerce/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/pos/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/issue-tracking/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/lead/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/sms/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/vault/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/webhook/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/connector/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/proxy/reference
+- aid: apideck:apideck-expense-reports-api
+  name: Apideck Expense Reports API
+  description: >-
+    An Expense Report is a collection of expense line items submitted by an employee for reimbursement,
+    including amounts, categories, and approval status.
+  humanURL: ' https://www.apideck.com/'
+  baseURL: https://unify.apideck.com
+  tags:
+  - Expense Reports
+  properties:
+  - type: OpenAPI
+    url: openapi/apideck-expense-reports-api-openapi.yml
+  - type: Documentation
+    url: https://developers.apideck.com/apis/accounting/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/crm/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/hris/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ats/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/file-storage/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ecommerce/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/pos/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/issue-tracking/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/lead/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/sms/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/vault/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/webhook/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/connector/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/proxy/reference
+- aid: apideck:apideck-expenses-api
+  name: Apideck Expenses API
+  description: >-
+    An Expense represents a business expenditure, including amount, date, category, payment method, merchant,
+    and account allocation.
+  humanURL: ' https://www.apideck.com/'
+  baseURL: https://unify.apideck.com
+  tags:
+  - Expenses
+  properties:
+  - type: OpenAPI
+    url: openapi/apideck-expenses-api-openapi.yml
+  - type: Documentation
+    url: https://developers.apideck.com/apis/accounting/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/crm/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/hris/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ats/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/file-storage/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ecommerce/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/pos/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/issue-tracking/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/lead/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/sms/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/vault/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/webhook/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/connector/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/proxy/reference
+- aid: apideck:apideck-files-api
+  name: Apideck Files API
+  description: >-
+    Files resource represents files stored in the cloud storage services. It provides methods for managing
+    and accessing the files, such as uploading, downloading, and deleting files. For more information
+    on uploads, refer to the [file upload guide](/guides/file-upload).
+  humanURL: ' https://www.apideck.com/'
+  baseURL: https://unify.apideck.com
+  tags:
+  - Files
+  properties:
+  - type: OpenAPI
+    url: openapi/apideck-files-api-openapi.yml
+  - type: Documentation
+    url: https://developers.apideck.com/apis/accounting/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/crm/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/hris/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ats/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/file-storage/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ecommerce/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/pos/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/issue-tracking/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/lead/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/sms/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/vault/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/webhook/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/connector/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/proxy/reference
+- aid: apideck:apideck-folders-api
+  name: Apideck Folders API
+  description: >-
+    Folders resource represents the folders within a drive in the cloud storage service. It provides methods
+    for managing and accessing the folders, such as creating, deleting, and listing files & folders in
+    a given folder.
+  humanURL: ' https://www.apideck.com/'
+  baseURL: https://unify.apideck.com
+  tags:
+  - Folders
+  properties:
+  - type: OpenAPI
+    url: openapi/apideck-folders-api-openapi.yml
+  - type: Documentation
+    url: https://developers.apideck.com/apis/accounting/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/crm/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/hris/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ats/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/file-storage/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ecommerce/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/pos/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/issue-tracking/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/lead/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/sms/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/vault/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/webhook/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/connector/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/proxy/reference
+- aid: apideck:apideck-invoice-items-api
+  name: Apideck Invoice Items API
+  description: >-
+    An Invoice Item represents a reusable product or service that can be added to invoices, including
+    name, description, price, and tax settings.
+  humanURL: ' https://www.apideck.com/'
+  baseURL: https://unify.apideck.com
+  tags:
+  - Invoice Items
+  properties:
+  - type: OpenAPI
+    url: openapi/apideck-invoice-items-api-openapi.yml
+  - type: Documentation
+    url: https://developers.apideck.com/apis/accounting/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/crm/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/hris/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ats/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/file-storage/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ecommerce/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/pos/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/issue-tracking/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/lead/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/sms/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/vault/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/webhook/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/connector/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/proxy/reference
+- aid: apideck:apideck-invoices-api
+  name: Apideck Invoices API
+  description: >-
+    An Invoice represents a sales document sent to customers, including line items, taxes, discounts,
+    totals, due date, and payment status.
+  humanURL: ' https://www.apideck.com/'
+  baseURL: https://unify.apideck.com
+  tags:
+  - Invoices
+  properties:
+  - type: OpenAPI
+    url: openapi/apideck-invoices-api-openapi.yml
+  - type: Documentation
+    url: https://developers.apideck.com/apis/accounting/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/crm/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/hris/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ats/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/file-storage/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ecommerce/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/pos/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/issue-tracking/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/lead/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/sms/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/vault/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/webhook/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/connector/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/proxy/reference
+- aid: apideck:apideck-journal-entries-api
+  name: Apideck Journal Entries API
+  description: >-
+    A Journal Entry represents a manual accounting entry with debit and credit line items, memo, posting
+    date, and status.
+  humanURL: ' https://www.apideck.com/'
+  baseURL: https://unify.apideck.com
+  tags:
+  - Journal Entries
+  properties:
+  - type: OpenAPI
+    url: openapi/apideck-journal-entries-api-openapi.yml
+  - type: Documentation
+    url: https://developers.apideck.com/apis/accounting/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/crm/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/hris/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ats/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/file-storage/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ecommerce/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/pos/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/issue-tracking/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/lead/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/sms/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/vault/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/webhook/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/connector/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/proxy/reference
+- aid: apideck:apideck-leads-api
+  name: Apideck Leads API
+  description: >-
+    The Lead resource represents individuals or businesses that have shown interest in a company's products
+    or services, including contact information and potential deal opportunities.
+  humanURL: ' https://www.apideck.com/'
+  baseURL: https://unify.apideck.com
+  tags:
+  - Leads
+  properties:
+  - type: OpenAPI
+    url: openapi/apideck-leads-api-openapi.yml
+  - type: Documentation
+    url: https://developers.apideck.com/apis/accounting/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/crm/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/hris/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ats/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/file-storage/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ecommerce/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/pos/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/issue-tracking/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/lead/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/sms/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/vault/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/webhook/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/connector/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/proxy/reference
+- aid: apideck:apideck-ledger-accounts-api
+  name: Apideck Ledger Accounts API
+  description: >-
+    A Ledger Account represents an entry in the chart of accounts, including name, code, type (asset,
+    liability, equity, revenue, expense), and balance.
+  humanURL: ' https://www.apideck.com/'
+  baseURL: https://unify.apideck.com
+  tags:
+  - Ledger Accounts
+  properties:
+  - type: OpenAPI
+    url: openapi/apideck-ledger-accounts-api-openapi.yml
+  - type: Documentation
+    url: https://developers.apideck.com/apis/accounting/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/crm/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/hris/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ats/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/file-storage/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ecommerce/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/pos/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/issue-tracking/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/lead/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/sms/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/vault/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/webhook/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/connector/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/proxy/reference
+- aid: apideck:apideck-locations-api
+  name: Apideck Locations API
+  description: >-
+    A Location represents a physical business site, including name, address, and status for multi-location
+    tracking.
+  humanURL: ' https://www.apideck.com/'
+  baseURL: https://unify.apideck.com
+  tags:
+  - Locations
+  properties:
+  - type: OpenAPI
+    url: openapi/apideck-locations-api-openapi.yml
+  - type: Documentation
+    url: https://developers.apideck.com/apis/accounting/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/crm/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/hris/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ats/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/file-storage/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ecommerce/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/pos/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/issue-tracking/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/lead/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/sms/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/vault/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/webhook/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/connector/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/proxy/reference
+- aid: apideck:apideck-notes-api
+  name: Apideck Notes API
+  description: >-
+    The Note resource represents textual records, such as comments or messages, associated with various
+    entities like contacts, opportunities, or activities.
+  humanURL: ' https://www.apideck.com/'
+  baseURL: https://unify.apideck.com
+  tags:
+  - Notes
+  properties:
+  - type: OpenAPI
+    url: openapi/apideck-notes-api-openapi.yml
+  - type: Documentation
+    url: https://developers.apideck.com/apis/accounting/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/crm/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/hris/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ats/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/file-storage/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ecommerce/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/pos/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/issue-tracking/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/lead/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/sms/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/vault/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/webhook/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/connector/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/proxy/reference
+- aid: apideck:apideck-opportunities-api
+  name: Apideck Opportunities API
+  description: >-
+    The Opportunity resource represents potential business deals, including details such as title, value,
+    status, close date, and associated contacts or companies.
+  humanURL: ' https://www.apideck.com/'
+  baseURL: https://unify.apideck.com
+  tags:
+  - Opportunities
+  properties:
+  - type: OpenAPI
+    url: openapi/apideck-opportunities-api-openapi.yml
+  - type: Documentation
+    url: https://developers.apideck.com/apis/accounting/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/crm/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/hris/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ats/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/file-storage/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ecommerce/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/pos/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/issue-tracking/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/lead/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/sms/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/vault/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/webhook/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/connector/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/proxy/reference
+- aid: apideck:apideck-payments-api
+  name: Apideck Payments API
+  description: >-
+    A Payment represents money received from a customer, including amount, date, payment method, and allocation
+    to one or more invoices.
+  humanURL: ' https://www.apideck.com/'
+  baseURL: https://unify.apideck.com
+  tags:
+  - Payments
+  properties:
+  - type: OpenAPI
+    url: openapi/apideck-payments-api-openapi.yml
+  - type: Documentation
+    url: https://developers.apideck.com/apis/accounting/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/crm/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/hris/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ats/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/file-storage/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ecommerce/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/pos/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/issue-tracking/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/lead/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/sms/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/vault/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/webhook/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/connector/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/proxy/reference
+- aid: apideck:apideck-payrolls-api
+  name: Apideck Payrolls API
+  description: >-
+    A Payroll represents a pay run, including pay period dates, total amounts, status, and linked company.
+  humanURL: ' https://www.apideck.com/'
+  baseURL: https://unify.apideck.com
+  tags:
+  - Payrolls
+  properties:
+  - type: OpenAPI
+    url: openapi/apideck-payrolls-api-openapi.yml
+  - type: Documentation
+    url: https://developers.apideck.com/apis/accounting/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/crm/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/hris/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ats/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/file-storage/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ecommerce/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/pos/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/issue-tracking/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/lead/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/sms/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/vault/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/webhook/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/connector/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/proxy/reference
+- aid: apideck:apideck-pipelines-api
+  name: Apideck Pipelines API
+  description: >-
+    The Pipeline resource represents a structured process for managing sales opportunities, including
+    stages and associated activities.
+  humanURL: ' https://www.apideck.com/'
+  baseURL: https://unify.apideck.com
+  tags:
+  - Pipelines
+  properties:
+  - type: OpenAPI
+    url: openapi/apideck-pipelines-api-openapi.yml
+  - type: Documentation
+    url: https://developers.apideck.com/apis/accounting/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/crm/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/hris/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ats/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/file-storage/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ecommerce/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/pos/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/issue-tracking/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/lead/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/sms/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/vault/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/webhook/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/connector/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/proxy/reference
+- aid: apideck:apideck-profit-and-loss-api
+  name: Apideck Profit and Loss API
+  description: >-
+    A Profit and Loss report shows financial performance over a period, including revenue, cost of sales,
+    expenses, and net income.
+  humanURL: ' https://www.apideck.com/'
+  baseURL: https://unify.apideck.com
+  tags:
+  - Profit and Loss
+  properties:
+  - type: OpenAPI
+    url: openapi/apideck-profit-and-loss-api-openapi.yml
+  - type: Documentation
+    url: https://developers.apideck.com/apis/accounting/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/crm/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/hris/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ats/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/file-storage/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ecommerce/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/pos/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/issue-tracking/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/lead/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/sms/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/vault/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/webhook/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/connector/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/proxy/reference
+- aid: apideck:apideck-projects-api
+  name: Apideck Projects API
+  description: >-
+    A Project represents a job or engagement, including name, customer, budget amounts, budget hours,
+    billing method, status, and profitability data.
+  humanURL: ' https://www.apideck.com/'
+  baseURL: https://unify.apideck.com
+  tags:
+  - Projects
+  properties:
+  - type: OpenAPI
+    url: openapi/apideck-projects-api-openapi.yml
+  - type: Documentation
+    url: https://developers.apideck.com/apis/accounting/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/crm/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/hris/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ats/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/file-storage/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ecommerce/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/pos/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/issue-tracking/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/lead/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/sms/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/vault/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/webhook/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/connector/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/proxy/reference
+- aid: apideck:apideck-purchase-orders-api
+  name: Apideck Purchase Orders API
+  description: >-
+    A Purchase Order represents a request to buy goods or services from a supplier, including line items,
+    amounts, delivery date, and status.
+  humanURL: ' https://www.apideck.com/'
+  baseURL: https://unify.apideck.com
+  tags:
+  - Purchase Orders
+  properties:
+  - type: OpenAPI
+    url: openapi/apideck-purchase-orders-api-openapi.yml
+  - type: Documentation
+    url: https://developers.apideck.com/apis/accounting/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/crm/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/hris/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ats/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/file-storage/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ecommerce/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/pos/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/issue-tracking/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/lead/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/sms/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/vault/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/webhook/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/connector/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/proxy/reference
+- aid: apideck:apideck-quotes-api
+  name: Apideck Quotes API
+  description: >-
+    A Quote represents a sales estimate sent to customers, including line items, amounts, expiry date,
+    and status before conversion to invoice.
+  humanURL: ' https://www.apideck.com/'
+  baseURL: https://unify.apideck.com
+  tags:
+  - Quotes
+  properties:
+  - type: OpenAPI
+    url: openapi/apideck-quotes-api-openapi.yml
+  - type: Documentation
+    url: https://developers.apideck.com/apis/accounting/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/crm/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/hris/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ats/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/file-storage/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ecommerce/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/pos/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/issue-tracking/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/lead/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/sms/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/vault/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/webhook/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/connector/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/proxy/reference
+- aid: apideck:apideck-refunds-api
+  name: Apideck Refunds API
+  description: >-
+    A Refund represents money returned to a customer, supporting both itemized refunds (with line items)
+    and allocation-based refunds (applied to invoices, credit notes, or overpayments).
+  humanURL: ' https://www.apideck.com/'
+  baseURL: https://unify.apideck.com
+  tags:
+  - Refunds
+  properties:
+  - type: OpenAPI
+    url: openapi/apideck-refunds-api-openapi.yml
+  - type: Documentation
+    url: https://developers.apideck.com/apis/accounting/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/crm/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/hris/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ats/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/file-storage/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ecommerce/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/pos/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/issue-tracking/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/lead/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/sms/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/vault/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/webhook/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/connector/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/proxy/reference
+- aid: apideck:apideck-shared-links-api
+  name: Apideck Shared Links API
+  description: >-
+    Shared links resource represents the links to files and folders in the cloud storage service that
+    have been shared with other users. It provides methods for managing and accessing the shared links,
+    such as creating, deleting, and listing shared links. A shared link allows other users to access the
+    file or folder that it points to, either by viewing it online or by downloading it.
+  humanURL: ' https://www.apideck.com/'
+  baseURL: https://unify.apideck.com
+  tags:
+  - Shared Links
+  properties:
+  - type: OpenAPI
+    url: openapi/apideck-shared-links-api-openapi.yml
+  - type: Documentation
+    url: https://developers.apideck.com/apis/accounting/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/crm/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/hris/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ats/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/file-storage/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ecommerce/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/pos/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/issue-tracking/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/lead/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/sms/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/vault/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/webhook/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/connector/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/proxy/reference
+- aid: apideck:apideck-subsidiaries-api
+  name: Apideck Subsidiaries API
+  description: >-
+    A Subsidiary represents a child company within an organization, including name, status, and parent
+    company relationship.
+  humanURL: ' https://www.apideck.com/'
+  baseURL: https://unify.apideck.com
+  tags:
+  - Subsidiaries
+  properties:
+  - type: OpenAPI
+    url: openapi/apideck-subsidiaries-api-openapi.yml
+  - type: Documentation
+    url: https://developers.apideck.com/apis/accounting/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/crm/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/hris/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ats/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/file-storage/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ecommerce/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/pos/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/issue-tracking/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/lead/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/sms/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/vault/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/webhook/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/connector/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/proxy/reference
+- aid: apideck:apideck-suppliers-api
+  name: Apideck Suppliers API
+  description: >-
+    A Supplier represents a vendor or service provider, including contact information, addresses, tax
+    details, and payment terms.
+  humanURL: ' https://www.apideck.com/'
+  baseURL: https://unify.apideck.com
+  tags:
+  - Suppliers
+  properties:
+  - type: OpenAPI
+    url: openapi/apideck-suppliers-api-openapi.yml
+  - type: Documentation
+    url: https://developers.apideck.com/apis/accounting/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/crm/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/hris/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ats/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/file-storage/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ecommerce/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/pos/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/issue-tracking/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/lead/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/sms/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/vault/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/webhook/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/connector/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/proxy/reference
+- aid: apideck:apideck-tax-rates-api
+  name: Apideck Tax Rates API
+  description: >-
+    A Tax Rate defines a tax percentage applied to transactions, including name, rate, tax type, and applicable
+    regions or conditions.
+  humanURL: ' https://www.apideck.com/'
+  baseURL: https://unify.apideck.com
+  tags:
+  - Tax Rates
+  properties:
+  - type: OpenAPI
+    url: openapi/apideck-tax-rates-api-openapi.yml
+  - type: Documentation
+    url: https://developers.apideck.com/apis/accounting/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/crm/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/hris/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ats/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/file-storage/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ecommerce/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/pos/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/issue-tracking/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/lead/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/sms/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/vault/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/webhook/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/connector/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/proxy/reference
+- aid: apideck:apideck-time-off-requests-api
+  name: Apideck Time Off Requests API
+  description: >-
+    A Time Off Request represents an absence request, including type (vacation, sick), dates, status,
+    and approval information.
+  humanURL: ' https://www.apideck.com/'
+  baseURL: https://unify.apideck.com
+  tags:
+  - Time Off Requests
+  properties:
+  - type: OpenAPI
+    url: openapi/apideck-time-off-requests-api-openapi.yml
+  - type: Documentation
+    url: https://developers.apideck.com/apis/accounting/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/crm/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/hris/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ats/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/file-storage/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ecommerce/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/pos/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/issue-tracking/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/lead/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/sms/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/vault/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/webhook/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/connector/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/proxy/reference
+- aid: apideck:apideck-tracking-categories-api
+  name: Apideck Tracking Categories API
+  description: >-
+    A Tracking Category represents a classification dimension for reporting, including name, code, status,
+    and parent category for hierarchies.
+  humanURL: ' https://www.apideck.com/'
+  baseURL: https://unify.apideck.com
+  tags:
+  - Tracking Categories
+  properties:
+  - type: OpenAPI
+    url: openapi/apideck-tracking-categories-api-openapi.yml
+  - type: Documentation
+    url: https://developers.apideck.com/apis/accounting/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/crm/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/hris/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ats/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/file-storage/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ecommerce/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/pos/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/issue-tracking/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/lead/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/sms/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/vault/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/webhook/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/connector/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/proxy/reference
+- aid: apideck:apideck-upload-sessions-api
+  name: Apideck Upload Sessions API
+  description: >-
+    Upload sessions resource represents the sessions used for uploading files to the cloud storage service.
+    It provides methods for managing and accessing the upload sessions, such as creating and resuming
+    upload sessions. An upload session allows for efficient uploading of large files by breaking them
+    into smaller chunks and uploading each chunk individually.
+  humanURL: ' https://www.apideck.com/'
+  baseURL: https://unify.apideck.com
+  tags:
+  - Upload Sessions
+  properties:
+  - type: OpenAPI
+    url: openapi/apideck-upload-sessions-api-openapi.yml
+  - type: Documentation
+    url: https://developers.apideck.com/apis/accounting/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/crm/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/hris/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ats/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/file-storage/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ecommerce/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/pos/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/issue-tracking/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/lead/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/sms/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/vault/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/webhook/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/connector/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/proxy/reference
+- aid: apideck:apideck-users-api
+  name: Apideck Users API
+  description: >-
+    A User represents a CRM team member, including name, email, role, status, and associated permissions
+    within the system.
+  humanURL: ' https://www.apideck.com/'
+  baseURL: https://unify.apideck.com
+  tags:
+  - Users
+  properties:
+  - type: OpenAPI
+    url: openapi/apideck-users-api-openapi.yml
+  - type: Documentation
+    url: https://developers.apideck.com/apis/accounting/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/crm/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/hris/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ats/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/file-storage/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/ecommerce/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/pos/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/issue-tracking/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/lead/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/sms/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/vault/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/webhook/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/connector/reference
+  - type: Documentation
+    url: https://developers.apideck.com/apis/proxy/reference
 name: Apideck
 tags:
   - Integrations
