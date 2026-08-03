@@ -2265,6 +2265,8 @@ maintainers:
     email: kin@apievangelist.com
 specificationVersion: '0.19'
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/apideck/overview
   - type: AgentCard
     url: a2a/apideck-a2a.yml
     name: A2A Agent Card
