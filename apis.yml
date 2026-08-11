@@ -9,8 +9,6 @@ apis:
   humanURL: ' https://www.apideck.com/'
   baseURL: https://unify.apideck.com
   properties:
-  - url: ' https://www.apideck.com/'
-    type: Documentation
   - url: https://developers.apideck.com/apis
     type: Documentation
   - url: https://developers.apideck.com/get-started
