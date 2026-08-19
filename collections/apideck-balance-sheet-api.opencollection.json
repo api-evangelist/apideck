@@ -1,0 +1,81 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Apideck Accounting Activities Balance Sheet API",
+    "version": "10.24.12"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Balance Sheet",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Apideck Get BalanceSheet",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://unify.apideck.com/accounting/balance-sheet",
+            "headers": [
+              {
+                "name": "x-apideck-consumer-id",
+                "value": "test-consumer"
+              },
+              {
+                "name": "x-apideck-app-id",
+                "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+              },
+              {
+                "name": "x-apideck-service-id",
+                "value": "salesforce"
+              },
+              {
+                "name": "x-apideck-company-id",
+                "value": "12345"
+              }
+            ],
+            "params": [
+              {
+                "name": "pass_through",
+                "value": "",
+                "type": "query",
+                "description": "Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Apply filters"
+              },
+              {
+                "name": "raw",
+                "value": "",
+                "type": "query",
+                "description": "Include raw response. Mostly used for debugging purposes"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get BalanceSheet"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

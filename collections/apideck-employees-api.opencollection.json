@@ -1,0 +1,552 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Apideck Accounting Activities Employees API",
+    "version": "10.24.12"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Employees",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Apideck List Employees",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://unify.apideck.com/accounting/employees",
+            "headers": [
+              {
+                "name": "x-apideck-consumer-id",
+                "value": "test-consumer"
+              },
+              {
+                "name": "x-apideck-app-id",
+                "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+              },
+              {
+                "name": "x-apideck-service-id",
+                "value": "salesforce"
+              }
+            ],
+            "params": [
+              {
+                "name": "raw",
+                "value": "",
+                "type": "query",
+                "description": "Include raw response. Mostly used for debugging purposes"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return. Minimum 1, Maximum 200, Default 20"
+              },
+              {
+                "name": "fields",
+                "value": "id,updated_at",
+                "type": "query",
+                "description": "The 'fields' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. <br /><br />Example: `fields=name,email,addresses.city`<br /><br />In the example above, the response will only include the fields \"name\", \"email\" and \"addresses.city\". If any other fields are available, they will be excluded."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Apply filters"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "List Employees"
+        },
+        {
+          "info": {
+            "name": "Apideck Create Employee",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://unify.apideck.com/accounting/employees",
+            "headers": [
+              {
+                "name": "x-apideck-consumer-id",
+                "value": "test-consumer"
+              },
+              {
+                "name": "x-apideck-app-id",
+                "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+              },
+              {
+                "name": "x-apideck-service-id",
+                "value": "salesforce"
+              }
+            ],
+            "params": [
+              {
+                "name": "raw",
+                "value": "",
+                "type": "query",
+                "description": "Include raw response. Mostly used for debugging purposes"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create Employee"
+        },
+        {
+          "info": {
+            "name": "Apideck Get Employee",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://unify.apideck.com/accounting/employees/:id",
+            "headers": [
+              {
+                "name": "x-apideck-consumer-id",
+                "value": "test-consumer"
+              },
+              {
+                "name": "x-apideck-app-id",
+                "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+              },
+              {
+                "name": "x-apideck-service-id",
+                "value": "salesforce"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the record you are acting upon."
+              },
+              {
+                "name": "raw",
+                "value": "",
+                "type": "query",
+                "description": "Include raw response. Mostly used for debugging purposes"
+              },
+              {
+                "name": "fields",
+                "value": "id,updated_at",
+                "type": "query",
+                "description": "The 'fields' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. <br /><br />Example: `fields=name,email,addresses.city`<br /><br />In the example above, the response will only include the fields \"name\", \"email\" and \"addresses.city\". If any other fields are available, they will be excluded."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get Employee"
+        },
+        {
+          "info": {
+            "name": "Apideck Update Employee",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://unify.apideck.com/accounting/employees/:id",
+            "headers": [
+              {
+                "name": "x-apideck-consumer-id",
+                "value": "test-consumer"
+              },
+              {
+                "name": "x-apideck-app-id",
+                "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+              },
+              {
+                "name": "x-apideck-service-id",
+                "value": "salesforce"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the record you are acting upon."
+              },
+              {
+                "name": "raw",
+                "value": "",
+                "type": "query",
+                "description": "Include raw response. Mostly used for debugging purposes"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Update Employee"
+        },
+        {
+          "info": {
+            "name": "Apideck Delete Employee",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://unify.apideck.com/accounting/employees/:id",
+            "headers": [
+              {
+                "name": "x-apideck-consumer-id",
+                "value": "test-consumer"
+              },
+              {
+                "name": "x-apideck-app-id",
+                "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+              },
+              {
+                "name": "x-apideck-service-id",
+                "value": "salesforce"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the record you are acting upon."
+              },
+              {
+                "name": "raw",
+                "value": "",
+                "type": "query",
+                "description": "Include raw response. Mostly used for debugging purposes"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Delete Employee"
+        },
+        {
+          "info": {
+            "name": "Apideck List Employees",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://unify.apideck.com/hris/employees",
+            "headers": [
+              {
+                "name": "x-apideck-consumer-id",
+                "value": "test-consumer"
+              },
+              {
+                "name": "x-apideck-app-id",
+                "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+              },
+              {
+                "name": "x-apideck-service-id",
+                "value": "salesforce"
+              }
+            ],
+            "params": [
+              {
+                "name": "raw",
+                "value": "",
+                "type": "query",
+                "description": "Include raw response. Mostly used for debugging purposes"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return. Minimum 1, Maximum 200, Default 20"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Apply filters"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Apply sorting"
+              },
+              {
+                "name": "pass_through",
+                "value": "",
+                "type": "query",
+                "description": "Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads"
+              },
+              {
+                "name": "fields",
+                "value": "id,updated_at",
+                "type": "query",
+                "description": "The 'fields' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. <br /><br />Example: `fields=name,email,addresses.city`<br /><br />In the example above, the response will only include the fields \"name\", \"email\" and \"addresses.city\". If any other fields are available, they will be excluded."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Apideck operates as a stateless Unified API, which means that the list endpoint only provides a portion of the employee model. This is due to the fact that most HRIS systems do not readily provide all data in every call. However, you can access the complete employee model through an employee detail call."
+        },
+        {
+          "info": {
+            "name": "Apideck Create Employee",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://unify.apideck.com/hris/employees",
+            "headers": [
+              {
+                "name": "x-apideck-consumer-id",
+                "value": "test-consumer"
+              },
+              {
+                "name": "x-apideck-app-id",
+                "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+              },
+              {
+                "name": "x-apideck-service-id",
+                "value": "salesforce"
+              }
+            ],
+            "params": [
+              {
+                "name": "raw",
+                "value": "",
+                "type": "query",
+                "description": "Include raw response. Mostly used for debugging purposes"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create Employee"
+        },
+        {
+          "info": {
+            "name": "Apideck Get Employee",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://unify.apideck.com/hris/employees/:id",
+            "headers": [
+              {
+                "name": "x-apideck-consumer-id",
+                "value": "test-consumer"
+              },
+              {
+                "name": "x-apideck-app-id",
+                "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+              },
+              {
+                "name": "x-apideck-service-id",
+                "value": "salesforce"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the record you are acting upon."
+              },
+              {
+                "name": "raw",
+                "value": "",
+                "type": "query",
+                "description": "Include raw response. Mostly used for debugging purposes"
+              },
+              {
+                "name": "fields",
+                "value": "id,updated_at",
+                "type": "query",
+                "description": "The 'fields' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. <br /><br />Example: `fields=name,email,addresses.city`<br /><br />In the example above, the response will only include the fields \"name\", \"email\" and \"addresses.city\". If any other fields are available, they will be excluded."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Apply filters"
+              },
+              {
+                "name": "pass_through",
+                "value": "",
+                "type": "query",
+                "description": "Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get Employee"
+        },
+        {
+          "info": {
+            "name": "Apideck Update Employee",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://unify.apideck.com/hris/employees/:id",
+            "headers": [
+              {
+                "name": "x-apideck-consumer-id",
+                "value": "test-consumer"
+              },
+              {
+                "name": "x-apideck-app-id",
+                "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+              },
+              {
+                "name": "x-apideck-service-id",
+                "value": "salesforce"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the record you are acting upon."
+              },
+              {
+                "name": "raw",
+                "value": "",
+                "type": "query",
+                "description": "Include raw response. Mostly used for debugging purposes"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Update Employee"
+        },
+        {
+          "info": {
+            "name": "Apideck Delete Employee",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://unify.apideck.com/hris/employees/:id",
+            "headers": [
+              {
+                "name": "x-apideck-consumer-id",
+                "value": "test-consumer"
+              },
+              {
+                "name": "x-apideck-app-id",
+                "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+              },
+              {
+                "name": "x-apideck-service-id",
+                "value": "salesforce"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the record you are acting upon."
+              },
+              {
+                "name": "raw",
+                "value": "",
+                "type": "query",
+                "description": "Include raw response. Mostly used for debugging purposes"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Delete Employee"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

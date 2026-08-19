@@ -1,0 +1,3405 @@
+{
+  "item": [
+    {
+      "id": "946a81c1-c412-4ce0-a177-4d0705eb143d",
+      "name": "Bank Feed Accounts",
+      "description": {
+        "content": "A Bank Feed Account represents a connected financial institution account, including account details and connection status for transaction imports.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fbcb37a3-4b9c-4f87-ae1f-fcf9914ba7d5",
+          "name": "Apideck List Bank Feed Accounts",
+          "request": {
+            "name": "Apideck List Bank Feed Accounts",
+            "description": {
+              "content": "List Bank Feed Accounts",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accounting",
+                "bank-feed-accounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "raw",
+                  "value": "false",
+                  "description": "Include raw response. Mostly used for debugging purposes"
+                },
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Number of results to return. Minimum 1, Maximum 200, Default 20"
+                },
+                {
+                  "disabled": false,
+                  "key": "pass_through[example_downstream_property]",
+                  "value": "<string>",
+                  "description": "Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads"
+                },
+                {
+                  "disabled": false,
+                  "key": "pass_through[key_0]",
+                  "value": "8399",
+                  "description": "Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads"
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "The 'fields' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. <br /><br />Example: `fields=name,email,addresses.city`<br /><br />In the example above, the response will only include the fields \"name\", \"email\" and \"addresses.city\". If any other fields are available, they will be excluded."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ID of the consumer which you want to get or push data from",
+                "key": "x-apideck-consumer-id",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) The ID of your Unify application",
+                "key": "x-apideck-app-id",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                "key": "x-apideck-service-id",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "The ID of the company to scope requests to. For connectors that support multi-company, this overrides the default company configured in connection settings.",
+                "key": "x-apideck-company-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5c29fed9-b116-4f0d-a9ae-d89d0ea1d474",
+              "name": "Bank Feed Accounts",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounting",
+                    "bank-feed-accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "raw",
+                      "value": "false"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "pass_through[search]",
+                      "value": "San Francisco"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "id,updated_at"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the consumer which you want to get or push data from",
+                    "key": "x-apideck-consumer-id",
+                    "value": "test-consumer"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The ID of your Unify application",
+                    "key": "x-apideck-app-id",
+                    "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                    "key": "x-apideck-service-id",
+                    "value": "salesforce"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The ID of the company to scope requests to. For connectors that support multi-company, this overrides the default company configured in connection settings.",
+                    "key": "x-apideck-company-id",
+                    "value": "12345"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 200,\n  \"status\": \"OK\",\n  \"service\": \"quickbooks\",\n  \"resource\": \"bank-feed-accounts\",\n  \"operation\": \"all\",\n  \"data\": [\n    {\n      \"id\": \"12345\",\n      \"bank_account_type\": \"bank\",\n      \"source_account_id\": \"src_456\",\n      \"target_account_id\": \"tgt_789\",\n      \"target_account_name\": \"Main Company Checking\",\n      \"target_account_number\": \"NL91ABNA0417164300\",\n      \"currency\": \"USD\",\n      \"feed_status\": \"pending\",\n      \"country\": \"US\",\n      \"custom_mappings\": {\n        \"key_0\": 407,\n        \"key_1\": false\n      },\n      \"created_at\": \"2020-09-30T07:43:32.000Z\",\n      \"updated_at\": \"2020-09-30T07:43:32.000Z\",\n      \"updated_by\": \"12345\",\n      \"created_by\": \"12345\"\n    },\n    {\n      \"id\": \"12345\",\n      \"bank_account_type\": \"bank\",\n      \"source_account_id\": \"src_456\",\n      \"target_account_id\": \"tgt_789\",\n      \"target_account_name\": \"Main Company Checking\",\n      \"target_account_number\": \"NL91ABNA0417164300\",\n      \"currency\": \"USD\",\n      \"feed_status\": \"pending\",\n      \"country\": \"US\",\n      \"custom_mappings\": {\n        \"key_0\": 8529,\n        \"key_1\": false,\n        \"key_2\": false,\n        \"key_3\": 466\n      },\n      \"created_at\": \"2020-09-30T07:43:32.000Z\",\n      \"updated_at\": \"2020-09-30T07:43:32.000Z\",\n      \"updated_by\": \"12345\",\n      \"created_by\": \"12345\"\n    }\n  ],\n  \"meta\": {\n    \"items_on_page\": 50,\n    \"cursors\": {\n      \"previous\": \"em9oby1jcm06OnBhZ2U6OjE=\",\n      \"current\": \"em9oby1jcm06OnBhZ2U6OjI=\",\n      \"next\": \"em9oby1jcm06OnBhZ2U6OjM=\"\n    }\n  },\n  \"links\": {\n    \"previous\": \"https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjE%3D\",\n    \"current\": \"https://unify.apideck.com/crm/companies\",\n    \"next\": \"https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjM\"\n  },\n  \"_raw\": {\n    \"key_0\": 7876,\n    \"key_1\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6c2460a9-5807-4b7e-ae34-b1bd98002269",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounting",
+                    "bank-feed-accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "raw",
+                      "value": "false"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "pass_through[search]",
+                      "value": "San Francisco"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "id,updated_at"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the consumer which you want to get or push data from",
+                    "key": "x-apideck-consumer-id",
+                    "value": "test-consumer"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The ID of your Unify application",
+                    "key": "x-apideck-app-id",
+                    "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                    "key": "x-apideck-service-id",
+                    "value": "salesforce"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The ID of the company to scope requests to. For connectors that support multi-company, this overrides the default company configured in connection settings.",
+                    "key": "x-apideck-company-id",
+                    "value": "12345"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 400,\n  \"error\": \"Bad Request\",\n  \"type_name\": \"RequestValidationError\",\n  \"message\": \"Invalid Params\",\n  \"detail\": \"Missing property foobar\",\n  \"ref\": \"https://developers.apideck.com/errors#requestvalidationerror\",\n  \"downstream_errors\": [\n    {\n      \"message\": \"Account code '100' has been archived or deleted\",\n      \"detail\": \"Each line item must reference a valid account\",\n      \"code\": \"VALIDATION_ERROR\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7623ca6c-e327-4fe5-b904-0e0cd5260594",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounting",
+                    "bank-feed-accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "raw",
+                      "value": "false"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "pass_through[search]",
+                      "value": "San Francisco"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "id,updated_at"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the consumer which you want to get or push data from",
+                    "key": "x-apideck-consumer-id",
+                    "value": "test-consumer"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The ID of your Unify application",
+                    "key": "x-apideck-app-id",
+                    "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                    "key": "x-apideck-service-id",
+                    "value": "salesforce"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The ID of the company to scope requests to. For connectors that support multi-company, this overrides the default company configured in connection settings.",
+                    "key": "x-apideck-company-id",
+                    "value": "12345"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 401,\n  \"error\": \"Unauthorized\",\n  \"type_name\": \"UnauthorizedError\",\n  \"message\": \"Unauthorized Request\",\n  \"detail\": \"Missing authentication\",\n  \"ref\": \"https://developers.apideck.com/errors#unauthorizederror\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f3e96090-47e0-4dcc-8cac-066f3e7023fb",
+              "name": "Payment Required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounting",
+                    "bank-feed-accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "raw",
+                      "value": "false"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "pass_through[search]",
+                      "value": "San Francisco"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "id,updated_at"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the consumer which you want to get or push data from",
+                    "key": "x-apideck-consumer-id",
+                    "value": "test-consumer"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The ID of your Unify application",
+                    "key": "x-apideck-app-id",
+                    "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                    "key": "x-apideck-service-id",
+                    "value": "salesforce"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The ID of the company to scope requests to. For connectors that support multi-company, this overrides the default company configured in connection settings.",
+                    "key": "x-apideck-company-id",
+                    "value": "12345"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Payment Required",
+              "code": 402,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 402,\n  \"error\": \"Payment Required\",\n  \"type_name\": \"RequestLimitError\",\n  \"message\": \"Request Limit Reached\",\n  \"detail\": \"You have reached your limit of 2000\",\n  \"ref\": \"https://developers.apideck.com/errors#requestlimiterror\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "997c98dc-7ce0-4e10-986b-abef9373e3e3",
+              "name": "The specified resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounting",
+                    "bank-feed-accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "raw",
+                      "value": "false"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "pass_through[search]",
+                      "value": "San Francisco"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "id,updated_at"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the consumer which you want to get or push data from",
+                    "key": "x-apideck-consumer-id",
+                    "value": "test-consumer"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The ID of your Unify application",
+                    "key": "x-apideck-app-id",
+                    "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                    "key": "x-apideck-service-id",
+                    "value": "salesforce"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The ID of the company to scope requests to. For connectors that support multi-company, this overrides the default company configured in connection settings.",
+                    "key": "x-apideck-company-id",
+                    "value": "12345"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 404,\n  \"error\": \"Not Found\",\n  \"type_name\": \"EntityNotFoundError\",\n  \"message\": \"Unknown Widget\",\n  \"detail\": \"Could not find widget with id: '123'\",\n  \"ref\": \"https://developers.apideck.com/errors#entitynotfounderror\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "07eff6ec-7b95-471f-aae2-2a063f4beba3",
+              "name": "Unprocessable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounting",
+                    "bank-feed-accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "raw",
+                      "value": "false"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "pass_through[search]",
+                      "value": "San Francisco"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "id,updated_at"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the consumer which you want to get or push data from",
+                    "key": "x-apideck-consumer-id",
+                    "value": "test-consumer"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The ID of your Unify application",
+                    "key": "x-apideck-app-id",
+                    "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                    "key": "x-apideck-service-id",
+                    "value": "salesforce"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The ID of the company to scope requests to. For connectors that support multi-company, this overrides the default company configured in connection settings.",
+                    "key": "x-apideck-company-id",
+                    "value": "12345"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 422,\n  \"error\": \"Unprocessable Entity\",\n  \"type_name\": \"InvalidStateError\",\n  \"message\": \"Invalid State\",\n  \"detail\": \"Unprocessable request, please verify your request headers and body.\",\n  \"ref\": \"https://developers.apideck.com/errors#invalidstateerror\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "db51a325-2053-4bf0-9621-01ab20e59d87",
+              "name": "Unexpected error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounting",
+                    "bank-feed-accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "raw",
+                      "value": "false"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "pass_through[search]",
+                      "value": "San Francisco"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "id,updated_at"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the consumer which you want to get or push data from",
+                    "key": "x-apideck-consumer-id",
+                    "value": "test-consumer"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The ID of your Unify application",
+                    "key": "x-apideck-app-id",
+                    "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                    "key": "x-apideck-service-id",
+                    "value": "salesforce"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The ID of the company to scope requests to. For connectors that support multi-company, this overrides the default company configured in connection settings.",
+                    "key": "x-apideck-company-id",
+                    "value": "12345"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 400,\n  \"error\": \"Bad Request\",\n  \"type_name\": \"RequestHeadersValidationError\",\n  \"message\": \"Invalid Params\",\n  \"detail\": \"Missing Header: x-apideck-consumer-id\",\n  \"ref\": \"https://developers.apideck.com/errors#unauthorizederror\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0eeb3316-a75d-4bc2-9996-3e20149903eb",
+          "name": "Apideck Create Bank Feed Account",
+          "request": {
+            "name": "Apideck Create Bank Feed Account",
+            "description": {
+              "content": "Create Bank Feed Account",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accounting",
+                "bank-feed-accounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "raw",
+                  "value": "false",
+                  "description": "Include raw response. Mostly used for debugging purposes"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ID of the consumer which you want to get or push data from",
+                "key": "x-apideck-consumer-id",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) The ID of your Unify application",
+                "key": "x-apideck-app-id",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                "key": "x-apideck-service-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"bank_account_type\": \"<string>\",\n  \"source_account_id\": \"<string>\",\n  \"target_account_id\": \"<string>\",\n  \"target_account_name\": \"<string>\",\n  \"target_account_number\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"feed_status\": \"<string>\",\n  \"country\": \"<string>\",\n  \"custom_mappings\": {\n    \"key_0\": \"string\"\n  },\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"updated_by\": \"<string>\",\n  \"created_by\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "97a662a2-82ed-4750-8aeb-4d9d4992fd4f",
+              "name": "Bank Feed Accounts",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounting",
+                    "bank-feed-accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "raw",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the consumer which you want to get or push data from",
+                    "key": "x-apideck-consumer-id",
+                    "value": "test-consumer"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The ID of your Unify application",
+                    "key": "x-apideck-app-id",
+                    "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                    "key": "x-apideck-service-id",
+                    "value": "salesforce"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"12345\",\n  \"bank_account_type\": \"bank\",\n  \"source_account_id\": \"src_456\",\n  \"target_account_id\": \"tgt_789\",\n  \"target_account_name\": \"Main Company Checking\",\n  \"target_account_number\": \"NL91ABNA0417164300\",\n  \"currency\": \"USD\",\n  \"feed_status\": \"pending\",\n  \"country\": \"US\",\n  \"custom_mappings\": {\n    \"key_0\": 4043.268420535119,\n    \"key_1\": 9506.564923510072\n  },\n  \"created_at\": \"2020-09-30T07:43:32.000Z\",\n  \"updated_at\": \"2020-09-30T07:43:32.000Z\",\n  \"updated_by\": \"12345\",\n  \"created_by\": \"12345\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 200,\n  \"status\": \"OK\",\n  \"service\": \"xero\",\n  \"resource\": \"bills\",\n  \"operation\": \"add\",\n  \"data\": {\n    \"id\": \"12345\"\n  },\n  \"_raw\": {\n    \"key_0\": 8565\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "263f71b1-e653-4bc8-bd18-2d5c469959e7",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounting",
+                    "bank-feed-accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "raw",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the consumer which you want to get or push data from",
+                    "key": "x-apideck-consumer-id",
+                    "value": "test-consumer"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The ID of your Unify application",
+                    "key": "x-apideck-app-id",
+                    "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                    "key": "x-apideck-service-id",
+                    "value": "salesforce"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"12345\",\n  \"bank_account_type\": \"bank\",\n  \"source_account_id\": \"src_456\",\n  \"target_account_id\": \"tgt_789\",\n  \"target_account_name\": \"Main Company Checking\",\n  \"target_account_number\": \"NL91ABNA0417164300\",\n  \"currency\": \"USD\",\n  \"feed_status\": \"pending\",\n  \"country\": \"US\",\n  \"custom_mappings\": {\n    \"key_0\": 4043.268420535119,\n    \"key_1\": 9506.564923510072\n  },\n  \"created_at\": \"2020-09-30T07:43:32.000Z\",\n  \"updated_at\": \"2020-09-30T07:43:32.000Z\",\n  \"updated_by\": \"12345\",\n  \"created_by\": \"12345\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 400,\n  \"error\": \"Bad Request\",\n  \"type_name\": \"RequestValidationError\",\n  \"message\": \"Invalid Params\",\n  \"detail\": \"Missing property foobar\",\n  \"ref\": \"https://developers.apideck.com/errors#requestvalidationerror\",\n  \"downstream_errors\": [\n    {\n      \"message\": \"Account code '100' has been archived or deleted\",\n      \"detail\": \"Each line item must reference a valid account\",\n      \"code\": \"VALIDATION_ERROR\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "95b4f3ca-0214-4623-96fc-be32ffc7f0d9",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounting",
+                    "bank-feed-accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "raw",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the consumer which you want to get or push data from",
+                    "key": "x-apideck-consumer-id",
+                    "value": "test-consumer"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The ID of your Unify application",
+                    "key": "x-apideck-app-id",
+                    "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                    "key": "x-apideck-service-id",
+                    "value": "salesforce"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"12345\",\n  \"bank_account_type\": \"bank\",\n  \"source_account_id\": \"src_456\",\n  \"target_account_id\": \"tgt_789\",\n  \"target_account_name\": \"Main Company Checking\",\n  \"target_account_number\": \"NL91ABNA0417164300\",\n  \"currency\": \"USD\",\n  \"feed_status\": \"pending\",\n  \"country\": \"US\",\n  \"custom_mappings\": {\n    \"key_0\": 4043.268420535119,\n    \"key_1\": 9506.564923510072\n  },\n  \"created_at\": \"2020-09-30T07:43:32.000Z\",\n  \"updated_at\": \"2020-09-30T07:43:32.000Z\",\n  \"updated_by\": \"12345\",\n  \"created_by\": \"12345\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 401,\n  \"error\": \"Unauthorized\",\n  \"type_name\": \"UnauthorizedError\",\n  \"message\": \"Unauthorized Request\",\n  \"detail\": \"Missing authentication\",\n  \"ref\": \"https://developers.apideck.com/errors#unauthorizederror\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c8abb5cd-ed33-41c6-8d06-4febed65bae3",
+              "name": "Payment Required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounting",
+                    "bank-feed-accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "raw",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the consumer which you want to get or push data from",
+                    "key": "x-apideck-consumer-id",
+                    "value": "test-consumer"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The ID of your Unify application",
+                    "key": "x-apideck-app-id",
+                    "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                    "key": "x-apideck-service-id",
+                    "value": "salesforce"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"12345\",\n  \"bank_account_type\": \"bank\",\n  \"source_account_id\": \"src_456\",\n  \"target_account_id\": \"tgt_789\",\n  \"target_account_name\": \"Main Company Checking\",\n  \"target_account_number\": \"NL91ABNA0417164300\",\n  \"currency\": \"USD\",\n  \"feed_status\": \"pending\",\n  \"country\": \"US\",\n  \"custom_mappings\": {\n    \"key_0\": 4043.268420535119,\n    \"key_1\": 9506.564923510072\n  },\n  \"created_at\": \"2020-09-30T07:43:32.000Z\",\n  \"updated_at\": \"2020-09-30T07:43:32.000Z\",\n  \"updated_by\": \"12345\",\n  \"created_by\": \"12345\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Payment Required",
+              "code": 402,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 402,\n  \"error\": \"Payment Required\",\n  \"type_name\": \"RequestLimitError\",\n  \"message\": \"Request Limit Reached\",\n  \"detail\": \"You have reached your limit of 2000\",\n  \"ref\": \"https://developers.apideck.com/errors#requestlimiterror\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0d26e095-4fdd-48bf-8298-8f07acf6a7da",
+              "name": "The specified resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounting",
+                    "bank-feed-accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "raw",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the consumer which you want to get or push data from",
+                    "key": "x-apideck-consumer-id",
+                    "value": "test-consumer"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The ID of your Unify application",
+                    "key": "x-apideck-app-id",
+                    "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                    "key": "x-apideck-service-id",
+                    "value": "salesforce"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"12345\",\n  \"bank_account_type\": \"bank\",\n  \"source_account_id\": \"src_456\",\n  \"target_account_id\": \"tgt_789\",\n  \"target_account_name\": \"Main Company Checking\",\n  \"target_account_number\": \"NL91ABNA0417164300\",\n  \"currency\": \"USD\",\n  \"feed_status\": \"pending\",\n  \"country\": \"US\",\n  \"custom_mappings\": {\n    \"key_0\": 4043.268420535119,\n    \"key_1\": 9506.564923510072\n  },\n  \"created_at\": \"2020-09-30T07:43:32.000Z\",\n  \"updated_at\": \"2020-09-30T07:43:32.000Z\",\n  \"updated_by\": \"12345\",\n  \"created_by\": \"12345\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 404,\n  \"error\": \"Not Found\",\n  \"type_name\": \"EntityNotFoundError\",\n  \"message\": \"Unknown Widget\",\n  \"detail\": \"Could not find widget with id: '123'\",\n  \"ref\": \"https://developers.apideck.com/errors#entitynotfounderror\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "94cb6a81-0fe4-4be9-ac87-6104b77e97f2",
+              "name": "Unprocessable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounting",
+                    "bank-feed-accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "raw",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the consumer which you want to get or push data from",
+                    "key": "x-apideck-consumer-id",
+                    "value": "test-consumer"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The ID of your Unify application",
+                    "key": "x-apideck-app-id",
+                    "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                    "key": "x-apideck-service-id",
+                    "value": "salesforce"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"12345\",\n  \"bank_account_type\": \"bank\",\n  \"source_account_id\": \"src_456\",\n  \"target_account_id\": \"tgt_789\",\n  \"target_account_name\": \"Main Company Checking\",\n  \"target_account_number\": \"NL91ABNA0417164300\",\n  \"currency\": \"USD\",\n  \"feed_status\": \"pending\",\n  \"country\": \"US\",\n  \"custom_mappings\": {\n    \"key_0\": 4043.268420535119,\n    \"key_1\": 9506.564923510072\n  },\n  \"created_at\": \"2020-09-30T07:43:32.000Z\",\n  \"updated_at\": \"2020-09-30T07:43:32.000Z\",\n  \"updated_by\": \"12345\",\n  \"created_by\": \"12345\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 422,\n  \"error\": \"Unprocessable Entity\",\n  \"type_name\": \"InvalidStateError\",\n  \"message\": \"Invalid State\",\n  \"detail\": \"Unprocessable request, please verify your request headers and body.\",\n  \"ref\": \"https://developers.apideck.com/errors#invalidstateerror\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5cdfb659-1de2-4fa5-9c63-c408c12c42df",
+              "name": "Unexpected error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounting",
+                    "bank-feed-accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "raw",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the consumer which you want to get or push data from",
+                    "key": "x-apideck-consumer-id",
+                    "value": "test-consumer"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The ID of your Unify application",
+                    "key": "x-apideck-app-id",
+                    "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                    "key": "x-apideck-service-id",
+                    "value": "salesforce"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"12345\",\n  \"bank_account_type\": \"bank\",\n  \"source_account_id\": \"src_456\",\n  \"target_account_id\": \"tgt_789\",\n  \"target_account_name\": \"Main Company Checking\",\n  \"target_account_number\": \"NL91ABNA0417164300\",\n  \"currency\": \"USD\",\n  \"feed_status\": \"pending\",\n  \"country\": \"US\",\n  \"custom_mappings\": {\n    \"key_0\": 4043.268420535119,\n    \"key_1\": 9506.564923510072\n  },\n  \"created_at\": \"2020-09-30T07:43:32.000Z\",\n  \"updated_at\": \"2020-09-30T07:43:32.000Z\",\n  \"updated_by\": \"12345\",\n  \"created_by\": \"12345\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 400,\n  \"error\": \"Bad Request\",\n  \"type_name\": \"RequestHeadersValidationError\",\n  \"message\": \"Invalid Params\",\n  \"detail\": \"Missing Header: x-apideck-consumer-id\",\n  \"ref\": \"https://developers.apideck.com/errors#unauthorizederror\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "48a33ec9-ed68-4688-b08f-e363036f4e37",
+          "name": "Apideck Get Bank Feed Account",
+          "request": {
+            "name": "Apideck Get Bank Feed Account",
+            "description": {
+              "content": "Get Bank Feed Account",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accounting",
+                "bank-feed-accounts",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "raw",
+                  "value": "false",
+                  "description": "Include raw response. Mostly used for debugging purposes"
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "The 'fields' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. <br /><br />Example: `fields=name,email,addresses.city`<br /><br />In the example above, the response will only include the fields \"name\", \"email\" and \"addresses.city\". If any other fields are available, they will be excluded."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) ID of the record you are acting upon."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ID of the consumer which you want to get or push data from",
+                "key": "x-apideck-consumer-id",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) The ID of your Unify application",
+                "key": "x-apideck-app-id",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                "key": "x-apideck-service-id",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "The ID of the company to scope requests to. For connectors that support multi-company, this overrides the default company configured in connection settings.",
+                "key": "x-apideck-company-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "86a7181d-fa03-4a5f-977a-48c6423ff793",
+              "name": "Bank Feed Accounts",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounting",
+                    "bank-feed-accounts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "raw",
+                      "value": "false"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "id,updated_at"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the record you are acting upon."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the consumer which you want to get or push data from",
+                    "key": "x-apideck-consumer-id",
+                    "value": "test-consumer"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The ID of your Unify application",
+                    "key": "x-apideck-app-id",
+                    "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                    "key": "x-apideck-service-id",
+                    "value": "salesforce"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The ID of the company to scope requests to. For connectors that support multi-company, this overrides the default company configured in connection settings.",
+                    "key": "x-apideck-company-id",
+                    "value": "12345"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 200,\n  \"status\": \"OK\",\n  \"service\": \"quickbooks\",\n  \"resource\": \"bank-feed-accounts\",\n  \"operation\": \"one\",\n  \"data\": {\n    \"id\": \"12345\",\n    \"bank_account_type\": \"bank\",\n    \"source_account_id\": \"src_456\",\n    \"target_account_id\": \"tgt_789\",\n    \"target_account_name\": \"Main Company Checking\",\n    \"target_account_number\": \"NL91ABNA0417164300\",\n    \"currency\": \"USD\",\n    \"feed_status\": \"pending\",\n    \"country\": \"US\",\n    \"custom_mappings\": {\n      \"key_0\": 6136,\n      \"key_1\": 8512\n    },\n    \"created_at\": \"2020-09-30T07:43:32.000Z\",\n    \"updated_at\": \"2020-09-30T07:43:32.000Z\",\n    \"updated_by\": \"12345\",\n    \"created_by\": \"12345\"\n  },\n  \"_raw\": {\n    \"key_0\": 2920,\n    \"key_1\": true,\n    \"key_2\": 2838\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "23692b14-61df-4484-ba86-b214d693fd06",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounting",
+                    "bank-feed-accounts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "raw",
+                      "value": "false"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "id,updated_at"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the record you are acting upon."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the consumer which you want to get or push data from",
+                    "key": "x-apideck-consumer-id",
+                    "value": "test-consumer"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The ID of your Unify application",
+                    "key": "x-apideck-app-id",
+                    "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                    "key": "x-apideck-service-id",
+                    "value": "salesforce"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The ID of the company to scope requests to. For connectors that support multi-company, this overrides the default company configured in connection settings.",
+                    "key": "x-apideck-company-id",
+                    "value": "12345"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 400,\n  \"error\": \"Bad Request\",\n  \"type_name\": \"RequestValidationError\",\n  \"message\": \"Invalid Params\",\n  \"detail\": \"Missing property foobar\",\n  \"ref\": \"https://developers.apideck.com/errors#requestvalidationerror\",\n  \"downstream_errors\": [\n    {\n      \"message\": \"Account code '100' has been archived or deleted\",\n      \"detail\": \"Each line item must reference a valid account\",\n      \"code\": \"VALIDATION_ERROR\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "00942e64-84aa-4669-a635-402f31b73ac9",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounting",
+                    "bank-feed-accounts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "raw",
+                      "value": "false"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "id,updated_at"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the record you are acting upon."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the consumer which you want to get or push data from",
+                    "key": "x-apideck-consumer-id",
+                    "value": "test-consumer"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The ID of your Unify application",
+                    "key": "x-apideck-app-id",
+                    "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                    "key": "x-apideck-service-id",
+                    "value": "salesforce"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The ID of the company to scope requests to. For connectors that support multi-company, this overrides the default company configured in connection settings.",
+                    "key": "x-apideck-company-id",
+                    "value": "12345"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 401,\n  \"error\": \"Unauthorized\",\n  \"type_name\": \"UnauthorizedError\",\n  \"message\": \"Unauthorized Request\",\n  \"detail\": \"Missing authentication\",\n  \"ref\": \"https://developers.apideck.com/errors#unauthorizederror\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1d4d4fbd-17fc-4eb2-857d-bc40a8c976e4",
+              "name": "Payment Required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounting",
+                    "bank-feed-accounts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "raw",
+                      "value": "false"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "id,updated_at"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the record you are acting upon."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the consumer which you want to get or push data from",
+                    "key": "x-apideck-consumer-id",
+                    "value": "test-consumer"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The ID of your Unify application",
+                    "key": "x-apideck-app-id",
+                    "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                    "key": "x-apideck-service-id",
+                    "value": "salesforce"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The ID of the company to scope requests to. For connectors that support multi-company, this overrides the default company configured in connection settings.",
+                    "key": "x-apideck-company-id",
+                    "value": "12345"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Payment Required",
+              "code": 402,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 402,\n  \"error\": \"Payment Required\",\n  \"type_name\": \"RequestLimitError\",\n  \"message\": \"Request Limit Reached\",\n  \"detail\": \"You have reached your limit of 2000\",\n  \"ref\": \"https://developers.apideck.com/errors#requestlimiterror\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7c1a2775-005e-4c66-9b6e-de2a8ba863aa",
+              "name": "The specified resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounting",
+                    "bank-feed-accounts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "raw",
+                      "value": "false"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "id,updated_at"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the record you are acting upon."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the consumer which you want to get or push data from",
+                    "key": "x-apideck-consumer-id",
+                    "value": "test-consumer"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The ID of your Unify application",
+                    "key": "x-apideck-app-id",
+                    "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                    "key": "x-apideck-service-id",
+                    "value": "salesforce"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The ID of the company to scope requests to. For connectors that support multi-company, this overrides the default company configured in connection settings.",
+                    "key": "x-apideck-company-id",
+                    "value": "12345"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 404,\n  \"error\": \"Not Found\",\n  \"type_name\": \"EntityNotFoundError\",\n  \"message\": \"Unknown Widget\",\n  \"detail\": \"Could not find widget with id: '123'\",\n  \"ref\": \"https://developers.apideck.com/errors#entitynotfounderror\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b921a4a0-4f24-4029-bc95-63740f18a72b",
+              "name": "Unprocessable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounting",
+                    "bank-feed-accounts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "raw",
+                      "value": "false"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "id,updated_at"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the record you are acting upon."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the consumer which you want to get or push data from",
+                    "key": "x-apideck-consumer-id",
+                    "value": "test-consumer"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The ID of your Unify application",
+                    "key": "x-apideck-app-id",
+                    "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                    "key": "x-apideck-service-id",
+                    "value": "salesforce"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The ID of the company to scope requests to. For connectors that support multi-company, this overrides the default company configured in connection settings.",
+                    "key": "x-apideck-company-id",
+                    "value": "12345"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 422,\n  \"error\": \"Unprocessable Entity\",\n  \"type_name\": \"InvalidStateError\",\n  \"message\": \"Invalid State\",\n  \"detail\": \"Unprocessable request, please verify your request headers and body.\",\n  \"ref\": \"https://developers.apideck.com/errors#invalidstateerror\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6514d40c-561f-4c37-96e8-fadbb2b3e30f",
+              "name": "Unexpected error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounting",
+                    "bank-feed-accounts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "raw",
+                      "value": "false"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "id,updated_at"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the record you are acting upon."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the consumer which you want to get or push data from",
+                    "key": "x-apideck-consumer-id",
+                    "value": "test-consumer"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The ID of your Unify application",
+                    "key": "x-apideck-app-id",
+                    "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                    "key": "x-apideck-service-id",
+                    "value": "salesforce"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The ID of the company to scope requests to. For connectors that support multi-company, this overrides the default company configured in connection settings.",
+                    "key": "x-apideck-company-id",
+                    "value": "12345"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 400,\n  \"error\": \"Bad Request\",\n  \"type_name\": \"RequestHeadersValidationError\",\n  \"message\": \"Invalid Params\",\n  \"detail\": \"Missing Header: x-apideck-consumer-id\",\n  \"ref\": \"https://developers.apideck.com/errors#unauthorizederror\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1e630b9b-0778-428e-abc6-0e180c0459ba",
+          "name": "Apideck Update Bank Feed Account",
+          "request": {
+            "name": "Apideck Update Bank Feed Account",
+            "description": {
+              "content": "Update Bank Feed Account",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accounting",
+                "bank-feed-accounts",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "raw",
+                  "value": "false",
+                  "description": "Include raw response. Mostly used for debugging purposes"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) ID of the record you are acting upon."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ID of the consumer which you want to get or push data from",
+                "key": "x-apideck-consumer-id",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) The ID of your Unify application",
+                "key": "x-apideck-app-id",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                "key": "x-apideck-service-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"bank_account_type\": \"<string>\",\n  \"source_account_id\": \"<string>\",\n  \"target_account_id\": \"<string>\",\n  \"target_account_name\": \"<string>\",\n  \"target_account_number\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"feed_status\": \"<string>\",\n  \"country\": \"<string>\",\n  \"custom_mappings\": {\n    \"key_0\": \"string\"\n  },\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"updated_by\": \"<string>\",\n  \"created_by\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "aa514c7b-e3a9-4849-a0cd-5160bdf87af1",
+              "name": "Bank Feed Accounts",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounting",
+                    "bank-feed-accounts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "raw",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the record you are acting upon."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the consumer which you want to get or push data from",
+                    "key": "x-apideck-consumer-id",
+                    "value": "test-consumer"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The ID of your Unify application",
+                    "key": "x-apideck-app-id",
+                    "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                    "key": "x-apideck-service-id",
+                    "value": "salesforce"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"12345\",\n  \"bank_account_type\": \"bank\",\n  \"source_account_id\": \"src_456\",\n  \"target_account_id\": \"tgt_789\",\n  \"target_account_name\": \"Main Company Checking\",\n  \"target_account_number\": \"NL91ABNA0417164300\",\n  \"currency\": \"USD\",\n  \"feed_status\": \"pending\",\n  \"country\": \"US\",\n  \"custom_mappings\": {\n    \"key_0\": 4043.268420535119,\n    \"key_1\": 9506.564923510072\n  },\n  \"created_at\": \"2020-09-30T07:43:32.000Z\",\n  \"updated_at\": \"2020-09-30T07:43:32.000Z\",\n  \"updated_by\": \"12345\",\n  \"created_by\": \"12345\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 200,\n  \"status\": \"OK\",\n  \"service\": \"quickbooks\",\n  \"resource\": \"bank-feed-accounts\",\n  \"operation\": \"update\",\n  \"data\": {\n    \"id\": \"12345\"\n  },\n  \"_raw\": {\n    \"key_0\": false,\n    \"key_1\": 2669\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f079df54-a2fc-4ef4-9487-1ce6aa120254",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounting",
+                    "bank-feed-accounts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "raw",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the record you are acting upon."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the consumer which you want to get or push data from",
+                    "key": "x-apideck-consumer-id",
+                    "value": "test-consumer"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The ID of your Unify application",
+                    "key": "x-apideck-app-id",
+                    "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                    "key": "x-apideck-service-id",
+                    "value": "salesforce"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"12345\",\n  \"bank_account_type\": \"bank\",\n  \"source_account_id\": \"src_456\",\n  \"target_account_id\": \"tgt_789\",\n  \"target_account_name\": \"Main Company Checking\",\n  \"target_account_number\": \"NL91ABNA0417164300\",\n  \"currency\": \"USD\",\n  \"feed_status\": \"pending\",\n  \"country\": \"US\",\n  \"custom_mappings\": {\n    \"key_0\": 4043.268420535119,\n    \"key_1\": 9506.564923510072\n  },\n  \"created_at\": \"2020-09-30T07:43:32.000Z\",\n  \"updated_at\": \"2020-09-30T07:43:32.000Z\",\n  \"updated_by\": \"12345\",\n  \"created_by\": \"12345\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 400,\n  \"error\": \"Bad Request\",\n  \"type_name\": \"RequestValidationError\",\n  \"message\": \"Invalid Params\",\n  \"detail\": \"Missing property foobar\",\n  \"ref\": \"https://developers.apideck.com/errors#requestvalidationerror\",\n  \"downstream_errors\": [\n    {\n      \"message\": \"Account code '100' has been archived or deleted\",\n      \"detail\": \"Each line item must reference a valid account\",\n      \"code\": \"VALIDATION_ERROR\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "61bea19e-2b5d-4a1b-b4e3-b8f48a885471",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounting",
+                    "bank-feed-accounts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "raw",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the record you are acting upon."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the consumer which you want to get or push data from",
+                    "key": "x-apideck-consumer-id",
+                    "value": "test-consumer"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The ID of your Unify application",
+                    "key": "x-apideck-app-id",
+                    "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                    "key": "x-apideck-service-id",
+                    "value": "salesforce"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"12345\",\n  \"bank_account_type\": \"bank\",\n  \"source_account_id\": \"src_456\",\n  \"target_account_id\": \"tgt_789\",\n  \"target_account_name\": \"Main Company Checking\",\n  \"target_account_number\": \"NL91ABNA0417164300\",\n  \"currency\": \"USD\",\n  \"feed_status\": \"pending\",\n  \"country\": \"US\",\n  \"custom_mappings\": {\n    \"key_0\": 4043.268420535119,\n    \"key_1\": 9506.564923510072\n  },\n  \"created_at\": \"2020-09-30T07:43:32.000Z\",\n  \"updated_at\": \"2020-09-30T07:43:32.000Z\",\n  \"updated_by\": \"12345\",\n  \"created_by\": \"12345\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 401,\n  \"error\": \"Unauthorized\",\n  \"type_name\": \"UnauthorizedError\",\n  \"message\": \"Unauthorized Request\",\n  \"detail\": \"Missing authentication\",\n  \"ref\": \"https://developers.apideck.com/errors#unauthorizederror\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8e579e20-25ee-4ad9-9a7c-f7430cbc0b67",
+              "name": "Payment Required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounting",
+                    "bank-feed-accounts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "raw",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the record you are acting upon."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the consumer which you want to get or push data from",
+                    "key": "x-apideck-consumer-id",
+                    "value": "test-consumer"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The ID of your Unify application",
+                    "key": "x-apideck-app-id",
+                    "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                    "key": "x-apideck-service-id",
+                    "value": "salesforce"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"12345\",\n  \"bank_account_type\": \"bank\",\n  \"source_account_id\": \"src_456\",\n  \"target_account_id\": \"tgt_789\",\n  \"target_account_name\": \"Main Company Checking\",\n  \"target_account_number\": \"NL91ABNA0417164300\",\n  \"currency\": \"USD\",\n  \"feed_status\": \"pending\",\n  \"country\": \"US\",\n  \"custom_mappings\": {\n    \"key_0\": 4043.268420535119,\n    \"key_1\": 9506.564923510072\n  },\n  \"created_at\": \"2020-09-30T07:43:32.000Z\",\n  \"updated_at\": \"2020-09-30T07:43:32.000Z\",\n  \"updated_by\": \"12345\",\n  \"created_by\": \"12345\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Payment Required",
+              "code": 402,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 402,\n  \"error\": \"Payment Required\",\n  \"type_name\": \"RequestLimitError\",\n  \"message\": \"Request Limit Reached\",\n  \"detail\": \"You have reached your limit of 2000\",\n  \"ref\": \"https://developers.apideck.com/errors#requestlimiterror\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bd094cd3-43ab-4e49-99f1-dc8b73c377f4",
+              "name": "The specified resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounting",
+                    "bank-feed-accounts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "raw",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the record you are acting upon."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the consumer which you want to get or push data from",
+                    "key": "x-apideck-consumer-id",
+                    "value": "test-consumer"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The ID of your Unify application",
+                    "key": "x-apideck-app-id",
+                    "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                    "key": "x-apideck-service-id",
+                    "value": "salesforce"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"12345\",\n  \"bank_account_type\": \"bank\",\n  \"source_account_id\": \"src_456\",\n  \"target_account_id\": \"tgt_789\",\n  \"target_account_name\": \"Main Company Checking\",\n  \"target_account_number\": \"NL91ABNA0417164300\",\n  \"currency\": \"USD\",\n  \"feed_status\": \"pending\",\n  \"country\": \"US\",\n  \"custom_mappings\": {\n    \"key_0\": 4043.268420535119,\n    \"key_1\": 9506.564923510072\n  },\n  \"created_at\": \"2020-09-30T07:43:32.000Z\",\n  \"updated_at\": \"2020-09-30T07:43:32.000Z\",\n  \"updated_by\": \"12345\",\n  \"created_by\": \"12345\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 404,\n  \"error\": \"Not Found\",\n  \"type_name\": \"EntityNotFoundError\",\n  \"message\": \"Unknown Widget\",\n  \"detail\": \"Could not find widget with id: '123'\",\n  \"ref\": \"https://developers.apideck.com/errors#entitynotfounderror\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e29c1bee-7004-4f7d-b928-894ea32ffb94",
+              "name": "Unprocessable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounting",
+                    "bank-feed-accounts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "raw",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the record you are acting upon."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the consumer which you want to get or push data from",
+                    "key": "x-apideck-consumer-id",
+                    "value": "test-consumer"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The ID of your Unify application",
+                    "key": "x-apideck-app-id",
+                    "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                    "key": "x-apideck-service-id",
+                    "value": "salesforce"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"12345\",\n  \"bank_account_type\": \"bank\",\n  \"source_account_id\": \"src_456\",\n  \"target_account_id\": \"tgt_789\",\n  \"target_account_name\": \"Main Company Checking\",\n  \"target_account_number\": \"NL91ABNA0417164300\",\n  \"currency\": \"USD\",\n  \"feed_status\": \"pending\",\n  \"country\": \"US\",\n  \"custom_mappings\": {\n    \"key_0\": 4043.268420535119,\n    \"key_1\": 9506.564923510072\n  },\n  \"created_at\": \"2020-09-30T07:43:32.000Z\",\n  \"updated_at\": \"2020-09-30T07:43:32.000Z\",\n  \"updated_by\": \"12345\",\n  \"created_by\": \"12345\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 422,\n  \"error\": \"Unprocessable Entity\",\n  \"type_name\": \"InvalidStateError\",\n  \"message\": \"Invalid State\",\n  \"detail\": \"Unprocessable request, please verify your request headers and body.\",\n  \"ref\": \"https://developers.apideck.com/errors#invalidstateerror\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "38fd3c8d-1d32-4220-8471-0d85a437ae22",
+              "name": "Unexpected error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounting",
+                    "bank-feed-accounts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "raw",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the record you are acting upon."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the consumer which you want to get or push data from",
+                    "key": "x-apideck-consumer-id",
+                    "value": "test-consumer"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The ID of your Unify application",
+                    "key": "x-apideck-app-id",
+                    "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                    "key": "x-apideck-service-id",
+                    "value": "salesforce"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"12345\",\n  \"bank_account_type\": \"bank\",\n  \"source_account_id\": \"src_456\",\n  \"target_account_id\": \"tgt_789\",\n  \"target_account_name\": \"Main Company Checking\",\n  \"target_account_number\": \"NL91ABNA0417164300\",\n  \"currency\": \"USD\",\n  \"feed_status\": \"pending\",\n  \"country\": \"US\",\n  \"custom_mappings\": {\n    \"key_0\": 4043.268420535119,\n    \"key_1\": 9506.564923510072\n  },\n  \"created_at\": \"2020-09-30T07:43:32.000Z\",\n  \"updated_at\": \"2020-09-30T07:43:32.000Z\",\n  \"updated_by\": \"12345\",\n  \"created_by\": \"12345\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 400,\n  \"error\": \"Bad Request\",\n  \"type_name\": \"RequestHeadersValidationError\",\n  \"message\": \"Invalid Params\",\n  \"detail\": \"Missing Header: x-apideck-consumer-id\",\n  \"ref\": \"https://developers.apideck.com/errors#unauthorizederror\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "19c12e76-363f-414d-9afd-00d02203305a",
+          "name": "Apideck Delete Bank Feed Account",
+          "request": {
+            "name": "Apideck Delete Bank Feed Account",
+            "description": {
+              "content": "Delete Bank Feed Account",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accounting",
+                "bank-feed-accounts",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "raw",
+                  "value": "false",
+                  "description": "Include raw response. Mostly used for debugging purposes"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) ID of the record you are acting upon."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ID of the consumer which you want to get or push data from",
+                "key": "x-apideck-consumer-id",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) The ID of your Unify application",
+                "key": "x-apideck-app-id",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                "key": "x-apideck-service-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4db7eb51-f8bd-48eb-8160-2f7ecc00717a",
+              "name": "Bank Feed Accounts",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounting",
+                    "bank-feed-accounts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "raw",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the record you are acting upon."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the consumer which you want to get or push data from",
+                    "key": "x-apideck-consumer-id",
+                    "value": "test-consumer"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The ID of your Unify application",
+                    "key": "x-apideck-app-id",
+                    "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                    "key": "x-apideck-service-id",
+                    "value": "salesforce"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 200,\n  \"status\": \"OK\",\n  \"service\": \"quickbooks\",\n  \"resource\": \"bank-feed-accounts\",\n  \"operation\": \"delete\",\n  \"data\": {\n    \"id\": \"12345\"\n  },\n  \"_raw\": {\n    \"key_0\": true,\n    \"key_1\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7c4630b5-f0b6-44c4-871f-4415182203bc",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounting",
+                    "bank-feed-accounts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "raw",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the record you are acting upon."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the consumer which you want to get or push data from",
+                    "key": "x-apideck-consumer-id",
+                    "value": "test-consumer"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The ID of your Unify application",
+                    "key": "x-apideck-app-id",
+                    "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                    "key": "x-apideck-service-id",
+                    "value": "salesforce"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 400,\n  \"error\": \"Bad Request\",\n  \"type_name\": \"RequestValidationError\",\n  \"message\": \"Invalid Params\",\n  \"detail\": \"Missing property foobar\",\n  \"ref\": \"https://developers.apideck.com/errors#requestvalidationerror\",\n  \"downstream_errors\": [\n    {\n      \"message\": \"Account code '100' has been archived or deleted\",\n      \"detail\": \"Each line item must reference a valid account\",\n      \"code\": \"VALIDATION_ERROR\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "98356ed9-687b-43f6-a6cf-a5d057be0bc1",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounting",
+                    "bank-feed-accounts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "raw",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the record you are acting upon."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the consumer which you want to get or push data from",
+                    "key": "x-apideck-consumer-id",
+                    "value": "test-consumer"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The ID of your Unify application",
+                    "key": "x-apideck-app-id",
+                    "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                    "key": "x-apideck-service-id",
+                    "value": "salesforce"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 401,\n  \"error\": \"Unauthorized\",\n  \"type_name\": \"UnauthorizedError\",\n  \"message\": \"Unauthorized Request\",\n  \"detail\": \"Missing authentication\",\n  \"ref\": \"https://developers.apideck.com/errors#unauthorizederror\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0e1ee626-93e6-4929-9c7e-ad584d8be91c",
+              "name": "Payment Required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounting",
+                    "bank-feed-accounts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "raw",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the record you are acting upon."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the consumer which you want to get or push data from",
+                    "key": "x-apideck-consumer-id",
+                    "value": "test-consumer"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The ID of your Unify application",
+                    "key": "x-apideck-app-id",
+                    "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                    "key": "x-apideck-service-id",
+                    "value": "salesforce"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Payment Required",
+              "code": 402,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 402,\n  \"error\": \"Payment Required\",\n  \"type_name\": \"RequestLimitError\",\n  \"message\": \"Request Limit Reached\",\n  \"detail\": \"You have reached your limit of 2000\",\n  \"ref\": \"https://developers.apideck.com/errors#requestlimiterror\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "90c9e476-c0be-444d-916a-d888da54bec3",
+              "name": "The specified resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounting",
+                    "bank-feed-accounts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "raw",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the record you are acting upon."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the consumer which you want to get or push data from",
+                    "key": "x-apideck-consumer-id",
+                    "value": "test-consumer"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The ID of your Unify application",
+                    "key": "x-apideck-app-id",
+                    "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                    "key": "x-apideck-service-id",
+                    "value": "salesforce"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 404,\n  \"error\": \"Not Found\",\n  \"type_name\": \"EntityNotFoundError\",\n  \"message\": \"Unknown Widget\",\n  \"detail\": \"Could not find widget with id: '123'\",\n  \"ref\": \"https://developers.apideck.com/errors#entitynotfounderror\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3fd66a4f-b0e7-4470-8d99-ebd870bb715d",
+              "name": "Unprocessable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounting",
+                    "bank-feed-accounts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "raw",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the record you are acting upon."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the consumer which you want to get or push data from",
+                    "key": "x-apideck-consumer-id",
+                    "value": "test-consumer"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The ID of your Unify application",
+                    "key": "x-apideck-app-id",
+                    "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                    "key": "x-apideck-service-id",
+                    "value": "salesforce"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 422,\n  \"error\": \"Unprocessable Entity\",\n  \"type_name\": \"InvalidStateError\",\n  \"message\": \"Invalid State\",\n  \"detail\": \"Unprocessable request, please verify your request headers and body.\",\n  \"ref\": \"https://developers.apideck.com/errors#invalidstateerror\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e8e6cff2-b657-4ff5-85ce-6ee8d069211e",
+              "name": "Unexpected error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounting",
+                    "bank-feed-accounts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "raw",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the record you are acting upon."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the consumer which you want to get or push data from",
+                    "key": "x-apideck-consumer-id",
+                    "value": "test-consumer"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The ID of your Unify application",
+                    "key": "x-apideck-app-id",
+                    "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                    "key": "x-apideck-service-id",
+                    "value": "salesforce"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 400,\n  \"error\": \"Bad Request\",\n  \"type_name\": \"RequestHeadersValidationError\",\n  \"message\": \"Invalid Params\",\n  \"detail\": \"Missing Header: x-apideck-consumer-id\",\n  \"ref\": \"https://developers.apideck.com/errors#unauthorizederror\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://unify.apideck.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "cd1de5e8-ff06-41bd-9eb3-312e89317f4b",
+    "name": "Apideck Accounting Activities Bank Feed Accounts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Welcome to the Accounting API.\n\nYou can use this API to access all Accounting API endpoints.\n\n## Base URL\n\nThe base URL for all API requests is `https://unify.apideck.com`\n\n## Headers\n\nCustom headers that are expected as part of the request. Note that [RFC7230](https://tools.ietf.org/html/rfc7230) states header names are case insensitive.\n\n| Name                  | Type    | Required | Description                                                                                                                                                    |\n| --------------------- | ------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| x-apideck-consumer-id | String  | Yes      | The id of the customer stored inside Apideck Vault. This can be a user id, account id, device id or whatever entity that can have integration within your app. |\n| x-apideck-service-id  | String  | No       | Describe the service you want to call (e.g., pipedrive). Only needed when a customer has activated multiple integrations for the same Unified API.             |\n| x-apideck-app-id      | String  | Yes      | The application id of your Unify application. Available at https://app.apideck.com/unify/api-keys.                                                             |\n| Authorization         | String  | Yes      | Bearer <token> KEY                                                                                                                                                 |\n\n## Authorization\n\nYou can interact with the API through the authorization methods below.\n\n<!-- ReDoc-Inject: <security-definitions> -->\n\n## Pagination\n\nAll API resources have support for bulk retrieval via list APIs.  Apideck uses cursor-based pagination via the optional `cursor` and `limit` parameters.\n\nTo fetch the first page of results, call the list API without a `cursor` parameter. Afterwards you can fetch subsequent pages by providing a cursor parameter. You will find the next cursor in the response body in `meta.cursors.next`. If `meta.cursors.next` is `null` you're at the end of the list.\n\nIn the REST API you can also use the `links` from the response for added convenience. Simply call the URL in `links.next` to get the next page of results.\n\n### Query Parameters\n\n| Name   | Type   | Required | Description                                                                                                        |\n| ------ | ------ | -------- | ------------------------------------------------------------------------------------------------------------------ |\n| cursor | String | No       | Cursor to start from. You can find cursors for next & previous pages in the meta.cursors property of the response. |\n| limit  | Number | No       | Number of results to return. Minimum 1, Maximum 200, Default 20                                                    |\n\n### Response Body\n\n| Name                  | Type   | Description                                                        |\n| --------------------- | ------ | ------------------------------------------------------------------ |\n| meta.cursors.previous | String | Cursor to navigate to the previous page of results through the API |\n| meta.cursors.current  | String | Cursor to navigate to the current page of results through the API  |\n| meta.cursors.next     | String | Cursor to navigate to the next page of results through the API     |\n| meta.items_on_page    | Number | Number of items returned in the data property of the response      |\n| links.previous        | String | Link to navigate to the previous page of results through the API   |\n| links.current         | String | Link to navigate to the current page of results through the API    |\n| links.next            | String | Link to navigate to the next page of results through the API       |\n\n⚠️ `meta.cursors.previous`/`links.previous` is not available for all connectors.\n\n## SDKs and API Clients\n\nWe currently offer a [Node.js](https://developers.apideck.com/sdks/node), [PHP](https://developers.apideck.com/sdks/php), [Python](https://developers.apideck.com/sdks/python) and [.NET](https://developers.apideck.com/sdks/dot-net) SDK.\nNeed another SDK? [Request the SDK of your choice](https://requests.apideck.io/request).\n\n## Debugging\n\nBecause of the nature of the abstraction we do in Apideck Unify we still provide the option to the receive raw requests and responses being handled underlying. By including the raw flag `?raw=true` in your requests you can still receive the full request. Please note that this increases the response size and can introduce extra latency.\n\n## Errors\n\nThe API returns standard HTTP response codes to indicate success or failure of the API requests. For errors, we also return a customized error message inside the JSON response. You can see the returned HTTP status codes below.\n\n| Code | Title                | Description                                                                                                                                                                                              |\n| ---- | -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| 200  | OK                   | The request message has been successfully processed, and it has produced a response. The response message varies, depending on the request method and the requested data.                                |\n| 201  | Created              | The request has been fulfilled and has resulted in one or more new resources being created.                                                                                                              |\n| 204  | No Content           | The server has successfully fulfilled the request and that there is no additional content to send in the response payload body.                                                                          |\n| 400  | Bad Request          | The receiving server cannot understand the request because of malformed syntax. Do not repeat the request without first modifying it; check the request for errors, fix them and then retry the request. |\n| 401  | Unauthorized         | The request has not been applied because it lacks valid authentication credentials for the target resource.                                                                                              |\n| 402  | Payment Required     | Subscription data is incomplete or out of date. You'll need to provide payment details to continue.                                                                                                      |\n| 403  | Forbidden            | You do not have the appropriate user rights to access the request. Do not repeat the request.                                                                                                            |\n| 404  | Not Found            | The origin server did not find a current representation for the target resource or is not willing to disclose that one exists.                                                                           |\n| 409  | Conflict             | The request could not be completed due to a conflict with the current state of the target resource.                                                                                                      |\n| 422  | Unprocessable Entity | The server understands the content type of the request entity, and the syntax of the request entity is correct but was unable to process the contained instructions.                                     |\n| 429  | Too Many Requests    | You sent too many requests in a given amount of time (\"rate limit\"). Try again later                                                                                                                     |\n| 5xx  | Server Errors        | Something went wrong with the Unify API. These errors are logged on our side. You can contact our team to resolve the issue.                                                                             |\n\n### Handling errors\n\nThe Unify API and SDKs can produce errors for many reasons, such as a failed requests due to misconfigured integrations, invalid parameters, authentication errors, and network unavailability.\n\n### Error Types\n\n#### RequestValidationError\n\nRequest is not valid for the current endpoint. The response body will include details on the validation error. Check the spelling and types of your attributes, and ensure you are not passing data that is outside of the specification.\n\n#### UnsupportedFiltersError\n\nFilters in the request are valid, but not supported by the connector. Remove the unsupported filter(s) to get a successful response.\n\n#### UnsupportedSortFieldError\n\nSort field (`sort[by]`) in the request is valid, but not supported by the connector. Replace or remove the sort field to get a successful response.\n\n#### InvalidCursorError\n\nPagination cursor in the request is not valid for the current connector. Make sure to use a cursor returned from the API, for the same connector.\n\n#### ConnectorExecutionError\n\nA Unified API request made via one of our downstream connectors returned an unexpected error. The `status_code` returned is proxied through to error response along with their original response via the error detail.\n\n#### UnauthorizedError\n\nWe were unable to authorize the request as made. This can happen for a number of reasons, from missing header params to passing an incorrect authorization token. Verify your Api Key is being set correctly in the authorization header. ie: `Authorization: 'Bearer <API KEY>'`\n\n#### ConnectorCredentialsError\n\nA request using a given connector has not been authorized. Ensure the connector you are trying to use has been configured correctly and been authorized for use.\n\n#### ConnectorDisabledError\n\nA request has been made to a connector that has since been disabled. This may be temporary - You can contact our team to resolve the issue.\n\n#### ConnectorRateLimitError\n\nYou sent too many request to a connector. These rate limits vary from connector to connector. You will need to try again later.\n\n#### RequestLimitError\n\nYou have reached the number of requests included in your Free Tier Subscription. You will not be able to make further requests until you upgrade your subscription. Please reach out to sales@apideck.com to continue making requests.\n\n#### EntityNotFoundError\n\nYou've made a request for a resource or route that does not exist. Verify your path parameters or any identifiers used to fetch this resource.\n\n#### OAuthCredentialsNotFoundError\n\nWhen adding a connector integration that implements OAuth, both a `client_id` and `client_secret` must be provided before any authorizations can be performed. Verify the integration has been configured properly before continuing.\n\n#### IntegrationNotFoundError\n\nThe requested connector integration could not be found associated to your `application_id`. Verify your `application_id` is correct, and that this connector has been added and configured for your application.\n\n#### ConnectionNotFoundError\n\nA valid connection could not be found associated to your `application_id`. Something _may_ have interrupted the authorization flow. You may need to start the connector authorization process again.\n\n#### ConnectionSettingsError\n\nThe connector has required settings that were not supplied. Verify `connection.settings` contains all required settings for the connector to be callable.\n\n#### ConnectorNotFoundError\n\nA request was made for an unknown connector. Verify your `service_id` is spelled correctly, and that this connector is enabled for your provided `unified_api`.\n\n#### OAuthRedirectUriError\n\nA request was made either in a connector authorization flow, or attempting to revoke connector access without a valid `redirect_uri`. This is the url the user should be returned to on completion of process.\n\n#### OAuthInvalidStateError\n\nThe state param is required and is used to ensure the outgoing authorization state has not been altered before the user is redirected back. It also contains required params needed to identify the connector being used. If this has been altered, the authorization will not succeed.\n\n#### OAuthCodeExchangeError\n\nWhen attempting to exchange the authorization code for an `access_token` during an OAuth flow, an error occurred. This may be temporary. You can reattempt authorization or contact our team to resolve the issue.\n\n#### OAuthConnectorError\n\nIt seems something went wrong on the connector side. It's possible this connector is in `beta` or still under development. We've been notified and are working to fix this issue.\n\n#### MappingError\n\nThere was an error attempting to retrieve the mapping for a given attribute. We've been notified and are working to fix this issue.\n\n#### ConnectorMappingNotFoundError\n\nIt seems the implementation for this connector is incomplete. It's possible this connector is in `beta` or still under development. We've been notified and are working to fix this issue.\n\n#### ConnectorResponseMappingNotFoundError\n\nWe were unable to retrieve the response mapping for this connector. It's possible this connector is in `beta` or still under development. We've been notified and are working to fix this issue.\n\n#### ConnectorOperationMappingNotFoundError\n\nConnector mapping has not been implemented for the requested operation. It's possible this connector is in `beta` or still under development. We've been notified and are working to fix this issue.\n\n#### ConnectorWorkflowMappingError\n\nThe composite api calls required for this operation have not been mapped entirely. It's possible this connector is in `beta` or still under development. We've been notified and are working to fix this issue.\n\n#### ConnectorOperationUnsupportedError\n\nYou're attempting a call that is not supported by the connector. It's likely this operation is supported by another connector, but we're unable to implement for this one.\n\n#### PaginationNotSupportedError\n\nPagination is not yet supported for this connector, try removing limit and/or cursor from the query. It's possible this connector is in `beta` or still under development. We've been notified and are working to fix this issue.\n\n## API Design\n\n### API Styles and data formats\n\n#### REST API\n\nThe API is organized around [REST](https://restfulapi.net/), providing simple and predictable URIs to access and modify objects. Requests support standard HTTP methods like GET, PUT, POST, and DELETE and standard status codes. JSON is returned by all API responses, including errors. In all API requests, you must set the content-type HTTP header to application/json. All API requests must be made over HTTPS. Calls made over HTTP will fail.\n\n##### Available HTTP methods\n\nThe Apideck API uses HTTP verbs to understand if you want to read (GET), delete (DELETE) or create (POST) an object. When your web application cannot do a POST or DELETE, we provide the ability to set the method through the query parameter \\_method.\n\n```\nPOST /messages\nGET /messages\nGET /messages/{messageId}\nPATCH /messages/{messageId}\nDELETE /messages/{messageId}\n```\n\nResponse bodies are always UTF-8 encoded JSON objects, unless explicitly documented otherwise. For some endpoints and use cases we divert from REST to provide a better developer experience.\n\n### Schema\n\nAll API requests and response bodies adhere to a common JSON format representing individual items, collections of items, links to related items and additional meta data.\n\n### Meta\n\nMeta data can be represented as a top level member named “meta”. Any information may be provided in the meta data. It’s most common use is to return the total number of records when requesting a collection of resources.\n\n### Request IDs\n\nEach API request has an associated request identifier. You can find this value in the response headers, under Request-Id. You can also find request identifiers in the URLs of individual request logs in your Dashboard. If you need to contact us about a specific request, providing the request identifier will ensure the fastest possible resolution.\n\n### Fixed field types\n\n#### Dates\n\nThe dates returned by the API are all represented in UTC (ISO8601 format).\n\nThis example `2019-11-14T00:55:31.820Z` is defined by the ISO 8601 standard. The T in the middle separates the year-month-day portion from the hour-minute-second portion. The Z on the end means UTC, that is, an offset-from-UTC of zero hours-minutes-seconds. The Z is pronounced \"Zulu\" per military/aviation tradition.\n\nThe ISO 8601 standard is more modern. The formats are wisely designed to be easy to parse by machine as well as easy to read by humans across cultures.\n\n#### Currencies\n\nAll currency codes conform to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).\n\n## Support\n\nIf you have problems or need help with your case, you can always reach out to our Support.\n\n## Static IP\n\nSome of the APIs you want to use can require a static IP. Apideck's static IP feature allows you to use Apideck with a fixed IP avoiding the need for you to set up your own infrastructure. This feature is currently available to all Apideck customers.\nTo use this feature, the API Vendor will need to whitelist the associated static IP addresses.\nThe provided static IP addresses are fixed to their specified region and shared by all customers who use this feature.\n\n- EU Central 1: **18.197.244.247**, **18.156.9.3**, **3.65.139.215**\n- Other: upcoming\n\n  More info about our data security can be found at [https://compliance.apideck.com/](https://compliance.apideck.com/)\n\n\n\nContact Support:\n Email: hello@apideck.com",
+      "type": "text/plain"
+    }
+  }
+}

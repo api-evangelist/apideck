@@ -1,0 +1,273 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Apideck Accounting Activities Upload Sessions API",
+    "version": "10.24.12"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Upload Sessions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Apideck Start Upload Session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://unify.apideck.com/file-storage/upload-sessions",
+            "headers": [
+              {
+                "name": "x-apideck-consumer-id",
+                "value": "test-consumer"
+              },
+              {
+                "name": "x-apideck-app-id",
+                "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+              },
+              {
+                "name": "x-apideck-service-id",
+                "value": "salesforce"
+              }
+            ],
+            "params": [
+              {
+                "name": "raw",
+                "value": "",
+                "type": "query",
+                "description": "Include raw response. Mostly used for debugging purposes"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Start an Upload Session. Upload sessions are used to upload large files, use the [Upload File](#operation/filesUpload) endpoint to upload smaller files (up to 100MB). Note that the base URL is upload.apideck.com instead of unify.apideck.com. For more information on uploads, refer to the [file upload guide](/guides/file-upload)."
+        },
+        {
+          "info": {
+            "name": "Apideck Get Upload Session",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://unify.apideck.com/file-storage/upload-sessions/:id",
+            "headers": [
+              {
+                "name": "x-apideck-consumer-id",
+                "value": "test-consumer"
+              },
+              {
+                "name": "x-apideck-app-id",
+                "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+              },
+              {
+                "name": "x-apideck-service-id",
+                "value": "salesforce"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the record you are acting upon."
+              },
+              {
+                "name": "raw",
+                "value": "",
+                "type": "query",
+                "description": "Include raw response. Mostly used for debugging purposes"
+              },
+              {
+                "name": "fields",
+                "value": "id,updated_at",
+                "type": "query",
+                "description": "The 'fields' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. <br /><br />Example: `fields=name,email,addresses.city`<br /><br />In the example above, the response will only include the fields \"name\", \"email\" and \"addresses.city\". If any other fields are available, they will be excluded."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get Upload Session. Use the `part_size` to split your file into parts. Upload the parts to the [Upload part of File](#operation/uploadSessionsUpload) endpoint. Note that the base URL is upload.apideck.com instead of unify.apideck.com. For more information on uploads, refer to the [file upload guide](/guides/file-upload)."
+        },
+        {
+          "info": {
+            "name": "Apideck Upload part of File to Upload Session",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://unify.apideck.com/file-storage/upload-sessions/:id",
+            "headers": [
+              {
+                "name": "x-apideck-consumer-id",
+                "value": "test-consumer"
+              },
+              {
+                "name": "x-apideck-app-id",
+                "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+              },
+              {
+                "name": "x-apideck-service-id",
+                "value": "salesforce"
+              },
+              {
+                "name": "digest",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the record you are acting upon."
+              },
+              {
+                "name": "part_number",
+                "value": "",
+                "type": "query",
+                "description": "Part number of the file part being uploaded."
+              },
+              {
+                "name": "raw",
+                "value": "",
+                "type": "query",
+                "description": "Include raw response. Mostly used for debugging purposes"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Upload part of File to Upload Session (max 100MB). Get `part_size` from [Get Upload Session](#operation/uploadSessionsOne) first. Every File part (except the last one) uploaded to this endpoint should have Content-Length equal to `part_size`. Note that the base URL is upload.apideck.com instead of unify.apideck.com. For more information on uploads, refer to the [file upload guide](/guides/file-upload)."
+        },
+        {
+          "info": {
+            "name": "Apideck Abort Upload Session",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://unify.apideck.com/file-storage/upload-sessions/:id",
+            "headers": [
+              {
+                "name": "x-apideck-consumer-id",
+                "value": "test-consumer"
+              },
+              {
+                "name": "x-apideck-app-id",
+                "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+              },
+              {
+                "name": "x-apideck-service-id",
+                "value": "salesforce"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the record you are acting upon."
+              },
+              {
+                "name": "raw",
+                "value": "",
+                "type": "query",
+                "description": "Include raw response. Mostly used for debugging purposes"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Abort Upload Session. Note that the base URL is upload.apideck.com instead of unify.apideck.com. For more information on uploads, refer to the [file upload guide](/guides/file-upload)."
+        },
+        {
+          "info": {
+            "name": "Apideck Finish Upload Session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://unify.apideck.com/file-storage/upload-sessions/:id/finish",
+            "headers": [
+              {
+                "name": "x-apideck-consumer-id",
+                "value": "test-consumer"
+              },
+              {
+                "name": "x-apideck-app-id",
+                "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+              },
+              {
+                "name": "x-apideck-service-id",
+                "value": "salesforce"
+              },
+              {
+                "name": "digest",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the record you are acting upon."
+              },
+              {
+                "name": "raw",
+                "value": "",
+                "type": "query",
+                "description": "Include raw response. Mostly used for debugging purposes"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Finish Upload Session. Only call this endpoint after all File parts have been uploaded to [Upload part of File](#operation/uploadSessionsUpload). Note that the base URL is upload.apideck.com instead of unify.apideck.com. For more information on uploads, refer to the [file upload guide](/guides/file-upload)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,265 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Apideck Accounting Activities Custom Object Schemas API",
+    "version": "10.24.12"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Custom Object Schemas",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Apideck List custom object schemas",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://unify.apideck.com/crm/custom-object-schemas",
+            "headers": [
+              {
+                "name": "x-apideck-consumer-id",
+                "value": "test-consumer"
+              },
+              {
+                "name": "x-apideck-app-id",
+                "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+              },
+              {
+                "name": "x-apideck-service-id",
+                "value": "salesforce"
+              }
+            ],
+            "params": [
+              {
+                "name": "raw",
+                "value": "",
+                "type": "query",
+                "description": "Include raw response. Mostly used for debugging purposes"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return. Minimum 1, Maximum 200, Default 20"
+              },
+              {
+                "name": "pass_through",
+                "value": "",
+                "type": "query",
+                "description": "Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "List custom object schemas"
+        },
+        {
+          "info": {
+            "name": "Apideck Create custom object schema",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://unify.apideck.com/crm/custom-object-schemas",
+            "headers": [
+              {
+                "name": "x-apideck-consumer-id",
+                "value": "test-consumer"
+              },
+              {
+                "name": "x-apideck-app-id",
+                "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+              },
+              {
+                "name": "x-apideck-service-id",
+                "value": "salesforce"
+              }
+            ],
+            "params": [
+              {
+                "name": "raw",
+                "value": "",
+                "type": "query",
+                "description": "Include raw response. Mostly used for debugging purposes"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create custom object schema"
+        },
+        {
+          "info": {
+            "name": "Apideck Get custom object schema",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://unify.apideck.com/crm/custom-object-schemas/:id",
+            "headers": [
+              {
+                "name": "x-apideck-consumer-id",
+                "value": "test-consumer"
+              },
+              {
+                "name": "x-apideck-app-id",
+                "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+              },
+              {
+                "name": "x-apideck-service-id",
+                "value": "salesforce"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the record you are acting upon."
+              },
+              {
+                "name": "raw",
+                "value": "",
+                "type": "query",
+                "description": "Include raw response. Mostly used for debugging purposes"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get custom object schema"
+        },
+        {
+          "info": {
+            "name": "Apideck Update custom object schema",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://unify.apideck.com/crm/custom-object-schemas/:id",
+            "headers": [
+              {
+                "name": "x-apideck-consumer-id",
+                "value": "test-consumer"
+              },
+              {
+                "name": "x-apideck-app-id",
+                "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+              },
+              {
+                "name": "x-apideck-service-id",
+                "value": "salesforce"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the record you are acting upon."
+              },
+              {
+                "name": "raw",
+                "value": "",
+                "type": "query",
+                "description": "Include raw response. Mostly used for debugging purposes"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Update custom object schema"
+        },
+        {
+          "info": {
+            "name": "Apideck Delete custom object schema",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://unify.apideck.com/crm/custom-object-schemas/:id",
+            "headers": [
+              {
+                "name": "x-apideck-consumer-id",
+                "value": "test-consumer"
+              },
+              {
+                "name": "x-apideck-app-id",
+                "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+              },
+              {
+                "name": "x-apideck-service-id",
+                "value": "salesforce"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the record you are acting upon."
+              },
+              {
+                "name": "raw",
+                "value": "",
+                "type": "query",
+                "description": "Include raw response. Mostly used for debugging purposes"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Delete custom object schema"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

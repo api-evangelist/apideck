@@ -1,0 +1,3494 @@
+{
+  "item": [
+    {
+      "id": "6bb1f4c3-de76-4c0f-b840-26022840957f",
+      "name": "Upload Sessions",
+      "description": {
+        "content": "Upload sessions resource represents the sessions used for uploading files to the cloud storage service. It provides methods for managing and accessing the upload sessions, such as creating and resuming upload sessions. An upload session allows for efficient uploading of large files by breaking them into smaller chunks and uploading each chunk individually.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "36b044fc-e689-4f19-a1e3-35740ee90a1d",
+          "name": "Apideck Start Upload Session",
+          "request": {
+            "name": "Apideck Start Upload Session",
+            "description": {
+              "content": "Start an Upload Session. Upload sessions are used to upload large files, use the [Upload File](#operation/filesUpload) endpoint to upload smaller files (up to 100MB). Note that the base URL is upload.apideck.com instead of unify.apideck.com. For more information on uploads, refer to the [file upload guide](/guides/file-upload).",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "file-storage",
+                "upload-sessions"
+              ],
+              "host": [
+                "upload",
+                "apideck",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "raw",
+                  "value": "false",
+                  "description": "Include raw response. Mostly used for debugging purposes"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ID of the consumer which you want to get or push data from",
+                "key": "x-apideck-consumer-id",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) The ID of your Unify application",
+                "key": "x-apideck-app-id",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                "key": "x-apideck-service-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"parent_folder_id\": \"<string>\",\n  \"size\": \"<integer>\",\n  \"drive_id\": \"<string>\",\n  \"pass_through\": [\n    {\n      \"service_id\": \"<string>\",\n      \"operation_id\": \"<string>\",\n      \"extend_object\": {\n        \"key_0\": 1194,\n        \"key_1\": false,\n        \"key_2\": \"string\",\n        \"key_3\": 3519.6944127134266\n      },\n      \"extend_paths\": [\n        {\n          \"path\": \"<string>\",\n          \"value\": {}\n        },\n        {\n          \"path\": \"<string>\",\n          \"value\": {}\n        }\n      ]\n    },\n    {\n      \"service_id\": \"<string>\",\n      \"operation_id\": \"<string>\",\n      \"extend_object\": {\n        \"key_0\": false,\n        \"key_1\": 802.517654215259\n      },\n      \"extend_paths\": [\n        {\n          \"path\": \"<string>\",\n          \"value\": {}\n        },\n        {\n          \"path\": \"<string>\",\n          \"value\": {}\n        }\n      ]\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "be0cf3fa-f6ac-41b9-ac52-68a70d287810",
+              "name": "UploadSessions",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "file-storage",
+                    "upload-sessions"
+                  ],
+                  "host": [
+                    "upload",
+                    "apideck",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "raw",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the consumer which you want to get or push data from",
+                    "key": "x-apideck-consumer-id",
+                    "value": "test-consumer"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The ID of your Unify application",
+                    "key": "x-apideck-app-id",
+                    "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                    "key": "x-apideck-service-id",
+                    "value": "salesforce"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Documents\",\n  \"parent_folder_id\": \"1234\",\n  \"size\": 1810673,\n  \"drive_id\": \"1234\",\n  \"pass_through\": [\n    {\n      \"service_id\": \"<string>\",\n      \"operation_id\": \"<string>\",\n      \"extend_object\": {\n        \"key_0\": 9351.009017922668,\n        \"key_1\": 4027\n      },\n      \"extend_paths\": [\n        {\n          \"path\": \"$.nested.property\",\n          \"value\": {}\n        },\n        {\n          \"path\": \"$.nested.property\",\n          \"value\": {}\n        }\n      ]\n    },\n    {\n      \"service_id\": \"<string>\",\n      \"operation_id\": \"<string>\",\n      \"extend_object\": {\n        \"key_0\": 867.7676189077654,\n        \"key_1\": true,\n        \"key_2\": true\n      },\n      \"extend_paths\": [\n        {\n          \"path\": \"$.nested.property\",\n          \"value\": {}\n        },\n        {\n          \"path\": \"$.nested.property\",\n          \"value\": {}\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 200,\n  \"status\": \"OK\",\n  \"service\": \"dropbox\",\n  \"resource\": \"UploadSessions\",\n  \"operation\": \"one\",\n  \"data\": {\n    \"id\": \"12345\"\n  },\n  \"_raw\": {\n    \"key_0\": 528,\n    \"key_1\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dc9b0a8a-e453-4314-b888-1201f4368f3f",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "file-storage",
+                    "upload-sessions"
+                  ],
+                  "host": [
+                    "upload",
+                    "apideck",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "raw",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the consumer which you want to get or push data from",
+                    "key": "x-apideck-consumer-id",
+                    "value": "test-consumer"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The ID of your Unify application",
+                    "key": "x-apideck-app-id",
+                    "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                    "key": "x-apideck-service-id",
+                    "value": "salesforce"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Documents\",\n  \"parent_folder_id\": \"1234\",\n  \"size\": 1810673,\n  \"drive_id\": \"1234\",\n  \"pass_through\": [\n    {\n      \"service_id\": \"<string>\",\n      \"operation_id\": \"<string>\",\n      \"extend_object\": {\n        \"key_0\": 9351.009017922668,\n        \"key_1\": 4027\n      },\n      \"extend_paths\": [\n        {\n          \"path\": \"$.nested.property\",\n          \"value\": {}\n        },\n        {\n          \"path\": \"$.nested.property\",\n          \"value\": {}\n        }\n      ]\n    },\n    {\n      \"service_id\": \"<string>\",\n      \"operation_id\": \"<string>\",\n      \"extend_object\": {\n        \"key_0\": 867.7676189077654,\n        \"key_1\": true,\n        \"key_2\": true\n      },\n      \"extend_paths\": [\n        {\n          \"path\": \"$.nested.property\",\n          \"value\": {}\n        },\n        {\n          \"path\": \"$.nested.property\",\n          \"value\": {}\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 400,\n  \"error\": \"Bad Request\",\n  \"type_name\": \"RequestValidationError\",\n  \"message\": \"Invalid Params\",\n  \"detail\": \"Missing property foobar\",\n  \"ref\": \"https://developers.apideck.com/errors#requestvalidationerror\",\n  \"downstream_errors\": [\n    {\n      \"message\": \"Account code '100' has been archived or deleted\",\n      \"detail\": \"Each line item must reference a valid account\",\n      \"code\": \"VALIDATION_ERROR\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a85e0c3b-b4b1-4c68-bee5-8dfa210c961a",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "file-storage",
+                    "upload-sessions"
+                  ],
+                  "host": [
+                    "upload",
+                    "apideck",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "raw",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the consumer which you want to get or push data from",
+                    "key": "x-apideck-consumer-id",
+                    "value": "test-consumer"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The ID of your Unify application",
+                    "key": "x-apideck-app-id",
+                    "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                    "key": "x-apideck-service-id",
+                    "value": "salesforce"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Documents\",\n  \"parent_folder_id\": \"1234\",\n  \"size\": 1810673,\n  \"drive_id\": \"1234\",\n  \"pass_through\": [\n    {\n      \"service_id\": \"<string>\",\n      \"operation_id\": \"<string>\",\n      \"extend_object\": {\n        \"key_0\": 9351.009017922668,\n        \"key_1\": 4027\n      },\n      \"extend_paths\": [\n        {\n          \"path\": \"$.nested.property\",\n          \"value\": {}\n        },\n        {\n          \"path\": \"$.nested.property\",\n          \"value\": {}\n        }\n      ]\n    },\n    {\n      \"service_id\": \"<string>\",\n      \"operation_id\": \"<string>\",\n      \"extend_object\": {\n        \"key_0\": 867.7676189077654,\n        \"key_1\": true,\n        \"key_2\": true\n      },\n      \"extend_paths\": [\n        {\n          \"path\": \"$.nested.property\",\n          \"value\": {}\n        },\n        {\n          \"path\": \"$.nested.property\",\n          \"value\": {}\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 401,\n  \"error\": \"Unauthorized\",\n  \"type_name\": \"UnauthorizedError\",\n  \"message\": \"Unauthorized Request\",\n  \"detail\": \"Missing authentication\",\n  \"ref\": \"https://developers.apideck.com/errors#unauthorizederror\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d91e9afc-1281-4cab-99e9-5d86755c6cc1",
+              "name": "Payment Required",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "file-storage",
+                    "upload-sessions"
+                  ],
+                  "host": [
+                    "upload",
+                    "apideck",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "raw",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the consumer which you want to get or push data from",
+                    "key": "x-apideck-consumer-id",
+                    "value": "test-consumer"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The ID of your Unify application",
+                    "key": "x-apideck-app-id",
+                    "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                    "key": "x-apideck-service-id",
+                    "value": "salesforce"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Documents\",\n  \"parent_folder_id\": \"1234\",\n  \"size\": 1810673,\n  \"drive_id\": \"1234\",\n  \"pass_through\": [\n    {\n      \"service_id\": \"<string>\",\n      \"operation_id\": \"<string>\",\n      \"extend_object\": {\n        \"key_0\": 9351.009017922668,\n        \"key_1\": 4027\n      },\n      \"extend_paths\": [\n        {\n          \"path\": \"$.nested.property\",\n          \"value\": {}\n        },\n        {\n          \"path\": \"$.nested.property\",\n          \"value\": {}\n        }\n      ]\n    },\n    {\n      \"service_id\": \"<string>\",\n      \"operation_id\": \"<string>\",\n      \"extend_object\": {\n        \"key_0\": 867.7676189077654,\n        \"key_1\": true,\n        \"key_2\": true\n      },\n      \"extend_paths\": [\n        {\n          \"path\": \"$.nested.property\",\n          \"value\": {}\n        },\n        {\n          \"path\": \"$.nested.property\",\n          \"value\": {}\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Payment Required",
+              "code": 402,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 402,\n  \"error\": \"Payment Required\",\n  \"type_name\": \"RequestLimitError\",\n  \"message\": \"Request Limit Reached\",\n  \"detail\": \"You have reached your limit of 2000\",\n  \"ref\": \"https://developers.apideck.com/errors#requestlimiterror\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ba69fe4f-e19a-428d-849f-eff2b8d4bb36",
+              "name": "The specified resource was not found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "file-storage",
+                    "upload-sessions"
+                  ],
+                  "host": [
+                    "upload",
+                    "apideck",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "raw",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the consumer which you want to get or push data from",
+                    "key": "x-apideck-consumer-id",
+                    "value": "test-consumer"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The ID of your Unify application",
+                    "key": "x-apideck-app-id",
+                    "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                    "key": "x-apideck-service-id",
+                    "value": "salesforce"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Documents\",\n  \"parent_folder_id\": \"1234\",\n  \"size\": 1810673,\n  \"drive_id\": \"1234\",\n  \"pass_through\": [\n    {\n      \"service_id\": \"<string>\",\n      \"operation_id\": \"<string>\",\n      \"extend_object\": {\n        \"key_0\": 9351.009017922668,\n        \"key_1\": 4027\n      },\n      \"extend_paths\": [\n        {\n          \"path\": \"$.nested.property\",\n          \"value\": {}\n        },\n        {\n          \"path\": \"$.nested.property\",\n          \"value\": {}\n        }\n      ]\n    },\n    {\n      \"service_id\": \"<string>\",\n      \"operation_id\": \"<string>\",\n      \"extend_object\": {\n        \"key_0\": 867.7676189077654,\n        \"key_1\": true,\n        \"key_2\": true\n      },\n      \"extend_paths\": [\n        {\n          \"path\": \"$.nested.property\",\n          \"value\": {}\n        },\n        {\n          \"path\": \"$.nested.property\",\n          \"value\": {}\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 404,\n  \"error\": \"Not Found\",\n  \"type_name\": \"EntityNotFoundError\",\n  \"message\": \"Unknown Widget\",\n  \"detail\": \"Could not find widget with id: '123'\",\n  \"ref\": \"https://developers.apideck.com/errors#entitynotfounderror\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eda3c789-309d-450b-8ca5-7e9361d40937",
+              "name": "Unprocessable",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "file-storage",
+                    "upload-sessions"
+                  ],
+                  "host": [
+                    "upload",
+                    "apideck",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "raw",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the consumer which you want to get or push data from",
+                    "key": "x-apideck-consumer-id",
+                    "value": "test-consumer"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The ID of your Unify application",
+                    "key": "x-apideck-app-id",
+                    "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                    "key": "x-apideck-service-id",
+                    "value": "salesforce"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Documents\",\n  \"parent_folder_id\": \"1234\",\n  \"size\": 1810673,\n  \"drive_id\": \"1234\",\n  \"pass_through\": [\n    {\n      \"service_id\": \"<string>\",\n      \"operation_id\": \"<string>\",\n      \"extend_object\": {\n        \"key_0\": 9351.009017922668,\n        \"key_1\": 4027\n      },\n      \"extend_paths\": [\n        {\n          \"path\": \"$.nested.property\",\n          \"value\": {}\n        },\n        {\n          \"path\": \"$.nested.property\",\n          \"value\": {}\n        }\n      ]\n    },\n    {\n      \"service_id\": \"<string>\",\n      \"operation_id\": \"<string>\",\n      \"extend_object\": {\n        \"key_0\": 867.7676189077654,\n        \"key_1\": true,\n        \"key_2\": true\n      },\n      \"extend_paths\": [\n        {\n          \"path\": \"$.nested.property\",\n          \"value\": {}\n        },\n        {\n          \"path\": \"$.nested.property\",\n          \"value\": {}\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 422,\n  \"error\": \"Unprocessable Entity\",\n  \"type_name\": \"InvalidStateError\",\n  \"message\": \"Invalid State\",\n  \"detail\": \"Unprocessable request, please verify your request headers and body.\",\n  \"ref\": \"https://developers.apideck.com/errors#invalidstateerror\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "915771c9-2d6e-40e6-9cf7-bc0a43911864",
+              "name": "Unexpected error",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "file-storage",
+                    "upload-sessions"
+                  ],
+                  "host": [
+                    "upload",
+                    "apideck",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "raw",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the consumer which you want to get or push data from",
+                    "key": "x-apideck-consumer-id",
+                    "value": "test-consumer"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The ID of your Unify application",
+                    "key": "x-apideck-app-id",
+                    "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                    "key": "x-apideck-service-id",
+                    "value": "salesforce"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Documents\",\n  \"parent_folder_id\": \"1234\",\n  \"size\": 1810673,\n  \"drive_id\": \"1234\",\n  \"pass_through\": [\n    {\n      \"service_id\": \"<string>\",\n      \"operation_id\": \"<string>\",\n      \"extend_object\": {\n        \"key_0\": 9351.009017922668,\n        \"key_1\": 4027\n      },\n      \"extend_paths\": [\n        {\n          \"path\": \"$.nested.property\",\n          \"value\": {}\n        },\n        {\n          \"path\": \"$.nested.property\",\n          \"value\": {}\n        }\n      ]\n    },\n    {\n      \"service_id\": \"<string>\",\n      \"operation_id\": \"<string>\",\n      \"extend_object\": {\n        \"key_0\": 867.7676189077654,\n        \"key_1\": true,\n        \"key_2\": true\n      },\n      \"extend_paths\": [\n        {\n          \"path\": \"$.nested.property\",\n          \"value\": {}\n        },\n        {\n          \"path\": \"$.nested.property\",\n          \"value\": {}\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 400,\n  \"error\": \"Bad Request\",\n  \"type_name\": \"RequestHeadersValidationError\",\n  \"message\": \"Invalid Params\",\n  \"detail\": \"Missing Header: x-apideck-consumer-id\",\n  \"ref\": \"https://developers.apideck.com/errors#unauthorizederror\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "975c1f26-a309-41a3-9e73-dc1065a7f107",
+          "name": "Apideck Get Upload Session",
+          "request": {
+            "name": "Apideck Get Upload Session",
+            "description": {
+              "content": "Get Upload Session. Use the `part_size` to split your file into parts. Upload the parts to the [Upload part of File](#operation/uploadSessionsUpload) endpoint. Note that the base URL is upload.apideck.com instead of unify.apideck.com. For more information on uploads, refer to the [file upload guide](/guides/file-upload).",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "file-storage",
+                "upload-sessions",
+                ":id"
+              ],
+              "host": [
+                "upload",
+                "apideck",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "raw",
+                  "value": "false",
+                  "description": "Include raw response. Mostly used for debugging purposes"
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "The 'fields' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. <br /><br />Example: `fields=name,email,addresses.city`<br /><br />In the example above, the response will only include the fields \"name\", \"email\" and \"addresses.city\". If any other fields are available, they will be excluded."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) ID of the record you are acting upon."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ID of the consumer which you want to get or push data from",
+                "key": "x-apideck-consumer-id",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) The ID of your Unify application",
+                "key": "x-apideck-app-id",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                "key": "x-apideck-service-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "87fc1a52-8337-4c66-9b05-49abb8f3ff70",
+              "name": "UploadSessions",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "file-storage",
+                    "upload-sessions",
+                    ":id"
+                  ],
+                  "host": [
+                    "upload",
+                    "apideck",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "raw",
+                      "value": "false"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "id,updated_at"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the record you are acting upon."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the consumer which you want to get or push data from",
+                    "key": "x-apideck-consumer-id",
+                    "value": "test-consumer"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The ID of your Unify application",
+                    "key": "x-apideck-app-id",
+                    "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                    "key": "x-apideck-service-id",
+                    "value": "salesforce"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 200,\n  \"status\": \"OK\",\n  \"service\": \"dropbox\",\n  \"resource\": \"UploadSessions\",\n  \"operation\": \"one\",\n  \"data\": {\n    \"id\": \"12345\",\n    \"success\": true,\n    \"part_size\": 1000000,\n    \"parallel_upload_supported\": true,\n    \"uploaded_byte_range\": \"0-42\",\n    \"expires_at\": \"2022-09-30T07:43:32.000Z\"\n  },\n  \"_raw\": {\n    \"key_0\": \"string\",\n    \"key_1\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d32f232f-6710-4d16-8ddb-50271d6bfc5b",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "file-storage",
+                    "upload-sessions",
+                    ":id"
+                  ],
+                  "host": [
+                    "upload",
+                    "apideck",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "raw",
+                      "value": "false"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "id,updated_at"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the record you are acting upon."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the consumer which you want to get or push data from",
+                    "key": "x-apideck-consumer-id",
+                    "value": "test-consumer"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The ID of your Unify application",
+                    "key": "x-apideck-app-id",
+                    "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                    "key": "x-apideck-service-id",
+                    "value": "salesforce"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 400,\n  \"error\": \"Bad Request\",\n  \"type_name\": \"RequestValidationError\",\n  \"message\": \"Invalid Params\",\n  \"detail\": \"Missing property foobar\",\n  \"ref\": \"https://developers.apideck.com/errors#requestvalidationerror\",\n  \"downstream_errors\": [\n    {\n      \"message\": \"Account code '100' has been archived or deleted\",\n      \"detail\": \"Each line item must reference a valid account\",\n      \"code\": \"VALIDATION_ERROR\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "28e6ee3d-5ed7-4a14-ae1e-e195dd25156f",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "file-storage",
+                    "upload-sessions",
+                    ":id"
+                  ],
+                  "host": [
+                    "upload",
+                    "apideck",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "raw",
+                      "value": "false"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "id,updated_at"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the record you are acting upon."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the consumer which you want to get or push data from",
+                    "key": "x-apideck-consumer-id",
+                    "value": "test-consumer"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The ID of your Unify application",
+                    "key": "x-apideck-app-id",
+                    "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                    "key": "x-apideck-service-id",
+                    "value": "salesforce"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 401,\n  \"error\": \"Unauthorized\",\n  \"type_name\": \"UnauthorizedError\",\n  \"message\": \"Unauthorized Request\",\n  \"detail\": \"Missing authentication\",\n  \"ref\": \"https://developers.apideck.com/errors#unauthorizederror\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b7f60a82-17e7-495a-9614-45fc7fb5b579",
+              "name": "Payment Required",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "file-storage",
+                    "upload-sessions",
+                    ":id"
+                  ],
+                  "host": [
+                    "upload",
+                    "apideck",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "raw",
+                      "value": "false"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "id,updated_at"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the record you are acting upon."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the consumer which you want to get or push data from",
+                    "key": "x-apideck-consumer-id",
+                    "value": "test-consumer"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The ID of your Unify application",
+                    "key": "x-apideck-app-id",
+                    "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                    "key": "x-apideck-service-id",
+                    "value": "salesforce"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Payment Required",
+              "code": 402,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 402,\n  \"error\": \"Payment Required\",\n  \"type_name\": \"RequestLimitError\",\n  \"message\": \"Request Limit Reached\",\n  \"detail\": \"You have reached your limit of 2000\",\n  \"ref\": \"https://developers.apideck.com/errors#requestlimiterror\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bffe420b-de3b-4ed7-82b4-c8c44dab3169",
+              "name": "The specified resource was not found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "file-storage",
+                    "upload-sessions",
+                    ":id"
+                  ],
+                  "host": [
+                    "upload",
+                    "apideck",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "raw",
+                      "value": "false"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "id,updated_at"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the record you are acting upon."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the consumer which you want to get or push data from",
+                    "key": "x-apideck-consumer-id",
+                    "value": "test-consumer"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The ID of your Unify application",
+                    "key": "x-apideck-app-id",
+                    "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                    "key": "x-apideck-service-id",
+                    "value": "salesforce"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 404,\n  \"error\": \"Not Found\",\n  \"type_name\": \"EntityNotFoundError\",\n  \"message\": \"Unknown Widget\",\n  \"detail\": \"Could not find widget with id: '123'\",\n  \"ref\": \"https://developers.apideck.com/errors#entitynotfounderror\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9c93642e-6719-469e-9c11-0df9bb51e64d",
+              "name": "Unprocessable",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "file-storage",
+                    "upload-sessions",
+                    ":id"
+                  ],
+                  "host": [
+                    "upload",
+                    "apideck",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "raw",
+                      "value": "false"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "id,updated_at"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the record you are acting upon."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the consumer which you want to get or push data from",
+                    "key": "x-apideck-consumer-id",
+                    "value": "test-consumer"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The ID of your Unify application",
+                    "key": "x-apideck-app-id",
+                    "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                    "key": "x-apideck-service-id",
+                    "value": "salesforce"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 422,\n  \"error\": \"Unprocessable Entity\",\n  \"type_name\": \"InvalidStateError\",\n  \"message\": \"Invalid State\",\n  \"detail\": \"Unprocessable request, please verify your request headers and body.\",\n  \"ref\": \"https://developers.apideck.com/errors#invalidstateerror\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "773c4bab-5cf6-4bc1-8a23-ee685a5cbafa",
+              "name": "Unexpected error",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "file-storage",
+                    "upload-sessions",
+                    ":id"
+                  ],
+                  "host": [
+                    "upload",
+                    "apideck",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "raw",
+                      "value": "false"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "id,updated_at"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the record you are acting upon."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the consumer which you want to get or push data from",
+                    "key": "x-apideck-consumer-id",
+                    "value": "test-consumer"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The ID of your Unify application",
+                    "key": "x-apideck-app-id",
+                    "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                    "key": "x-apideck-service-id",
+                    "value": "salesforce"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 400,\n  \"error\": \"Bad Request\",\n  \"type_name\": \"RequestHeadersValidationError\",\n  \"message\": \"Invalid Params\",\n  \"detail\": \"Missing Header: x-apideck-consumer-id\",\n  \"ref\": \"https://developers.apideck.com/errors#unauthorizederror\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "019b2795-1a1d-4726-82b5-62758181b952",
+          "name": "Apideck Upload part of File to Upload Session",
+          "request": {
+            "name": "Apideck Upload part of File to Upload Session",
+            "description": {
+              "content": "Upload part of File to Upload Session (max 100MB). Get `part_size` from [Get Upload Session](#operation/uploadSessionsOne) first. Every File part (except the last one) uploaded to this endpoint should have Content-Length equal to `part_size`. Note that the base URL is upload.apideck.com instead of unify.apideck.com. For more information on uploads, refer to the [file upload guide](/guides/file-upload).",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "file-storage",
+                "upload-sessions",
+                ":id"
+              ],
+              "host": [
+                "upload",
+                "apideck",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "part_number",
+                  "value": "<number>",
+                  "description": "(Required) Part number of the file part being uploaded."
+                },
+                {
+                  "disabled": false,
+                  "key": "raw",
+                  "value": "false",
+                  "description": "Include raw response. Mostly used for debugging purposes"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) ID of the record you are acting upon."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ID of the consumer which you want to get or push data from",
+                "key": "x-apideck-consumer-id",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) The ID of your Unify application",
+                "key": "x-apideck-app-id",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                "key": "x-apideck-service-id",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "The RFC3230 message digest of the uploaded part. Only required for the Box connector. More information on the Box API docs [here](https://developer.box.com/reference/put-files-upload-sessions-id/#param-digest)",
+                "key": "digest",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "file"
+            }
+          },
+          "response": [
+            {
+              "id": "adc89f06-440f-4fb0-ae3f-92b972d4003e",
+              "name": "UploadSessions",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "file-storage",
+                    "upload-sessions",
+                    ":id"
+                  ],
+                  "host": [
+                    "upload",
+                    "apideck",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "part_number",
+                      "value": "0"
+                    },
+                    {
+                      "key": "raw",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the record you are acting upon."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the consumer which you want to get or push data from",
+                    "key": "x-apideck-consumer-id",
+                    "value": "test-consumer"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The ID of your Unify application",
+                    "key": "x-apideck-app-id",
+                    "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                    "key": "x-apideck-service-id",
+                    "value": "salesforce"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The RFC3230 message digest of the uploaded part. Only required for the Box connector. More information on the Box API docs [here](https://developer.box.com/reference/put-files-upload-sessions-id/#param-digest)",
+                    "key": "digest",
+                    "value": "sha=fpRyg5eVQletdZqEKaFlqwBXJzM="
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "file"
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 200,\n  \"status\": \"OK\",\n  \"service\": \"dropbox\",\n  \"resource\": \"UploadSessions\",\n  \"operation\": \"one\",\n  \"data\": {\n    \"id\": \"12345\"\n  },\n  \"_raw\": {\n    \"key_0\": 7849.7434222896145,\n    \"key_1\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aa3a76a9-2d09-4c87-a0ca-7e04ca29ae35",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "file-storage",
+                    "upload-sessions",
+                    ":id"
+                  ],
+                  "host": [
+                    "upload",
+                    "apideck",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "part_number",
+                      "value": "0"
+                    },
+                    {
+                      "key": "raw",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the record you are acting upon."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the consumer which you want to get or push data from",
+                    "key": "x-apideck-consumer-id",
+                    "value": "test-consumer"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The ID of your Unify application",
+                    "key": "x-apideck-app-id",
+                    "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                    "key": "x-apideck-service-id",
+                    "value": "salesforce"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The RFC3230 message digest of the uploaded part. Only required for the Box connector. More information on the Box API docs [here](https://developer.box.com/reference/put-files-upload-sessions-id/#param-digest)",
+                    "key": "digest",
+                    "value": "sha=fpRyg5eVQletdZqEKaFlqwBXJzM="
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "file"
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 400,\n  \"error\": \"Bad Request\",\n  \"type_name\": \"RequestValidationError\",\n  \"message\": \"Invalid Params\",\n  \"detail\": \"Missing property foobar\",\n  \"ref\": \"https://developers.apideck.com/errors#requestvalidationerror\",\n  \"downstream_errors\": [\n    {\n      \"message\": \"Account code '100' has been archived or deleted\",\n      \"detail\": \"Each line item must reference a valid account\",\n      \"code\": \"VALIDATION_ERROR\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a2b8f1d5-dd37-4389-ab6e-9cd2b4b36239",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "file-storage",
+                    "upload-sessions",
+                    ":id"
+                  ],
+                  "host": [
+                    "upload",
+                    "apideck",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "part_number",
+                      "value": "0"
+                    },
+                    {
+                      "key": "raw",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the record you are acting upon."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the consumer which you want to get or push data from",
+                    "key": "x-apideck-consumer-id",
+                    "value": "test-consumer"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The ID of your Unify application",
+                    "key": "x-apideck-app-id",
+                    "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                    "key": "x-apideck-service-id",
+                    "value": "salesforce"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The RFC3230 message digest of the uploaded part. Only required for the Box connector. More information on the Box API docs [here](https://developer.box.com/reference/put-files-upload-sessions-id/#param-digest)",
+                    "key": "digest",
+                    "value": "sha=fpRyg5eVQletdZqEKaFlqwBXJzM="
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "file"
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 401,\n  \"error\": \"Unauthorized\",\n  \"type_name\": \"UnauthorizedError\",\n  \"message\": \"Unauthorized Request\",\n  \"detail\": \"Missing authentication\",\n  \"ref\": \"https://developers.apideck.com/errors#unauthorizederror\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fa1839ef-c3a6-4879-a3dd-4da3a01fa101",
+              "name": "Payment Required",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "file-storage",
+                    "upload-sessions",
+                    ":id"
+                  ],
+                  "host": [
+                    "upload",
+                    "apideck",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "part_number",
+                      "value": "0"
+                    },
+                    {
+                      "key": "raw",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the record you are acting upon."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the consumer which you want to get or push data from",
+                    "key": "x-apideck-consumer-id",
+                    "value": "test-consumer"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The ID of your Unify application",
+                    "key": "x-apideck-app-id",
+                    "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                    "key": "x-apideck-service-id",
+                    "value": "salesforce"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The RFC3230 message digest of the uploaded part. Only required for the Box connector. More information on the Box API docs [here](https://developer.box.com/reference/put-files-upload-sessions-id/#param-digest)",
+                    "key": "digest",
+                    "value": "sha=fpRyg5eVQletdZqEKaFlqwBXJzM="
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "file"
+                }
+              },
+              "status": "Payment Required",
+              "code": 402,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 402,\n  \"error\": \"Payment Required\",\n  \"type_name\": \"RequestLimitError\",\n  \"message\": \"Request Limit Reached\",\n  \"detail\": \"You have reached your limit of 2000\",\n  \"ref\": \"https://developers.apideck.com/errors#requestlimiterror\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9f825d31-e032-4a7d-89bb-8e0b79b94bbd",
+              "name": "The specified resource was not found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "file-storage",
+                    "upload-sessions",
+                    ":id"
+                  ],
+                  "host": [
+                    "upload",
+                    "apideck",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "part_number",
+                      "value": "0"
+                    },
+                    {
+                      "key": "raw",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the record you are acting upon."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the consumer which you want to get or push data from",
+                    "key": "x-apideck-consumer-id",
+                    "value": "test-consumer"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The ID of your Unify application",
+                    "key": "x-apideck-app-id",
+                    "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                    "key": "x-apideck-service-id",
+                    "value": "salesforce"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The RFC3230 message digest of the uploaded part. Only required for the Box connector. More information on the Box API docs [here](https://developer.box.com/reference/put-files-upload-sessions-id/#param-digest)",
+                    "key": "digest",
+                    "value": "sha=fpRyg5eVQletdZqEKaFlqwBXJzM="
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "file"
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 404,\n  \"error\": \"Not Found\",\n  \"type_name\": \"EntityNotFoundError\",\n  \"message\": \"Unknown Widget\",\n  \"detail\": \"Could not find widget with id: '123'\",\n  \"ref\": \"https://developers.apideck.com/errors#entitynotfounderror\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2a0a457e-4ab0-45de-99b1-a5f26990f105",
+              "name": "Unprocessable",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "file-storage",
+                    "upload-sessions",
+                    ":id"
+                  ],
+                  "host": [
+                    "upload",
+                    "apideck",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "part_number",
+                      "value": "0"
+                    },
+                    {
+                      "key": "raw",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the record you are acting upon."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the consumer which you want to get or push data from",
+                    "key": "x-apideck-consumer-id",
+                    "value": "test-consumer"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The ID of your Unify application",
+                    "key": "x-apideck-app-id",
+                    "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                    "key": "x-apideck-service-id",
+                    "value": "salesforce"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The RFC3230 message digest of the uploaded part. Only required for the Box connector. More information on the Box API docs [here](https://developer.box.com/reference/put-files-upload-sessions-id/#param-digest)",
+                    "key": "digest",
+                    "value": "sha=fpRyg5eVQletdZqEKaFlqwBXJzM="
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "file"
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 422,\n  \"error\": \"Unprocessable Entity\",\n  \"type_name\": \"InvalidStateError\",\n  \"message\": \"Invalid State\",\n  \"detail\": \"Unprocessable request, please verify your request headers and body.\",\n  \"ref\": \"https://developers.apideck.com/errors#invalidstateerror\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1f93f171-95d4-4e04-976c-77541c86caec",
+              "name": "Unexpected error",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "file-storage",
+                    "upload-sessions",
+                    ":id"
+                  ],
+                  "host": [
+                    "upload",
+                    "apideck",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "part_number",
+                      "value": "0"
+                    },
+                    {
+                      "key": "raw",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the record you are acting upon."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the consumer which you want to get or push data from",
+                    "key": "x-apideck-consumer-id",
+                    "value": "test-consumer"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The ID of your Unify application",
+                    "key": "x-apideck-app-id",
+                    "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                    "key": "x-apideck-service-id",
+                    "value": "salesforce"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The RFC3230 message digest of the uploaded part. Only required for the Box connector. More information on the Box API docs [here](https://developer.box.com/reference/put-files-upload-sessions-id/#param-digest)",
+                    "key": "digest",
+                    "value": "sha=fpRyg5eVQletdZqEKaFlqwBXJzM="
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "file"
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 400,\n  \"error\": \"Bad Request\",\n  \"type_name\": \"RequestHeadersValidationError\",\n  \"message\": \"Invalid Params\",\n  \"detail\": \"Missing Header: x-apideck-consumer-id\",\n  \"ref\": \"https://developers.apideck.com/errors#unauthorizederror\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f964e7f1-3743-4ad2-b64f-37568999830e",
+          "name": "Apideck Abort Upload Session",
+          "request": {
+            "name": "Apideck Abort Upload Session",
+            "description": {
+              "content": "Abort Upload Session. Note that the base URL is upload.apideck.com instead of unify.apideck.com. For more information on uploads, refer to the [file upload guide](/guides/file-upload).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "file-storage",
+                "upload-sessions",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "raw",
+                  "value": "false",
+                  "description": "Include raw response. Mostly used for debugging purposes"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) ID of the record you are acting upon."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ID of the consumer which you want to get or push data from",
+                "key": "x-apideck-consumer-id",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) The ID of your Unify application",
+                "key": "x-apideck-app-id",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                "key": "x-apideck-service-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "645f8000-5fa3-4160-9a7c-dd57a95f0dd6",
+              "name": "UploadSessions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "file-storage",
+                    "upload-sessions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "raw",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the record you are acting upon."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the consumer which you want to get or push data from",
+                    "key": "x-apideck-consumer-id",
+                    "value": "test-consumer"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The ID of your Unify application",
+                    "key": "x-apideck-app-id",
+                    "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                    "key": "x-apideck-service-id",
+                    "value": "salesforce"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 200,\n  \"status\": \"OK\",\n  \"service\": \"dropbox\",\n  \"resource\": \"UploadSessions\",\n  \"operation\": \"one\",\n  \"data\": {\n    \"id\": \"12345\"\n  },\n  \"_raw\": {\n    \"key_0\": 9818,\n    \"key_1\": 7021.950793157563\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "98bd99b5-ed4e-42a7-9847-f7ca4a0796b1",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "file-storage",
+                    "upload-sessions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "raw",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the record you are acting upon."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the consumer which you want to get or push data from",
+                    "key": "x-apideck-consumer-id",
+                    "value": "test-consumer"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The ID of your Unify application",
+                    "key": "x-apideck-app-id",
+                    "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                    "key": "x-apideck-service-id",
+                    "value": "salesforce"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 400,\n  \"error\": \"Bad Request\",\n  \"type_name\": \"RequestValidationError\",\n  \"message\": \"Invalid Params\",\n  \"detail\": \"Missing property foobar\",\n  \"ref\": \"https://developers.apideck.com/errors#requestvalidationerror\",\n  \"downstream_errors\": [\n    {\n      \"message\": \"Account code '100' has been archived or deleted\",\n      \"detail\": \"Each line item must reference a valid account\",\n      \"code\": \"VALIDATION_ERROR\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0286be0b-33b2-4aec-b3fe-4cffaab541b5",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "file-storage",
+                    "upload-sessions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "raw",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the record you are acting upon."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the consumer which you want to get or push data from",
+                    "key": "x-apideck-consumer-id",
+                    "value": "test-consumer"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The ID of your Unify application",
+                    "key": "x-apideck-app-id",
+                    "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                    "key": "x-apideck-service-id",
+                    "value": "salesforce"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 401,\n  \"error\": \"Unauthorized\",\n  \"type_name\": \"UnauthorizedError\",\n  \"message\": \"Unauthorized Request\",\n  \"detail\": \"Missing authentication\",\n  \"ref\": \"https://developers.apideck.com/errors#unauthorizederror\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8b8a64fe-4331-4a33-b6ee-f4e55066b71e",
+              "name": "Payment Required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "file-storage",
+                    "upload-sessions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "raw",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the record you are acting upon."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the consumer which you want to get or push data from",
+                    "key": "x-apideck-consumer-id",
+                    "value": "test-consumer"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The ID of your Unify application",
+                    "key": "x-apideck-app-id",
+                    "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                    "key": "x-apideck-service-id",
+                    "value": "salesforce"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Payment Required",
+              "code": 402,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 402,\n  \"error\": \"Payment Required\",\n  \"type_name\": \"RequestLimitError\",\n  \"message\": \"Request Limit Reached\",\n  \"detail\": \"You have reached your limit of 2000\",\n  \"ref\": \"https://developers.apideck.com/errors#requestlimiterror\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "046f6093-02c3-4052-8ba4-1aa8ef18f2c1",
+              "name": "The specified resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "file-storage",
+                    "upload-sessions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "raw",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the record you are acting upon."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the consumer which you want to get or push data from",
+                    "key": "x-apideck-consumer-id",
+                    "value": "test-consumer"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The ID of your Unify application",
+                    "key": "x-apideck-app-id",
+                    "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                    "key": "x-apideck-service-id",
+                    "value": "salesforce"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 404,\n  \"error\": \"Not Found\",\n  \"type_name\": \"EntityNotFoundError\",\n  \"message\": \"Unknown Widget\",\n  \"detail\": \"Could not find widget with id: '123'\",\n  \"ref\": \"https://developers.apideck.com/errors#entitynotfounderror\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "814d1f50-abee-418f-ab79-391e8308e61d",
+              "name": "Unprocessable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "file-storage",
+                    "upload-sessions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "raw",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the record you are acting upon."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the consumer which you want to get or push data from",
+                    "key": "x-apideck-consumer-id",
+                    "value": "test-consumer"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The ID of your Unify application",
+                    "key": "x-apideck-app-id",
+                    "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                    "key": "x-apideck-service-id",
+                    "value": "salesforce"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 422,\n  \"error\": \"Unprocessable Entity\",\n  \"type_name\": \"InvalidStateError\",\n  \"message\": \"Invalid State\",\n  \"detail\": \"Unprocessable request, please verify your request headers and body.\",\n  \"ref\": \"https://developers.apideck.com/errors#invalidstateerror\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f807caaa-c3f4-4894-8ce6-d8c5db26396d",
+              "name": "Unexpected error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "file-storage",
+                    "upload-sessions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "raw",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the record you are acting upon."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the consumer which you want to get or push data from",
+                    "key": "x-apideck-consumer-id",
+                    "value": "test-consumer"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The ID of your Unify application",
+                    "key": "x-apideck-app-id",
+                    "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                    "key": "x-apideck-service-id",
+                    "value": "salesforce"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 400,\n  \"error\": \"Bad Request\",\n  \"type_name\": \"RequestHeadersValidationError\",\n  \"message\": \"Invalid Params\",\n  \"detail\": \"Missing Header: x-apideck-consumer-id\",\n  \"ref\": \"https://developers.apideck.com/errors#unauthorizederror\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "45f1a4d1-f193-40dc-a170-e87ec18022ad",
+          "name": "Apideck Finish Upload Session",
+          "request": {
+            "name": "Apideck Finish Upload Session",
+            "description": {
+              "content": "Finish Upload Session. Only call this endpoint after all File parts have been uploaded to [Upload part of File](#operation/uploadSessionsUpload). Note that the base URL is upload.apideck.com instead of unify.apideck.com. For more information on uploads, refer to the [file upload guide](/guides/file-upload).",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "file-storage",
+                "upload-sessions",
+                ":id",
+                "finish"
+              ],
+              "host": [
+                "upload",
+                "apideck",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "raw",
+                  "value": "false",
+                  "description": "Include raw response. Mostly used for debugging purposes"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) ID of the record you are acting upon."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ID of the consumer which you want to get or push data from",
+                "key": "x-apideck-consumer-id",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) The ID of your Unify application",
+                "key": "x-apideck-app-id",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                "key": "x-apideck-service-id",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "The RFC3230 message digest of the uploaded part. Only required for the Box connector. More information on the Box API docs [here](https://developer.box.com/reference/put-files-upload-sessions-id/#param-digest)",
+                "key": "digest",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5e4a32a4-4eb3-456c-9f0f-cd5b3d704ce3",
+              "name": "File",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "file-storage",
+                    "upload-sessions",
+                    ":id",
+                    "finish"
+                  ],
+                  "host": [
+                    "upload",
+                    "apideck",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "raw",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the record you are acting upon."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the consumer which you want to get or push data from",
+                    "key": "x-apideck-consumer-id",
+                    "value": "test-consumer"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The ID of your Unify application",
+                    "key": "x-apideck-app-id",
+                    "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                    "key": "x-apideck-service-id",
+                    "value": "salesforce"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The RFC3230 message digest of the uploaded part. Only required for the Box connector. More information on the Box API docs [here](https://developer.box.com/reference/put-files-upload-sessions-id/#param-digest)",
+                    "key": "digest",
+                    "value": "sha=fpRyg5eVQletdZqEKaFlqwBXJzM="
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 200,\n  \"status\": \"OK\",\n  \"service\": \"google-drive\",\n  \"resource\": \"files\",\n  \"operation\": \"one\",\n  \"data\": {\n    \"id\": \"12345\",\n    \"name\": \"sample.jpg\",\n    \"type\": \"file\",\n    \"downstream_id\": \"12345\",\n    \"description\": \"A sample image\",\n    \"path\": \"/Documents/sample.jpg\",\n    \"mime_type\": \"image/jpeg\",\n    \"downloadable\": false,\n    \"size\": 1810673,\n    \"owner\": {\n      \"id\": \"12345\",\n      \"email\": \"hello@apideck.com\",\n      \"name\": \"Elon Musk\"\n    },\n    \"parent_folders\": [\n      {\n        \"id\": \"12345\",\n        \"name\": \"Personal\"\n      },\n      {\n        \"id\": \"12345\",\n        \"name\": \"Personal\"\n      }\n    ],\n    \"parent_folders_complete\": false,\n    \"permissions\": {\n      \"download\": true\n    },\n    \"exportable\": true,\n    \"export_formats\": [\n      \"application/pdf\",\n      \"application/vnd.oasis.opendocument.presentation\",\n      \"text/plain\"\n    ],\n    \"custom_mappings\": {\n      \"key_0\": false,\n      \"key_1\": true,\n      \"key_2\": false\n    },\n    \"updated_by\": \"12345\",\n    \"created_by\": \"12345\",\n    \"updated_at\": \"2020-09-30T07:43:32.000Z\",\n    \"created_at\": \"2020-09-30T07:43:32.000Z\"\n  },\n  \"_raw\": {\n    \"key_0\": 4999\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "407d32da-f48a-450d-abb8-08067a32da40",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "file-storage",
+                    "upload-sessions",
+                    ":id",
+                    "finish"
+                  ],
+                  "host": [
+                    "upload",
+                    "apideck",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "raw",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the record you are acting upon."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the consumer which you want to get or push data from",
+                    "key": "x-apideck-consumer-id",
+                    "value": "test-consumer"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The ID of your Unify application",
+                    "key": "x-apideck-app-id",
+                    "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                    "key": "x-apideck-service-id",
+                    "value": "salesforce"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The RFC3230 message digest of the uploaded part. Only required for the Box connector. More information on the Box API docs [here](https://developer.box.com/reference/put-files-upload-sessions-id/#param-digest)",
+                    "key": "digest",
+                    "value": "sha=fpRyg5eVQletdZqEKaFlqwBXJzM="
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 400,\n  \"error\": \"Bad Request\",\n  \"type_name\": \"RequestValidationError\",\n  \"message\": \"Invalid Params\",\n  \"detail\": \"Missing property foobar\",\n  \"ref\": \"https://developers.apideck.com/errors#requestvalidationerror\",\n  \"downstream_errors\": [\n    {\n      \"message\": \"Account code '100' has been archived or deleted\",\n      \"detail\": \"Each line item must reference a valid account\",\n      \"code\": \"VALIDATION_ERROR\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "312c62a4-79f4-4a7a-aef9-81d2e23f491f",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "file-storage",
+                    "upload-sessions",
+                    ":id",
+                    "finish"
+                  ],
+                  "host": [
+                    "upload",
+                    "apideck",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "raw",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the record you are acting upon."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the consumer which you want to get or push data from",
+                    "key": "x-apideck-consumer-id",
+                    "value": "test-consumer"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The ID of your Unify application",
+                    "key": "x-apideck-app-id",
+                    "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                    "key": "x-apideck-service-id",
+                    "value": "salesforce"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The RFC3230 message digest of the uploaded part. Only required for the Box connector. More information on the Box API docs [here](https://developer.box.com/reference/put-files-upload-sessions-id/#param-digest)",
+                    "key": "digest",
+                    "value": "sha=fpRyg5eVQletdZqEKaFlqwBXJzM="
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 401,\n  \"error\": \"Unauthorized\",\n  \"type_name\": \"UnauthorizedError\",\n  \"message\": \"Unauthorized Request\",\n  \"detail\": \"Missing authentication\",\n  \"ref\": \"https://developers.apideck.com/errors#unauthorizederror\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "19848642-2180-405e-8b82-ea4054dab553",
+              "name": "Payment Required",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "file-storage",
+                    "upload-sessions",
+                    ":id",
+                    "finish"
+                  ],
+                  "host": [
+                    "upload",
+                    "apideck",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "raw",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the record you are acting upon."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the consumer which you want to get or push data from",
+                    "key": "x-apideck-consumer-id",
+                    "value": "test-consumer"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The ID of your Unify application",
+                    "key": "x-apideck-app-id",
+                    "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                    "key": "x-apideck-service-id",
+                    "value": "salesforce"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The RFC3230 message digest of the uploaded part. Only required for the Box connector. More information on the Box API docs [here](https://developer.box.com/reference/put-files-upload-sessions-id/#param-digest)",
+                    "key": "digest",
+                    "value": "sha=fpRyg5eVQletdZqEKaFlqwBXJzM="
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Payment Required",
+              "code": 402,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 402,\n  \"error\": \"Payment Required\",\n  \"type_name\": \"RequestLimitError\",\n  \"message\": \"Request Limit Reached\",\n  \"detail\": \"You have reached your limit of 2000\",\n  \"ref\": \"https://developers.apideck.com/errors#requestlimiterror\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a349780e-87ba-42de-a43b-a073982d30e5",
+              "name": "The specified resource was not found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "file-storage",
+                    "upload-sessions",
+                    ":id",
+                    "finish"
+                  ],
+                  "host": [
+                    "upload",
+                    "apideck",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "raw",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the record you are acting upon."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the consumer which you want to get or push data from",
+                    "key": "x-apideck-consumer-id",
+                    "value": "test-consumer"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The ID of your Unify application",
+                    "key": "x-apideck-app-id",
+                    "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                    "key": "x-apideck-service-id",
+                    "value": "salesforce"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The RFC3230 message digest of the uploaded part. Only required for the Box connector. More information on the Box API docs [here](https://developer.box.com/reference/put-files-upload-sessions-id/#param-digest)",
+                    "key": "digest",
+                    "value": "sha=fpRyg5eVQletdZqEKaFlqwBXJzM="
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 404,\n  \"error\": \"Not Found\",\n  \"type_name\": \"EntityNotFoundError\",\n  \"message\": \"Unknown Widget\",\n  \"detail\": \"Could not find widget with id: '123'\",\n  \"ref\": \"https://developers.apideck.com/errors#entitynotfounderror\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "07b664e4-6e15-4eaf-a2fa-8847e6c08e81",
+              "name": "Unprocessable",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "file-storage",
+                    "upload-sessions",
+                    ":id",
+                    "finish"
+                  ],
+                  "host": [
+                    "upload",
+                    "apideck",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "raw",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the record you are acting upon."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the consumer which you want to get or push data from",
+                    "key": "x-apideck-consumer-id",
+                    "value": "test-consumer"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The ID of your Unify application",
+                    "key": "x-apideck-app-id",
+                    "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                    "key": "x-apideck-service-id",
+                    "value": "salesforce"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The RFC3230 message digest of the uploaded part. Only required for the Box connector. More information on the Box API docs [here](https://developer.box.com/reference/put-files-upload-sessions-id/#param-digest)",
+                    "key": "digest",
+                    "value": "sha=fpRyg5eVQletdZqEKaFlqwBXJzM="
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 422,\n  \"error\": \"Unprocessable Entity\",\n  \"type_name\": \"InvalidStateError\",\n  \"message\": \"Invalid State\",\n  \"detail\": \"Unprocessable request, please verify your request headers and body.\",\n  \"ref\": \"https://developers.apideck.com/errors#invalidstateerror\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "da6208d9-809b-4753-8703-044b0c47fa47",
+              "name": "Unexpected error",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "file-storage",
+                    "upload-sessions",
+                    ":id",
+                    "finish"
+                  ],
+                  "host": [
+                    "upload",
+                    "apideck",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "raw",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the record you are acting upon."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ID of the consumer which you want to get or push data from",
+                    "key": "x-apideck-consumer-id",
+                    "value": "test-consumer"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The ID of your Unify application",
+                    "key": "x-apideck-app-id",
+                    "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.",
+                    "key": "x-apideck-service-id",
+                    "value": "salesforce"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The RFC3230 message digest of the uploaded part. Only required for the Box connector. More information on the Box API docs [here](https://developer.box.com/reference/put-files-upload-sessions-id/#param-digest)",
+                    "key": "digest",
+                    "value": "sha=fpRyg5eVQletdZqEKaFlqwBXJzM="
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 400,\n  \"error\": \"Bad Request\",\n  \"type_name\": \"RequestHeadersValidationError\",\n  \"message\": \"Invalid Params\",\n  \"detail\": \"Missing Header: x-apideck-consumer-id\",\n  \"ref\": \"https://developers.apideck.com/errors#unauthorizederror\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://unify.apideck.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "7b128ba0-5bc6-4b50-99b3-a682531d51cf",
+    "name": "Apideck Accounting Activities Upload Sessions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Welcome to the Accounting API.\n\nYou can use this API to access all Accounting API endpoints.\n\n## Base URL\n\nThe base URL for all API requests is `https://unify.apideck.com`\n\n## Headers\n\nCustom headers that are expected as part of the request. Note that [RFC7230](https://tools.ietf.org/html/rfc7230) states header names are case insensitive.\n\n| Name                  | Type    | Required | Description                                                                                                                                                    |\n| --------------------- | ------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| x-apideck-consumer-id | String  | Yes      | The id of the customer stored inside Apideck Vault. This can be a user id, account id, device id or whatever entity that can have integration within your app. |\n| x-apideck-service-id  | String  | No       | Describe the service you want to call (e.g., pipedrive). Only needed when a customer has activated multiple integrations for the same Unified API.             |\n| x-apideck-app-id      | String  | Yes      | The application id of your Unify application. Available at https://app.apideck.com/unify/api-keys.                                                             |\n| Authorization         | String  | Yes      | Bearer <token> KEY                                                                                                                                                 |\n\n## Authorization\n\nYou can interact with the API through the authorization methods below.\n\n<!-- ReDoc-Inject: <security-definitions> -->\n\n## Pagination\n\nAll API resources have support for bulk retrieval via list APIs.  Apideck uses cursor-based pagination via the optional `cursor` and `limit` parameters.\n\nTo fetch the first page of results, call the list API without a `cursor` parameter. Afterwards you can fetch subsequent pages by providing a cursor parameter. You will find the next cursor in the response body in `meta.cursors.next`. If `meta.cursors.next` is `null` you're at the end of the list.\n\nIn the REST API you can also use the `links` from the response for added convenience. Simply call the URL in `links.next` to get the next page of results.\n\n### Query Parameters\n\n| Name   | Type   | Required | Description                                                                                                        |\n| ------ | ------ | -------- | ------------------------------------------------------------------------------------------------------------------ |\n| cursor | String | No       | Cursor to start from. You can find cursors for next & previous pages in the meta.cursors property of the response. |\n| limit  | Number | No       | Number of results to return. Minimum 1, Maximum 200, Default 20                                                    |\n\n### Response Body\n\n| Name                  | Type   | Description                                                        |\n| --------------------- | ------ | ------------------------------------------------------------------ |\n| meta.cursors.previous | String | Cursor to navigate to the previous page of results through the API |\n| meta.cursors.current  | String | Cursor to navigate to the current page of results through the API  |\n| meta.cursors.next     | String | Cursor to navigate to the next page of results through the API     |\n| meta.items_on_page    | Number | Number of items returned in the data property of the response      |\n| links.previous        | String | Link to navigate to the previous page of results through the API   |\n| links.current         | String | Link to navigate to the current page of results through the API    |\n| links.next            | String | Link to navigate to the next page of results through the API       |\n\n⚠️ `meta.cursors.previous`/`links.previous` is not available for all connectors.\n\n## SDKs and API Clients\n\nWe currently offer a [Node.js](https://developers.apideck.com/sdks/node), [PHP](https://developers.apideck.com/sdks/php), [Python](https://developers.apideck.com/sdks/python) and [.NET](https://developers.apideck.com/sdks/dot-net) SDK.\nNeed another SDK? [Request the SDK of your choice](https://requests.apideck.io/request).\n\n## Debugging\n\nBecause of the nature of the abstraction we do in Apideck Unify we still provide the option to the receive raw requests and responses being handled underlying. By including the raw flag `?raw=true` in your requests you can still receive the full request. Please note that this increases the response size and can introduce extra latency.\n\n## Errors\n\nThe API returns standard HTTP response codes to indicate success or failure of the API requests. For errors, we also return a customized error message inside the JSON response. You can see the returned HTTP status codes below.\n\n| Code | Title                | Description                                                                                                                                                                                              |\n| ---- | -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| 200  | OK                   | The request message has been successfully processed, and it has produced a response. The response message varies, depending on the request method and the requested data.                                |\n| 201  | Created              | The request has been fulfilled and has resulted in one or more new resources being created.                                                                                                              |\n| 204  | No Content           | The server has successfully fulfilled the request and that there is no additional content to send in the response payload body.                                                                          |\n| 400  | Bad Request          | The receiving server cannot understand the request because of malformed syntax. Do not repeat the request without first modifying it; check the request for errors, fix them and then retry the request. |\n| 401  | Unauthorized         | The request has not been applied because it lacks valid authentication credentials for the target resource.                                                                                              |\n| 402  | Payment Required     | Subscription data is incomplete or out of date. You'll need to provide payment details to continue.                                                                                                      |\n| 403  | Forbidden            | You do not have the appropriate user rights to access the request. Do not repeat the request.                                                                                                            |\n| 404  | Not Found            | The origin server did not find a current representation for the target resource or is not willing to disclose that one exists.                                                                           |\n| 409  | Conflict             | The request could not be completed due to a conflict with the current state of the target resource.                                                                                                      |\n| 422  | Unprocessable Entity | The server understands the content type of the request entity, and the syntax of the request entity is correct but was unable to process the contained instructions.                                     |\n| 429  | Too Many Requests    | You sent too many requests in a given amount of time (\"rate limit\"). Try again later                                                                                                                     |\n| 5xx  | Server Errors        | Something went wrong with the Unify API. These errors are logged on our side. You can contact our team to resolve the issue.                                                                             |\n\n### Handling errors\n\nThe Unify API and SDKs can produce errors for many reasons, such as a failed requests due to misconfigured integrations, invalid parameters, authentication errors, and network unavailability.\n\n### Error Types\n\n#### RequestValidationError\n\nRequest is not valid for the current endpoint. The response body will include details on the validation error. Check the spelling and types of your attributes, and ensure you are not passing data that is outside of the specification.\n\n#### UnsupportedFiltersError\n\nFilters in the request are valid, but not supported by the connector. Remove the unsupported filter(s) to get a successful response.\n\n#### UnsupportedSortFieldError\n\nSort field (`sort[by]`) in the request is valid, but not supported by the connector. Replace or remove the sort field to get a successful response.\n\n#### InvalidCursorError\n\nPagination cursor in the request is not valid for the current connector. Make sure to use a cursor returned from the API, for the same connector.\n\n#### ConnectorExecutionError\n\nA Unified API request made via one of our downstream connectors returned an unexpected error. The `status_code` returned is proxied through to error response along with their original response via the error detail.\n\n#### UnauthorizedError\n\nWe were unable to authorize the request as made. This can happen for a number of reasons, from missing header params to passing an incorrect authorization token. Verify your Api Key is being set correctly in the authorization header. ie: `Authorization: 'Bearer <API KEY>'`\n\n#### ConnectorCredentialsError\n\nA request using a given connector has not been authorized. Ensure the connector you are trying to use has been configured correctly and been authorized for use.\n\n#### ConnectorDisabledError\n\nA request has been made to a connector that has since been disabled. This may be temporary - You can contact our team to resolve the issue.\n\n#### ConnectorRateLimitError\n\nYou sent too many request to a connector. These rate limits vary from connector to connector. You will need to try again later.\n\n#### RequestLimitError\n\nYou have reached the number of requests included in your Free Tier Subscription. You will not be able to make further requests until you upgrade your subscription. Please reach out to sales@apideck.com to continue making requests.\n\n#### EntityNotFoundError\n\nYou've made a request for a resource or route that does not exist. Verify your path parameters or any identifiers used to fetch this resource.\n\n#### OAuthCredentialsNotFoundError\n\nWhen adding a connector integration that implements OAuth, both a `client_id` and `client_secret` must be provided before any authorizations can be performed. Verify the integration has been configured properly before continuing.\n\n#### IntegrationNotFoundError\n\nThe requested connector integration could not be found associated to your `application_id`. Verify your `application_id` is correct, and that this connector has been added and configured for your application.\n\n#### ConnectionNotFoundError\n\nA valid connection could not be found associated to your `application_id`. Something _may_ have interrupted the authorization flow. You may need to start the connector authorization process again.\n\n#### ConnectionSettingsError\n\nThe connector has required settings that were not supplied. Verify `connection.settings` contains all required settings for the connector to be callable.\n\n#### ConnectorNotFoundError\n\nA request was made for an unknown connector. Verify your `service_id` is spelled correctly, and that this connector is enabled for your provided `unified_api`.\n\n#### OAuthRedirectUriError\n\nA request was made either in a connector authorization flow, or attempting to revoke connector access without a valid `redirect_uri`. This is the url the user should be returned to on completion of process.\n\n#### OAuthInvalidStateError\n\nThe state param is required and is used to ensure the outgoing authorization state has not been altered before the user is redirected back. It also contains required params needed to identify the connector being used. If this has been altered, the authorization will not succeed.\n\n#### OAuthCodeExchangeError\n\nWhen attempting to exchange the authorization code for an `access_token` during an OAuth flow, an error occurred. This may be temporary. You can reattempt authorization or contact our team to resolve the issue.\n\n#### OAuthConnectorError\n\nIt seems something went wrong on the connector side. It's possible this connector is in `beta` or still under development. We've been notified and are working to fix this issue.\n\n#### MappingError\n\nThere was an error attempting to retrieve the mapping for a given attribute. We've been notified and are working to fix this issue.\n\n#### ConnectorMappingNotFoundError\n\nIt seems the implementation for this connector is incomplete. It's possible this connector is in `beta` or still under development. We've been notified and are working to fix this issue.\n\n#### ConnectorResponseMappingNotFoundError\n\nWe were unable to retrieve the response mapping for this connector. It's possible this connector is in `beta` or still under development. We've been notified and are working to fix this issue.\n\n#### ConnectorOperationMappingNotFoundError\n\nConnector mapping has not been implemented for the requested operation. It's possible this connector is in `beta` or still under development. We've been notified and are working to fix this issue.\n\n#### ConnectorWorkflowMappingError\n\nThe composite api calls required for this operation have not been mapped entirely. It's possible this connector is in `beta` or still under development. We've been notified and are working to fix this issue.\n\n#### ConnectorOperationUnsupportedError\n\nYou're attempting a call that is not supported by the connector. It's likely this operation is supported by another connector, but we're unable to implement for this one.\n\n#### PaginationNotSupportedError\n\nPagination is not yet supported for this connector, try removing limit and/or cursor from the query. It's possible this connector is in `beta` or still under development. We've been notified and are working to fix this issue.\n\n## API Design\n\n### API Styles and data formats\n\n#### REST API\n\nThe API is organized around [REST](https://restfulapi.net/), providing simple and predictable URIs to access and modify objects. Requests support standard HTTP methods like GET, PUT, POST, and DELETE and standard status codes. JSON is returned by all API responses, including errors. In all API requests, you must set the content-type HTTP header to application/json. All API requests must be made over HTTPS. Calls made over HTTP will fail.\n\n##### Available HTTP methods\n\nThe Apideck API uses HTTP verbs to understand if you want to read (GET), delete (DELETE) or create (POST) an object. When your web application cannot do a POST or DELETE, we provide the ability to set the method through the query parameter \\_method.\n\n```\nPOST /messages\nGET /messages\nGET /messages/{messageId}\nPATCH /messages/{messageId}\nDELETE /messages/{messageId}\n```\n\nResponse bodies are always UTF-8 encoded JSON objects, unless explicitly documented otherwise. For some endpoints and use cases we divert from REST to provide a better developer experience.\n\n### Schema\n\nAll API requests and response bodies adhere to a common JSON format representing individual items, collections of items, links to related items and additional meta data.\n\n### Meta\n\nMeta data can be represented as a top level member named “meta”. Any information may be provided in the meta data. It’s most common use is to return the total number of records when requesting a collection of resources.\n\n### Request IDs\n\nEach API request has an associated request identifier. You can find this value in the response headers, under Request-Id. You can also find request identifiers in the URLs of individual request logs in your Dashboard. If you need to contact us about a specific request, providing the request identifier will ensure the fastest possible resolution.\n\n### Fixed field types\n\n#### Dates\n\nThe dates returned by the API are all represented in UTC (ISO8601 format).\n\nThis example `2019-11-14T00:55:31.820Z` is defined by the ISO 8601 standard. The T in the middle separates the year-month-day portion from the hour-minute-second portion. The Z on the end means UTC, that is, an offset-from-UTC of zero hours-minutes-seconds. The Z is pronounced \"Zulu\" per military/aviation tradition.\n\nThe ISO 8601 standard is more modern. The formats are wisely designed to be easy to parse by machine as well as easy to read by humans across cultures.\n\n#### Currencies\n\nAll currency codes conform to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).\n\n## Support\n\nIf you have problems or need help with your case, you can always reach out to our Support.\n\n## Static IP\n\nSome of the APIs you want to use can require a static IP. Apideck's static IP feature allows you to use Apideck with a fixed IP avoiding the need for you to set up your own infrastructure. This feature is currently available to all Apideck customers.\nTo use this feature, the API Vendor will need to whitelist the associated static IP addresses.\nThe provided static IP addresses are fixed to their specified region and shared by all customers who use this feature.\n\n- EU Central 1: **18.197.244.247**, **18.156.9.3**, **3.65.139.215**\n- Other: upcoming\n\n  More info about our data security can be found at [https://compliance.apideck.com/](https://compliance.apideck.com/)\n\n\n\nContact Support:\n Email: hello@apideck.com",
+      "type": "text/plain"
+    }
+  }
+}

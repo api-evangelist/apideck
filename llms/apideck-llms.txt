@@ -1,0 +1,84 @@
+# Apideck
+
+> Apideck is a unified API platform. Integrate once to connect to
+> 200+ services across CRM, Accounting, HRIS, ATS, File Storage,
+> E-commerce, Issue Tracking, and more.
+
+- [Full index](https://developers.apideck.com/llms-full.txt): Enumerated index of every doc page on the site (progressive disclosure)
+- [Markdown index](https://developers.apideck.com/md/index.json): Machine-readable index of all available markdown documentation
+- [OpenAPI specs](https://github.com/apideck-libraries/openapi-specs): Open-source OpenAPI specifications for all Apideck APIs
+- [API Skills](https://github.com/apideck-libraries/api-skills): Agent skills that teach LLMs to build with Apideck SDKs
+
+## Docs
+
+- [Get Started](https://developers.apideck.com/get-started.md): Create an account, get API keys, and make your first API call (~2.2k tokens)
+- [Building with LLMs](https://developers.apideck.com/building-with-llms.md): MCP server, CLI, API skills, IDE plugins, and plain-text docs (~502 tokens)
+- [API Explorer](https://developers.apideck.com/api-explorer.md): Interactive API explorer to test endpoints (~350 tokens)
+
+## Unified APIs
+
+- [CRM API](https://developers.apideck.com/apis/crm/reference.md): Contacts, companies, opportunities, leads, pipelines (~2.3k tokens)
+- [Accounting API](https://developers.apideck.com/apis/accounting/reference.md): Invoices, bills, payments, ledger accounts, tax rates (~7.7k tokens)
+- [HRIS API](https://developers.apideck.com/apis/hris/reference.md): Employees, departments, time off, payroll (~1.4k tokens)
+- [ATS API](https://developers.apideck.com/apis/ats/reference.md): Jobs, applicants, hiring pipelines (~721 tokens)
+- [File Storage API](https://developers.apideck.com/apis/file-storage/reference.md): Files, folders, shared links (~1.7k tokens)
+- [E-commerce API](https://developers.apideck.com/apis/ecommerce/reference.md): Orders, products, customers (~496 tokens)
+- [Issue Tracking API](https://developers.apideck.com/apis/issue-tracking/reference.md): Issues, projects, comments (~1.1k tokens)
+
+## Platform APIs
+
+- [Vault API Reference](https://developers.apideck.com/apis/vault/reference.md): Manage connections, sessions, and consumer authentication (~1.8k tokens)
+- [Webhooks API Reference](https://developers.apideck.com/apis/webhook/reference.md): Subscribe to events and receive real-time updates (~525 tokens)
+- [Proxy API Reference](https://developers.apideck.com/apis/proxy/reference.md): Make direct calls to downstream APIs through Apideck (~286 tokens)
+- [Connector API Reference](https://developers.apideck.com/apis/connector/reference.md): Query available connectors, resources, and coverage (~885 tokens)
+
+## SDKs
+
+- [TypeScript / Node.js SDK](https://developers.apideck.com/sdks/node.md): Install with `npm install @apideck/unify` (~421 tokens)
+- [Python SDK](https://developers.apideck.com/sdks/python.md): Install with `pip install apideck-unify` (~405 tokens)
+- [C# / .NET SDK](https://developers.apideck.com/sdks/dot-net.md): Install with `dotnet add package ApideckUnifySdk` (~415 tokens)
+- [PHP SDK](https://developers.apideck.com/sdks/php.md): Install with `composer require apideck-libraries/sdk-php` (~415 tokens)
+- [Java SDK](https://developers.apideck.com/sdks/java.md): Install with `implementation 'com.apideck:unify'` (~420 tokens)
+- [Go SDK](https://developers.apideck.com/sdks/go.md): Install with `go get github.com/apideck-libraries/sdk-go` (~431 tokens)
+
+## MCP Server
+
+- [Apideck MCP Server](https://developers.apideck.com/mcp.md): 229 tools across 5 Unified APIs, managed OAuth via Vault, progressive discovery (~296 tokens)
+- [MCP Server marketing page](https://www.apideck.com/mcp-server): Overview, supported clients, and connected services
+
+## CLI
+
+- [Apideck CLI](https://developers.apideck.com/cli.md): OpenAPI-native CLI. Install with `brew install apideck-libraries/tap/apideck` (~263 tokens)
+- [CLI GitHub](https://github.com/apideck-libraries/cli): Source code, documentation, and releases
+
+## Guides
+
+- [Vault JS](https://developers.apideck.com/guides/vault.md): Embed the Vault integration UI in your app with JavaScript, React, or Vue (~2.7k tokens)
+- [Webhooks](https://developers.apideck.com/guides/webhooks.md): Set up native and virtual webhooks for real-time updates from Unified APIs (~1.8k tokens)
+- [Webhook Signature Verification](https://developers.apideck.com/guides/webhook-signature-verification.md): Verify webhook signatures to prevent tampering (~2.1k tokens)
+- [Field Mapping](https://developers.apideck.com/guides/field-mapping.md): Extend Apideck models and map custom fields from integrations (~3.8k tokens)
+- [Unified Pass Through](https://developers.apideck.com/guides/pass-through.md): Send connector-specific parameters outside the unified model (~4.1k tokens)
+- [Vault Connection States](https://developers.apideck.com/guides/connection-states.md): Understand and handle the lifecycle of Vault connections (~912 tokens)
+- [Authorize Connections](https://developers.apideck.com/guides/authorize-connections.md): Different methods for authorizing consumer connections (~1.6k tokens)
+- [Unified Rate Limits](https://developers.apideck.com/guides/unified-rate-limits.md): Handle rate limit headers returned by Unified APIs (~1.4k tokens)
+- [Getting Downstream Responses](https://developers.apideck.com/guides/using-raw-mode.md): Get raw responses from downstream APIs (~1.2k tokens)
+- [File Picker](https://developers.apideck.com/guides/file-picker.md): Add a file browser and uploader component to your app (~1.7k tokens)
+- [Uploading Files](https://developers.apideck.com/guides/file-upload.md): Upload files to Google Drive, Box, SharePoint, OneDrive, and Dropbox (~1.8k tokens)
+- [Migrating Integrations](https://developers.apideck.com/guides/migrating-integrations.md): Migrate credentials from existing integrations to Apideck (~935 tokens)
+- [SDK Migration](https://developers.apideck.com/guides/sdk-migration.md): Migrate from legacy @apideck/node to the new @apideck/unify SDKs (~1.8k tokens)
+- [Mark Invoices as Paid](https://developers.apideck.com/guides/mark-invoices-as-paid.md): Record payments against invoices and bills (~1k tokens)
+- [Expenses and Bills](https://developers.apideck.com/guides/expenses-bills.md): Handle expenses and bills across accounting connectors (~5k tokens)
+- [Tracking Dimensions](https://developers.apideck.com/guides/locations-subsidiaries-departments.md): Use departments, locations, and subsidiaries for segmented reporting (~3.9k tokens)
+- [Xero Bank Feeds](https://developers.apideck.com/guides/bank-feeds-xero.md): Send transaction data into Xero for reconciliation (~1.6k tokens)
+- [Push Applicant to HRIS](https://developers.apideck.com/guides/sync-applicant.md): Sync hired applicants from ATS to HRIS (~1.9k tokens)
+- [Onboard and Offboard Employees](https://developers.apideck.com/guides/onboard-and-offboard-employees-hris-api.md): Automate employee sync from HRIS (~818 tokens)
+- [Data Scopes for Accounting](https://developers.apideck.com/guides/data-scopes-for-accounting.md): Control field-level access for accounting data (~1.6k tokens)
+- [Data Scopes for HRIS](https://developers.apideck.com/guides/data-scopes-for-hris.md): Control field-level access for HRIS data (~1.8k tokens)
+- [Refresh Token Race Condition](https://developers.apideck.com/guides/refresh-token-race-condition.md): Handle OAuth token refresh conflicts (~857 tokens)
+
+## Optional
+
+- [Connectors](https://developers.apideck.com/connectors.md): Browse all 200+ supported connectors and their capabilities (~527 tokens)
+- [Samples](https://developers.apideck.com/samples.md): Open-source sample projects and integration examples (~300 tokens)
+- [Changelog](https://developers.apideck.com/changelog.md): Latest updates and changes to the API (~313 tokens)
+- [API Status](https://status.apideck.com): Real-time API status and incident history

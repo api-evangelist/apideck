@@ -1,0 +1,275 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Apideck Accounting Activities Folders API",
+    "version": "10.24.12"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Folders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Apideck Create Folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://unify.apideck.com/file-storage/folders",
+            "headers": [
+              {
+                "name": "x-apideck-consumer-id",
+                "value": "test-consumer"
+              },
+              {
+                "name": "x-apideck-app-id",
+                "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+              },
+              {
+                "name": "x-apideck-service-id",
+                "value": "salesforce"
+              }
+            ],
+            "params": [
+              {
+                "name": "raw",
+                "value": "",
+                "type": "query",
+                "description": "Include raw response. Mostly used for debugging purposes"
+              },
+              {
+                "name": "fields",
+                "value": "id,updated_at",
+                "type": "query",
+                "description": "The 'fields' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. <br /><br />Example: `fields=name,email,addresses.city`<br /><br />In the example above, the response will only include the fields \"name\", \"email\" and \"addresses.city\". If any other fields are available, they will be excluded."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create Folder"
+        },
+        {
+          "info": {
+            "name": "Apideck Get Folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://unify.apideck.com/file-storage/folders/:id",
+            "headers": [
+              {
+                "name": "x-apideck-consumer-id",
+                "value": "test-consumer"
+              },
+              {
+                "name": "x-apideck-app-id",
+                "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+              },
+              {
+                "name": "x-apideck-service-id",
+                "value": "salesforce"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the record you are acting upon."
+              },
+              {
+                "name": "raw",
+                "value": "",
+                "type": "query",
+                "description": "Include raw response. Mostly used for debugging purposes"
+              },
+              {
+                "name": "fields",
+                "value": "id,updated_at",
+                "type": "query",
+                "description": "The 'fields' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. <br /><br />Example: `fields=name,email,addresses.city`<br /><br />In the example above, the response will only include the fields \"name\", \"email\" and \"addresses.city\". If any other fields are available, they will be excluded."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get Folder"
+        },
+        {
+          "info": {
+            "name": "Apideck Rename or move Folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://unify.apideck.com/file-storage/folders/:id",
+            "headers": [
+              {
+                "name": "x-apideck-consumer-id",
+                "value": "test-consumer"
+              },
+              {
+                "name": "x-apideck-app-id",
+                "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+              },
+              {
+                "name": "x-apideck-service-id",
+                "value": "salesforce"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the record you are acting upon."
+              },
+              {
+                "name": "raw",
+                "value": "",
+                "type": "query",
+                "description": "Include raw response. Mostly used for debugging purposes"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Rename or move Folder"
+        },
+        {
+          "info": {
+            "name": "Apideck Delete Folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://unify.apideck.com/file-storage/folders/:id",
+            "headers": [
+              {
+                "name": "x-apideck-consumer-id",
+                "value": "test-consumer"
+              },
+              {
+                "name": "x-apideck-app-id",
+                "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+              },
+              {
+                "name": "x-apideck-service-id",
+                "value": "salesforce"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the record you are acting upon."
+              },
+              {
+                "name": "raw",
+                "value": "",
+                "type": "query",
+                "description": "Include raw response. Mostly used for debugging purposes"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Delete Folder"
+        },
+        {
+          "info": {
+            "name": "Apideck Copy Folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://unify.apideck.com/file-storage/folders/:id/copy",
+            "headers": [
+              {
+                "name": "x-apideck-consumer-id",
+                "value": "test-consumer"
+              },
+              {
+                "name": "x-apideck-app-id",
+                "value": "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+              },
+              {
+                "name": "x-apideck-service-id",
+                "value": "salesforce"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the record you are acting upon."
+              },
+              {
+                "name": "raw",
+                "value": "",
+                "type": "query",
+                "description": "Include raw response. Mostly used for debugging purposes"
+              },
+              {
+                "name": "fields",
+                "value": "id,updated_at",
+                "type": "query",
+                "description": "The 'fields' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. <br /><br />Example: `fields=name,email,addresses.city`<br /><br />In the example above, the response will only include the fields \"name\", \"email\" and \"addresses.city\". If any other fields are available, they will be excluded."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Copy Folder"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
