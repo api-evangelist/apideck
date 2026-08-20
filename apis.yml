@@ -4,6 +4,9 @@ apis:
 - aid: apideck:apideck
   name: Apideck
   tags:
+  - Integration
+  - Unified-API
+  tags_raw:
   - Integrations
   - Unified API
   humanURL: ' https://www.apideck.com/'
@@ -1106,6 +1109,8 @@ apis:
   humanURL: ' https://www.apideck.com/'
   baseURL: https://unify.apideck.com
   tags:
+  - File
+  tags_raw:
   - Files
   properties:
   - type: OpenAPI
@@ -1666,6 +1671,8 @@ apis:
   humanURL: ' https://www.apideck.com/'
   baseURL: https://unify.apideck.com
   tags:
+  - Project
+  tags_raw:
   - Projects
   properties:
   - type: OpenAPI
@@ -2110,6 +2117,8 @@ apis:
   humanURL: ' https://www.apideck.com/'
   baseURL: https://unify.apideck.com
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
@@ -2144,6 +2153,9 @@ apis:
     url: https://developers.apideck.com/apis/proxy/reference
 name: Apideck
 tags:
+  - Integration
+  - Unified-API
+tags_raw:
   - Integrations
   - Unified API
 type: Index
