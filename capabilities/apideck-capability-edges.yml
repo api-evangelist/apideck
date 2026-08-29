@@ -1,0 +1,213 @@
+slug: apideck
+provider: Apideck
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 22
+edges:
+- tag: Journal Entries
+  spec_file: apideck-journal-entries-api-openapi.yml
+  capability_id: BC-200.10
+  capability_id_l1: BC-200
+  capability_name: General Ledger Management
+  confidence: 0.92
+  evidence: POST /accounting/journal-entries Create Journal Entry; schemas LinkedTaxRate, TaxCode
+  reason: Journal entry CRUD is core general ledger management.
+- tag: Opportunities
+  spec_file: apideck-opportunities-api-openapi.yml
+  capability_id: BC-410.30
+  capability_id_l1: BC-410
+  capability_name: Opportunity & Pipeline Management
+  confidence: 0.92
+  evidence: POST /crm/opportunities Create opportunity; schema Opportunity
+  reason: CRM opportunity/deal lifecycle CRUD is Opportunity & Pipeline Management.
+- tag: Bill Payments
+  spec_file: apideck-bill-payments-api-openapi.yml
+  capability_id: BC-200.20
+  capability_id_l1: BC-200
+  capability_name: Accounts Payable Management
+  confidence: 0.9
+  evidence: POST /accounting/bill-payments  billPaymentsAdd  Apideck Create Bill Payment; schemas LinkedSupplier,
+    IsReconciled
+  reason: Payments against supplier bills with linked supplier records — clearly Accounts Payable payment
+    processing.
+- tag: Bills
+  spec_file: apideck-bills-api-openapi.yml
+  capability_id: BC-200.20
+  capability_id_l1: BC-200
+  capability_name: Accounts Payable Management
+  confidence: 0.9
+  evidence: POST /accounting/bills  billsAdd  Apideck Create Bill; schemas LinkedSupplier, DueDate, TotalTax
+  reason: Supplier bill (vendor invoice) lifecycle with due dates and supplier links — Accounts Payable
+    invoice processing.
+- tag: Ledger Accounts
+  spec_file: apideck-ledger-accounts-api-openapi.yml
+  capability_id: BC-200.10
+  capability_id_l1: BC-200
+  capability_name: General Ledger Management
+  confidence: 0.9
+  evidence: GET /accounting/ledger-accounts List Ledger Accounts; schema LedgerAccount
+  reason: Ledger account (chart of accounts) maintenance is General Ledger Management.
+- tag: Payrolls
+  spec_file: apideck-payrolls-api-openapi.yml
+  capability_id: BC-300.70
+  capability_id_l1: BC-300
+  capability_name: HR Operations Management
+  confidence: 0.9
+  evidence: GET /hris/payrolls payrollsAll List Payroll; schemas PayrollTotals, Deduction, Benefit
+  reason: HRIS payroll runs with deductions and totals is payroll administration under HR Operations.
+- tag: Purchase Orders
+  spec_file: apideck-purchase-orders-api-openapi.yml
+  capability_id: BC-500.30
+  capability_id_l1: BC-500
+  capability_name: Purchase Order Management
+  confidence: 0.9
+  evidence: POST /accounting/purchase-orders  purchaseOrdersAdd  Apideck Create Purchase Order; schemas
+    LinkedSupplier, InvoiceLineItem, DueDate
+  reason: Full lifecycle CRUD on purchase orders with supplier and line-item schemas — plainly purchase
+    order management within procurement.
+- tag: Aged Creditors
+  spec_file: apideck-aged-creditors-api-openapi.yml
+  capability_id: BC-200.20
+  capability_id_l1: BC-200
+  capability_name: Accounts Payable Management
+  confidence: 0.85
+  evidence: GET /accounting/aged-creditors  agedCreditorsOne; schemas OutstandingBalanceBySupplier, AgedReportFilter
+  reason: Aged creditors reporting with outstanding balances by supplier is accounts payable accounting.
+- tag: Aged Debtors
+  spec_file: apideck-aged-debtors-api-openapi.yml
+  capability_id: BC-200.30
+  capability_id_l1: BC-200
+  capability_name: Accounts Receivable Management
+  confidence: 0.85
+  evidence: GET /accounting/aged-debtors  agedDebtorsOne; schema OutstandingBalanceByCustomer
+  reason: Aged debtors report of outstanding customer balances is accounts receivable / collections reporting.
+- tag: Employee Payrolls
+  spec_file: apideck-employee-payrolls-api-openapi.yml
+  capability_id: BC-300.70
+  capability_id_l1: BC-300
+  capability_name: HR Operations Management
+  confidence: 0.85
+  evidence: GET /hris/payrolls/employees/{employee_id} — Apideck List Employee Payrolls; schemas Compensation,
+    Deduction, Tax, Benefit, PayrollTotals
+  reason: Reads per-employee payroll runs with compensation, deductions and taxes — payroll administration
+    within HR operations.
+- tag: Invoices
+  spec_file: apideck-invoices-api-openapi.yml
+  capability_id: BC-200.30
+  capability_id_l1: BC-200
+  capability_name: Accounts Receivable Management
+  confidence: 0.85
+  evidence: POST /accounting/invoices invoicesAdd Create Invoice; schemas InvoiceLineItem, LinkedCustomer
+  reason: Customer invoice lifecycle in an accounting API with LinkedCustomer maps to Accounts Receivable
+    / customer invoicing.
+- tag: Balance Sheet
+  spec_file: apideck-balance-sheet-api-openapi.yml
+  capability_id: BC-200.60
+  capability_id_l1: BC-200
+  capability_name: Financial Reporting Management
+  confidence: 0.8
+  evidence: GET /accounting/balance-sheet  balanceSheetOne  Apideck Get BalanceSheet; schemas BalanceSheetAccountRecord,
+    BalanceSheetAccounts
+  reason: Retrieves the balance sheet financial statement from accounting systems — financial reporting/consolidation
+    output of General Ledger. Mapped to Financial Reporting Management.
+- tag: Contacts
+  spec_file: apideck-contacts-api-openapi.yml
+  capability_id: BC-420.10
+  capability_id_l1: BC-420
+  capability_name: Customer Data Management
+  confidence: 0.8
+  evidence: POST /crm/contacts  contactsAdd  Apideck Create contact; schemas Contact, Address, SocialLink,
+    PhoneNumber
+  reason: CRM contact master record CRUD — customer/contact data management within CRM.
+- tag: Credit Notes
+  spec_file: apideck-credit-notes-api-openapi.yml
+  capability_id: BC-200.30
+  capability_id_l1: BC-200
+  capability_name: Accounts Receivable Management
+  confidence: 0.8
+  evidence: POST /accounting/credit-notes  creditNotesAdd  Apideck Create Credit Note; schemas InvoiceLineItem,
+    LinkedInvoiceItem, Allocation
+  reason: Credit notes allocated against customer invoices — Accounts Receivable customer invoicing/adjustment.
+- tag: Employees
+  spec_file: apideck-employees-api-openapi.yml
+  capability_id: BC-300.70
+  capability_id_l1: BC-300
+  capability_name: HR Operations Management
+  confidence: 0.8
+  evidence: GET /hris/employees — Apideck List Employees; POST /hris/employees — Apideck Create Employee;
+    schemas EmploymentStatus, Nationality, BankAccount
+  reason: CRUD over employee master records in HRIS (and accounting) systems — employee records administration
+    under HR Operations.
+- tag: Pipelines
+  spec_file: apideck-pipelines-api-openapi.yml
+  capability_id: BC-410.30
+  capability_id_l1: BC-410
+  capability_name: Opportunity & Pipeline Management
+  confidence: 0.8
+  evidence: GET /crm/pipelines pipelinesAll List pipelines; schema Pipeline
+  reason: CRM sales pipeline (stages) configuration supports opportunity and pipeline management.
+- tag: Time Off Requests
+  spec_file: apideck-time-off-requests-api-openapi.yml
+  capability_id: BC-300.70
+  capability_id_l1: BC-300
+  capability_name: HR Operations Management
+  confidence: 0.8
+  evidence: POST /hris/time-off-requests  timeOffRequestsAdd  Apideck Create Time Off Request; GET /hris/time-off-requests/employees/{employee_id}/...
+  reason: HRIS endpoints managing employee absence/leave requests — HR operations (employee records and
+    leave administration).
+- tag: Profit and Loss
+  spec_file: apideck-profit-and-loss-api-openapi.yml
+  capability_id: BC-200.60
+  capability_id_l1: BC-200
+  capability_name: Financial Reporting Management
+  confidence: 0.78
+  evidence: GET /accounting/profit-and-loss  profitAndLossOne  Apideck Get Profit and Loss; schemas ProfitAndLossRecord,
+    ProfitAndLossSection, TotalPLAmount
+  reason: Retrieves a P&L statement from accounting systems — a financial report composed of accounts,
+    sections and totals. That is financial reporting rather than transactional accounting.
+- tag: Activities
+  spec_file: apideck-activities-api-openapi.yml
+  capability_id: BC-420
+  capability_id_l1: BC-420
+  capability_name: Customer Relationship Management
+  confidence: 0.7
+  evidence: GET /crm/activities  activitiesAll  Apideck List activities; schemas Activity, ActivityAttendee
+  reason: CRM activity records (calls, meetings, attendees) against customer records — customer relationship
+    management; evidence does not name a specific sub-capability so only L1 asserted.
+- tag: Invoice Items
+  spec_file: apideck-invoice-items-api-openapi.yml
+  capability_id: BC-200.30
+  capability_id_l1: BC-200
+  capability_name: Accounts Receivable Management
+  confidence: 0.7
+  evidence: GET /accounting/invoice-items List Invoice Items; schemas LinkedLedgerAccount, LinkedTaxRate
+  reason: Accounting invoice line-item master data supporting customer invoicing; sits within financial
+    accounting (AR/invoicing). Some ambiguity on sub-capability.
+- tag: Payments
+  spec_file: apideck-payments-api-openapi.yml
+  capability_id: BC-200.30
+  capability_id_l1: BC-200
+  capability_name: Accounts Receivable Management
+  confidence: 0.7
+  evidence: POST /accounting/payments Create Payment; schemas Allocation, IsReconciled
+  reason: Accounting payment records with allocation and reconciliation indicate cash application against
+    receivables; some ambiguity vs payables.
+- tag: Quotes
+  spec_file: apideck-quotes-api-openapi.yml
+  capability_id: BC-410.40
+  capability_id_l1: BC-410
+  capability_name: Quote & Configuration Management
+  confidence: 0.7
+  evidence: POST /accounting/quotes  quotesAdd  Apideck Create Quote; schemas QuoteLineItem, AccountingSalesOrderId,
+    LinkedInvoiceItem
+  reason: Creates and maintains customer-facing quotes with priced line items and a link to sales orders
+    — quote management in the lead-to-order flow. Some ambiguity as it sits in an accounting API.

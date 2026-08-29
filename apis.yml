@@ -2287,6 +2287,9 @@ maintainers:
     email: kin@apievangelist.com
 specificationVersion: '0.23'
 common:
+  - type: CapabilityMap
+    url: capabilities/apideck-capability-edges.yml
+    name: Apideck Business Capability Map
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/apideck/overview
   - type: AgentCard
