@@ -2151,6 +2151,16 @@ apis:
     url: https://developers.apideck.com/apis/connector/reference
   - type: Documentation
     url: https://developers.apideck.com/apis/proxy/reference
+- aid: apideck:apideck-webhook-events-api
+  name: Apideck Webhook Events API
+  description: The Webhook Events API from Apideck — 0 operation(s) for webhook events.
+  humanURL: ' https://www.apideck.com/'
+  baseURL: https://unify.apideck.com
+  tags:
+  - Webhook Events
+  properties:
+  - type: OpenAPI
+    url: openapi/apideck-webhook-events-api-openapi.yml
 name: Apideck
 tags:
   - Integration
