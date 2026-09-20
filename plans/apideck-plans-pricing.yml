@@ -10,6 +10,10 @@ provenance:
   grounding: every price_text was found verbatim in the fetched page text
 audience: developer-api
 pricing_basis: tiered-subscription
+delivery:
+  delivery: managed
+  method: keyword-prefilter
+  read: '2026-09-20'
 published: true
 note: Yearly billing 10% off (e.g. Scale 200 consumers $1,979/mo, $23,749/yr). Per-consumer price falls
   from $23.96 to $8.50. New connector requests are a paid add-on with no listed price.
