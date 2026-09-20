@@ -2313,6 +2313,10 @@ maintainers:
     email: kin@apievangelist.com
 specificationVersion: '0.23'
 common:
+  - type: Pricing
+    url: https://www.apideck.com/pricing
+  - type: Plans
+    url: plans/apideck-plans-pricing.yml
   - type: CapabilityMap
     url: capabilities/apideck-capability-edges.yml
     name: Apideck Business Capability Map

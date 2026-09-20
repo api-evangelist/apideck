@@ -1,156 +1,43 @@
-specification: API Commons Plans
-specificationVersion: '0.1'
-schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
-provider: Apideck
-providerId: apideck
-created: '2026-05-04'
-# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
-# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
-method: generated
-modified: '2026-05-05'
-reconciled: true
-tags:
-  - Integrations
-  - Unified API
-  - Embedded Integrations
-  - Connectors
-description: Apideck prices its Unified API as named subscription tiers sized by Active Consumers (the
-  count of end-customers connecting third-party apps via Apideck). Plans are EUR-denominated, offer 10%
-  discount on annual billing, and include unlimited connections. Enterprise pricing is custom and annually
-  billed. A 30-day free trial is available; there is no permanent free plan.
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-09-20'
+method: searched
+source: https://www.apideck.com/pricing
 sources:
-  - https://www.apideck.com/pricing
+- https://www.apideck.com/pricing
+provenance:
+  tool: planning/api-economics/harvest_pricing.py
+  run: 20260920T130003
+  grounding: every price_text was found verbatim in the fetched page text
+audience: developer-api
+pricing_basis: tiered-subscription
+published: true
+note: Yearly billing 10% off (e.g. Scale 200 consumers $1,979/mo, $23,749/yr). Per-consumer price falls
+  from $23.96 to $8.50. New connector requests are a paid add-on with no listed price.
+plan_count: 3
+currency: USD
 plans:
-  - id: apideck-launch
-    name: Launch
-    type: subscription
-    description: Entry tier for getting one Unified API category to market with up to 50 active consumers.
-    entries:
-      - label: Monthly subscription
-        name: launch_subscription
-        type: subscription
-        metric: month
-        limit: 1
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: EUR 599/month
-        userMultiplied: false
-      - label: Active Consumers included
-        name: active_consumers
-        type: quota
-        metric: consumer
-        limit: 50
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: included
-        userMultiplied: false
-      - label: Unified API categories
-        name: unified_api_categories
-        type: quota
-        metric: category
-        limit: 1
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: included
-        userMultiplied: false
-    elements:
-      - name: 1 Unified API category
-      - name: Unlimited connections
-      - name: Passthrough / Proxy API
-      - name: Webhooks
-      - name: Business hours support
-      - name: 30-day free trial
-  - id: apideck-scale
-    name: Scale
-    type: subscription
-    description: Mid-market tier with multiple Unified API categories and 100–250 active consumers, plus
-      Custom Field Mapping and early-access Data Scopes.
-    entries:
-      - label: Monthly subscription
-        name: scale_subscription
-        type: subscription
-        metric: month
-        limit: 1
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: EUR 1,299/month
-        userMultiplied: false
-      - label: Active Consumers included
-        name: active_consumers
-        type: quota
-        metric: consumer
-        limit: 250
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: included
-        userMultiplied: false
-      - label: Unified API categories
-        name: unified_api_categories
-        type: quota
-        metric: category
-        limit: 3
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: included
-        userMultiplied: false
-    elements:
-      - name: 3 Unified API categories
-      - name: Custom Field Mapping
-      - name: Data Scopes (early access)
-      - name: Unlimited connections
-      - name: Webhooks
-      - name: Business hours support
-  - id: apideck-enterprise
-    name: Enterprise
-    type: enterprise
-    description: Annually-billed custom tier with unlimited categories, sandboxes, SSO, Whitelabel Vault,
-      and Enterprise SLA. Starts at 300+ active consumers.
-    entries:
-      - label: Annual contract
-        name: enterprise_contract
-        type: subscription
-        metric: year
-        limit: 1
-        timeFrame: year
-        geo: global
-        unit: 1
-        price: custom
-        userMultiplied: false
-      - label: Active Consumers
-        name: active_consumers
-        type: quota
-        metric: consumer
-        limit: -1
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: custom
-        userMultiplied: false
-      - label: Unified API categories
-        name: unified_api_categories
-        type: quota
-        metric: category
-        limit: -1
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: included
-        userMultiplied: false
-    elements:
-      - name: Unlimited Unified API categories
-      - name: Sandboxes
-      - name: Single Sign-on (SSO)
-      - name: Whitelabel Vault
-      - name: Configurable log retention
-      - name: Enterprise SLA
-      - name: Connector Prioritization (add-on)
-      - name: Dedicated Account Manager (add-on)
-maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+- name: Launch
+  price_text: $ 599 /mo
+  price: 599
+  currency: USD
+  period: month
+  unit: per month, 25 consumers
+  included_quota: 1 Unified API category, Passthrough, Webhook Support, MCP server, Standard support;
+    starts at 25 consumers
+  overage: 50 consumers $999/mo
+- name: Scale
+  price_text: $ 1,299 /mo
+  price: 1299
+  currency: USD
+  period: month
+  unit: per month, 100 consumers
+  included_quota: Everything in Launch plus 3 Unified API categories, Custom Field Mapping, Data Scopes;
+    up to 500 consumers
+  overage: '150: $1,799; 200: $2,199; 250: $2,499; 300: $2,850; 400: $3,600; 500: $4,250'
+- name: Enterprise
+  price_text: Custom
+  period: none
+  unit: any consumer volume
+  included_quota: Everything in Scale plus unlimited Unified API categories, SSO, Whitelabel Vault, Premium
+    support, Dedicated CSM, Uptime SLA
+  overage: Volume discounts continue, annual contract
