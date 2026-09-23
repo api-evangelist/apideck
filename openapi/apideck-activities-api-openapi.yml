@@ -1,22 +1,25 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   version: 10.24.12
-  title: Apideck Accounting Activities API
-  description: "Welcome to the Accounting API.\n\nYou can use this API to access all Accounting API endpoints.\n\n## Base URL\n\nThe base URL for all API requests is `https://unify.apideck.com`\n\n## Headers\n\nCustom headers that are expected as part of the request. Note that [RFC7230](https://tools.ietf.org/html/rfc7230) states header names are case insensitive.\n\n| Name                  | Type    | Required | Description                                                                                                                                                    |\n| --------------------- | ------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| x-apideck-consumer-id | String  | Yes      | The id of the customer stored inside Apideck Vault. This can be a user id, account id, device id or whatever entity that can have integration within your app. |\n| x-apideck-service-id  | String  | No       | Describe the service you want to call (e.g., pipedrive). Only needed when a customer has activated multiple integrations for the same Unified API.             |\n| x-apideck-app-id      | String  | Yes      | The application id of your Unify application. Available at https://app.apideck.com/unify/api-keys.                                                             |\n| Authorization         | String  | Yes      | Bearer <token> KEY                                                                                                                                                 |\n\n## Authorization\n\nYou can interact with the API through the authorization methods below.\n\n<!-- ReDoc-Inject: <security-definitions> -->\n\n## Pagination\n\nAll API resources have support for bulk retrieval via list APIs.  Apideck uses cursor-based pagination via the optional `cursor` and `limit` parameters.\n\nTo fetch the first page of results, call the list API without a `cursor` parameter. Afterwards you can fetch subsequent pages by providing a cursor parameter. You will find the next cursor in the response body in `meta.cursors.next`. If `meta.cursors.next` is `null` you're at the end of the list.\n\nIn the REST API you can also use the `links` from the response for added convenience. Simply call the URL in `links.next` to get the next page of results.\n\n### Query Parameters\n\n| Name   | Type   | Required | Description                                                                                                        |\n| ------ | ------ | -------- | ------------------------------------------------------------------------------------------------------------------ |\n| cursor | String | No       | Cursor to start from. You can find cursors for next & previous pages in the meta.cursors property of the response. |\n| limit  | Number | No       | Number of results to return. Minimum 1, Maximum 200, Default 20                                                    |\n\n### Response Body\n\n| Name                  | Type   | Description                                                        |\n| --------------------- | ------ | ------------------------------------------------------------------ |\n| meta.cursors.previous | String | Cursor to navigate to the previous page of results through the API |\n| meta.cursors.current  | String | Cursor to navigate to the current page of results through the API  |\n| meta.cursors.next     | String | Cursor to navigate to the next page of results through the API     |\n| meta.items_on_page    | Number | Number of items returned in the data property of the response      |\n| links.previous        | String | Link to navigate to the previous page of results through the API   |\n| links.current         | String | Link to navigate to the current page of results through the API    |\n| links.next            | String | Link to navigate to the next page of results through the API       |\n\n⚠️ `meta.cursors.previous`/`links.previous` is not available for all connectors.\n\n## SDKs and API Clients\n\nWe currently offer a [Node.js](https://developers.apideck.com/sdks/node), [PHP](https://developers.apideck.com/sdks/php), [Python](https://developers.apideck.com/sdks/python) and [.NET](https://developers.apideck.com/sdks/dot-net) SDK.\nNeed another SDK? [Request the SDK of your choice](https://requests.apideck.io/request).\n\n## Debugging\n\nBecause of the nature of the abstraction we do in Apideck Unify we still provide the option to the receive raw requests and responses being handled underlying. By including the raw flag `?raw=true` in your requests you can still receive the full request. Please note that this increases the response size and can introduce extra latency.\n\n## Errors\n\nThe API returns standard HTTP response codes to indicate success or failure of the API requests. For errors, we also return a customized error message inside the JSON response. You can see the returned HTTP status codes below.\n\n| Code | Title                | Description                                                                                                                                                                                              |\n| ---- | -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| 200  | OK                   | The request message has been successfully processed, and it has produced a response. The response message varies, depending on the request method and the requested data.                                |\n| 201  | Created              | The request has been fulfilled and has resulted in one or more new resources being created.                                                                                                              |\n| 204  | No Content           | The server has successfully fulfilled the request and that there is no additional content to send in the response payload body.                                                                          |\n| 400  | Bad Request          | The receiving server cannot understand the request because of malformed syntax. Do not repeat the request without first modifying it; check the request for errors, fix them and then retry the request. |\n| 401  | Unauthorized         | The request has not been applied because it lacks valid authentication credentials for the target resource.                                                                                              |\n| 402  | Payment Required     | Subscription data is incomplete or out of date. You'll need to provide payment details to continue.                                                                                                      |\n| 403  | Forbidden            | You do not have the appropriate user rights to access the request. Do not repeat the request.                                                                                                            |\n| 404  | Not Found            | The origin server did not find a current representation for the target resource or is not willing to disclose that one exists.                                                                           |\n| 409  | Conflict             | The request could not be completed due to a conflict with the current state of the target resource.                                                                                                      |\n| 422  | Unprocessable Entity | The server understands the content type of the request entity, and the syntax of the request entity is correct but was unable to process the contained instructions.                                     |\n| 429  | Too Many Requests    | You sent too many requests in a given amount of time (\"rate limit\"). Try again later                                                                                                                     |\n| 5xx  | Server Errors        | Something went wrong with the Unify API. These errors are logged on our side. You can contact our team to resolve the issue.                                                                             |\n\n### Handling errors\n\nThe Unify API and SDKs can produce errors for many reasons, such as a failed requests due to misconfigured integrations, invalid parameters, authentication errors, and network unavailability.\n\n### Error Types\n\n#### RequestValidationError\n\nRequest is not valid for the current endpoint. The response body will include details on the validation error. Check the spelling and types of your attributes, and ensure you are not passing data that is outside of the specification.\n\n#### UnsupportedFiltersError\n\nFilters in the request are valid, but not supported by the connector. Remove the unsupported filter(s) to get a successful response.\n\n#### UnsupportedSortFieldError\n\nSort field (`sort[by]`) in the request is valid, but not supported by the connector. Replace or remove the sort field to get a successful response.\n\n#### InvalidCursorError\n\nPagination cursor in the request is not valid for the current connector. Make sure to use a cursor returned from the API, for the same connector.\n\n#### ConnectorExecutionError\n\nA Unified API request made via one of our downstream connectors returned an unexpected error. The `status_code` returned is proxied through to error response along with their original response via the error detail.\n\n#### UnauthorizedError\n\nWe were unable to authorize the request as made. This can happen for a number of reasons, from missing header params to passing an incorrect authorization token. Verify your Api Key is being set correctly in the authorization header. ie: `Authorization: 'Bearer <API KEY>'`\n\n#### ConnectorCredentialsError\n\nA request using a given connector has not been authorized. Ensure the connector you are trying to use has been configured correctly and been authorized for use.\n\n#### ConnectorDisabledError\n\nA request has been made to a connector that has since been disabled. This may be temporary - You can contact our team to resolve the issue.\n\n#### ConnectorRateLimitError\n\nYou sent too many request to a connector. These rate limits vary from connector to connector. You will need to try again later.\n\n#### RequestLimitError\n\nYou have reached the number of requests included in your Free Tier Subscription. You will not be able to make further requests until you upgrade your subscription. Please reach out to sales@apideck.com to continue making requests.\n\n#### EntityNotFoundError\n\nYou've made a request for a resource or route that does not exist. Verify your path parameters or any identifiers used to fetch this resource.\n\n#### OAuthCredentialsNotFoundError\n\nWhen adding a connector integration that implements OAuth, both a `client_id` and `client_secret` must be provided before any authorizations can be performed. Verify the integration has been configured properly before continuing.\n\n#### IntegrationNotFoundError\n\nThe requested connector integration could not be found associated to your `application_id`. Verify your `application_id` is correct, and that this connector has been added and configured for your application.\n\n#### ConnectionNotFoundError\n\nA valid connection could not be found associated to your `application_id`. Something _may_ have interrupted the authorization flow. You may need to start the connector authorization process again.\n\n#### ConnectionSettingsError\n\nThe connector has required settings that were not supplied. Verify `connection.settings` contains all required settings for the connector to be callable.\n\n#### ConnectorNotFoundError\n\nA request was made for an unknown connector. Verify your `service_id` is spelled correctly, and that this connector is enabled for your provided `unified_api`.\n\n#### OAuthRedirectUriError\n\nA request was made either in a connector authorization flow, or attempting to revoke connector access without a valid `redirect_uri`. This is the url the user should be returned to on completion of process.\n\n#### OAuthInvalidStateError\n\nThe state param is required and is used to ensure the outgoing authorization state has not been altered before the user is redirected back. It also contains required params needed to identify the connector being used. If this has been altered, the authorization will not succeed.\n\n#### OAuthCodeExchangeError\n\nWhen attempting to exchange the authorization code for an `access_token` during an OAuth flow, an error occurred. This may be temporary. You can reattempt authorization or contact our team to resolve the issue.\n\n#### OAuthConnectorError\n\nIt seems something went wrong on the connector side. It's possible this connector is in `beta` or still under development. We've been notified and are working to fix this issue.\n\n#### MappingError\n\nThere was an error attempting to retrieve the mapping for a given attribute. We've been notified and are working to fix this issue.\n\n#### ConnectorMappingNotFoundError\n\nIt seems the implementation for this connector is incomplete. It's possible this connector is in `beta` or still under development. We've been notified and are working to fix this issue.\n\n#### ConnectorResponseMappingNotFoundError\n\nWe were unable to retrieve the response mapping for this connector. It's possible this connector is in `beta` or still under development. We've been notified and are working to fix this issue.\n\n#### ConnectorOperationMappingNotFoundError\n\nConnector mapping has not been implemented for the requested operation. It's possible this connector is in `beta` or still under development. We've been notified and are working to fix this issue.\n\n#### ConnectorWorkflowMappingError\n\nThe composite api calls required for this operation have not been mapped entirely. It's possible this connector is in `beta` or still under development. We've been notified and are working to fix this issue.\n\n#### ConnectorOperationUnsupportedError\n\nYou're attempting a call that is not supported by the connector. It's likely this operation is supported by another connector, but we're unable to implement for this one.\n\n#### PaginationNotSupportedError\n\nPagination is not yet supported for this connector, try removing limit and/or cursor from the query. It's possible this connector is in `beta` or still under development. We've been notified and are working to fix this issue.\n\n## API Design\n\n### API Styles and data formats\n\n#### REST API\n\nThe API is organized around [REST](https://restfulapi.net/), providing simple and predictable URIs to access and modify objects. Requests support standard HTTP methods like GET, PUT, POST, and DELETE and standard status codes. JSON is returned by all API responses, including errors. In all API requests, you must set the content-type HTTP header to application/json. All API requests must be made over HTTPS. Calls made over HTTP will fail.\n\n##### Available HTTP methods\n\nThe Apideck API uses HTTP verbs to understand if you want to read (GET), delete (DELETE) or create (POST) an object. When your web application cannot do a POST or DELETE, we provide the ability to set the method through the query parameter \\_method.\n\n```\nPOST /messages\nGET /messages\nGET /messages/{messageId}\nPATCH /messages/{messageId}\nDELETE /messages/{messageId}\n```\n\nResponse bodies are always UTF-8 encoded JSON objects, unless explicitly documented otherwise. For some endpoints and use cases we divert from REST to provide a better developer experience.\n\n### Schema\n\nAll API requests and response bodies adhere to a common JSON format representing individual items, collections of items, links to related items and additional meta data.\n\n### Meta\n\nMeta data can be represented as a top level member named “meta”. Any information may be provided in the meta data. It’s most common use is to return the total number of records when requesting a collection of resources.\n\n### Request IDs\n\nEach API request has an associated request identifier. You can find this value in the response headers, under Request-Id. You can also find request identifiers in the URLs of individual request logs in your Dashboard. If you need to contact us about a specific request, providing the request identifier will ensure the fastest possible resolution.\n\n### Fixed field types\n\n#### Dates\n\nThe dates returned by the API are all represented in UTC (ISO8601 format).\n\nThis example `2019-11-14T00:55:31.820Z` is defined by the ISO 8601 standard. The T in the middle separates the year-month-day portion from the hour-minute-second portion. The Z on the end means UTC, that is, an offset-from-UTC of zero hours-minutes-seconds. The Z is pronounced \"Zulu\" per military/aviation tradition.\n\nThe ISO 8601 standard is more modern. The formats are wisely designed to be easy to parse by machine as well as easy to read by humans across cultures.\n\n#### Currencies\n\nAll currency codes conform to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).\n\n## Support\n\nIf you have problems or need help with your case, you can always reach out to our Support.\n\n## Static IP\n\nSome of the APIs you want to use can require a static IP. Apideck's static IP feature allows you to use Apideck with a fixed IP avoiding the need for you to set up your own infrastructure. This feature is currently available to all Apideck customers.\nTo use this feature, the API Vendor will need to whitelist the associated static IP addresses.\nThe provided static IP addresses are fixed to their specified region and shared by all customers who use this feature.\n\n- EU Central 1: **18.197.244.247**, **18.156.9.3**, **3.65.139.215**\n- Other: upcoming\n\n  More info about our data security can be found at [https://compliance.apideck.com/](https://compliance.apideck.com/)\n\n"
+  title: Apideck CRM Activities API
+  description: Welcome to the CRM API.
   contact:
     email: hello@apideck.com
     url: https://developers.apideck.com
   x-logo:
     url: https://developers.apideck.com/icon.png
-  x-apideck-api: accounting
-  x-apideck-sdk-support: true
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
+  x-apideck-api: crm
+  x-apideck-sdk-support: true
 servers:
 - url: https://unify.apideck.com
+  description: Production
 security:
 - apiKey: []
+  applicationId: []
+  consumerId: []
 tags:
 - name: Activities
   description: The Activity resource represents a logged event or task, such as a meeting, call, or email, including details like type, date, duration, and associations with contacts, companies, or opportunities.
@@ -419,184 +422,109 @@ paths:
         source:
           id: id_example
 components:
-  responses:
-    UpdateActivityResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UpdateActivityResponse'
-      description: Activity updated
-    BadRequestResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/BadRequestResponse'
-      description: Bad Request
-    DeleteActivityResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/DeleteActivityResponse'
-      description: Activity deleted
-    GetActivityResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/GetActivityResponse'
-      description: Activity
-      links:
-        company:
-          operationId: companiesOne
-          parameters:
-            id: $response.body#/data/company_id
-        contact:
-          operationId: contactsOne
-          parameters:
-            id: $response.body#/data/contact_id
-        opportunity:
-          operationId: opportunitiesOne
-          parameters:
-            id: $response.body#/data/opportunity_id
-        lead:
-          operationId: leadsOne
-          parameters:
-            id: $response.body#/data/lead_id
-        owner:
-          operationId: usersOne
-          parameters:
-            id: $response.body#/data/owner_id
-    NotFoundResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/NotFoundResponse'
-      description: The specified resource was not found
-    UnprocessableResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UnprocessableResponse'
-      description: Unprocessable
-    PaymentRequiredResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/PaymentRequiredResponse'
-      description: Payment Required
-    UnauthorizedResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UnauthorizedResponse'
-      description: Unauthorized
-    UnexpectedErrorResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UnexpectedErrorResponse'
-      description: Unexpected error
-    GetActivitiesResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/GetActivitiesResponse'
-      description: Activities
-    CreateActivityResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/CreateActivityResponse'
-      description: Activity created
   schemas:
-    UnprocessableResponse:
+    Raw:
+      title: raw
+      type:
+      - object
+      - 'null'
+      x-apideck-schema-id: Raw
+      description: Raw response from the integration when raw=true query param is provided
+      additionalProperties: true
+    ActivitiesFilter:
       type: object
-      x-apideck-schema-id: Unprocessable
+      x-apideck-schema-id: ActivitiesFilter
+      example:
+        updated_since: '2020-09-30T07:43:32.000Z'
+      properties:
+        company_id:
+          type: string
+          description: Company ID to filter on
+          example: '1234'
+        owner_id:
+          type: string
+          description: Owner ID to filter on
+          example: '1234'
+        contact_id:
+          type: string
+          description: Primary contact ID to filter on
+          example: '1234'
+        updated_since:
+          type: string
+          title: Updated since (timestamp)
+          format: date-time
+          example: '2020-09-30T07:43:32.000Z'
+        type:
+          type: string
+          title: Type
+          description: Type to filter on
+          format: string
+          example: Task
+      additionalProperties: false
+    UnexpectedErrorResponse:
+      type: object
+      x-apideck-schema-id: Error
       properties:
         status_code:
           type: number
           description: HTTP status code
-          example: 422
+          example: 400
         error:
           type: string
           description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
-          example: Unprocessable Entity
+          example: Bad Request
         type_name:
           type: string
           description: The type of error returned
-          example: InvalidStateError
+          example: RequestHeadersValidationError
         message:
           type: string
           description: A human-readable message providing more details about the error.
-          example: Invalid State
+          example: Invalid Params
           x-speakeasy-error-message: true
         detail:
           anyOf:
           - type: string
-            example: Unprocessable request, please verify your request headers and body.
+            example: 'Missing Header: x-apideck-consumer-id'
           - type: object
             x-speakeasy-detail: true
             example:
-              error: Unprocessable
-              message: Unprocessable request, please verify your request headers and body.
+              missing:
+              - x-apideck-consumer-id: required
           description: Contains parameter or domain specific information related to the error and why it occurred.
         ref:
           type: string
           description: Link to documentation of error type
-          example: https://developers.apideck.com/errors#invalidstateerror
-    Links:
+          example: https://developers.apideck.com/errors#unauthorizederror
+    PaymentRequiredResponse:
       type: object
-      x-apideck-schema-id: Links
-      description: Links to navigate to previous or next pages through the API
-      properties:
-        previous:
-          type: string
-          description: Link to navigate to the previous page through the API
-          example: https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjE%3D
-          nullable: true
-        current:
-          type: string
-          description: Link to navigate to the current page through the API
-          example: https://unify.apideck.com/crm/companies
-        next:
-          type: string
-          description: Link to navigate to the previous page through the API
-          example: https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjM
-          nullable: true
-    CreateActivityResponse:
-      type: object
-      x-apideck-schema-id: CreateActivityResponse
-      required:
-      - status_code
-      - status
-      - service
-      - resource
-      - operation
-      - data
+      x-apideck-schema-id: PaymentRequired
       properties:
         status_code:
-          type: integer
-          description: HTTP Response Status Code
-          example: 200
-        status:
+          type: number
+          description: HTTP status code
+          example: 402
+        error:
           type: string
-          description: HTTP Response Status
-          example: OK
-        service:
+          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
+          example: Payment Required
+        type_name:
           type: string
-          description: Apideck ID of service provider
-          example: zoho-crm
-        resource:
+          description: The type of error returned
+          example: RequestLimitError
+        message:
           type: string
-          description: Unified API resource name
-          example: activities
-        operation:
+          description: A human-readable message providing more details about the error.
+          example: Request Limit Reached
+          x-speakeasy-error-message: true
+        detail:
           type: string
-          description: Operation performed
-          example: add
-        data:
-          $ref: '#/components/schemas/UnifiedId'
-        _raw:
-          $ref: '#/components/schemas/Raw'
+          description: Contains parameter or domain specific information related to the error and why it occurred.
+          example: You have reached your limit of 2000
+        ref:
+          type: string
+          description: Link to documentation of error type
+          example: https://developers.apideck.com/errors#requestlimiterror
     Meta:
       type: object
       x-apideck-schema-id: Meta
@@ -611,349 +539,23 @@ components:
           description: Cursors to navigate to previous or next pages through the API
           properties:
             previous:
-              type: string
+              type:
+              - string
+              - 'null'
               description: Cursor to navigate to the previous page of results through the API
               example: em9oby1jcm06OnBhZ2U6OjE=
-              nullable: true
             current:
-              type: string
+              type:
+              - string
+              - 'null'
               description: Cursor to navigate to the current page of results through the API
               example: em9oby1jcm06OnBhZ2U6OjI=
-              nullable: true
             next:
-              type: string
+              type:
+              - string
+              - 'null'
               description: Cursor to navigate to the next page of results through the API
               example: em9oby1jcm06OnBhZ2U6OjM=
-              nullable: true
-    UnifiedId:
-      title: UnifiedId
-      type: object
-      x-apideck-schema-id: Id
-      description: A object containing a unique identifier for the resource that was created, updated, or deleted.
-      required:
-      - id
-      properties:
-        id:
-          title: Id
-          description: The unique identifier of the resource
-          type: string
-          readOnly: true
-          example: '12345'
-    PassThroughBody:
-      type: array
-      description: The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-      items:
-        type: object
-        properties:
-          service_id:
-            type: string
-            description: Identifier for the service to which this pass_through should be applied.
-          operation_id:
-            type: string
-            description: Optional identifier for a workflow operation to which this pass_through should be applied. This is useful for Unify calls that are making more than one downstream request.
-          extend_object:
-            type: object
-            additionalProperties: true
-            description: Simple object allowing any properties for direct extension.
-          extend_paths:
-            type: array
-            description: Array of objects for structured data modifications via paths.
-            items:
-              type: object
-              properties:
-                path:
-                  type: string
-                  description: JSONPath string specifying where to apply the value.
-                  example: $.nested.property
-                value:
-                  description: The value to set at the specified path, can be any type.
-                  example:
-                    TaxClassificationRef:
-                      value: EUC-99990201-V1-00020000
-              required:
-              - path
-              - value
-              additionalProperties: false
-        required:
-        - service_id
-        additionalProperties: false
-        writeOnly: true
-    CustomMappings:
-      type: object
-      x-apideck-schema-id: CustomMappings
-      description: When custom mappings are configured on the resource, the result is included here.
-      nullable: true
-      readOnly: true
-      additionalProperties: true
-    ActivityAttendee:
-      type: object
-      x-apideck-schema-id: ActivityAttendee
-      x-pii:
-      - name
-      - first_name
-      - middle_name
-      - last_name
-      - email_address
-      x-apideck-weights:
-        id: critical
-        name: critical
-        first_name: high
-        middle_name: low
-        last_name: high
-        prefix: low
-        suffix: edge-case
-        email_address: medium
-        is_organizer: medium
-        status: medium
-        user_id: low
-      properties:
-        id:
-          description: Unique identifier for the attendee
-          type: string
-          example: '12345'
-          readOnly: true
-          nullable: true
-        name:
-          description: Full name of the attendee
-          type: string
-          example: Elon Musk
-          minLength: 1
-          nullable: true
-        first_name:
-          description: First name of the attendee
-          type: string
-          example: Elon
-          nullable: true
-        middle_name:
-          description: Middle name of the attendee
-          type: string
-          example: D.
-          nullable: true
-        last_name:
-          description: Last name of the attendee
-          type: string
-          example: Musk
-          nullable: true
-        prefix:
-          description: Prefix of the attendee
-          type: string
-          example: Mr.
-          nullable: true
-        suffix:
-          description: Suffix of the attendee
-          type: string
-          example: PhD
-          nullable: true
-        email_address:
-          description: Email address of the attendee
-          type: string
-          example: elon@musk.com
-          nullable: true
-        is_organizer:
-          description: Whether the attendee is the organizer of the activity
-          type: boolean
-          example: true
-          nullable: true
-        status:
-          description: Status of the attendee
-          type: string
-          x-apideck-enum-id: activity-attendees.status
-          enum:
-          - accepted
-          - tentative
-          - declined
-          example: accepted
-          nullable: true
-        user_id:
-          description: The identifier for a related user
-          type: string
-          example: '12345'
-          readOnly: true
-          nullable: true
-        contact_id:
-          description: The identifier for a related contact
-          type: string
-          example: '12345'
-          readOnly: true
-          nullable: true
-        updated_at:
-          description: The last time the attendee was updated (ISO 8601)
-          type: string
-          format: date-time
-          example: '2017-08-12T20:43:21.291Z'
-          readOnly: true
-          nullable: true
-        created_at:
-          description: The time the attendee was created (ISO 8601)
-          type: string
-          format: date-time
-          example: '2017-08-12T20:43:21.291Z'
-          readOnly: true
-          nullable: true
-      additionalProperties: false
-    GetActivitiesResponse:
-      type: object
-      x-apideck-schema-id: GetActivitiesResponse
-      required:
-      - status_code
-      - status
-      - service
-      - resource
-      - operation
-      - data
-      properties:
-        status_code:
-          type: integer
-          description: HTTP Response Status Code
-          example: 200
-        status:
-          type: string
-          description: HTTP Response Status
-          example: OK
-        service:
-          type: string
-          description: Apideck ID of service provider
-          example: zoho-crm
-        resource:
-          type: string
-          description: Unified API resource name
-          example: activities
-        operation:
-          type: string
-          description: Operation performed
-          example: all
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Activity'
-        _raw:
-          $ref: '#/components/schemas/Raw'
-        meta:
-          $ref: '#/components/schemas/Meta'
-        links:
-          $ref: '#/components/schemas/Links'
-    CustomField:
-      type: object
-      x-apideck-schema-id: CustomField
-      additionalProperties: false
-      anyOf:
-      - required:
-        - id
-      - required:
-        - name
-      x-apideck-strict-any-of:
-      - required:
-        - id
-      - required:
-        - name
-      x-apideck-weights:
-        id: critical
-        value: critical
-        name: medium
-        description: edge-case
-      properties:
-        id:
-          title: ID
-          description: Unique identifier for the custom field.
-          type: string
-          example: '2389328923893298'
-          nullable: true
-        name:
-          title: Name
-          type: string
-          description: Name of the custom field.
-          example: employee_level
-          nullable: true
-        description:
-          title: Description
-          type: string
-          description: More information about the custom field
-          example: Employee Level
-          nullable: true
-        value:
-          anyOf:
-          - type: string
-            example: Uses Salesforce and Marketo
-            nullable: true
-          - type: number
-            example: 10
-            nullable: true
-          - type: boolean
-            example: true
-            nullable: true
-          - type: object
-            example:
-              foo: bar
-            nullable: true
-            additionalProperties: true
-          - type: array
-            items:
-              anyOf:
-              - type: string
-                example: Uses Salesforce and Marketo
-                nullable: true
-              - type: number
-                example: 10
-                nullable: true
-              - type: boolean
-                example: true
-                nullable: true
-              - type: object
-                example:
-                  foo: bar
-                nullable: true
-                additionalProperties: true
-    DeleteActivityResponse:
-      type: object
-      x-apideck-schema-id: DeleteActivityResponse
-      required:
-      - status_code
-      - status
-      - service
-      - resource
-      - operation
-      - data
-      properties:
-        status_code:
-          type: integer
-          description: HTTP Response Status Code
-          example: 200
-        status:
-          type: string
-          description: HTTP Response Status
-          example: OK
-        service:
-          type: string
-          description: Apideck ID of service provider
-          example: zoho-crm
-        resource:
-          type: string
-          description: Unified API resource name
-          example: activities
-        operation:
-          type: string
-          description: Operation performed
-          example: delete
-        data:
-          $ref: '#/components/schemas/UnifiedId'
-        _raw:
-          $ref: '#/components/schemas/Raw'
-    SortDirection:
-      type: string
-      x-apideck-schema-id: SortDirection
-      description: The direction in which to sort the results
-      x-apideck-enum-id: sort_direction
-      enum:
-      - asc
-      - desc
-      default: asc
-    Raw:
-      title: raw
-      type: object
-      x-apideck-schema-id: Raw
-      description: Raw response from the integration when raw=true query param is provided
-      nullable: true
-      additionalProperties: true
     Activity:
       type: object
       x-apideck-schema-id: Activity
@@ -1013,95 +615,114 @@ components:
           readOnly: true
           example: '12345'
         downstream_id:
-          type: string
+          type:
+          - string
+          - 'null'
           description: The third-party API ID of original entity
           example: '12345'
-          nullable: true
           readOnly: true
         activity_datetime:
           description: The date and time of the activity
-          type: string
+          type:
+          - string
+          - 'null'
           example: '2021-05-01T12:00:00.000Z'
-          nullable: true
         duration_seconds:
           description: The duration of the activity in seconds
-          type: integer
+          type:
+          - integer
+          - 'null'
           example: 1800
           minimum: 0
-          nullable: true
         user_id:
           description: The user related to the activity
-          type: string
+          type:
+          - string
+          - 'null'
           example: '12345'
-          nullable: true
         account_id:
           description: The account related to the activity
-          type: string
+          type:
+          - string
+          - 'null'
           example: '12345'
-          nullable: true
         contact_id:
           description: The contact related to the activity
-          type: string
+          type:
+          - string
+          - 'null'
           example: '12345'
-          nullable: true
         company_id:
           description: The company related to the activity
-          type: string
+          type:
+          - string
+          - 'null'
           example: '12345'
-          nullable: true
         opportunity_id:
           description: The opportunity related to the activity
-          type: string
+          type:
+          - string
+          - 'null'
           example: '12345'
-          nullable: true
         lead_id:
           description: The lead related to the activity
-          type: string
+          type:
+          - string
+          - 'null'
           example: '12345'
-          nullable: true
         owner_id:
           description: The owner of the activity
-          type: string
+          type:
+          - string
+          - 'null'
           example: '12345'
-          nullable: true
         campaign_id:
           description: The campaign related to the activity
-          type: string
+          type:
+          - string
+          - 'null'
           example: '12345'
-          nullable: true
         case_id:
           description: The case related to the activity
-          type: string
+          type:
+          - string
+          - 'null'
           example: '12345'
-          nullable: true
         asset_id:
           description: The asset related to the activity
-          type: string
+          type:
+          - string
+          - 'null'
           example: '12345'
-          nullable: true
         contract_id:
           description: The contract related to the activity
-          type: string
+          type:
+          - string
+          - 'null'
           example: '12345'
-          nullable: true
         product_id:
           description: The product related to the activity
-          type: string
+          type:
+          - string
+          - 'null'
           example: '12345'
-          nullable: true
         solution_id:
           description: The solution related to the activity
-          type: string
+          type:
+          - string
+          - 'null'
           example: '12345'
-          nullable: true
         custom_object_id:
           description: The custom object related to the activity
-          type: string
+          type:
+          - string
+          - 'null'
           example: '12345'
-          nullable: true
         type:
           description: The type of the activity
-          type: string
+          type:
+          - string
+          - 'null'
           x-apideck-enum-id: activities.type
           enum:
           - call
@@ -1114,136 +735,158 @@ components:
           - send-quote
           - other
           example: meeting
-          nullable: true
         title:
           description: The title of the activity
-          type: string
+          type:
+          - string
+          - 'null'
           example: Meeting
-          nullable: true
         description:
           description: A description of the activity
-          type: string
+          type:
+          - string
+          - 'null'
           example: More info about the meeting
-          nullable: true
         note:
           description: An internal note about the activity
           title: Note (internal)
-          type: string
+          type:
+          - string
+          - 'null'
           example: An internal note about the meeting
-          nullable: true
         location:
           description: The location of the activity
-          type: string
+          type:
+          - string
+          - 'null'
           example: Space
-          nullable: true
         location_address:
           $ref: '#/components/schemas/Address'
         all_day_event:
           description: Whether the Activity is an all day event or not
-          type: boolean
+          type:
+          - boolean
+          - 'null'
           example: false
-          nullable: true
         private:
           description: Whether the Activity is private or not
-          type: boolean
+          type:
+          - boolean
+          - 'null'
           example: true
-          nullable: true
         group_event:
           description: Whether the Activity is a group event or not
-          type: boolean
+          type:
+          - boolean
+          - 'null'
           example: true
-          nullable: true
         event_sub_type:
           description: The sub type of the group event
-          type: string
+          type:
+          - string
+          - 'null'
           example: debrief
-          nullable: true
         group_event_type:
           description: The type of the group event
-          type: string
+          type:
+          - string
+          - 'null'
           example: Proposed
-          nullable: true
         child:
           description: Whether the activity is a child of another activity or not
-          type: boolean
+          type:
+          - boolean
+          - 'null'
           example: false
-          nullable: true
         archived:
           description: Whether the activity is archived or not
-          type: boolean
+          type:
+          - boolean
+          - 'null'
           example: false
-          nullable: true
         deleted:
           description: Whether the activity is deleted or not
-          type: boolean
+          type:
+          - boolean
+          - 'null'
           example: false
-          nullable: true
         show_as:
-          type: string
+          type:
+          - string
+          - 'null'
           x-apideck-enum-id: activities.show_as
           enum:
           - free
           - busy
           example: busy
-          nullable: true
         done:
           title: Done
           description: Whether the Activity is done or not
-          type: boolean
+          type:
+          - boolean
+          - 'null'
           example: false
-          nullable: true
         start_datetime:
           description: The start date and time of the activity
-          type: string
+          type:
+          - string
+          - 'null'
           example: '2021-05-01T12:00:00.000Z'
-          nullable: true
         end_datetime:
           description: The end date and time of the activity
-          type: string
+          type:
+          - string
+          - 'null'
           example: '2021-05-01T12:30:00.000Z'
-          nullable: true
         duration_minutes:
           description: The duration of the activity in minutes
-          type: integer
+          type:
+          - integer
+          - 'null'
           example: 30
-          nullable: true
           readOnly: true
         activity_date:
           description: The date of the activity
-          type: string
+          type:
+          - string
+          - 'null'
           example: '2021-05-01'
-          nullable: true
         end_date:
           description: The end date of the activity
-          type: string
+          type:
+          - string
+          - 'null'
           example: '2021-05-01'
-          nullable: true
         recurrent:
           description: Whether the activity is recurrent or not
           type: boolean
           example: false
         reminder_datetime:
           description: The date and time of the reminder
-          type: string
+          type:
+          - string
+          - 'null'
           example: '2021-05-01T17:00:00.000Z'
-          nullable: true
         reminder_set:
           description: Whether the reminder is set or not
-          type: boolean
+          type:
+          - boolean
+          - 'null'
           example: false
-          nullable: true
         video_conference_url:
           description: The URL of the video conference
           title: Meeting URL
-          type: string
+          type:
+          - string
+          - 'null'
           example: https://meet.example.com/j/88120759396
-          nullable: true
         video_conference_id:
           description: The ID of the video conference
           title: Meeting ID
-          type: string
+          type:
+          - string
+          - 'null'
           example: zoom:88120759396
-          nullable: true
         custom_fields:
           description: Custom fields of the activity
           type: array
@@ -1257,60 +900,197 @@ components:
           $ref: '#/components/schemas/CustomMappings'
         updated_by:
           description: The user who last updated the activity
-          type: string
+          type:
+          - string
+          - 'null'
           example: '12345'
           readOnly: true
-          nullable: true
         created_by:
           description: The user who created the activity
-          type: string
+          type:
+          - string
+          - 'null'
           example: '12345'
           readOnly: true
-          nullable: true
         updated_at:
           description: The date and time when the activity was last updated
-          type: string
+          type:
+          - string
+          - 'null'
           example: '2020-09-30T07:43:32.000Z'
           readOnly: true
-          nullable: true
         created_at:
           description: The date and time when the activity was created
-          type: string
+          type:
+          - string
+          - 'null'
           example: '2020-09-30T07:43:32.000Z'
           readOnly: true
-          nullable: true
         pass_through:
           $ref: '#/components/schemas/PassThroughBody'
-    ActivitiesFilter:
+    RowVersion:
+      type:
+      - string
+      - 'null'
+      title: Row version
+      description: A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
+      example: 1-12345
+    NotFoundResponse:
       type: object
-      x-apideck-schema-id: ActivitiesFilter
-      example:
-        updated_since: '2020-09-30T07:43:32.000Z'
+      x-apideck-schema-id: NotFound
       properties:
-        company_id:
+        status_code:
+          type: number
+          description: HTTP status code
+          example: 404
+        error:
           type: string
-          description: Company ID to filter on
-          example: '1234'
-        owner_id:
+          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
+          example: Not Found
+        type_name:
           type: string
-          description: Owner ID to filter on
-          example: '1234'
-        contact_id:
+          description: The type of error returned
+          example: EntityNotFoundError
+        message:
           type: string
-          description: Primary contact ID to filter on
-          example: '1234'
-        updated_since:
+          description: A human-readable message providing more details about the error.
+          example: Unknown Widget
+          x-speakeasy-error-message: true
+        detail:
+          anyOf:
+          - type: string
+            example: 'Could not find widget with id: ''123'''
+          - type: object
+            x-speakeasy-detail: true
+            example:
+              not_found:
+                entity: widget
+                id: '123'
+          description: Contains parameter or domain specific information related to the error and why it occurred.
+        ref:
           type: string
-          title: Updated since (timestamp)
-          format: date-time
-          example: '2020-09-30T07:43:32.000Z'
-        type:
+          description: Link to documentation of error type
+          example: https://developers.apideck.com/errors#entitynotfounderror
+    GetActivitiesResponse:
+      type: object
+      x-apideck-schema-id: GetActivitiesResponse
+      required:
+      - status_code
+      - status
+      - service
+      - resource
+      - operation
+      - data
+      properties:
+        status_code:
+          type: integer
+          description: HTTP Response Status Code
+          example: 200
+        status:
           type: string
-          title: Type
-          description: Type to filter on
-          format: string
-          example: Task
-      additionalProperties: false
+          description: HTTP Response Status
+          example: OK
+        service:
+          type: string
+          description: Apideck ID of service provider
+          example: zoho-crm
+        resource:
+          type: string
+          description: Unified API resource name
+          example: activities
+        operation:
+          type: string
+          description: Operation performed
+          example: all
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Activity'
+        _raw:
+          $ref: '#/components/schemas/Raw'
+        meta:
+          $ref: '#/components/schemas/Meta'
+        links:
+          $ref: '#/components/schemas/Links'
+    DeleteActivityResponse:
+      type: object
+      x-apideck-schema-id: DeleteActivityResponse
+      required:
+      - status_code
+      - status
+      - service
+      - resource
+      - operation
+      - data
+      properties:
+        status_code:
+          type: integer
+          description: HTTP Response Status Code
+          example: 200
+        status:
+          type: string
+          description: HTTP Response Status
+          example: OK
+        service:
+          type: string
+          description: Apideck ID of service provider
+          example: zoho-crm
+        resource:
+          type: string
+          description: Unified API resource name
+          example: activities
+        operation:
+          type: string
+          description: Operation performed
+          example: delete
+        data:
+          $ref: '#/components/schemas/UnifiedId'
+        _raw:
+          $ref: '#/components/schemas/Raw'
+    UnprocessableResponse:
+      type: object
+      x-apideck-schema-id: Unprocessable
+      properties:
+        status_code:
+          type: number
+          description: HTTP status code
+          example: 422
+        error:
+          type: string
+          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
+          example: Unprocessable Entity
+        type_name:
+          type: string
+          description: The type of error returned
+          example: InvalidStateError
+        message:
+          type: string
+          description: A human-readable message providing more details about the error.
+          example: Invalid State
+          x-speakeasy-error-message: true
+        detail:
+          anyOf:
+          - type: string
+            example: Unprocessable request, please verify your request headers and body.
+          - type: object
+            x-speakeasy-detail: true
+            example:
+              error: Unprocessable
+              message: Unprocessable request, please verify your request headers and body.
+          description: Contains parameter or domain specific information related to the error and why it occurred.
+        ref:
+          type: string
+          description: Link to documentation of error type
+          example: https://developers.apideck.com/errors#invalidstateerror
+    SortDirection:
+      type: string
+      x-apideck-schema-id: SortDirection
+      description: The direction in which to sort the results
+      x-apideck-enum-id: sort_direction
+      enum:
+      - asc
+      - desc
+      default: asc
     UpdateActivityResponse:
       type: object
       x-apideck-schema-id: UpdateActivityResponse
@@ -1346,33 +1126,27 @@ components:
           $ref: '#/components/schemas/UnifiedId'
         _raw:
           $ref: '#/components/schemas/Raw'
-    ActivitiesSort:
+    Links:
       type: object
-      x-apideck-schema-id: ActivitiesSort
-      example:
-        by: created_at
-        direction: desc
+      x-apideck-schema-id: Links
+      description: Links to navigate to previous or next pages through the API
       properties:
-        by:
+        previous:
+          type:
+          - string
+          - 'null'
+          description: Link to navigate to the previous page through the API
+          example: https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjE%3D
+        current:
           type: string
-          x-apideck-enum-id: activities.sort_by
-          description: The field on which to sort the Activities
-          enum:
-          - created_at
-          - updated_at
-          example: created_at
-        direction:
-          $ref: '#/components/schemas/SortDirection'
-      additionalProperties: false
-    PassThroughQuery:
-      type: object
-      additionalProperties: true
-      properties:
-        example_downstream_property:
-          type: string
-          description: All passthrough query parameters are passed along to the connector as is (?pass_through[search]=leads becomes ?search=leads)
-      example:
-        search: San Francisco
+          description: Link to navigate to the current page through the API
+          example: https://unify.apideck.com/crm/companies
+        next:
+          type:
+          - string
+          - 'null'
+          description: Link to navigate to the previous page through the API
+          example: https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjM
     BadRequestResponse:
       type: object
       x-apideck-schema-id: BadRequest
@@ -1427,106 +1201,469 @@ components:
           - message: Account code '100' has been archived or deleted
             detail: Each line item must reference a valid account
             code: VALIDATION_ERROR
-    PaymentRequiredResponse:
+    Address:
       type: object
-      x-apideck-schema-id: PaymentRequired
+      x-apideck-schema-id: Address
+      additionalProperties: false
+      x-apideck-weights:
+        id: edge-case
+        name: edge-case
+        type: critical
+        line1: high
+        line2: low
+        line3: edge-case
+        line4: edge-case
+        line5: edge-case
+        street_number: low
+        city: high
+        string: low
+        state: high
+        postal_code: high
+        country: high
+        latitude: low
+        longitude: low
+        county: edge-case
+        contact_name: edge-case
+        salutation: edge-case
+        phone_number: edge-case
+        fax: edge-case
+        email: edge-case
+        website: edge-case
+        row_version: edge-case
+      properties:
+        id:
+          description: Unique identifier for the address.
+          type:
+          - string
+          - 'null'
+          example: '123'
+        type:
+          type:
+          - string
+          - 'null'
+          description: The type of address.
+          x-apideck-enum-id: addresses.type
+          enum:
+          - primary
+          - secondary
+          - home
+          - office
+          - shipping
+          - billing
+          - work
+          - other
+          example: primary
+        string:
+          type:
+          - string
+          - 'null'
+          description: The address string. Some APIs don't provide structured address data.
+          example: 25 Spring Street, Blackburn, VIC 3130
+        name:
+          description: The name of the address.
+          type:
+          - string
+          - 'null'
+          example: HQ US
+        line1:
+          type:
+          - string
+          - 'null'
+          example: Main street
+          description: 'Line 1 of the address e.g. number, street, suite, apt #, etc.'
+        line2:
+          type:
+          - string
+          - 'null'
+          example: 'apt #'
+          description: Line 2 of the address
+        line3:
+          type:
+          - string
+          - 'null'
+          example: 'Suite #'
+          description: Line 3 of the address
+        line4:
+          type:
+          - string
+          - 'null'
+          example: delivery instructions
+          description: Line 4 of the address
+        line5:
+          type:
+          - string
+          - 'null'
+          example: 'Attention: Finance Dept'
+          description: Line 5 of the address
+        street_number:
+          type:
+          - string
+          - 'null'
+          example: '25'
+          description: Street number
+        city:
+          type:
+          - string
+          - 'null'
+          example: San Francisco
+          description: Name of city.
+        state:
+          type:
+          - string
+          - 'null'
+          example: CA
+          description: Name of state
+        postal_code:
+          type:
+          - string
+          - 'null'
+          example: '94104'
+          description: Zip code or equivalent.
+        country:
+          type:
+          - string
+          - 'null'
+          example: US
+          description: country code according to ISO 3166-1 alpha-2.
+        latitude:
+          description: Latitude of the address
+          type:
+          - string
+          - 'null'
+          example: '40.759211'
+        longitude:
+          description: Longitude of the address
+          type:
+          - string
+          - 'null'
+          example: '-73.984638'
+        county:
+          type:
+          - string
+          - 'null'
+          example: Santa Clara
+          description: Address field that holds a sublocality, such as a county
+        contact_name:
+          description: Name of the contact person at the address
+          type:
+          - string
+          - 'null'
+          example: Elon Musk
+        salutation:
+          description: Salutation of the contact person at the address
+          type:
+          - string
+          - 'null'
+          example: Mr
+        phone_number:
+          description: Phone number of the address
+          type:
+          - string
+          - 'null'
+          example: 111-111-1111
+        fax:
+          description: Fax number of the address
+          type:
+          - string
+          - 'null'
+          example: 122-111-1111
+        email:
+          description: Email address of the address
+          type:
+          - string
+          - 'null'
+          example: elon@musk.com
+        website:
+          description: Website of the address
+          type:
+          - string
+          - 'null'
+          example: https://elonmusk.com
+        notes:
+          description: Additional notes
+          type:
+          - string
+          - 'null'
+          title: Notes
+          example: Address notes or delivery instructions.
+        row_version:
+          $ref: '#/components/schemas/RowVersion'
+    CreateActivityResponse:
+      type: object
+      x-apideck-schema-id: CreateActivityResponse
+      required:
+      - status_code
+      - status
+      - service
+      - resource
+      - operation
+      - data
       properties:
         status_code:
-          type: number
-          description: HTTP status code
-          example: 402
-        error:
+          type: integer
+          description: HTTP Response Status Code
+          example: 200
+        status:
           type: string
-          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
-          example: Payment Required
-        type_name:
+          description: HTTP Response Status
+          example: OK
+        service:
           type: string
-          description: The type of error returned
-          example: RequestLimitError
-        message:
+          description: Apideck ID of service provider
+          example: zoho-crm
+        resource:
           type: string
-          description: A human-readable message providing more details about the error.
-          example: Request Limit Reached
-          x-speakeasy-error-message: true
-        detail:
+          description: Unified API resource name
+          example: activities
+        operation:
           type: string
-          description: Contains parameter or domain specific information related to the error and why it occurred.
-          example: You have reached your limit of 2000
-        ref:
-          type: string
-          description: Link to documentation of error type
-          example: https://developers.apideck.com/errors#requestlimiterror
-    UnexpectedErrorResponse:
+          description: Operation performed
+          example: add
+        data:
+          $ref: '#/components/schemas/UnifiedId'
+        _raw:
+          $ref: '#/components/schemas/Raw'
+    ActivityAttendee:
       type: object
-      x-apideck-schema-id: Error
+      x-apideck-schema-id: ActivityAttendee
+      x-pii:
+      - name
+      - first_name
+      - middle_name
+      - last_name
+      - email_address
+      x-apideck-weights:
+        id: critical
+        name: critical
+        first_name: high
+        middle_name: low
+        last_name: high
+        prefix: low
+        suffix: edge-case
+        email_address: medium
+        is_organizer: medium
+        status: medium
+        user_id: low
       properties:
-        status_code:
-          type: number
-          description: HTTP status code
-          example: 400
-        error:
-          type: string
-          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
-          example: Bad Request
-        type_name:
-          type: string
-          description: The type of error returned
-          example: RequestHeadersValidationError
-        message:
-          type: string
-          description: A human-readable message providing more details about the error.
-          example: Invalid Params
-          x-speakeasy-error-message: true
-        detail:
+        id:
+          description: Unique identifier for the attendee
+          type:
+          - string
+          - 'null'
+          example: '12345'
+          readOnly: true
+        name:
+          description: Full name of the attendee
+          type:
+          - string
+          - 'null'
+          example: Elon Musk
+          minLength: 1
+        first_name:
+          description: First name of the attendee
+          type:
+          - string
+          - 'null'
+          example: Elon
+        middle_name:
+          description: Middle name of the attendee
+          type:
+          - string
+          - 'null'
+          example: D.
+        last_name:
+          description: Last name of the attendee
+          type:
+          - string
+          - 'null'
+          example: Musk
+        prefix:
+          description: Prefix of the attendee
+          type:
+          - string
+          - 'null'
+          example: Mr.
+        suffix:
+          description: Suffix of the attendee
+          type:
+          - string
+          - 'null'
+          example: PhD
+        email_address:
+          description: Email address of the attendee
+          type:
+          - string
+          - 'null'
+          example: elon@musk.com
+        is_organizer:
+          description: Whether the attendee is the organizer of the activity
+          type:
+          - boolean
+          - 'null'
+          example: true
+        status:
+          description: Status of the attendee
+          type:
+          - string
+          - 'null'
+          x-apideck-enum-id: activity-attendees.status
+          enum:
+          - accepted
+          - tentative
+          - declined
+          example: accepted
+        user_id:
+          description: The identifier for a related user
+          type:
+          - string
+          - 'null'
+          example: '12345'
+          readOnly: true
+        contact_id:
+          description: The identifier for a related contact
+          type:
+          - string
+          - 'null'
+          example: '12345'
+          readOnly: true
+        updated_at:
+          description: The last time the attendee was updated (ISO 8601)
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2017-08-12T20:43:21.291Z'
+          readOnly: true
+        created_at:
+          description: The time the attendee was created (ISO 8601)
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2017-08-12T20:43:21.291Z'
+          readOnly: true
+      additionalProperties: false
+    PassThroughBody:
+      type: array
+      description: The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+      items:
+        type: object
+        properties:
+          service_id:
+            type: string
+            description: Identifier for the service to which this pass_through should be applied.
+          operation_id:
+            type: string
+            description: Optional identifier for a workflow operation to which this pass_through should be applied. This is useful for Unify calls that are making more than one downstream request.
+          extend_object:
+            type: object
+            additionalProperties: true
+            description: Simple object allowing any properties for direct extension.
+          extend_paths:
+            type: array
+            description: Array of objects for structured data modifications via paths.
+            items:
+              type: object
+              properties:
+                path:
+                  type: string
+                  description: JSONPath string specifying where to apply the value.
+                  example: $.nested.property
+                value:
+                  description: The value to set at the specified path, can be any type.
+                  example:
+                    TaxClassificationRef:
+                      value: EUC-99990201-V1-00020000
+              required:
+              - path
+              - value
+              additionalProperties: false
+        required:
+        - service_id
+        additionalProperties: false
+        writeOnly: true
+    CustomField:
+      type: object
+      x-apideck-schema-id: CustomField
+      additionalProperties: false
+      anyOf:
+      - required:
+        - id
+      - required:
+        - name
+      x-apideck-strict-any-of:
+      - required:
+        - id
+      - required:
+        - name
+      x-apideck-weights:
+        id: critical
+        value: critical
+        name: medium
+        description: edge-case
+      properties:
+        id:
+          title: ID
+          description: Unique identifier for the custom field.
+          type:
+          - string
+          - 'null'
+          example: '2389328923893298'
+        name:
+          title: Name
+          type:
+          - string
+          - 'null'
+          description: Name of the custom field.
+          example: employee_level
+        description:
+          title: Description
+          type:
+          - string
+          - 'null'
+          description: More information about the custom field
+          example: Employee Level
+        value:
           anyOf:
-          - type: string
-            example: 'Missing Header: x-apideck-consumer-id'
-          - type: object
-            x-speakeasy-detail: true
+          - type:
+            - string
+            - 'null'
+            example: Uses Salesforce and Marketo
+          - type:
+            - number
+            - 'null'
+            example: 10
+          - type:
+            - boolean
+            - 'null'
+            example: true
+          - type:
+            - object
+            - 'null'
             example:
-              missing:
-              - x-apideck-consumer-id: required
-          description: Contains parameter or domain specific information related to the error and why it occurred.
-        ref:
-          type: string
-          description: Link to documentation of error type
-          example: https://developers.apideck.com/errors#unauthorizederror
-    NotFoundResponse:
-      type: object
-      x-apideck-schema-id: NotFound
-      properties:
-        status_code:
-          type: number
-          description: HTTP status code
-          example: 404
-        error:
-          type: string
-          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
-          example: Not Found
-        type_name:
-          type: string
-          description: The type of error returned
-          example: EntityNotFoundError
-        message:
-          type: string
-          description: A human-readable message providing more details about the error.
-          example: Unknown Widget
-          x-speakeasy-error-message: true
-        detail:
-          anyOf:
-          - type: string
-            example: 'Could not find widget with id: ''123'''
-          - type: object
-            x-speakeasy-detail: true
-            example:
-              not_found:
-                entity: widget
-                id: '123'
-          description: Contains parameter or domain specific information related to the error and why it occurred.
-        ref:
-          type: string
-          description: Link to documentation of error type
-          example: https://developers.apideck.com/errors#entitynotfounderror
+              foo: bar
+            additionalProperties: true
+          - type: array
+            items:
+              anyOf:
+              - type:
+                - string
+                - 'null'
+                example: Uses Salesforce and Marketo
+              - type:
+                - number
+                - 'null'
+                example: 10
+              - type:
+                - boolean
+                - 'null'
+                example: true
+              - type:
+                - object
+                - 'null'
+                example:
+                  foo: bar
+                additionalProperties: true
     GetActivityResponse:
       type: object
       x-apideck-schema-id: GetActivityResponse
@@ -1562,169 +1699,55 @@ components:
           $ref: '#/components/schemas/Activity'
         _raw:
           $ref: '#/components/schemas/Raw'
-    Address:
+    ActivitiesSort:
       type: object
-      x-apideck-schema-id: Address
+      x-apideck-schema-id: ActivitiesSort
+      example:
+        by: created_at
+        direction: desc
+      properties:
+        by:
+          type: string
+          x-apideck-enum-id: activities.sort_by
+          description: The field on which to sort the Activities
+          enum:
+          - created_at
+          - updated_at
+          example: created_at
+        direction:
+          $ref: '#/components/schemas/SortDirection'
       additionalProperties: false
-      x-apideck-weights:
-        id: edge-case
-        name: edge-case
-        type: critical
-        line1: high
-        line2: low
-        line3: edge-case
-        line4: edge-case
-        line5: edge-case
-        street_number: low
-        city: high
-        string: low
-        state: high
-        postal_code: high
-        country: high
-        latitude: low
-        longitude: low
-        county: edge-case
-        contact_name: edge-case
-        salutation: edge-case
-        phone_number: edge-case
-        fax: edge-case
-        email: edge-case
-        website: edge-case
-        row_version: edge-case
+    PassThroughQuery:
+      type: object
+      additionalProperties: true
+      properties:
+        example_downstream_property:
+          type: string
+          description: All passthrough query parameters are passed along to the connector as is (?pass_through[search]=leads becomes ?search=leads)
+      example:
+        search: San Francisco
+    UnifiedId:
+      title: UnifiedId
+      type: object
+      x-apideck-schema-id: Id
+      description: A object containing a unique identifier for the resource that was created, updated, or deleted.
+      required:
+      - id
       properties:
         id:
-          description: Unique identifier for the address.
+          title: Id
+          description: The unique identifier of the resource
           type: string
-          example: '123'
-          nullable: true
-        type:
-          type: string
-          description: The type of address.
-          x-apideck-enum-id: addresses.type
-          enum:
-          - primary
-          - secondary
-          - home
-          - office
-          - shipping
-          - billing
-          - work
-          - other
-          example: primary
-          nullable: true
-        string:
-          type: string
-          description: The address string. Some APIs don't provide structured address data.
-          example: 25 Spring Street, Blackburn, VIC 3130
-          nullable: true
-        name:
-          description: The name of the address.
-          type: string
-          example: HQ US
-          nullable: true
-        line1:
-          type: string
-          example: Main street
-          description: 'Line 1 of the address e.g. number, street, suite, apt #, etc.'
-          nullable: true
-        line2:
-          type: string
-          example: 'apt #'
-          description: Line 2 of the address
-          nullable: true
-        line3:
-          type: string
-          example: 'Suite #'
-          description: Line 3 of the address
-          nullable: true
-        line4:
-          type: string
-          example: delivery instructions
-          description: Line 4 of the address
-          nullable: true
-        line5:
-          type: string
-          example: 'Attention: Finance Dept'
-          description: Line 5 of the address
-          nullable: true
-        street_number:
-          type: string
-          example: '25'
-          description: Street number
-          nullable: true
-        city:
-          type: string
-          example: San Francisco
-          description: Name of city.
-          nullable: true
-        state:
-          type: string
-          example: CA
-          description: Name of state
-          nullable: true
-        postal_code:
-          type: string
-          example: '94104'
-          description: Zip code or equivalent.
-          nullable: true
-        country:
-          type: string
-          example: US
-          description: country code according to ISO 3166-1 alpha-2.
-          nullable: true
-        latitude:
-          description: Latitude of the address
-          type: string
-          example: '40.759211'
-          nullable: true
-        longitude:
-          description: Longitude of the address
-          type: string
-          example: '-73.984638'
-          nullable: true
-        county:
-          type: string
-          example: Santa Clara
-          description: Address field that holds a sublocality, such as a county
-          nullable: true
-        contact_name:
-          description: Name of the contact person at the address
-          type: string
-          example: Elon Musk
-          nullable: true
-        salutation:
-          description: Salutation of the contact person at the address
-          type: string
-          example: Mr
-          nullable: true
-        phone_number:
-          description: Phone number of the address
-          type: string
-          example: 111-111-1111
-          nullable: true
-        fax:
-          description: Fax number of the address
-          type: string
-          example: 122-111-1111
-          nullable: true
-        email:
-          description: Email address of the address
-          type: string
-          example: elon@musk.com
-          nullable: true
-        website:
-          description: Website of the address
-          type: string
-          example: https://elonmusk.com
-          nullable: true
-        notes:
-          description: Additional notes
-          type: string
-          title: Notes
-          example: Address notes or delivery instructions.
-          nullable: true
-        row_version:
-          $ref: '#/components/schemas/RowVersion'
+          readOnly: true
+          example: '12345'
+    CustomMappings:
+      type:
+      - object
+      - 'null'
+      x-apideck-schema-id: CustomMappings
+      description: When custom mappings are configured on the resource, the result is included here.
+      readOnly: true
+      additionalProperties: true
     UnauthorizedResponse:
       type: object
       x-apideck-schema-id: Unauthorized
@@ -1805,13 +1828,111 @@ components:
           type: string
           description: Link to documentation of error type
           example: https://developers.apideck.com/errors#unauthorizederror
-    RowVersion:
-      type: string
-      title: Row version
-      description: A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-      example: 1-12345
-      nullable: true
+  responses:
+    UnexpectedErrorResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnexpectedErrorResponse'
+      description: Unexpected error
+    PaymentRequiredResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PaymentRequiredResponse'
+      description: Payment Required
+    CreateActivityResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CreateActivityResponse'
+      description: Activity created
+    UnprocessableResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnprocessableResponse'
+      description: Unprocessable
+    BadRequestResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BadRequestResponse'
+      description: Bad Request
+    GetActivityResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/GetActivityResponse'
+      description: Activity
+      links:
+        company:
+          operationId: companiesOne
+          parameters:
+            id: $response.body#/data/company_id
+        contact:
+          operationId: contactsOne
+          parameters:
+            id: $response.body#/data/contact_id
+        opportunity:
+          operationId: opportunitiesOne
+          parameters:
+            id: $response.body#/data/opportunity_id
+        lead:
+          operationId: leadsOne
+          parameters:
+            id: $response.body#/data/lead_id
+        owner:
+          operationId: usersOne
+          parameters:
+            id: $response.body#/data/owner_id
+    DeleteActivityResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/DeleteActivityResponse'
+      description: Activity deleted
+    UpdateActivityResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UpdateActivityResponse'
+      description: Activity updated
+    NotFoundResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NotFoundResponse'
+      description: The specified resource was not found
+    UnauthorizedResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnauthorizedResponse'
+      description: Unauthorized
+    GetActivitiesResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/GetActivitiesResponse'
+      description: Activities
   parameters:
+    raw:
+      name: raw
+      in: query
+      description: Include raw response. Mostly used for debugging purposes
+      schema:
+        type: boolean
+        default: false
+    limit:
+      name: limit
+      in: query
+      description: Number of results to return. Minimum 1, Maximum 200, Default 20
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 200
+        default: 20
     applicationId:
       name: x-apideck-app-id
       in: header
@@ -1822,22 +1943,6 @@ components:
         minLength: 1
       example: dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX
       x-speakeasy-name-override: appId
-    serviceId:
-      name: x-apideck-service-id
-      in: header
-      description: Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
-      schema:
-        type: string
-      example: salesforce
-      x-speakeasy-name-override: serviceId
-    activitiesFilter:
-      name: filter
-      in: query
-      description: Apply filters
-      style: deepObject
-      explode: true
-      schema:
-        $ref: '#/components/schemas/ActivitiesFilter'
     id:
       in: path
       name: id
@@ -1845,14 +1950,14 @@ components:
         type: string
       required: true
       description: ID of the record you are acting upon.
-    fields:
-      name: fields
+    cursor:
+      name: cursor
       in: query
-      description: 'The ''fields'' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. <br /><br />Example: `fields=name,email,addresses.city`<br /><br />In the example above, the response will only include the fields "name", "email" and "addresses.city". If any other fields are available, they will be excluded.'
-      example: id,updated_at
+      description: Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
       schema:
-        type: string
-        nullable: true
+        type:
+        - string
+        - 'null'
     activitiesSort:
       name: sort
       in: query
@@ -1861,22 +1966,30 @@ components:
       explode: true
       schema:
         $ref: '#/components/schemas/ActivitiesSort'
-    cursor:
-      name: cursor
-      in: query
-      description: Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
+    serviceId:
+      name: x-apideck-service-id
+      in: header
+      description: Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
       schema:
         type: string
-        nullable: true
-    limit:
-      name: limit
+      example: salesforce
+      x-speakeasy-name-override: serviceId
+    passThrough:
+      name: pass_through
       in: query
-      description: Number of results to return. Minimum 1, Maximum 200, Default 20
+      description: 'Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads'
+      style: deepObject
+      explode: true
       schema:
-        type: integer
-        minimum: 1
-        maximum: 200
-        default: 20
+        $ref: '#/components/schemas/PassThroughQuery'
+    activitiesFilter:
+      name: filter
+      in: query
+      description: Apply filters
+      style: deepObject
+      explode: true
+      schema:
+        $ref: '#/components/schemas/ActivitiesFilter'
     consumerId:
       name: x-apideck-consumer-id
       in: header
@@ -1886,21 +1999,15 @@ components:
         type: string
       example: test-consumer
       x-speakeasy-name-override: consumerId
-    raw:
-      name: raw
+    fields:
+      name: fields
       in: query
-      description: Include raw response. Mostly used for debugging purposes
+      description: 'The ''fields'' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. <br /><br />Example: `fields=name,email,addresses.city`<br /><br />In the example above, the response will only include the fields "name", "email" and "addresses.city". If any other fields are available, they will be excluded.'
+      example: id,updated_at
       schema:
-        type: boolean
-        default: false
-    passThrough:
-      name: pass_through
-      in: query
-      description: 'Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads'
-      style: deepObject
-      explode: true
-      schema:
-        $ref: '#/components/schemas/PassThroughQuery'
+        type:
+        - string
+        - 'null'
   securitySchemes:
     apiKey:
       type: apiKey
@@ -1929,24 +2036,35 @@ components:
         Go to Unify to grab your API KEY https://app.apideck.com/unify/api-keys
 
         '
+    applicationId:
+      type: apiKey
+      in: header
+      name: x-apideck-app-id
+      description: The ID of your Unify application
+    consumerId:
+      type: apiKey
+      in: header
+      name: x-apideck-consumer-id
+      description: The ID of the consumer which you want to get or push data from
 externalDocs:
   description: Apideck Developer Docs
   url: https://developers.apideck.com
 x-webhooks:
   x-sdk-exclude: true
   x-speakeasy-ignore: true
-  CustomerCreated:
+  ActivityCreated:
     post:
-      summary: Customer Created
-      operationId: customerCreated
-      x-apideck-event-type: accounting.customer.created
+      summary: Activity Created
+      description: Event broadcast when an activity has been created.
+      operationId: activityCreated
+      x-apideck-event-type: crm.activity.created
       parameters:
       - name: x-apideck-event-type
         in: header
         required: true
         description: The type of event that was triggered
         schema:
-          $ref: '#/components/schemas/AccountingEventType'
+          $ref: '#/components/schemas/CrmEventType'
       - name: x-apideck-signature
         in: header
         required: true
@@ -1970,35 +2088,35 @@ x-webhooks:
               type: object
               properties:
                 payload:
-                  $ref: '#/components/schemas/AccountingWebhookEvent'
+                  $ref: '#/components/schemas/CrmWebhookEvent'
             example:
               payload:
-                event_type: accounting.customer.created
-                unified_api: accounting
-                service_id: xero
+                event_type: crm.activity.created
+                unified_api: crm
+                service_id: hubspot
                 consumer_id: test_user_id
                 event_id: d290f1ee-6c54-4b01-90e6-d701748f0851
                 entity_id: 123456ASDF
-                entity_url: https://unify.apideck.com/accounting/customers/123456ASDF
-                entity_type: customer
+                entity_url: https://unify.apideck.com/crm/activities/123456ASDF
+                entity_type: activity
                 occurred_at: '2020-01-01T00:00:00.000Z'
       responses:
         '200':
           description: Return a 200 status to indicate that the data was received successfully.
       security: []
-      description: Event broadcast when a customer has been created.
-  CustomerUpdated:
+  ActivityUpdated:
     post:
-      summary: Customer Updated
-      operationId: customerUpdated
-      x-apideck-event-type: accounting.customer.updated
+      summary: Activity Updated
+      description: Event broadcast when an activity has been updated.
+      operationId: activityUpdated
+      x-apideck-event-type: crm.activity.updated
       parameters:
       - name: x-apideck-event-type
         in: header
         required: true
         description: The type of event that was triggered
         schema:
-          $ref: '#/components/schemas/AccountingEventType'
+          $ref: '#/components/schemas/CrmEventType'
       - name: x-apideck-signature
         in: header
         required: true
@@ -2022,35 +2140,35 @@ x-webhooks:
               type: object
               properties:
                 payload:
-                  $ref: '#/components/schemas/AccountingWebhookEvent'
+                  $ref: '#/components/schemas/CrmWebhookEvent'
             example:
               payload:
-                event_type: accounting.customer.updated
-                unified_api: accounting
-                service_id: xero
+                event_type: crm.activity.updated
+                unified_api: crm
+                service_id: hubspot
                 consumer_id: test_user_id
                 event_id: d290f1ee-6c54-4b01-90e6-d701748f0851
                 entity_id: 123456ASDF
-                entity_url: https://unify.apideck.com/accounting/customers/123456ASDF
-                entity_type: customer
+                entity_url: https://unify.apideck.com/crm/activities/123456ASDF
+                entity_type: activity
                 occurred_at: '2020-01-01T00:00:00.000Z'
       responses:
         '200':
           description: Return a 200 status to indicate that the data was received successfully.
       security: []
-      description: Event broadcast when a customer has been updated.
-  CustomerDeleted:
+  ActivityDeleted:
     post:
-      summary: Customer Deleted
-      operationId: customerDeleted
-      x-apideck-event-type: accounting.customer.deleted
+      summary: Activity Deleted
+      description: Event broadcast when an activity has been deleted.
+      operationId: activityDeleted
+      x-apideck-event-type: crm.activity.deleted
       parameters:
       - name: x-apideck-event-type
         in: header
         required: true
         description: The type of event that was triggered
         schema:
-          $ref: '#/components/schemas/AccountingEventType'
+          $ref: '#/components/schemas/CrmEventType'
       - name: x-apideck-signature
         in: header
         required: true
@@ -2074,35 +2192,35 @@ x-webhooks:
               type: object
               properties:
                 payload:
-                  $ref: '#/components/schemas/AccountingWebhookEvent'
+                  $ref: '#/components/schemas/CrmWebhookEvent'
             example:
               payload:
-                event_type: accounting.customer.deleted
-                unified_api: accounting
-                service_id: xero
+                event_type: crm.activity.deleted
+                unified_api: crm
+                service_id: hubspot
                 consumer_id: test_user_id
                 event_id: d290f1ee-6c54-4b01-90e6-d701748f0851
                 entity_id: 123456ASDF
-                entity_url: https://unify.apideck.com/accounting/customers/123456ASDF
-                entity_type: customer
+                entity_url: https://unify.apideck.com/crm/activities/123456ASDF
+                entity_type: activity
                 occurred_at: '2020-01-01T00:00:00.000Z'
       responses:
         '200':
           description: Return a 200 status to indicate that the data was received successfully.
       security: []
-      description: Event broadcast when a customer has been deleted.
-  InvoiceCreated:
+  CompanyCreated:
     post:
-      summary: Invoice Created
-      operationId: invoiceCreated
-      x-apideck-event-type: accounting.invoice.created
+      summary: Company Created
+      description: Event broadcast when a company has been created.
+      operationId: companyCreated
+      x-apideck-event-type: crm.company.created
       parameters:
       - name: x-apideck-event-type
         in: header
         required: true
         description: The type of event that was triggered
         schema:
-          $ref: '#/components/schemas/AccountingEventType'
+          $ref: '#/components/schemas/CrmEventType'
       - name: x-apideck-signature
         in: header
         required: true
@@ -2126,35 +2244,35 @@ x-webhooks:
               type: object
               properties:
                 payload:
-                  $ref: '#/components/schemas/AccountingWebhookEvent'
+                  $ref: '#/components/schemas/CrmWebhookEvent'
             example:
               payload:
-                event_type: accounting.invoice.created
-                unified_api: accounting
-                service_id: xero
+                event_type: crm.company.created
+                unified_api: crm
+                service_id: hubspot
                 consumer_id: test_user_id
                 event_id: d290f1ee-6c54-4b01-90e6-d701748f0851
                 entity_id: 123456ASDF
-                entity_url: https://unify.apideck.com/accounting/invoices/123456ASDF
-                entity_type: invoice
+                entity_url: https://unify.apideck.com/crm/companies/123456ASDF
+                entity_type: company
                 occurred_at: '2020-01-01T00:00:00.000Z'
       responses:
         '200':
           description: Return a 200 status to indicate that the data was received successfully.
       security: []
-      description: Event broadcast when an invoice has been created.
-  InvoiceUpdated:
+  CompanyUpdated:
     post:
-      summary: Invoice Updated
-      operationId: invoiceUpdated
-      x-apideck-event-type: accounting.invoice.updated
+      summary: Company Updated
+      description: Event broadcast when a company has been updated.
+      operationId: companyUpdated
+      x-apideck-event-type: crm.company.updated
       parameters:
       - name: x-apideck-event-type
         in: header
         required: true
         description: The type of event that was triggered
         schema:
-          $ref: '#/components/schemas/AccountingEventType'
+          $ref: '#/components/schemas/CrmEventType'
       - name: x-apideck-signature
         in: header
         required: true
@@ -2178,35 +2296,35 @@ x-webhooks:
               type: object
               properties:
                 payload:
-                  $ref: '#/components/schemas/AccountingWebhookEvent'
+                  $ref: '#/components/schemas/CrmWebhookEvent'
             example:
               payload:
-                event_type: accounting.invoice.updated
-                unified_api: accounting
-                service_id: xero
+                event_type: crm.company.updated
+                unified_api: crm
+                service_id: hubspot
                 consumer_id: test_user_id
                 event_id: d290f1ee-6c54-4b01-90e6-d701748f0851
                 entity_id: 123456ASDF
-                entity_url: https://unify.apideck.com/accounting/invoices/123456ASDF
-                entity_type: invoice
+                entity_url: https://unify.apideck.com/crm/companies/123456ASDF
+                entity_type: company
                 occurred_at: '2020-01-01T00:00:00.000Z'
       responses:
         '200':
           description: Return a 200 status to indicate that the data was received successfully.
       security: []
-      description: Event broadcast when an invoice has been updated.
-  InvoiceDeleted:
+  CompanyDeleted:
     post:
-      summary: Invoice Deleted
-      operationId: invoiceDeleted
-      x-apideck-event-type: accounting.invoice.deleted
+      summary: Company Deleted
+      description: Event broadcast when a company has been deleted.
+      operationId: companyDeleted
+      x-apideck-event-type: crm.company.deleted
       parameters:
       - name: x-apideck-event-type
         in: header
         required: true
         description: The type of event that was triggered
         schema:
-          $ref: '#/components/schemas/AccountingEventType'
+          $ref: '#/components/schemas/CrmEventType'
       - name: x-apideck-signature
         in: header
         required: true
@@ -2230,35 +2348,35 @@ x-webhooks:
               type: object
               properties:
                 payload:
-                  $ref: '#/components/schemas/AccountingWebhookEvent'
+                  $ref: '#/components/schemas/CrmWebhookEvent'
             example:
               payload:
-                event_type: accounting.invoice.deleted
-                unified_api: accounting
-                service_id: xero
+                event_type: crm.company.deleted
+                unified_api: crm
+                service_id: hubspot
                 consumer_id: test_user_id
                 event_id: d290f1ee-6c54-4b01-90e6-d701748f0851
                 entity_id: 123456ASDF
-                entity_url: https://unify.apideck.com/accounting/invoices/123456ASDF
-                entity_type: invoice
+                entity_url: https://unify.apideck.com/crm/companies/123456ASDF
+                entity_type: company
                 occurred_at: '2020-01-01T00:00:00.000Z'
       responses:
         '200':
           description: Return a 200 status to indicate that the data was received successfully.
       security: []
-      description: Event broadcast when an invoice has been deleted.
-  InvoiceItemCreated:
+  ContactCreated:
     post:
-      summary: Invoice Item Created
-      operationId: invoiceItemCreated
-      x-apideck-event-type: accounting.invoice_item.created
+      summary: Contact Created
+      description: Event broadcast when a contact has been created.
+      operationId: contactCreated
+      x-apideck-event-type: crm.contact.created
       parameters:
       - name: x-apideck-event-type
         in: header
         required: true
         description: The type of event that was triggered
         schema:
-          $ref: '#/components/schemas/AccountingEventType'
+          $ref: '#/components/schemas/CrmEventType'
       - name: x-apideck-signature
         in: header
         required: true
@@ -2282,35 +2400,35 @@ x-webhooks:
               type: object
               properties:
                 payload:
-                  $ref: '#/components/schemas/AccountingWebhookEvent'
+                  $ref: '#/components/schemas/CrmWebhookEvent'
             example:
               payload:
-                event_type: accounting.invoice_item.created
-                unified_api: accounting
-                service_id: xero
+                event_type: crm.contact.created
+                unified_api: crm
+                service_id: hubspot
                 consumer_id: test_user_id
                 event_id: d290f1ee-6c54-4b01-90e6-d701748f0851
                 entity_id: 123456ASDF
-                entity_url: https://unify.apideck.com/accounting/invoice_items/123456ASDF
-                entity_type: invoice_item
+                entity_url: https://unify.apideck.com/crm/contacts/123456ASDF
+                entity_type: contact
                 occurred_at: '2020-01-01T00:00:00.000Z'
       responses:
         '200':
           description: Return a 200 status to indicate that the data was received successfully.
       security: []
-      description: Event broadcast when an invoice has been item created.
-  InvoiceItemUpdated:
+  ContactUpdated:
     post:
-      summary: Invoice Item Updated
-      operationId: invoiceItemUpdated
-      x-apideck-event-type: accounting.invoice_item.updated
+      summary: Contact Updated
+      description: Event broadcast when a contact has been updated.
+      operationId: contactUpdated
+      x-apideck-event-type: crm.contact.updated
       parameters:
       - name: x-apideck-event-type
         in: header
         required: true
         description: The type of event that was triggered
         schema:
-          $ref: '#/components/schemas/AccountingEventType'
+          $ref: '#/components/schemas/CrmEventType'
       - name: x-apideck-signature
         in: header
         required: true
@@ -2334,35 +2452,35 @@ x-webhooks:
               type: object
               properties:
                 payload:
-                  $ref: '#/components/schemas/AccountingWebhookEvent'
+                  $ref: '#/components/schemas/CrmWebhookEvent'
             example:
               payload:
-                event_type: accounting.invoice_item.updated
-                unified_api: accounting
-                service_id: xero
+                event_type: crm.contact.updated
+                unified_api: crm
+                service_id: hubspot
                 consumer_id: test_user_id
                 event_id: d290f1ee-6c54-4b01-90e6-d701748f0851
                 entity_id: 123456ASDF
-                entity_url: https://unify.apideck.com/accounting/invoice_items/123456ASDF
-                entity_type: invoice_item
+                entity_url: https://unify.apideck.com/crm/contacts/123456ASDF
+                entity_type: contact
                 occurred_at: '2020-01-01T00:00:00.000Z'
       responses:
         '200':
           description: Return a 200 status to indicate that the data was received successfully.
       security: []
-      description: Event broadcast when an invoice has been item updated.
-  InvoiceItemDeleted:
+  ContactDeleted:
     post:
-      summary: Invoice Item Deleted
-      operationId: invoiceItemDeleted
-      x-apideck-event-type: accounting.invoice_item.deleted
+      summary: Contact Deleted
+      description: Event broadcast when a contact has been deleted.
+      operationId: contactDeleted
+      x-apideck-event-type: crm.contact.deleted
       parameters:
       - name: x-apideck-event-type
         in: header
         required: true
         description: The type of event that was triggered
         schema:
-          $ref: '#/components/schemas/AccountingEventType'
+          $ref: '#/components/schemas/CrmEventType'
       - name: x-apideck-signature
         in: header
         required: true
@@ -2386,35 +2504,35 @@ x-webhooks:
               type: object
               properties:
                 payload:
-                  $ref: '#/components/schemas/AccountingWebhookEvent'
+                  $ref: '#/components/schemas/CrmWebhookEvent'
             example:
               payload:
-                event_type: accounting.invoice_item.deleted
-                unified_api: accounting
-                service_id: xero
+                event_type: crm.contact.deleted
+                unified_api: crm
+                service_id: hubspot
                 consumer_id: test_user_id
                 event_id: d290f1ee-6c54-4b01-90e6-d701748f0851
                 entity_id: 123456ASDF
-                entity_url: https://unify.apideck.com/accounting/invoice_items/123456ASDF
-                entity_type: invoice_item
+                entity_url: https://unify.apideck.com/crm/contacts/123456ASDF
+                entity_type: contact
                 occurred_at: '2020-01-01T00:00:00.000Z'
       responses:
         '200':
           description: Return a 200 status to indicate that the data was received successfully.
       security: []
-      description: Event broadcast when an invoice has been item deleted.
-  LedgerAccountCreated:
+  LeadCreated:
     post:
-      summary: Ledger Account Created
-      operationId: ledgerAccountCreated
-      x-apideck-event-type: accounting.ledger_account.created
+      summary: Lead Created
+      description: Event broadcast when a lead has been created.
+      operationId: leadCreated
+      x-apideck-event-type: crm.lead.created
       parameters:
       - name: x-apideck-event-type
         in: header
         required: true
         description: The type of event that was triggered
         schema:
-          $ref: '#/components/schemas/AccountingEventType'
+          $ref: '#/components/schemas/CrmEventType'
       - name: x-apideck-signature
         in: header
         required: true
@@ -2438,35 +2556,35 @@ x-webhooks:
               type: object
               properties:
                 payload:
-                  $ref: '#/components/schemas/AccountingWebhookEvent'
+                  $ref: '#/components/schemas/CrmWebhookEvent'
             example:
               payload:
-                event_type: accounting.ledger_account.created
-                unified_api: accounting
-                service_id: xero
+                event_type: crm.lead.created
+                unified_api: crm
+                service_id: hubspot
                 consumer_id: test_user_id
                 event_id: d290f1ee-6c54-4b01-90e6-d701748f0851
                 entity_id: 123456ASDF
-                entity_url: https://unify.apideck.com/accounting/ledger_accounts/123456ASDF
-                entity_type: ledger_account
+                entity_url: https://unify.apideck.com/crm/leads/123456ASDF
+                entity_type: lead
                 occurred_at: '2020-01-01T00:00:00.000Z'
       responses:
         '200':
           description: Return a 200 status to indicate that the data was received successfully.
       security: []
-      description: Event broadcast when a ledger has been account created.
-  LedgerAccountUpdated:
+  LeadUpdated:
     post:
-      summary: Ledger Account Updated
-      operationId: ledgerAccountUpdated
-      x-apideck-event-type: accounting.ledger_account.updated
+      summary: Lead Updated
+      description: Event broadcast when a lead has been updated.
+      operationId: leadUpdated
+      x-apideck-event-type: crm.lead.updated
       parameters:
       - name: x-apideck-event-type
         in: header
         required: true
         description: The type of event that was triggered
         schema:
-          $ref: '#/components/schemas/AccountingEventType'
+          $ref: '#/components/schemas/CrmEventType'
       - name: x-apideck-signature
         in: header
         required: true
@@ -2490,35 +2608,35 @@ x-webhooks:
               type: object
               properties:
                 payload:
-                  $ref: '#/components/schemas/AccountingWebhookEvent'
+                  $ref: '#/components/schemas/CrmWebhookEvent'
             example:
               payload:
-                event_type: accounting.ledger_account.updated
-                unified_api: accounting
-                service_id: xero
+                event_type: crm.lead.updated
+                unified_api: crm
+                service_id: hubspot
                 consumer_id: test_user_id
                 event_id: d290f1ee-6c54-4b01-90e6-d701748f0851
                 entity_id: 123456ASDF
-                entity_url: https://unify.apideck.com/accounting/ledger_accounts/123456ASDF
-                entity_type: ledger_account
+                entity_url: https://unify.apideck.com/crm/leads/123456ASDF
+                entity_type: lead
                 occurred_at: '2020-01-01T00:00:00.000Z'
       responses:
         '200':
           description: Return a 200 status to indicate that the data was received successfully.
       security: []
-      description: Event broadcast when a ledger has been account updated.
-  LedgerAccountDeleted:
+  LeadDeleted:
     post:
-      summary: Ledger Account Deleted
-      operationId: ledgerAccountDeleted
-      x-apideck-event-type: accounting.ledger_account.deleted
+      summary: Lead Deleted
+      description: Event broadcast when a lead has been deleted.
+      operationId: leadDeleted
+      x-apideck-event-type: crm.lead.deleted
       parameters:
       - name: x-apideck-event-type
         in: header
         required: true
         description: The type of event that was triggered
         schema:
-          $ref: '#/components/schemas/AccountingEventType'
+          $ref: '#/components/schemas/CrmEventType'
       - name: x-apideck-signature
         in: header
         required: true
@@ -2542,35 +2660,35 @@ x-webhooks:
               type: object
               properties:
                 payload:
-                  $ref: '#/components/schemas/AccountingWebhookEvent'
+                  $ref: '#/components/schemas/CrmWebhookEvent'
             example:
               payload:
-                event_type: accounting.ledger_account.deleted
-                unified_api: accounting
-                service_id: xero
+                event_type: crm.lead.deleted
+                unified_api: crm
+                service_id: hubspot
                 consumer_id: test_user_id
                 event_id: d290f1ee-6c54-4b01-90e6-d701748f0851
                 entity_id: 123456ASDF
-                entity_url: https://unify.apideck.com/accounting/ledger_accounts/123456ASDF
-                entity_type: ledger_account
+                entity_url: https://unify.apideck.com/crm/leads/123456ASDF
+                entity_type: lead
                 occurred_at: '2020-01-01T00:00:00.000Z'
       responses:
         '200':
           description: Return a 200 status to indicate that the data was received successfully.
       security: []
-      description: Event broadcast when a ledger has been account deleted.
-  TaxRateCreated:
+  NoteCreated:
     post:
-      summary: Tax Rate Created
-      operationId: taxRateCreated
-      x-apideck-event-type: accounting.tax_rate.created
+      summary: Note Created
+      description: Event broadcast when a note has been created.
+      operationId: noteCreated
+      x-apideck-event-type: crm.note.created
       parameters:
       - name: x-apideck-event-type
         in: header
         required: true
         description: The type of event that was triggered
         schema:
-          $ref: '#/components/schemas/AccountingEventType'
+          $ref: '#/components/schemas/CrmEventType'
       - name: x-apideck-signature
         in: header
         required: true
@@ -2594,35 +2712,35 @@ x-webhooks:
               type: object
               properties:
                 payload:
-                  $ref: '#/components/schemas/AccountingWebhookEvent'
+                  $ref: '#/components/schemas/CrmWebhookEvent'
             example:
               payload:
-                event_type: accounting.tax_rate.created
-                unified_api: accounting
-                service_id: xero
+                event_type: crm.note.created
+                unified_api: crm
+                service_id: hubspot
                 consumer_id: test_user_id
                 event_id: d290f1ee-6c54-4b01-90e6-d701748f0851
                 entity_id: 123456ASDF
-                entity_url: https://unify.apideck.com/accounting/tax_rates/123456ASDF
-                entity_type: tax_rate
+                entity_url: https://unify.apideck.com/crm/notes/123456ASDF
+                entity_type: note
                 occurred_at: '2020-01-01T00:00:00.000Z'
       responses:
         '200':
           description: Return a 200 status to indicate that the data was received successfully.
       security: []
-      description: Event broadcast when a tax has been rate created.
-  TaxRateUpdated:
+  NoteUpdated:
     post:
-      summary: Tax Rate Updated
-      operationId: taxRateUpdated
-      x-apideck-event-type: accounting.tax_rate.updated
+      summary: Note Updated
+      description: Event broadcast when a note has been updated.
+      operationId: noteUpdated
+      x-apideck-event-type: crm.note.updated
       parameters:
       - name: x-apideck-event-type
         in: header
         required: true
         description: The type of event that was triggered
         schema:
-          $ref: '#/components/schemas/AccountingEventType'
+          $ref: '#/components/schemas/CrmEventType'
       - name: x-apideck-signature
         in: header
         required: true
@@ -2646,35 +2764,35 @@ x-webhooks:
               type: object
               properties:
                 payload:
-                  $ref: '#/components/schemas/AccountingWebhookEvent'
+                  $ref: '#/components/schemas/CrmWebhookEvent'
             example:
               payload:
-                event_type: accounting.tax_rate.updated
-                unified_api: accounting
-                service_id: xero
+                event_type: crm.note.updated
+                unified_api: crm
+                service_id: hubspot
                 consumer_id: test_user_id
                 event_id: d290f1ee-6c54-4b01-90e6-d701748f0851
                 entity_id: 123456ASDF
-                entity_url: https://unify.apideck.com/accounting/tax_rates/123456ASDF
-                entity_type: tax_rate
+                entity_url: https://unify.apideck.com/crm/notes/123456ASDF
+                entity_type: note
                 occurred_at: '2020-01-01T00:00:00.000Z'
       responses:
         '200':
           description: Return a 200 status to indicate that the data was received successfully.
       security: []
-      description: Event broadcast when a tax has been rate updated.
-  TaxRateDeleted:
+  NoteDeleted:
     post:
-      summary: Tax Rate Deleted
-      operationId: taxRateDeleted
-      x-apideck-event-type: accounting.tax_rate.deleted
+      summary: Note Deleted
+      description: Event broadcast when a note has been deleted.
+      operationId: noteDeleted
+      x-apideck-event-type: crm.note.deleted
       parameters:
       - name: x-apideck-event-type
         in: header
         required: true
         description: The type of event that was triggered
         schema:
-          $ref: '#/components/schemas/AccountingEventType'
+          $ref: '#/components/schemas/CrmEventType'
       - name: x-apideck-signature
         in: header
         required: true
@@ -2698,35 +2816,35 @@ x-webhooks:
               type: object
               properties:
                 payload:
-                  $ref: '#/components/schemas/AccountingWebhookEvent'
+                  $ref: '#/components/schemas/CrmWebhookEvent'
             example:
               payload:
-                event_type: accounting.tax_rate.deleted
-                unified_api: accounting
-                service_id: xero
+                event_type: crm.note.deleted
+                unified_api: crm
+                service_id: hubspot
                 consumer_id: test_user_id
                 event_id: d290f1ee-6c54-4b01-90e6-d701748f0851
                 entity_id: 123456ASDF
-                entity_url: https://unify.apideck.com/accounting/tax_rates/123456ASDF
-                entity_type: tax_rate
+                entity_url: https://unify.apideck.com/crm/notes/123456ASDF
+                entity_type: note
                 occurred_at: '2020-01-01T00:00:00.000Z'
       responses:
         '200':
           description: Return a 200 status to indicate that the data was received successfully.
       security: []
-      description: Event broadcast when a tax has been rate deleted.
-  PurchaseOrderCreated:
+  OpportunityCreated:
     post:
-      summary: Purchase Order Created
-      operationId: purchaseOrderCreated
-      x-apideck-event-type: accounting.purchase_order.created
+      summary: Opportunity Created
+      description: Event broadcast when an opportunity has been created.
+      operationId: opportunityCreated
+      x-apideck-event-type: crm.opportunity.created
       parameters:
       - name: x-apideck-event-type
         in: header
         required: true
         description: The type of event that was triggered
         schema:
-          $ref: '#/components/schemas/AccountingEventType'
+          $ref: '#/components/schemas/CrmEventType'
       - name: x-apideck-signature
         in: header
         required: true
@@ -2750,35 +2868,35 @@ x-webhooks:
               type: object
               properties:
                 payload:
-                  $ref: '#/components/schemas/AccountingWebhookEvent'
+                  $ref: '#/components/schemas/CrmWebhookEvent'
             example:
               payload:
-                event_type: accounting.purchase_order.created
-                unified_api: accounting
-                service_id: xero
+                event_type: crm.opportunity.created
+                unified_api: crm
+                service_id: hubspot
                 consumer_id: test_user_id
                 event_id: d290f1ee-6c54-4b01-90e6-d701748f0851
                 entity_id: 123456ASDF
-                entity_url: https://unify.apideck.com/accounting/purchase_orders/123456ASDF
-                entity_type: purchase_order
+                entity_url: https://unify.apideck.com/crm/opportunities/123456ASDF
+                entity_type: opportunity
                 occurred_at: '2020-01-01T00:00:00.000Z'
       responses:
         '200':
           description: Return a 200 status to indicate that the data was received successfully.
       security: []
-      description: Event broadcast when a purchase has been order created.
-  PurchaseOrderDeleted:
+  OpportunityUpdated:
     post:
-      summary: Purchase Order Deleted
-      operationId: purchaseOrderDeleted
-      x-apideck-event-type: accounting.purchase_order.deleted
+      summary: Opportunity Updated
+      description: Event broadcast when an opportunity has been updated.
+      operationId: opportunityUpdated
+      x-apideck-event-type: crm.opportunity.updated
       parameters:
       - name: x-apideck-event-type
         in: header
         required: true
         description: The type of event that was triggered
         schema:
-          $ref: '#/components/schemas/AccountingEventType'
+          $ref: '#/components/schemas/CrmEventType'
       - name: x-apideck-signature
         in: header
         required: true
@@ -2802,35 +2920,35 @@ x-webhooks:
               type: object
               properties:
                 payload:
-                  $ref: '#/components/schemas/AccountingWebhookEvent'
+                  $ref: '#/components/schemas/CrmWebhookEvent'
             example:
               payload:
-                event_type: accounting.purchase_order.deleted
-                unified_api: accounting
-                service_id: xero
+                event_type: crm.opportunity.updated
+                unified_api: crm
+                service_id: hubspot
                 consumer_id: test_user_id
                 event_id: d290f1ee-6c54-4b01-90e6-d701748f0851
                 entity_id: 123456ASDF
-                entity_url: https://unify.apideck.com/accounting/purchase_orders/123456ASDF
-                entity_type: purchase_order
+                entity_url: https://unify.apideck.com/crm/opportunities/123456ASDF
+                entity_type: opportunity
                 occurred_at: '2020-01-01T00:00:00.000Z'
       responses:
         '200':
           description: Return a 200 status to indicate that the data was received successfully.
       security: []
-      description: Event broadcast when a purchase has been order deleted.
-  PurchaseOrderUpdated:
+  OpportunityDeleted:
     post:
-      summary: Purchase Order Updated
-      operationId: purchaseOrderUpdated
-      x-apideck-event-type: accounting.purchase_order.updated
+      summary: Opportunity Deleted
+      description: Event broadcast when an opportunity has been deleted.
+      operationId: opportunityDeleted
+      x-apideck-event-type: crm.opportunity.deleted
       parameters:
       - name: x-apideck-event-type
         in: header
         required: true
         description: The type of event that was triggered
         schema:
-          $ref: '#/components/schemas/AccountingEventType'
+          $ref: '#/components/schemas/CrmEventType'
       - name: x-apideck-signature
         in: header
         required: true
@@ -2854,344 +2972,19 @@ x-webhooks:
               type: object
               properties:
                 payload:
-                  $ref: '#/components/schemas/AccountingWebhookEvent'
+                  $ref: '#/components/schemas/CrmWebhookEvent'
             example:
               payload:
-                event_type: accounting.purchase_order.updated
-                unified_api: accounting
-                service_id: xero
+                event_type: crm.opportunity.deleted
+                unified_api: crm
+                service_id: hubspot
                 consumer_id: test_user_id
                 event_id: d290f1ee-6c54-4b01-90e6-d701748f0851
                 entity_id: 123456ASDF
-                entity_url: https://unify.apideck.com/accounting/purchase_orders/123456ASDF
-                entity_type: purchase_order
+                entity_url: https://unify.apideck.com/crm/opportunities/123456ASDF
+                entity_type: opportunity
                 occurred_at: '2020-01-01T00:00:00.000Z'
       responses:
         '200':
           description: Return a 200 status to indicate that the data was received successfully.
-      security: []
-      description: Event broadcast when a purchase has been order updated.
-  ExpenseUpdated:
-    post:
-      summary: Expense Updated
-      description: Event broadcast when an expense has been updated.
-      operationId: expenseUpdated
-      x-apideck-event-type: accounting.expense.updated
-      tags:
-      - Webhook Events
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/AccountingWebhookEvent'
-            example:
-              payload:
-                event_type: accounting.expense.updated
-                unified_api: accounting
-                service_id: xero
-                consumer_id: test_user_id
-                event_id: d290f1ee-6c54-4b01-90e6-d701748f0851
-                entity_id: 123456ASDF
-                entity_url: https://unify.apideck.com/accounting/expenses/123456ASDF
-                entity_type: expense
-                occurred_at: '2020-01-01T00:00:00.000Z'
-      responses:
-        '200':
-          description: Return a 200 status to indicate that the data was received successfully
-      parameters:
-      - name: x-apideck-event-type
-        in: header
-        required: true
-        description: The type of event that was triggered
-        schema:
-          type: string
-        example: accounting.expense.updated
-      - name: x-apideck-signature
-        in: header
-        required: true
-        description: HMAC SHA-256 signature of the request body, used to verify the webhook came from Apideck
-        schema:
-          type: string
-        example: 2c3b38f1a9b3349afe38829713dcd9722f47dec3ce8906ad93ce803a33f2a8a3
-      - name: x-apideck-idempotency-key
-        in: header
-        required: true
-        description: A unique identifier for the webhook event, can be used to prevent duplicate processing
-        schema:
-          type: string
-        example: e91dea5d-8ff6-4099-8b33-d3162fb4a042
-      security: []
-  ExpenseDeleted:
-    post:
-      summary: Expense Deleted
-      description: Event broadcast when an expense has been deleted.
-      operationId: expenseDeleted
-      x-apideck-event-type: accounting.expense.deleted
-      tags:
-      - Webhook Events
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/AccountingWebhookEvent'
-            example:
-              payload:
-                event_type: accounting.expense.deleted
-                unified_api: accounting
-                service_id: xero
-                consumer_id: test_user_id
-                event_id: d290f1ee-6c54-4b01-90e6-d701748f0851
-                entity_id: 123456ASDF
-                entity_url: https://unify.apideck.com/accounting/expenses/123456ASDF
-                entity_type: expense
-                occurred_at: '2020-01-01T00:00:00.000Z'
-      responses:
-        '200':
-          description: Return a 200 status to indicate that the data was received successfully
-      parameters:
-      - name: x-apideck-event-type
-        in: header
-        required: true
-        description: The type of event that was triggered
-        schema:
-          type: string
-        example: accounting.expense.deleted
-      - name: x-apideck-signature
-        in: header
-        required: true
-        description: HMAC SHA-256 signature of the request body, used to verify the webhook came from Apideck
-        schema:
-          type: string
-        example: 2c3b38f1a9b3349afe38829713dcd9722f47dec3ce8906ad93ce803a33f2a8a3
-      - name: x-apideck-idempotency-key
-        in: header
-        required: true
-        description: A unique identifier for the webhook event, can be used to prevent duplicate processing
-        schema:
-          type: string
-        example: e91dea5d-8ff6-4099-8b33-d3162fb4a042
-      security: []
-  ExpenseCreated:
-    post:
-      summary: Expense Created
-      description: Event broadcast when an expense has been created.
-      operationId: expenseCreated
-      x-apideck-event-type: accounting.expense.created
-      tags:
-      - Webhook Events
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/AccountingWebhookEvent'
-            example:
-              payload:
-                event_type: accounting.expense.created
-                unified_api: accounting
-                service_id: xero
-                consumer_id: test_user_id
-                event_id: d290f1ee-6c54-4b01-90e6-d701748f0851
-                entity_id: 123456ASDF
-                entity_url: https://unify.apideck.com/accounting/expenses/123456ASDF
-                entity_type: expense
-                occurred_at: '2020-01-01T00:00:00.000Z'
-      responses:
-        '200':
-          description: Return a 200 status to indicate that the data was received successfully
-      parameters:
-      - name: x-apideck-event-type
-        in: header
-        required: true
-        description: The type of event that was triggered
-        schema:
-          type: string
-        example: accounting.expense.created
-      - name: x-apideck-signature
-        in: header
-        required: true
-        description: HMAC SHA-256 signature of the request body, used to verify the webhook came from Apideck
-        schema:
-          type: string
-        example: 2c3b38f1a9b3349afe38829713dcd9722f47dec3ce8906ad93ce803a33f2a8a3
-      - name: x-apideck-idempotency-key
-        in: header
-        required: true
-        description: A unique identifier for the webhook event, can be used to prevent duplicate processing
-        schema:
-          type: string
-        example: e91dea5d-8ff6-4099-8b33-d3162fb4a042
-      security: []
-  QuoteDeleted:
-    post:
-      summary: Quote Deleted
-      description: Event broadcast when a quote has been deleted.
-      operationId: quoteDeleted
-      x-apideck-event-type: accounting.quote.deleted
-      tags:
-      - Webhook Events
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/WebhookEvent'
-            example:
-              payload:
-                event_type: accounting.quote.deleted
-                unified_api: accounting
-                service_id: xero
-                consumer_id: test_user_id
-                event_id: d290f1ee-6c54-4b01-90e6-d701748f0851
-                entity_id: 123456ASDF
-                entity_url: https://unify.apideck.com/accounting/quotes/123456ASDF
-                entity_type: quote
-                occurred_at: '2020-01-01T00:00:00.000Z'
-      responses:
-        '200':
-          description: Return a 200 status to indicate that the data was received successfully
-      parameters: []
-      security: []
-  QuoteCreated:
-    post:
-      summary: Quote Created
-      description: Event broadcast when a quote has been created.
-      operationId: quoteCreated
-      x-apideck-event-type: accounting.quote.created
-      tags:
-      - Webhook Events
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/WebhookEvent'
-            example:
-              payload:
-                event_type: accounting.quote.created
-                unified_api: accounting
-                service_id: xero
-                consumer_id: test_user_id
-                event_id: d290f1ee-6c54-4b01-90e6-d701748f0851
-                entity_id: 123456ASDF
-                entity_url: https://unify.apideck.com/accounting/quotes/123456ASDF
-                entity_type: quote
-                occurred_at: '2020-01-01T00:00:00.000Z'
-      responses:
-        '200':
-          description: Return a 200 status to indicate that the data was received successfully
-      parameters: []
-      security: []
-  QuoteUpdated:
-    post:
-      summary: Quote Updated
-      description: Event broadcast when a quote has been updated.
-      operationId: quoteUpdated
-      x-apideck-event-type: accounting.quote.updated
-      tags:
-      - Webhook Events
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/WebhookEvent'
-            example:
-              payload:
-                event_type: accounting.quote.updated
-                unified_api: accounting
-                service_id: xero
-                consumer_id: test_user_id
-                event_id: d290f1ee-6c54-4b01-90e6-d701748f0851
-                entity_id: 123456ASDF
-                entity_url: https://unify.apideck.com/accounting/quotes/123456ASDF
-                entity_type: quote
-                occurred_at: '2020-01-01T00:00:00.000Z'
-      responses:
-        '200':
-          description: Return a 200 status to indicate that the data was received successfully
-      parameters: []
-      security: []
-  ProjectUpdated:
-    post:
-      summary: Project Updated
-      description: Event broadcast when a project has been updated.
-      operationId: projectUpdated
-      x-apideck-event-type: accounting.project.updated
-      tags:
-      - Webhook Events
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/AccountingWebhookEvent'
-            example:
-              payload:
-                event_type: accounting.project.updated
-                unified_api: accounting
-                service_id: xero
-                consumer_id: test_user_id
-                event_id: d290f1ee-6c54-4b01-90e6-d701748f0851
-                entity_id: 123456ASDF
-                entity_url: https://unify.apideck.com/accounting/projects/123456ASDF
-                entity_type: project
-                occurred_at: '2020-01-01T00:00:00.000Z'
-      responses:
-        '200':
-          description: Return a 200 status to indicate that the data was received successfully
-      parameters: []
-      security: []
-  ProjectCreated:
-    post:
-      summary: Project Created
-      description: Event broadcast when a project has been created.
-      operationId: projectCreated
-      x-apideck-event-type: accounting.project.created
-      tags:
-      - Webhook Events
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/AccountingWebhookEvent'
-            example:
-              payload:
-                event_type: accounting.project.created
-                unified_api: accounting
-                service_id: xero
-                consumer_id: test_user_id
-                event_id: d290f1ee-6c54-4b01-90e6-d701748f0851
-                entity_id: 123456ASDF
-                entity_url: https://unify.apideck.com/accounting/projects/123456ASDF
-                entity_type: project
-                occurred_at: '2020-01-01T00:00:00.000Z'
-      responses:
-        '200':
-          description: Return a 200 status to indicate that the data was received successfully
-      parameters: []
-      security: []
-  ProjectDeleted:
-    post:
-      summary: Project Deleted
-      description: Event broadcast when a project has been deleted.
-      operationId: projectDeleted
-      x-apideck-event-type: accounting.project.deleted
-      tags:
-      - Webhook Events
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/AccountingWebhookEvent'
-            example:
-              payload:
-                event_type: accounting.project.deleted
-                unified_api: accounting
-                service_id: xero
-                consumer_id: test_user_id
-                event_id: d290f1ee-6c54-4b01-90e6-d701748f0851
-                entity_id: 123456ASDF
-                entity_url: https://unify.apideck.com/accounting/projects/123456ASDF
-                entity_type: project
-                occurred_at: '2020-01-01T00:00:00.000Z'
-      responses:
-        '200':
-          description: Return a 200 status to indicate that the data was received successfully
-      parameters: []
       security: []

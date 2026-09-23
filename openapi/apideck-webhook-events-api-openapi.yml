@@ -1,1278 +1,329 @@
 openapi: 3.2.0
 info:
+  title: Apideck Webhook Events API
   version: 10.24.12
-  title: Apideck Accounting Expense Categories API
-  description: Welcome to the Accounting API.
   contact:
     email: hello@apideck.com
     url: https://developers.apideck.com
-  x-logo:
-    url: https://developers.apideck.com/icon.png
-  x-apideck-api: accounting
-  x-apideck-sdk-support: true
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
+  x-apideck-api: file-storage
+  x-apideck-sdk-support: true
+  x-logo:
+    url: https://developers.apideck.com/icon.png
+  description: 'Operations tagged Webhook Events across 2 of this provider''s published API definitions: apideck-file-storage-openapi.yml, apideck-webhook-events-api-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://unify.apideck.com
 security:
 - apiKey: []
 tags:
-- name: Expense Categories
-  description: An Expense Category classifies types of expenses within the organization, such as travel, meals, or office supplies. Used to categorize expense report line items.
-  x-apideck-resource-id: expense-categories
-  x-apideck-model:
-    $ref: '#/components/schemas/ExpenseCategory'
-paths:
-  /accounting/expense-categories:
-    get:
-      tags:
-      - Expense Categories
-      operationId: expenseCategoriesAll
-      summary: Apideck List Expense Categories
-      description: List Expense Categories
-      parameters:
-      - $ref: '#/components/parameters/raw'
-      - $ref: '#/components/parameters/consumerId'
-      - $ref: '#/components/parameters/applicationId'
-      - $ref: '#/components/parameters/serviceId'
-      - $ref: '#/components/parameters/cursor'
-      - $ref: '#/components/parameters/limit'
-      - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expenseCategoriesFilter'
-      security:
-      - apiKey: []
-      responses:
-        '200':
-          $ref: '#/components/responses/GetExpenseCategoriesResponse'
-        '400':
-          $ref: '#/components/responses/BadRequestResponse'
-        '401':
-          $ref: '#/components/responses/UnauthorizedResponse'
-        '402':
-          $ref: '#/components/responses/PaymentRequiredResponse'
-        '404':
-          $ref: '#/components/responses/NotFoundResponse'
-        '422':
-          $ref: '#/components/responses/UnprocessableResponse'
-        default:
-          $ref: '#/components/responses/UnexpectedErrorResponse'
-      x-apideck-api: accounting
-      x-codeSamples:
-      - lang: TypeScript
-        label: Node
-        source: {}
+- name: Webhook Events
+paths: {}
+webhooks:
+  FileCreated:
     post:
-      tags:
-      - Expense Categories
-      operationId: expenseCategoriesAdd
-      summary: Apideck Create Expense Category
-      description: Create Expense Category
+      summary: File Created
+      description: Event broadcast when a file has been created.
+      operationId: fileCreated
+      x-apideck-event-type: file-storage.file.created
       parameters:
-      - $ref: '#/components/parameters/raw'
-      - $ref: '#/components/parameters/consumerId'
-      - $ref: '#/components/parameters/applicationId'
-      - $ref: '#/components/parameters/serviceId'
-      security:
-      - apiKey: []
-      requestBody:
+      - name: x-apideck-event-type
+        in: header
         required: true
+        description: The type of event that was triggered
+        schema:
+          $ref: '#/components/schemas/FileStorageEventType'
+      - name: x-apideck-signature
+        in: header
+        required: true
+        description: HMAC SHA-256 signature of the request body, used to verify the webhook came from Apideck
+        schema:
+          type: string
+        example: 2c3b38f1a9b3349afe38829713dcd9722f47dec3ce8906ad93ce803a33f2a8a3
+      - name: x-apideck-idempotency-key
+        in: header
+        required: true
+        description: A unique identifier for the webhook event, can be used to prevent duplicate processing
+        schema:
+          type: string
+        example: e91dea5d-8ff6-4099-8b33-d3162fb4a042
+      tags:
+      - Webhook Events
+      requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ExpenseCategory'
-      responses:
-        '201':
-          $ref: '#/components/responses/CreateExpenseCategoryResponse'
-        '400':
-          $ref: '#/components/responses/BadRequestResponse'
-        '401':
-          $ref: '#/components/responses/UnauthorizedResponse'
-        '402':
-          $ref: '#/components/responses/PaymentRequiredResponse'
-        '404':
-          $ref: '#/components/responses/NotFoundResponse'
-        '422':
-          $ref: '#/components/responses/UnprocessableResponse'
-        default:
-          $ref: '#/components/responses/UnexpectedErrorResponse'
-      x-apideck-api: accounting
-      x-codeSamples:
-      - lang: TypeScript
-        label: Node
-        source:
-          expenseCategory:
-            display_id: '123456'
-            name: Travel
-            code: TRAVEL-001
-            description: Travel-related expenses including flights, hotels, and ground transportation.
-            status: active
-            account:
-              id: '123456'
-              name: Bank account
-              nominal_code: N091
-              code: '453'
-              parent_id: '123456'
-              display_id: '123456'
-            offset_account:
-              id: '123456'
-              name: Bank account
-              nominal_code: N091
-              code: '453'
-              parent_id: '123456'
-              display_id: '123456'
-            tax_rate:
-              id: '123456'
-              code: N-T
-              rate: 10
-            rate_required: false
-            default_rate: 0.67
-            row_version: 1-12345
-            pass_through:
-            - service_id: string
-              operation_id: string
-              extend_object: {}
-              extend_paths:
-              - path: $.nested.property
-                value:
-                  TaxClassificationRef:
-                    value: EUC-99990201-V1-00020000
-  /accounting/expense-categories/{id}:
-    get:
-      tags:
-      - Expense Categories
-      operationId: expenseCategoriesOne
-      summary: Apideck Get Expense Category
-      description: Get Expense Category
-      parameters:
-      - $ref: '#/components/parameters/id'
-      - $ref: '#/components/parameters/consumerId'
-      - $ref: '#/components/parameters/applicationId'
-      - $ref: '#/components/parameters/serviceId'
-      - $ref: '#/components/parameters/raw'
-      - $ref: '#/components/parameters/fields'
-      security:
-      - apiKey: []
-      responses:
-        '200':
-          $ref: '#/components/responses/GetExpenseCategoryResponse'
-        '400':
-          $ref: '#/components/responses/BadRequestResponse'
-        '401':
-          $ref: '#/components/responses/UnauthorizedResponse'
-        '402':
-          $ref: '#/components/responses/PaymentRequiredResponse'
-        '404':
-          $ref: '#/components/responses/NotFoundResponse'
-        '422':
-          $ref: '#/components/responses/UnprocessableResponse'
-        default:
-          $ref: '#/components/responses/UnexpectedErrorResponse'
-      x-apideck-api: accounting
-      x-codeSamples:
-      - lang: TypeScript
-        label: Node
-        source:
-          id: id_example
-    patch:
-      tags:
-      - Expense Categories
-      operationId: expenseCategoriesUpdate
-      summary: Apideck Update Expense Category
-      description: Update Expense Category
-      parameters:
-      - $ref: '#/components/parameters/id'
-      - $ref: '#/components/parameters/consumerId'
-      - $ref: '#/components/parameters/applicationId'
-      - $ref: '#/components/parameters/serviceId'
-      - $ref: '#/components/parameters/raw'
-      security:
-      - apiKey: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ExpenseCategory'
-      responses:
-        '200':
-          $ref: '#/components/responses/UpdateExpenseCategoryResponse'
-        '400':
-          $ref: '#/components/responses/BadRequestResponse'
-        '401':
-          $ref: '#/components/responses/UnauthorizedResponse'
-        '402':
-          $ref: '#/components/responses/PaymentRequiredResponse'
-        '404':
-          $ref: '#/components/responses/NotFoundResponse'
-        '422':
-          $ref: '#/components/responses/UnprocessableResponse'
-        default:
-          $ref: '#/components/responses/UnexpectedErrorResponse'
-      x-apideck-api: accounting
-      x-codeSamples:
-      - lang: TypeScript
-        label: Node
-        source:
-          id: id_example
-          expenseCategory:
-            display_id: '123456'
-            name: Travel
-            code: TRAVEL-001
-            description: Travel-related expenses including flights, hotels, and ground transportation.
-            status: active
-            account:
-              id: '123456'
-              name: Bank account
-              nominal_code: N091
-              code: '453'
-              parent_id: '123456'
-              display_id: '123456'
-            offset_account:
-              id: '123456'
-              name: Bank account
-              nominal_code: N091
-              code: '453'
-              parent_id: '123456'
-              display_id: '123456'
-            tax_rate:
-              id: '123456'
-              code: N-T
-              rate: 10
-            rate_required: false
-            default_rate: 0.67
-            row_version: 1-12345
-            pass_through:
-            - service_id: string
-              operation_id: string
-              extend_object: {}
-              extend_paths:
-              - path: $.nested.property
-                value:
-                  TaxClassificationRef:
-                    value: EUC-99990201-V1-00020000
-    delete:
-      tags:
-      - Expense Categories
-      operationId: expenseCategoriesDelete
-      summary: Apideck Delete Expense Category
-      description: Delete Expense Category
-      parameters:
-      - $ref: '#/components/parameters/id'
-      - $ref: '#/components/parameters/consumerId'
-      - $ref: '#/components/parameters/applicationId'
-      - $ref: '#/components/parameters/serviceId'
-      - $ref: '#/components/parameters/raw'
-      security:
-      - apiKey: []
-      responses:
-        '200':
-          $ref: '#/components/responses/DeleteExpenseCategoryResponse'
-        '400':
-          $ref: '#/components/responses/BadRequestResponse'
-        '401':
-          $ref: '#/components/responses/UnauthorizedResponse'
-        '402':
-          $ref: '#/components/responses/PaymentRequiredResponse'
-        '404':
-          $ref: '#/components/responses/NotFoundResponse'
-        '422':
-          $ref: '#/components/responses/UnprocessableResponse'
-        default:
-          $ref: '#/components/responses/UnexpectedErrorResponse'
-      x-apideck-api: accounting
-      x-codeSamples:
-      - lang: TypeScript
-        label: Node
-        source:
-          id: id_example
-components:
-  schemas:
-    Raw:
-      title: raw
-      type:
-      - object
-      - 'null'
-      x-apideck-schema-id: Raw
-      description: Raw response from the integration when raw=true query param is provided
-      additionalProperties: true
-    UpdatedBy:
-      type:
-      - string
-      - 'null'
-      title: Updated by
-      description: The user who last updated the object.
-      example: '12345'
-      readOnly: true
-    UnifiedId:
-      title: UnifiedId
-      type: object
-      x-apideck-schema-id: Id
-      description: A object containing a unique identifier for the resource that was created, updated, or deleted.
-      required:
-      - id
-      properties:
-        id:
-          title: Id
-          description: The unique identifier of the resource
-          type: string
-          readOnly: true
-          example: '12345'
-    UnexpectedErrorResponse:
-      type: object
-      x-apideck-schema-id: Error
-      properties:
-        status_code:
-          type: number
-          description: HTTP status code
-          example: 400
-        error:
-          type: string
-          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
-          example: Bad Request
-        type_name:
-          type: string
-          description: The type of error returned
-          example: RequestHeadersValidationError
-        message:
-          type: string
-          description: A human-readable message providing more details about the error.
-          example: Invalid Params
-          x-speakeasy-error-message: true
-        detail:
-          anyOf:
-          - type: string
-            example: 'Missing Header: x-apideck-consumer-id'
-          - type: object
-            x-speakeasy-detail: true
-            example:
-              missing:
-              - x-apideck-consumer-id: required
-          description: Contains parameter or domain specific information related to the error and why it occurred.
-        ref:
-          type: string
-          description: Link to documentation of error type
-          example: https://developers.apideck.com/errors#unauthorizederror
-    LinkedLedgerAccount:
-      type:
-      - object
-      - 'null'
-      x-apideck-schema-id: LinkedLedgerAccount
-      additionalProperties: false
-      x-apideck-weights:
-        id: medium
-        nominal_code: medium
-        code: medium
-        name: medium
-        parent_id: low
-        display_id: low
-      properties:
-        id:
-          title: Account ID
-          description: The unique identifier for the account.
-          type: string
-          example: '123456'
-        name:
-          type:
-          - string
-          - 'null'
-          title: Account Name
-          description: The name of the account.
-          example: Bank account
-        nominal_code:
-          type:
-          - string
-          - 'null'
-          title: Nominal Code
-          description: The nominal code of the account.
-          example: N091
-        code:
-          type:
-          - string
-          - 'null'
-          title: Code
-          description: The code assigned to the account.
-          example: '453'
-        parent_id:
-          type:
-          - string
-          - 'null'
-          title: Parent ID
-          description: The parent ID of the account.
-          example: '123456'
-        display_id:
-          type:
-          - string
-          - 'null'
-          title: Display ID
-          description: The display ID of the account.
-          example: '123456'
-    PaymentRequiredResponse:
-      type: object
-      x-apideck-schema-id: PaymentRequired
-      properties:
-        status_code:
-          type: number
-          description: HTTP status code
-          example: 402
-        error:
-          type: string
-          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
-          example: Payment Required
-        type_name:
-          type: string
-          description: The type of error returned
-          example: RequestLimitError
-        message:
-          type: string
-          description: A human-readable message providing more details about the error.
-          example: Request Limit Reached
-          x-speakeasy-error-message: true
-        detail:
-          type: string
-          description: Contains parameter or domain specific information related to the error and why it occurred.
-          example: You have reached your limit of 2000
-        ref:
-          type: string
-          description: Link to documentation of error type
-          example: https://developers.apideck.com/errors#requestlimiterror
-    Meta:
-      type: object
-      x-apideck-schema-id: Meta
-      description: Response metadata
-      properties:
-        items_on_page:
-          type: integer
-          description: Number of items returned in the data property of the response
-          example: 50
-        cursors:
-          type: object
-          description: Cursors to navigate to previous or next pages through the API
-          properties:
-            previous:
-              type:
-              - string
-              - 'null'
-              description: Cursor to navigate to the previous page of results through the API
-              example: em9oby1jcm06OnBhZ2U6OjE=
-            current:
-              type:
-              - string
-              - 'null'
-              description: Cursor to navigate to the current page of results through the API
-              example: em9oby1jcm06OnBhZ2U6OjI=
-            next:
-              type:
-              - string
-              - 'null'
-              description: Cursor to navigate to the next page of results through the API
-              example: em9oby1jcm06OnBhZ2U6OjM=
-    CreatedBy:
-      type:
-      - string
-      - 'null'
-      title: Created by
-      description: The user who created the object.
-      example: '12345'
-      readOnly: true
-    GetExpenseCategoriesResponse:
-      type: object
-      x-apideck-schema-id: GetExpenseCategoriesResponse
-      required:
-      - status_code
-      - status
-      - service
-      - resource
-      - operation
-      - data
-      properties:
-        status_code:
-          type: integer
-          description: HTTP Response Status Code
-          example: 200
-        status:
-          type: string
-          description: HTTP Response Status
-          example: OK
-        service:
-          type: string
-          description: Apideck ID of service provider
-          example: netsuite
-        resource:
-          type: string
-          description: Unified API resource name
-          example: ExpenseCategories
-        operation:
-          type: string
-          description: Operation performed
-          example: all
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ExpenseCategory'
-        meta:
-          $ref: '#/components/schemas/Meta'
-        links:
-          $ref: '#/components/schemas/Links'
-        _raw:
-          $ref: '#/components/schemas/Raw'
-    CreateExpenseCategoryResponse:
-      type: object
-      required:
-      - status_code
-      - status
-      - service
-      - resource
-      - operation
-      - data
-      properties:
-        status_code:
-          type: integer
-          description: HTTP Response Status Code
-          example: 200
-        status:
-          type: string
-          description: HTTP Response Status
-          example: OK
-        service:
-          type: string
-          description: Apideck ID of service provider
-          example: netsuite
-        resource:
-          type: string
-          description: Unified API resource name
-          example: ExpenseCategories
-        operation:
-          type: string
-          description: Operation performed
-          example: add
-        data:
-          $ref: '#/components/schemas/UnifiedId'
-        _raw:
-          $ref: '#/components/schemas/Raw'
-    RowVersion:
-      type:
-      - string
-      - 'null'
-      title: Row version
-      description: A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-      example: 1-12345
-    NotFoundResponse:
-      type: object
-      x-apideck-schema-id: NotFound
-      properties:
-        status_code:
-          type: number
-          description: HTTP status code
-          example: 404
-        error:
-          type: string
-          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
-          example: Not Found
-        type_name:
-          type: string
-          description: The type of error returned
-          example: EntityNotFoundError
-        message:
-          type: string
-          description: A human-readable message providing more details about the error.
-          example: Unknown Widget
-          x-speakeasy-error-message: true
-        detail:
-          anyOf:
-          - type: string
-            example: 'Could not find widget with id: ''123'''
-          - type: object
-            x-speakeasy-detail: true
-            example:
-              not_found:
-                entity: widget
-                id: '123'
-          description: Contains parameter or domain specific information related to the error and why it occurred.
-        ref:
-          type: string
-          description: Link to documentation of error type
-          example: https://developers.apideck.com/errors#entitynotfounderror
-    Id:
-      type: string
-      title: ID
-      description: A unique identifier for an object.
-      example: '12345'
-      readOnly: true
-    LinkedTaxRate:
-      type: object
-      x-apideck-schema-id: LinkedTaxRate
-      additionalProperties: false
-      x-apideck-weights:
-        id: medium
-        code: medium
-        name: medium
-        rate: medium
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          title: The ID of the object.
-          description: The ID of the object.
-          example: '123456'
-        code:
-          type:
-          - string
-          - 'null'
-          title: Tax rate code
-          description: Tax rate code
-          example: N-T
-        name:
-          type:
-          - string
-          - 'null'
-          title: Name
-          description: Name of the tax rate
-          example: GST on Purchases
-          readOnly: true
-        rate:
-          type:
-          - number
-          - 'null'
-          title: Rate
-          description: Rate of the tax rate
-          example: 10
-    UnprocessableResponse:
-      type: object
-      x-apideck-schema-id: Unprocessable
-      properties:
-        status_code:
-          type: number
-          description: HTTP status code
-          example: 422
-        error:
-          type: string
-          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
-          example: Unprocessable Entity
-        type_name:
-          type: string
-          description: The type of error returned
-          example: InvalidStateError
-        message:
-          type: string
-          description: A human-readable message providing more details about the error.
-          example: Invalid State
-          x-speakeasy-error-message: true
-        detail:
-          anyOf:
-          - type: string
-            example: Unprocessable request, please verify your request headers and body.
-          - type: object
-            x-speakeasy-detail: true
-            example:
-              error: Unprocessable
-              message: Unprocessable request, please verify your request headers and body.
-          description: Contains parameter or domain specific information related to the error and why it occurred.
-        ref:
-          type: string
-          description: Link to documentation of error type
-          example: https://developers.apideck.com/errors#invalidstateerror
-    Links:
-      type: object
-      x-apideck-schema-id: Links
-      description: Links to navigate to previous or next pages through the API
-      properties:
-        previous:
-          type:
-          - string
-          - 'null'
-          description: Link to navigate to the previous page through the API
-          example: https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjE%3D
-        current:
-          type: string
-          description: Link to navigate to the current page through the API
-          example: https://unify.apideck.com/crm/companies
-        next:
-          type:
-          - string
-          - 'null'
-          description: Link to navigate to the previous page through the API
-          example: https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjM
-    UpdateExpenseCategoryResponse:
-      type: object
-      required:
-      - status_code
-      - status
-      - service
-      - resource
-      - operation
-      - data
-      properties:
-        status_code:
-          type: integer
-          description: HTTP Response Status Code
-          example: 200
-        status:
-          type: string
-          description: HTTP Response Status
-          example: OK
-        service:
-          type: string
-          description: Apideck ID of service provider
-          example: netsuite
-        resource:
-          type: string
-          description: Unified API resource name
-          example: ExpenseCategories
-        operation:
-          type: string
-          description: Operation performed
-          example: update
-        data:
-          $ref: '#/components/schemas/UnifiedId'
-        _raw:
-          $ref: '#/components/schemas/Raw'
-    ExpenseCategoriesFilter:
-      type: object
-      x-apideck-schema-id: ExpenseCategoriesFilter
-      example:
-        updated_since: '2020-09-30T07:43:32.000Z'
-        status: active
-      properties:
-        updated_since:
-          type: string
-          title: Updated since (timestamp)
-          format: date-time
-          example: '2020-09-30T07:43:32.000Z'
-        status:
-          type: string
-          enum:
-          - active
-          - inactive
-          x-apideck-enum-id: expense_categories.status
-      additionalProperties: false
-    BadRequestResponse:
-      type: object
-      x-apideck-schema-id: BadRequest
-      properties:
-        status_code:
-          type: number
-          description: HTTP status code
-          example: 400
-        error:
-          type: string
-          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
-          example: Bad Request
-        type_name:
-          type: string
-          description: The type of error returned
-          example: RequestValidationError
-        message:
-          type: string
-          description: A human-readable message providing more details about the error.
-          example: Invalid Params
-          x-speakeasy-error-message: true
-        detail:
-          anyOf:
-          - type: string
-            example: Missing property foobar
-          - type: object
-            x-speakeasy-detail: true
-            example:
-              missing:
-              - foobar: required
-          description: Contains parameter or domain specific information related to the error and why it occurred.
-        ref:
-          type: string
-          description: Link to documentation of error type
-          example: https://developers.apideck.com/errors#requestvalidationerror
-        downstream_errors:
-          type: array
-          description: Contains downstream errors returned from the connector. Only present when type_name is ConnectorExecutionError.
-          items:
-            type: object
-            properties:
-              message:
-                type: string
-                description: Error message from the downstream provider
-              detail:
-                type: string
-                description: Additional error details
-              code:
-                type: string
-                description: Error code from the downstream provider
-          example:
-          - message: Account code '100' has been archived or deleted
-            detail: Each line item must reference a valid account
-            code: VALIDATION_ERROR
-    ExpenseCategory:
-      type: object
-      x-apideck-schema-id: ExpenseCategory
-      additionalProperties: false
-      x-apideck-weights:
-        id: critical
-        display_id: medium
-        name: critical
-        code: medium
-        description: high
-        status: critical
-        account: critical
-        offset_account: edge-case
-        tax_rate: medium
-        rate_required: low
-        default_rate: low
-        custom_mappings: low
-        downstream_id: low
-        row_version: low
-        updated_by: edge-case
-        created_by: edge-case
-        updated_at: medium
-        created_at: medium
-        pass_through: low
-      required:
-      - name
-      x-apideck-strict-required:
-      - id
-      - name
-      - status
-      properties:
-        id:
-          $ref: '#/components/schemas/Id'
-        display_id:
-          $ref: '#/components/schemas/DisplayId'
-        name:
-          type: string
-          title: Name
-          description: The name of the expense category.
-          example: Travel
-        code:
-          type:
-          - string
-          - 'null'
-          title: Code
-          description: The code or external identifier of the expense category.
-          example: TRAVEL-001
-        description:
-          type:
-          - string
-          - 'null'
-          title: Description
-          description: The description of the expense category.
-          example: Travel-related expenses including flights, hotels, and ground transportation.
-        status:
-          type:
-          - string
-          - 'null'
-          title: Status
-          description: The status of the expense category.
-          x-apideck-enum-id: expense_categories.status
-          enum:
-          - active
-          - inactive
-          example: active
-        account:
-          $ref: '#/components/schemas/LinkedLedgerAccount'
-        offset_account:
-          $ref: '#/components/schemas/LinkedLedgerAccount'
-        tax_rate:
-          $ref: '#/components/schemas/LinkedTaxRate'
-        rate_required:
-          type:
-          - boolean
-          - 'null'
-          title: Rate Required
-          description: Whether the expense category requires rate/quantity entry (e.g. mileage at $/mile).
-          example: false
-        default_rate:
-          type:
-          - number
-          - 'null'
-          title: Default Rate
-          description: Default rate when rate_required is true (e.g. 0.67 for mileage).
-          example: 0.67
-        custom_mappings:
-          $ref: '#/components/schemas/CustomMappings'
-        downstream_id:
-          $ref: '#/components/schemas/DownstreamId'
-        row_version:
-          $ref: '#/components/schemas/RowVersion'
-        updated_by:
-          $ref: '#/components/schemas/UpdatedBy'
-        created_by:
-          $ref: '#/components/schemas/CreatedBy'
-        updated_at:
-          $ref: '#/components/schemas/UpdatedAt'
-        created_at:
-          $ref: '#/components/schemas/CreatedAt'
-        pass_through:
-          $ref: '#/components/schemas/PassThroughBody'
-    PassThroughBody:
-      type: array
-      description: The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-      items:
-        type: object
-        properties:
-          service_id:
-            type: string
-            description: Identifier for the service to which this pass_through should be applied.
-          operation_id:
-            type: string
-            description: Optional identifier for a workflow operation to which this pass_through should be applied. This is useful for Unify calls that are making more than one downstream request.
-          extend_object:
-            type: object
-            additionalProperties: true
-            description: Simple object allowing any properties for direct extension.
-          extend_paths:
-            type: array
-            description: Array of objects for structured data modifications via paths.
-            items:
               type: object
               properties:
-                path:
-                  type: string
-                  description: JSONPath string specifying where to apply the value.
-                  example: $.nested.property
-                value:
-                  description: The value to set at the specified path, can be any type.
-                  example:
-                    TaxClassificationRef:
-                      value: EUC-99990201-V1-00020000
-              required:
-              - path
-              - value
-              additionalProperties: false
-        required:
-        - service_id
-        additionalProperties: false
-        writeOnly: true
-    UpdatedAt:
-      type:
-      - string
-      - 'null'
-      title: Updated at (timestamp)
-      description: The date and time when the object was last updated.
-      format: date-time
-      example: '2020-09-30T07:43:32.000Z'
-      readOnly: true
-    DisplayId:
-      type:
-      - string
-      - 'null'
-      title: Display id
-      description: Id to be displayed.
-      example: '123456'
-    DeleteExpenseCategoryResponse:
-      type: object
-      required:
-      - status_code
-      - status
-      - service
-      - resource
-      - operation
-      - data
-      properties:
-        status_code:
-          type: integer
-          description: HTTP Response Status Code
-          example: 200
-        status:
-          type: string
-          description: HTTP Response Status
-          example: OK
-        service:
-          type: string
-          description: Apideck ID of service provider
-          example: netsuite
-        resource:
-          type: string
-          description: Unified API resource name
-          example: ExpenseCategories
-        operation:
-          type: string
-          description: Operation performed
-          example: delete
-        data:
-          $ref: '#/components/schemas/UnifiedId'
-        _raw:
-          $ref: '#/components/schemas/Raw'
-    DownstreamId:
-      type:
-      - string
-      - 'null'
-      description: The third-party API ID of original entity
-      example: '12345'
-      readOnly: true
-    GetExpenseCategoryResponse:
-      type: object
-      x-apideck-schema-id: GetExpenseCategoryResponse
-      required:
-      - status_code
-      - status
-      - service
-      - resource
-      - operation
-      - data
-      properties:
-        status_code:
-          type: integer
-          description: HTTP Response Status Code
-          example: 200
-        status:
-          type: string
-          description: HTTP Response Status
-          example: OK
-        service:
-          type: string
-          description: Apideck ID of service provider
-          example: netsuite
-        resource:
-          type: string
-          description: Unified API resource name
-          example: ExpenseCategories
-        operation:
-          type: string
-          description: Operation performed
-          example: one
-        data:
-          $ref: '#/components/schemas/ExpenseCategory'
-        _raw:
-          $ref: '#/components/schemas/Raw'
-    CustomMappings:
-      type:
-      - object
-      - 'null'
-      x-apideck-schema-id: CustomMappings
-      description: When custom mappings are configured on the resource, the result is included here.
-      readOnly: true
-      additionalProperties: true
-    UnauthorizedResponse:
-      type: object
-      x-apideck-schema-id: Unauthorized
-      properties:
-        status_code:
-          type: number
-          description: HTTP status code
-          example: 401
-        error:
-          type: string
-          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
-          example: Unauthorized
-        type_name:
-          type: string
-          description: The type of error returned
-          example: UnauthorizedError
-        message:
-          type: string
-          description: A human-readable message providing more details about the error.
-          example: Unauthorized Request
-          x-speakeasy-error-message: true
-        detail:
-          anyOf:
-          - type: string
-            example: Missing authentication
-          - type: object
-            x-speakeasy-detail: true
-            properties:
-              type:
-                type: string
-                description: Error type identifier
-                example: refresh_token_connector_error
-              message:
-                type: string
-                description: Detailed error message
-                example: Token refresh failed
-              debug:
-                type: object
-                description: Debug information including request/response details and OAuth timing metadata
-                properties:
-                  request:
-                    type: object
-                    description: HTTP request details
-                  response:
-                    type: object
-                    description: HTTP response details
-                  message:
-                    type: string
-                    description: Error message from downstream provider or network layer
-                  code:
-                    type: string
-                    description: Error code (e.g., ETIMEDOUT, ECONNREFUSED)
-                  credentials_expire_at_ms:
-                    type: number
-                    description: Unix timestamp (milliseconds) when credentials will be deleted if not refreshed. Only present for non-recoverable errors (401, 400). Credentials are preserved indefinitely for recoverable/network errors.
-                    example: 1620172800000
-                  retry_after_ms:
-                    type: number
-                    description: Unix timestamp (milliseconds) when token refresh retry is allowed after cooldown period expires.
-                    example: 1620000030000
-                  cooldown_remaining_ms:
-                    type: number
-                    description: Milliseconds remaining in cooldown period before retry is allowed.
-                    example: 30000
+                payload:
+                  $ref: '#/components/schemas/FileStorageWebhookEvent'
             example:
-              type: refresh_token_connector_error
-              message: Token refresh failed with 401 error
-              debug:
-                response:
-                  statusCode: 401
-                  data:
-                    error: invalid_grant
-                credentials_expire_at_ms: 1620172800000
-                retry_after_ms: 1620000030000
-                cooldown_remaining_ms: 30000
-          description: Contains parameter or domain specific information related to the error and why it occurred.
-        ref:
+              payload:
+                event_type: file-storage.file.created
+                unified_api: file-storage
+                service_id: dropbox
+                consumer_id: test_user_id
+                event_id: d290f1ee-6c54-4b01-90e6-d701748f0851
+                entity_id: 123456ASDF
+                entity_url: https://unify.apideck.com/file-storage/files/123456ASDF
+                entity_type: file
+                occurred_at: '2020-01-01T00:00:00.000Z'
+      responses:
+        '200':
+          description: Return a 200 status to indicate that the data was received successfully.
+      security: []
+    servers:
+    - url: https://unify.apideck.com
+  FileUpdated:
+    post:
+      summary: File Updated
+      description: Event broadcast when a file has been updated.
+      operationId: fileUpdated
+      x-apideck-event-type: file-storage.file.updated
+      parameters:
+      - name: x-apideck-event-type
+        in: header
+        required: true
+        description: The type of event that was triggered
+        schema:
+          $ref: '#/components/schemas/FileStorageEventType'
+      - name: x-apideck-signature
+        in: header
+        required: true
+        description: HMAC SHA-256 signature of the request body, used to verify the webhook came from Apideck
+        schema:
           type: string
-          description: Link to documentation of error type
-          example: https://developers.apideck.com/errors#unauthorizederror
-    CreatedAt:
-      type:
-      - string
-      - 'null'
-      title: Created at (timestamp)
-      description: The date and time when the object was created.
-      format: date-time
-      example: '2020-09-30T07:43:32.000Z'
-      readOnly: true
-  responses:
-    UnexpectedErrorResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UnexpectedErrorResponse'
-      description: Unexpected error
-    DeleteExpenseCategoryResponse:
-      description: Expense Categories
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/DeleteExpenseCategoryResponse'
-    PaymentRequiredResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/PaymentRequiredResponse'
-      description: Payment Required
-    CreateExpenseCategoryResponse:
-      description: Expense Categories
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/CreateExpenseCategoryResponse'
-    GetExpenseCategoryResponse:
-      description: Expense Categories
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/GetExpenseCategoryResponse'
-    UnprocessableResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UnprocessableResponse'
-      description: Unprocessable
-    UpdateExpenseCategoryResponse:
-      description: Expense Categories
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UpdateExpenseCategoryResponse'
-    BadRequestResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/BadRequestResponse'
-      description: Bad Request
-    NotFoundResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/NotFoundResponse'
-      description: The specified resource was not found
-    GetExpenseCategoriesResponse:
-      description: Expense Categories
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/GetExpenseCategoriesResponse'
-    UnauthorizedResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UnauthorizedResponse'
-      description: Unauthorized
-  parameters:
-    expenseCategoriesFilter:
-      name: filter
-      in: query
-      description: Apply filters
-      style: deepObject
-      explode: true
-      schema:
-        $ref: '#/components/schemas/ExpenseCategoriesFilter'
-    raw:
-      name: raw
-      in: query
-      description: Include raw response. Mostly used for debugging purposes
-      schema:
-        type: boolean
-        default: false
-    limit:
-      name: limit
-      in: query
-      description: Number of results to return. Minimum 1, Maximum 200, Default 20
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 200
-        default: 20
-    applicationId:
-      name: x-apideck-app-id
-      in: header
-      required: true
-      description: The ID of your Unify application
-      schema:
-        type: string
-        minLength: 1
-      example: dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX
-      x-speakeasy-name-override: appId
-    id:
-      in: path
-      name: id
-      schema:
-        type: string
-      required: true
-      description: ID of the record you are acting upon.
-    cursor:
-      name: cursor
-      in: query
-      description: Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
-      schema:
-        type:
-        - string
-        - 'null'
-    serviceId:
-      name: x-apideck-service-id
-      in: header
-      description: Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
-      schema:
-        type: string
-      example: salesforce
-      x-speakeasy-name-override: serviceId
-    consumerId:
-      name: x-apideck-consumer-id
-      in: header
-      required: true
-      description: ID of the consumer which you want to get or push data from
-      schema:
-        type: string
-      example: test-consumer
-      x-speakeasy-name-override: consumerId
-    fields:
-      name: fields
-      in: query
-      description: 'The ''fields'' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. <br /><br />Example: `fields=name,email,addresses.city`<br /><br />In the example above, the response will only include the fields "name", "email" and "addresses.city". If any other fields are available, they will be excluded.'
-      example: id,updated_at
-      schema:
-        type:
-        - string
-        - 'null'
+        example: 2c3b38f1a9b3349afe38829713dcd9722f47dec3ce8906ad93ce803a33f2a8a3
+      - name: x-apideck-idempotency-key
+        in: header
+        required: true
+        description: A unique identifier for the webhook event, can be used to prevent duplicate processing
+        schema:
+          type: string
+        example: e91dea5d-8ff6-4099-8b33-d3162fb4a042
+      tags:
+      - Webhook Events
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                payload:
+                  $ref: '#/components/schemas/FileStorageWebhookEvent'
+            example:
+              payload:
+                event_type: file-storage.file.updated
+                unified_api: file-storage
+                service_id: dropbox
+                consumer_id: test_user_id
+                event_id: d290f1ee-6c54-4b01-90e6-d701748f0851
+                entity_id: 123456ASDF
+                entity_url: https://unify.apideck.com/file-storage/files/123456ASDF
+                entity_type: file
+                occurred_at: '2020-01-01T00:00:00.000Z'
+      responses:
+        '200':
+          description: Return a 200 status to indicate that the data was received successfully.
+      security: []
+    servers:
+    - url: https://unify.apideck.com
+  FileDeleted:
+    post:
+      summary: File Deleted
+      description: Event broadcast when a file has been deleted.
+      operationId: fileDeleted
+      x-apideck-event-type: file-storage.file.deleted
+      parameters:
+      - name: x-apideck-event-type
+        in: header
+        required: true
+        description: The type of event that was triggered
+        schema:
+          $ref: '#/components/schemas/FileStorageEventType'
+      - name: x-apideck-signature
+        in: header
+        required: true
+        description: HMAC SHA-256 signature of the request body, used to verify the webhook came from Apideck
+        schema:
+          type: string
+        example: 2c3b38f1a9b3349afe38829713dcd9722f47dec3ce8906ad93ce803a33f2a8a3
+      - name: x-apideck-idempotency-key
+        in: header
+        required: true
+        description: A unique identifier for the webhook event, can be used to prevent duplicate processing
+        schema:
+          type: string
+        example: e91dea5d-8ff6-4099-8b33-d3162fb4a042
+      tags:
+      - Webhook Events
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                payload:
+                  $ref: '#/components/schemas/FileStorageWebhookEvent'
+            example:
+              payload:
+                event_type: file-storage.file.deleted
+                unified_api: file-storage
+                service_id: dropbox
+                consumer_id: test_user_id
+                event_id: d290f1ee-6c54-4b01-90e6-d701748f0851
+                entity_id: 123456ASDF
+                entity_url: https://unify.apideck.com/file-storage/files/123456ASDF
+                entity_type: file
+                occurred_at: '2020-01-01T00:00:00.000Z'
+      responses:
+        '200':
+          description: Return a 200 status to indicate that the data was received successfully.
+      security: []
+    servers:
+    - url: https://unify.apideck.com
+  DriveUpdated:
+    post:
+      summary: Drive Updated
+      description: Event broadcast when a drive has been updated.
+      operationId: driveUpdated
+      x-apideck-event-type: file-storage.drive.updated
+      parameters:
+      - name: x-apideck-event-type
+        in: header
+        required: true
+        description: The type of event that was triggered
+        schema:
+          $ref: '#/components/schemas/FileStorageEventType'
+      - name: x-apideck-signature
+        in: header
+        required: true
+        description: HMAC SHA-256 signature of the request body, used to verify the webhook came from Apideck
+        schema:
+          type: string
+        example: 2c3b38f1a9b3349afe38829713dcd9722f47dec3ce8906ad93ce803a33f2a8a3
+      - name: x-apideck-idempotency-key
+        in: header
+        required: true
+        description: A unique identifier for the webhook event, can be used to prevent duplicate processing
+        schema:
+          type: string
+        example: e91dea5d-8ff6-4099-8b33-d3162fb4a042
+      tags:
+      - Webhook Events
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                payload:
+                  $ref: '#/components/schemas/FileStorageWebhookEvent'
+            example:
+              payload:
+                event_type: file-storage.drive.updated
+                unified_api: file-storage
+                service_id: dropbox
+                consumer_id: test_user_id
+                event_id: d290f1ee-6c54-4b01-90e6-d701748f0851
+                entity_id: 123456ASDF
+                entity_url: https://unify.apideck.com/file-storage/drives/123456ASDF
+                entity_type: drive
+                occurred_at: '2020-01-01T00:00:00.000Z'
+      responses:
+        '200':
+          description: Return a 200 status to indicate that the data was received successfully.
+      security: []
+    servers:
+    - url: https://unify.apideck.com
+components:
+  schemas:
+    FileStorageEventType:
+      x-apideck-enum-id: file-storage.event_type
+      type: string
+      enum:
+      - '*'
+      - file-storage.file.created
+      - file-storage.file.updated
+      - file-storage.file.deleted
+      - file-storage.drive.updated
+      example: file-storage.file.created
+    FileStorageWebhookEvent:
+      allOf:
+      - type: object
+        x-apideck-schema-id: WebhookEvent
+        properties:
+          event_id:
+            type: string
+            description: Unique reference to this request event
+            example: 9755c355-56c3-4a2f-a2da-86ff4411fccb
+          unified_api:
+            description: Name of Apideck Unified API
+            x-apideck-enum-id: unified_api
+            enum:
+            - accounting
+            - ats
+            - calendar
+            - crm
+            - csp
+            - customer-support
+            - ecommerce
+            - email
+            - email-marketing
+            - expense-management
+            - file-storage
+            - form
+            - hris
+            - lead
+            - payroll
+            - pos
+            - procurement
+            - project-management
+            - script
+            - sms
+            - spreadsheet
+            - team-messaging
+            - issue-tracking
+            - time-registration
+            - transactional-email
+            - vault
+            - data-warehouse
+            example: crm
+            type: string
+          service_id:
+            type: string
+            description: Service provider identifier
+            example: close
+          consumer_id:
+            type: string
+            example: test_consumer_id
+            description: Unique consumer identifier. You can freely choose a consumer ID yourself. Most of the time, this is an ID of your internal data model that represents a user or account in your system (for example account:12345). If the consumer doesn't exist yet, Vault will upsert a consumer based on your ID.
+          entity_id:
+            type: string
+            description: The service provider's ID of the entity that triggered this event
+            example: 123456ASDF
+          entity_type:
+            type: string
+            description: The type entity that triggered this event
+            example: Company
+          entity_url:
+            type: string
+            description: The url to retrieve entity detail.
+            example: https://unify.apideck.com/crm/contacts/123456
+          execution_attempt:
+            type: number
+            description: The current count this request event has been attempted
+            example: 2
+          occurred_at:
+            type: string
+            description: ISO Datetime for when the original event occurred
+            example: '2021-10-01T03:14:55.419Z'
+      - properties:
+          event_type:
+            $ref: '#/components/schemas/FileStorageEventType'
+        type: object
+      x-sdk-exclude: true
   securitySchemes:
     apiKey:
       type: apiKey
@@ -1304,6 +355,9 @@ components:
 externalDocs:
   description: Apideck Developer Docs
   url: https://developers.apideck.com
+x-refined-from:
+- apideck-file-storage-openapi.yml
+- apideck-webhook-events-api-openapi.yml
 x-webhooks:
   x-sdk-exclude: true
   x-speakeasy-ignore: true
