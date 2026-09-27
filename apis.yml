@@ -5,11 +5,12 @@ apis:
   name: Apideck
   tags:
   - Integration
-  - Unified-API
+  - Unified API
   tags_raw:
   - Integrations
   - Unified API
-  humanURL: ' https://www.apideck.com/'
+  - Unified-API
+  humanURL: https://www.apideck.com/
   baseURL: https://unify.apideck.com
   properties:
   - url: https://developers.apideck.com/apis
@@ -24,7 +25,7 @@ apis:
   description: >-
     The Activity resource represents a logged event or task, such as a meeting, call, or email, including
     details like type, date, duration, and associations with contacts, companies, or opportunities.
-  humanURL: ' https://www.apideck.com/'
+  humanURL: https://www.apideck.com/
   baseURL: https://unify.apideck.com
   tags:
   - Activities
@@ -64,7 +65,7 @@ apis:
   description: >-
     Aged Creditors is a report showing amounts owed to suppliers, grouped by aging periods (current, 30,
     60, 90+ days) with supplier details.
-  humanURL: ' https://www.apideck.com/'
+  humanURL: https://www.apideck.com/
   baseURL: https://unify.apideck.com
   tags:
   - Aged Creditors
@@ -104,7 +105,7 @@ apis:
   description: >-
     Aged Debtors is a report showing amounts owed by customers, grouped by aging periods (current, 30,
     60, 90+ days) with customer details.
-  humanURL: ' https://www.apideck.com/'
+  humanURL: https://www.apideck.com/
   baseURL: https://unify.apideck.com
   tags:
   - Aged Debtors
@@ -144,7 +145,7 @@ apis:
   description: >-
     An Attachment represents a file linked to an accounting document, including file name, URL, content
     type, and the parent record reference.
-  humanURL: ' https://www.apideck.com/'
+  humanURL: https://www.apideck.com/
   baseURL: https://unify.apideck.com
   tags:
   - Attachments
@@ -184,7 +185,7 @@ apis:
   description: >-
     A Balance Sheet report shows the financial position at a point in time, including totals for assets,
     liabilities, and equity accounts.
-  humanURL: ' https://www.apideck.com/'
+  humanURL: https://www.apideck.com/
   baseURL: https://unify.apideck.com
   tags:
   - Balance Sheet
@@ -224,7 +225,7 @@ apis:
   description: >-
     A Bank Account represents a financial account, including account name, number, type (checking, savings,
     credit card), currency, and balance.
-  humanURL: ' https://www.apideck.com/'
+  humanURL: https://www.apideck.com/
   baseURL: https://unify.apideck.com
   tags:
   - Bank Accounts
@@ -264,7 +265,7 @@ apis:
   description: >-
     A Bank Feed Account represents a connected financial institution account, including account details
     and connection status for transaction imports.
-  humanURL: ' https://www.apideck.com/'
+  humanURL: https://www.apideck.com/
   baseURL: https://unify.apideck.com
   tags:
   - Bank Feed Accounts
@@ -304,7 +305,7 @@ apis:
   description: >-
     A Bank Feed Statement contains imported transaction data from a connected bank account, including
     statement period and transaction details.
-  humanURL: ' https://www.apideck.com/'
+  humanURL: https://www.apideck.com/
   baseURL: https://unify.apideck.com
   tags:
   - Bank Feed Statements
@@ -344,7 +345,7 @@ apis:
   description: >-
     A Bill Payment represents money paid to a supplier, including amount, date, payment method, and allocation
     to one or more bills.
-  humanURL: ' https://www.apideck.com/'
+  humanURL: https://www.apideck.com/
   baseURL: https://unify.apideck.com
   tags:
   - Bill Payments
@@ -384,7 +385,7 @@ apis:
   description: >-
     A Bill represents an invoice from a supplier, including line items, amounts, due date, payment status,
     and linked supplier.
-  humanURL: ' https://www.apideck.com/'
+  humanURL: https://www.apideck.com/
   baseURL: https://unify.apideck.com
   tags:
   - Bills
@@ -424,7 +425,7 @@ apis:
   description: >-
     A Category represents a product or service grouping, including name and type for organizing invoice
     and bill line items.
-  humanURL: ' https://www.apideck.com/'
+  humanURL: https://www.apideck.com/
   baseURL: https://unify.apideck.com
   tags:
   - Categories
@@ -463,7 +464,7 @@ apis:
   name: Apideck Companies API
   description: >-
     List companies accessible through the current connection. Only available for multi-company connectors.
-  humanURL: ' https://www.apideck.com/'
+  humanURL: https://www.apideck.com/
   baseURL: https://unify.apideck.com
   tags:
   - Companies
@@ -503,7 +504,7 @@ apis:
   description: >-
     Company Info contains the organization's profile data including legal name, addresses, tax identifiers,
     currency, and fiscal year settings.
-  humanURL: ' https://www.apideck.com/'
+  humanURL: https://www.apideck.com/
   baseURL: https://unify.apideck.com
   tags:
   - Company Info
@@ -543,7 +544,7 @@ apis:
   description: >-
     The Contact resource represents individuals, including details such as name, contact information,
     associated company, and activity history.
-  humanURL: ' https://www.apideck.com/'
+  humanURL: https://www.apideck.com/
   baseURL: https://unify.apideck.com
   tags:
   - Contacts
@@ -583,7 +584,7 @@ apis:
   description: >-
     A Credit Note represents a reduction in the amount owed by a customer, including line items, amounts,
     and the linked customer or invoice.
-  humanURL: ' https://www.apideck.com/'
+  humanURL: https://www.apideck.com/
   baseURL: https://unify.apideck.com
   tags:
   - Credit Notes
@@ -621,7 +622,7 @@ apis:
 - aid: apideck:apideck-custom-object-schemas-api
   name: Apideck Custom Object Schemas API
   description: The Custom Object Schema resource represents the schema of a custom object.
-  humanURL: ' https://www.apideck.com/'
+  humanURL: https://www.apideck.com/
   baseURL: https://unify.apideck.com
   tags:
   - Custom Object Schemas
@@ -662,7 +663,7 @@ apis:
     The Custom Object resource represents user-defined data structures in Salesforce, allowing storage
     of custom records with specific fields, relationships, and business logic tailored to unique organizational
     needs.
-  humanURL: ' https://www.apideck.com/'
+  humanURL: https://www.apideck.com/
   baseURL: https://unify.apideck.com
   tags:
   - Custom Objects
@@ -702,7 +703,7 @@ apis:
   description: >-
     A Customer represents a buyer or client, including contact details, billing and shipping addresses,
     tax information, and payment terms.
-  humanURL: ' https://www.apideck.com/'
+  humanURL: https://www.apideck.com/
   baseURL: https://unify.apideck.com
   tags:
   - Customers
@@ -742,7 +743,7 @@ apis:
   description: >-
     A Department represents an organizational unit, including name, code, and parent department for hierarchical
     structures.
-  humanURL: ' https://www.apideck.com/'
+  humanURL: https://www.apideck.com/
   baseURL: https://unify.apideck.com
   tags:
   - Departments
@@ -784,7 +785,7 @@ apis:
     for managing and accessing the drive groups, such as creating, deleting, and listing drive groups.
     A drive group is a logical grouping of drives, which can be used to manage the drives in the cloud
     storage service.
-  humanURL: ' https://www.apideck.com/'
+  humanURL: https://www.apideck.com/
   baseURL: https://unify.apideck.com
   tags:
   - Drive Groups
@@ -825,7 +826,7 @@ apis:
     Drives resource represents logical containers for storing folders and files in the cloud storage service.
     It provides methods for managing and accessing the drives, such as creating, deleting, and listing
     drives.
-  humanURL: ' https://www.apideck.com/'
+  humanURL: https://www.apideck.com/
   baseURL: https://unify.apideck.com
   tags:
   - Drives
@@ -865,7 +866,7 @@ apis:
   description: >-
     An Employee Payroll represents an individual's pay details for a period, including gross pay, deductions,
     taxes, and net pay.
-  humanURL: ' https://www.apideck.com/'
+  humanURL: https://www.apideck.com/
   baseURL: https://unify.apideck.com
   tags:
   - Employee Payrolls
@@ -905,7 +906,7 @@ apis:
   description: >-
     An Employee Schedule represents work time assignments, including schedule entries with start time,
     end time, and work location.
-  humanURL: ' https://www.apideck.com/'
+  humanURL: https://www.apideck.com/
   baseURL: https://unify.apideck.com
   tags:
   - Employee Schedules
@@ -945,7 +946,7 @@ apis:
   description: >-
     An Employee represents an individual within the organization for accounting purposes, including name,
     department, hire date, and employment status.
-  humanURL: ' https://www.apideck.com/'
+  humanURL: https://www.apideck.com/
   baseURL: https://unify.apideck.com
   tags:
   - Employees
@@ -985,7 +986,7 @@ apis:
   description: >-
     An Expense Category classifies types of expenses within the organization, such as travel, meals, or
     office supplies. Used to categorize expense report line items.
-  humanURL: ' https://www.apideck.com/'
+  humanURL: https://www.apideck.com/
   baseURL: https://unify.apideck.com
   tags:
   - Expense Categories
@@ -1025,7 +1026,7 @@ apis:
   description: >-
     An Expense Report is a collection of expense line items submitted by an employee for reimbursement,
     including amounts, categories, and approval status.
-  humanURL: ' https://www.apideck.com/'
+  humanURL: https://www.apideck.com/
   baseURL: https://unify.apideck.com
   tags:
   - Expense Reports
@@ -1065,7 +1066,7 @@ apis:
   description: >-
     An Expense represents a business expenditure, including amount, date, category, payment method, merchant,
     and account allocation.
-  humanURL: ' https://www.apideck.com/'
+  humanURL: https://www.apideck.com/
   baseURL: https://unify.apideck.com
   tags:
   - Expenses
@@ -1106,7 +1107,7 @@ apis:
     Files resource represents files stored in the cloud storage services. It provides methods for managing
     and accessing the files, such as uploading, downloading, and deleting files. For more information
     on uploads, refer to the [file upload guide](/guides/file-upload).
-  humanURL: ' https://www.apideck.com/'
+  humanURL: https://www.apideck.com/
   baseURL: https://unify.apideck.com
   tags:
   - File
@@ -1149,7 +1150,7 @@ apis:
     Folders resource represents the folders within a drive in the cloud storage service. It provides methods
     for managing and accessing the folders, such as creating, deleting, and listing files & folders in
     a given folder.
-  humanURL: ' https://www.apideck.com/'
+  humanURL: https://www.apideck.com/
   baseURL: https://unify.apideck.com
   tags:
   - Folders
@@ -1189,7 +1190,7 @@ apis:
   description: >-
     An Invoice Item represents a reusable product or service that can be added to invoices, including
     name, description, price, and tax settings.
-  humanURL: ' https://www.apideck.com/'
+  humanURL: https://www.apideck.com/
   baseURL: https://unify.apideck.com
   tags:
   - Invoice Items
@@ -1229,7 +1230,7 @@ apis:
   description: >-
     An Invoice represents a sales document sent to customers, including line items, taxes, discounts,
     totals, due date, and payment status.
-  humanURL: ' https://www.apideck.com/'
+  humanURL: https://www.apideck.com/
   baseURL: https://unify.apideck.com
   tags:
   - Invoices
@@ -1269,7 +1270,7 @@ apis:
   description: >-
     A Journal Entry represents a manual accounting entry with debit and credit line items, memo, posting
     date, and status.
-  humanURL: ' https://www.apideck.com/'
+  humanURL: https://www.apideck.com/
   baseURL: https://unify.apideck.com
   tags:
   - Journal Entries
@@ -1309,7 +1310,7 @@ apis:
   description: >-
     The Lead resource represents individuals or businesses that have shown interest in a company's products
     or services, including contact information and potential deal opportunities.
-  humanURL: ' https://www.apideck.com/'
+  humanURL: https://www.apideck.com/
   baseURL: https://unify.apideck.com
   tags:
   - Leads
@@ -1349,7 +1350,7 @@ apis:
   description: >-
     A Ledger Account represents an entry in the chart of accounts, including name, code, type (asset,
     liability, equity, revenue, expense), and balance.
-  humanURL: ' https://www.apideck.com/'
+  humanURL: https://www.apideck.com/
   baseURL: https://unify.apideck.com
   tags:
   - Ledger Accounts
@@ -1389,7 +1390,7 @@ apis:
   description: >-
     A Location represents a physical business site, including name, address, and status for multi-location
     tracking.
-  humanURL: ' https://www.apideck.com/'
+  humanURL: https://www.apideck.com/
   baseURL: https://unify.apideck.com
   tags:
   - Location
@@ -1431,7 +1432,7 @@ apis:
   description: >-
     The Note resource represents textual records, such as comments or messages, associated with various
     entities like contacts, opportunities, or activities.
-  humanURL: ' https://www.apideck.com/'
+  humanURL: https://www.apideck.com/
   baseURL: https://unify.apideck.com
   tags:
   - Notes
@@ -1471,7 +1472,7 @@ apis:
   description: >-
     The Opportunity resource represents potential business deals, including details such as title, value,
     status, close date, and associated contacts or companies.
-  humanURL: ' https://www.apideck.com/'
+  humanURL: https://www.apideck.com/
   baseURL: https://unify.apideck.com
   tags:
   - Opportunities
@@ -1511,7 +1512,7 @@ apis:
   description: >-
     A Payment represents money received from a customer, including amount, date, payment method, and allocation
     to one or more invoices.
-  humanURL: ' https://www.apideck.com/'
+  humanURL: https://www.apideck.com/
   baseURL: https://unify.apideck.com
   tags:
   - Payments
@@ -1550,7 +1551,7 @@ apis:
   name: Apideck Payrolls API
   description: >-
     A Payroll represents a pay run, including pay period dates, total amounts, status, and linked company.
-  humanURL: ' https://www.apideck.com/'
+  humanURL: https://www.apideck.com/
   baseURL: https://unify.apideck.com
   tags:
   - Payrolls
@@ -1590,7 +1591,7 @@ apis:
   description: >-
     The Pipeline resource represents a structured process for managing sales opportunities, including
     stages and associated activities.
-  humanURL: ' https://www.apideck.com/'
+  humanURL: https://www.apideck.com/
   baseURL: https://unify.apideck.com
   tags:
   - Pipelines
@@ -1630,7 +1631,7 @@ apis:
   description: >-
     A Profit and Loss report shows financial performance over a period, including revenue, cost of sales,
     expenses, and net income.
-  humanURL: ' https://www.apideck.com/'
+  humanURL: https://www.apideck.com/
   baseURL: https://unify.apideck.com
   tags:
   - Profit and Loss
@@ -1670,7 +1671,7 @@ apis:
   description: >-
     A Project represents a job or engagement, including name, customer, budget amounts, budget hours,
     billing method, status, and profitability data.
-  humanURL: ' https://www.apideck.com/'
+  humanURL: https://www.apideck.com/
   baseURL: https://unify.apideck.com
   tags:
   - Project
@@ -1712,7 +1713,7 @@ apis:
   description: >-
     A Purchase Order represents a request to buy goods or services from a supplier, including line items,
     amounts, delivery date, and status.
-  humanURL: ' https://www.apideck.com/'
+  humanURL: https://www.apideck.com/
   baseURL: https://unify.apideck.com
   tags:
   - Purchase Orders
@@ -1752,7 +1753,7 @@ apis:
   description: >-
     A Quote represents a sales estimate sent to customers, including line items, amounts, expiry date,
     and status before conversion to invoice.
-  humanURL: ' https://www.apideck.com/'
+  humanURL: https://www.apideck.com/
   baseURL: https://unify.apideck.com
   tags:
   - Quotes
@@ -1792,7 +1793,7 @@ apis:
   description: >-
     A Refund represents money returned to a customer, supporting both itemized refunds (with line items)
     and allocation-based refunds (applied to invoices, credit notes, or overpayments).
-  humanURL: ' https://www.apideck.com/'
+  humanURL: https://www.apideck.com/
   baseURL: https://unify.apideck.com
   tags:
   - Refunds
@@ -1834,7 +1835,7 @@ apis:
     have been shared with other users. It provides methods for managing and accessing the shared links,
     such as creating, deleting, and listing shared links. A shared link allows other users to access the
     file or folder that it points to, either by viewing it online or by downloading it.
-  humanURL: ' https://www.apideck.com/'
+  humanURL: https://www.apideck.com/
   baseURL: https://unify.apideck.com
   tags:
   - Shared Links
@@ -1874,7 +1875,7 @@ apis:
   description: >-
     A Subsidiary represents a child company within an organization, including name, status, and parent
     company relationship.
-  humanURL: ' https://www.apideck.com/'
+  humanURL: https://www.apideck.com/
   baseURL: https://unify.apideck.com
   tags:
   - Subsidiaries
@@ -1914,7 +1915,7 @@ apis:
   description: >-
     A Supplier represents a vendor or service provider, including contact information, addresses, tax
     details, and payment terms.
-  humanURL: ' https://www.apideck.com/'
+  humanURL: https://www.apideck.com/
   baseURL: https://unify.apideck.com
   tags:
   - Suppliers
@@ -1954,7 +1955,7 @@ apis:
   description: >-
     A Tax Rate defines a tax percentage applied to transactions, including name, rate, tax type, and applicable
     regions or conditions.
-  humanURL: ' https://www.apideck.com/'
+  humanURL: https://www.apideck.com/
   baseURL: https://unify.apideck.com
   tags:
   - Tax Rates
@@ -1994,7 +1995,7 @@ apis:
   description: >-
     A Time Off Request represents an absence request, including type (vacation, sick), dates, status,
     and approval information.
-  humanURL: ' https://www.apideck.com/'
+  humanURL: https://www.apideck.com/
   baseURL: https://unify.apideck.com
   tags:
   - Time Off Requests
@@ -2034,7 +2035,7 @@ apis:
   description: >-
     A Tracking Category represents a classification dimension for reporting, including name, code, status,
     and parent category for hierarchies.
-  humanURL: ' https://www.apideck.com/'
+  humanURL: https://www.apideck.com/
   baseURL: https://unify.apideck.com
   tags:
   - Tracking Categories
@@ -2076,7 +2077,7 @@ apis:
     It provides methods for managing and accessing the upload sessions, such as creating and resuming
     upload sessions. An upload session allows for efficient uploading of large files by breaking them
     into smaller chunks and uploading each chunk individually.
-  humanURL: ' https://www.apideck.com/'
+  humanURL: https://www.apideck.com/
   baseURL: https://unify.apideck.com
   tags:
   - Upload Sessions
@@ -2116,7 +2117,7 @@ apis:
   description: >-
     A User represents a CRM team member, including name, email, role, status, and associated permissions
     within the system.
-  humanURL: ' https://www.apideck.com/'
+  humanURL: https://www.apideck.com/
   baseURL: https://unify.apideck.com
   tags:
   - User
@@ -2156,7 +2157,7 @@ apis:
 - aid: apideck:apideck-webhook-events-api
   name: Apideck Webhook Events API
   description: The Webhook Events API from Apideck — 0 operation(s) for webhook events.
-  humanURL: ' https://www.apideck.com/'
+  humanURL: https://www.apideck.com/
   baseURL: https://unify.apideck.com
   tags:
   - Webhook Events
@@ -2166,10 +2167,13 @@ apis:
 name: Apideck
 tags:
   - Integration
-  - Unified-API
+  - Unified API
+  - A2A
 tags_raw:
   - Integrations
   - Unified API
+  - Unified-API
+  - A2A
 type: Index
 deliveryModel:
   model: saas
@@ -2416,11 +2420,11 @@ common:
     type: UseCases
   - name: Welcome to our Compliance Center | Apideck Compliance Center
     description: 'null'
-    url: https://compliance.apideck.com/?_gl=1*1od5jy9*_gcl_au*MTUxOTE3MDcxMC4xNzUyNjE1MTc3
+    url: https://compliance.apideck.com/
     type: Security
   - name: Welcome to our Compliance Center | Apideck Compliance Center
     description: 'null'
-    url: https://compliance.apideck.com/?_gl=1*1od5jy9*_gcl_au*MTUxOTE3MDcxMC4xNzUyNjE1MTc3
+    url: https://compliance.apideck.com/
     type: Compliance
   - name: Privacy Policy | Apideck Compliance Center
     description: 'null'

@@ -69,719 +69,50 @@ paths:
         label: Node
         source: {}
 components:
-  schemas:
-    Raw:
-      title: raw
-      type:
-      - object
-      - 'null'
-      x-apideck-schema-id: Raw
-      description: Raw response from the integration when raw=true query param is provided
-      additionalProperties: true
-    BalanceSheet:
-      type: object
-      x-apideck-schema-id: BalanceSheet
-      x-apideck-circular-ref: true
-      x-apideck-weights:
-        reports: critical
-      additionalProperties: false
-      required:
-      - reports
-      properties:
-        reports:
-          type: array
-          x-apideck-schema-id: BalanceSheetReports
-          items:
-            type: object
-            x-apideck-schema-id: BalanceSheetReport
-            x-apideck-weights:
-              id: medium
-              report_name: medium
-              start_date: medium
-              end_date: critical
-              currency: medium
-              assets: critical
-              liabilities: critical
-              equity: critical
-              net_assets: high
-              custom_mappings: edge-case
-              updated_by: edge-case
-              created_by: edge-case
-              updated_at: low
-              created_at: edge-case
-              uncategorized_items: edge-case
-            additionalProperties: false
-            required:
-            - end_date
-            - assets
-            - liabilities
-            - equity
-            properties:
-              id:
-                $ref: '#/components/schemas/Id'
-              report_name:
-                type: string
-                description: The name of the report
-                title: Report Name
-                example: BalanceSheet
-              start_date:
-                type: string
-                description: The start date of the report
-                title: Start Date
-                pattern: ^\d{4}-\d{2}-\d{2}$
-                example: '2017-01-01'
-              end_date:
-                type: string
-                description: The start date of the report
-                title: Start Date
-                pattern: ^\d{4}-\d{2}-\d{2}$
-                example: '2017-01-31'
-              currency:
-                $ref: '#/components/schemas/Currency'
-              assets:
-                type: object
-                x-apideck-schema-id: BalanceSheetAssetsAccount
-                x-apideck-weights:
-                  account_id: high
-                  name: high
-                  value: critical
-                  items: medium
-                title: Balance Sheet Assets Account
-                description: A balance sheet assets account represents the financial position of a company at a specific point in time.
-                additionalProperties: false
-                properties:
-                  account_id:
-                    $ref: '#/components/schemas/AccountId'
-                  code:
-                    $ref: '#/components/schemas/AccountCode'
-                  name:
-                    $ref: '#/components/schemas/AccountName'
-                  value:
-                    $ref: '#/components/schemas/Amount'
-                  items:
-                    $ref: '#/components/schemas/BalanceSheetAccounts'
-                example:
-                  account_id: '1'
-                  code: '1000'
-                  name: Assets
-                  value: 50000
-                  items:
-                  - account_id: '101'
-                    code: '1100'
-                    name: Current Assets
-                    value: 20000
-                    items:
-                    - account_id: '1011'
-                      code: '1101'
-                      name: Cash and Cash Equivalents
-                      value: 10000
-                    - account_id: '1012'
-                      code: '1102'
-                      name: Accounts Receivable
-                      value: 5000
-                    - account_id: '1013'
-                      code: '1103'
-                      name: Inventory
-                      value: 3000
-                    - account_id: '1014'
-                      code: '1104'
-                      name: Prepaid Expenses
-                      value: 2000
-                  - account_id: '102'
-                    code: '1200'
-                    name: Non-Current Assets
-                    value: 30000
-                    items:
-                    - account_id: '1021'
-                      code: '1201'
-                      name: Property, Plant, and Equipment (PPE)
-                      value: 25000
-                    - account_id: '1022'
-                      code: '1202'
-                      name: Intangible Assets
-                      value: 5000
-                      items:
-                      - account_id: '10221'
-                        code: '1203'
-                        name: Goodwill
-                        value: 3000
-                      - account_id: '10222'
-                        code: '1204'
-                        name: Patents
-                        value: 2000
-              liabilities:
-                type: object
-                x-apideck-schema-id: BalanceSheetLiabilitiesAccount
-                x-apideck-weights:
-                  account_id: high
-                  name: high
-                  value: critical
-                  items: medium
-                title: Balance Sheet Liabilities Account
-                description: A balance sheet liabilities account represents the financial position of a company at a specific point in time.
-                additionalProperties: false
-                properties:
-                  account_id:
-                    $ref: '#/components/schemas/AccountId'
-                  code:
-                    $ref: '#/components/schemas/AccountCode'
-                  name:
-                    $ref: '#/components/schemas/AccountName'
-                  value:
-                    $ref: '#/components/schemas/Amount'
-                  items:
-                    $ref: '#/components/schemas/BalanceSheetAccounts'
-                example:
-                  account_id: '2'
-                  code: '2000'
-                  name: Liabilities
-                  value: 30000
-                  items:
-                  - account_id: '201'
-                    code: '2100'
-                    name: Current Liabilities
-                    value: 10000
-                    items:
-                    - account_id: '2011'
-                      code: '2101'
-                      name: Accounts Payable
-                      value: 4000
-                    - account_id: '2012'
-                      code: '2102'
-                      name: Short-Term Debt
-                      value: 2000
-                    - account_id: '2013'
-                      code: '2103'
-                      name: Accrued Expenses
-                      value: 1000
-                    - account_id: '2014'
-                      code: '2104'
-                      name: Current Portion of Long-Term Debt
-                      value: 3000
-                  - account_id: '202'
-                    code: '2200'
-                    name: Non-Current Liabilities
-                    value: 20000
-                    items:
-                    - account_id: '2021'
-                      code: '2201'
-                      name: Long-Term Debt
-                      value: 15000
-                    - account_id: '2022'
-                      code: '2202'
-                      name: Deferred Tax Liabilities
-                      value: 3000
-                    - account_id: '2023'
-                      code: '2203'
-                      name: Pension Liabilities
-                      value: 2000
-              equity:
-                type: object
-                x-apideck-schema-id: BalanceSheetEquityAccount
-                x-apideck-weights:
-                  account_id: high
-                  name: high
-                  value: critical
-                  items: medium
-                title: Balance Sheet Equity Account
-                description: A balance sheet equity account represents the financial position of a company at a specific point in time.
-                additionalProperties: false
-                properties:
-                  account_id:
-                    $ref: '#/components/schemas/AccountId'
-                  code:
-                    $ref: '#/components/schemas/AccountCode'
-                  name:
-                    $ref: '#/components/schemas/AccountName'
-                  value:
-                    $ref: '#/components/schemas/Amount'
-                  items:
-                    $ref: '#/components/schemas/BalanceSheetAccounts'
-                example:
-                  account_id: '3'
-                  code: '3000'
-                  name: Equity
-                  value: 20000
-                  items:
-                  - account_id: '301'
-                    code: '3100'
-                    name: Common Stock
-                    value: 5000
-                  - account_id: '302'
-                    code: '3200'
-                    name: Retained Earnings
-                    value: 10000
-                  - account_id: '303'
-                    code: '3300'
-                    name: Additional Paid-In Capital
-                    value: 3000
-                  - account_id: '304'
-                    code: '3400'
-                    name: Treasury Stock
-                    value: -1000
-                  - account_id: '305'
-                    code: '3500'
-                    name: Other Comprehensive Income
-                    value: 3000
-              net_assets:
-                type: number
-                description: The net assets of the balance sheet
-                title: Net Assets
-                example: 1000
-              custom_mappings:
-                $ref: '#/components/schemas/CustomMappings'
-              updated_by:
-                $ref: '#/components/schemas/UpdatedBy'
-              created_by:
-                $ref: '#/components/schemas/CreatedBy'
-              updated_at:
-                $ref: '#/components/schemas/UpdatedAt'
-              created_at:
-                $ref: '#/components/schemas/CreatedAt'
-              uncategorized_items:
-                type: object
-                x-apideck-schema-id: BalanceSheetUncategorizedItemsAccount
-                x-apideck-weights:
-                  account_id: high
-                  name: high
-                  value: critical
-                  items: medium
-                title: Balance Sheet Uncategorized Items Account
-                description: A balance sheet uncategorized items account represents the financial position of a company at a specific point in time.
-                additionalProperties: false
-                properties:
-                  account_id:
-                    $ref: '#/components/schemas/AccountId'
-                  code:
-                    $ref: '#/components/schemas/AccountCode'
-                  name:
-                    $ref: '#/components/schemas/AccountName'
-                  value:
-                    $ref: '#/components/schemas/Amount'
-                  items:
-                    $ref: '#/components/schemas/BalanceSheetAccounts'
-                example:
-                  account_id: '3'
-                  code: '3000'
-                  name: Uncategorized Items
-                  value: 1000
-                  items:
-                  - account_id: '301'
-                    code: '3100'
-                    name: not linked account
-                    value: 1000
-    UpdatedBy:
-      type:
-      - string
-      - 'null'
-      title: Updated by
-      description: The user who last updated the object.
-      example: '12345'
-      readOnly: true
+  responses:
     UnexpectedErrorResponse:
-      type: object
-      x-apideck-schema-id: Error
-      properties:
-        status_code:
-          type: number
-          description: HTTP status code
-          example: 400
-        error:
-          type: string
-          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
-          example: Bad Request
-        type_name:
-          type: string
-          description: The type of error returned
-          example: RequestHeadersValidationError
-        message:
-          type: string
-          description: A human-readable message providing more details about the error.
-          example: Invalid Params
-          x-speakeasy-error-message: true
-        detail:
-          anyOf:
-          - type: string
-            example: 'Missing Header: x-apideck-consumer-id'
-          - type: object
-            x-speakeasy-detail: true
-            example:
-              missing:
-              - x-apideck-consumer-id: required
-          description: Contains parameter or domain specific information related to the error and why it occurred.
-        ref:
-          type: string
-          description: Link to documentation of error type
-          example: https://developers.apideck.com/errors#unauthorizederror
-    AccountId:
-      title: Account Id
-      description: The unique identifier for the account.
-      type: string
-      example: '123456'
-      readOnly: true
-    UnauthorizedResponse:
-      type: object
-      x-apideck-schema-id: Unauthorized
-      properties:
-        status_code:
-          type: number
-          description: HTTP status code
-          example: 401
-        error:
-          type: string
-          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
-          example: Unauthorized
-        type_name:
-          type: string
-          description: The type of error returned
-          example: UnauthorizedError
-        message:
-          type: string
-          description: A human-readable message providing more details about the error.
-          example: Unauthorized Request
-          x-speakeasy-error-message: true
-        detail:
-          anyOf:
-          - type: string
-            example: Missing authentication
-          - type: object
-            x-speakeasy-detail: true
-            properties:
-              type:
-                type: string
-                description: Error type identifier
-                example: refresh_token_connector_error
-              message:
-                type: string
-                description: Detailed error message
-                example: Token refresh failed
-              debug:
-                type: object
-                description: Debug information including request/response details and OAuth timing metadata
-                properties:
-                  request:
-                    type: object
-                    description: HTTP request details
-                  response:
-                    type: object
-                    description: HTTP response details
-                  message:
-                    type: string
-                    description: Error message from downstream provider or network layer
-                  code:
-                    type: string
-                    description: Error code (e.g., ETIMEDOUT, ECONNREFUSED)
-                  credentials_expire_at_ms:
-                    type: number
-                    description: Unix timestamp (milliseconds) when credentials will be deleted if not refreshed. Only present for non-recoverable errors (401, 400). Credentials are preserved indefinitely for recoverable/network errors.
-                    example: 1620172800000
-                  retry_after_ms:
-                    type: number
-                    description: Unix timestamp (milliseconds) when token refresh retry is allowed after cooldown period expires.
-                    example: 1620000030000
-                  cooldown_remaining_ms:
-                    type: number
-                    description: Milliseconds remaining in cooldown period before retry is allowed.
-                    example: 30000
-            example:
-              type: refresh_token_connector_error
-              message: Token refresh failed with 401 error
-              debug:
-                response:
-                  statusCode: 401
-                  data:
-                    error: invalid_grant
-                credentials_expire_at_ms: 1620172800000
-                retry_after_ms: 1620000030000
-                cooldown_remaining_ms: 30000
-          description: Contains parameter or domain specific information related to the error and why it occurred.
-        ref:
-          type: string
-          description: Link to documentation of error type
-          example: https://developers.apideck.com/errors#unauthorizederror
-    PaymentRequiredResponse:
-      type: object
-      x-apideck-schema-id: PaymentRequired
-      properties:
-        status_code:
-          type: number
-          description: HTTP status code
-          example: 402
-        error:
-          type: string
-          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
-          example: Payment Required
-        type_name:
-          type: string
-          description: The type of error returned
-          example: RequestLimitError
-        message:
-          type: string
-          description: A human-readable message providing more details about the error.
-          example: Request Limit Reached
-          x-speakeasy-error-message: true
-        detail:
-          type: string
-          description: Contains parameter or domain specific information related to the error and why it occurred.
-          example: You have reached your limit of 2000
-        ref:
-          type: string
-          description: Link to documentation of error type
-          example: https://developers.apideck.com/errors#requestlimiterror
-    CreatedBy:
-      type:
-      - string
-      - 'null'
-      title: Created by
-      description: The user who created the object.
-      example: '12345'
-      readOnly: true
-    BalanceSheetFilter:
-      type: object
-      x-apideck-schema-id: BalanceSheetFilter
-      example:
-        start_date: '2021-01-01'
-        end_date: '2021-12-31'
-        period_count: 3
-        period_type: month
-        location_id: '123'
-        accounting_method: accrual
-      properties:
-        start_date:
-          type: string
-          title: Start date
-          description: The start date of the period to include in the resource.
-          example: '2021-01-01'
-          deprecated: true
-        end_date:
-          type: string
-          title: End date
-          description: The end date of the period to include in the resource.
-          example: '2021-12-31'
-        period_count:
-          type: integer
-          title: Period count
-          description: The number of periods to include in the resource.
-          example: 3
-        period_type:
-          x-apideck-enum-id: balance-sheet.period-type
-          type: string
-          title: Period type
-          description: 'The type of period to include in the resource: month, quarter, year.'
-          example: month
-          enum:
-          - month
-          - quarter
-          - year
-        location_id:
-          type: string
-          title: Location ID
-          description: The ID of the location to include in the resource.
-          example: '123'
-        accounting_method:
-          x-apideck-enum-id: balance-sheet.accounting-method
-          type: string
-          title: Accounting Method
-          description: 'The accounting method used for the report: cash or accrual.'
-          example: accrual
-          enum:
-          - cash
-          - accrual
-      additionalProperties: false
-    GetBalanceSheetResponse:
-      type: object
-      x-apideck-schema-id: GetBalanceSheetResponse
-      required:
-      - status_code
-      - status
-      - service
-      - resource
-      - operation
-      - data
-      properties:
-        status_code:
-          type: integer
-          description: HTTP Response Status Code
-          example: 200
-        status:
-          type: string
-          description: HTTP Response Status
-          example: OK
-        service:
-          type: string
-          description: Apideck ID of service provider
-          example: quickbooks
-        resource:
-          type: string
-          description: Unified API resource name
-          example: BalanceSheets
-        operation:
-          type: string
-          description: Operation performed
-          example: one
-        data:
-          $ref: '#/components/schemas/BalanceSheet'
-        _raw:
-          $ref: '#/components/schemas/Raw'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnexpectedErrorResponse'
+      description: Unexpected error
     NotFoundResponse:
-      type: object
-      x-apideck-schema-id: NotFound
-      properties:
-        status_code:
-          type: number
-          description: HTTP status code
-          example: 404
-        error:
-          type: string
-          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
-          example: Not Found
-        type_name:
-          type: string
-          description: The type of error returned
-          example: EntityNotFoundError
-        message:
-          type: string
-          description: A human-readable message providing more details about the error.
-          example: Unknown Widget
-          x-speakeasy-error-message: true
-        detail:
-          anyOf:
-          - type: string
-            example: 'Could not find widget with id: ''123'''
-          - type: object
-            x-speakeasy-detail: true
-            example:
-              not_found:
-                entity: widget
-                id: '123'
-          description: Contains parameter or domain specific information related to the error and why it occurred.
-        ref:
-          type: string
-          description: Link to documentation of error type
-          example: https://developers.apideck.com/errors#entitynotfounderror
-    Id:
-      type: string
-      title: ID
-      description: A unique identifier for an object.
-      example: '12345'
-      readOnly: true
-    UnprocessableResponse:
-      type: object
-      x-apideck-schema-id: Unprocessable
-      properties:
-        status_code:
-          type: number
-          description: HTTP status code
-          example: 422
-        error:
-          type: string
-          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
-          example: Unprocessable Entity
-        type_name:
-          type: string
-          description: The type of error returned
-          example: InvalidStateError
-        message:
-          type: string
-          description: A human-readable message providing more details about the error.
-          example: Invalid State
-          x-speakeasy-error-message: true
-        detail:
-          anyOf:
-          - type: string
-            example: Unprocessable request, please verify your request headers and body.
-          - type: object
-            x-speakeasy-detail: true
-            example:
-              error: Unprocessable
-              message: Unprocessable request, please verify your request headers and body.
-          description: Contains parameter or domain specific information related to the error and why it occurred.
-        ref:
-          type: string
-          description: Link to documentation of error type
-          example: https://developers.apideck.com/errors#invalidstateerror
-    BalanceSheetAccount:
-      type: object
-      x-apideck-schema-id: BalanceSheetAccount
-      x-apideck-weights:
-        account_id: critical
-        name: high
-        value: critical
-        items: medium
-      title: Balance Sheet Account
-      description: A balance sheet account represents the financial position of a company at a specific point in time.
-      additionalProperties: false
-      properties:
-        account_id:
-          $ref: '#/components/schemas/AccountId'
-        code:
-          $ref: '#/components/schemas/AccountCode'
-        name:
-          $ref: '#/components/schemas/AccountName'
-        value:
-          $ref: '#/components/schemas/Amount'
-        items:
-          $ref: '#/components/schemas/BalanceSheetAccounts'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NotFoundResponse'
+      description: The specified resource was not found
+    UnauthorizedResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnauthorizedResponse'
+      description: Unauthorized
     BadRequestResponse:
-      type: object
-      x-apideck-schema-id: BadRequest
-      properties:
-        status_code:
-          type: number
-          description: HTTP status code
-          example: 400
-        error:
-          type: string
-          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
-          example: Bad Request
-        type_name:
-          type: string
-          description: The type of error returned
-          example: RequestValidationError
-        message:
-          type: string
-          description: A human-readable message providing more details about the error.
-          example: Invalid Params
-          x-speakeasy-error-message: true
-        detail:
-          anyOf:
-          - type: string
-            example: Missing property foobar
-          - type: object
-            x-speakeasy-detail: true
-            example:
-              missing:
-              - foobar: required
-          description: Contains parameter or domain specific information related to the error and why it occurred.
-        ref:
-          type: string
-          description: Link to documentation of error type
-          example: https://developers.apideck.com/errors#requestvalidationerror
-        downstream_errors:
-          type: array
-          description: Contains downstream errors returned from the connector. Only present when type_name is ConnectorExecutionError.
-          items:
-            type: object
-            properties:
-              message:
-                type: string
-                description: Error message from the downstream provider
-              detail:
-                type: string
-                description: Additional error details
-              code:
-                type: string
-                description: Error code from the downstream provider
-          example:
-          - message: Account code '100' has been archived or deleted
-            detail: Each line item must reference a valid account
-            code: VALIDATION_ERROR
-    Amount:
-      title: Amount
-      description: The amount or value of the item
-      type: number
-      example: 1000
-      readOnly: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BadRequestResponse'
+      description: Bad Request
+    UnprocessableResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnprocessableResponse'
+      description: Unprocessable
+    PaymentRequiredResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PaymentRequiredResponse'
+      description: Payment Required
+    GetBalanceSheetResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/GetBalanceSheetResponse'
+      description: BalanceSheet
+  schemas:
     AccountName:
       title: Account Name
       description: The name of the account.
@@ -800,57 +131,6 @@ components:
         anyOf:
         - $ref: '#/components/schemas/BalanceSheetAccount'
         - $ref: '#/components/schemas/BalanceSheetAccountRecord'
-    BalanceSheetAccountRecord:
-      type: object
-      x-apideck-schema-id: BalanceSheetAccountRecord
-      x-apideck-weights:
-        account_id: critical
-        name: high
-        value: critical
-        items: medium
-      title: Balance Sheet Account Record
-      description: A record of a balance sheet account.
-      additionalProperties: false
-      properties:
-        account_id:
-          $ref: '#/components/schemas/AccountId'
-        code:
-          $ref: '#/components/schemas/AccountCode'
-        name:
-          $ref: '#/components/schemas/AccountName'
-        value:
-          $ref: '#/components/schemas/Amount'
-    AccountCode:
-      title: Account Code
-      description: The account code of the account
-      type: string
-      example: '1100'
-    UpdatedAt:
-      type:
-      - string
-      - 'null'
-      title: Updated at (timestamp)
-      description: The date and time when the object was last updated.
-      format: date-time
-      example: '2020-09-30T07:43:32.000Z'
-      readOnly: true
-    PassThroughQuery:
-      type: object
-      additionalProperties: true
-      properties:
-        example_downstream_property:
-          type: string
-          description: All passthrough query parameters are passed along to the connector as is (?pass_through[search]=leads becomes ?search=leads)
-      example:
-        search: San Francisco
-    CustomMappings:
-      type:
-      - object
-      - 'null'
-      x-apideck-schema-id: CustomMappings
-      description: When custom mappings are configured on the resource, the result is included here.
-      readOnly: true
-      additionalProperties: true
     Currency:
       type:
       - string
@@ -1409,6 +689,336 @@ components:
         description: Bitcoin
       - name: ETH
         description: Ether
+    UnprocessableResponse:
+      type: object
+      x-apideck-schema-id: Unprocessable
+      properties:
+        status_code:
+          type: number
+          description: HTTP status code
+          example: 422
+        error:
+          type: string
+          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
+          example: Unprocessable Entity
+        type_name:
+          type: string
+          description: The type of error returned
+          example: InvalidStateError
+        message:
+          type: string
+          description: A human-readable message providing more details about the error.
+          example: Invalid State
+          x-speakeasy-error-message: true
+        detail:
+          anyOf:
+          - type: string
+            example: Unprocessable request, please verify your request headers and body.
+          - type: object
+            x-speakeasy-detail: true
+            example:
+              error: Unprocessable
+              message: Unprocessable request, please verify your request headers and body.
+          description: Contains parameter or domain specific information related to the error and why it occurred.
+        ref:
+          type: string
+          description: Link to documentation of error type
+          example: https://developers.apideck.com/errors#invalidstateerror
+    PaymentRequiredResponse:
+      type: object
+      x-apideck-schema-id: PaymentRequired
+      properties:
+        status_code:
+          type: number
+          description: HTTP status code
+          example: 402
+        error:
+          type: string
+          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
+          example: Payment Required
+        type_name:
+          type: string
+          description: The type of error returned
+          example: RequestLimitError
+        message:
+          type: string
+          description: A human-readable message providing more details about the error.
+          example: Request Limit Reached
+          x-speakeasy-error-message: true
+        detail:
+          type: string
+          description: Contains parameter or domain specific information related to the error and why it occurred.
+          example: You have reached your limit of 2000
+        ref:
+          type: string
+          description: Link to documentation of error type
+          example: https://developers.apideck.com/errors#requestlimiterror
+    Id:
+      type: string
+      title: ID
+      description: A unique identifier for an object.
+      example: '12345'
+      readOnly: true
+    UnauthorizedResponse:
+      type: object
+      x-apideck-schema-id: Unauthorized
+      properties:
+        status_code:
+          type: number
+          description: HTTP status code
+          example: 401
+        error:
+          type: string
+          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
+          example: Unauthorized
+        type_name:
+          type: string
+          description: The type of error returned
+          example: UnauthorizedError
+        message:
+          type: string
+          description: A human-readable message providing more details about the error.
+          example: Unauthorized Request
+          x-speakeasy-error-message: true
+        detail:
+          anyOf:
+          - type: string
+            example: Missing authentication
+          - type: object
+            x-speakeasy-detail: true
+            properties:
+              type:
+                type: string
+                description: Error type identifier
+                example: refresh_token_connector_error
+              message:
+                type: string
+                description: Detailed error message
+                example: Token refresh failed
+              debug:
+                type: object
+                description: Debug information including request/response details and OAuth timing metadata
+                properties:
+                  request:
+                    type: object
+                    description: HTTP request details
+                  response:
+                    type: object
+                    description: HTTP response details
+                  message:
+                    type: string
+                    description: Error message from downstream provider or network layer
+                  code:
+                    type: string
+                    description: Error code (e.g., ETIMEDOUT, ECONNREFUSED)
+                  credentials_expire_at_ms:
+                    type: number
+                    description: Unix timestamp (milliseconds) when credentials will be deleted if not refreshed. Only present for non-recoverable errors (401, 400). Credentials are preserved indefinitely for recoverable/network errors.
+                    example: 1620172800000
+                  retry_after_ms:
+                    type: number
+                    description: Unix timestamp (milliseconds) when token refresh retry is allowed after cooldown period expires.
+                    example: 1620000030000
+                  cooldown_remaining_ms:
+                    type: number
+                    description: Milliseconds remaining in cooldown period before retry is allowed.
+                    example: 30000
+            example:
+              type: refresh_token_connector_error
+              message: Token refresh failed with 401 error
+              debug:
+                response:
+                  statusCode: 401
+                  data:
+                    error: invalid_grant
+                credentials_expire_at_ms: 1620172800000
+                retry_after_ms: 1620000030000
+                cooldown_remaining_ms: 30000
+          description: Contains parameter or domain specific information related to the error and why it occurred.
+        ref:
+          type: string
+          description: Link to documentation of error type
+          example: https://developers.apideck.com/errors#unauthorizederror
+    BalanceSheetAccountRecord:
+      type: object
+      x-apideck-schema-id: BalanceSheetAccountRecord
+      x-apideck-weights:
+        account_id: critical
+        name: high
+        value: critical
+        items: medium
+      title: Balance Sheet Account Record
+      description: A record of a balance sheet account.
+      additionalProperties: false
+      properties:
+        account_id:
+          $ref: '#/components/schemas/AccountId'
+        code:
+          $ref: '#/components/schemas/AccountCode'
+        name:
+          $ref: '#/components/schemas/AccountName'
+        value:
+          $ref: '#/components/schemas/Amount'
+    UpdatedAt:
+      type:
+      - string
+      - 'null'
+      title: Updated at (timestamp)
+      description: The date and time when the object was last updated.
+      format: date-time
+      example: '2020-09-30T07:43:32.000Z'
+      readOnly: true
+    UpdatedBy:
+      type:
+      - string
+      - 'null'
+      title: Updated by
+      description: The user who last updated the object.
+      example: '12345'
+      readOnly: true
+    PassThroughQuery:
+      type: object
+      additionalProperties: true
+      properties:
+        example_downstream_property:
+          type: string
+          description: All passthrough query parameters are passed along to the connector as is (?pass_through[search]=leads becomes ?search=leads)
+      example:
+        search: San Francisco
+    AccountId:
+      title: Account Id
+      description: The unique identifier for the account.
+      type: string
+      example: '123456'
+      readOnly: true
+    BalanceSheetFilter:
+      type: object
+      x-apideck-schema-id: BalanceSheetFilter
+      example:
+        start_date: '2021-01-01'
+        end_date: '2021-12-31'
+        period_count: 3
+        period_type: month
+        location_id: '123'
+        accounting_method: accrual
+      properties:
+        start_date:
+          type: string
+          title: Start date
+          description: The start date of the period to include in the resource.
+          example: '2021-01-01'
+          deprecated: true
+        end_date:
+          type: string
+          title: End date
+          description: The end date of the period to include in the resource.
+          example: '2021-12-31'
+        period_count:
+          type: integer
+          title: Period count
+          description: The number of periods to include in the resource.
+          example: 3
+        period_type:
+          x-apideck-enum-id: balance-sheet.period-type
+          type: string
+          title: Period type
+          description: 'The type of period to include in the resource: month, quarter, year.'
+          example: month
+          enum:
+          - month
+          - quarter
+          - year
+        location_id:
+          type: string
+          title: Location ID
+          description: The ID of the location to include in the resource.
+          example: '123'
+        accounting_method:
+          x-apideck-enum-id: balance-sheet.accounting-method
+          type: string
+          title: Accounting Method
+          description: 'The accounting method used for the report: cash or accrual.'
+          example: accrual
+          enum:
+          - cash
+          - accrual
+      additionalProperties: false
+    UnexpectedErrorResponse:
+      type: object
+      x-apideck-schema-id: Error
+      properties:
+        status_code:
+          type: number
+          description: HTTP status code
+          example: 400
+        error:
+          type: string
+          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
+          example: Bad Request
+        type_name:
+          type: string
+          description: The type of error returned
+          example: RequestHeadersValidationError
+        message:
+          type: string
+          description: A human-readable message providing more details about the error.
+          example: Invalid Params
+          x-speakeasy-error-message: true
+        detail:
+          anyOf:
+          - type: string
+            example: 'Missing Header: x-apideck-consumer-id'
+          - type: object
+            x-speakeasy-detail: true
+            example:
+              missing:
+              - x-apideck-consumer-id: required
+          description: Contains parameter or domain specific information related to the error and why it occurred.
+        ref:
+          type: string
+          description: Link to documentation of error type
+          example: https://developers.apideck.com/errors#unauthorizederror
+    GetBalanceSheetResponse:
+      type: object
+      x-apideck-schema-id: GetBalanceSheetResponse
+      required:
+      - status_code
+      - status
+      - service
+      - resource
+      - operation
+      - data
+      properties:
+        status_code:
+          type: integer
+          description: HTTP Response Status Code
+          example: 200
+        status:
+          type: string
+          description: HTTP Response Status
+          example: OK
+        service:
+          type: string
+          description: Apideck ID of service provider
+          example: quickbooks
+        resource:
+          type: string
+          description: Unified API resource name
+          example: BalanceSheets
+        operation:
+          type: string
+          description: Operation performed
+          example: one
+        data:
+          $ref: '#/components/schemas/BalanceSheet'
+        _raw:
+          $ref: '#/components/schemas/Raw'
+    Amount:
+      title: Amount
+      description: The amount or value of the item
+      type: number
+      example: 1000
+      readOnly: true
     CreatedAt:
       type:
       - string
@@ -1418,57 +1028,457 @@ components:
       format: date-time
       example: '2020-09-30T07:43:32.000Z'
       readOnly: true
-  responses:
-    UnexpectedErrorResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UnexpectedErrorResponse'
-      description: Unexpected error
-    PaymentRequiredResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/PaymentRequiredResponse'
-      description: Payment Required
-    UnprocessableResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UnprocessableResponse'
-      description: Unprocessable
     BadRequestResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/BadRequestResponse'
-      description: Bad Request
+      type: object
+      x-apideck-schema-id: BadRequest
+      properties:
+        status_code:
+          type: number
+          description: HTTP status code
+          example: 400
+        error:
+          type: string
+          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
+          example: Bad Request
+        type_name:
+          type: string
+          description: The type of error returned
+          example: RequestValidationError
+        message:
+          type: string
+          description: A human-readable message providing more details about the error.
+          example: Invalid Params
+          x-speakeasy-error-message: true
+        detail:
+          anyOf:
+          - type: string
+            example: Missing property foobar
+          - type: object
+            x-speakeasy-detail: true
+            example:
+              missing:
+              - foobar: required
+          description: Contains parameter or domain specific information related to the error and why it occurred.
+        ref:
+          type: string
+          description: Link to documentation of error type
+          example: https://developers.apideck.com/errors#requestvalidationerror
+        downstream_errors:
+          type: array
+          description: Contains downstream errors returned from the connector. Only present when type_name is ConnectorExecutionError.
+          items:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Error message from the downstream provider
+              detail:
+                type: string
+                description: Additional error details
+              code:
+                type: string
+                description: Error code from the downstream provider
+          example:
+          - message: Account code '100' has been archived or deleted
+            detail: Each line item must reference a valid account
+            code: VALIDATION_ERROR
     NotFoundResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/NotFoundResponse'
-      description: The specified resource was not found
-    UnauthorizedResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UnauthorizedResponse'
-      description: Unauthorized
-    GetBalanceSheetResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/GetBalanceSheetResponse'
-      description: BalanceSheet
+      type: object
+      x-apideck-schema-id: NotFound
+      properties:
+        status_code:
+          type: number
+          description: HTTP status code
+          example: 404
+        error:
+          type: string
+          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
+          example: Not Found
+        type_name:
+          type: string
+          description: The type of error returned
+          example: EntityNotFoundError
+        message:
+          type: string
+          description: A human-readable message providing more details about the error.
+          example: Unknown Widget
+          x-speakeasy-error-message: true
+        detail:
+          anyOf:
+          - type: string
+            example: 'Could not find widget with id: ''123'''
+          - type: object
+            x-speakeasy-detail: true
+            example:
+              not_found:
+                entity: widget
+                id: '123'
+          description: Contains parameter or domain specific information related to the error and why it occurred.
+        ref:
+          type: string
+          description: Link to documentation of error type
+          example: https://developers.apideck.com/errors#entitynotfounderror
+    BalanceSheetAccount:
+      type: object
+      x-apideck-schema-id: BalanceSheetAccount
+      x-apideck-weights:
+        account_id: critical
+        name: high
+        value: critical
+        items: medium
+      title: Balance Sheet Account
+      description: A balance sheet account represents the financial position of a company at a specific point in time.
+      additionalProperties: false
+      properties:
+        account_id:
+          $ref: '#/components/schemas/AccountId'
+        code:
+          $ref: '#/components/schemas/AccountCode'
+        name:
+          $ref: '#/components/schemas/AccountName'
+        value:
+          $ref: '#/components/schemas/Amount'
+        items:
+          $ref: '#/components/schemas/BalanceSheetAccounts'
+    CreatedBy:
+      type:
+      - string
+      - 'null'
+      title: Created by
+      description: The user who created the object.
+      example: '12345'
+      readOnly: true
+    CustomMappings:
+      type:
+      - object
+      - 'null'
+      x-apideck-schema-id: CustomMappings
+      description: When custom mappings are configured on the resource, the result is included here.
+      readOnly: true
+      additionalProperties: true
+    AccountCode:
+      title: Account Code
+      description: The account code of the account
+      type: string
+      example: '1100'
+    Raw:
+      title: raw
+      type:
+      - object
+      - 'null'
+      x-apideck-schema-id: Raw
+      description: Raw response from the integration when raw=true query param is provided
+      additionalProperties: true
+    BalanceSheet:
+      type: object
+      x-apideck-schema-id: BalanceSheet
+      x-apideck-circular-ref: true
+      x-apideck-weights:
+        reports: critical
+      additionalProperties: false
+      required:
+      - reports
+      properties:
+        reports:
+          type: array
+          x-apideck-schema-id: BalanceSheetReports
+          items:
+            type: object
+            x-apideck-schema-id: BalanceSheetReport
+            x-apideck-weights:
+              id: medium
+              report_name: medium
+              start_date: medium
+              end_date: critical
+              currency: medium
+              assets: critical
+              liabilities: critical
+              equity: critical
+              net_assets: high
+              custom_mappings: edge-case
+              updated_by: edge-case
+              created_by: edge-case
+              updated_at: low
+              created_at: edge-case
+              uncategorized_items: edge-case
+            additionalProperties: false
+            required:
+            - end_date
+            - assets
+            - liabilities
+            - equity
+            properties:
+              id:
+                $ref: '#/components/schemas/Id'
+              report_name:
+                type: string
+                description: The name of the report
+                title: Report Name
+                example: BalanceSheet
+              start_date:
+                type: string
+                description: The start date of the report
+                title: Start Date
+                pattern: ^\d{4}-\d{2}-\d{2}$
+                example: '2017-01-01'
+              end_date:
+                type: string
+                description: The start date of the report
+                title: Start Date
+                pattern: ^\d{4}-\d{2}-\d{2}$
+                example: '2017-01-31'
+              currency:
+                $ref: '#/components/schemas/Currency'
+              assets:
+                type: object
+                x-apideck-schema-id: BalanceSheetAssetsAccount
+                x-apideck-weights:
+                  account_id: high
+                  name: high
+                  value: critical
+                  items: medium
+                title: Balance Sheet Assets Account
+                description: A balance sheet assets account represents the financial position of a company at a specific point in time.
+                additionalProperties: false
+                properties:
+                  account_id:
+                    $ref: '#/components/schemas/AccountId'
+                  code:
+                    $ref: '#/components/schemas/AccountCode'
+                  name:
+                    $ref: '#/components/schemas/AccountName'
+                  value:
+                    $ref: '#/components/schemas/Amount'
+                  items:
+                    $ref: '#/components/schemas/BalanceSheetAccounts'
+                example:
+                  account_id: '1'
+                  code: '1000'
+                  name: Assets
+                  value: 50000
+                  items:
+                  - account_id: '101'
+                    code: '1100'
+                    name: Current Assets
+                    value: 20000
+                    items:
+                    - account_id: '1011'
+                      code: '1101'
+                      name: Cash and Cash Equivalents
+                      value: 10000
+                    - account_id: '1012'
+                      code: '1102'
+                      name: Accounts Receivable
+                      value: 5000
+                    - account_id: '1013'
+                      code: '1103'
+                      name: Inventory
+                      value: 3000
+                    - account_id: '1014'
+                      code: '1104'
+                      name: Prepaid Expenses
+                      value: 2000
+                  - account_id: '102'
+                    code: '1200'
+                    name: Non-Current Assets
+                    value: 30000
+                    items:
+                    - account_id: '1021'
+                      code: '1201'
+                      name: Property, Plant, and Equipment (PPE)
+                      value: 25000
+                    - account_id: '1022'
+                      code: '1202'
+                      name: Intangible Assets
+                      value: 5000
+                      items:
+                      - account_id: '10221'
+                        code: '1203'
+                        name: Goodwill
+                        value: 3000
+                      - account_id: '10222'
+                        code: '1204'
+                        name: Patents
+                        value: 2000
+              liabilities:
+                type: object
+                x-apideck-schema-id: BalanceSheetLiabilitiesAccount
+                x-apideck-weights:
+                  account_id: high
+                  name: high
+                  value: critical
+                  items: medium
+                title: Balance Sheet Liabilities Account
+                description: A balance sheet liabilities account represents the financial position of a company at a specific point in time.
+                additionalProperties: false
+                properties:
+                  account_id:
+                    $ref: '#/components/schemas/AccountId'
+                  code:
+                    $ref: '#/components/schemas/AccountCode'
+                  name:
+                    $ref: '#/components/schemas/AccountName'
+                  value:
+                    $ref: '#/components/schemas/Amount'
+                  items:
+                    $ref: '#/components/schemas/BalanceSheetAccounts'
+                example:
+                  account_id: '2'
+                  code: '2000'
+                  name: Liabilities
+                  value: 30000
+                  items:
+                  - account_id: '201'
+                    code: '2100'
+                    name: Current Liabilities
+                    value: 10000
+                    items:
+                    - account_id: '2011'
+                      code: '2101'
+                      name: Accounts Payable
+                      value: 4000
+                    - account_id: '2012'
+                      code: '2102'
+                      name: Short-Term Debt
+                      value: 2000
+                    - account_id: '2013'
+                      code: '2103'
+                      name: Accrued Expenses
+                      value: 1000
+                    - account_id: '2014'
+                      code: '2104'
+                      name: Current Portion of Long-Term Debt
+                      value: 3000
+                  - account_id: '202'
+                    code: '2200'
+                    name: Non-Current Liabilities
+                    value: 20000
+                    items:
+                    - account_id: '2021'
+                      code: '2201'
+                      name: Long-Term Debt
+                      value: 15000
+                    - account_id: '2022'
+                      code: '2202'
+                      name: Deferred Tax Liabilities
+                      value: 3000
+                    - account_id: '2023'
+                      code: '2203'
+                      name: Pension Liabilities
+                      value: 2000
+              equity:
+                type: object
+                x-apideck-schema-id: BalanceSheetEquityAccount
+                x-apideck-weights:
+                  account_id: high
+                  name: high
+                  value: critical
+                  items: medium
+                title: Balance Sheet Equity Account
+                description: A balance sheet equity account represents the financial position of a company at a specific point in time.
+                additionalProperties: false
+                properties:
+                  account_id:
+                    $ref: '#/components/schemas/AccountId'
+                  code:
+                    $ref: '#/components/schemas/AccountCode'
+                  name:
+                    $ref: '#/components/schemas/AccountName'
+                  value:
+                    $ref: '#/components/schemas/Amount'
+                  items:
+                    $ref: '#/components/schemas/BalanceSheetAccounts'
+                example:
+                  account_id: '3'
+                  code: '3000'
+                  name: Equity
+                  value: 20000
+                  items:
+                  - account_id: '301'
+                    code: '3100'
+                    name: Common Stock
+                    value: 5000
+                  - account_id: '302'
+                    code: '3200'
+                    name: Retained Earnings
+                    value: 10000
+                  - account_id: '303'
+                    code: '3300'
+                    name: Additional Paid-In Capital
+                    value: 3000
+                  - account_id: '304'
+                    code: '3400'
+                    name: Treasury Stock
+                    value: -1000
+                  - account_id: '305'
+                    code: '3500'
+                    name: Other Comprehensive Income
+                    value: 3000
+              net_assets:
+                type: number
+                description: The net assets of the balance sheet
+                title: Net Assets
+                example: 1000
+              custom_mappings:
+                $ref: '#/components/schemas/CustomMappings'
+              updated_by:
+                $ref: '#/components/schemas/UpdatedBy'
+              created_by:
+                $ref: '#/components/schemas/CreatedBy'
+              updated_at:
+                $ref: '#/components/schemas/UpdatedAt'
+              created_at:
+                $ref: '#/components/schemas/CreatedAt'
+              uncategorized_items:
+                type: object
+                x-apideck-schema-id: BalanceSheetUncategorizedItemsAccount
+                x-apideck-weights:
+                  account_id: high
+                  name: high
+                  value: critical
+                  items: medium
+                title: Balance Sheet Uncategorized Items Account
+                description: A balance sheet uncategorized items account represents the financial position of a company at a specific point in time.
+                additionalProperties: false
+                properties:
+                  account_id:
+                    $ref: '#/components/schemas/AccountId'
+                  code:
+                    $ref: '#/components/schemas/AccountCode'
+                  name:
+                    $ref: '#/components/schemas/AccountName'
+                  value:
+                    $ref: '#/components/schemas/Amount'
+                  items:
+                    $ref: '#/components/schemas/BalanceSheetAccounts'
+                example:
+                  account_id: '3'
+                  code: '3000'
+                  name: Uncategorized Items
+                  value: 1000
+                  items:
+                  - account_id: '301'
+                    code: '3100'
+                    name: not linked account
+                    value: 1000
   parameters:
-    raw:
-      name: raw
-      in: query
-      description: Include raw response. Mostly used for debugging purposes
+    consumerId:
+      name: x-apideck-consumer-id
+      in: header
+      required: true
+      description: ID of the consumer which you want to get or push data from
       schema:
-        type: boolean
-        default: false
+        type: string
+      example: test-consumer
+      x-speakeasy-name-override: consumerId
+    companyId:
+      name: x-apideck-company-id
+      in: header
+      description: The ID of the company to scope requests to. For connectors that support multi-company, this overrides the default company configured in connection settings.
+      schema:
+        type: string
+      example: '12345'
+      x-speakeasy-name-override: companyId
     balanceSheetFilter:
       name: filter
       in: query
@@ -1477,6 +1487,14 @@ components:
       explode: true
       schema:
         $ref: '#/components/schemas/BalanceSheetFilter'
+    passThrough:
+      name: pass_through
+      in: query
+      description: 'Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads'
+      style: deepObject
+      explode: true
+      schema:
+        $ref: '#/components/schemas/PassThroughQuery'
     applicationId:
       name: x-apideck-app-id
       in: header
@@ -1487,14 +1505,13 @@ components:
         minLength: 1
       example: dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX
       x-speakeasy-name-override: appId
-    companyId:
-      name: x-apideck-company-id
-      in: header
-      description: The ID of the company to scope requests to. For connectors that support multi-company, this overrides the default company configured in connection settings.
+    raw:
+      name: raw
+      in: query
+      description: Include raw response. Mostly used for debugging purposes
       schema:
-        type: string
-      example: '12345'
-      x-speakeasy-name-override: companyId
+        type: boolean
+        default: false
     serviceId:
       name: x-apideck-service-id
       in: header
@@ -1503,23 +1520,6 @@ components:
         type: string
       example: salesforce
       x-speakeasy-name-override: serviceId
-    passThrough:
-      name: pass_through
-      in: query
-      description: 'Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads'
-      style: deepObject
-      explode: true
-      schema:
-        $ref: '#/components/schemas/PassThroughQuery'
-    consumerId:
-      name: x-apideck-consumer-id
-      in: header
-      required: true
-      description: ID of the consumer which you want to get or push data from
-      schema:
-        type: string
-      example: test-consumer
-      x-speakeasy-name-override: consumerId
   securitySchemes:
     apiKey:
       type: apiKey

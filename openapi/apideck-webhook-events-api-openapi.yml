@@ -239,16 +239,6 @@ webhooks:
     - url: https://unify.apideck.com
 components:
   schemas:
-    FileStorageEventType:
-      x-apideck-enum-id: file-storage.event_type
-      type: string
-      enum:
-      - '*'
-      - file-storage.file.created
-      - file-storage.file.updated
-      - file-storage.file.deleted
-      - file-storage.drive.updated
-      example: file-storage.file.created
     FileStorageWebhookEvent:
       allOf:
       - type: object
@@ -324,6 +314,16 @@ components:
             $ref: '#/components/schemas/FileStorageEventType'
         type: object
       x-sdk-exclude: true
+    FileStorageEventType:
+      x-apideck-enum-id: file-storage.event_type
+      type: string
+      enum:
+      - '*'
+      - file-storage.file.created
+      - file-storage.file.updated
+      - file-storage.file.deleted
+      - file-storage.drive.updated
+      example: file-storage.file.created
   securitySchemes:
     apiKey:
       type: apiKey

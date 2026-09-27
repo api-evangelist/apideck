@@ -412,1247 +412,6 @@ paths:
           id: id_example
 components:
   schemas:
-    DeleteProjectResponse:
-      type: object
-      required:
-      - status_code
-      - status
-      - service
-      - resource
-      - operation
-      - data
-      properties:
-        status_code:
-          type: integer
-          description: HTTP Response Status Code
-          example: 200
-        status:
-          type: string
-          description: HTTP Response Status
-          example: OK
-        service:
-          type: string
-          description: Apideck ID of service provider
-          example: quickbooks
-        resource:
-          type: string
-          description: Unified API resource name
-          example: Projects
-        operation:
-          type: string
-          description: Operation performed
-          example: delete
-        data:
-          $ref: '#/components/schemas/UnifiedId'
-    UpdatedBy:
-      type:
-      - string
-      - 'null'
-      title: Updated by
-      description: The user who last updated the object.
-      example: '12345'
-      readOnly: true
-    ProjectsSort:
-      type: object
-      x-apideck-schema-id: ProjectsSort
-      properties:
-        by:
-          type: string
-          title: Sort by
-          description: The field to sort by
-          x-apideck-enum-id: projects.sort_by
-          enum:
-          - name
-          - status
-          - start_date
-          - end_date
-          - budget_amount
-          - actual_amount
-          - created_at
-          - updated_at
-          example: name
-        direction:
-          $ref: '#/components/schemas/SortDirection'
-    UnifiedId:
-      title: UnifiedId
-      type: object
-      x-apideck-schema-id: Id
-      description: A object containing a unique identifier for the resource that was created, updated, or deleted.
-      required:
-      - id
-      properties:
-        id:
-          title: Id
-          description: The unique identifier of the resource
-          type: string
-          readOnly: true
-          example: '12345'
-    LinkedTrackingCategory:
-      type:
-      - object
-      - 'null'
-      x-apideck-schema-id: LinkedTrackingCategory
-      x-apideck-weights:
-        id: critical
-        code: medium
-      properties:
-        id:
-          title: Tracking Category ID
-          description: The unique identifier for the tracking category.
-          type: string
-          example: '123456'
-        code:
-          type:
-          - string
-          - 'null'
-          title: Tracking Category Code
-          description: The code of the tracking category.
-          example: '100'
-        name:
-          type:
-          - string
-          - 'null'
-          title: Tracking Category Name
-          description: The name of the tracking category.
-          example: New York
-        parent_id:
-          type: string
-          title: Parent Tracking Category ID
-          description: The unique identifier for the parent tracking category.
-          example: '123456'
-        parent_name:
-          type:
-          - string
-          - 'null'
-          title: Parent Tracking Category Name
-          description: The name of the parent tracking category.
-          example: New York
-    UnexpectedErrorResponse:
-      type: object
-      x-apideck-schema-id: Error
-      properties:
-        status_code:
-          type: number
-          description: HTTP status code
-          example: 400
-        error:
-          type: string
-          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
-          example: Bad Request
-        type_name:
-          type: string
-          description: The type of error returned
-          example: RequestHeadersValidationError
-        message:
-          type: string
-          description: A human-readable message providing more details about the error.
-          example: Invalid Params
-          x-speakeasy-error-message: true
-        detail:
-          anyOf:
-          - type: string
-            example: 'Missing Header: x-apideck-consumer-id'
-          - type: object
-            x-speakeasy-detail: true
-            example:
-              missing:
-              - x-apideck-consumer-id: required
-          description: Contains parameter or domain specific information related to the error and why it occurred.
-        ref:
-          type: string
-          description: Link to documentation of error type
-          example: https://developers.apideck.com/errors#unauthorizederror
-    Project:
-      type: object
-      x-apideck-schema-id: Project
-      additionalProperties: false
-      x-apideck-weights:
-        id: critical
-        downstream_id: edge-case
-        name: critical
-        display_id: medium
-        reference_id: medium
-        description: medium
-        status: high
-        active: high
-        project_type: medium
-        priority: medium
-        completion_percentage: medium
-        completion_date: medium
-        start_date: medium
-        end_date: medium
-        customer: high
-        department: medium
-        company_id: medium
-        owner_id: medium
-        parent_project: low
-        currency: medium
-        budget_amount: medium
-        approved_amount: medium
-        actual_amount: low
-        budget_hours: medium
-        actual_hours: low
-        hourly_rate: medium
-        billing_method: medium
-        is_billable: medium
-        phase: medium
-        tax_rate: medium
-        tracking_categories: medium
-        custom_fields: medium
-        tags: low
-        notes: low
-        contract_number: medium
-        profit_margin: medium
-        schedule_status: medium
-        addresses: medium
-        team_size: low
-        updated_by: edge-case
-        created_by: edge-case
-        updated_at: medium
-        created_at: medium
-        row_version: edge-case
-      required:
-      - name
-      properties:
-        id:
-          $ref: '#/components/schemas/Id'
-        downstream_id:
-          $ref: '#/components/schemas/DownstreamId'
-        name:
-          type: string
-          title: Project name
-          description: Name of the project
-          example: Website Redesign Project
-          minLength: 1
-        display_id:
-          type:
-          - string
-          - 'null'
-          title: Display ID
-          description: User-friendly project identifier
-          example: PROJ-001
-        reference_id:
-          type:
-          - string
-          - 'null'
-          title: Reference ID
-          description: External reference identifier for the project
-          example: WD-REF-2024-001
-        description:
-          type:
-          - string
-          - 'null'
-          title: Description
-          description: Detailed description of the project
-          example: Complete redesign of the company website including new branding and improved user experience
-        status:
-          type:
-          - string
-          - 'null'
-          title: Project Status
-          description: Current status of the project
-          example: active
-          enum:
-          - active
-          - completed
-          - on_hold
-          - cancelled
-          - draft
-          - in_progress
-          - approved
-          - other
-          x-apideck-enum-id: project.status
-        active:
-          type:
-          - boolean
-          - 'null'
-          title: Active
-          description: Indicates whether the project is currently active or inactive
-          example: true
-        project_type:
-          type:
-          - string
-          - 'null'
-          title: Project Type
-          description: Type or category of the project
-          example: client_project
-          enum:
-          - client_project
-          - internal_project
-          - maintenance
-          - research_development
-          - training
-          - other
-          x-apideck-enum-id: project.project_type
-        priority:
-          type:
-          - string
-          - 'null'
-          title: Priority
-          description: Priority level of the project
-          example: high
-          enum:
-          - low
-          - medium
-          - high
-          - critical
-          x-apideck-enum-id: project.priority
-        completion_percentage:
-          type:
-          - number
-          - 'null'
-          minimum: 0
-          maximum: 100
-          title: Completion Percentage
-          description: Percentage of project completion (0-100)
-          example: 75.5
-        start_date:
-          type:
-          - string
-          - 'null'
-          format: date
-          title: Start Date
-          description: Start date of the project
-          example: '2024-01-15'
-        end_date:
-          type:
-          - string
-          - 'null'
-          format: date
-          title: End Date
-          description: Expected or planned end date of the project
-          example: '2024-06-30'
-        completion_date:
-          type:
-          - string
-          - 'null'
-          format: date
-          title: End Date
-          description: Actual end date of the project
-          example: '2024-08-06'
-        customer:
-          $ref: '#/components/schemas/LinkedCustomer'
-        department:
-          type:
-          - object
-          - 'null'
-          title: Department
-          description: Department or organizational unit associated with the project
-          properties:
-            id:
-              type: string
-              title: Department ID
-              description: Unique identifier for the department
-              example: DEPT-001
-            name:
-              type: string
-              title: Department Name
-              description: Name of the department
-              example: Marketing
-        company_id:
-          $ref: '#/components/schemas/AccountingCompanyId'
-        owner_id:
-          type:
-          - string
-          - 'null'
-          title: Owner ID
-          description: ID of the user who owns/manages this project
-          example: '12345'
-        parent_project:
-          type:
-          - object
-          - 'null'
-          title: Parent Project
-          description: Parent project if this is a subproject
-          properties:
-            id:
-              type: string
-              title: Parent Project ID
-              description: Unique identifier for the parent project
-              example: PROJ-PARENT-001
-            name:
-              type: string
-              title: Parent Project Name
-              description: Name of the parent project
-              example: Company Website Overhaul
-        currency:
-          $ref: '#/components/schemas/Currency'
-        budget_amount:
-          type:
-          - number
-          - 'null'
-          multipleOf: 0.01
-          title: Budget Amount
-          description: Total budgeted amount for the project
-          example: 50000
-        approved_amount:
-          type:
-          - number
-          - 'null'
-          multipleOf: 0.01
-          title: Approved Amount
-          description: Approved budget amount for the project
-          example: 48000
-        actual_amount:
-          type:
-          - number
-          - 'null'
-          multipleOf: 0.01
-          title: Actual Amount
-          description: Total actual amount spent on the project
-          example: 45250.75
-          readOnly: true
-        budget_hours:
-          type:
-          - number
-          - 'null'
-          title: Budget Hours
-          description: Total budgeted hours for the project
-          example: 400
-        actual_hours:
-          type:
-          - number
-          - 'null'
-          title: Actual Hours
-          description: Total actual hours worked on the project
-          example: 385.5
-          readOnly: true
-        hourly_rate:
-          type:
-          - number
-          - 'null'
-          multipleOf: 0.01
-          title: Hourly Rate
-          description: Default hourly rate for project work
-          example: 125
-        billing_method:
-          type:
-          - string
-          - 'null'
-          title: Billing Method
-          description: Method used for billing this project
-          example: time_and_materials
-          enum:
-          - fixed_price
-          - time_and_materials
-          - milestone_based
-          - retainer
-          - non_billable
-          x-apideck-enum-id: project.billing_method
-        is_billable:
-          type:
-          - boolean
-          - 'null'
-          title: Is Billable
-          description: Indicates if the project is billable to the customer
-          example: true
-          default: true
-        phase:
-          type:
-          - string
-          - 'null'
-          title: Project Phase
-          description: Current phase of the project lifecycle
-          example: execution
-          enum:
-          - initiation
-          - planning
-          - execution
-          - monitoring
-          - closure
-          - other
-          x-apideck-enum-id: project.phase
-        tax_rate:
-          $ref: '#/components/schemas/LinkedTaxRate'
-        tracking_categories:
-          $ref: '#/components/schemas/LinkedTrackingCategories'
-        tags:
-          type: array
-          items:
-            type: string
-          title: Tags
-          description: Tags associated with the project
-          example:
-          - website
-          - redesign
-          - urgent
-        notes:
-          type:
-          - string
-          - 'null'
-          title: Notes
-          description: Additional notes about the project
-          example: Client has requested modern design with mobile-first approach
-        contract_number:
-          type:
-          - string
-          - 'null'
-          title: Contract Number
-          description: Contract or agreement number associated with the project
-          example: CNT-2024-001
-        profit_margin:
-          type:
-          - number
-          - 'null'
-          title: Profit Margin
-          description: Expected profit margin percentage for the project
-          example: 15.5
-          minimum: 0
-          maximum: 100
-        schedule_status:
-          type:
-          - string
-          - 'null'
-          title: Schedule Status
-          description: Current status of project schedule compared to plan
-          example: on_schedule
-          enum:
-          - ahead_of_schedule
-          - on_schedule
-          - behind_schedule
-          - critical_delay
-          x-apideck-enum-id: project.schedule_status
-        addresses:
-          type: array
-          title: Addresses
-          description: An array of addresses associated with the project (billing, job site, etc.)
-          items:
-            $ref: '#/components/schemas/Address'
-        team_size:
-          type:
-          - integer
-          - 'null'
-          title: Team Size
-          description: Number of team members assigned to the project
-          example: 8
-          minimum: 0
-        custom_fields:
-          type: array
-          items:
-            $ref: '#/components/schemas/CustomField'
-        row_version:
-          $ref: '#/components/schemas/RowVersion'
-        updated_by:
-          $ref: '#/components/schemas/UpdatedBy'
-        created_by:
-          $ref: '#/components/schemas/CreatedBy'
-        created_at:
-          $ref: '#/components/schemas/CreatedAt'
-        updated_at:
-          $ref: '#/components/schemas/UpdatedAt'
-    AccountingCompanyId:
-      type:
-      - string
-      - 'null'
-      title: CompanyId
-      description: The company ID the transaction belongs to
-      example: '12345'
-    UpdateProjectResponse:
-      type: object
-      required:
-      - status_code
-      - status
-      - service
-      - resource
-      - operation
-      - data
-      properties:
-        status_code:
-          type: integer
-          description: HTTP Response Status Code
-          example: 200
-        status:
-          type: string
-          description: HTTP Response Status
-          example: OK
-        service:
-          type: string
-          description: Apideck ID of service provider
-          example: quickbooks
-        resource:
-          type: string
-          description: Unified API resource name
-          example: Projects
-        operation:
-          type: string
-          description: Operation performed
-          example: update
-        data:
-          $ref: '#/components/schemas/UnifiedId'
-    UnauthorizedResponse:
-      type: object
-      x-apideck-schema-id: Unauthorized
-      properties:
-        status_code:
-          type: number
-          description: HTTP status code
-          example: 401
-        error:
-          type: string
-          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
-          example: Unauthorized
-        type_name:
-          type: string
-          description: The type of error returned
-          example: UnauthorizedError
-        message:
-          type: string
-          description: A human-readable message providing more details about the error.
-          example: Unauthorized Request
-          x-speakeasy-error-message: true
-        detail:
-          anyOf:
-          - type: string
-            example: Missing authentication
-          - type: object
-            x-speakeasy-detail: true
-            properties:
-              type:
-                type: string
-                description: Error type identifier
-                example: refresh_token_connector_error
-              message:
-                type: string
-                description: Detailed error message
-                example: Token refresh failed
-              debug:
-                type: object
-                description: Debug information including request/response details and OAuth timing metadata
-                properties:
-                  request:
-                    type: object
-                    description: HTTP request details
-                  response:
-                    type: object
-                    description: HTTP response details
-                  message:
-                    type: string
-                    description: Error message from downstream provider or network layer
-                  code:
-                    type: string
-                    description: Error code (e.g., ETIMEDOUT, ECONNREFUSED)
-                  credentials_expire_at_ms:
-                    type: number
-                    description: Unix timestamp (milliseconds) when credentials will be deleted if not refreshed. Only present for non-recoverable errors (401, 400). Credentials are preserved indefinitely for recoverable/network errors.
-                    example: 1620172800000
-                  retry_after_ms:
-                    type: number
-                    description: Unix timestamp (milliseconds) when token refresh retry is allowed after cooldown period expires.
-                    example: 1620000030000
-                  cooldown_remaining_ms:
-                    type: number
-                    description: Milliseconds remaining in cooldown period before retry is allowed.
-                    example: 30000
-            example:
-              type: refresh_token_connector_error
-              message: Token refresh failed with 401 error
-              debug:
-                response:
-                  statusCode: 401
-                  data:
-                    error: invalid_grant
-                credentials_expire_at_ms: 1620172800000
-                retry_after_ms: 1620000030000
-                cooldown_remaining_ms: 30000
-          description: Contains parameter or domain specific information related to the error and why it occurred.
-        ref:
-          type: string
-          description: Link to documentation of error type
-          example: https://developers.apideck.com/errors#unauthorizederror
-    LinkedCustomer:
-      type:
-      - object
-      - 'null'
-      x-apideck-schema-id: LinkedCustomer
-      title: LinkedCustomer
-      description: The customer this entity is linked to.
-      x-apideck-weights:
-        id: medium
-        display_id: medium
-        display_name: medium
-        name: medium
-        company_name: medium
-      properties:
-        id:
-          type: string
-          title: Customer ID
-          description: The ID of the customer this entity is linked to.
-          example: '12345'
-        display_id:
-          type:
-          - string
-          - 'null'
-          title: Display ID
-          description: The display ID of the customer.
-          example: CUST00101
-          readOnly: true
-        display_name:
-          type:
-          - string
-          - 'null'
-          title: Display Name
-          description: The display name of the customer.
-          example: Windsurf Shop
-        name:
-          type: string
-          title: Name
-          description: The name of the customer. Deprecated, use display_name instead.
-          example: Windsurf Shop
-          deprecated: true
-        company_name:
-          type:
-          - string
-          - 'null'
-          title: Company Name
-          description: The company name of the customer.
-          example: The boring company
-          readOnly: true
-        email:
-          type: string
-          title: Email
-          description: The email address of the customer.
-          example: boring@boring.com
-    Meta:
-      type: object
-      x-apideck-schema-id: Meta
-      description: Response metadata
-      properties:
-        items_on_page:
-          type: integer
-          description: Number of items returned in the data property of the response
-          example: 50
-        cursors:
-          type: object
-          description: Cursors to navigate to previous or next pages through the API
-          properties:
-            previous:
-              type:
-              - string
-              - 'null'
-              description: Cursor to navigate to the previous page of results through the API
-              example: em9oby1jcm06OnBhZ2U6OjE=
-            current:
-              type:
-              - string
-              - 'null'
-              description: Cursor to navigate to the current page of results through the API
-              example: em9oby1jcm06OnBhZ2U6OjI=
-            next:
-              type:
-              - string
-              - 'null'
-              description: Cursor to navigate to the next page of results through the API
-              example: em9oby1jcm06OnBhZ2U6OjM=
-    PaymentRequiredResponse:
-      type: object
-      x-apideck-schema-id: PaymentRequired
-      properties:
-        status_code:
-          type: number
-          description: HTTP status code
-          example: 402
-        error:
-          type: string
-          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
-          example: Payment Required
-        type_name:
-          type: string
-          description: The type of error returned
-          example: RequestLimitError
-        message:
-          type: string
-          description: A human-readable message providing more details about the error.
-          example: Request Limit Reached
-          x-speakeasy-error-message: true
-        detail:
-          type: string
-          description: Contains parameter or domain specific information related to the error and why it occurred.
-          example: You have reached your limit of 2000
-        ref:
-          type: string
-          description: Link to documentation of error type
-          example: https://developers.apideck.com/errors#requestlimiterror
-    CreatedBy:
-      type:
-      - string
-      - 'null'
-      title: Created by
-      description: The user who created the object.
-      example: '12345'
-      readOnly: true
-    RowVersion:
-      type:
-      - string
-      - 'null'
-      title: Row version
-      description: A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-      example: 1-12345
-    NotFoundResponse:
-      type: object
-      x-apideck-schema-id: NotFound
-      properties:
-        status_code:
-          type: number
-          description: HTTP status code
-          example: 404
-        error:
-          type: string
-          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
-          example: Not Found
-        type_name:
-          type: string
-          description: The type of error returned
-          example: EntityNotFoundError
-        message:
-          type: string
-          description: A human-readable message providing more details about the error.
-          example: Unknown Widget
-          x-speakeasy-error-message: true
-        detail:
-          anyOf:
-          - type: string
-            example: 'Could not find widget with id: ''123'''
-          - type: object
-            x-speakeasy-detail: true
-            example:
-              not_found:
-                entity: widget
-                id: '123'
-          description: Contains parameter or domain specific information related to the error and why it occurred.
-        ref:
-          type: string
-          description: Link to documentation of error type
-          example: https://developers.apideck.com/errors#entitynotfounderror
-    GetProjectsResponse:
-      type: object
-      required:
-      - status_code
-      - status
-      - service
-      - resource
-      - operation
-      - data
-      properties:
-        status_code:
-          type: integer
-          description: HTTP Response Status Code
-          example: 200
-        status:
-          type: string
-          description: HTTP Response Status
-          example: OK
-        service:
-          type: string
-          description: Apideck ID of service provider
-          example: quickbooks
-        resource:
-          type: string
-          description: Unified API resource name
-          example: Projects
-        operation:
-          type: string
-          description: Operation performed
-          example: all
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Project'
-        meta:
-          $ref: '#/components/schemas/Meta'
-        links:
-          $ref: '#/components/schemas/Links'
-    Id:
-      type: string
-      title: ID
-      description: A unique identifier for an object.
-      example: '12345'
-      readOnly: true
-    LinkedTaxRate:
-      type: object
-      x-apideck-schema-id: LinkedTaxRate
-      additionalProperties: false
-      x-apideck-weights:
-        id: medium
-        code: medium
-        name: medium
-        rate: medium
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          title: The ID of the object.
-          description: The ID of the object.
-          example: '123456'
-        code:
-          type:
-          - string
-          - 'null'
-          title: Tax rate code
-          description: Tax rate code
-          example: N-T
-        name:
-          type:
-          - string
-          - 'null'
-          title: Name
-          description: Name of the tax rate
-          example: GST on Purchases
-          readOnly: true
-        rate:
-          type:
-          - number
-          - 'null'
-          title: Rate
-          description: Rate of the tax rate
-          example: 10
-    UnprocessableResponse:
-      type: object
-      x-apideck-schema-id: Unprocessable
-      properties:
-        status_code:
-          type: number
-          description: HTTP status code
-          example: 422
-        error:
-          type: string
-          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
-          example: Unprocessable Entity
-        type_name:
-          type: string
-          description: The type of error returned
-          example: InvalidStateError
-        message:
-          type: string
-          description: A human-readable message providing more details about the error.
-          example: Invalid State
-          x-speakeasy-error-message: true
-        detail:
-          anyOf:
-          - type: string
-            example: Unprocessable request, please verify your request headers and body.
-          - type: object
-            x-speakeasy-detail: true
-            example:
-              error: Unprocessable
-              message: Unprocessable request, please verify your request headers and body.
-          description: Contains parameter or domain specific information related to the error and why it occurred.
-        ref:
-          type: string
-          description: Link to documentation of error type
-          example: https://developers.apideck.com/errors#invalidstateerror
-    SortDirection:
-      type: string
-      x-apideck-schema-id: SortDirection
-      description: The direction in which to sort the results
-      x-apideck-enum-id: sort_direction
-      enum:
-      - asc
-      - desc
-      default: asc
-    Links:
-      type: object
-      x-apideck-schema-id: Links
-      description: Links to navigate to previous or next pages through the API
-      properties:
-        previous:
-          type:
-          - string
-          - 'null'
-          description: Link to navigate to the previous page through the API
-          example: https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjE%3D
-        current:
-          type: string
-          description: Link to navigate to the current page through the API
-          example: https://unify.apideck.com/crm/companies
-        next:
-          type:
-          - string
-          - 'null'
-          description: Link to navigate to the previous page through the API
-          example: https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjM
-    CreateProjectResponse:
-      type: object
-      required:
-      - status_code
-      - status
-      - service
-      - resource
-      - operation
-      - data
-      properties:
-        status_code:
-          type: integer
-          description: HTTP Response Status Code
-          example: 200
-        status:
-          type: string
-          description: HTTP Response Status
-          example: OK
-        service:
-          type: string
-          description: Apideck ID of service provider
-          example: quickbooks
-        resource:
-          type: string
-          description: Unified API resource name
-          example: Projects
-        operation:
-          type: string
-          description: Operation performed
-          example: add
-        data:
-          $ref: '#/components/schemas/UnifiedId'
-    BadRequestResponse:
-      type: object
-      x-apideck-schema-id: BadRequest
-      properties:
-        status_code:
-          type: number
-          description: HTTP status code
-          example: 400
-        error:
-          type: string
-          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
-          example: Bad Request
-        type_name:
-          type: string
-          description: The type of error returned
-          example: RequestValidationError
-        message:
-          type: string
-          description: A human-readable message providing more details about the error.
-          example: Invalid Params
-          x-speakeasy-error-message: true
-        detail:
-          anyOf:
-          - type: string
-            example: Missing property foobar
-          - type: object
-            x-speakeasy-detail: true
-            example:
-              missing:
-              - foobar: required
-          description: Contains parameter or domain specific information related to the error and why it occurred.
-        ref:
-          type: string
-          description: Link to documentation of error type
-          example: https://developers.apideck.com/errors#requestvalidationerror
-        downstream_errors:
-          type: array
-          description: Contains downstream errors returned from the connector. Only present when type_name is ConnectorExecutionError.
-          items:
-            type: object
-            properties:
-              message:
-                type: string
-                description: Error message from the downstream provider
-              detail:
-                type: string
-                description: Additional error details
-              code:
-                type: string
-                description: Error code from the downstream provider
-          example:
-          - message: Account code '100' has been archived or deleted
-            detail: Each line item must reference a valid account
-            code: VALIDATION_ERROR
-    LinkedTrackingCategories:
-      type:
-      - array
-      - 'null'
-      x-apideck-schema-id: LinkedTrackingCategories
-      title: Linked tracking categories
-      description: A list of linked tracking categories.
-      items:
-        $ref: '#/components/schemas/LinkedTrackingCategory'
-    Address:
-      type: object
-      x-apideck-schema-id: Address
-      additionalProperties: false
-      x-apideck-weights:
-        id: edge-case
-        name: edge-case
-        type: critical
-        line1: high
-        line2: low
-        line3: edge-case
-        line4: edge-case
-        line5: edge-case
-        street_number: low
-        city: high
-        string: low
-        state: high
-        postal_code: high
-        country: high
-        latitude: low
-        longitude: low
-        county: edge-case
-        contact_name: edge-case
-        salutation: edge-case
-        phone_number: edge-case
-        fax: edge-case
-        email: edge-case
-        website: edge-case
-        row_version: edge-case
-      properties:
-        id:
-          description: Unique identifier for the address.
-          type:
-          - string
-          - 'null'
-          example: '123'
-        type:
-          type:
-          - string
-          - 'null'
-          description: The type of address.
-          x-apideck-enum-id: addresses.type
-          enum:
-          - primary
-          - secondary
-          - home
-          - office
-          - shipping
-          - billing
-          - work
-          - other
-          example: primary
-        string:
-          type:
-          - string
-          - 'null'
-          description: The address string. Some APIs don't provide structured address data.
-          example: 25 Spring Street, Blackburn, VIC 3130
-        name:
-          description: The name of the address.
-          type:
-          - string
-          - 'null'
-          example: HQ US
-        line1:
-          type:
-          - string
-          - 'null'
-          example: Main street
-          description: 'Line 1 of the address e.g. number, street, suite, apt #, etc.'
-        line2:
-          type:
-          - string
-          - 'null'
-          example: 'apt #'
-          description: Line 2 of the address
-        line3:
-          type:
-          - string
-          - 'null'
-          example: 'Suite #'
-          description: Line 3 of the address
-        line4:
-          type:
-          - string
-          - 'null'
-          example: delivery instructions
-          description: Line 4 of the address
-        line5:
-          type:
-          - string
-          - 'null'
-          example: 'Attention: Finance Dept'
-          description: Line 5 of the address
-        street_number:
-          type:
-          - string
-          - 'null'
-          example: '25'
-          description: Street number
-        city:
-          type:
-          - string
-          - 'null'
-          example: San Francisco
-          description: Name of city.
-        state:
-          type:
-          - string
-          - 'null'
-          example: CA
-          description: Name of state
-        postal_code:
-          type:
-          - string
-          - 'null'
-          example: '94104'
-          description: Zip code or equivalent.
-        country:
-          type:
-          - string
-          - 'null'
-          example: US
-          description: country code according to ISO 3166-1 alpha-2.
-        latitude:
-          description: Latitude of the address
-          type:
-          - string
-          - 'null'
-          example: '40.759211'
-        longitude:
-          description: Longitude of the address
-          type:
-          - string
-          - 'null'
-          example: '-73.984638'
-        county:
-          type:
-          - string
-          - 'null'
-          example: Santa Clara
-          description: Address field that holds a sublocality, such as a county
-        contact_name:
-          description: Name of the contact person at the address
-          type:
-          - string
-          - 'null'
-          example: Elon Musk
-        salutation:
-          description: Salutation of the contact person at the address
-          type:
-          - string
-          - 'null'
-          example: Mr
-        phone_number:
-          description: Phone number of the address
-          type:
-          - string
-          - 'null'
-          example: 111-111-1111
-        fax:
-          description: Fax number of the address
-          type:
-          - string
-          - 'null'
-          example: 122-111-1111
-        email:
-          description: Email address of the address
-          type:
-          - string
-          - 'null'
-          example: elon@musk.com
-        website:
-          description: Website of the address
-          type:
-          - string
-          - 'null'
-          example: https://elonmusk.com
-        notes:
-          description: Additional notes
-          type:
-          - string
-          - 'null'
-          title: Notes
-          example: Address notes or delivery instructions.
-        row_version:
-          $ref: '#/components/schemas/RowVersion'
     GetProjectResponse:
       type: object
       required:
@@ -1685,113 +444,20 @@ components:
           example: one
         data:
           $ref: '#/components/schemas/Project'
-    UpdatedAt:
-      type:
-      - string
-      - 'null'
-      title: Updated at (timestamp)
-      description: The date and time when the object was last updated.
-      format: date-time
-      example: '2020-09-30T07:43:32.000Z'
-      readOnly: true
-    CustomField:
+    UnifiedId:
+      title: UnifiedId
       type: object
-      x-apideck-schema-id: CustomField
-      additionalProperties: false
-      anyOf:
-      - required:
-        - id
-      - required:
-        - name
-      x-apideck-strict-any-of:
-      - required:
-        - id
-      - required:
-        - name
-      x-apideck-weights:
-        id: critical
-        value: critical
-        name: medium
-        description: edge-case
+      x-apideck-schema-id: Id
+      description: A object containing a unique identifier for the resource that was created, updated, or deleted.
+      required:
+      - id
       properties:
         id:
-          title: ID
-          description: Unique identifier for the custom field.
-          type:
-          - string
-          - 'null'
-          example: '2389328923893298'
-        name:
-          title: Name
-          type:
-          - string
-          - 'null'
-          description: Name of the custom field.
-          example: employee_level
-        description:
-          title: Description
-          type:
-          - string
-          - 'null'
-          description: More information about the custom field
-          example: Employee Level
-        value:
-          anyOf:
-          - type:
-            - string
-            - 'null'
-            example: Uses Salesforce and Marketo
-          - type:
-            - number
-            - 'null'
-            example: 10
-          - type:
-            - boolean
-            - 'null'
-            example: true
-          - type:
-            - object
-            - 'null'
-            example:
-              foo: bar
-            additionalProperties: true
-          - type: array
-            items:
-              anyOf:
-              - type:
-                - string
-                - 'null'
-                example: Uses Salesforce and Marketo
-              - type:
-                - number
-                - 'null'
-                example: 10
-              - type:
-                - boolean
-                - 'null'
-                example: true
-              - type:
-                - object
-                - 'null'
-                example:
-                  foo: bar
-                additionalProperties: true
-    DownstreamId:
-      type:
-      - string
-      - 'null'
-      description: The third-party API ID of original entity
-      example: '12345'
-      readOnly: true
-    PassThroughQuery:
-      type: object
-      additionalProperties: true
-      properties:
-        example_downstream_property:
+          title: Id
+          description: The unique identifier of the resource
           type: string
-          description: All passthrough query parameters are passed along to the connector as is (?pass_through[search]=leads becomes ?search=leads)
-      example:
-        search: San Francisco
+          readOnly: true
+          example: '12345'
     Currency:
       type:
       - string
@@ -2350,6 +1016,599 @@ components:
         description: Bitcoin
       - name: ETH
         description: Ether
+    RowVersion:
+      type:
+      - string
+      - 'null'
+      title: Row version
+      description: A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
+      example: 1-12345
+    UnprocessableResponse:
+      type: object
+      x-apideck-schema-id: Unprocessable
+      properties:
+        status_code:
+          type: number
+          description: HTTP status code
+          example: 422
+        error:
+          type: string
+          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
+          example: Unprocessable Entity
+        type_name:
+          type: string
+          description: The type of error returned
+          example: InvalidStateError
+        message:
+          type: string
+          description: A human-readable message providing more details about the error.
+          example: Invalid State
+          x-speakeasy-error-message: true
+        detail:
+          anyOf:
+          - type: string
+            example: Unprocessable request, please verify your request headers and body.
+          - type: object
+            x-speakeasy-detail: true
+            example:
+              error: Unprocessable
+              message: Unprocessable request, please verify your request headers and body.
+          description: Contains parameter or domain specific information related to the error and why it occurred.
+        ref:
+          type: string
+          description: Link to documentation of error type
+          example: https://developers.apideck.com/errors#invalidstateerror
+    LinkedTrackingCategories:
+      type:
+      - array
+      - 'null'
+      x-apideck-schema-id: LinkedTrackingCategories
+      title: Linked tracking categories
+      description: A list of linked tracking categories.
+      items:
+        $ref: '#/components/schemas/LinkedTrackingCategory'
+    Project:
+      type: object
+      x-apideck-schema-id: Project
+      additionalProperties: false
+      x-apideck-weights:
+        id: critical
+        downstream_id: edge-case
+        name: critical
+        display_id: medium
+        reference_id: medium
+        description: medium
+        status: high
+        active: high
+        project_type: medium
+        priority: medium
+        completion_percentage: medium
+        completion_date: medium
+        start_date: medium
+        end_date: medium
+        customer: high
+        department: medium
+        company_id: medium
+        owner_id: medium
+        parent_project: low
+        currency: medium
+        budget_amount: medium
+        approved_amount: medium
+        actual_amount: low
+        budget_hours: medium
+        actual_hours: low
+        hourly_rate: medium
+        billing_method: medium
+        is_billable: medium
+        phase: medium
+        tax_rate: medium
+        tracking_categories: medium
+        custom_fields: medium
+        tags: low
+        notes: low
+        contract_number: medium
+        profit_margin: medium
+        schedule_status: medium
+        addresses: medium
+        team_size: low
+        updated_by: edge-case
+        created_by: edge-case
+        updated_at: medium
+        created_at: medium
+        row_version: edge-case
+      required:
+      - name
+      properties:
+        id:
+          $ref: '#/components/schemas/Id'
+        downstream_id:
+          $ref: '#/components/schemas/DownstreamId'
+        name:
+          type: string
+          title: Project name
+          description: Name of the project
+          example: Website Redesign Project
+          minLength: 1
+        display_id:
+          type:
+          - string
+          - 'null'
+          title: Display ID
+          description: User-friendly project identifier
+          example: PROJ-001
+        reference_id:
+          type:
+          - string
+          - 'null'
+          title: Reference ID
+          description: External reference identifier for the project
+          example: WD-REF-2024-001
+        description:
+          type:
+          - string
+          - 'null'
+          title: Description
+          description: Detailed description of the project
+          example: Complete redesign of the company website including new branding and improved user experience
+        status:
+          type:
+          - string
+          - 'null'
+          title: Project Status
+          description: Current status of the project
+          example: active
+          enum:
+          - active
+          - completed
+          - on_hold
+          - cancelled
+          - draft
+          - in_progress
+          - approved
+          - other
+          x-apideck-enum-id: project.status
+        active:
+          type:
+          - boolean
+          - 'null'
+          title: Active
+          description: Indicates whether the project is currently active or inactive
+          example: true
+        project_type:
+          type:
+          - string
+          - 'null'
+          title: Project Type
+          description: Type or category of the project
+          example: client_project
+          enum:
+          - client_project
+          - internal_project
+          - maintenance
+          - research_development
+          - training
+          - other
+          x-apideck-enum-id: project.project_type
+        priority:
+          type:
+          - string
+          - 'null'
+          title: Priority
+          description: Priority level of the project
+          example: high
+          enum:
+          - low
+          - medium
+          - high
+          - critical
+          x-apideck-enum-id: project.priority
+        completion_percentage:
+          type:
+          - number
+          - 'null'
+          minimum: 0
+          maximum: 100
+          title: Completion Percentage
+          description: Percentage of project completion (0-100)
+          example: 75.5
+        start_date:
+          type:
+          - string
+          - 'null'
+          format: date
+          title: Start Date
+          description: Start date of the project
+          example: '2024-01-15'
+        end_date:
+          type:
+          - string
+          - 'null'
+          format: date
+          title: End Date
+          description: Expected or planned end date of the project
+          example: '2024-06-30'
+        completion_date:
+          type:
+          - string
+          - 'null'
+          format: date
+          title: End Date
+          description: Actual end date of the project
+          example: '2024-08-06'
+        customer:
+          $ref: '#/components/schemas/LinkedCustomer'
+        department:
+          type:
+          - object
+          - 'null'
+          title: Department
+          description: Department or organizational unit associated with the project
+          properties:
+            id:
+              type: string
+              title: Department ID
+              description: Unique identifier for the department
+              example: DEPT-001
+            name:
+              type: string
+              title: Department Name
+              description: Name of the department
+              example: Marketing
+        company_id:
+          $ref: '#/components/schemas/AccountingCompanyId'
+        owner_id:
+          type:
+          - string
+          - 'null'
+          title: Owner ID
+          description: ID of the user who owns/manages this project
+          example: '12345'
+        parent_project:
+          type:
+          - object
+          - 'null'
+          title: Parent Project
+          description: Parent project if this is a subproject
+          properties:
+            id:
+              type: string
+              title: Parent Project ID
+              description: Unique identifier for the parent project
+              example: PROJ-PARENT-001
+            name:
+              type: string
+              title: Parent Project Name
+              description: Name of the parent project
+              example: Company Website Overhaul
+        currency:
+          $ref: '#/components/schemas/Currency'
+        budget_amount:
+          type:
+          - number
+          - 'null'
+          multipleOf: 0.01
+          title: Budget Amount
+          description: Total budgeted amount for the project
+          example: 50000
+        approved_amount:
+          type:
+          - number
+          - 'null'
+          multipleOf: 0.01
+          title: Approved Amount
+          description: Approved budget amount for the project
+          example: 48000
+        actual_amount:
+          type:
+          - number
+          - 'null'
+          multipleOf: 0.01
+          title: Actual Amount
+          description: Total actual amount spent on the project
+          example: 45250.75
+          readOnly: true
+        budget_hours:
+          type:
+          - number
+          - 'null'
+          title: Budget Hours
+          description: Total budgeted hours for the project
+          example: 400
+        actual_hours:
+          type:
+          - number
+          - 'null'
+          title: Actual Hours
+          description: Total actual hours worked on the project
+          example: 385.5
+          readOnly: true
+        hourly_rate:
+          type:
+          - number
+          - 'null'
+          multipleOf: 0.01
+          title: Hourly Rate
+          description: Default hourly rate for project work
+          example: 125
+        billing_method:
+          type:
+          - string
+          - 'null'
+          title: Billing Method
+          description: Method used for billing this project
+          example: time_and_materials
+          enum:
+          - fixed_price
+          - time_and_materials
+          - milestone_based
+          - retainer
+          - non_billable
+          x-apideck-enum-id: project.billing_method
+        is_billable:
+          type:
+          - boolean
+          - 'null'
+          title: Is Billable
+          description: Indicates if the project is billable to the customer
+          example: true
+          default: true
+        phase:
+          type:
+          - string
+          - 'null'
+          title: Project Phase
+          description: Current phase of the project lifecycle
+          example: execution
+          enum:
+          - initiation
+          - planning
+          - execution
+          - monitoring
+          - closure
+          - other
+          x-apideck-enum-id: project.phase
+        tax_rate:
+          $ref: '#/components/schemas/LinkedTaxRate'
+        tracking_categories:
+          $ref: '#/components/schemas/LinkedTrackingCategories'
+        tags:
+          type: array
+          items:
+            type: string
+          title: Tags
+          description: Tags associated with the project
+          example:
+          - website
+          - redesign
+          - urgent
+        notes:
+          type:
+          - string
+          - 'null'
+          title: Notes
+          description: Additional notes about the project
+          example: Client has requested modern design with mobile-first approach
+        contract_number:
+          type:
+          - string
+          - 'null'
+          title: Contract Number
+          description: Contract or agreement number associated with the project
+          example: CNT-2024-001
+        profit_margin:
+          type:
+          - number
+          - 'null'
+          title: Profit Margin
+          description: Expected profit margin percentage for the project
+          example: 15.5
+          minimum: 0
+          maximum: 100
+        schedule_status:
+          type:
+          - string
+          - 'null'
+          title: Schedule Status
+          description: Current status of project schedule compared to plan
+          example: on_schedule
+          enum:
+          - ahead_of_schedule
+          - on_schedule
+          - behind_schedule
+          - critical_delay
+          x-apideck-enum-id: project.schedule_status
+        addresses:
+          type: array
+          title: Addresses
+          description: An array of addresses associated with the project (billing, job site, etc.)
+          items:
+            $ref: '#/components/schemas/Address'
+        team_size:
+          type:
+          - integer
+          - 'null'
+          title: Team Size
+          description: Number of team members assigned to the project
+          example: 8
+          minimum: 0
+        custom_fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomField'
+        row_version:
+          $ref: '#/components/schemas/RowVersion'
+        updated_by:
+          $ref: '#/components/schemas/UpdatedBy'
+        created_by:
+          $ref: '#/components/schemas/CreatedBy'
+        created_at:
+          $ref: '#/components/schemas/CreatedAt'
+        updated_at:
+          $ref: '#/components/schemas/UpdatedAt'
+    PaymentRequiredResponse:
+      type: object
+      x-apideck-schema-id: PaymentRequired
+      properties:
+        status_code:
+          type: number
+          description: HTTP status code
+          example: 402
+        error:
+          type: string
+          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
+          example: Payment Required
+        type_name:
+          type: string
+          description: The type of error returned
+          example: RequestLimitError
+        message:
+          type: string
+          description: A human-readable message providing more details about the error.
+          example: Request Limit Reached
+          x-speakeasy-error-message: true
+        detail:
+          type: string
+          description: Contains parameter or domain specific information related to the error and why it occurred.
+          example: You have reached your limit of 2000
+        ref:
+          type: string
+          description: Link to documentation of error type
+          example: https://developers.apideck.com/errors#requestlimiterror
+    Id:
+      type: string
+      title: ID
+      description: A unique identifier for an object.
+      example: '12345'
+      readOnly: true
+    LinkedTrackingCategory:
+      type:
+      - object
+      - 'null'
+      x-apideck-schema-id: LinkedTrackingCategory
+      x-apideck-weights:
+        id: critical
+        code: medium
+      properties:
+        id:
+          title: Tracking Category ID
+          description: The unique identifier for the tracking category.
+          type: string
+          example: '123456'
+        code:
+          type:
+          - string
+          - 'null'
+          title: Tracking Category Code
+          description: The code of the tracking category.
+          example: '100'
+        name:
+          type:
+          - string
+          - 'null'
+          title: Tracking Category Name
+          description: The name of the tracking category.
+          example: New York
+        parent_id:
+          type: string
+          title: Parent Tracking Category ID
+          description: The unique identifier for the parent tracking category.
+          example: '123456'
+        parent_name:
+          type:
+          - string
+          - 'null'
+          title: Parent Tracking Category Name
+          description: The name of the parent tracking category.
+          example: New York
+    UnauthorizedResponse:
+      type: object
+      x-apideck-schema-id: Unauthorized
+      properties:
+        status_code:
+          type: number
+          description: HTTP status code
+          example: 401
+        error:
+          type: string
+          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
+          example: Unauthorized
+        type_name:
+          type: string
+          description: The type of error returned
+          example: UnauthorizedError
+        message:
+          type: string
+          description: A human-readable message providing more details about the error.
+          example: Unauthorized Request
+          x-speakeasy-error-message: true
+        detail:
+          anyOf:
+          - type: string
+            example: Missing authentication
+          - type: object
+            x-speakeasy-detail: true
+            properties:
+              type:
+                type: string
+                description: Error type identifier
+                example: refresh_token_connector_error
+              message:
+                type: string
+                description: Detailed error message
+                example: Token refresh failed
+              debug:
+                type: object
+                description: Debug information including request/response details and OAuth timing metadata
+                properties:
+                  request:
+                    type: object
+                    description: HTTP request details
+                  response:
+                    type: object
+                    description: HTTP response details
+                  message:
+                    type: string
+                    description: Error message from downstream provider or network layer
+                  code:
+                    type: string
+                    description: Error code (e.g., ETIMEDOUT, ECONNREFUSED)
+                  credentials_expire_at_ms:
+                    type: number
+                    description: Unix timestamp (milliseconds) when credentials will be deleted if not refreshed. Only present for non-recoverable errors (401, 400). Credentials are preserved indefinitely for recoverable/network errors.
+                    example: 1620172800000
+                  retry_after_ms:
+                    type: number
+                    description: Unix timestamp (milliseconds) when token refresh retry is allowed after cooldown period expires.
+                    example: 1620000030000
+                  cooldown_remaining_ms:
+                    type: number
+                    description: Milliseconds remaining in cooldown period before retry is allowed.
+                    example: 30000
+            example:
+              type: refresh_token_connector_error
+              message: Token refresh failed with 401 error
+              debug:
+                response:
+                  statusCode: 401
+                  data:
+                    error: invalid_grant
+                credentials_expire_at_ms: 1620172800000
+                retry_after_ms: 1620000030000
+                cooldown_remaining_ms: 30000
+          description: Contains parameter or domain specific information related to the error and why it occurred.
+        ref:
+          type: string
+          description: Link to documentation of error type
+          example: https://developers.apideck.com/errors#unauthorizederror
+    UpdatedAt:
+      type:
+      - string
+      - 'null'
+      title: Updated at (timestamp)
+      description: The date and time when the object was last updated.
+      format: date-time
+      example: '2020-09-30T07:43:32.000Z'
+      readOnly: true
     ProjectsFilter:
       type: object
       x-apideck-schema-id: ProjectsFilter
@@ -2392,6 +1651,346 @@ components:
           title: Updated Since
           description: Return projects modified after this date
           example: '2020-09-30T07:43:32.000Z'
+    CreateProjectResponse:
+      type: object
+      required:
+      - status_code
+      - status
+      - service
+      - resource
+      - operation
+      - data
+      properties:
+        status_code:
+          type: integer
+          description: HTTP Response Status Code
+          example: 200
+        status:
+          type: string
+          description: HTTP Response Status
+          example: OK
+        service:
+          type: string
+          description: Apideck ID of service provider
+          example: quickbooks
+        resource:
+          type: string
+          description: Unified API resource name
+          example: Projects
+        operation:
+          type: string
+          description: Operation performed
+          example: add
+        data:
+          $ref: '#/components/schemas/UnifiedId'
+    LinkedTaxRate:
+      type: object
+      x-apideck-schema-id: LinkedTaxRate
+      additionalProperties: false
+      x-apideck-weights:
+        id: medium
+        code: medium
+        name: medium
+        rate: medium
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          title: The ID of the object.
+          description: The ID of the object.
+          example: '123456'
+        code:
+          type:
+          - string
+          - 'null'
+          title: Tax rate code
+          description: Tax rate code
+          example: N-T
+        name:
+          type:
+          - string
+          - 'null'
+          title: Name
+          description: Name of the tax rate
+          example: GST on Purchases
+          readOnly: true
+        rate:
+          type:
+          - number
+          - 'null'
+          title: Rate
+          description: Rate of the tax rate
+          example: 10
+    UpdatedBy:
+      type:
+      - string
+      - 'null'
+      title: Updated by
+      description: The user who last updated the object.
+      example: '12345'
+      readOnly: true
+    Links:
+      type: object
+      x-apideck-schema-id: Links
+      description: Links to navigate to previous or next pages through the API
+      properties:
+        previous:
+          type:
+          - string
+          - 'null'
+          description: Link to navigate to the previous page through the API
+          example: https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjE%3D
+        current:
+          type: string
+          description: Link to navigate to the current page through the API
+          example: https://unify.apideck.com/crm/companies
+        next:
+          type:
+          - string
+          - 'null'
+          description: Link to navigate to the previous page through the API
+          example: https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjM
+    PassThroughQuery:
+      type: object
+      additionalProperties: true
+      properties:
+        example_downstream_property:
+          type: string
+          description: All passthrough query parameters are passed along to the connector as is (?pass_through[search]=leads becomes ?search=leads)
+      example:
+        search: San Francisco
+    DeleteProjectResponse:
+      type: object
+      required:
+      - status_code
+      - status
+      - service
+      - resource
+      - operation
+      - data
+      properties:
+        status_code:
+          type: integer
+          description: HTTP Response Status Code
+          example: 200
+        status:
+          type: string
+          description: HTTP Response Status
+          example: OK
+        service:
+          type: string
+          description: Apideck ID of service provider
+          example: quickbooks
+        resource:
+          type: string
+          description: Unified API resource name
+          example: Projects
+        operation:
+          type: string
+          description: Operation performed
+          example: delete
+        data:
+          $ref: '#/components/schemas/UnifiedId'
+    CustomField:
+      type: object
+      x-apideck-schema-id: CustomField
+      additionalProperties: false
+      anyOf:
+      - required:
+        - id
+      - required:
+        - name
+      x-apideck-strict-any-of:
+      - required:
+        - id
+      - required:
+        - name
+      x-apideck-weights:
+        id: critical
+        value: critical
+        name: medium
+        description: edge-case
+      properties:
+        id:
+          title: ID
+          description: Unique identifier for the custom field.
+          type:
+          - string
+          - 'null'
+          example: '2389328923893298'
+        name:
+          title: Name
+          type:
+          - string
+          - 'null'
+          description: Name of the custom field.
+          example: employee_level
+        description:
+          title: Description
+          type:
+          - string
+          - 'null'
+          description: More information about the custom field
+          example: Employee Level
+        value:
+          anyOf:
+          - type:
+            - string
+            - 'null'
+            example: Uses Salesforce and Marketo
+          - type:
+            - number
+            - 'null'
+            example: 10
+          - type:
+            - boolean
+            - 'null'
+            example: true
+          - type:
+            - object
+            - 'null'
+            example:
+              foo: bar
+            additionalProperties: true
+          - type: array
+            items:
+              anyOf:
+              - type:
+                - string
+                - 'null'
+                example: Uses Salesforce and Marketo
+              - type:
+                - number
+                - 'null'
+                example: 10
+              - type:
+                - boolean
+                - 'null'
+                example: true
+              - type:
+                - object
+                - 'null'
+                example:
+                  foo: bar
+                additionalProperties: true
+    ProjectsSort:
+      type: object
+      x-apideck-schema-id: ProjectsSort
+      properties:
+        by:
+          type: string
+          title: Sort by
+          description: The field to sort by
+          x-apideck-enum-id: projects.sort_by
+          enum:
+          - name
+          - status
+          - start_date
+          - end_date
+          - budget_amount
+          - actual_amount
+          - created_at
+          - updated_at
+          example: name
+        direction:
+          $ref: '#/components/schemas/SortDirection'
+    DownstreamId:
+      type:
+      - string
+      - 'null'
+      description: The third-party API ID of original entity
+      example: '12345'
+      readOnly: true
+    UnexpectedErrorResponse:
+      type: object
+      x-apideck-schema-id: Error
+      properties:
+        status_code:
+          type: number
+          description: HTTP status code
+          example: 400
+        error:
+          type: string
+          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
+          example: Bad Request
+        type_name:
+          type: string
+          description: The type of error returned
+          example: RequestHeadersValidationError
+        message:
+          type: string
+          description: A human-readable message providing more details about the error.
+          example: Invalid Params
+          x-speakeasy-error-message: true
+        detail:
+          anyOf:
+          - type: string
+            example: 'Missing Header: x-apideck-consumer-id'
+          - type: object
+            x-speakeasy-detail: true
+            example:
+              missing:
+              - x-apideck-consumer-id: required
+          description: Contains parameter or domain specific information related to the error and why it occurred.
+        ref:
+          type: string
+          description: Link to documentation of error type
+          example: https://developers.apideck.com/errors#unauthorizederror
+    BadRequestResponse:
+      type: object
+      x-apideck-schema-id: BadRequest
+      properties:
+        status_code:
+          type: number
+          description: HTTP status code
+          example: 400
+        error:
+          type: string
+          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
+          example: Bad Request
+        type_name:
+          type: string
+          description: The type of error returned
+          example: RequestValidationError
+        message:
+          type: string
+          description: A human-readable message providing more details about the error.
+          example: Invalid Params
+          x-speakeasy-error-message: true
+        detail:
+          anyOf:
+          - type: string
+            example: Missing property foobar
+          - type: object
+            x-speakeasy-detail: true
+            example:
+              missing:
+              - foobar: required
+          description: Contains parameter or domain specific information related to the error and why it occurred.
+        ref:
+          type: string
+          description: Link to documentation of error type
+          example: https://developers.apideck.com/errors#requestvalidationerror
+        downstream_errors:
+          type: array
+          description: Contains downstream errors returned from the connector. Only present when type_name is ConnectorExecutionError.
+          items:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Error message from the downstream provider
+              detail:
+                type: string
+                description: Additional error details
+              code:
+                type: string
+                description: Error code from the downstream provider
+          example:
+          - message: Account code '100' has been archived or deleted
+            detail: Each line item must reference a valid account
+            code: VALIDATION_ERROR
     CreatedAt:
       type:
       - string
@@ -2401,40 +2000,484 @@ components:
       format: date-time
       example: '2020-09-30T07:43:32.000Z'
       readOnly: true
+    UpdateProjectResponse:
+      type: object
+      required:
+      - status_code
+      - status
+      - service
+      - resource
+      - operation
+      - data
+      properties:
+        status_code:
+          type: integer
+          description: HTTP Response Status Code
+          example: 200
+        status:
+          type: string
+          description: HTTP Response Status
+          example: OK
+        service:
+          type: string
+          description: Apideck ID of service provider
+          example: quickbooks
+        resource:
+          type: string
+          description: Unified API resource name
+          example: Projects
+        operation:
+          type: string
+          description: Operation performed
+          example: update
+        data:
+          $ref: '#/components/schemas/UnifiedId'
+    Address:
+      type: object
+      x-apideck-schema-id: Address
+      additionalProperties: false
+      x-apideck-weights:
+        id: edge-case
+        name: edge-case
+        type: critical
+        line1: high
+        line2: low
+        line3: edge-case
+        line4: edge-case
+        line5: edge-case
+        street_number: low
+        city: high
+        string: low
+        state: high
+        postal_code: high
+        country: high
+        latitude: low
+        longitude: low
+        county: edge-case
+        contact_name: edge-case
+        salutation: edge-case
+        phone_number: edge-case
+        fax: edge-case
+        email: edge-case
+        website: edge-case
+        row_version: edge-case
+      properties:
+        id:
+          description: Unique identifier for the address.
+          type:
+          - string
+          - 'null'
+          example: '123'
+        type:
+          type:
+          - string
+          - 'null'
+          description: The type of address.
+          x-apideck-enum-id: addresses.type
+          enum:
+          - primary
+          - secondary
+          - home
+          - office
+          - shipping
+          - billing
+          - work
+          - other
+          example: primary
+        string:
+          type:
+          - string
+          - 'null'
+          description: The address string. Some APIs don't provide structured address data.
+          example: 25 Spring Street, Blackburn, VIC 3130
+        name:
+          description: The name of the address.
+          type:
+          - string
+          - 'null'
+          example: HQ US
+        line1:
+          type:
+          - string
+          - 'null'
+          example: Main street
+          description: 'Line 1 of the address e.g. number, street, suite, apt #, etc.'
+        line2:
+          type:
+          - string
+          - 'null'
+          example: 'apt #'
+          description: Line 2 of the address
+        line3:
+          type:
+          - string
+          - 'null'
+          example: 'Suite #'
+          description: Line 3 of the address
+        line4:
+          type:
+          - string
+          - 'null'
+          example: delivery instructions
+          description: Line 4 of the address
+        line5:
+          type:
+          - string
+          - 'null'
+          example: 'Attention: Finance Dept'
+          description: Line 5 of the address
+        street_number:
+          type:
+          - string
+          - 'null'
+          example: '25'
+          description: Street number
+        city:
+          type:
+          - string
+          - 'null'
+          example: San Francisco
+          description: Name of city.
+        state:
+          type:
+          - string
+          - 'null'
+          example: CA
+          description: Name of state
+        postal_code:
+          type:
+          - string
+          - 'null'
+          example: '94104'
+          description: Zip code or equivalent.
+        country:
+          type:
+          - string
+          - 'null'
+          example: US
+          description: country code according to ISO 3166-1 alpha-2.
+        latitude:
+          description: Latitude of the address
+          type:
+          - string
+          - 'null'
+          example: '40.759211'
+        longitude:
+          description: Longitude of the address
+          type:
+          - string
+          - 'null'
+          example: '-73.984638'
+        county:
+          type:
+          - string
+          - 'null'
+          example: Santa Clara
+          description: Address field that holds a sublocality, such as a county
+        contact_name:
+          description: Name of the contact person at the address
+          type:
+          - string
+          - 'null'
+          example: Elon Musk
+        salutation:
+          description: Salutation of the contact person at the address
+          type:
+          - string
+          - 'null'
+          example: Mr
+        phone_number:
+          description: Phone number of the address
+          type:
+          - string
+          - 'null'
+          example: 111-111-1111
+        fax:
+          description: Fax number of the address
+          type:
+          - string
+          - 'null'
+          example: 122-111-1111
+        email:
+          description: Email address of the address
+          type:
+          - string
+          - 'null'
+          example: elon@musk.com
+        website:
+          description: Website of the address
+          type:
+          - string
+          - 'null'
+          example: https://elonmusk.com
+        notes:
+          description: Additional notes
+          type:
+          - string
+          - 'null'
+          title: Notes
+          example: Address notes or delivery instructions.
+        row_version:
+          $ref: '#/components/schemas/RowVersion'
+    NotFoundResponse:
+      type: object
+      x-apideck-schema-id: NotFound
+      properties:
+        status_code:
+          type: number
+          description: HTTP status code
+          example: 404
+        error:
+          type: string
+          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
+          example: Not Found
+        type_name:
+          type: string
+          description: The type of error returned
+          example: EntityNotFoundError
+        message:
+          type: string
+          description: A human-readable message providing more details about the error.
+          example: Unknown Widget
+          x-speakeasy-error-message: true
+        detail:
+          anyOf:
+          - type: string
+            example: 'Could not find widget with id: ''123'''
+          - type: object
+            x-speakeasy-detail: true
+            example:
+              not_found:
+                entity: widget
+                id: '123'
+          description: Contains parameter or domain specific information related to the error and why it occurred.
+        ref:
+          type: string
+          description: Link to documentation of error type
+          example: https://developers.apideck.com/errors#entitynotfounderror
+    AccountingCompanyId:
+      type:
+      - string
+      - 'null'
+      title: CompanyId
+      description: The company ID the transaction belongs to
+      example: '12345'
+    CreatedBy:
+      type:
+      - string
+      - 'null'
+      title: Created by
+      description: The user who created the object.
+      example: '12345'
+      readOnly: true
+    GetProjectsResponse:
+      type: object
+      required:
+      - status_code
+      - status
+      - service
+      - resource
+      - operation
+      - data
+      properties:
+        status_code:
+          type: integer
+          description: HTTP Response Status Code
+          example: 200
+        status:
+          type: string
+          description: HTTP Response Status
+          example: OK
+        service:
+          type: string
+          description: Apideck ID of service provider
+          example: quickbooks
+        resource:
+          type: string
+          description: Unified API resource name
+          example: Projects
+        operation:
+          type: string
+          description: Operation performed
+          example: all
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Project'
+        meta:
+          $ref: '#/components/schemas/Meta'
+        links:
+          $ref: '#/components/schemas/Links'
+    SortDirection:
+      type: string
+      x-apideck-schema-id: SortDirection
+      description: The direction in which to sort the results
+      x-apideck-enum-id: sort_direction
+      enum:
+      - asc
+      - desc
+      default: asc
+    LinkedCustomer:
+      type:
+      - object
+      - 'null'
+      x-apideck-schema-id: LinkedCustomer
+      title: LinkedCustomer
+      description: The customer this entity is linked to.
+      x-apideck-weights:
+        id: medium
+        display_id: medium
+        display_name: medium
+        name: medium
+        company_name: medium
+      properties:
+        id:
+          type: string
+          title: Customer ID
+          description: The ID of the customer this entity is linked to.
+          example: '12345'
+        display_id:
+          type:
+          - string
+          - 'null'
+          title: Display ID
+          description: The display ID of the customer.
+          example: CUST00101
+          readOnly: true
+        display_name:
+          type:
+          - string
+          - 'null'
+          title: Display Name
+          description: The display name of the customer.
+          example: Windsurf Shop
+        name:
+          type: string
+          title: Name
+          description: The name of the customer. Deprecated, use display_name instead.
+          example: Windsurf Shop
+          deprecated: true
+        company_name:
+          type:
+          - string
+          - 'null'
+          title: Company Name
+          description: The company name of the customer.
+          example: The boring company
+          readOnly: true
+        email:
+          type: string
+          title: Email
+          description: The email address of the customer.
+          example: boring@boring.com
+    Meta:
+      type: object
+      x-apideck-schema-id: Meta
+      description: Response metadata
+      properties:
+        items_on_page:
+          type: integer
+          description: Number of items returned in the data property of the response
+          example: 50
+        cursors:
+          type: object
+          description: Cursors to navigate to previous or next pages through the API
+          properties:
+            previous:
+              type:
+              - string
+              - 'null'
+              description: Cursor to navigate to the previous page of results through the API
+              example: em9oby1jcm06OnBhZ2U6OjE=
+            current:
+              type:
+              - string
+              - 'null'
+              description: Cursor to navigate to the current page of results through the API
+              example: em9oby1jcm06OnBhZ2U6OjI=
+            next:
+              type:
+              - string
+              - 'null'
+              description: Cursor to navigate to the next page of results through the API
+              example: em9oby1jcm06OnBhZ2U6OjM=
+  responses:
+    UnexpectedErrorResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnexpectedErrorResponse'
+      description: Unexpected error
+    CreateProjectResponse:
+      description: Projects
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CreateProjectResponse'
+    NotFoundResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NotFoundResponse'
+      description: The specified resource was not found
+    GetProjectResponse:
+      description: Projects
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/GetProjectResponse'
+    UnauthorizedResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnauthorizedResponse'
+      description: Unauthorized
+    UpdateProjectResponse:
+      description: Projects
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UpdateProjectResponse'
+    GetProjectsResponse:
+      description: Projects
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/GetProjectsResponse'
+    DeleteProjectResponse:
+      description: Projects
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/DeleteProjectResponse'
+    BadRequestResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BadRequestResponse'
+      description: Bad Request
+    UnprocessableResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnprocessableResponse'
+      description: Unprocessable
+    PaymentRequiredResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PaymentRequiredResponse'
+      description: Payment Required
   parameters:
-    raw:
-      name: raw
-      in: query
-      description: Include raw response. Mostly used for debugging purposes
-      schema:
-        type: boolean
-        default: false
-    limit:
-      name: limit
-      in: query
-      description: Number of results to return. Minimum 1, Maximum 200, Default 20
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 200
-        default: 20
-    applicationId:
-      name: x-apideck-app-id
+    consumerId:
+      name: x-apideck-consumer-id
       in: header
       required: true
-      description: The ID of your Unify application
+      description: ID of the consumer which you want to get or push data from
       schema:
         type: string
-        minLength: 1
-      example: dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX
-      x-speakeasy-name-override: appId
-    id:
-      in: path
-      name: id
-      schema:
-        type: string
-      required: true
-      description: ID of the record you are acting upon.
+      example: test-consumer
+      x-speakeasy-name-override: consumerId
     projectsSort:
       name: sort
       in: query
@@ -2467,31 +2510,15 @@ components:
         type: string
       example: '12345'
       x-speakeasy-name-override: companyId
-    serviceId:
-      name: x-apideck-service-id
-      in: header
-      description: Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
-      schema:
-        type: string
-      example: salesforce
-      x-speakeasy-name-override: serviceId
-    passThrough:
-      name: pass_through
+    limit:
+      name: limit
       in: query
-      description: 'Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads'
-      style: deepObject
-      explode: true
+      description: Number of results to return. Minimum 1, Maximum 200, Default 20
       schema:
-        $ref: '#/components/schemas/PassThroughQuery'
-    consumerId:
-      name: x-apideck-consumer-id
-      in: header
-      required: true
-      description: ID of the consumer which you want to get or push data from
-      schema:
-        type: string
-      example: test-consumer
-      x-speakeasy-name-override: consumerId
+        type: integer
+        minimum: 1
+        maximum: 200
+        default: 20
     fields:
       name: fields
       in: query
@@ -2501,73 +2528,46 @@ components:
         type:
         - string
         - 'null'
-  responses:
-    UnexpectedErrorResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UnexpectedErrorResponse'
-      description: Unexpected error
-    PaymentRequiredResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/PaymentRequiredResponse'
-      description: Payment Required
-    CreateProjectResponse:
-      description: Projects
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/CreateProjectResponse'
-    GetProjectsResponse:
-      description: Projects
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/GetProjectsResponse'
-    UnprocessableResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UnprocessableResponse'
-      description: Unprocessable
-    BadRequestResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/BadRequestResponse'
-      description: Bad Request
-    NotFoundResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/NotFoundResponse'
-      description: The specified resource was not found
-    UpdateProjectResponse:
-      description: Projects
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UpdateProjectResponse'
-    DeleteProjectResponse:
-      description: Projects
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/DeleteProjectResponse'
-    GetProjectResponse:
-      description: Projects
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/GetProjectResponse'
-    UnauthorizedResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UnauthorizedResponse'
-      description: Unauthorized
+    id:
+      in: path
+      name: id
+      schema:
+        type: string
+      required: true
+      description: ID of the record you are acting upon.
+    passThrough:
+      name: pass_through
+      in: query
+      description: 'Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads'
+      style: deepObject
+      explode: true
+      schema:
+        $ref: '#/components/schemas/PassThroughQuery'
+    applicationId:
+      name: x-apideck-app-id
+      in: header
+      required: true
+      description: The ID of your Unify application
+      schema:
+        type: string
+        minLength: 1
+      example: dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX
+      x-speakeasy-name-override: appId
+    raw:
+      name: raw
+      in: query
+      description: Include raw response. Mostly used for debugging purposes
+      schema:
+        type: boolean
+        default: false
+    serviceId:
+      name: x-apideck-service-id
+      in: header
+      description: Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
+      schema:
+        type: string
+      example: salesforce
+      x-speakeasy-name-override: serviceId
   securitySchemes:
     apiKey:
       type: apiKey
