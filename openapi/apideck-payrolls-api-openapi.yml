@@ -99,44 +99,382 @@ paths:
         source:
           payrollId: payroll_id_example
 components:
-  schemas:
+  parameters:
+    applicationId:
+      name: x-apideck-app-id
+      in: header
+      required: true
+      description: The ID of your Unify application
+      schema:
+        type: string
+        minLength: 1
+      example: dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX
+      x-speakeasy-name-override: appId
+    payrollsFilter:
+      name: filter
+      in: query
+      description: Apply filters
+      style: deepObject
+      explode: true
+      schema:
+        $ref: '#/components/schemas/PayrollsFilter'
+    serviceId:
+      name: x-apideck-service-id
+      in: header
+      description: Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
+      schema:
+        type: string
+      example: salesforce
+      x-speakeasy-name-override: serviceId
+    raw:
+      name: raw
+      in: query
+      description: Include raw response. Mostly used for debugging purposes
+      schema:
+        type: boolean
+        default: false
+    fields:
+      name: fields
+      in: query
+      description: 'The ''fields'' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. <br /><br />Example: `fields=name,email,addresses.city`<br /><br />In the example above, the response will only include the fields "name", "email" and "addresses.city". If any other fields are available, they will be excluded.'
+      example: id,updated_at
+      schema:
+        type:
+        - string
+        - 'null'
+    passThrough:
+      name: pass_through
+      in: query
+      description: 'Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads'
+      style: deepObject
+      explode: true
+      schema:
+        $ref: '#/components/schemas/PassThroughQuery'
+    consumerId:
+      name: x-apideck-consumer-id
+      in: header
+      required: true
+      description: ID of the consumer which you want to get or push data from
+      schema:
+        type: string
+      example: test-consumer
+      x-speakeasy-name-override: consumerId
+    payrollId:
+      description: ID of the payroll you are acting upon.
+      in: path
+      name: payroll_id
+      required: true
+      schema:
+        type: string
+  responses:
+    UnauthorizedResponse:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnauthorizedResponse'
+    UnprocessableResponse:
+      description: Unprocessable
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnprocessableResponse'
+    UnexpectedErrorResponse:
+      description: Unexpected error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnexpectedErrorResponse'
+    NotFoundResponse:
+      description: The specified resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NotFoundResponse'
     GetPayrollsResponse:
+      description: Payrolls
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/GetPayrollsResponse'
+    BadRequestResponse:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BadRequestResponse'
+    PaymentRequiredResponse:
+      description: Payment Required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PaymentRequiredResponse'
+    GetPayrollResponse:
+      description: Payrolls
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/GetPayrollResponse'
+  schemas:
+    BadRequestResponse:
       type: object
-      x-apideck-schema-id: GetPayrollsResponse
-      required:
-      - status_code
-      - status
-      - service
-      - resource
-      - operation
-      - data
+      x-apideck-schema-id: BadRequest
       properties:
         status_code:
-          type: integer
-          description: HTTP Response Status Code
-          example: 200
-        status:
+          type: number
+          description: HTTP status code
+          example: 400
+        error:
           type: string
-          description: HTTP Response Status
-          example: OK
-        service:
+          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
+          example: Bad Request
+        type_name:
           type: string
-          description: Apideck ID of service provider
-          example: sage-hr
-        resource:
+          description: The type of error returned
+          example: RequestValidationError
+        message:
           type: string
-          description: Unified API resource name
-          example: Employees
-        operation:
+          description: A human-readable message providing more details about the error.
+          example: Invalid Params
+          x-speakeasy-error-message: true
+        detail:
+          anyOf:
+          - type: string
+            example: Missing property foobar
+          - type: object
+            x-speakeasy-detail: true
+            example:
+              missing:
+              - foobar: required
+          description: Contains parameter or domain specific information related to the error and why it occurred.
+        ref:
           type: string
-          description: Operation performed
-          example: all
-        data:
+          description: Link to documentation of error type
+          example: https://developers.apideck.com/errors#requestvalidationerror
+        downstream_errors:
           type: array
+          description: Contains downstream errors returned from the connector. Only present when type_name is ConnectorExecutionError.
           items:
-            $ref: '#/components/schemas/Payroll'
-        _raw:
-          $ref: '#/components/schemas/Raw'
+            type: object
+            properties:
+              message:
+                type: string
+                description: Error message from the downstream provider
+              detail:
+                type: string
+                description: Additional error details
+              code:
+                type: string
+                description: Error code from the downstream provider
+          example:
+          - message: Account code '100' has been archived or deleted
+            detail: Each line item must reference a valid account
+            code: VALIDATION_ERROR
+    CompanyId:
+      type:
+      - string
+      - 'null'
+      title: Company ID
+      description: The unique identifier of the company.
+      example: '23456'
+    Benefit:
+      type: object
+      x-apideck-schema-id: Benefit
+      x-apideck-weights:
+        name: critical
+        employee_deduction: high
+        employer_contribution: high
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          description: The name of the benefit.
+          example: Health Insurance
+        employee_deduction:
+          type:
+          - number
+          - 'null'
+          description: The amount deducted for benefit.
+          example: 142.94
+        employer_contribution:
+          type:
+          - number
+          - 'null'
+          description: The amount of employer contribution.
+          example: 141.14
+    PaymentRequiredResponse:
+      type: object
+      x-apideck-schema-id: PaymentRequired
+      properties:
+        status_code:
+          type: number
+          description: HTTP status code
+          example: 402
+        error:
+          type: string
+          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
+          example: Payment Required
+        type_name:
+          type: string
+          description: The type of error returned
+          example: RequestLimitError
+        message:
+          type: string
+          description: A human-readable message providing more details about the error.
+          example: Request Limit Reached
+          x-speakeasy-error-message: true
+        detail:
+          type: string
+          description: Contains parameter or domain specific information related to the error and why it occurred.
+          example: You have reached your limit of 2000
+        ref:
+          type: string
+          description: Link to documentation of error type
+          example: https://developers.apideck.com/errors#requestlimiterror
+    Compensation:
+      type: object
+      x-apideck-schema-id: Compensation
+      x-apideck-weights:
+        employee_id: critical
+        net_pay: high
+        gross_pay: critical
+        taxes: high
+        deductions: high
+        benefits: high
+      required:
+      - employee_id
+      additionalProperties: false
+      properties:
+        employee_id:
+          $ref: '#/components/schemas/IdOrNull'
+        net_pay:
+          type:
+          - number
+          - 'null'
+          description: The employee's net pay. Only available when payroll has been processed
+          example: 2199.93
+        gross_pay:
+          type:
+          - number
+          - 'null'
+          description: The employee's gross pay. Only available when payroll has been processed
+          example: 3000
+        taxes:
+          type:
+          - array
+          - 'null'
+          description: An array of employer and employee taxes for the pay period.
+          items:
+            $ref: '#/components/schemas/Tax'
+        deductions:
+          type:
+          - array
+          - 'null'
+          description: An array of employee deductions for the pay period.
+          items:
+            $ref: '#/components/schemas/Deduction'
+        benefits:
+          type:
+          - array
+          - 'null'
+          description: An array of employee benefits for the pay period.
+          items:
+            $ref: '#/components/schemas/Benefit'
+    Tax:
+      type: object
+      x-apideck-schema-id: Tax
+      x-apideck-weights:
+        name: high
+        employer: high
+        amount: high
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          description: The name of the tax.
+          example: CA State Income Tax
+        employer:
+          type:
+          - boolean
+          - 'null'
+          description: Paid by employer.
+          example: false
+        amount:
+          type:
+          - number
+          - 'null'
+          description: The amount of the tax.
+          example: 1.97
+    Payroll:
+      type: object
+      x-apideck-schema-id: Payroll
+      x-apideck-weights:
+        id: critical
+        company_id: high
+        processed: critical
+        processed_date: medium
+        check_date: critical
+        start_date: critical
+        end_date: critical
+        totals: high
+        compensations: medium
+      required:
+      - id
+      - processed
+      - check_date
+      - start_date
+      - end_date
+      additionalProperties: false
+      properties:
+        id:
+          $ref: '#/components/schemas/IdOrNull'
+        company_id:
+          $ref: '#/components/schemas/CompanyId'
+        processed:
+          type:
+          - boolean
+          - 'null'
+          description: Whether or not the payroll has been successfully processed. Note that processed payrolls cannot be updated.
+          example: false
+        processed_date:
+          type:
+          - string
+          - 'null'
+          description: The date the payroll was processed.
+          pattern: ^\d{4}-\d{2}-\d{2}$
+          example: '2022-04-08'
+        check_date:
+          type:
+          - string
+          - 'null'
+          description: The date on which employees will be paid for the payroll.
+          pattern: ^\d{4}-\d{2}-\d{2}$
+          example: '2022-04-08'
+        start_date:
+          type:
+          - string
+          - 'null'
+          description: The start date, inclusive, of the pay period.
+          pattern: ^\d{4}-\d{2}-\d{2}$
+          example: '2022-04-08'
+        end_date:
+          type:
+          - string
+          - 'null'
+          description: The end date, inclusive, of the pay period.
+          pattern: ^\d{4}-\d{2}-\d{2}$
+          example: '2022-04-21'
+        totals:
+          $ref: '#/components/schemas/PayrollTotals'
+        compensations:
+          type: array
+          description: An array of compensations for the payroll.
+          items:
+            $ref: '#/components/schemas/Compensation'
+        custom_mappings:
+          $ref: '#/components/schemas/CustomMappings'
     GetPayrollResponse:
       type: object
       x-apideck-schema-id: GetPayrollResponse
@@ -172,103 +510,14 @@ components:
           $ref: '#/components/schemas/Payroll'
         _raw:
           $ref: '#/components/schemas/Raw'
-    UnprocessableResponse:
-      type: object
-      x-apideck-schema-id: Unprocessable
-      properties:
-        status_code:
-          type: number
-          description: HTTP status code
-          example: 422
-        error:
-          type: string
-          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
-          example: Unprocessable Entity
-        type_name:
-          type: string
-          description: The type of error returned
-          example: InvalidStateError
-        message:
-          type: string
-          description: A human-readable message providing more details about the error.
-          example: Invalid State
-          x-speakeasy-error-message: true
-        detail:
-          anyOf:
-          - type: string
-            example: Unprocessable request, please verify your request headers and body.
-          - type: object
-            x-speakeasy-detail: true
-            example:
-              error: Unprocessable
-              message: Unprocessable request, please verify your request headers and body.
-          description: Contains parameter or domain specific information related to the error and why it occurred.
-        ref:
-          type: string
-          description: Link to documentation of error type
-          example: https://developers.apideck.com/errors#invalidstateerror
-    CompanyId:
+    CustomMappings:
       type:
-      - string
+      - object
       - 'null'
-      title: Company ID
-      description: The unique identifier of the company.
-      example: '23456'
-    PaymentRequiredResponse:
-      type: object
-      x-apideck-schema-id: PaymentRequired
-      properties:
-        status_code:
-          type: number
-          description: HTTP status code
-          example: 402
-        error:
-          type: string
-          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
-          example: Payment Required
-        type_name:
-          type: string
-          description: The type of error returned
-          example: RequestLimitError
-        message:
-          type: string
-          description: A human-readable message providing more details about the error.
-          example: Request Limit Reached
-          x-speakeasy-error-message: true
-        detail:
-          type: string
-          description: Contains parameter or domain specific information related to the error and why it occurred.
-          example: You have reached your limit of 2000
-        ref:
-          type: string
-          description: Link to documentation of error type
-          example: https://developers.apideck.com/errors#requestlimiterror
-    Benefit:
-      type: object
-      x-apideck-schema-id: Benefit
-      x-apideck-weights:
-        name: critical
-        employee_deduction: high
-        employer_contribution: high
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-          description: The name of the benefit.
-          example: Health Insurance
-        employee_deduction:
-          type:
-          - number
-          - 'null'
-          description: The amount deducted for benefit.
-          example: 142.94
-        employer_contribution:
-          type:
-          - number
-          - 'null'
-          description: The amount of employer contribution.
-          example: 141.14
+      x-apideck-schema-id: CustomMappings
+      description: When custom mappings are configured on the resource, the result is included here.
+      readOnly: true
+      additionalProperties: true
     UnauthorizedResponse:
       type: object
       x-apideck-schema-id: Unauthorized
@@ -349,25 +598,6 @@ components:
           type: string
           description: Link to documentation of error type
           example: https://developers.apideck.com/errors#unauthorizederror
-    Deduction:
-      type: object
-      x-apideck-schema-id: Deduction
-      x-apideck-weights:
-        name: critical
-        amount: critical
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-          description: The name of the deduction.
-          example: Company Car
-        amount:
-          type:
-          - number
-          - 'null'
-          description: The amount deducted.
-          example: 10.97
     PassThroughQuery:
       type: object
       additionalProperties: true
@@ -377,118 +607,51 @@ components:
           description: All passthrough query parameters are passed along to the connector as is (?pass_through[search]=leads becomes ?search=leads)
       example:
         search: San Francisco
-    PayrollsFilter:
+    Raw:
+      title: raw
+      type:
+      - object
+      - 'null'
+      x-apideck-schema-id: Raw
+      description: Raw response from the integration when raw=true query param is provided
+      additionalProperties: true
+    GetPayrollsResponse:
       type: object
-      x-apideck-schema-id: PayrollsFilter
-      example:
-        start_date: '2022-04-08'
-        end_date: '2022-04-21'
-      properties:
-        start_date:
-          type: string
-          description: Return payrolls whose pay period is after the start date
-          pattern: ^\d{4}-\d{2}-\d{2}$
-          example: '2022-04-08'
-        end_date:
-          type: string
-          description: Return payrolls whose pay period is before the end date
-          pattern: ^\d{4}-\d{2}-\d{2}$
-          example: '2022-04-21'
-      additionalProperties: false
-    Payroll:
-      type: object
-      x-apideck-schema-id: Payroll
-      x-apideck-weights:
-        id: critical
-        company_id: high
-        processed: critical
-        processed_date: medium
-        check_date: critical
-        start_date: critical
-        end_date: critical
-        totals: high
-        compensations: medium
+      x-apideck-schema-id: GetPayrollsResponse
       required:
-      - id
-      - processed
-      - check_date
-      - start_date
-      - end_date
-      additionalProperties: false
+      - status_code
+      - status
+      - service
+      - resource
+      - operation
+      - data
       properties:
-        id:
-          $ref: '#/components/schemas/IdOrNull'
-        company_id:
-          $ref: '#/components/schemas/CompanyId'
-        processed:
-          type:
-          - boolean
-          - 'null'
-          description: Whether or not the payroll has been successfully processed. Note that processed payrolls cannot be updated.
-          example: false
-        processed_date:
-          type:
-          - string
-          - 'null'
-          description: The date the payroll was processed.
-          pattern: ^\d{4}-\d{2}-\d{2}$
-          example: '2022-04-08'
-        check_date:
-          type:
-          - string
-          - 'null'
-          description: The date on which employees will be paid for the payroll.
-          pattern: ^\d{4}-\d{2}-\d{2}$
-          example: '2022-04-08'
-        start_date:
-          type:
-          - string
-          - 'null'
-          description: The start date, inclusive, of the pay period.
-          pattern: ^\d{4}-\d{2}-\d{2}$
-          example: '2022-04-08'
-        end_date:
-          type:
-          - string
-          - 'null'
-          description: The end date, inclusive, of the pay period.
-          pattern: ^\d{4}-\d{2}-\d{2}$
-          example: '2022-04-21'
-        totals:
-          $ref: '#/components/schemas/PayrollTotals'
-        compensations:
+        status_code:
+          type: integer
+          description: HTTP Response Status Code
+          example: 200
+        status:
+          type: string
+          description: HTTP Response Status
+          example: OK
+        service:
+          type: string
+          description: Apideck ID of service provider
+          example: sage-hr
+        resource:
+          type: string
+          description: Unified API resource name
+          example: Employees
+        operation:
+          type: string
+          description: Operation performed
+          example: all
+        data:
           type: array
-          description: An array of compensations for the payroll.
           items:
-            $ref: '#/components/schemas/Compensation'
-        custom_mappings:
-          $ref: '#/components/schemas/CustomMappings'
-    Tax:
-      type: object
-      x-apideck-schema-id: Tax
-      x-apideck-weights:
-        name: high
-        employer: high
-        amount: high
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-          description: The name of the tax.
-          example: CA State Income Tax
-        employer:
-          type:
-          - boolean
-          - 'null'
-          description: Paid by employer.
-          example: false
-        amount:
-          type:
-          - number
-          - 'null'
-          description: The amount of the tax.
-          example: 1.97
+            $ref: '#/components/schemas/Payroll'
+        _raw:
+          $ref: '#/components/schemas/Raw'
     UnexpectedErrorResponse:
       type: object
       x-apideck-schema-id: Error
@@ -524,6 +687,114 @@ components:
           type: string
           description: Link to documentation of error type
           example: https://developers.apideck.com/errors#unauthorizederror
+    UnprocessableResponse:
+      type: object
+      x-apideck-schema-id: Unprocessable
+      properties:
+        status_code:
+          type: number
+          description: HTTP status code
+          example: 422
+        error:
+          type: string
+          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
+          example: Unprocessable Entity
+        type_name:
+          type: string
+          description: The type of error returned
+          example: InvalidStateError
+        message:
+          type: string
+          description: A human-readable message providing more details about the error.
+          example: Invalid State
+          x-speakeasy-error-message: true
+        detail:
+          anyOf:
+          - type: string
+            example: Unprocessable request, please verify your request headers and body.
+          - type: object
+            x-speakeasy-detail: true
+            example:
+              error: Unprocessable
+              message: Unprocessable request, please verify your request headers and body.
+          description: Contains parameter or domain specific information related to the error and why it occurred.
+        ref:
+          type: string
+          description: Link to documentation of error type
+          example: https://developers.apideck.com/errors#invalidstateerror
+    NotFoundResponse:
+      type: object
+      x-apideck-schema-id: NotFound
+      properties:
+        status_code:
+          type: number
+          description: HTTP status code
+          example: 404
+        error:
+          type: string
+          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
+          example: Not Found
+        type_name:
+          type: string
+          description: The type of error returned
+          example: EntityNotFoundError
+        message:
+          type: string
+          description: A human-readable message providing more details about the error.
+          example: Unknown Widget
+          x-speakeasy-error-message: true
+        detail:
+          anyOf:
+          - type: string
+            example: 'Could not find widget with id: ''123'''
+          - type: object
+            x-speakeasy-detail: true
+            example:
+              not_found:
+                entity: widget
+                id: '123'
+          description: Contains parameter or domain specific information related to the error and why it occurred.
+        ref:
+          type: string
+          description: Link to documentation of error type
+          example: https://developers.apideck.com/errors#entitynotfounderror
+    Deduction:
+      type: object
+      x-apideck-schema-id: Deduction
+      x-apideck-weights:
+        name: critical
+        amount: critical
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          description: The name of the deduction.
+          example: Company Car
+        amount:
+          type:
+          - number
+          - 'null'
+          description: The amount deducted.
+          example: 10.97
+    PayrollsFilter:
+      type: object
+      x-apideck-schema-id: PayrollsFilter
+      example:
+        start_date: '2022-04-08'
+        end_date: '2022-04-21'
+      properties:
+        start_date:
+          type: string
+          description: Return payrolls whose pay period is after the start date
+          pattern: ^\d{4}-\d{2}-\d{2}$
+          example: '2022-04-08'
+        end_date:
+          type: string
+          description: Return payrolls whose pay period is before the end date
+          pattern: ^\d{4}-\d{2}-\d{2}$
+          example: '2022-04-21'
+      additionalProperties: false
     IdOrNull:
       type:
       - string
@@ -532,60 +803,6 @@ components:
       description: A unique identifier for an object.
       example: '12345'
       readOnly: true
-    BadRequestResponse:
-      type: object
-      x-apideck-schema-id: BadRequest
-      properties:
-        status_code:
-          type: number
-          description: HTTP status code
-          example: 400
-        error:
-          type: string
-          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
-          example: Bad Request
-        type_name:
-          type: string
-          description: The type of error returned
-          example: RequestValidationError
-        message:
-          type: string
-          description: A human-readable message providing more details about the error.
-          example: Invalid Params
-          x-speakeasy-error-message: true
-        detail:
-          anyOf:
-          - type: string
-            example: Missing property foobar
-          - type: object
-            x-speakeasy-detail: true
-            example:
-              missing:
-              - foobar: required
-          description: Contains parameter or domain specific information related to the error and why it occurred.
-        ref:
-          type: string
-          description: Link to documentation of error type
-          example: https://developers.apideck.com/errors#requestvalidationerror
-        downstream_errors:
-          type: array
-          description: Contains downstream errors returned from the connector. Only present when type_name is ConnectorExecutionError.
-          items:
-            type: object
-            properties:
-              message:
-                type: string
-                description: Error message from the downstream provider
-              detail:
-                type: string
-                description: Additional error details
-              code:
-                type: string
-                description: Error code from the downstream provider
-          example:
-          - message: Account code '100' has been archived or deleted
-            detail: Each line item must reference a valid account
-            code: VALIDATION_ERROR
     PayrollTotals:
       type: object
       description: The overview of the payroll totals.
@@ -645,223 +862,6 @@ components:
           - 'null'
           description: The total amount of employee deducted benefits for the payroll.
           example: 0
-    NotFoundResponse:
-      type: object
-      x-apideck-schema-id: NotFound
-      properties:
-        status_code:
-          type: number
-          description: HTTP status code
-          example: 404
-        error:
-          type: string
-          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
-          example: Not Found
-        type_name:
-          type: string
-          description: The type of error returned
-          example: EntityNotFoundError
-        message:
-          type: string
-          description: A human-readable message providing more details about the error.
-          example: Unknown Widget
-          x-speakeasy-error-message: true
-        detail:
-          anyOf:
-          - type: string
-            example: 'Could not find widget with id: ''123'''
-          - type: object
-            x-speakeasy-detail: true
-            example:
-              not_found:
-                entity: widget
-                id: '123'
-          description: Contains parameter or domain specific information related to the error and why it occurred.
-        ref:
-          type: string
-          description: Link to documentation of error type
-          example: https://developers.apideck.com/errors#entitynotfounderror
-    Compensation:
-      type: object
-      x-apideck-schema-id: Compensation
-      x-apideck-weights:
-        employee_id: critical
-        net_pay: high
-        gross_pay: critical
-        taxes: high
-        deductions: high
-        benefits: high
-      required:
-      - employee_id
-      additionalProperties: false
-      properties:
-        employee_id:
-          $ref: '#/components/schemas/IdOrNull'
-        net_pay:
-          type:
-          - number
-          - 'null'
-          description: The employee's net pay. Only available when payroll has been processed
-          example: 2199.93
-        gross_pay:
-          type:
-          - number
-          - 'null'
-          description: The employee's gross pay. Only available when payroll has been processed
-          example: 3000
-        taxes:
-          type:
-          - array
-          - 'null'
-          description: An array of employer and employee taxes for the pay period.
-          items:
-            $ref: '#/components/schemas/Tax'
-        deductions:
-          type:
-          - array
-          - 'null'
-          description: An array of employee deductions for the pay period.
-          items:
-            $ref: '#/components/schemas/Deduction'
-        benefits:
-          type:
-          - array
-          - 'null'
-          description: An array of employee benefits for the pay period.
-          items:
-            $ref: '#/components/schemas/Benefit'
-    CustomMappings:
-      type:
-      - object
-      - 'null'
-      x-apideck-schema-id: CustomMappings
-      description: When custom mappings are configured on the resource, the result is included here.
-      readOnly: true
-      additionalProperties: true
-    Raw:
-      title: raw
-      type:
-      - object
-      - 'null'
-      x-apideck-schema-id: Raw
-      description: Raw response from the integration when raw=true query param is provided
-      additionalProperties: true
-  responses:
-    UnexpectedErrorResponse:
-      description: Unexpected error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UnexpectedErrorResponse'
-    GetPayrollResponse:
-      description: Payrolls
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/GetPayrollResponse'
-    NotFoundResponse:
-      description: The specified resource was not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/NotFoundResponse'
-    UnauthorizedResponse:
-      description: Unauthorized
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UnauthorizedResponse'
-    GetPayrollsResponse:
-      description: Payrolls
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/GetPayrollsResponse'
-    BadRequestResponse:
-      description: Bad Request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/BadRequestResponse'
-    UnprocessableResponse:
-      description: Unprocessable
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UnprocessableResponse'
-    PaymentRequiredResponse:
-      description: Payment Required
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/PaymentRequiredResponse'
-  parameters:
-    consumerId:
-      name: x-apideck-consumer-id
-      in: header
-      required: true
-      description: ID of the consumer which you want to get or push data from
-      schema:
-        type: string
-      example: test-consumer
-      x-speakeasy-name-override: consumerId
-    fields:
-      name: fields
-      in: query
-      description: 'The ''fields'' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. <br /><br />Example: `fields=name,email,addresses.city`<br /><br />In the example above, the response will only include the fields "name", "email" and "addresses.city". If any other fields are available, they will be excluded.'
-      example: id,updated_at
-      schema:
-        type:
-        - string
-        - 'null'
-    passThrough:
-      name: pass_through
-      in: query
-      description: 'Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads'
-      style: deepObject
-      explode: true
-      schema:
-        $ref: '#/components/schemas/PassThroughQuery'
-    payrollId:
-      description: ID of the payroll you are acting upon.
-      in: path
-      name: payroll_id
-      required: true
-      schema:
-        type: string
-    applicationId:
-      name: x-apideck-app-id
-      in: header
-      required: true
-      description: The ID of your Unify application
-      schema:
-        type: string
-        minLength: 1
-      example: dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX
-      x-speakeasy-name-override: appId
-    raw:
-      name: raw
-      in: query
-      description: Include raw response. Mostly used for debugging purposes
-      schema:
-        type: boolean
-        default: false
-    payrollsFilter:
-      name: filter
-      in: query
-      description: Apply filters
-      style: deepObject
-      explode: true
-      schema:
-        $ref: '#/components/schemas/PayrollsFilter'
-    serviceId:
-      name: x-apideck-service-id
-      in: header
-      description: Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
-      schema:
-        type: string
-      example: salesforce
-      x-speakeasy-name-override: serviceId
   securitySchemes:
     apiKey:
       type: apiKey

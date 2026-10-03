@@ -76,50 +76,243 @@ paths:
         label: Node
         source: {}
 components:
-  responses:
-    GetProfitAndLossResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/GetProfitAndLossResponse'
-      description: Profit & Loss Report
-    UnexpectedErrorResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UnexpectedErrorResponse'
-      description: Unexpected error
-    NotFoundResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/NotFoundResponse'
-      description: The specified resource was not found
-    UnauthorizedResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UnauthorizedResponse'
-      description: Unauthorized
-    BadRequestResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/BadRequestResponse'
-      description: Bad Request
-    UnprocessableResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UnprocessableResponse'
-      description: Unprocessable
-    PaymentRequiredResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/PaymentRequiredResponse'
-      description: Payment Required
+  parameters:
+    applicationId:
+      name: x-apideck-app-id
+      in: header
+      required: true
+      description: The ID of your Unify application
+      schema:
+        type: string
+        minLength: 1
+      example: dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX
+      x-speakeasy-name-override: appId
+    serviceId:
+      name: x-apideck-service-id
+      in: header
+      description: Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
+      schema:
+        type: string
+      example: salesforce
+      x-speakeasy-name-override: serviceId
+    raw:
+      name: raw
+      in: query
+      description: Include raw response. Mostly used for debugging purposes
+      schema:
+        type: boolean
+        default: false
+    companyId:
+      name: x-apideck-company-id
+      in: header
+      description: The ID of the company to scope requests to. For connectors that support multi-company, this overrides the default company configured in connection settings.
+      schema:
+        type: string
+      example: '12345'
+      x-speakeasy-name-override: companyId
+    fields:
+      name: fields
+      in: query
+      description: 'The ''fields'' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. <br /><br />Example: `fields=name,email,addresses.city`<br /><br />In the example above, the response will only include the fields "name", "email" and "addresses.city". If any other fields are available, they will be excluded.'
+      example: id,updated_at
+      schema:
+        type:
+        - string
+        - 'null'
+    passThrough:
+      name: pass_through
+      in: query
+      description: 'Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads'
+      style: deepObject
+      explode: true
+      schema:
+        $ref: '#/components/schemas/PassThroughQuery'
+    consumerId:
+      name: x-apideck-consumer-id
+      in: header
+      required: true
+      description: ID of the consumer which you want to get or push data from
+      schema:
+        type: string
+      example: test-consumer
+      x-speakeasy-name-override: consumerId
+    profitAndLossFilter:
+      name: filter
+      in: query
+      description: Apply filters
+      style: deepObject
+      explode: true
+      schema:
+        $ref: '#/components/schemas/ProfitAndLossFilter'
   schemas:
+    ProfitAndLossSection:
+      type: object
+      x-apideck-schema-id: ProfitAndLossSection
+      x-apideck-weights:
+        id: medium
+        code: medium
+        title: high
+        type: medium
+        total: critical
+        records: critical
+      required:
+      - total
+      properties:
+        id:
+          $ref: '#/components/schemas/Id'
+        code:
+          $ref: '#/components/schemas/AccountCode'
+        title:
+          $ref: '#/components/schemas/AccountName'
+        type:
+          $ref: '#/components/schemas/ProfitAndLossType'
+        total:
+          $ref: '#/components/schemas/TotalPLAmount'
+        records:
+          $ref: '#/components/schemas/ProfitAndLossRecords'
+      example:
+        id: '123'
+        code: '123'
+        title: Operating Income
+        type: Section
+        total: 60000
+        records:
+        - id: '123'
+          code: '123'
+          title: Product Sales
+          type: Record
+          total: 200000
+    AccountCode:
+      title: Account Code
+      description: The account code of the account
+      type: string
+      example: '1100'
+    ProfitAndLossRecord:
+      type: object
+      x-apideck-schema-id: ProfitAndLossRecord
+      x-apideck-weights:
+        id: high
+        code: high
+        title: high
+        type: high
+        total: critical
+      required:
+      - total
+      properties:
+        id:
+          $ref: '#/components/schemas/Id'
+        code:
+          $ref: '#/components/schemas/AccountCode'
+        title:
+          $ref: '#/components/schemas/AccountName'
+        type:
+          $ref: '#/components/schemas/ProfitAndLossType'
+        value:
+          type: number
+          example: 23992.34
+          deprecated: true
+        total:
+          $ref: '#/components/schemas/TotalAmount'
+      example:
+        id: '123'
+        code: '123'
+        title: Product Sales
+        type: Record
+        total: 60000
+    BadRequestResponse:
+      type: object
+      x-apideck-schema-id: BadRequest
+      properties:
+        status_code:
+          type: number
+          description: HTTP status code
+          example: 400
+        error:
+          type: string
+          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
+          example: Bad Request
+        type_name:
+          type: string
+          description: The type of error returned
+          example: RequestValidationError
+        message:
+          type: string
+          description: A human-readable message providing more details about the error.
+          example: Invalid Params
+          x-speakeasy-error-message: true
+        detail:
+          anyOf:
+          - type: string
+            example: Missing property foobar
+          - type: object
+            x-speakeasy-detail: true
+            example:
+              missing:
+              - foobar: required
+          description: Contains parameter or domain specific information related to the error and why it occurred.
+        ref:
+          type: string
+          description: Link to documentation of error type
+          example: https://developers.apideck.com/errors#requestvalidationerror
+        downstream_errors:
+          type: array
+          description: Contains downstream errors returned from the connector. Only present when type_name is ConnectorExecutionError.
+          items:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Error message from the downstream provider
+              detail:
+                type: string
+                description: Additional error details
+              code:
+                type: string
+                description: Error code from the downstream provider
+          example:
+          - message: Account code '100' has been archived or deleted
+            detail: Each line item must reference a valid account
+            code: VALIDATION_ERROR
+    PaymentRequiredResponse:
+      type: object
+      x-apideck-schema-id: PaymentRequired
+      properties:
+        status_code:
+          type: number
+          description: HTTP status code
+          example: 402
+        error:
+          type: string
+          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
+          example: Payment Required
+        type_name:
+          type: string
+          description: The type of error returned
+          example: RequestLimitError
+        message:
+          type: string
+          description: A human-readable message providing more details about the error.
+          example: Request Limit Reached
+          x-speakeasy-error-message: true
+        detail:
+          type: string
+          description: Contains parameter or domain specific information related to the error and why it occurred.
+          example: You have reached your limit of 2000
+        ref:
+          type: string
+          description: Link to documentation of error type
+          example: https://developers.apideck.com/errors#requestlimiterror
+    ProfitAndLossType:
+      title: Profit and Loss Type
+      description: The type of profit and loss
+      type:
+      - string
+      - 'null'
+      example: Section
+      x-apideck-enum-id: profit_and_loss.type
+      enum:
+      - Section
+      - Record
     AccountName:
       title: Account Name
       description: The name of the account.
@@ -684,80 +877,6 @@ components:
         description: Bitcoin
       - name: ETH
         description: Ether
-    UnprocessableResponse:
-      type: object
-      x-apideck-schema-id: Unprocessable
-      properties:
-        status_code:
-          type: number
-          description: HTTP status code
-          example: 422
-        error:
-          type: string
-          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
-          example: Unprocessable Entity
-        type_name:
-          type: string
-          description: The type of error returned
-          example: InvalidStateError
-        message:
-          type: string
-          description: A human-readable message providing more details about the error.
-          example: Invalid State
-          x-speakeasy-error-message: true
-        detail:
-          anyOf:
-          - type: string
-            example: Unprocessable request, please verify your request headers and body.
-          - type: object
-            x-speakeasy-detail: true
-            example:
-              error: Unprocessable
-              message: Unprocessable request, please verify your request headers and body.
-          description: Contains parameter or domain specific information related to the error and why it occurred.
-        ref:
-          type: string
-          description: Link to documentation of error type
-          example: https://developers.apideck.com/errors#invalidstateerror
-    ProfitAndLossIndicator:
-      type: object
-      x-apideck-schema-id: ProfitAndLossIndicator
-      x-apideck-weights:
-        total: critical
-      properties:
-        total:
-          $ref: '#/components/schemas/TotalAmount'
-      example:
-        total: 10000
-    PaymentRequiredResponse:
-      type: object
-      x-apideck-schema-id: PaymentRequired
-      properties:
-        status_code:
-          type: number
-          description: HTTP status code
-          example: 402
-        error:
-          type: string
-          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
-          example: Payment Required
-        type_name:
-          type: string
-          description: The type of error returned
-          example: RequestLimitError
-        message:
-          type: string
-          description: A human-readable message providing more details about the error.
-          example: Request Limit Reached
-          x-speakeasy-error-message: true
-        detail:
-          type: string
-          description: Contains parameter or domain specific information related to the error and why it occurred.
-          example: You have reached your limit of 2000
-        ref:
-          type: string
-          description: Link to documentation of error type
-          example: https://developers.apideck.com/errors#requestlimiterror
     TotalPLAmount:
       title: Total Amount
       description: The aggregated total of all accounts within this category.
@@ -765,112 +884,88 @@ components:
       - number
       - 'null'
       example: 1000
-    Id:
-      type: string
-      title: ID
-      description: A unique identifier for an object.
-      example: '12345'
-      readOnly: true
-    ProfitAndLossType:
-      title: Profit and Loss Type
-      description: The type of profit and loss
-      type:
-      - string
-      - 'null'
-      example: Section
-      x-apideck-enum-id: profit_and_loss.type
-      enum:
-      - Section
-      - Record
-    UnauthorizedResponse:
+    GetProfitAndLossResponse:
       type: object
-      x-apideck-schema-id: Unauthorized
+      x-apideck-schema-id: GetProfitAndLossResponse
+      required:
+      - status_code
+      - status
+      - service
+      - resource
+      - operation
+      - data
       properties:
         status_code:
-          type: number
-          description: HTTP status code
-          example: 401
-        error:
+          type: integer
+          description: HTTP Response Status Code
+          example: 200
+        status:
           type: string
-          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
-          example: Unauthorized
-        type_name:
+          description: HTTP Response Status
+          example: OK
+        service:
           type: string
-          description: The type of error returned
-          example: UnauthorizedError
-        message:
+          description: Apideck ID of service provider
+          example: quickbooks
+        resource:
           type: string
-          description: A human-readable message providing more details about the error.
-          example: Unauthorized Request
-          x-speakeasy-error-message: true
-        detail:
-          anyOf:
-          - type: string
-            example: Missing authentication
-          - type: object
-            x-speakeasy-detail: true
-            properties:
-              type:
-                type: string
-                description: Error type identifier
-                example: refresh_token_connector_error
-              message:
-                type: string
-                description: Detailed error message
-                example: Token refresh failed
-              debug:
-                type: object
-                description: Debug information including request/response details and OAuth timing metadata
-                properties:
-                  request:
-                    type: object
-                    description: HTTP request details
-                  response:
-                    type: object
-                    description: HTTP response details
-                  message:
-                    type: string
-                    description: Error message from downstream provider or network layer
-                  code:
-                    type: string
-                    description: Error code (e.g., ETIMEDOUT, ECONNREFUSED)
-                  credentials_expire_at_ms:
-                    type: number
-                    description: Unix timestamp (milliseconds) when credentials will be deleted if not refreshed. Only present for non-recoverable errors (401, 400). Credentials are preserved indefinitely for recoverable/network errors.
-                    example: 1620172800000
-                  retry_after_ms:
-                    type: number
-                    description: Unix timestamp (milliseconds) when token refresh retry is allowed after cooldown period expires.
-                    example: 1620000030000
-                  cooldown_remaining_ms:
-                    type: number
-                    description: Milliseconds remaining in cooldown period before retry is allowed.
-                    example: 30000
-            example:
-              type: refresh_token_connector_error
-              message: Token refresh failed with 401 error
-              debug:
-                response:
-                  statusCode: 401
-                  data:
-                    error: invalid_grant
-                credentials_expire_at_ms: 1620172800000
-                retry_after_ms: 1620000030000
-                cooldown_remaining_ms: 30000
-          description: Contains parameter or domain specific information related to the error and why it occurred.
-        ref:
+          description: Unified API resource name
+          example: ProfitAndLosses
+        operation:
           type: string
-          description: Link to documentation of error type
-          example: https://developers.apideck.com/errors#unauthorizederror
-    PassThroughQuery:
+          description: Operation performed
+          example: one
+        data:
+          $ref: '#/components/schemas/ProfitAndLoss'
+        _raw:
+          $ref: '#/components/schemas/Raw'
+    ProfitAndLossFilter:
       type: object
-      additionalProperties: true
-      properties:
-        example_downstream_property:
-          type: string
-          description: All passthrough query parameters are passed along to the connector as is (?pass_through[search]=leads becomes ?search=leads)
+      x-apideck-schema-id: ProfitAndLossFilter
       example:
-        search: San Francisco
+        customer_id: 123abc
+        start_date: '2021-01-01'
+        end_date: '2021-12-31'
+        location_id: '123'
+        accounting_method: accrual
+      properties:
+        customer_id:
+          type: string
+          title: Customer Id
+          description: Filter by customer id
+          example: 123abc
+        start_date:
+          type: string
+          title: Start date
+          description: Filter by start date. If start date is given, end date is required.
+          example: '2021-01-01'
+        end_date:
+          type: string
+          title: End date
+          description: Filter by end date. If end date is given, start date is required.
+          example: '2021-12-31'
+        location_id:
+          type: string
+          title: Location ID
+          description: Filter by location id
+          example: '123'
+        accounting_method:
+          x-apideck-enum-id: profit-and-loss.accounting-method
+          type: string
+          title: Accounting Method
+          description: 'The accounting method used for the report: cash or accrual.'
+          example: accrual
+          enum:
+          - cash
+          - accrual
+      additionalProperties: false
+    TotalAmount:
+      title: Total Amount
+      description: The total amount of the transaction or record
+      type:
+      - number
+      - 'null'
+      example: 49.99
     ProfitAndLoss:
       type: object
       x-apideck-schema-id: ProfitAndLoss
@@ -1210,83 +1305,6 @@ components:
           description: The customer id
           title: Customer
           example: '123'
-    ProfitAndLossSection:
-      type: object
-      x-apideck-schema-id: ProfitAndLossSection
-      x-apideck-weights:
-        id: medium
-        code: medium
-        title: high
-        type: medium
-        total: critical
-        records: critical
-      required:
-      - total
-      properties:
-        id:
-          $ref: '#/components/schemas/Id'
-        code:
-          $ref: '#/components/schemas/AccountCode'
-        title:
-          $ref: '#/components/schemas/AccountName'
-        type:
-          $ref: '#/components/schemas/ProfitAndLossType'
-        total:
-          $ref: '#/components/schemas/TotalPLAmount'
-        records:
-          $ref: '#/components/schemas/ProfitAndLossRecords'
-      example:
-        id: '123'
-        code: '123'
-        title: Operating Income
-        type: Section
-        total: 60000
-        records:
-        - id: '123'
-          code: '123'
-          title: Product Sales
-          type: Record
-          total: 200000
-    ProfitAndLossFilter:
-      type: object
-      x-apideck-schema-id: ProfitAndLossFilter
-      example:
-        customer_id: 123abc
-        start_date: '2021-01-01'
-        end_date: '2021-12-31'
-        location_id: '123'
-        accounting_method: accrual
-      properties:
-        customer_id:
-          type: string
-          title: Customer Id
-          description: Filter by customer id
-          example: 123abc
-        start_date:
-          type: string
-          title: Start date
-          description: Filter by start date. If start date is given, end date is required.
-          example: '2021-01-01'
-        end_date:
-          type: string
-          title: End date
-          description: Filter by end date. If end date is given, start date is required.
-          example: '2021-12-31'
-        location_id:
-          type: string
-          title: Location ID
-          description: Filter by location id
-          example: '123'
-        accounting_method:
-          x-apideck-enum-id: profit-and-loss.accounting-method
-          type: string
-          title: Accounting Method
-          description: 'The accounting method used for the report: cash or accrual.'
-          example: accrual
-          enum:
-          - cash
-          - accrual
-      additionalProperties: false
     ProfitAndLossRecords:
       type:
       - array
@@ -1298,6 +1316,111 @@ components:
         anyOf:
         - $ref: '#/components/schemas/ProfitAndLossSection'
         - $ref: '#/components/schemas/ProfitAndLossRecord'
+    CustomMappings:
+      type:
+      - object
+      - 'null'
+      x-apideck-schema-id: CustomMappings
+      description: When custom mappings are configured on the resource, the result is included here.
+      readOnly: true
+      additionalProperties: true
+    UnauthorizedResponse:
+      type: object
+      x-apideck-schema-id: Unauthorized
+      properties:
+        status_code:
+          type: number
+          description: HTTP status code
+          example: 401
+        error:
+          type: string
+          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
+          example: Unauthorized
+        type_name:
+          type: string
+          description: The type of error returned
+          example: UnauthorizedError
+        message:
+          type: string
+          description: A human-readable message providing more details about the error.
+          example: Unauthorized Request
+          x-speakeasy-error-message: true
+        detail:
+          anyOf:
+          - type: string
+            example: Missing authentication
+          - type: object
+            x-speakeasy-detail: true
+            properties:
+              type:
+                type: string
+                description: Error type identifier
+                example: refresh_token_connector_error
+              message:
+                type: string
+                description: Detailed error message
+                example: Token refresh failed
+              debug:
+                type: object
+                description: Debug information including request/response details and OAuth timing metadata
+                properties:
+                  request:
+                    type: object
+                    description: HTTP request details
+                  response:
+                    type: object
+                    description: HTTP response details
+                  message:
+                    type: string
+                    description: Error message from downstream provider or network layer
+                  code:
+                    type: string
+                    description: Error code (e.g., ETIMEDOUT, ECONNREFUSED)
+                  credentials_expire_at_ms:
+                    type: number
+                    description: Unix timestamp (milliseconds) when credentials will be deleted if not refreshed. Only present for non-recoverable errors (401, 400). Credentials are preserved indefinitely for recoverable/network errors.
+                    example: 1620172800000
+                  retry_after_ms:
+                    type: number
+                    description: Unix timestamp (milliseconds) when token refresh retry is allowed after cooldown period expires.
+                    example: 1620000030000
+                  cooldown_remaining_ms:
+                    type: number
+                    description: Milliseconds remaining in cooldown period before retry is allowed.
+                    example: 30000
+            example:
+              type: refresh_token_connector_error
+              message: Token refresh failed with 401 error
+              debug:
+                response:
+                  statusCode: 401
+                  data:
+                    error: invalid_grant
+                credentials_expire_at_ms: 1620172800000
+                retry_after_ms: 1620000030000
+                cooldown_remaining_ms: 30000
+          description: Contains parameter or domain specific information related to the error and why it occurred.
+        ref:
+          type: string
+          description: Link to documentation of error type
+          example: https://developers.apideck.com/errors#unauthorizederror
+    PassThroughQuery:
+      type: object
+      additionalProperties: true
+      properties:
+        example_downstream_property:
+          type: string
+          description: All passthrough query parameters are passed along to the connector as is (?pass_through[search]=leads becomes ?search=leads)
+      example:
+        search: San Francisco
+    Raw:
+      title: raw
+      type:
+      - object
+      - 'null'
+      x-apideck-schema-id: Raw
+      description: Raw response from the integration when raw=true query param is provided
+      additionalProperties: true
     UnexpectedErrorResponse:
       type: object
       x-apideck-schema-id: Error
@@ -1333,99 +1456,47 @@ components:
           type: string
           description: Link to documentation of error type
           example: https://developers.apideck.com/errors#unauthorizederror
-    TotalAmount:
-      title: Total Amount
-      description: The total amount of the transaction or record
-      type:
-      - number
-      - 'null'
-      example: 49.99
-    BadRequestResponse:
+    UnprocessableResponse:
       type: object
-      x-apideck-schema-id: BadRequest
+      x-apideck-schema-id: Unprocessable
       properties:
         status_code:
           type: number
           description: HTTP status code
-          example: 400
+          example: 422
         error:
           type: string
           description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
-          example: Bad Request
+          example: Unprocessable Entity
         type_name:
           type: string
           description: The type of error returned
-          example: RequestValidationError
+          example: InvalidStateError
         message:
           type: string
           description: A human-readable message providing more details about the error.
-          example: Invalid Params
+          example: Invalid State
           x-speakeasy-error-message: true
         detail:
           anyOf:
           - type: string
-            example: Missing property foobar
+            example: Unprocessable request, please verify your request headers and body.
           - type: object
             x-speakeasy-detail: true
             example:
-              missing:
-              - foobar: required
+              error: Unprocessable
+              message: Unprocessable request, please verify your request headers and body.
           description: Contains parameter or domain specific information related to the error and why it occurred.
         ref:
           type: string
           description: Link to documentation of error type
-          example: https://developers.apideck.com/errors#requestvalidationerror
-        downstream_errors:
-          type: array
-          description: Contains downstream errors returned from the connector. Only present when type_name is ConnectorExecutionError.
-          items:
-            type: object
-            properties:
-              message:
-                type: string
-                description: Error message from the downstream provider
-              detail:
-                type: string
-                description: Additional error details
-              code:
-                type: string
-                description: Error code from the downstream provider
-          example:
-          - message: Account code '100' has been archived or deleted
-            detail: Each line item must reference a valid account
-            code: VALIDATION_ERROR
-    ProfitAndLossRecord:
-      type: object
-      x-apideck-schema-id: ProfitAndLossRecord
-      x-apideck-weights:
-        id: high
-        code: high
-        title: high
-        type: high
-        total: critical
-      required:
-      - total
-      properties:
-        id:
-          $ref: '#/components/schemas/Id'
-        code:
-          $ref: '#/components/schemas/AccountCode'
-        title:
-          $ref: '#/components/schemas/AccountName'
-        type:
-          $ref: '#/components/schemas/ProfitAndLossType'
-        value:
-          type: number
-          example: 23992.34
-          deprecated: true
-        total:
-          $ref: '#/components/schemas/TotalAmount'
-      example:
-        id: '123'
-        code: '123'
-        title: Product Sales
-        type: Record
-        total: 60000
+          example: https://developers.apideck.com/errors#invalidstateerror
+    Id:
+      type: string
+      title: ID
+      description: A unique identifier for an object.
+      example: '12345'
+      readOnly: true
     NotFoundResponse:
       type: object
       x-apideck-schema-id: NotFound
@@ -1462,130 +1533,59 @@ components:
           type: string
           description: Link to documentation of error type
           example: https://developers.apideck.com/errors#entitynotfounderror
-    CustomMappings:
-      type:
-      - object
-      - 'null'
-      x-apideck-schema-id: CustomMappings
-      description: When custom mappings are configured on the resource, the result is included here.
-      readOnly: true
-      additionalProperties: true
-    AccountCode:
-      title: Account Code
-      description: The account code of the account
-      type: string
-      example: '1100'
-    Raw:
-      title: raw
-      type:
-      - object
-      - 'null'
-      x-apideck-schema-id: Raw
-      description: Raw response from the integration when raw=true query param is provided
-      additionalProperties: true
-    GetProfitAndLossResponse:
+    ProfitAndLossIndicator:
       type: object
-      x-apideck-schema-id: GetProfitAndLossResponse
-      required:
-      - status_code
-      - status
-      - service
-      - resource
-      - operation
-      - data
+      x-apideck-schema-id: ProfitAndLossIndicator
+      x-apideck-weights:
+        total: critical
       properties:
-        status_code:
-          type: integer
-          description: HTTP Response Status Code
-          example: 200
-        status:
-          type: string
-          description: HTTP Response Status
-          example: OK
-        service:
-          type: string
-          description: Apideck ID of service provider
-          example: quickbooks
-        resource:
-          type: string
-          description: Unified API resource name
-          example: ProfitAndLosses
-        operation:
-          type: string
-          description: Operation performed
-          example: one
-        data:
-          $ref: '#/components/schemas/ProfitAndLoss'
-        _raw:
-          $ref: '#/components/schemas/Raw'
-  parameters:
-    consumerId:
-      name: x-apideck-consumer-id
-      in: header
-      required: true
-      description: ID of the consumer which you want to get or push data from
-      schema:
-        type: string
-      example: test-consumer
-      x-speakeasy-name-override: consumerId
-    companyId:
-      name: x-apideck-company-id
-      in: header
-      description: The ID of the company to scope requests to. For connectors that support multi-company, this overrides the default company configured in connection settings.
-      schema:
-        type: string
-      example: '12345'
-      x-speakeasy-name-override: companyId
-    fields:
-      name: fields
-      in: query
-      description: 'The ''fields'' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. <br /><br />Example: `fields=name,email,addresses.city`<br /><br />In the example above, the response will only include the fields "name", "email" and "addresses.city". If any other fields are available, they will be excluded.'
-      example: id,updated_at
-      schema:
-        type:
-        - string
-        - 'null'
-    profitAndLossFilter:
-      name: filter
-      in: query
-      description: Apply filters
-      style: deepObject
-      explode: true
-      schema:
-        $ref: '#/components/schemas/ProfitAndLossFilter'
-    passThrough:
-      name: pass_through
-      in: query
-      description: 'Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads'
-      style: deepObject
-      explode: true
-      schema:
-        $ref: '#/components/schemas/PassThroughQuery'
-    applicationId:
-      name: x-apideck-app-id
-      in: header
-      required: true
-      description: The ID of your Unify application
-      schema:
-        type: string
-        minLength: 1
-      example: dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX
-      x-speakeasy-name-override: appId
-    raw:
-      name: raw
-      in: query
-      description: Include raw response. Mostly used for debugging purposes
-      schema:
-        type: boolean
-        default: false
-    serviceId:
-      name: x-apideck-service-id
-      in: header
-      description: Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
-      schema:
-        type: string
-      example: salesforce
-      x-speakeasy-name-override: serviceId
+        total:
+          $ref: '#/components/schemas/TotalAmount'
+      example:
+        total: 10000
+  responses:
+    UnauthorizedResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnauthorizedResponse'
+      description: Unauthorized
+    UnprocessableResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnprocessableResponse'
+      description: Unprocessable
+    UnexpectedErrorResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnexpectedErrorResponse'
+      description: Unexpected error
+    NotFoundResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NotFoundResponse'
+      description: The specified resource was not found
+    BadRequestResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BadRequestResponse'
+      description: Bad Request
+    PaymentRequiredResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PaymentRequiredResponse'
+      description: Payment Required
+    GetProfitAndLossResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/GetProfitAndLossResponse'
+      description: Profit & Loss Report
   securitySchemes:
     apiKey:
       type: apiKey

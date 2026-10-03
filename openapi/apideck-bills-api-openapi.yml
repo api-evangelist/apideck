@@ -635,95 +635,6 @@ paths:
           id: id_example
 components:
   parameters:
-    consumerId:
-      name: x-apideck-consumer-id
-      in: header
-      required: true
-      description: ID of the consumer which you want to get or push data from
-      schema:
-        type: string
-      example: test-consumer
-      x-speakeasy-name-override: consumerId
-    limit:
-      name: limit
-      in: query
-      description: Number of results to return. Minimum 1, Maximum 200, Default 20
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 200
-        default: 20
-    companyId:
-      name: x-apideck-company-id
-      in: header
-      description: The ID of the company to scope requests to. For connectors that support multi-company, this overrides the default company configured in connection settings.
-      schema:
-        type: string
-      example: '12345'
-      x-speakeasy-name-override: companyId
-    billsSort:
-      name: sort
-      in: query
-      description: Apply sorting
-      style: deepObject
-      explode: true
-      schema:
-        $ref: '#/components/schemas/BillsSort'
-    fields:
-      name: fields
-      in: query
-      description: 'The ''fields'' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. <br /><br />Example: `fields=name,email,addresses.city`<br /><br />In the example above, the response will only include the fields "name", "email" and "addresses.city". If any other fields are available, they will be excluded.'
-      example: id,updated_at
-      schema:
-        type:
-        - string
-        - 'null'
-    passThrough:
-      name: pass_through
-      in: query
-      description: 'Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads'
-      style: deepObject
-      explode: true
-      schema:
-        $ref: '#/components/schemas/PassThroughQuery'
-    raw:
-      name: raw
-      in: query
-      description: Include raw response. Mostly used for debugging purposes
-      schema:
-        type: boolean
-        default: false
-    serviceId:
-      name: x-apideck-service-id
-      in: header
-      description: Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
-      schema:
-        type: string
-      example: salesforce
-      x-speakeasy-name-override: serviceId
-    cursor:
-      name: cursor
-      in: query
-      description: Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
-      schema:
-        type:
-        - string
-        - 'null'
-    billsFilter:
-      name: filter
-      in: query
-      description: Apply filters
-      style: deepObject
-      explode: true
-      schema:
-        $ref: '#/components/schemas/BillsFilter'
-    id:
-      in: path
-      name: id
-      schema:
-        type: string
-      required: true
-      description: ID of the record you are acting upon.
     applicationId:
       name: x-apideck-app-id
       in: header
@@ -734,25 +645,117 @@ components:
         minLength: 1
       example: dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX
       x-speakeasy-name-override: appId
+    serviceId:
+      name: x-apideck-service-id
+      in: header
+      description: Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
+      schema:
+        type: string
+      example: salesforce
+      x-speakeasy-name-override: serviceId
+    limit:
+      name: limit
+      in: query
+      description: Number of results to return. Minimum 1, Maximum 200, Default 20
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 200
+        default: 20
+    billsFilter:
+      name: filter
+      in: query
+      description: Apply filters
+      style: deepObject
+      explode: true
+      schema:
+        $ref: '#/components/schemas/BillsFilter'
+    companyId:
+      name: x-apideck-company-id
+      in: header
+      description: The ID of the company to scope requests to. For connectors that support multi-company, this overrides the default company configured in connection settings.
+      schema:
+        type: string
+      example: '12345'
+      x-speakeasy-name-override: companyId
+    fields:
+      name: fields
+      in: query
+      description: 'The ''fields'' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. <br /><br />Example: `fields=name,email,addresses.city`<br /><br />In the example above, the response will only include the fields "name", "email" and "addresses.city". If any other fields are available, they will be excluded.'
+      example: id,updated_at
+      schema:
+        type:
+        - string
+        - 'null'
+    cursor:
+      name: cursor
+      in: query
+      description: Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
+      schema:
+        type:
+        - string
+        - 'null'
+    consumerId:
+      name: x-apideck-consumer-id
+      in: header
+      required: true
+      description: ID of the consumer which you want to get or push data from
+      schema:
+        type: string
+      example: test-consumer
+      x-speakeasy-name-override: consumerId
+    billsSort:
+      name: sort
+      in: query
+      description: Apply sorting
+      style: deepObject
+      explode: true
+      schema:
+        $ref: '#/components/schemas/BillsSort'
+    id:
+      in: path
+      name: id
+      schema:
+        type: string
+      required: true
+      description: ID of the record you are acting upon.
+    raw:
+      name: raw
+      in: query
+      description: Include raw response. Mostly used for debugging purposes
+      schema:
+        type: boolean
+        default: false
+    passThrough:
+      name: pass_through
+      in: query
+      description: 'Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads'
+      style: deepObject
+      explode: true
+      schema:
+        $ref: '#/components/schemas/PassThroughQuery'
   schemas:
-    BillsSort:
+    Links:
       type: object
-      x-apideck-schema-id: BillsSort
-      example:
-        by: updated_at
-        direction: desc
+      x-apideck-schema-id: Links
+      description: Links to navigate to previous or next pages through the API
       properties:
-        by:
+        previous:
+          type:
+          - string
+          - 'null'
+          description: Link to navigate to the previous page through the API
+          example: https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjE%3D
+        current:
           type: string
-          x-apideck-enum-id: bills.sort_by
-          description: The field on which to sort the Bills
-          enum:
-          - updated_at
-          - created_at
-          example: updated_at
-        direction:
-          $ref: '#/components/schemas/SortDirection'
-      additionalProperties: false
+          description: Link to navigate to the current page through the API
+          example: https://unify.apideck.com/crm/companies
+        next:
+          type:
+          - string
+          - 'null'
+          description: Link to navigate to the previous page through the API
+          example: https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjM
     PaymentRequiredResponse:
       type: object
       x-apideck-schema-id: PaymentRequired
@@ -782,19 +785,6 @@ components:
           type: string
           description: Link to documentation of error type
           example: https://developers.apideck.com/errors#requestlimiterror
-    Id:
-      type: string
-      title: ID
-      description: A unique identifier for an object.
-      example: '12345'
-      readOnly: true
-    BSBNumber:
-      type:
-      - string
-      - 'null'
-      title: BSB Number
-      description: Bank State Branch number (Australia/New Zealand)
-      example: 062-001
     Country:
       type:
       - string
@@ -804,134 +794,293 @@ components:
       description: Country code according to ISO 3166-1 alpha-2.
       minLength: 2
       maxLength: 2
-    LinkedTaxRate:
-      type: object
-      x-apideck-schema-id: LinkedTaxRate
+    LinkedLedgerAccount:
+      type:
+      - object
+      - 'null'
+      x-apideck-schema-id: LinkedLedgerAccount
       additionalProperties: false
       x-apideck-weights:
         id: medium
+        nominal_code: medium
         code: medium
         name: medium
-        rate: medium
+        parent_id: low
+        display_id: low
       properties:
         id:
-          type:
-          - string
-          - 'null'
-          title: The ID of the object.
-          description: The ID of the object.
+          title: Account ID
+          description: The unique identifier for the account.
+          type: string
           example: '123456'
-        code:
-          type:
-          - string
-          - 'null'
-          title: Tax rate code
-          description: Tax rate code
-          example: N-T
         name:
           type:
           - string
           - 'null'
-          title: Name
-          description: Name of the tax rate
-          example: GST on Purchases
-          readOnly: true
-        rate:
+          title: Account Name
+          description: The name of the account.
+          example: Bank account
+        nominal_code:
+          type:
+          - string
+          - 'null'
+          title: Nominal Code
+          description: The nominal code of the account.
+          example: N091
+        code:
+          type:
+          - string
+          - 'null'
+          title: Code
+          description: The code assigned to the account.
+          example: '453'
+        parent_id:
+          type:
+          - string
+          - 'null'
+          title: Parent ID
+          description: The parent ID of the account.
+          example: '123456'
+        display_id:
+          type:
+          - string
+          - 'null'
+          title: Display ID
+          description: The display ID of the account.
+          example: '123456'
+    SubTotal:
+      title: Subtotal amount
+      description: Subtotal amount, normally before tax.
+      type:
+      - number
+      - 'null'
+      example: 250
+    LinkedPurchaseOrder:
+      type:
+      - object
+      - 'null'
+      x-apideck-schema-id: LinkedPurchaseOrder
+      x-apideck-weights:
+        id: medium
+        line_id: medium
+        line_number: medium
+      properties:
+        id:
+          title: Purchase Order ID
+          description: The unique identifier for the purchase order.
+          type: string
+          example: '123456'
+        line_id:
+          type:
+          - string
+          - 'null'
+          title: Purchase Order Line ID
+          description: The unique identifier for the purchase order line.
+          example: '123456'
+        line_number:
+          type:
+          - string
+          - 'null'
+          title: Purchase Order Line Number
+          description: The line number of the purchase order line.
+          example: '1'
+    BillLineItem:
+      type: object
+      title: Bill Line Item
+      x-apideck-schema-id: BillLineItem
+      additionalProperties: false
+      x-apideck-weights:
+        id: high
+        row_id: edge-case
+        code: medium
+        line_number: medium
+        description: high
+        type: medium
+        tax_amount: high
+        total_amount: high
+        retention_amount: edge-case
+        payment_amount: low
+        quantity: high
+        unit_price: high
+        unit_of_measure: edge-case
+        discount_percentage: low
+        discount_amount: low
+        location_id: low
+        department_id: low
+        subsidiary_id: low
+        category_id: edge-case
+        shipping_id: edge-case
+        memo: low
+        prepaid: edge-case
+        tax_applicable_on: edge-case
+        tax_recoverability: edge-case
+        tax_method: edge-case
+        item: high
+        tax_rate: medium
+        ledger_account: low
+        purchase_order: low
+        tracking_categories: low
+        customer: low
+        rebilling: medium
+        row_version: edge-case
+        created_at: edge-case
+        updated_at: high
+        updated_by: edge-case
+        created_by: edge-case
+        worktags: edge-case
+      properties:
+        id:
+          $ref: '#/components/schemas/Id'
+        row_id:
+          type: string
+          title: Row ID
+          description: Row ID
+          example: '12345'
+        code:
+          type:
+          - string
+          - 'null'
+          title: Item code
+          description: User defined item code
+          example: 120-C
+        line_number:
+          $ref: '#/components/schemas/LineNumber'
+        description:
+          type:
+          - string
+          - 'null'
+          title: Description
+          description: User defined description
+          example: Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.
+        type:
+          $ref: '#/components/schemas/LineItemType'
+        tax_amount:
+          $ref: '#/components/schemas/TaxAmount'
+        total_amount:
           type:
           - number
           - 'null'
-          title: Rate
-          description: Rate of the tax rate
-          example: 10
-    DepartmentId:
-      type:
-      - string
-      - 'null'
-      title: Department ID
-      description: The ID of the department
-      example: '12345'
-      readOnly: false
-    Links:
-      type: object
-      x-apideck-schema-id: Links
-      description: Links to navigate to previous or next pages through the API
-      properties:
-        previous:
+          title: Total amount
+          description: Total amount of the line item
+          example: 27500
+        quantity:
+          $ref: '#/components/schemas/Quantity'
+        unit_price:
+          $ref: '#/components/schemas/UnitPrice'
+        unit_of_measure:
+          $ref: '#/components/schemas/UnitOfMeasure'
+        discount_percentage:
+          type:
+          - number
+          - 'null'
+          title: Discount Percentage
+          description: Discount percentage applied to the line item when supported downstream.
+          example: 0.01
+        discount_amount:
+          type:
+          - number
+          - 'null'
+          title: Discount Amount
+          description: Discount amount applied to the line item when supported downstream.
+          example: 19.99
+        location_id:
+          $ref: '#/components/schemas/LocationId'
+        department_id:
+          $ref: '#/components/schemas/DepartmentId'
+        subsidiary_id:
+          $ref: '#/components/schemas/SubsidiaryId'
+        category_id:
           type:
           - string
           - 'null'
-          description: Link to navigate to the previous page through the API
-          example: https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjE%3D
-        current:
-          type: string
-          description: Link to navigate to the current page through the API
-          example: https://unify.apideck.com/crm/companies
-        next:
+          title: Category ID
+          description: ID of the category of the line item
+          example: '12345'
+        shipping_id:
           type:
           - string
           - 'null'
-          description: Link to navigate to the previous page through the API
-          example: https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjM
-    PassThroughQuery:
-      type: object
-      additionalProperties: true
-      properties:
-        example_downstream_property:
-          type: string
-          description: All passthrough query parameters are passed along to the connector as is (?pass_through[search]=leads becomes ?search=leads)
-      example:
-        search: San Francisco
-    DisplayId:
-      type:
-      - string
-      - 'null'
-      title: Display id
-      description: Id to be displayed.
-      example: '123456'
-    UpdateBillResponse:
-      type: object
-      x-apideck-schema-id: UpdateBillResponse
-      required:
-      - status_code
-      - status
-      - service
-      - resource
-      - operation
-      - data
-      properties:
-        status_code:
-          type: integer
-          description: HTTP Response Status Code
-          example: 200
-        status:
-          type: string
-          description: HTTP Response Status
-          example: OK
-        service:
-          type: string
-          description: Apideck ID of service provider
-          example: xero
-        resource:
-          type: string
-          description: Unified API resource name
-          example: bills
-        operation:
-          type: string
-          description: Operation performed
-          example: update
-        data:
-          $ref: '#/components/schemas/UnifiedId'
-        _raw:
-          $ref: '#/components/schemas/Raw'
-    CreatedAt:
-      type:
-      - string
-      - 'null'
-      title: Created at (timestamp)
-      description: The date and time when the object was created.
-      format: date-time
-      example: '2020-09-30T07:43:32.000Z'
-      readOnly: true
+          title: Shipping ID
+          description: ID of the shipping of the line item
+          example: '12345'
+        memo:
+          type:
+          - string
+          - 'null'
+          title: Memo
+          description: Memo
+          example: Some memo
+        prepaid:
+          type:
+          - boolean
+          - 'null'
+          title: Prepaid
+          description: Whether the line item is prepaid
+          example: true
+        tax_applicable_on:
+          type:
+          - string
+          - 'null'
+          title: Tax Applicable On
+          description: Tax applicable on
+          example: Domestic_Purchase_of_Goods_and_Services
+        tax_recoverability:
+          type:
+          - string
+          - 'null'
+          title: Tax Recoverability
+          description: Tax recoverability
+          example: Fully_Recoverable
+        tax_method:
+          type:
+          - string
+          - 'null'
+          title: Tax method
+          description: Method of tax calculation
+          example: Due_to_Supplier
+        retention_amount:
+          type:
+          - number
+          - 'null'
+          title: Retention amount
+          description: Retention amount
+          example: 1000
+        payment_amount:
+          type:
+          - number
+          - 'null'
+          title: Payment amount
+          description: Payment amount
+          example: 1000
+        item:
+          $ref: '#/components/schemas/LinkedInvoiceItem'
+        tax_rate:
+          $ref: '#/components/schemas/LinkedTaxRate'
+        ledger_account:
+          $ref: '#/components/schemas/LinkedLedgerAccount'
+        purchase_order:
+          $ref: '#/components/schemas/LinkedPurchaseOrder'
+        tracking_categories:
+          $ref: '#/components/schemas/LinkedTrackingCategories'
+        customer:
+          $ref: '#/components/schemas/LinkedCustomer'
+        rebilling:
+          $ref: '#/components/schemas/Rebilling'
+        row_version:
+          $ref: '#/components/schemas/RowVersion'
+        updated_by:
+          $ref: '#/components/schemas/UpdatedBy'
+        created_by:
+          $ref: '#/components/schemas/CreatedBy'
+        created_at:
+          $ref: '#/components/schemas/CreatedAt'
+        updated_at:
+          $ref: '#/components/schemas/UpdatedAt'
+        worktags:
+          type: array
+          description: A list of linked worktags. This is only supported for Workday.
+          items:
+            $ref: '#/components/schemas/LinkedWorktag'
     Bill:
       type: object
       x-apideck-schema-id: Bill
@@ -1199,21 +1348,105 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/LinkedAttachment'
-    AccountingCompanyId:
+    Reference:
       type:
       - string
       - 'null'
-      title: CompanyId
-      description: The company ID the transaction belongs to
-      example: '12345'
-    CustomMappings:
+      title: Reference
+      description: Optional reference identifier for the transaction.
+      example: INV-2024-001
+    BankAccountNumber:
+      type:
+      - string
+      - 'null'
+      title: Account Number
+      description: The bank account number
+      example: '123465'
+    BillsFilter:
+      type: object
+      x-apideck-schema-id: BillsFilter
+      example:
+        updated_since: '2020-09-30T07:43:32.000Z'
+        status: paid
+      properties:
+        updated_since:
+          type: string
+          title: Updated since (timestamp)
+          format: date-time
+          example: '2020-09-30T07:43:32.000Z'
+        status:
+          type: string
+          title: Status
+          description: Filter by bill status
+          x-apideck-enum-id: bills.status
+          enum:
+          - paid
+          - unpaid
+          - partially_paid
+          example: paid
+      additionalProperties: false
+    TaxInclusive:
+      type:
+      - boolean
+      - 'null'
+      title: Tax inclusive
+      description: Amounts are including tax
+      example: true
+    DueDate:
+      type:
+      - string
+      - 'null'
+      title: Due date
+      description: The due date is the date on which a payment is scheduled to be received - YYYY-MM-DD.
+      format: date
+      example: '2020-10-30'
+    LinkedTrackingCategory:
       type:
       - object
       - 'null'
-      x-apideck-schema-id: CustomMappings
-      description: When custom mappings are configured on the resource, the result is included here.
-      readOnly: true
-      additionalProperties: true
+      x-apideck-schema-id: LinkedTrackingCategory
+      x-apideck-weights:
+        id: critical
+        code: medium
+      properties:
+        id:
+          title: Tracking Category ID
+          description: The unique identifier for the tracking category.
+          type: string
+          example: '123456'
+        code:
+          type:
+          - string
+          - 'null'
+          title: Tracking Category Code
+          description: The code of the tracking category.
+          example: '100'
+        name:
+          type:
+          - string
+          - 'null'
+          title: Tracking Category Name
+          description: The name of the tracking category.
+          example: New York
+        parent_id:
+          type: string
+          title: Parent Tracking Category ID
+          description: The unique identifier for the parent tracking category.
+          example: '123456'
+        parent_name:
+          type:
+          - string
+          - 'null'
+          title: Parent Tracking Category Name
+          description: The name of the parent tracking category.
+          example: New York
+    AccountingByRow:
+      type:
+      - boolean
+      - 'null'
+      title: Accounting by Row
+      description: Indicates if accounting by row is used (true) or not (false). Accounting by row means that a separate ledger transaction is created for each row.
+      example: false
     BankCode:
       type:
       - string
@@ -1221,22 +1454,256 @@ components:
       title: Bank Code
       description: Bank code assigned by central bank
       example: BNH
-    SortDirection:
-      type: string
-      x-apideck-schema-id: SortDirection
-      description: The direction in which to sort the results
-      x-apideck-enum-id: sort_direction
-      enum:
-      - asc
-      - desc
-      default: asc
-    SubTotal:
-      title: Subtotal amount
-      description: Subtotal amount, normally before tax.
+    UnauthorizedResponse:
+      type: object
+      x-apideck-schema-id: Unauthorized
+      properties:
+        status_code:
+          type: number
+          description: HTTP status code
+          example: 401
+        error:
+          type: string
+          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
+          example: Unauthorized
+        type_name:
+          type: string
+          description: The type of error returned
+          example: UnauthorizedError
+        message:
+          type: string
+          description: A human-readable message providing more details about the error.
+          example: Unauthorized Request
+          x-speakeasy-error-message: true
+        detail:
+          anyOf:
+          - type: string
+            example: Missing authentication
+          - type: object
+            x-speakeasy-detail: true
+            properties:
+              type:
+                type: string
+                description: Error type identifier
+                example: refresh_token_connector_error
+              message:
+                type: string
+                description: Detailed error message
+                example: Token refresh failed
+              debug:
+                type: object
+                description: Debug information including request/response details and OAuth timing metadata
+                properties:
+                  request:
+                    type: object
+                    description: HTTP request details
+                  response:
+                    type: object
+                    description: HTTP response details
+                  message:
+                    type: string
+                    description: Error message from downstream provider or network layer
+                  code:
+                    type: string
+                    description: Error code (e.g., ETIMEDOUT, ECONNREFUSED)
+                  credentials_expire_at_ms:
+                    type: number
+                    description: Unix timestamp (milliseconds) when credentials will be deleted if not refreshed. Only present for non-recoverable errors (401, 400). Credentials are preserved indefinitely for recoverable/network errors.
+                    example: 1620172800000
+                  retry_after_ms:
+                    type: number
+                    description: Unix timestamp (milliseconds) when token refresh retry is allowed after cooldown period expires.
+                    example: 1620000030000
+                  cooldown_remaining_ms:
+                    type: number
+                    description: Milliseconds remaining in cooldown period before retry is allowed.
+                    example: 30000
+            example:
+              type: refresh_token_connector_error
+              message: Token refresh failed with 401 error
+              debug:
+                response:
+                  statusCode: 401
+                  data:
+                    error: invalid_grant
+                credentials_expire_at_ms: 1620172800000
+                retry_after_ms: 1620000030000
+                cooldown_remaining_ms: 30000
+          description: Contains parameter or domain specific information related to the error and why it occurred.
+        ref:
+          type: string
+          description: Link to documentation of error type
+          example: https://developers.apideck.com/errors#unauthorizederror
+    GetBillsResponse:
+      type: object
+      x-apideck-schema-id: GetBillsResponse
+      required:
+      - status_code
+      - status
+      - service
+      - resource
+      - operation
+      - data
+      properties:
+        status_code:
+          type: integer
+          description: HTTP Response Status Code
+          example: 200
+        status:
+          type: string
+          description: HTTP Response Status
+          example: OK
+        service:
+          type: string
+          description: Apideck ID of service provider
+          example: xero
+        resource:
+          type: string
+          description: Unified API resource name
+          example: bills
+        operation:
+          type: string
+          description: Operation performed
+          example: all
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Bill'
+        meta:
+          $ref: '#/components/schemas/Meta'
+        links:
+          $ref: '#/components/schemas/Links'
+        _raw:
+          $ref: '#/components/schemas/Raw'
+    DiscountPercentage:
       type:
       - number
       - 'null'
-      example: 250
+      title: Discount Percentage
+      description: Discount percentage applied to this transaction.
+      example: 5.5
+    TotalTax:
+      title: Total tax amount
+      description: Total tax amount applied to this transaction.
+      type:
+      - number
+      - 'null'
+      example: 25
+    LinkedTaxRate:
+      type: object
+      x-apideck-schema-id: LinkedTaxRate
+      additionalProperties: false
+      x-apideck-weights:
+        id: medium
+        code: medium
+        name: medium
+        rate: medium
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          title: The ID of the object.
+          description: The ID of the object.
+          example: '123456'
+        code:
+          type:
+          - string
+          - 'null'
+          title: Tax rate code
+          description: Tax rate code
+          example: N-T
+        name:
+          type:
+          - string
+          - 'null'
+          title: Name
+          description: Name of the tax rate
+          example: GST on Purchases
+          readOnly: true
+        rate:
+          type:
+          - number
+          - 'null'
+          title: Rate
+          description: Rate of the tax rate
+          example: 10
+    Meta:
+      type: object
+      x-apideck-schema-id: Meta
+      description: Response metadata
+      properties:
+        items_on_page:
+          type: integer
+          description: Number of items returned in the data property of the response
+          example: 50
+        cursors:
+          type: object
+          description: Cursors to navigate to previous or next pages through the API
+          properties:
+            previous:
+              type:
+              - string
+              - 'null'
+              description: Cursor to navigate to the previous page of results through the API
+              example: em9oby1jcm06OnBhZ2U6OjE=
+            current:
+              type:
+              - string
+              - 'null'
+              description: Cursor to navigate to the current page of results through the API
+              example: em9oby1jcm06OnBhZ2U6OjI=
+            next:
+              type:
+              - string
+              - 'null'
+              description: Cursor to navigate to the next page of results through the API
+              example: em9oby1jcm06OnBhZ2U6OjM=
+    AccountingPeriod:
+      type:
+      - string
+      - 'null'
+      title: Accounting period
+      description: Accounting period
+      example: 01-24
+    CreatedBy:
+      type:
+      - string
+      - 'null'
+      title: Created by
+      description: The user who created the object.
+      example: '12345'
+      readOnly: true
+    BankName:
+      type:
+      - string
+      - 'null'
+      title: Bank Name
+      description: The name of the bank or financial institution
+      example: Chase Bank
+    SubsidiaryId:
+      type:
+      - string
+      - 'null'
+      title: Subsidiary ID
+      description: The ID of the subsidiary
+      example: '12345'
+      readOnly: false
+    LocationId:
+      type:
+      - string
+      - 'null'
+      title: Location ID
+      description: The ID of the location
+      example: '12345'
+      readOnly: false
+    IBAN:
+      type:
+      - string
+      - 'null'
+      title: IBAN
+      description: International Bank Account Number
+      example: GB33BUKB20201555555555
     LinkedSupplier:
       type:
       - object
@@ -1281,20 +1748,6 @@ components:
           readOnly: true
         address:
           $ref: '#/components/schemas/Address'
-    Raw:
-      title: raw
-      type:
-      - object
-      - 'null'
-      x-apideck-schema-id: Raw
-      description: Raw response from the integration when raw=true query param is provided
-      additionalProperties: true
-    Language:
-      type:
-      - string
-      - 'null'
-      example: EN
-      description: language code according to ISO 639-1. For the United States - EN
     LinkedAttachment:
       type:
       - object
@@ -1344,68 +1797,86 @@ components:
           - 'null'
           description: The notes of the file.
           example: A sample image
-    LocationId:
+    BankAccount:
+      type: object
+      x-apideck-schema-id: BankAccount
+      additionalProperties: false
+      x-apideck-weights:
+        account_number: critical
+        account_name: medium
+        account_type: medium
+        iban: high
+        bic: medium
+        bsb_number: edge-case
+        branch_identifier: low
+        bank_code: low
+        bank_name: medium
+        currency: medium
+        country: low
+      properties:
+        bank_name:
+          $ref: '#/components/schemas/BankName'
+        account_number:
+          $ref: '#/components/schemas/BankAccountNumber'
+        account_name:
+          $ref: '#/components/schemas/BankAccountName'
+        account_type:
+          type:
+          - string
+          - 'null'
+          title: Account Type
+          x-apideck-enum-id: bank-accounts.account_type
+          enum:
+          - bank_account
+          - credit_card
+          - other
+          description: The type of bank account.
+          example: credit_card
+        iban:
+          $ref: '#/components/schemas/IBAN'
+        bic:
+          $ref: '#/components/schemas/BIC'
+        routing_number:
+          $ref: '#/components/schemas/RoutingNumber'
+        bsb_number:
+          $ref: '#/components/schemas/BSBNumber'
+        branch_identifier:
+          $ref: '#/components/schemas/BranchIdentifier'
+        bank_code:
+          $ref: '#/components/schemas/BankCode'
+        currency:
+          $ref: '#/components/schemas/Currency'
+        country:
+          $ref: '#/components/schemas/Country'
+    DepartmentId:
       type:
       - string
       - 'null'
-      title: Location ID
-      description: The ID of the location
+      title: Department ID
+      description: The ID of the department
       example: '12345'
       readOnly: false
-    LinkedLedgerAccount:
+    LinkedWorktag:
       type:
       - object
       - 'null'
-      x-apideck-schema-id: LinkedLedgerAccount
-      additionalProperties: false
+      x-apideck-schema-id: LinkedWorktag
       x-apideck-weights:
-        id: medium
-        nominal_code: medium
-        code: medium
-        name: medium
-        parent_id: low
-        display_id: low
+        id: critical
+        value: critical
       properties:
         id:
-          title: Account ID
-          description: The unique identifier for the account.
           type: string
+          title: Worktag ID
+          description: The unique identifier for the worktag.
           example: '123456'
-        name:
+        value:
           type:
           - string
           - 'null'
-          title: Account Name
-          description: The name of the account.
-          example: Bank account
-        nominal_code:
-          type:
-          - string
-          - 'null'
-          title: Nominal Code
-          description: The nominal code of the account.
-          example: N091
-        code:
-          type:
-          - string
-          - 'null'
-          title: Code
-          description: The code assigned to the account.
-          example: '453'
-        parent_id:
-          type:
-          - string
-          - 'null'
-          title: Parent ID
-          description: The parent ID of the account.
-          example: '123456'
-        display_id:
-          type:
-          - string
-          - 'null'
-          title: Display ID
-          description: The display ID of the account.
-          example: '123456'
+          title: Worktag Value
+          description: The value of the worktag.
+          example: New York
     Currency:
       type:
       - string
@@ -1964,237 +2435,262 @@ components:
         description: Bitcoin
       - name: ETH
         description: Ether
-    LinkedPurchaseOrder:
+    BSBNumber:
+      type:
+      - string
+      - 'null'
+      title: BSB Number
+      description: Bank State Branch number (Australia/New Zealand)
+      example: 062-001
+    PassThroughBody:
+      type: array
+      description: The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+      items:
+        type: object
+        properties:
+          service_id:
+            type: string
+            description: Identifier for the service to which this pass_through should be applied.
+          operation_id:
+            type: string
+            description: Optional identifier for a workflow operation to which this pass_through should be applied. This is useful for Unify calls that are making more than one downstream request.
+          extend_object:
+            type: object
+            additionalProperties: true
+            description: Simple object allowing any properties for direct extension.
+          extend_paths:
+            type: array
+            description: Array of objects for structured data modifications via paths.
+            items:
+              type: object
+              properties:
+                path:
+                  type: string
+                  description: JSONPath string specifying where to apply the value.
+                  example: $.nested.property
+                value:
+                  description: The value to set at the specified path, can be any type.
+                  example:
+                    TaxClassificationRef:
+                      value: EUC-99990201-V1-00020000
+              required:
+              - path
+              - value
+              additionalProperties: false
+        required:
+        - service_id
+        additionalProperties: false
+        writeOnly: true
+    UpdateBillResponse:
+      type: object
+      x-apideck-schema-id: UpdateBillResponse
+      required:
+      - status_code
+      - status
+      - service
+      - resource
+      - operation
+      - data
+      properties:
+        status_code:
+          type: integer
+          description: HTTP Response Status Code
+          example: 200
+        status:
+          type: string
+          description: HTTP Response Status
+          example: OK
+        service:
+          type: string
+          description: Apideck ID of service provider
+          example: xero
+        resource:
+          type: string
+          description: Unified API resource name
+          example: bills
+        operation:
+          type: string
+          description: Operation performed
+          example: update
+        data:
+          $ref: '#/components/schemas/UnifiedId'
+        _raw:
+          $ref: '#/components/schemas/Raw'
+    TermsId:
+      type:
+      - string
+      - 'null'
+      title: Payment Terms ID
+      description: The ID of the payment terms
+      example: '12345'
+      readOnly: false
+    PaymentMethod:
+      type:
+      - string
+      - 'null'
+      title: Payment method
+      description: Payment method used for the transaction, such as cash, credit card, bank transfer, or check
+      example: cash
+    UpdatedAt:
+      type:
+      - string
+      - 'null'
+      title: Updated at (timestamp)
+      description: The date and time when the object was last updated.
+      format: date-time
+      example: '2020-09-30T07:43:32.000Z'
+      readOnly: true
+    UnitOfMeasure:
+      type:
+      - string
+      - 'null'
+      title: Unit of measure
+      description: 'Description of the unit type the item is sold as, ie: kg, hour.'
+      example: pc.
+    Channel:
+      type:
+      - string
+      - 'null'
+      title: Channel
+      description: The channel through which the transaction is processed.
+      example: email
+    BillsSort:
+      type: object
+      x-apideck-schema-id: BillsSort
+      example:
+        by: updated_at
+        direction: desc
+      properties:
+        by:
+          type: string
+          x-apideck-enum-id: bills.sort_by
+          description: The field on which to sort the Bills
+          enum:
+          - updated_at
+          - created_at
+          example: updated_at
+        direction:
+          $ref: '#/components/schemas/SortDirection'
+      additionalProperties: false
+    CustomMappings:
       type:
       - object
       - 'null'
-      x-apideck-schema-id: LinkedPurchaseOrder
+      x-apideck-schema-id: CustomMappings
+      description: When custom mappings are configured on the resource, the result is included here.
+      readOnly: true
+      additionalProperties: true
+    DownstreamId:
+      type:
+      - string
+      - 'null'
+      description: The third-party API ID of original entity
+      example: '12345'
+      readOnly: true
+    DisplayId:
+      type:
+      - string
+      - 'null'
+      title: Display id
+      description: Id to be displayed.
+      example: '123456'
+    Raw:
+      title: raw
+      type:
+      - object
+      - 'null'
+      x-apideck-schema-id: Raw
+      description: Raw response from the integration when raw=true query param is provided
+      additionalProperties: true
+    RoutingNumber:
+      type:
+      - string
+      - 'null'
+      title: Routing Number
+      description: Bank routing number (US)
+      example: '021000021'
+    CustomField:
+      type: object
+      x-apideck-schema-id: CustomField
+      additionalProperties: false
+      anyOf:
+      - required:
+        - id
+      - required:
+        - name
+      x-apideck-strict-any-of:
+      - required:
+        - id
+      - required:
+        - name
       x-apideck-weights:
-        id: medium
-        line_id: medium
-        line_number: medium
+        id: critical
+        value: critical
+        name: medium
+        description: edge-case
       properties:
         id:
-          title: Purchase Order ID
-          description: The unique identifier for the purchase order.
-          type: string
-          example: '123456'
-        line_id:
+          title: ID
+          description: Unique identifier for the custom field.
           type:
           - string
           - 'null'
-          title: Purchase Order Line ID
-          description: The unique identifier for the purchase order line.
-          example: '123456'
-        line_number:
+          example: '2389328923893298'
+        name:
+          title: Name
           type:
           - string
           - 'null'
-          title: Purchase Order Line Number
-          description: The line number of the purchase order line.
-          example: '1'
-    DueDate:
-      type:
-      - string
-      - 'null'
-      title: Due date
-      description: The due date is the date on which a payment is scheduled to be received - YYYY-MM-DD.
-      format: date
-      example: '2020-10-30'
-    UnauthorizedResponse:
-      type: object
-      x-apideck-schema-id: Unauthorized
-      properties:
-        status_code:
-          type: number
-          description: HTTP status code
-          example: 401
-        error:
-          type: string
-          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
-          example: Unauthorized
-        type_name:
-          type: string
-          description: The type of error returned
-          example: UnauthorizedError
-        message:
-          type: string
-          description: A human-readable message providing more details about the error.
-          example: Unauthorized Request
-          x-speakeasy-error-message: true
-        detail:
+          description: Name of the custom field.
+          example: employee_level
+        description:
+          title: Description
+          type:
+          - string
+          - 'null'
+          description: More information about the custom field
+          example: Employee Level
+        value:
           anyOf:
-          - type: string
-            example: Missing authentication
-          - type: object
-            x-speakeasy-detail: true
-            properties:
-              type:
-                type: string
-                description: Error type identifier
-                example: refresh_token_connector_error
-              message:
-                type: string
-                description: Detailed error message
-                example: Token refresh failed
-              debug:
-                type: object
-                description: Debug information including request/response details and OAuth timing metadata
-                properties:
-                  request:
-                    type: object
-                    description: HTTP request details
-                  response:
-                    type: object
-                    description: HTTP response details
-                  message:
-                    type: string
-                    description: Error message from downstream provider or network layer
-                  code:
-                    type: string
-                    description: Error code (e.g., ETIMEDOUT, ECONNREFUSED)
-                  credentials_expire_at_ms:
-                    type: number
-                    description: Unix timestamp (milliseconds) when credentials will be deleted if not refreshed. Only present for non-recoverable errors (401, 400). Credentials are preserved indefinitely for recoverable/network errors.
-                    example: 1620172800000
-                  retry_after_ms:
-                    type: number
-                    description: Unix timestamp (milliseconds) when token refresh retry is allowed after cooldown period expires.
-                    example: 1620000030000
-                  cooldown_remaining_ms:
-                    type: number
-                    description: Milliseconds remaining in cooldown period before retry is allowed.
-                    example: 30000
+          - type:
+            - string
+            - 'null'
+            example: Uses Salesforce and Marketo
+          - type:
+            - number
+            - 'null'
+            example: 10
+          - type:
+            - boolean
+            - 'null'
+            example: true
+          - type:
+            - object
+            - 'null'
             example:
-              type: refresh_token_connector_error
-              message: Token refresh failed with 401 error
-              debug:
-                response:
-                  statusCode: 401
-                  data:
-                    error: invalid_grant
-                credentials_expire_at_ms: 1620172800000
-                retry_after_ms: 1620000030000
-                cooldown_remaining_ms: 30000
-          description: Contains parameter or domain specific information related to the error and why it occurred.
-        ref:
-          type: string
-          description: Link to documentation of error type
-          example: https://developers.apideck.com/errors#unauthorizederror
-    BranchIdentifier:
-      type:
-      - string
-      - 'null'
-      title: Branch Identifier
-      description: Bank branch identifier
-      example: '001'
-    TaxAmount:
-      title: Tax amount
-      description: Tax amount
-      type:
-      - number
-      - 'null'
-      example: 27.5
-    BankAccountNumber:
-      type:
-      - string
-      - 'null'
-      title: Account Number
-      description: The bank account number
-      example: '123465'
-    DiscountPercentage:
-      type:
-      - number
-      - 'null'
-      title: Discount Percentage
-      description: Discount percentage applied to this transaction.
-      example: 5.5
-    TaxCode:
-      type:
-      - string
-      - 'null'
-      title: Tax Code
-      description: Applicable tax id/code override if tax is not supplied on a line item basis.
-      example: '1234'
-    UnexpectedErrorResponse:
-      type: object
-      x-apideck-schema-id: Error
-      properties:
-        status_code:
-          type: number
-          description: HTTP status code
-          example: 400
-        error:
-          type: string
-          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
-          example: Bad Request
-        type_name:
-          type: string
-          description: The type of error returned
-          example: RequestHeadersValidationError
-        message:
-          type: string
-          description: A human-readable message providing more details about the error.
-          example: Invalid Params
-          x-speakeasy-error-message: true
-        detail:
-          anyOf:
-          - type: string
-            example: 'Missing Header: x-apideck-consumer-id'
-          - type: object
-            x-speakeasy-detail: true
-            example:
-              missing:
-              - x-apideck-consumer-id: required
-          description: Contains parameter or domain specific information related to the error and why it occurred.
-        ref:
-          type: string
-          description: Link to documentation of error type
-          example: https://developers.apideck.com/errors#unauthorizederror
-    Rebilling:
-      type:
-      - object
-      - 'null'
-      x-apideck-schema-id: Rebilling
-      title: Rebilling
-      description: Rebilling metadata for this line item.
-      x-apideck-weights:
-        rebillable: high
-        rebill_status: medium
-        linked_transaction_id: high
-        linked_transaction_line_id: high
-      properties:
-        rebillable:
-          type: boolean
-          title: Rebillable
-          description: Whether this line item is eligible for rebilling.
-          example: true
-        rebill_status:
-          type:
-          - string
-          - 'null'
-          title: Rebill Status
-          x-apideck-enum-id: rebill-status
-          description: Status of the rebilling process for this line item.
-          enum:
-          - pending
-          - billed
-          - voided
-          example: billed
-        linked_transaction_id:
-          type:
-          - string
-          - 'null'
-          title: Linked Transaction ID
-          description: The ID of the transaction this line item was rebilled to.
-          example: txn_abc123
-        linked_transaction_line_id:
-          type:
-          - string
-          - 'null'
-          title: Linked Transaction Line ID
-          description: The ID of the line item in the rebilled transaction.
-          example: line_xyz789
+              foo: bar
+            additionalProperties: true
+          - type: array
+            items:
+              anyOf:
+              - type:
+                - string
+                - 'null'
+                example: Uses Salesforce and Marketo
+              - type:
+                - number
+                - 'null'
+                example: 10
+              - type:
+                - boolean
+                - 'null'
+                example: true
+              - type:
+                - object
+                - 'null'
+                example:
+                  foo: bar
+                additionalProperties: true
     BadRequestResponse:
       type: object
       x-apideck-schema-id: BadRequest
@@ -2249,82 +2745,31 @@ components:
           - message: Account code '100' has been archived or deleted
             detail: Each line item must reference a valid account
             code: VALIDATION_ERROR
-    BillsFilter:
-      type: object
-      x-apideck-schema-id: BillsFilter
-      example:
-        updated_since: '2020-09-30T07:43:32.000Z'
-        status: paid
-      properties:
-        updated_since:
-          type: string
-          title: Updated since (timestamp)
-          format: date-time
-          example: '2020-09-30T07:43:32.000Z'
-        status:
-          type: string
-          title: Status
-          description: Filter by bill status
-          x-apideck-enum-id: bills.status
-          enum:
-          - paid
-          - unpaid
-          - partially_paid
-          example: paid
-      additionalProperties: false
-    PassThroughBody:
-      type: array
-      description: The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+    CreatedAt:
+      type:
+      - string
+      - 'null'
+      title: Created at (timestamp)
+      description: The date and time when the object was created.
+      format: date-time
+      example: '2020-09-30T07:43:32.000Z'
+      readOnly: true
+    LinkedTrackingCategories:
+      type:
+      - array
+      - 'null'
+      x-apideck-schema-id: LinkedTrackingCategories
+      title: Linked tracking categories
+      description: A list of linked tracking categories.
       items:
-        type: object
-        properties:
-          service_id:
-            type: string
-            description: Identifier for the service to which this pass_through should be applied.
-          operation_id:
-            type: string
-            description: Optional identifier for a workflow operation to which this pass_through should be applied. This is useful for Unify calls that are making more than one downstream request.
-          extend_object:
-            type: object
-            additionalProperties: true
-            description: Simple object allowing any properties for direct extension.
-          extend_paths:
-            type: array
-            description: Array of objects for structured data modifications via paths.
-            items:
-              type: object
-              properties:
-                path:
-                  type: string
-                  description: JSONPath string specifying where to apply the value.
-                  example: $.nested.property
-                value:
-                  description: The value to set at the specified path, can be any type.
-                  example:
-                    TaxClassificationRef:
-                      value: EUC-99990201-V1-00020000
-              required:
-              - path
-              - value
-              additionalProperties: false
-        required:
-        - service_id
-        additionalProperties: false
-        writeOnly: true
-    UnitOfMeasure:
+        $ref: '#/components/schemas/LinkedTrackingCategory'
+    AccountingCompanyId:
       type:
       - string
       - 'null'
-      title: Unit of measure
-      description: 'Description of the unit type the item is sold as, ie: kg, hour.'
-      example: pc.
-    Channel:
-      type:
-      - string
-      - 'null'
-      title: Channel
-      description: The channel through which the transaction is processed.
-      example: email
+      title: CompanyId
+      description: The company ID the transaction belongs to
+      example: '12345'
     Address:
       type: object
       x-apideck-schema-id: Address
@@ -2512,81 +2957,17 @@ components:
           example: Address notes or delivery instructions.
         row_version:
           $ref: '#/components/schemas/RowVersion'
-    CreatedBy:
+    UpdatedBy:
       type:
       - string
       - 'null'
-      title: Created by
-      description: The user who created the object.
+      title: Updated by
+      description: The user who last updated the object.
       example: '12345'
       readOnly: true
-    AccountingPeriod:
-      type:
-      - string
-      - 'null'
-      title: Accounting period
-      description: Accounting period
-      example: 01-24
-    BankAccountName:
-      type:
-      - string
-      - 'null'
-      title: Account Name
-      description: The name of the bank account
-      example: Main Operating Account
-    LinkedWorktag:
-      type:
-      - object
-      - 'null'
-      x-apideck-schema-id: LinkedWorktag
-      x-apideck-weights:
-        id: critical
-        value: critical
-      properties:
-        id:
-          type: string
-          title: Worktag ID
-          description: The unique identifier for the worktag.
-          example: '123456'
-        value:
-          type:
-          - string
-          - 'null'
-          title: Worktag Value
-          description: The value of the worktag.
-          example: New York
-    LinkedInvoiceItem:
+    DeleteBillResponse:
       type: object
-      x-apideck-schema-id: LinkedInvoiceItem
-      x-apideck-weights:
-        id: medium
-        code: medium
-        name: medium
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          title: Item ID
-          description: ID of the linked item. A reference to the [invoice item](https://developers.apideck.com/apis/accounting/reference#tag/Invoice-Items) that was used to create this line item
-          example: '12344'
-        code:
-          type:
-          - string
-          - 'null'
-          title: Item code
-          description: User defined item code
-          example: 120-C
-        name:
-          type:
-          - string
-          - 'null'
-          title: Item name
-          description: User defined item name
-          example: Model Y
-    CreateBillResponse:
-      type: object
-      x-apideck-schema-id: CreateBillResponse
+      x-apideck-schema-id: DeleteBillResponse
       required:
       - status_code
       - status
@@ -2614,433 +2995,46 @@ components:
         operation:
           type: string
           description: Operation performed
-          example: add
+          example: delete
         data:
           $ref: '#/components/schemas/UnifiedId'
         _raw:
           $ref: '#/components/schemas/Raw'
-    CurrencyRate:
-      type:
-      - number
-      - 'null'
-      title: Currency Exchange Rate
-      description: Currency Exchange Rate at the time entity was recorded/generated.
-      example: 0.69
-    UnprocessableResponse:
+    UnexpectedErrorResponse:
       type: object
-      x-apideck-schema-id: Unprocessable
+      x-apideck-schema-id: Error
       properties:
         status_code:
           type: number
           description: HTTP status code
-          example: 422
+          example: 400
         error:
           type: string
           description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
-          example: Unprocessable Entity
+          example: Bad Request
         type_name:
           type: string
           description: The type of error returned
-          example: InvalidStateError
+          example: RequestHeadersValidationError
         message:
           type: string
           description: A human-readable message providing more details about the error.
-          example: Invalid State
+          example: Invalid Params
           x-speakeasy-error-message: true
         detail:
           anyOf:
           - type: string
-            example: Unprocessable request, please verify your request headers and body.
+            example: 'Missing Header: x-apideck-consumer-id'
           - type: object
             x-speakeasy-detail: true
             example:
-              error: Unprocessable
-              message: Unprocessable request, please verify your request headers and body.
+              missing:
+              - x-apideck-consumer-id: required
           description: Contains parameter or domain specific information related to the error and why it occurred.
         ref:
           type: string
           description: Link to documentation of error type
-          example: https://developers.apideck.com/errors#invalidstateerror
-    BankAccount:
-      type: object
-      x-apideck-schema-id: BankAccount
-      additionalProperties: false
-      x-apideck-weights:
-        account_number: critical
-        account_name: medium
-        account_type: medium
-        iban: high
-        bic: medium
-        bsb_number: edge-case
-        branch_identifier: low
-        bank_code: low
-        bank_name: medium
-        currency: medium
-        country: low
-      properties:
-        bank_name:
-          $ref: '#/components/schemas/BankName'
-        account_number:
-          $ref: '#/components/schemas/BankAccountNumber'
-        account_name:
-          $ref: '#/components/schemas/BankAccountName'
-        account_type:
-          type:
-          - string
-          - 'null'
-          title: Account Type
-          x-apideck-enum-id: bank-accounts.account_type
-          enum:
-          - bank_account
-          - credit_card
-          - other
-          description: The type of bank account.
-          example: credit_card
-        iban:
-          $ref: '#/components/schemas/IBAN'
-        bic:
-          $ref: '#/components/schemas/BIC'
-        routing_number:
-          $ref: '#/components/schemas/RoutingNumber'
-        bsb_number:
-          $ref: '#/components/schemas/BSBNumber'
-        branch_identifier:
-          $ref: '#/components/schemas/BranchIdentifier'
-        bank_code:
-          $ref: '#/components/schemas/BankCode'
-        currency:
-          $ref: '#/components/schemas/Currency'
-        country:
-          $ref: '#/components/schemas/Country'
-    BankName:
-      type:
-      - string
-      - 'null'
-      title: Bank Name
-      description: The name of the bank or financial institution
-      example: Chase Bank
-    PaymentMethod:
-      type:
-      - string
-      - 'null'
-      title: Payment method
-      description: Payment method used for the transaction, such as cash, credit card, bank transfer, or check
-      example: cash
-    LineItemType:
-      type:
-      - string
-      - 'null'
-      title: Type
-      description: Line Item type
-      example: expense_account
-      enum:
-      - expense_item
-      - expense_account
-      - other
-      x-apideck-enum-id: line_items.type
-    UpdatedAt:
-      type:
-      - string
-      - 'null'
-      title: Updated at (timestamp)
-      description: The date and time when the object was last updated.
-      format: date-time
-      example: '2020-09-30T07:43:32.000Z'
-      readOnly: true
-    BillLineItem:
-      type: object
-      title: Bill Line Item
-      x-apideck-schema-id: BillLineItem
-      additionalProperties: false
-      x-apideck-weights:
-        id: high
-        row_id: edge-case
-        code: medium
-        line_number: medium
-        description: high
-        type: medium
-        tax_amount: high
-        total_amount: high
-        retention_amount: edge-case
-        payment_amount: low
-        quantity: high
-        unit_price: high
-        unit_of_measure: edge-case
-        discount_percentage: low
-        discount_amount: low
-        location_id: low
-        department_id: low
-        subsidiary_id: low
-        category_id: edge-case
-        shipping_id: edge-case
-        memo: low
-        prepaid: edge-case
-        tax_applicable_on: edge-case
-        tax_recoverability: edge-case
-        tax_method: edge-case
-        item: high
-        tax_rate: medium
-        ledger_account: low
-        purchase_order: low
-        tracking_categories: low
-        customer: low
-        rebilling: medium
-        row_version: edge-case
-        created_at: edge-case
-        updated_at: high
-        updated_by: edge-case
-        created_by: edge-case
-        worktags: edge-case
-      properties:
-        id:
-          $ref: '#/components/schemas/Id'
-        row_id:
-          type: string
-          title: Row ID
-          description: Row ID
-          example: '12345'
-        code:
-          type:
-          - string
-          - 'null'
-          title: Item code
-          description: User defined item code
-          example: 120-C
-        line_number:
-          $ref: '#/components/schemas/LineNumber'
-        description:
-          type:
-          - string
-          - 'null'
-          title: Description
-          description: User defined description
-          example: Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.
-        type:
-          $ref: '#/components/schemas/LineItemType'
-        tax_amount:
-          $ref: '#/components/schemas/TaxAmount'
-        total_amount:
-          type:
-          - number
-          - 'null'
-          title: Total amount
-          description: Total amount of the line item
-          example: 27500
-        quantity:
-          $ref: '#/components/schemas/Quantity'
-        unit_price:
-          $ref: '#/components/schemas/UnitPrice'
-        unit_of_measure:
-          $ref: '#/components/schemas/UnitOfMeasure'
-        discount_percentage:
-          type:
-          - number
-          - 'null'
-          title: Discount Percentage
-          description: Discount percentage applied to the line item when supported downstream.
-          example: 0.01
-        discount_amount:
-          type:
-          - number
-          - 'null'
-          title: Discount Amount
-          description: Discount amount applied to the line item when supported downstream.
-          example: 19.99
-        location_id:
-          $ref: '#/components/schemas/LocationId'
-        department_id:
-          $ref: '#/components/schemas/DepartmentId'
-        subsidiary_id:
-          $ref: '#/components/schemas/SubsidiaryId'
-        category_id:
-          type:
-          - string
-          - 'null'
-          title: Category ID
-          description: ID of the category of the line item
-          example: '12345'
-        shipping_id:
-          type:
-          - string
-          - 'null'
-          title: Shipping ID
-          description: ID of the shipping of the line item
-          example: '12345'
-        memo:
-          type:
-          - string
-          - 'null'
-          title: Memo
-          description: Memo
-          example: Some memo
-        prepaid:
-          type:
-          - boolean
-          - 'null'
-          title: Prepaid
-          description: Whether the line item is prepaid
-          example: true
-        tax_applicable_on:
-          type:
-          - string
-          - 'null'
-          title: Tax Applicable On
-          description: Tax applicable on
-          example: Domestic_Purchase_of_Goods_and_Services
-        tax_recoverability:
-          type:
-          - string
-          - 'null'
-          title: Tax Recoverability
-          description: Tax recoverability
-          example: Fully_Recoverable
-        tax_method:
-          type:
-          - string
-          - 'null'
-          title: Tax method
-          description: Method of tax calculation
-          example: Due_to_Supplier
-        retention_amount:
-          type:
-          - number
-          - 'null'
-          title: Retention amount
-          description: Retention amount
-          example: 1000
-        payment_amount:
-          type:
-          - number
-          - 'null'
-          title: Payment amount
-          description: Payment amount
-          example: 1000
-        item:
-          $ref: '#/components/schemas/LinkedInvoiceItem'
-        tax_rate:
-          $ref: '#/components/schemas/LinkedTaxRate'
-        ledger_account:
-          $ref: '#/components/schemas/LinkedLedgerAccount'
-        purchase_order:
-          $ref: '#/components/schemas/LinkedPurchaseOrder'
-        tracking_categories:
-          $ref: '#/components/schemas/LinkedTrackingCategories'
-        customer:
-          $ref: '#/components/schemas/LinkedCustomer'
-        rebilling:
-          $ref: '#/components/schemas/Rebilling'
-        row_version:
-          $ref: '#/components/schemas/RowVersion'
-        updated_by:
-          $ref: '#/components/schemas/UpdatedBy'
-        created_by:
-          $ref: '#/components/schemas/CreatedBy'
-        created_at:
-          $ref: '#/components/schemas/CreatedAt'
-        updated_at:
-          $ref: '#/components/schemas/UpdatedAt'
-        worktags:
-          type: array
-          description: A list of linked worktags. This is only supported for Workday.
-          items:
-            $ref: '#/components/schemas/LinkedWorktag'
-    CustomField:
-      type: object
-      x-apideck-schema-id: CustomField
-      additionalProperties: false
-      anyOf:
-      - required:
-        - id
-      - required:
-        - name
-      x-apideck-strict-any-of:
-      - required:
-        - id
-      - required:
-        - name
-      x-apideck-weights:
-        id: critical
-        value: critical
-        name: medium
-        description: edge-case
-      properties:
-        id:
-          title: ID
-          description: Unique identifier for the custom field.
-          type:
-          - string
-          - 'null'
-          example: '2389328923893298'
-        name:
-          title: Name
-          type:
-          - string
-          - 'null'
-          description: Name of the custom field.
-          example: employee_level
-        description:
-          title: Description
-          type:
-          - string
-          - 'null'
-          description: More information about the custom field
-          example: Employee Level
-        value:
-          anyOf:
-          - type:
-            - string
-            - 'null'
-            example: Uses Salesforce and Marketo
-          - type:
-            - number
-            - 'null'
-            example: 10
-          - type:
-            - boolean
-            - 'null'
-            example: true
-          - type:
-            - object
-            - 'null'
-            example:
-              foo: bar
-            additionalProperties: true
-          - type: array
-            items:
-              anyOf:
-              - type:
-                - string
-                - 'null'
-                example: Uses Salesforce and Marketo
-              - type:
-                - number
-                - 'null'
-                example: 10
-              - type:
-                - boolean
-                - 'null'
-                example: true
-              - type:
-                - object
-                - 'null'
-                example:
-                  foo: bar
-                additionalProperties: true
-    TermsId:
-      type:
-      - string
-      - 'null'
-      title: Payment Terms ID
-      description: The ID of the payment terms
-      example: '12345'
-      readOnly: false
-    TotalTax:
-      title: Total tax amount
-      description: Total tax amount applied to this transaction.
-      type:
-      - number
-      - 'null'
-      example: 25
+          example: https://developers.apideck.com/errors#unauthorizederror
     NotFoundResponse:
       type: object
       x-apideck-schema-id: NotFound
@@ -3077,6 +3071,13 @@ components:
           type: string
           description: Link to documentation of error type
           example: https://developers.apideck.com/errors#entitynotfounderror
+    BranchIdentifier:
+      type:
+      - string
+      - 'null'
+      title: Branch Identifier
+      description: Bank branch identifier
+      example: '001'
     LinkedCustomer:
       type:
       - object
@@ -3130,200 +3131,87 @@ components:
           title: Email
           description: The email address of the customer.
           example: boring@boring.com
-    RoutingNumber:
+    CurrencyRate:
+      type:
+      - number
+      - 'null'
+      title: Currency Exchange Rate
+      description: Currency Exchange Rate at the time entity was recorded/generated.
+      example: 0.69
+    LineItemType:
       type:
       - string
       - 'null'
-      title: Routing Number
-      description: Bank routing number (US)
-      example: '021000021'
-    TaxInclusive:
+      title: Type
+      description: Line Item type
+      example: expense_account
+      enum:
+      - expense_item
+      - expense_account
+      - other
+      x-apideck-enum-id: line_items.type
+    BankAccountName:
       type:
-      - boolean
+      - string
       - 'null'
-      title: Tax inclusive
-      description: Amounts are including tax
-      example: true
-    UnifiedId:
-      title: UnifiedId
+      title: Account Name
+      description: The name of the bank account
+      example: Main Operating Account
+    LinkedInvoiceItem:
       type: object
-      x-apideck-schema-id: Id
-      description: A object containing a unique identifier for the resource that was created, updated, or deleted.
-      required:
-      - id
+      x-apideck-schema-id: LinkedInvoiceItem
+      x-apideck-weights:
+        id: medium
+        code: medium
+        name: medium
       properties:
         id:
-          title: Id
-          description: The unique identifier of the resource
-          type: string
-          readOnly: true
-          example: '12345'
-    RowVersion:
-      type:
-      - string
-      - 'null'
-      title: Row version
-      description: A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-      example: 1-12345
-    LinkedTrackingCategories:
-      type:
-      - array
-      - 'null'
-      x-apideck-schema-id: LinkedTrackingCategories
-      title: Linked tracking categories
-      description: A list of linked tracking categories.
-      items:
-        $ref: '#/components/schemas/LinkedTrackingCategory'
+          type:
+          - string
+          - 'null'
+          title: Item ID
+          description: ID of the linked item. A reference to the [invoice item](https://developers.apideck.com/apis/accounting/reference#tag/Invoice-Items) that was used to create this line item
+          example: '12344'
+        code:
+          type:
+          - string
+          - 'null'
+          title: Item code
+          description: User defined item code
+          example: 120-C
+        name:
+          type:
+          - string
+          - 'null'
+          title: Item name
+          description: User defined item name
+          example: Model Y
     Quantity:
       type:
       - number
       - 'null'
       title: Quantity
       example: 1
-    AccountingByRow:
-      type:
-      - boolean
-      - 'null'
-      title: Accounting by Row
-      description: Indicates if accounting by row is used (true) or not (false). Accounting by row means that a separate ledger transaction is created for each row.
-      example: false
-    Reference:
+    BIC:
       type:
       - string
       - 'null'
-      title: Reference
-      description: Optional reference identifier for the transaction.
-      example: INV-2024-001
-    GetBillsResponse:
-      type: object
-      x-apideck-schema-id: GetBillsResponse
-      required:
-      - status_code
-      - status
-      - service
-      - resource
-      - operation
-      - data
-      properties:
-        status_code:
-          type: integer
-          description: HTTP Response Status Code
-          example: 200
-        status:
-          type: string
-          description: HTTP Response Status
-          example: OK
-        service:
-          type: string
-          description: Apideck ID of service provider
-          example: xero
-        resource:
-          type: string
-          description: Unified API resource name
-          example: bills
-        operation:
-          type: string
-          description: Operation performed
-          example: all
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Bill'
-        meta:
-          $ref: '#/components/schemas/Meta'
-        links:
-          $ref: '#/components/schemas/Links'
-        _raw:
-          $ref: '#/components/schemas/Raw'
-    LinkedTrackingCategory:
-      type:
-      - object
-      - 'null'
-      x-apideck-schema-id: LinkedTrackingCategory
-      x-apideck-weights:
-        id: critical
-        code: medium
-      properties:
-        id:
-          title: Tracking Category ID
-          description: The unique identifier for the tracking category.
-          type: string
-          example: '123456'
-        code:
-          type:
-          - string
-          - 'null'
-          title: Tracking Category Code
-          description: The code of the tracking category.
-          example: '100'
-        name:
-          type:
-          - string
-          - 'null'
-          title: Tracking Category Name
-          description: The name of the tracking category.
-          example: New York
-        parent_id:
-          type: string
-          title: Parent Tracking Category ID
-          description: The unique identifier for the parent tracking category.
-          example: '123456'
-        parent_name:
-          type:
-          - string
-          - 'null'
-          title: Parent Tracking Category Name
-          description: The name of the parent tracking category.
-          example: New York
-    DeleteBillResponse:
-      type: object
-      x-apideck-schema-id: DeleteBillResponse
-      required:
-      - status_code
-      - status
-      - service
-      - resource
-      - operation
-      - data
-      properties:
-        status_code:
-          type: integer
-          description: HTTP Response Status Code
-          example: 200
-        status:
-          type: string
-          description: HTTP Response Status
-          example: OK
-        service:
-          type: string
-          description: Apideck ID of service provider
-          example: xero
-        resource:
-          type: string
-          description: Unified API resource name
-          example: bills
-        operation:
-          type: string
-          description: Operation performed
-          example: delete
-        data:
-          $ref: '#/components/schemas/UnifiedId'
-        _raw:
-          $ref: '#/components/schemas/Raw'
-    UpdatedBy:
-      type:
-      - string
-      - 'null'
-      title: Updated by
-      description: The user who last updated the object.
-      example: '12345'
-      readOnly: true
-    UnitPrice:
+      title: BIC/SWIFT Code
+      description: Bank Identifier Code / SWIFT Code
+      example: CHASUS33
+    TaxAmount:
+      title: Tax amount
+      description: Tax amount
       type:
       - number
       - 'null'
-      title: Unit price
-      example: 27500.5
+      example: 27.5
+    Language:
+      type:
+      - string
+      - 'null'
+      example: EN
+      description: language code according to ISO 639-1. For the United States - EN
     GetBillResponse:
       type: object
       x-apideck-schema-id: GetBillResponse
@@ -3359,35 +3247,178 @@ components:
           $ref: '#/components/schemas/Bill'
         _raw:
           $ref: '#/components/schemas/Raw'
-    SubsidiaryId:
+    UnifiedId:
+      title: UnifiedId
+      type: object
+      x-apideck-schema-id: Id
+      description: A object containing a unique identifier for the resource that was created, updated, or deleted.
+      required:
+      - id
+      properties:
+        id:
+          title: Id
+          description: The unique identifier of the resource
+          type: string
+          readOnly: true
+          example: '12345'
+    TaxCode:
       type:
       - string
       - 'null'
-      title: Subsidiary ID
-      description: The ID of the subsidiary
-      example: '12345'
-      readOnly: false
-    IBAN:
+      title: Tax Code
+      description: Applicable tax id/code override if tax is not supplied on a line item basis.
+      example: '1234'
+    CreateBillResponse:
+      type: object
+      x-apideck-schema-id: CreateBillResponse
+      required:
+      - status_code
+      - status
+      - service
+      - resource
+      - operation
+      - data
+      properties:
+        status_code:
+          type: integer
+          description: HTTP Response Status Code
+          example: 200
+        status:
+          type: string
+          description: HTTP Response Status
+          example: OK
+        service:
+          type: string
+          description: Apideck ID of service provider
+          example: xero
+        resource:
+          type: string
+          description: Unified API resource name
+          example: bills
+        operation:
+          type: string
+          description: Operation performed
+          example: add
+        data:
+          $ref: '#/components/schemas/UnifiedId'
+        _raw:
+          $ref: '#/components/schemas/Raw'
+    SortDirection:
+      type: string
+      x-apideck-schema-id: SortDirection
+      description: The direction in which to sort the results
+      x-apideck-enum-id: sort_direction
+      enum:
+      - asc
+      - desc
+      default: asc
+    PassThroughQuery:
+      type: object
+      additionalProperties: true
+      properties:
+        example_downstream_property:
+          type: string
+          description: All passthrough query parameters are passed along to the connector as is (?pass_through[search]=leads becomes ?search=leads)
+      example:
+        search: San Francisco
+    UnitPrice:
       type:
-      - string
+      - number
       - 'null'
-      title: IBAN
-      description: International Bank Account Number
-      example: GB33BUKB20201555555555
-    DownstreamId:
-      type:
-      - string
-      - 'null'
-      description: The third-party API ID of original entity
+      title: Unit price
+      example: 27500.5
+    UnprocessableResponse:
+      type: object
+      x-apideck-schema-id: Unprocessable
+      properties:
+        status_code:
+          type: number
+          description: HTTP status code
+          example: 422
+        error:
+          type: string
+          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
+          example: Unprocessable Entity
+        type_name:
+          type: string
+          description: The type of error returned
+          example: InvalidStateError
+        message:
+          type: string
+          description: A human-readable message providing more details about the error.
+          example: Invalid State
+          x-speakeasy-error-message: true
+        detail:
+          anyOf:
+          - type: string
+            example: Unprocessable request, please verify your request headers and body.
+          - type: object
+            x-speakeasy-detail: true
+            example:
+              error: Unprocessable
+              message: Unprocessable request, please verify your request headers and body.
+          description: Contains parameter or domain specific information related to the error and why it occurred.
+        ref:
+          type: string
+          description: Link to documentation of error type
+          example: https://developers.apideck.com/errors#invalidstateerror
+    Id:
+      type: string
+      title: ID
+      description: A unique identifier for an object.
       example: '12345'
       readOnly: true
-    BIC:
+    RowVersion:
       type:
       - string
       - 'null'
-      title: BIC/SWIFT Code
-      description: Bank Identifier Code / SWIFT Code
-      example: CHASUS33
+      title: Row version
+      description: A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
+      example: 1-12345
+    Rebilling:
+      type:
+      - object
+      - 'null'
+      x-apideck-schema-id: Rebilling
+      title: Rebilling
+      description: Rebilling metadata for this line item.
+      x-apideck-weights:
+        rebillable: high
+        rebill_status: medium
+        linked_transaction_id: high
+        linked_transaction_line_id: high
+      properties:
+        rebillable:
+          type: boolean
+          title: Rebillable
+          description: Whether this line item is eligible for rebilling.
+          example: true
+        rebill_status:
+          type:
+          - string
+          - 'null'
+          title: Rebill Status
+          x-apideck-enum-id: rebill-status
+          description: Status of the rebilling process for this line item.
+          enum:
+          - pending
+          - billed
+          - voided
+          example: billed
+        linked_transaction_id:
+          type:
+          - string
+          - 'null'
+          title: Linked Transaction ID
+          description: The ID of the transaction this line item was rebilled to.
+          example: txn_abc123
+        linked_transaction_line_id:
+          type:
+          - string
+          - 'null'
+          title: Linked Transaction Line ID
+          description: The ID of the line item in the rebilled transaction.
+          example: line_xyz789
     LineNumber:
       title: Line number
       type:
@@ -3395,37 +3426,6 @@ components:
       - 'null'
       description: Line number of the resource
       example: 1
-    Meta:
-      type: object
-      x-apideck-schema-id: Meta
-      description: Response metadata
-      properties:
-        items_on_page:
-          type: integer
-          description: Number of items returned in the data property of the response
-          example: 50
-        cursors:
-          type: object
-          description: Cursors to navigate to previous or next pages through the API
-          properties:
-            previous:
-              type:
-              - string
-              - 'null'
-              description: Cursor to navigate to the previous page of results through the API
-              example: em9oby1jcm06OnBhZ2U6OjE=
-            current:
-              type:
-              - string
-              - 'null'
-              description: Cursor to navigate to the current page of results through the API
-              example: em9oby1jcm06OnBhZ2U6OjI=
-            next:
-              type:
-              - string
-              - 'null'
-              description: Cursor to navigate to the next page of results through the API
-              example: em9oby1jcm06OnBhZ2U6OjM=
   responses:
     GetBillsResponse:
       content:
@@ -3433,36 +3433,30 @@ components:
           schema:
             $ref: '#/components/schemas/GetBillsResponse'
       description: Bills
-    DeleteBillResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/DeleteBillResponse'
-      description: Bill deleted
-    BadRequestResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/BadRequestResponse'
-      description: Bad Request
     UnexpectedErrorResponse:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/UnexpectedErrorResponse'
       description: Unexpected error
-    NotFoundResponse:
+    DeleteBillResponse:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/NotFoundResponse'
-      description: The specified resource was not found
-    GetBillResponse:
+            $ref: '#/components/schemas/DeleteBillResponse'
+      description: Bill deleted
+    CreateBillResponse:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/GetBillResponse'
-      description: Bill
+            $ref: '#/components/schemas/CreateBillResponse'
+      description: Bill created
+    UnauthorizedResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnauthorizedResponse'
+      description: Unauthorized
     UpdateBillResponse:
       content:
         application/json:
@@ -3475,18 +3469,24 @@ components:
           schema:
             $ref: '#/components/schemas/UnprocessableResponse'
       description: Unprocessable
-    UnauthorizedResponse:
+    GetBillResponse:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/UnauthorizedResponse'
-      description: Unauthorized
-    CreateBillResponse:
+            $ref: '#/components/schemas/GetBillResponse'
+      description: Bill
+    NotFoundResponse:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/CreateBillResponse'
-      description: Bill created
+            $ref: '#/components/schemas/NotFoundResponse'
+      description: The specified resource was not found
+    BadRequestResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BadRequestResponse'
+      description: Bad Request
     PaymentRequiredResponse:
       content:
         application/json:
