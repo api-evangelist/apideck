@@ -287,118 +287,81 @@ paths:
         source:
           id: id_example
 components:
-  parameters:
-    applicationId:
-      name: x-apideck-app-id
-      in: header
-      required: true
-      description: The ID of your Unify application
-      schema:
-        type: string
-        minLength: 1
-      example: dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX
-      x-speakeasy-name-override: appId
-    id:
-      in: path
-      name: id
-      schema:
-        type: string
-      required: true
-      description: ID of the record you are acting upon.
-    serviceId:
-      name: x-apideck-service-id
-      in: header
-      description: Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
-      schema:
-        type: string
-      example: salesforce
-      x-speakeasy-name-override: serviceId
-    bankAccountsFilter:
-      name: filter
-      in: query
-      description: Apply filters
-      required: false
-      style: deepObject
-      explode: true
-      schema:
-        $ref: '#/components/schemas/BankAccountsFilter'
-    raw:
-      name: raw
-      in: query
-      description: Include raw response. Mostly used for debugging purposes
-      schema:
-        type: boolean
-        default: false
-    companyId:
-      name: x-apideck-company-id
-      in: header
-      description: The ID of the company to scope requests to. For connectors that support multi-company, this overrides the default company configured in connection settings.
-      schema:
-        type: string
-      example: '12345'
-      x-speakeasy-name-override: companyId
-    bankAccountsSort:
-      name: sort
-      in: query
-      description: Apply sorting
-      required: false
-      style: deepObject
-      explode: true
-      schema:
-        $ref: '#/components/schemas/BankAccountsSort'
-    fields:
-      name: fields
-      in: query
-      description: 'The ''fields'' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. <br /><br />Example: `fields=name,email,addresses.city`<br /><br />In the example above, the response will only include the fields "name", "email" and "addresses.city". If any other fields are available, they will be excluded.'
-      example: id,updated_at
-      schema:
-        type:
-        - string
-        - 'null'
-    cursor:
-      name: cursor
-      in: query
-      description: Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
-      schema:
-        type:
-        - string
-        - 'null'
-    passThrough:
-      name: pass_through
-      in: query
-      description: 'Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads'
-      style: deepObject
-      explode: true
-      schema:
-        $ref: '#/components/schemas/PassThroughQuery'
-    consumerId:
-      name: x-apideck-consumer-id
-      in: header
-      required: true
-      description: ID of the consumer which you want to get or push data from
-      schema:
-        type: string
-      example: test-consumer
-      x-speakeasy-name-override: consumerId
-    bankAccountFilter:
-      name: filter
-      in: query
-      description: Apply filters
-      required: false
-      style: deepObject
-      explode: true
-      schema:
-        $ref: '#/components/schemas/BankAccountFilter'
-    limit:
-      name: limit
-      in: query
-      description: Number of results to return. Minimum 1, Maximum 200, Default 20
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 200
-        default: 20
+  responses:
+    NotFoundResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NotFoundResponse'
+      description: The specified resource was not found
+    DeleteBankAccountResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/DeleteBankAccountResponse'
+      description: Bank Account deleted
+    GetBankAccountsResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/GetBankAccountsResponse'
+      description: Bank Accounts
+    UnprocessableResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnprocessableResponse'
+      description: Unprocessable
+    CreateBankAccountResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CreateBankAccountResponse'
+      description: Bank Account created
+    PaymentRequiredResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PaymentRequiredResponse'
+      description: Payment Required
+    GetBankAccountResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/GetBankAccountResponse'
+      description: Bank Account
+    UnexpectedErrorResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnexpectedErrorResponse'
+      description: Unexpected error
+    UnauthorizedResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnauthorizedResponse'
+      description: Unauthorized
+    UpdateBankAccountResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UpdateBankAccountResponse'
+      description: Bank Account updated
+    BadRequestResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BadRequestResponse'
+      description: Bad Request
   schemas:
+    BranchIdentifier:
+      type:
+      - string
+      - 'null'
+      title: Branch Identifier
+      description: Bank branch identifier
+      example: '001'
     AccountingBankAccount:
       type: object
       x-apideck-schema-id: AccountingBankAccount
@@ -537,26 +500,97 @@ components:
           $ref: '#/components/schemas/CreatedBy'
         updated_by:
           $ref: '#/components/schemas/UpdatedBy'
-    BankAccountsSort:
+    BankAccountsFilter:
       type: object
-      x-apideck-schema-id: BankAccountsSort
+      x-apideck-schema-id: BankAccountsFilter
       additionalProperties: false
       properties:
-        by:
+        name:
           type: string
-          title: Sort By
-          description: The field to sort by
-          x-apideck-enum-id: bank_accounts.sort_by
+          title: Name
+          description: Filter by bank account name
+          example: Main Operating
+        account_type:
+          type: string
+          title: Account Type
+          description: Filter by account type
+          x-apideck-enum-id: bank_accounts.account_type
           enum:
-          - created_at
-          - updated_at
-          example: updated_at
-          default: updated_at
-        direction:
-          $ref: '#/components/schemas/SortDirection'
-    CreateBankAccountResponse:
+          - checking
+          - savings
+          - credit_card
+          - money_market
+          - line_of_credit
+          - other
+          - cash
+          example: checking
+        status:
+          type: string
+          title: Status
+          description: Filter by account status
+          x-apideck-enum-id: bank_accounts.status
+          enum:
+          - active
+          - inactive
+          - closed
+          example: active
+    BSBNumber:
+      type:
+      - string
+      - 'null'
+      title: BSB Number
+      description: Bank State Branch number (Australia/New Zealand)
+      example: 062-001
+    BankName:
+      type:
+      - string
+      - 'null'
+      title: Bank Name
+      description: The name of the bank or financial institution
+      example: Chase Bank
+    BankAccountNumber:
+      type:
+      - string
+      - 'null'
+      title: Account Number
+      description: The bank account number
+      example: '123465'
+    Country:
+      type:
+      - string
+      - 'null'
+      example: US
+      title: Country Code
+      description: Country code according to ISO 3166-1 alpha-2.
+      minLength: 2
+      maxLength: 2
+    CreatedBy:
+      type:
+      - string
+      - 'null'
+      title: Created by
+      description: The user who created the object.
+      example: '12345'
+      readOnly: true
+    BankCode:
+      type:
+      - string
+      - 'null'
+      title: Bank Code
+      description: Bank code assigned by central bank
+      example: BNH
+    UpdatedAt:
+      type:
+      - string
+      - 'null'
+      title: Updated at (timestamp)
+      description: The date and time when the object was last updated.
+      format: date-time
+      example: '2020-09-30T07:43:32.000Z'
+      readOnly: true
+    GetBankAccountResponse:
       type: object
-      x-apideck-schema-id: CreateBankAccountResponse
+      x-apideck-schema-id: GetBankAccountResponse
       additionalProperties: false
       required:
       - status_code
@@ -566,11 +600,11 @@ components:
         status_code:
           type: integer
           description: HTTP Response Status Code
-          example: 201
+          example: 200
         status:
           type: string
           description: HTTP Response Status
-          example: Created
+          example: OK
         service:
           type: string
           description: Apideck ID of service provider
@@ -582,9 +616,18 @@ components:
         operation:
           type: string
           description: Operation performed
-          example: add
+          example: one
         data:
-          $ref: '#/components/schemas/UnifiedId'
+          $ref: '#/components/schemas/AccountingBankAccount'
+    CreatedAt:
+      type:
+      - string
+      - 'null'
+      title: Created at (timestamp)
+      description: The date and time when the object was created.
+      format: date-time
+      example: '2020-09-30T07:43:32.000Z'
+      readOnly: true
     BadRequestResponse:
       type: object
       x-apideck-schema-id: BadRequest
@@ -639,81 +682,14 @@ components:
           - message: Account code '100' has been archived or deleted
             detail: Each line item must reference a valid account
             code: VALIDATION_ERROR
-    IBAN:
+    CustomMappings:
       type:
-      - string
+      - object
       - 'null'
-      title: IBAN
-      description: International Bank Account Number
-      example: GB33BUKB20201555555555
-    Country:
-      type:
-      - string
-      - 'null'
-      example: US
-      title: Country Code
-      description: Country code according to ISO 3166-1 alpha-2.
-      minLength: 2
-      maxLength: 2
-    PaymentRequiredResponse:
-      type: object
-      x-apideck-schema-id: PaymentRequired
-      properties:
-        status_code:
-          type: number
-          description: HTTP status code
-          example: 402
-        error:
-          type: string
-          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
-          example: Payment Required
-        type_name:
-          type: string
-          description: The type of error returned
-          example: RequestLimitError
-        message:
-          type: string
-          description: A human-readable message providing more details about the error.
-          example: Request Limit Reached
-          x-speakeasy-error-message: true
-        detail:
-          type: string
-          description: Contains parameter or domain specific information related to the error and why it occurred.
-          example: You have reached your limit of 2000
-        ref:
-          type: string
-          description: Link to documentation of error type
-          example: https://developers.apideck.com/errors#requestlimiterror
-    Links:
-      type: object
-      x-apideck-schema-id: Links
-      description: Links to navigate to previous or next pages through the API
-      properties:
-        previous:
-          type:
-          - string
-          - 'null'
-          description: Link to navigate to the previous page through the API
-          example: https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjE%3D
-        current:
-          type: string
-          description: Link to navigate to the current page through the API
-          example: https://unify.apideck.com/crm/companies
-        next:
-          type:
-          - string
-          - 'null'
-          description: Link to navigate to the previous page through the API
-          example: https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjM
-    CreatedAt:
-      type:
-      - string
-      - 'null'
-      title: Created at (timestamp)
-      description: The date and time when the object was created.
-      format: date-time
-      example: '2020-09-30T07:43:32.000Z'
+      x-apideck-schema-id: CustomMappings
+      description: When custom mappings are configured on the resource, the result is included here.
       readOnly: true
+      additionalProperties: true
     LinkedLedgerAccount:
       type:
       - object
@@ -768,6 +744,512 @@ components:
           title: Display ID
           description: The display ID of the account.
           example: '123456'
+    SortDirection:
+      type: string
+      x-apideck-schema-id: SortDirection
+      description: The direction in which to sort the results
+      x-apideck-enum-id: sort_direction
+      enum:
+      - asc
+      - desc
+      default: asc
+    BankAccountFilter:
+      type: object
+      x-apideck-schema-id: BankAccountFilter
+      additionalProperties: false
+      properties:
+        account_type:
+          type: string
+          title: Account Type
+          description: Filter by account type
+          x-apideck-enum-id: bank_accounts.account_type
+          enum:
+          - checking
+          - savings
+          - credit_card
+          - money_market
+          - line_of_credit
+          - other
+          - cash
+          example: checking
+    BankAccountsSort:
+      type: object
+      x-apideck-schema-id: BankAccountsSort
+      additionalProperties: false
+      properties:
+        by:
+          type: string
+          title: Sort By
+          description: The field to sort by
+          x-apideck-enum-id: bank_accounts.sort_by
+          enum:
+          - created_at
+          - updated_at
+          example: updated_at
+          default: updated_at
+        direction:
+          $ref: '#/components/schemas/SortDirection'
+    UnauthorizedResponse:
+      type: object
+      x-apideck-schema-id: Unauthorized
+      properties:
+        status_code:
+          type: number
+          description: HTTP status code
+          example: 401
+        error:
+          type: string
+          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
+          example: Unauthorized
+        type_name:
+          type: string
+          description: The type of error returned
+          example: UnauthorizedError
+        message:
+          type: string
+          description: A human-readable message providing more details about the error.
+          example: Unauthorized Request
+          x-speakeasy-error-message: true
+        detail:
+          anyOf:
+          - type: string
+            example: Missing authentication
+          - type: object
+            x-speakeasy-detail: true
+            properties:
+              type:
+                type: string
+                description: Error type identifier
+                example: refresh_token_connector_error
+              message:
+                type: string
+                description: Detailed error message
+                example: Token refresh failed
+              debug:
+                type: object
+                description: Debug information including request/response details and OAuth timing metadata
+                properties:
+                  request:
+                    type: object
+                    description: HTTP request details
+                  response:
+                    type: object
+                    description: HTTP response details
+                  message:
+                    type: string
+                    description: Error message from downstream provider or network layer
+                  code:
+                    type: string
+                    description: Error code (e.g., ETIMEDOUT, ECONNREFUSED)
+                  credentials_expire_at_ms:
+                    type: number
+                    description: Unix timestamp (milliseconds) when credentials will be deleted if not refreshed. Only present for non-recoverable errors (401, 400). Credentials are preserved indefinitely for recoverable/network errors.
+                    example: 1620172800000
+                  retry_after_ms:
+                    type: number
+                    description: Unix timestamp (milliseconds) when token refresh retry is allowed after cooldown period expires.
+                    example: 1620000030000
+                  cooldown_remaining_ms:
+                    type: number
+                    description: Milliseconds remaining in cooldown period before retry is allowed.
+                    example: 30000
+            example:
+              type: refresh_token_connector_error
+              message: Token refresh failed with 401 error
+              debug:
+                response:
+                  statusCode: 401
+                  data:
+                    error: invalid_grant
+                credentials_expire_at_ms: 1620172800000
+                retry_after_ms: 1620000030000
+                cooldown_remaining_ms: 30000
+          description: Contains parameter or domain specific information related to the error and why it occurred.
+        ref:
+          type: string
+          description: Link to documentation of error type
+          example: https://developers.apideck.com/errors#unauthorizederror
+    UpdatedBy:
+      type:
+      - string
+      - 'null'
+      title: Updated by
+      description: The user who last updated the object.
+      example: '12345'
+      readOnly: true
+    UnifiedId:
+      title: UnifiedId
+      type: object
+      x-apideck-schema-id: Id
+      description: A object containing a unique identifier for the resource that was created, updated, or deleted.
+      required:
+      - id
+      properties:
+        id:
+          title: Id
+          description: The unique identifier of the resource
+          type: string
+          readOnly: true
+          example: '12345'
+    BankAccountName:
+      type:
+      - string
+      - 'null'
+      title: Account Name
+      description: The name of the bank account
+      example: Main Operating Account
+    Meta:
+      type: object
+      x-apideck-schema-id: Meta
+      description: Response metadata
+      properties:
+        items_on_page:
+          type: integer
+          description: Number of items returned in the data property of the response
+          example: 50
+        cursors:
+          type: object
+          description: Cursors to navigate to previous or next pages through the API
+          properties:
+            previous:
+              type:
+              - string
+              - 'null'
+              description: Cursor to navigate to the previous page of results through the API
+              example: em9oby1jcm06OnBhZ2U6OjE=
+            current:
+              type:
+              - string
+              - 'null'
+              description: Cursor to navigate to the current page of results through the API
+              example: em9oby1jcm06OnBhZ2U6OjI=
+            next:
+              type:
+              - string
+              - 'null'
+              description: Cursor to navigate to the next page of results through the API
+              example: em9oby1jcm06OnBhZ2U6OjM=
+    CustomField:
+      type: object
+      x-apideck-schema-id: CustomField
+      additionalProperties: false
+      anyOf:
+      - required:
+        - id
+      - required:
+        - name
+      x-apideck-strict-any-of:
+      - required:
+        - id
+      - required:
+        - name
+      x-apideck-weights:
+        id: critical
+        value: critical
+        name: medium
+        description: edge-case
+      properties:
+        id:
+          title: ID
+          description: Unique identifier for the custom field.
+          type:
+          - string
+          - 'null'
+          example: '2389328923893298'
+        name:
+          title: Name
+          type:
+          - string
+          - 'null'
+          description: Name of the custom field.
+          example: employee_level
+        description:
+          title: Description
+          type:
+          - string
+          - 'null'
+          description: More information about the custom field
+          example: Employee Level
+        value:
+          anyOf:
+          - type:
+            - string
+            - 'null'
+            example: Uses Salesforce and Marketo
+          - type:
+            - number
+            - 'null'
+            example: 10
+          - type:
+            - boolean
+            - 'null'
+            example: true
+          - type:
+            - object
+            - 'null'
+            example:
+              foo: bar
+            additionalProperties: true
+          - type: array
+            items:
+              anyOf:
+              - type:
+                - string
+                - 'null'
+                example: Uses Salesforce and Marketo
+              - type:
+                - number
+                - 'null'
+                example: 10
+              - type:
+                - boolean
+                - 'null'
+                example: true
+              - type:
+                - object
+                - 'null'
+                example:
+                  foo: bar
+                additionalProperties: true
+    PaymentRequiredResponse:
+      type: object
+      x-apideck-schema-id: PaymentRequired
+      properties:
+        status_code:
+          type: number
+          description: HTTP status code
+          example: 402
+        error:
+          type: string
+          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
+          example: Payment Required
+        type_name:
+          type: string
+          description: The type of error returned
+          example: RequestLimitError
+        message:
+          type: string
+          description: A human-readable message providing more details about the error.
+          example: Request Limit Reached
+          x-speakeasy-error-message: true
+        detail:
+          type: string
+          description: Contains parameter or domain specific information related to the error and why it occurred.
+          example: You have reached your limit of 2000
+        ref:
+          type: string
+          description: Link to documentation of error type
+          example: https://developers.apideck.com/errors#requestlimiterror
+    CreateBankAccountResponse:
+      type: object
+      x-apideck-schema-id: CreateBankAccountResponse
+      additionalProperties: false
+      required:
+      - status_code
+      - status
+      - data
+      properties:
+        status_code:
+          type: integer
+          description: HTTP Response Status Code
+          example: 201
+        status:
+          type: string
+          description: HTTP Response Status
+          example: Created
+        service:
+          type: string
+          description: Apideck ID of service provider
+          example: quickbooks
+        resource:
+          type: string
+          description: Unified API resource name
+          example: bank-accounts
+        operation:
+          type: string
+          description: Operation performed
+          example: add
+        data:
+          $ref: '#/components/schemas/UnifiedId'
+    DownstreamId:
+      type:
+      - string
+      - 'null'
+      description: The third-party API ID of original entity
+      example: '12345'
+      readOnly: true
+    DeleteBankAccountResponse:
+      type: object
+      x-apideck-schema-id: DeleteBankAccountResponse
+      additionalProperties: false
+      required:
+      - status_code
+      - status
+      - data
+      properties:
+        status_code:
+          type: integer
+          description: HTTP Response Status Code
+          example: 200
+        status:
+          type: string
+          description: HTTP Response Status
+          example: OK
+        service:
+          type: string
+          description: Apideck ID of service provider
+          example: quickbooks
+        resource:
+          type: string
+          description: Unified API resource name
+          example: bank-accounts
+        operation:
+          type: string
+          description: Operation performed
+          example: delete
+        data:
+          $ref: '#/components/schemas/UnifiedId'
+    RoutingNumber:
+      type:
+      - string
+      - 'null'
+      title: Routing Number
+      description: Bank routing number (US)
+      example: '021000021'
+    NotFoundResponse:
+      type: object
+      x-apideck-schema-id: NotFound
+      properties:
+        status_code:
+          type: number
+          description: HTTP status code
+          example: 404
+        error:
+          type: string
+          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
+          example: Not Found
+        type_name:
+          type: string
+          description: The type of error returned
+          example: EntityNotFoundError
+        message:
+          type: string
+          description: A human-readable message providing more details about the error.
+          example: Unknown Widget
+          x-speakeasy-error-message: true
+        detail:
+          anyOf:
+          - type: string
+            example: 'Could not find widget with id: ''123'''
+          - type: object
+            x-speakeasy-detail: true
+            example:
+              not_found:
+                entity: widget
+                id: '123'
+          description: Contains parameter or domain specific information related to the error and why it occurred.
+        ref:
+          type: string
+          description: Link to documentation of error type
+          example: https://developers.apideck.com/errors#entitynotfounderror
+    UnprocessableResponse:
+      type: object
+      x-apideck-schema-id: Unprocessable
+      properties:
+        status_code:
+          type: number
+          description: HTTP status code
+          example: 422
+        error:
+          type: string
+          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
+          example: Unprocessable Entity
+        type_name:
+          type: string
+          description: The type of error returned
+          example: InvalidStateError
+        message:
+          type: string
+          description: A human-readable message providing more details about the error.
+          example: Invalid State
+          x-speakeasy-error-message: true
+        detail:
+          anyOf:
+          - type: string
+            example: Unprocessable request, please verify your request headers and body.
+          - type: object
+            x-speakeasy-detail: true
+            example:
+              error: Unprocessable
+              message: Unprocessable request, please verify your request headers and body.
+          description: Contains parameter or domain specific information related to the error and why it occurred.
+        ref:
+          type: string
+          description: Link to documentation of error type
+          example: https://developers.apideck.com/errors#invalidstateerror
+    IBAN:
+      type:
+      - string
+      - 'null'
+      title: IBAN
+      description: International Bank Account Number
+      example: GB33BUKB20201555555555
+    Links:
+      type: object
+      x-apideck-schema-id: Links
+      description: Links to navigate to previous or next pages through the API
+      properties:
+        previous:
+          type:
+          - string
+          - 'null'
+          description: Link to navigate to the previous page through the API
+          example: https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjE%3D
+        current:
+          type: string
+          description: Link to navigate to the current page through the API
+          example: https://unify.apideck.com/crm/companies
+        next:
+          type:
+          - string
+          - 'null'
+          description: Link to navigate to the previous page through the API
+          example: https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjM
+    UnexpectedErrorResponse:
+      type: object
+      x-apideck-schema-id: Error
+      properties:
+        status_code:
+          type: number
+          description: HTTP status code
+          example: 400
+        error:
+          type: string
+          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
+          example: Bad Request
+        type_name:
+          type: string
+          description: The type of error returned
+          example: RequestHeadersValidationError
+        message:
+          type: string
+          description: A human-readable message providing more details about the error.
+          example: Invalid Params
+          x-speakeasy-error-message: true
+        detail:
+          anyOf:
+          - type: string
+            example: 'Missing Header: x-apideck-consumer-id'
+          - type: object
+            x-speakeasy-detail: true
+            example:
+              missing:
+              - x-apideck-consumer-id: required
+          description: Contains parameter or domain specific information related to the error and why it occurred.
+        ref:
+          type: string
+          description: Link to documentation of error type
+          example: https://developers.apideck.com/errors#unauthorizederror
     GetBankAccountsResponse:
       type: object
       x-apideck-schema-id: GetBankAccountsResponse
@@ -805,13 +1287,12 @@ components:
           $ref: '#/components/schemas/Meta'
         links:
           $ref: '#/components/schemas/Links'
-    BankAccountName:
-      type:
-      - string
-      - 'null'
-      title: Account Name
-      description: The name of the bank account
-      example: Main Operating Account
+    Id:
+      type: string
+      title: ID
+      description: A unique identifier for an object.
+      example: '12345'
+      readOnly: true
     BIC:
       type:
       - string
@@ -819,6 +1300,46 @@ components:
       title: BIC/SWIFT Code
       description: Bank Identifier Code / SWIFT Code
       example: CHASUS33
+    UpdateBankAccountResponse:
+      type: object
+      x-apideck-schema-id: UpdateBankAccountResponse
+      additionalProperties: false
+      required:
+      - status_code
+      - status
+      - data
+      properties:
+        status_code:
+          type: integer
+          description: HTTP Response Status Code
+          example: 200
+        status:
+          type: string
+          description: HTTP Response Status
+          example: OK
+        service:
+          type: string
+          description: Apideck ID of service provider
+          example: quickbooks
+        resource:
+          type: string
+          description: Unified API resource name
+          example: bank-accounts
+        operation:
+          type: string
+          description: Operation performed
+          example: update
+        data:
+          $ref: '#/components/schemas/UnifiedId'
+    PassThroughQuery:
+      type: object
+      additionalProperties: true
+      properties:
+        example_downstream_property:
+          type: string
+          description: All passthrough query parameters are passed along to the connector as is (?pass_through[search]=leads becomes ?search=leads)
+      example:
+        search: San Francisco
     Currency:
       type:
       - string
@@ -1377,638 +1898,117 @@ components:
         description: Bitcoin
       - name: ETH
         description: Ether
-    BSBNumber:
-      type:
-      - string
-      - 'null'
-      title: BSB Number
-      description: Bank State Branch number (Australia/New Zealand)
-      example: 062-001
-    BankAccountFilter:
-      type: object
-      x-apideck-schema-id: BankAccountFilter
-      additionalProperties: false
-      properties:
-        account_type:
-          type: string
-          title: Account Type
-          description: Filter by account type
-          x-apideck-enum-id: bank_accounts.account_type
-          enum:
-          - checking
-          - savings
-          - credit_card
-          - money_market
-          - line_of_credit
-          - other
-          - cash
-          example: checking
-    BankAccountsFilter:
-      type: object
-      x-apideck-schema-id: BankAccountsFilter
-      additionalProperties: false
-      properties:
-        name:
-          type: string
-          title: Name
-          description: Filter by bank account name
-          example: Main Operating
-        account_type:
-          type: string
-          title: Account Type
-          description: Filter by account type
-          x-apideck-enum-id: bank_accounts.account_type
-          enum:
-          - checking
-          - savings
-          - credit_card
-          - money_market
-          - line_of_credit
-          - other
-          - cash
-          example: checking
-        status:
-          type: string
-          title: Status
-          description: Filter by account status
-          x-apideck-enum-id: bank_accounts.status
-          enum:
-          - active
-          - inactive
-          - closed
-          example: active
-    BankAccountNumber:
-      type:
-      - string
-      - 'null'
-      title: Account Number
-      description: The bank account number
-      example: '123465'
-    UpdatedBy:
-      type:
-      - string
-      - 'null'
-      title: Updated by
-      description: The user who last updated the object.
+  parameters:
+    id:
+      in: path
+      name: id
+      schema:
+        type: string
+      required: true
+      description: ID of the record you are acting upon.
+    passThrough:
+      name: pass_through
+      in: query
+      description: 'Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads'
+      style: deepObject
+      explode: true
+      schema:
+        $ref: '#/components/schemas/PassThroughQuery'
+    serviceId:
+      name: x-apideck-service-id
+      in: header
+      description: Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
+      schema:
+        type: string
+      example: salesforce
+      x-speakeasy-name-override: serviceId
+    bankAccountFilter:
+      name: filter
+      in: query
+      description: Apply filters
+      required: false
+      style: deepObject
+      explode: true
+      schema:
+        $ref: '#/components/schemas/BankAccountFilter'
+    applicationId:
+      name: x-apideck-app-id
+      in: header
+      required: true
+      description: The ID of your Unify application
+      schema:
+        type: string
+        minLength: 1
+      example: dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX
+      x-speakeasy-name-override: appId
+    bankAccountsFilter:
+      name: filter
+      in: query
+      description: Apply filters
+      required: false
+      style: deepObject
+      explode: true
+      schema:
+        $ref: '#/components/schemas/BankAccountsFilter'
+    bankAccountsSort:
+      name: sort
+      in: query
+      description: Apply sorting
+      required: false
+      style: deepObject
+      explode: true
+      schema:
+        $ref: '#/components/schemas/BankAccountsSort'
+    raw:
+      name: raw
+      in: query
+      description: Include raw response. Mostly used for debugging purposes
+      schema:
+        type: boolean
+        default: false
+    limit:
+      name: limit
+      in: query
+      description: Number of results to return. Minimum 1, Maximum 200, Default 20
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 200
+        default: 20
+    cursor:
+      name: cursor
+      in: query
+      description: Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
+      schema:
+        type:
+        - string
+        - 'null'
+    fields:
+      name: fields
+      in: query
+      description: 'The ''fields'' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. <br /><br />Example: `fields=name,email,addresses.city`<br /><br />In the example above, the response will only include the fields "name", "email" and "addresses.city". If any other fields are available, they will be excluded.'
+      example: id,updated_at
+      schema:
+        type:
+        - string
+        - 'null'
+    companyId:
+      name: x-apideck-company-id
+      in: header
+      description: The ID of the company to scope requests to. For connectors that support multi-company, this overrides the default company configured in connection settings.
+      schema:
+        type: string
       example: '12345'
-      readOnly: true
-    UnifiedId:
-      title: UnifiedId
-      type: object
-      x-apideck-schema-id: Id
-      description: A object containing a unique identifier for the resource that was created, updated, or deleted.
-      required:
-      - id
-      properties:
-        id:
-          title: Id
-          description: The unique identifier of the resource
-          type: string
-          readOnly: true
-          example: '12345'
-    GetBankAccountResponse:
-      type: object
-      x-apideck-schema-id: GetBankAccountResponse
-      additionalProperties: false
-      required:
-      - status_code
-      - status
-      - data
-      properties:
-        status_code:
-          type: integer
-          description: HTTP Response Status Code
-          example: 200
-        status:
-          type: string
-          description: HTTP Response Status
-          example: OK
-        service:
-          type: string
-          description: Apideck ID of service provider
-          example: quickbooks
-        resource:
-          type: string
-          description: Unified API resource name
-          example: bank-accounts
-        operation:
-          type: string
-          description: Operation performed
-          example: one
-        data:
-          $ref: '#/components/schemas/AccountingBankAccount'
-    UpdatedAt:
-      type:
-      - string
-      - 'null'
-      title: Updated at (timestamp)
-      description: The date and time when the object was last updated.
-      format: date-time
-      example: '2020-09-30T07:43:32.000Z'
-      readOnly: true
-    CustomMappings:
-      type:
-      - object
-      - 'null'
-      x-apideck-schema-id: CustomMappings
-      description: When custom mappings are configured on the resource, the result is included here.
-      readOnly: true
-      additionalProperties: true
-    DownstreamId:
-      type:
-      - string
-      - 'null'
-      description: The third-party API ID of original entity
-      example: '12345'
-      readOnly: true
-    PassThroughQuery:
-      type: object
-      additionalProperties: true
-      properties:
-        example_downstream_property:
-          type: string
-          description: All passthrough query parameters are passed along to the connector as is (?pass_through[search]=leads becomes ?search=leads)
-      example:
-        search: San Francisco
-    BankCode:
-      type:
-      - string
-      - 'null'
-      title: Bank Code
-      description: Bank code assigned by central bank
-      example: BNH
-    SortDirection:
-      type: string
-      x-apideck-schema-id: SortDirection
-      description: The direction in which to sort the results
-      x-apideck-enum-id: sort_direction
-      enum:
-      - asc
-      - desc
-      default: asc
-    UnauthorizedResponse:
-      type: object
-      x-apideck-schema-id: Unauthorized
-      properties:
-        status_code:
-          type: number
-          description: HTTP status code
-          example: 401
-        error:
-          type: string
-          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
-          example: Unauthorized
-        type_name:
-          type: string
-          description: The type of error returned
-          example: UnauthorizedError
-        message:
-          type: string
-          description: A human-readable message providing more details about the error.
-          example: Unauthorized Request
-          x-speakeasy-error-message: true
-        detail:
-          anyOf:
-          - type: string
-            example: Missing authentication
-          - type: object
-            x-speakeasy-detail: true
-            properties:
-              type:
-                type: string
-                description: Error type identifier
-                example: refresh_token_connector_error
-              message:
-                type: string
-                description: Detailed error message
-                example: Token refresh failed
-              debug:
-                type: object
-                description: Debug information including request/response details and OAuth timing metadata
-                properties:
-                  request:
-                    type: object
-                    description: HTTP request details
-                  response:
-                    type: object
-                    description: HTTP response details
-                  message:
-                    type: string
-                    description: Error message from downstream provider or network layer
-                  code:
-                    type: string
-                    description: Error code (e.g., ETIMEDOUT, ECONNREFUSED)
-                  credentials_expire_at_ms:
-                    type: number
-                    description: Unix timestamp (milliseconds) when credentials will be deleted if not refreshed. Only present for non-recoverable errors (401, 400). Credentials are preserved indefinitely for recoverable/network errors.
-                    example: 1620172800000
-                  retry_after_ms:
-                    type: number
-                    description: Unix timestamp (milliseconds) when token refresh retry is allowed after cooldown period expires.
-                    example: 1620000030000
-                  cooldown_remaining_ms:
-                    type: number
-                    description: Milliseconds remaining in cooldown period before retry is allowed.
-                    example: 30000
-            example:
-              type: refresh_token_connector_error
-              message: Token refresh failed with 401 error
-              debug:
-                response:
-                  statusCode: 401
-                  data:
-                    error: invalid_grant
-                credentials_expire_at_ms: 1620172800000
-                retry_after_ms: 1620000030000
-                cooldown_remaining_ms: 30000
-          description: Contains parameter or domain specific information related to the error and why it occurred.
-        ref:
-          type: string
-          description: Link to documentation of error type
-          example: https://developers.apideck.com/errors#unauthorizederror
-    UnexpectedErrorResponse:
-      type: object
-      x-apideck-schema-id: Error
-      properties:
-        status_code:
-          type: number
-          description: HTTP status code
-          example: 400
-        error:
-          type: string
-          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
-          example: Bad Request
-        type_name:
-          type: string
-          description: The type of error returned
-          example: RequestHeadersValidationError
-        message:
-          type: string
-          description: A human-readable message providing more details about the error.
-          example: Invalid Params
-          x-speakeasy-error-message: true
-        detail:
-          anyOf:
-          - type: string
-            example: 'Missing Header: x-apideck-consumer-id'
-          - type: object
-            x-speakeasy-detail: true
-            example:
-              missing:
-              - x-apideck-consumer-id: required
-          description: Contains parameter or domain specific information related to the error and why it occurred.
-        ref:
-          type: string
-          description: Link to documentation of error type
-          example: https://developers.apideck.com/errors#unauthorizederror
-    RoutingNumber:
-      type:
-      - string
-      - 'null'
-      title: Routing Number
-      description: Bank routing number (US)
-      example: '021000021'
-    Id:
-      type: string
-      title: ID
-      description: A unique identifier for an object.
-      example: '12345'
-      readOnly: true
-    NotFoundResponse:
-      type: object
-      x-apideck-schema-id: NotFound
-      properties:
-        status_code:
-          type: number
-          description: HTTP status code
-          example: 404
-        error:
-          type: string
-          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
-          example: Not Found
-        type_name:
-          type: string
-          description: The type of error returned
-          example: EntityNotFoundError
-        message:
-          type: string
-          description: A human-readable message providing more details about the error.
-          example: Unknown Widget
-          x-speakeasy-error-message: true
-        detail:
-          anyOf:
-          - type: string
-            example: 'Could not find widget with id: ''123'''
-          - type: object
-            x-speakeasy-detail: true
-            example:
-              not_found:
-                entity: widget
-                id: '123'
-          description: Contains parameter or domain specific information related to the error and why it occurred.
-        ref:
-          type: string
-          description: Link to documentation of error type
-          example: https://developers.apideck.com/errors#entitynotfounderror
-    BranchIdentifier:
-      type:
-      - string
-      - 'null'
-      title: Branch Identifier
-      description: Bank branch identifier
-      example: '001'
-    DeleteBankAccountResponse:
-      type: object
-      x-apideck-schema-id: DeleteBankAccountResponse
-      additionalProperties: false
-      required:
-      - status_code
-      - status
-      - data
-      properties:
-        status_code:
-          type: integer
-          description: HTTP Response Status Code
-          example: 200
-        status:
-          type: string
-          description: HTTP Response Status
-          example: OK
-        service:
-          type: string
-          description: Apideck ID of service provider
-          example: quickbooks
-        resource:
-          type: string
-          description: Unified API resource name
-          example: bank-accounts
-        operation:
-          type: string
-          description: Operation performed
-          example: delete
-        data:
-          $ref: '#/components/schemas/UnifiedId'
-    UpdateBankAccountResponse:
-      type: object
-      x-apideck-schema-id: UpdateBankAccountResponse
-      additionalProperties: false
-      required:
-      - status_code
-      - status
-      - data
-      properties:
-        status_code:
-          type: integer
-          description: HTTP Response Status Code
-          example: 200
-        status:
-          type: string
-          description: HTTP Response Status
-          example: OK
-        service:
-          type: string
-          description: Apideck ID of service provider
-          example: quickbooks
-        resource:
-          type: string
-          description: Unified API resource name
-          example: bank-accounts
-        operation:
-          type: string
-          description: Operation performed
-          example: update
-        data:
-          $ref: '#/components/schemas/UnifiedId'
-    UnprocessableResponse:
-      type: object
-      x-apideck-schema-id: Unprocessable
-      properties:
-        status_code:
-          type: number
-          description: HTTP status code
-          example: 422
-        error:
-          type: string
-          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
-          example: Unprocessable Entity
-        type_name:
-          type: string
-          description: The type of error returned
-          example: InvalidStateError
-        message:
-          type: string
-          description: A human-readable message providing more details about the error.
-          example: Invalid State
-          x-speakeasy-error-message: true
-        detail:
-          anyOf:
-          - type: string
-            example: Unprocessable request, please verify your request headers and body.
-          - type: object
-            x-speakeasy-detail: true
-            example:
-              error: Unprocessable
-              message: Unprocessable request, please verify your request headers and body.
-          description: Contains parameter or domain specific information related to the error and why it occurred.
-        ref:
-          type: string
-          description: Link to documentation of error type
-          example: https://developers.apideck.com/errors#invalidstateerror
-    Meta:
-      type: object
-      x-apideck-schema-id: Meta
-      description: Response metadata
-      properties:
-        items_on_page:
-          type: integer
-          description: Number of items returned in the data property of the response
-          example: 50
-        cursors:
-          type: object
-          description: Cursors to navigate to previous or next pages through the API
-          properties:
-            previous:
-              type:
-              - string
-              - 'null'
-              description: Cursor to navigate to the previous page of results through the API
-              example: em9oby1jcm06OnBhZ2U6OjE=
-            current:
-              type:
-              - string
-              - 'null'
-              description: Cursor to navigate to the current page of results through the API
-              example: em9oby1jcm06OnBhZ2U6OjI=
-            next:
-              type:
-              - string
-              - 'null'
-              description: Cursor to navigate to the next page of results through the API
-              example: em9oby1jcm06OnBhZ2U6OjM=
-    CreatedBy:
-      type:
-      - string
-      - 'null'
-      title: Created by
-      description: The user who created the object.
-      example: '12345'
-      readOnly: true
-    BankName:
-      type:
-      - string
-      - 'null'
-      title: Bank Name
-      description: The name of the bank or financial institution
-      example: Chase Bank
-    CustomField:
-      type: object
-      x-apideck-schema-id: CustomField
-      additionalProperties: false
-      anyOf:
-      - required:
-        - id
-      - required:
-        - name
-      x-apideck-strict-any-of:
-      - required:
-        - id
-      - required:
-        - name
-      x-apideck-weights:
-        id: critical
-        value: critical
-        name: medium
-        description: edge-case
-      properties:
-        id:
-          title: ID
-          description: Unique identifier for the custom field.
-          type:
-          - string
-          - 'null'
-          example: '2389328923893298'
-        name:
-          title: Name
-          type:
-          - string
-          - 'null'
-          description: Name of the custom field.
-          example: employee_level
-        description:
-          title: Description
-          type:
-          - string
-          - 'null'
-          description: More information about the custom field
-          example: Employee Level
-        value:
-          anyOf:
-          - type:
-            - string
-            - 'null'
-            example: Uses Salesforce and Marketo
-          - type:
-            - number
-            - 'null'
-            example: 10
-          - type:
-            - boolean
-            - 'null'
-            example: true
-          - type:
-            - object
-            - 'null'
-            example:
-              foo: bar
-            additionalProperties: true
-          - type: array
-            items:
-              anyOf:
-              - type:
-                - string
-                - 'null'
-                example: Uses Salesforce and Marketo
-              - type:
-                - number
-                - 'null'
-                example: 10
-              - type:
-                - boolean
-                - 'null'
-                example: true
-              - type:
-                - object
-                - 'null'
-                example:
-                  foo: bar
-                additionalProperties: true
-  responses:
-    CreateBankAccountResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/CreateBankAccountResponse'
-      description: Bank Account created
-    UnauthorizedResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UnauthorizedResponse'
-      description: Unauthorized
-    GetBankAccountsResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/GetBankAccountsResponse'
-      description: Bank Accounts
-    UnprocessableResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UnprocessableResponse'
-      description: Unprocessable
-    UnexpectedErrorResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UnexpectedErrorResponse'
-      description: Unexpected error
-    GetBankAccountResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/GetBankAccountResponse'
-      description: Bank Account
-    NotFoundResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/NotFoundResponse'
-      description: The specified resource was not found
-    BadRequestResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/BadRequestResponse'
-      description: Bad Request
-    UpdateBankAccountResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UpdateBankAccountResponse'
-      description: Bank Account updated
-    PaymentRequiredResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/PaymentRequiredResponse'
-      description: Payment Required
-    DeleteBankAccountResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/DeleteBankAccountResponse'
-      description: Bank Account deleted
+      x-speakeasy-name-override: companyId
+    consumerId:
+      name: x-apideck-consumer-id
+      in: header
+      required: true
+      description: ID of the consumer which you want to get or push data from
+      schema:
+        type: string
+      example: test-consumer
+      x-speakeasy-name-override: consumerId
   securitySchemes:
     apiKey:
       type: apiKey

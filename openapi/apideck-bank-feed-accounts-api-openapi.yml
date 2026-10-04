@@ -262,17 +262,82 @@ paths:
         source:
           id: id_example
 components:
+  responses:
+    NotFoundResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NotFoundResponse'
+      description: The specified resource was not found
+    CreateBankFeedAccountResponse:
+      description: Bank Feed Accounts
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CreateBankFeedAccountResponse'
+    UpdateBankFeedAccountResponse:
+      description: Bank Feed Accounts
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UpdateBankFeedAccountResponse'
+    UnprocessableResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnprocessableResponse'
+      description: Unprocessable
+    GetBankFeedAccountsResponse:
+      description: Bank Feed Accounts
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/GetBankFeedAccountsResponse'
+    PaymentRequiredResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PaymentRequiredResponse'
+      description: Payment Required
+    UnexpectedErrorResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnexpectedErrorResponse'
+      description: Unexpected error
+    GetBankFeedAccountResponse:
+      description: Bank Feed Accounts
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/GetBankFeedAccountResponse'
+    UnauthorizedResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnauthorizedResponse'
+      description: Unauthorized
+    BadRequestResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BadRequestResponse'
+      description: Bad Request
+    DeleteBankFeedAccountResponse:
+      description: Bank Feed Accounts
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/DeleteBankFeedAccountResponse'
   parameters:
-    applicationId:
-      name: x-apideck-app-id
-      in: header
-      required: true
-      description: The ID of your Unify application
+    passThrough:
+      name: pass_through
+      in: query
+      description: 'Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads'
+      style: deepObject
+      explode: true
       schema:
-        type: string
-        minLength: 1
-      example: dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX
-      x-speakeasy-name-override: appId
+        $ref: '#/components/schemas/PassThroughQuery'
     id:
       in: path
       name: id
@@ -288,6 +353,16 @@ components:
         type: string
       example: salesforce
       x-speakeasy-name-override: serviceId
+    applicationId:
+      name: x-apideck-app-id
+      in: header
+      required: true
+      description: The ID of your Unify application
+      schema:
+        type: string
+        minLength: 1
+      example: dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX
+      x-speakeasy-name-override: appId
     raw:
       name: raw
       in: query
@@ -295,48 +370,6 @@ components:
       schema:
         type: boolean
         default: false
-    companyId:
-      name: x-apideck-company-id
-      in: header
-      description: The ID of the company to scope requests to. For connectors that support multi-company, this overrides the default company configured in connection settings.
-      schema:
-        type: string
-      example: '12345'
-      x-speakeasy-name-override: companyId
-    fields:
-      name: fields
-      in: query
-      description: 'The ''fields'' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. <br /><br />Example: `fields=name,email,addresses.city`<br /><br />In the example above, the response will only include the fields "name", "email" and "addresses.city". If any other fields are available, they will be excluded.'
-      example: id,updated_at
-      schema:
-        type:
-        - string
-        - 'null'
-    cursor:
-      name: cursor
-      in: query
-      description: Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
-      schema:
-        type:
-        - string
-        - 'null'
-    passThrough:
-      name: pass_through
-      in: query
-      description: 'Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads'
-      style: deepObject
-      explode: true
-      schema:
-        $ref: '#/components/schemas/PassThroughQuery'
-    consumerId:
-      name: x-apideck-consumer-id
-      in: header
-      required: true
-      description: ID of the consumer which you want to get or push data from
-      schema:
-        type: string
-      example: test-consumer
-      x-speakeasy-name-override: consumerId
     limit:
       name: limit
       in: query
@@ -346,128 +379,125 @@ components:
         minimum: 1
         maximum: 200
         default: 20
-  responses:
-    UnauthorizedResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UnauthorizedResponse'
-      description: Unauthorized
-    UnprocessableResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UnprocessableResponse'
-      description: Unprocessable
-    GetBankFeedAccountResponse:
-      description: Bank Feed Accounts
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/GetBankFeedAccountResponse'
-    UnexpectedErrorResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UnexpectedErrorResponse'
-      description: Unexpected error
-    NotFoundResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/NotFoundResponse'
-      description: The specified resource was not found
-    CreateBankFeedAccountResponse:
-      description: Bank Feed Accounts
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/CreateBankFeedAccountResponse'
-    BadRequestResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/BadRequestResponse'
-      description: Bad Request
-    DeleteBankFeedAccountResponse:
-      description: Bank Feed Accounts
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/DeleteBankFeedAccountResponse'
-    PaymentRequiredResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/PaymentRequiredResponse'
-      description: Payment Required
-    GetBankFeedAccountsResponse:
-      description: Bank Feed Accounts
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/GetBankFeedAccountsResponse'
-    UpdateBankFeedAccountResponse:
-      description: Bank Feed Accounts
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UpdateBankFeedAccountResponse'
+    cursor:
+      name: cursor
+      in: query
+      description: Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
+      schema:
+        type:
+        - string
+        - 'null'
+    fields:
+      name: fields
+      in: query
+      description: 'The ''fields'' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. <br /><br />Example: `fields=name,email,addresses.city`<br /><br />In the example above, the response will only include the fields "name", "email" and "addresses.city". If any other fields are available, they will be excluded.'
+      example: id,updated_at
+      schema:
+        type:
+        - string
+        - 'null'
+    companyId:
+      name: x-apideck-company-id
+      in: header
+      description: The ID of the company to scope requests to. For connectors that support multi-company, this overrides the default company configured in connection settings.
+      schema:
+        type: string
+      example: '12345'
+      x-speakeasy-name-override: companyId
+    consumerId:
+      name: x-apideck-consumer-id
+      in: header
+      required: true
+      description: ID of the consumer which you want to get or push data from
+      schema:
+        type: string
+      example: test-consumer
+      x-speakeasy-name-override: consumerId
   schemas:
-    BadRequestResponse:
+    GetBankFeedAccountResponse:
       type: object
-      x-apideck-schema-id: BadRequest
+      x-apideck-schema-id: GetBankFeedAccountResponse
+      required:
+      - status_code
+      - status
+      - service
+      - resource
+      - operation
+      - data
       properties:
         status_code:
-          type: number
-          description: HTTP status code
-          example: 400
-        error:
+          type: integer
+          description: HTTP Response Status Code
+          example: 200
+        status:
           type: string
-          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
-          example: Bad Request
-        type_name:
+          description: HTTP Response Status
+          example: OK
+        service:
           type: string
-          description: The type of error returned
-          example: RequestValidationError
-        message:
+          description: Apideck ID of service provider
+          example: quickbooks
+        resource:
           type: string
-          description: A human-readable message providing more details about the error.
-          example: Invalid Params
-          x-speakeasy-error-message: true
-        detail:
-          anyOf:
-          - type: string
-            example: Missing property foobar
-          - type: object
-            x-speakeasy-detail: true
-            example:
-              missing:
-              - foobar: required
-          description: Contains parameter or domain specific information related to the error and why it occurred.
-        ref:
+          description: Unified API resource name
+          example: bank-feed-accounts
+        operation:
           type: string
-          description: Link to documentation of error type
-          example: https://developers.apideck.com/errors#requestvalidationerror
-        downstream_errors:
+          description: Operation performed
+          example: one
+        data:
+          $ref: '#/components/schemas/BankFeedAccount'
+        _raw:
+          $ref: '#/components/schemas/Raw'
+    GetBankFeedAccountsResponse:
+      type: object
+      x-apideck-schema-id: GetBankFeedAccountsResponse
+      required:
+      - status_code
+      - status
+      - service
+      - resource
+      - operation
+      - data
+      properties:
+        status_code:
+          type: integer
+          description: HTTP Response Status Code
+          example: 200
+        status:
+          type: string
+          description: HTTP Response Status
+          example: OK
+        service:
+          type: string
+          description: Apideck ID of service provider
+          example: quickbooks
+        resource:
+          type: string
+          description: Unified API resource name
+          example: bank-feed-accounts
+        operation:
+          type: string
+          description: Operation performed
+          example: all
+        data:
           type: array
-          description: Contains downstream errors returned from the connector. Only present when type_name is ConnectorExecutionError.
           items:
-            type: object
-            properties:
-              message:
-                type: string
-                description: Error message from the downstream provider
-              detail:
-                type: string
-                description: Additional error details
-              code:
-                type: string
-                description: Error code from the downstream provider
-          example:
-          - message: Account code '100' has been archived or deleted
-            detail: Each line item must reference a valid account
-            code: VALIDATION_ERROR
+            $ref: '#/components/schemas/BankFeedAccount'
+        meta:
+          $ref: '#/components/schemas/Meta'
+        links:
+          $ref: '#/components/schemas/Links'
+        _raw:
+          $ref: '#/components/schemas/Raw'
+    Raw:
+      title: raw
+      type:
+      - object
+      - 'null'
+      x-apideck-schema-id: Raw
+      description: Raw response from the integration when raw=true query param is provided
+      additionalProperties: true
     Country:
       type:
       - string
@@ -477,56 +507,58 @@ components:
       description: Country code according to ISO 3166-1 alpha-2.
       minLength: 2
       maxLength: 2
-    Links:
+    UpdateBankFeedAccountResponse:
       type: object
-      x-apideck-schema-id: Links
-      description: Links to navigate to previous or next pages through the API
-      properties:
-        previous:
-          type:
-          - string
-          - 'null'
-          description: Link to navigate to the previous page through the API
-          example: https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjE%3D
-        current:
-          type: string
-          description: Link to navigate to the current page through the API
-          example: https://unify.apideck.com/crm/companies
-        next:
-          type:
-          - string
-          - 'null'
-          description: Link to navigate to the previous page through the API
-          example: https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjM
-    PaymentRequiredResponse:
-      type: object
-      x-apideck-schema-id: PaymentRequired
+      x-apideck-schema-id: UpdateBankFeedAccountResponse
+      required:
+      - status_code
+      - status
+      - service
+      - resource
+      - operation
+      - data
       properties:
         status_code:
-          type: number
-          description: HTTP status code
-          example: 402
-        error:
+          type: integer
+          description: HTTP Response Status Code
+          example: 200
+        status:
           type: string
-          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
-          example: Payment Required
-        type_name:
+          description: HTTP Response Status
+          example: OK
+        service:
           type: string
-          description: The type of error returned
-          example: RequestLimitError
-        message:
+          description: Apideck ID of service provider
+          example: quickbooks
+        resource:
           type: string
-          description: A human-readable message providing more details about the error.
-          example: Request Limit Reached
-          x-speakeasy-error-message: true
-        detail:
+          description: Unified API resource name
+          example: bank-feed-accounts
+        operation:
           type: string
-          description: Contains parameter or domain specific information related to the error and why it occurred.
-          example: You have reached your limit of 2000
-        ref:
-          type: string
-          description: Link to documentation of error type
-          example: https://developers.apideck.com/errors#requestlimiterror
+          description: Operation performed
+          example: update
+        data:
+          $ref: '#/components/schemas/UnifiedId'
+        _raw:
+          $ref: '#/components/schemas/Raw'
+    CreatedBy:
+      type:
+      - string
+      - 'null'
+      title: Created by
+      description: The user who created the object.
+      example: '12345'
+      readOnly: true
+    UpdatedAt:
+      type:
+      - string
+      - 'null'
+      title: Updated at (timestamp)
+      description: The date and time when the object was last updated.
+      format: date-time
+      example: '2020-09-30T07:43:32.000Z'
+      readOnly: true
     CreatedAt:
       type:
       - string
@@ -536,6 +568,14 @@ components:
       format: date-time
       example: '2020-09-30T07:43:32.000Z'
       readOnly: true
+    CustomMappings:
+      type:
+      - object
+      - 'null'
+      x-apideck-schema-id: CustomMappings
+      description: When custom mappings are configured on the resource, the result is included here.
+      readOnly: true
+      additionalProperties: true
     BankFeedAccount:
       type: object
       x-apideck-schema-id: BankFeedAccount
@@ -618,6 +658,516 @@ components:
           $ref: '#/components/schemas/UpdatedBy'
         created_by:
           $ref: '#/components/schemas/CreatedBy'
+    DeleteBankFeedAccountResponse:
+      type: object
+      x-apideck-schema-id: DeleteBankFeedAccountResponse
+      required:
+      - status_code
+      - status
+      - service
+      - resource
+      - operation
+      - data
+      properties:
+        status_code:
+          type: integer
+          description: HTTP Response Status Code
+          example: 200
+        status:
+          type: string
+          description: HTTP Response Status
+          example: OK
+        service:
+          type: string
+          description: Apideck ID of service provider
+          example: quickbooks
+        resource:
+          type: string
+          description: Unified API resource name
+          example: bank-feed-accounts
+        operation:
+          type: string
+          description: Operation performed
+          example: delete
+        data:
+          $ref: '#/components/schemas/UnifiedId'
+        _raw:
+          $ref: '#/components/schemas/Raw'
+    UnauthorizedResponse:
+      type: object
+      x-apideck-schema-id: Unauthorized
+      properties:
+        status_code:
+          type: number
+          description: HTTP status code
+          example: 401
+        error:
+          type: string
+          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
+          example: Unauthorized
+        type_name:
+          type: string
+          description: The type of error returned
+          example: UnauthorizedError
+        message:
+          type: string
+          description: A human-readable message providing more details about the error.
+          example: Unauthorized Request
+          x-speakeasy-error-message: true
+        detail:
+          anyOf:
+          - type: string
+            example: Missing authentication
+          - type: object
+            x-speakeasy-detail: true
+            properties:
+              type:
+                type: string
+                description: Error type identifier
+                example: refresh_token_connector_error
+              message:
+                type: string
+                description: Detailed error message
+                example: Token refresh failed
+              debug:
+                type: object
+                description: Debug information including request/response details and OAuth timing metadata
+                properties:
+                  request:
+                    type: object
+                    description: HTTP request details
+                  response:
+                    type: object
+                    description: HTTP response details
+                  message:
+                    type: string
+                    description: Error message from downstream provider or network layer
+                  code:
+                    type: string
+                    description: Error code (e.g., ETIMEDOUT, ECONNREFUSED)
+                  credentials_expire_at_ms:
+                    type: number
+                    description: Unix timestamp (milliseconds) when credentials will be deleted if not refreshed. Only present for non-recoverable errors (401, 400). Credentials are preserved indefinitely for recoverable/network errors.
+                    example: 1620172800000
+                  retry_after_ms:
+                    type: number
+                    description: Unix timestamp (milliseconds) when token refresh retry is allowed after cooldown period expires.
+                    example: 1620000030000
+                  cooldown_remaining_ms:
+                    type: number
+                    description: Milliseconds remaining in cooldown period before retry is allowed.
+                    example: 30000
+            example:
+              type: refresh_token_connector_error
+              message: Token refresh failed with 401 error
+              debug:
+                response:
+                  statusCode: 401
+                  data:
+                    error: invalid_grant
+                credentials_expire_at_ms: 1620172800000
+                retry_after_ms: 1620000030000
+                cooldown_remaining_ms: 30000
+          description: Contains parameter or domain specific information related to the error and why it occurred.
+        ref:
+          type: string
+          description: Link to documentation of error type
+          example: https://developers.apideck.com/errors#unauthorizederror
+    UpdatedBy:
+      type:
+      - string
+      - 'null'
+      title: Updated by
+      description: The user who last updated the object.
+      example: '12345'
+      readOnly: true
+    UnifiedId:
+      title: UnifiedId
+      type: object
+      x-apideck-schema-id: Id
+      description: A object containing a unique identifier for the resource that was created, updated, or deleted.
+      required:
+      - id
+      properties:
+        id:
+          title: Id
+          description: The unique identifier of the resource
+          type: string
+          readOnly: true
+          example: '12345'
+    Meta:
+      type: object
+      x-apideck-schema-id: Meta
+      description: Response metadata
+      properties:
+        items_on_page:
+          type: integer
+          description: Number of items returned in the data property of the response
+          example: 50
+        cursors:
+          type: object
+          description: Cursors to navigate to previous or next pages through the API
+          properties:
+            previous:
+              type:
+              - string
+              - 'null'
+              description: Cursor to navigate to the previous page of results through the API
+              example: em9oby1jcm06OnBhZ2U6OjE=
+            current:
+              type:
+              - string
+              - 'null'
+              description: Cursor to navigate to the current page of results through the API
+              example: em9oby1jcm06OnBhZ2U6OjI=
+            next:
+              type:
+              - string
+              - 'null'
+              description: Cursor to navigate to the next page of results through the API
+              example: em9oby1jcm06OnBhZ2U6OjM=
+    CustomField:
+      type: object
+      x-apideck-schema-id: CustomField
+      additionalProperties: false
+      anyOf:
+      - required:
+        - id
+      - required:
+        - name
+      x-apideck-strict-any-of:
+      - required:
+        - id
+      - required:
+        - name
+      x-apideck-weights:
+        id: critical
+        value: critical
+        name: medium
+        description: edge-case
+      properties:
+        id:
+          title: ID
+          description: Unique identifier for the custom field.
+          type:
+          - string
+          - 'null'
+          example: '2389328923893298'
+        name:
+          title: Name
+          type:
+          - string
+          - 'null'
+          description: Name of the custom field.
+          example: employee_level
+        description:
+          title: Description
+          type:
+          - string
+          - 'null'
+          description: More information about the custom field
+          example: Employee Level
+        value:
+          anyOf:
+          - type:
+            - string
+            - 'null'
+            example: Uses Salesforce and Marketo
+          - type:
+            - number
+            - 'null'
+            example: 10
+          - type:
+            - boolean
+            - 'null'
+            example: true
+          - type:
+            - object
+            - 'null'
+            example:
+              foo: bar
+            additionalProperties: true
+          - type: array
+            items:
+              anyOf:
+              - type:
+                - string
+                - 'null'
+                example: Uses Salesforce and Marketo
+              - type:
+                - number
+                - 'null'
+                example: 10
+              - type:
+                - boolean
+                - 'null'
+                example: true
+              - type:
+                - object
+                - 'null'
+                example:
+                  foo: bar
+                additionalProperties: true
+    PaymentRequiredResponse:
+      type: object
+      x-apideck-schema-id: PaymentRequired
+      properties:
+        status_code:
+          type: number
+          description: HTTP status code
+          example: 402
+        error:
+          type: string
+          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
+          example: Payment Required
+        type_name:
+          type: string
+          description: The type of error returned
+          example: RequestLimitError
+        message:
+          type: string
+          description: A human-readable message providing more details about the error.
+          example: Request Limit Reached
+          x-speakeasy-error-message: true
+        detail:
+          type: string
+          description: Contains parameter or domain specific information related to the error and why it occurred.
+          example: You have reached your limit of 2000
+        ref:
+          type: string
+          description: Link to documentation of error type
+          example: https://developers.apideck.com/errors#requestlimiterror
+    NotFoundResponse:
+      type: object
+      x-apideck-schema-id: NotFound
+      properties:
+        status_code:
+          type: number
+          description: HTTP status code
+          example: 404
+        error:
+          type: string
+          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
+          example: Not Found
+        type_name:
+          type: string
+          description: The type of error returned
+          example: EntityNotFoundError
+        message:
+          type: string
+          description: A human-readable message providing more details about the error.
+          example: Unknown Widget
+          x-speakeasy-error-message: true
+        detail:
+          anyOf:
+          - type: string
+            example: 'Could not find widget with id: ''123'''
+          - type: object
+            x-speakeasy-detail: true
+            example:
+              not_found:
+                entity: widget
+                id: '123'
+          description: Contains parameter or domain specific information related to the error and why it occurred.
+        ref:
+          type: string
+          description: Link to documentation of error type
+          example: https://developers.apideck.com/errors#entitynotfounderror
+    CreateBankFeedAccountResponse:
+      type: object
+      x-apideck-schema-id: CreateBankFeedAccountResponse
+      required:
+      - status_code
+      - status
+      - service
+      - resource
+      - operation
+      - data
+      properties:
+        status_code:
+          type: integer
+          description: HTTP Response Status Code
+          example: 200
+        status:
+          type: string
+          description: HTTP Response Status
+          example: OK
+        service:
+          type: string
+          description: Apideck ID of service provider
+          example: xero
+        resource:
+          type: string
+          description: Unified API resource name
+          example: bills
+        operation:
+          type: string
+          description: Operation performed
+          example: add
+        data:
+          $ref: '#/components/schemas/UnifiedId'
+        _raw:
+          $ref: '#/components/schemas/Raw'
+    UnprocessableResponse:
+      type: object
+      x-apideck-schema-id: Unprocessable
+      properties:
+        status_code:
+          type: number
+          description: HTTP status code
+          example: 422
+        error:
+          type: string
+          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
+          example: Unprocessable Entity
+        type_name:
+          type: string
+          description: The type of error returned
+          example: InvalidStateError
+        message:
+          type: string
+          description: A human-readable message providing more details about the error.
+          example: Invalid State
+          x-speakeasy-error-message: true
+        detail:
+          anyOf:
+          - type: string
+            example: Unprocessable request, please verify your request headers and body.
+          - type: object
+            x-speakeasy-detail: true
+            example:
+              error: Unprocessable
+              message: Unprocessable request, please verify your request headers and body.
+          description: Contains parameter or domain specific information related to the error and why it occurred.
+        ref:
+          type: string
+          description: Link to documentation of error type
+          example: https://developers.apideck.com/errors#invalidstateerror
+    Links:
+      type: object
+      x-apideck-schema-id: Links
+      description: Links to navigate to previous or next pages through the API
+      properties:
+        previous:
+          type:
+          - string
+          - 'null'
+          description: Link to navigate to the previous page through the API
+          example: https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjE%3D
+        current:
+          type: string
+          description: Link to navigate to the current page through the API
+          example: https://unify.apideck.com/crm/companies
+        next:
+          type:
+          - string
+          - 'null'
+          description: Link to navigate to the previous page through the API
+          example: https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjM
+    UnexpectedErrorResponse:
+      type: object
+      x-apideck-schema-id: Error
+      properties:
+        status_code:
+          type: number
+          description: HTTP status code
+          example: 400
+        error:
+          type: string
+          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
+          example: Bad Request
+        type_name:
+          type: string
+          description: The type of error returned
+          example: RequestHeadersValidationError
+        message:
+          type: string
+          description: A human-readable message providing more details about the error.
+          example: Invalid Params
+          x-speakeasy-error-message: true
+        detail:
+          anyOf:
+          - type: string
+            example: 'Missing Header: x-apideck-consumer-id'
+          - type: object
+            x-speakeasy-detail: true
+            example:
+              missing:
+              - x-apideck-consumer-id: required
+          description: Contains parameter or domain specific information related to the error and why it occurred.
+        ref:
+          type: string
+          description: Link to documentation of error type
+          example: https://developers.apideck.com/errors#unauthorizederror
+    Id:
+      type: string
+      title: ID
+      description: A unique identifier for an object.
+      example: '12345'
+      readOnly: true
+    BadRequestResponse:
+      type: object
+      x-apideck-schema-id: BadRequest
+      properties:
+        status_code:
+          type: number
+          description: HTTP status code
+          example: 400
+        error:
+          type: string
+          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
+          example: Bad Request
+        type_name:
+          type: string
+          description: The type of error returned
+          example: RequestValidationError
+        message:
+          type: string
+          description: A human-readable message providing more details about the error.
+          example: Invalid Params
+          x-speakeasy-error-message: true
+        detail:
+          anyOf:
+          - type: string
+            example: Missing property foobar
+          - type: object
+            x-speakeasy-detail: true
+            example:
+              missing:
+              - foobar: required
+          description: Contains parameter or domain specific information related to the error and why it occurred.
+        ref:
+          type: string
+          description: Link to documentation of error type
+          example: https://developers.apideck.com/errors#requestvalidationerror
+        downstream_errors:
+          type: array
+          description: Contains downstream errors returned from the connector. Only present when type_name is ConnectorExecutionError.
+          items:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Error message from the downstream provider
+              detail:
+                type: string
+                description: Additional error details
+              code:
+                type: string
+                description: Error code from the downstream provider
+          example:
+          - message: Account code '100' has been archived or deleted
+            detail: Each line item must reference a valid account
+            code: VALIDATION_ERROR
+    PassThroughQuery:
+      type: object
+      additionalProperties: true
+      properties:
+        example_downstream_property:
+          type: string
+          description: All passthrough query parameters are passed along to the connector as is (?pass_through[search]=leads becomes ?search=leads)
+      example:
+        search: San Francisco
     Currency:
       type:
       - string
@@ -1176,556 +1726,6 @@ components:
         description: Bitcoin
       - name: ETH
         description: Ether
-    CreateBankFeedAccountResponse:
-      type: object
-      x-apideck-schema-id: CreateBankFeedAccountResponse
-      required:
-      - status_code
-      - status
-      - service
-      - resource
-      - operation
-      - data
-      properties:
-        status_code:
-          type: integer
-          description: HTTP Response Status Code
-          example: 200
-        status:
-          type: string
-          description: HTTP Response Status
-          example: OK
-        service:
-          type: string
-          description: Apideck ID of service provider
-          example: xero
-        resource:
-          type: string
-          description: Unified API resource name
-          example: bills
-        operation:
-          type: string
-          description: Operation performed
-          example: add
-        data:
-          $ref: '#/components/schemas/UnifiedId'
-        _raw:
-          $ref: '#/components/schemas/Raw'
-    DeleteBankFeedAccountResponse:
-      type: object
-      x-apideck-schema-id: DeleteBankFeedAccountResponse
-      required:
-      - status_code
-      - status
-      - service
-      - resource
-      - operation
-      - data
-      properties:
-        status_code:
-          type: integer
-          description: HTTP Response Status Code
-          example: 200
-        status:
-          type: string
-          description: HTTP Response Status
-          example: OK
-        service:
-          type: string
-          description: Apideck ID of service provider
-          example: quickbooks
-        resource:
-          type: string
-          description: Unified API resource name
-          example: bank-feed-accounts
-        operation:
-          type: string
-          description: Operation performed
-          example: delete
-        data:
-          $ref: '#/components/schemas/UnifiedId'
-        _raw:
-          $ref: '#/components/schemas/Raw'
-    GetBankFeedAccountResponse:
-      type: object
-      x-apideck-schema-id: GetBankFeedAccountResponse
-      required:
-      - status_code
-      - status
-      - service
-      - resource
-      - operation
-      - data
-      properties:
-        status_code:
-          type: integer
-          description: HTTP Response Status Code
-          example: 200
-        status:
-          type: string
-          description: HTTP Response Status
-          example: OK
-        service:
-          type: string
-          description: Apideck ID of service provider
-          example: quickbooks
-        resource:
-          type: string
-          description: Unified API resource name
-          example: bank-feed-accounts
-        operation:
-          type: string
-          description: Operation performed
-          example: one
-        data:
-          $ref: '#/components/schemas/BankFeedAccount'
-        _raw:
-          $ref: '#/components/schemas/Raw'
-    UpdatedBy:
-      type:
-      - string
-      - 'null'
-      title: Updated by
-      description: The user who last updated the object.
-      example: '12345'
-      readOnly: true
-    UnifiedId:
-      title: UnifiedId
-      type: object
-      x-apideck-schema-id: Id
-      description: A object containing a unique identifier for the resource that was created, updated, or deleted.
-      required:
-      - id
-      properties:
-        id:
-          title: Id
-          description: The unique identifier of the resource
-          type: string
-          readOnly: true
-          example: '12345'
-    UpdatedAt:
-      type:
-      - string
-      - 'null'
-      title: Updated at (timestamp)
-      description: The date and time when the object was last updated.
-      format: date-time
-      example: '2020-09-30T07:43:32.000Z'
-      readOnly: true
-    GetBankFeedAccountsResponse:
-      type: object
-      x-apideck-schema-id: GetBankFeedAccountsResponse
-      required:
-      - status_code
-      - status
-      - service
-      - resource
-      - operation
-      - data
-      properties:
-        status_code:
-          type: integer
-          description: HTTP Response Status Code
-          example: 200
-        status:
-          type: string
-          description: HTTP Response Status
-          example: OK
-        service:
-          type: string
-          description: Apideck ID of service provider
-          example: quickbooks
-        resource:
-          type: string
-          description: Unified API resource name
-          example: bank-feed-accounts
-        operation:
-          type: string
-          description: Operation performed
-          example: all
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/BankFeedAccount'
-        meta:
-          $ref: '#/components/schemas/Meta'
-        links:
-          $ref: '#/components/schemas/Links'
-        _raw:
-          $ref: '#/components/schemas/Raw'
-    CustomMappings:
-      type:
-      - object
-      - 'null'
-      x-apideck-schema-id: CustomMappings
-      description: When custom mappings are configured on the resource, the result is included here.
-      readOnly: true
-      additionalProperties: true
-    UnauthorizedResponse:
-      type: object
-      x-apideck-schema-id: Unauthorized
-      properties:
-        status_code:
-          type: number
-          description: HTTP status code
-          example: 401
-        error:
-          type: string
-          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
-          example: Unauthorized
-        type_name:
-          type: string
-          description: The type of error returned
-          example: UnauthorizedError
-        message:
-          type: string
-          description: A human-readable message providing more details about the error.
-          example: Unauthorized Request
-          x-speakeasy-error-message: true
-        detail:
-          anyOf:
-          - type: string
-            example: Missing authentication
-          - type: object
-            x-speakeasy-detail: true
-            properties:
-              type:
-                type: string
-                description: Error type identifier
-                example: refresh_token_connector_error
-              message:
-                type: string
-                description: Detailed error message
-                example: Token refresh failed
-              debug:
-                type: object
-                description: Debug information including request/response details and OAuth timing metadata
-                properties:
-                  request:
-                    type: object
-                    description: HTTP request details
-                  response:
-                    type: object
-                    description: HTTP response details
-                  message:
-                    type: string
-                    description: Error message from downstream provider or network layer
-                  code:
-                    type: string
-                    description: Error code (e.g., ETIMEDOUT, ECONNREFUSED)
-                  credentials_expire_at_ms:
-                    type: number
-                    description: Unix timestamp (milliseconds) when credentials will be deleted if not refreshed. Only present for non-recoverable errors (401, 400). Credentials are preserved indefinitely for recoverable/network errors.
-                    example: 1620172800000
-                  retry_after_ms:
-                    type: number
-                    description: Unix timestamp (milliseconds) when token refresh retry is allowed after cooldown period expires.
-                    example: 1620000030000
-                  cooldown_remaining_ms:
-                    type: number
-                    description: Milliseconds remaining in cooldown period before retry is allowed.
-                    example: 30000
-            example:
-              type: refresh_token_connector_error
-              message: Token refresh failed with 401 error
-              debug:
-                response:
-                  statusCode: 401
-                  data:
-                    error: invalid_grant
-                credentials_expire_at_ms: 1620172800000
-                retry_after_ms: 1620000030000
-                cooldown_remaining_ms: 30000
-          description: Contains parameter or domain specific information related to the error and why it occurred.
-        ref:
-          type: string
-          description: Link to documentation of error type
-          example: https://developers.apideck.com/errors#unauthorizederror
-    PassThroughQuery:
-      type: object
-      additionalProperties: true
-      properties:
-        example_downstream_property:
-          type: string
-          description: All passthrough query parameters are passed along to the connector as is (?pass_through[search]=leads becomes ?search=leads)
-      example:
-        search: San Francisco
-    UpdateBankFeedAccountResponse:
-      type: object
-      x-apideck-schema-id: UpdateBankFeedAccountResponse
-      required:
-      - status_code
-      - status
-      - service
-      - resource
-      - operation
-      - data
-      properties:
-        status_code:
-          type: integer
-          description: HTTP Response Status Code
-          example: 200
-        status:
-          type: string
-          description: HTTP Response Status
-          example: OK
-        service:
-          type: string
-          description: Apideck ID of service provider
-          example: quickbooks
-        resource:
-          type: string
-          description: Unified API resource name
-          example: bank-feed-accounts
-        operation:
-          type: string
-          description: Operation performed
-          example: update
-        data:
-          $ref: '#/components/schemas/UnifiedId'
-        _raw:
-          $ref: '#/components/schemas/Raw'
-    Raw:
-      title: raw
-      type:
-      - object
-      - 'null'
-      x-apideck-schema-id: Raw
-      description: Raw response from the integration when raw=true query param is provided
-      additionalProperties: true
-    UnexpectedErrorResponse:
-      type: object
-      x-apideck-schema-id: Error
-      properties:
-        status_code:
-          type: number
-          description: HTTP status code
-          example: 400
-        error:
-          type: string
-          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
-          example: Bad Request
-        type_name:
-          type: string
-          description: The type of error returned
-          example: RequestHeadersValidationError
-        message:
-          type: string
-          description: A human-readable message providing more details about the error.
-          example: Invalid Params
-          x-speakeasy-error-message: true
-        detail:
-          anyOf:
-          - type: string
-            example: 'Missing Header: x-apideck-consumer-id'
-          - type: object
-            x-speakeasy-detail: true
-            example:
-              missing:
-              - x-apideck-consumer-id: required
-          description: Contains parameter or domain specific information related to the error and why it occurred.
-        ref:
-          type: string
-          description: Link to documentation of error type
-          example: https://developers.apideck.com/errors#unauthorizederror
-    UnprocessableResponse:
-      type: object
-      x-apideck-schema-id: Unprocessable
-      properties:
-        status_code:
-          type: number
-          description: HTTP status code
-          example: 422
-        error:
-          type: string
-          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
-          example: Unprocessable Entity
-        type_name:
-          type: string
-          description: The type of error returned
-          example: InvalidStateError
-        message:
-          type: string
-          description: A human-readable message providing more details about the error.
-          example: Invalid State
-          x-speakeasy-error-message: true
-        detail:
-          anyOf:
-          - type: string
-            example: Unprocessable request, please verify your request headers and body.
-          - type: object
-            x-speakeasy-detail: true
-            example:
-              error: Unprocessable
-              message: Unprocessable request, please verify your request headers and body.
-          description: Contains parameter or domain specific information related to the error and why it occurred.
-        ref:
-          type: string
-          description: Link to documentation of error type
-          example: https://developers.apideck.com/errors#invalidstateerror
-    Id:
-      type: string
-      title: ID
-      description: A unique identifier for an object.
-      example: '12345'
-      readOnly: true
-    NotFoundResponse:
-      type: object
-      x-apideck-schema-id: NotFound
-      properties:
-        status_code:
-          type: number
-          description: HTTP status code
-          example: 404
-        error:
-          type: string
-          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
-          example: Not Found
-        type_name:
-          type: string
-          description: The type of error returned
-          example: EntityNotFoundError
-        message:
-          type: string
-          description: A human-readable message providing more details about the error.
-          example: Unknown Widget
-          x-speakeasy-error-message: true
-        detail:
-          anyOf:
-          - type: string
-            example: 'Could not find widget with id: ''123'''
-          - type: object
-            x-speakeasy-detail: true
-            example:
-              not_found:
-                entity: widget
-                id: '123'
-          description: Contains parameter or domain specific information related to the error and why it occurred.
-        ref:
-          type: string
-          description: Link to documentation of error type
-          example: https://developers.apideck.com/errors#entitynotfounderror
-    Meta:
-      type: object
-      x-apideck-schema-id: Meta
-      description: Response metadata
-      properties:
-        items_on_page:
-          type: integer
-          description: Number of items returned in the data property of the response
-          example: 50
-        cursors:
-          type: object
-          description: Cursors to navigate to previous or next pages through the API
-          properties:
-            previous:
-              type:
-              - string
-              - 'null'
-              description: Cursor to navigate to the previous page of results through the API
-              example: em9oby1jcm06OnBhZ2U6OjE=
-            current:
-              type:
-              - string
-              - 'null'
-              description: Cursor to navigate to the current page of results through the API
-              example: em9oby1jcm06OnBhZ2U6OjI=
-            next:
-              type:
-              - string
-              - 'null'
-              description: Cursor to navigate to the next page of results through the API
-              example: em9oby1jcm06OnBhZ2U6OjM=
-    CreatedBy:
-      type:
-      - string
-      - 'null'
-      title: Created by
-      description: The user who created the object.
-      example: '12345'
-      readOnly: true
-    CustomField:
-      type: object
-      x-apideck-schema-id: CustomField
-      additionalProperties: false
-      anyOf:
-      - required:
-        - id
-      - required:
-        - name
-      x-apideck-strict-any-of:
-      - required:
-        - id
-      - required:
-        - name
-      x-apideck-weights:
-        id: critical
-        value: critical
-        name: medium
-        description: edge-case
-      properties:
-        id:
-          title: ID
-          description: Unique identifier for the custom field.
-          type:
-          - string
-          - 'null'
-          example: '2389328923893298'
-        name:
-          title: Name
-          type:
-          - string
-          - 'null'
-          description: Name of the custom field.
-          example: employee_level
-        description:
-          title: Description
-          type:
-          - string
-          - 'null'
-          description: More information about the custom field
-          example: Employee Level
-        value:
-          anyOf:
-          - type:
-            - string
-            - 'null'
-            example: Uses Salesforce and Marketo
-          - type:
-            - number
-            - 'null'
-            example: 10
-          - type:
-            - boolean
-            - 'null'
-            example: true
-          - type:
-            - object
-            - 'null'
-            example:
-              foo: bar
-            additionalProperties: true
-          - type: array
-            items:
-              anyOf:
-              - type:
-                - string
-                - 'null'
-                example: Uses Salesforce and Marketo
-              - type:
-                - number
-                - 'null'
-                example: 10
-              - type:
-                - boolean
-                - 'null'
-                example: true
-              - type:
-                - object
-                - 'null'
-                example:
-                  foo: bar
-                additionalProperties: true
   securitySchemes:
     apiKey:
       type: apiKey

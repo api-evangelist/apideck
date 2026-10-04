@@ -337,7 +337,235 @@ paths:
         source:
           id: id_example
 components:
+  responses:
+    NotFoundResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NotFoundResponse'
+      description: The specified resource was not found
+    UnprocessableResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnprocessableResponse'
+      description: Unprocessable
+    GetOpportunitiesResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/GetOpportunitiesResponse'
+      description: Opportunities
+    PaymentRequiredResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PaymentRequiredResponse'
+      description: Payment Required
+    CreateOpportunityResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CreateOpportunityResponse'
+      description: Opportunity created
+    UpdateOpportunityResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UpdateOpportunityResponse'
+      description: Opportunity updated
+    DeleteOpportunityResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/DeleteOpportunityResponse'
+      description: Opportunity deleted
+    UnexpectedErrorResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnexpectedErrorResponse'
+      description: Unexpected error
+    GetOpportunityResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/GetOpportunityResponse'
+      description: Opportunity
+      links:
+        company:
+          operationId: companiesOne
+          parameters:
+            id: $response.body#/data/company_id
+        primarycontact:
+          operationId: contactsOne
+          parameters:
+            id: $response.body#/data/primary_contact_id
+        contact:
+          operationId: contactsOne
+          parameters:
+            id: $response.body#/data/contact_id
+        lead:
+          operationId: leadsOne
+          parameters:
+            id: $response.body#/data/lead_id
+        pipelineById:
+          operationId: pipelinesOne
+          parameters:
+            id: $response.body#/data/pipeline_id
+        owner:
+          operationId: usersOne
+          parameters:
+            id: $response.body#/data/owner_id
+    UnauthorizedResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnauthorizedResponse'
+      description: Unauthorized
+    BadRequestResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BadRequestResponse'
+      description: Bad Request
+  parameters:
+    passThrough:
+      name: pass_through
+      in: query
+      description: 'Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads'
+      style: deepObject
+      explode: true
+      schema:
+        $ref: '#/components/schemas/PassThroughQuery'
+    id:
+      in: path
+      name: id
+      schema:
+        type: string
+      required: true
+      description: ID of the record you are acting upon.
+    serviceId:
+      name: x-apideck-service-id
+      in: header
+      description: Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
+      schema:
+        type: string
+      example: salesforce
+      x-speakeasy-name-override: serviceId
+    applicationId:
+      name: x-apideck-app-id
+      in: header
+      required: true
+      description: The ID of your Unify application
+      schema:
+        type: string
+        minLength: 1
+      example: dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX
+      x-speakeasy-name-override: appId
+    raw:
+      name: raw
+      in: query
+      description: Include raw response. Mostly used for debugging purposes
+      schema:
+        type: boolean
+        default: false
+    limit:
+      name: limit
+      in: query
+      description: Number of results to return. Minimum 1, Maximum 200, Default 20
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 200
+        default: 20
+    cursor:
+      name: cursor
+      in: query
+      description: Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
+      schema:
+        type:
+        - string
+        - 'null'
+    opportunitiesFilter:
+      name: filter
+      in: query
+      description: Apply filters
+      style: deepObject
+      explode: true
+      schema:
+        $ref: '#/components/schemas/OpportunitiesFilter'
+    fields:
+      name: fields
+      in: query
+      description: 'The ''fields'' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. <br /><br />Example: `fields=name,email,addresses.city`<br /><br />In the example above, the response will only include the fields "name", "email" and "addresses.city". If any other fields are available, they will be excluded.'
+      example: id,updated_at
+      schema:
+        type:
+        - string
+        - 'null'
+    opportunitiesSort:
+      name: sort
+      in: query
+      description: Apply sorting
+      style: deepObject
+      explode: true
+      schema:
+        $ref: '#/components/schemas/OpportunitiesSort'
+    consumerId:
+      name: x-apideck-consumer-id
+      in: header
+      required: true
+      description: ID of the consumer which you want to get or push data from
+      schema:
+        type: string
+      example: test-consumer
+      x-speakeasy-name-override: consumerId
   schemas:
+    OpportunitiesFilter:
+      type: object
+      x-apideck-schema-id: OpportunitiesFilter
+      example:
+        status: Completed
+        monetary_amount: 75000
+      properties:
+        title:
+          type: string
+          description: Title of the opportunity to filter on
+          example: Tesla deal
+        status:
+          type: string
+          description: Status to filter on
+          example: Completed
+        monetary_amount:
+          type: number
+          description: Monetary amount to filter on
+          example: 75000
+        win_probability:
+          type: number
+          description: Win probability to filter on
+          example: 50
+        company_id:
+          type: string
+          description: Company ID to filter on
+          example: '1234'
+        owner_id:
+          type: string
+          description: Owner ID to filter on
+          example: '1234'
+        primary_contact_id:
+          type: string
+          description: Primary contact ID to filter on
+          example: '1234'
+      additionalProperties: false
+    Raw:
+      title: raw
+      type:
+      - object
+      - 'null'
+      x-apideck-schema-id: Raw
+      description: Raw response from the integration when raw=true query param is provided
+      additionalProperties: true
     GetOpportunitiesResponse:
       type: object
       x-apideck-schema-id: GetOpportunitiesResponse
@@ -379,6 +607,891 @@ components:
           $ref: '#/components/schemas/Meta'
         links:
           $ref: '#/components/schemas/Links'
+    CreateOpportunityResponse:
+      type: object
+      x-apideck-schema-id: CreateOpportunityResponse
+      required:
+      - status_code
+      - status
+      - service
+      - resource
+      - operation
+      - data
+      properties:
+        status_code:
+          type: integer
+          description: HTTP Response Status Code
+          example: 200
+        status:
+          type: string
+          description: HTTP Response Status
+          example: OK
+        service:
+          type: string
+          description: Apideck ID of service provider
+          example: zoho-crm
+        resource:
+          type: string
+          description: Unified API resource name
+          example: opportunities
+        operation:
+          type: string
+          description: Operation performed
+          example: add
+        data:
+          $ref: '#/components/schemas/UnifiedId'
+        _raw:
+          $ref: '#/components/schemas/Raw'
+    DeleteOpportunityResponse:
+      type: object
+      x-apideck-schema-id: DeleteOpportunityResponse
+      required:
+      - status_code
+      - status
+      - service
+      - resource
+      - operation
+      - data
+      properties:
+        status_code:
+          type: integer
+          description: HTTP Response Status Code
+          example: 200
+        status:
+          type: string
+          description: HTTP Response Status
+          example: OK
+        service:
+          type: string
+          description: Apideck ID of service provider
+          example: zoho-crm
+        resource:
+          type: string
+          description: Unified API resource name
+          example: companies
+        operation:
+          type: string
+          description: Operation performed
+          example: delete
+        data:
+          $ref: '#/components/schemas/UnifiedId'
+        _raw:
+          $ref: '#/components/schemas/Raw'
+    CustomMappings:
+      type:
+      - object
+      - 'null'
+      x-apideck-schema-id: CustomMappings
+      description: When custom mappings are configured on the resource, the result is included here.
+      readOnly: true
+      additionalProperties: true
+    OpportunitiesSort:
+      type: object
+      x-apideck-schema-id: OpportunitiesSort
+      example:
+        by: created_at
+        direction: desc
+      properties:
+        by:
+          type: string
+          x-apideck-enum-id: opportunities.sort_by
+          description: The field on which to sort the Opportunities
+          enum:
+          - created_at
+          - updated_at
+          - title
+          - win_probability
+          - monetary_amount
+          - status
+          example: created_at
+        direction:
+          $ref: '#/components/schemas/SortDirection'
+      additionalProperties: false
+    Opportunity:
+      type: object
+      x-apideck-schema-id: Opportunity
+      x-apideck-weights:
+        id: critical
+        title: critical
+        primary_contact_id: critical
+        description: medium
+        type: high
+        monetary_amount: high
+        currency: high
+        win_probability: high
+        expected_revenue: medium
+        close_date: medium
+        loss_reason_id: edge-case
+        loss_reason: edge-case
+        won_reason_id: edge-case
+        won_reason: edge-case
+        pipeline_id: edge-case
+        pipeline_stage_id: edge-case
+        source_id: medium
+        lead_id: medium
+        lead_source: edge-case
+        contact_id: medium
+        company_id: high
+        company_name: medium
+        owner_id: high
+        priority: medium
+        status: high
+        status_id: edge-case
+        tags: low
+        interaction_count: low
+        custom_fields: medium
+        stage_last_changed_at: edge-case
+        last_activity_at: medium
+        deleted: low
+        date_stage_changed: edge-case
+        date_last_contacted: medium
+        date_lead_created: edge-case
+        updated_by: edge-case
+        created_by: edge-case
+        updated_at: medium
+        created_at: medium
+      required:
+      - title
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+          example: '12345'
+          description: A unique identifier for the opportunity.
+          readOnly: true
+        title:
+          type: string
+          description: The title or name of the opportunity.
+          example: New Rocket
+          minLength: 1
+        primary_contact_id:
+          type:
+          - string
+          - 'null'
+          example: '12345'
+          description: The unique identifier of the primary contact associated with the opportunity.
+        description:
+          type:
+          - string
+          - 'null'
+          description: A description of the opportunity.
+          example: Opportunities are created for People and Companies that are interested in buying your products or services. Create Opportunities for People and Companies to move them through one of your Pipelines.
+        type:
+          type:
+          - string
+          - 'null'
+          description: The type of the opportunity
+          example: Existing Customer - Upgrade
+        monetary_amount:
+          type:
+          - number
+          - 'null'
+          description: The monetary value associated with the opportunity
+          example: 75000
+        currency:
+          $ref: '#/components/schemas/Currency'
+        win_probability:
+          type:
+          - number
+          - 'null'
+          description: The probability of winning the opportunity, expressed as a percentage.
+          example: 40
+        expected_revenue:
+          description: The expected revenue from the opportunity
+          type:
+          - number
+          - 'null'
+          example: 75000
+          readOnly: true
+        close_date:
+          type:
+          - string
+          - 'null'
+          description: The actual closing date for the opportunity. If close_date is null, the opportunity is not closed yet.
+          example: '2020-10-30'
+          format: date
+        loss_reason_id:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the reason why the opportunity was lost.
+          example: '12345'
+        loss_reason:
+          type:
+          - string
+          - 'null'
+          description: The reason why the opportunity was lost.
+          example: No budget
+        won_reason_id:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the reason why the opportunity was won.
+          example: '12345'
+        won_reason:
+          type:
+          - string
+          - 'null'
+          description: The reason why the opportunity was won.
+          example: Best pitch
+        pipeline_id:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the pipeline associated with the opportunity
+          example: '12345'
+        pipeline_stage_id:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the stage in the pipeline associated with the opportunity.
+          example: '12345'
+        source_id:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the source of the opportunity.
+          example: '12345'
+        lead_id:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the lead associated with the opportunity.
+          example: '12345'
+        lead_source:
+          description: The source of the lead associated with the opportunity.
+          type:
+          - string
+          - 'null'
+          example: Website
+        contact_id:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the contact associated with the opportunity.
+          example: '12345'
+        contact_ids:
+          type: array
+          description: An array of unique identifiers of all contacts associated with the opportunity.
+          items:
+            type: string
+            example: '12345'
+        company_id:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the company associated with the opportunity.
+          example: '12345'
+        company_name:
+          type:
+          - string
+          - 'null'
+          description: The name of the company associated with the opportunity.
+          example: Copper
+        owner_id:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the user who owns the opportunity.
+          example: '12345'
+        priority:
+          type:
+          - string
+          - 'null'
+          description: The priority level of the opportunity.
+          example: None
+        status:
+          type:
+          - string
+          - 'null'
+          description: The current status of the opportunity.
+          example: Open
+        status_id:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the current status of the opportunity.
+          example: '12345'
+        tags:
+          $ref: '#/components/schemas/Tags'
+        interaction_count:
+          type:
+          - number
+          - 'null'
+          example: 0
+          description: The number of interactions with the opportunity.
+          readOnly: true
+        custom_fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomField'
+        stage_last_changed_at:
+          type:
+          - string
+          - 'null'
+          example: '2020-09-30T07:43:32.000Z'
+          description: The date and time when the stage of the opportunity was last changed.
+          format: date-time
+        last_activity_at:
+          type:
+          - string
+          - 'null'
+          example: '2020-09-30T07:43:32.000Z'
+          description: The date and time of the last activity associated with the opportunity.
+          readOnly: true
+        deleted:
+          type: boolean
+          description: Indicates whether the opportunity has been deleted.
+          example: false
+          readOnly: true
+        date_stage_changed:
+          type:
+          - string
+          - 'null'
+          description: The date and time when the stage of the opportunity was last changed.
+          example: '2020-09-30T00:00:00.000Z'
+          format: date-time
+          readOnly: true
+        date_last_contacted:
+          type:
+          - string
+          - 'null'
+          description: The date and time when the opportunity was last contacted.
+          example: '2020-09-30T00:00:00.000Z'
+          format: date-time
+          readOnly: true
+        date_lead_created:
+          type:
+          - string
+          - 'null'
+          example: '2020-09-30T00:00:00.000Z'
+          description: The date and time when the lead associated with the opportunity was created.
+          format: date-time
+          readOnly: true
+        custom_mappings:
+          $ref: '#/components/schemas/CustomMappings'
+        updated_by:
+          type:
+          - string
+          - 'null'
+          example: '12345'
+          description: The unique identifier of the user who last updated the opportunity.
+          readOnly: true
+        created_by:
+          type:
+          - string
+          - 'null'
+          example: '12345'
+          description: The unique identifier of the user who created the opportunity.
+          readOnly: true
+        updated_at:
+          type:
+          - string
+          - 'null'
+          example: '2020-09-30T07:43:32.000Z'
+          format: date-time
+          description: The date and time when the opportunity was last updated.
+          readOnly: true
+        created_at:
+          type:
+          - string
+          - 'null'
+          example: '2020-09-30T07:43:32.000Z'
+          format: date-time
+          description: The date and time when the opportunity was created.
+          readOnly: true
+        pass_through:
+          $ref: '#/components/schemas/PassThroughBody'
+    SortDirection:
+      type: string
+      x-apideck-schema-id: SortDirection
+      description: The direction in which to sort the results
+      x-apideck-enum-id: sort_direction
+      enum:
+      - asc
+      - desc
+      default: asc
+    UnauthorizedResponse:
+      type: object
+      x-apideck-schema-id: Unauthorized
+      properties:
+        status_code:
+          type: number
+          description: HTTP status code
+          example: 401
+        error:
+          type: string
+          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
+          example: Unauthorized
+        type_name:
+          type: string
+          description: The type of error returned
+          example: UnauthorizedError
+        message:
+          type: string
+          description: A human-readable message providing more details about the error.
+          example: Unauthorized Request
+          x-speakeasy-error-message: true
+        detail:
+          anyOf:
+          - type: string
+            example: Missing authentication
+          - type: object
+            x-speakeasy-detail: true
+            properties:
+              type:
+                type: string
+                description: Error type identifier
+                example: refresh_token_connector_error
+              message:
+                type: string
+                description: Detailed error message
+                example: Token refresh failed
+              debug:
+                type: object
+                description: Debug information including request/response details and OAuth timing metadata
+                properties:
+                  request:
+                    type: object
+                    description: HTTP request details
+                  response:
+                    type: object
+                    description: HTTP response details
+                  message:
+                    type: string
+                    description: Error message from downstream provider or network layer
+                  code:
+                    type: string
+                    description: Error code (e.g., ETIMEDOUT, ECONNREFUSED)
+                  credentials_expire_at_ms:
+                    type: number
+                    description: Unix timestamp (milliseconds) when credentials will be deleted if not refreshed. Only present for non-recoverable errors (401, 400). Credentials are preserved indefinitely for recoverable/network errors.
+                    example: 1620172800000
+                  retry_after_ms:
+                    type: number
+                    description: Unix timestamp (milliseconds) when token refresh retry is allowed after cooldown period expires.
+                    example: 1620000030000
+                  cooldown_remaining_ms:
+                    type: number
+                    description: Milliseconds remaining in cooldown period before retry is allowed.
+                    example: 30000
+            example:
+              type: refresh_token_connector_error
+              message: Token refresh failed with 401 error
+              debug:
+                response:
+                  statusCode: 401
+                  data:
+                    error: invalid_grant
+                credentials_expire_at_ms: 1620172800000
+                retry_after_ms: 1620000030000
+                cooldown_remaining_ms: 30000
+          description: Contains parameter or domain specific information related to the error and why it occurred.
+        ref:
+          type: string
+          description: Link to documentation of error type
+          example: https://developers.apideck.com/errors#unauthorizederror
+    PassThroughBody:
+      type: array
+      description: The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+      items:
+        type: object
+        properties:
+          service_id:
+            type: string
+            description: Identifier for the service to which this pass_through should be applied.
+          operation_id:
+            type: string
+            description: Optional identifier for a workflow operation to which this pass_through should be applied. This is useful for Unify calls that are making more than one downstream request.
+          extend_object:
+            type: object
+            additionalProperties: true
+            description: Simple object allowing any properties for direct extension.
+          extend_paths:
+            type: array
+            description: Array of objects for structured data modifications via paths.
+            items:
+              type: object
+              properties:
+                path:
+                  type: string
+                  description: JSONPath string specifying where to apply the value.
+                  example: $.nested.property
+                value:
+                  description: The value to set at the specified path, can be any type.
+                  example:
+                    TaxClassificationRef:
+                      value: EUC-99990201-V1-00020000
+              required:
+              - path
+              - value
+              additionalProperties: false
+        required:
+        - service_id
+        additionalProperties: false
+        writeOnly: true
+    UnifiedId:
+      title: UnifiedId
+      type: object
+      x-apideck-schema-id: Id
+      description: A object containing a unique identifier for the resource that was created, updated, or deleted.
+      required:
+      - id
+      properties:
+        id:
+          title: Id
+          description: The unique identifier of the resource
+          type: string
+          readOnly: true
+          example: '12345'
+    GetOpportunityResponse:
+      type: object
+      x-apideck-schema-id: GetOpportunityResponse
+      required:
+      - status_code
+      - status
+      - service
+      - resource
+      - operation
+      - data
+      properties:
+        status_code:
+          type: integer
+          description: HTTP Response Status Code
+          example: 200
+        status:
+          type: string
+          description: HTTP Response Status
+          example: OK
+        service:
+          type: string
+          description: Apideck ID of service provider
+          example: zoho-crm
+        resource:
+          type: string
+          description: Unified API resource name
+          example: opportunities
+        operation:
+          type: string
+          description: Operation performed
+          example: one
+        data:
+          $ref: '#/components/schemas/Opportunity'
+        _raw:
+          $ref: '#/components/schemas/Raw'
+    CustomField:
+      type: object
+      x-apideck-schema-id: CustomField
+      additionalProperties: false
+      anyOf:
+      - required:
+        - id
+      - required:
+        - name
+      x-apideck-strict-any-of:
+      - required:
+        - id
+      - required:
+        - name
+      x-apideck-weights:
+        id: critical
+        value: critical
+        name: medium
+        description: edge-case
+      properties:
+        id:
+          title: ID
+          description: Unique identifier for the custom field.
+          type:
+          - string
+          - 'null'
+          example: '2389328923893298'
+        name:
+          title: Name
+          type:
+          - string
+          - 'null'
+          description: Name of the custom field.
+          example: employee_level
+        description:
+          title: Description
+          type:
+          - string
+          - 'null'
+          description: More information about the custom field
+          example: Employee Level
+        value:
+          anyOf:
+          - type:
+            - string
+            - 'null'
+            example: Uses Salesforce and Marketo
+          - type:
+            - number
+            - 'null'
+            example: 10
+          - type:
+            - boolean
+            - 'null'
+            example: true
+          - type:
+            - object
+            - 'null'
+            example:
+              foo: bar
+            additionalProperties: true
+          - type: array
+            items:
+              anyOf:
+              - type:
+                - string
+                - 'null'
+                example: Uses Salesforce and Marketo
+              - type:
+                - number
+                - 'null'
+                example: 10
+              - type:
+                - boolean
+                - 'null'
+                example: true
+              - type:
+                - object
+                - 'null'
+                example:
+                  foo: bar
+                additionalProperties: true
+    Meta:
+      type: object
+      x-apideck-schema-id: Meta
+      description: Response metadata
+      properties:
+        items_on_page:
+          type: integer
+          description: Number of items returned in the data property of the response
+          example: 50
+        cursors:
+          type: object
+          description: Cursors to navigate to previous or next pages through the API
+          properties:
+            previous:
+              type:
+              - string
+              - 'null'
+              description: Cursor to navigate to the previous page of results through the API
+              example: em9oby1jcm06OnBhZ2U6OjE=
+            current:
+              type:
+              - string
+              - 'null'
+              description: Cursor to navigate to the current page of results through the API
+              example: em9oby1jcm06OnBhZ2U6OjI=
+            next:
+              type:
+              - string
+              - 'null'
+              description: Cursor to navigate to the next page of results through the API
+              example: em9oby1jcm06OnBhZ2U6OjM=
+    PaymentRequiredResponse:
+      type: object
+      x-apideck-schema-id: PaymentRequired
+      properties:
+        status_code:
+          type: number
+          description: HTTP status code
+          example: 402
+        error:
+          type: string
+          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
+          example: Payment Required
+        type_name:
+          type: string
+          description: The type of error returned
+          example: RequestLimitError
+        message:
+          type: string
+          description: A human-readable message providing more details about the error.
+          example: Request Limit Reached
+          x-speakeasy-error-message: true
+        detail:
+          type: string
+          description: Contains parameter or domain specific information related to the error and why it occurred.
+          example: You have reached your limit of 2000
+        ref:
+          type: string
+          description: Link to documentation of error type
+          example: https://developers.apideck.com/errors#requestlimiterror
+    Tags:
+      type:
+      - array
+      - 'null'
+      x-apideck-schema-id: Tags
+      items:
+        type: string
+      example:
+      - New
+    NotFoundResponse:
+      type: object
+      x-apideck-schema-id: NotFound
+      properties:
+        status_code:
+          type: number
+          description: HTTP status code
+          example: 404
+        error:
+          type: string
+          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
+          example: Not Found
+        type_name:
+          type: string
+          description: The type of error returned
+          example: EntityNotFoundError
+        message:
+          type: string
+          description: A human-readable message providing more details about the error.
+          example: Unknown Widget
+          x-speakeasy-error-message: true
+        detail:
+          anyOf:
+          - type: string
+            example: 'Could not find widget with id: ''123'''
+          - type: object
+            x-speakeasy-detail: true
+            example:
+              not_found:
+                entity: widget
+                id: '123'
+          description: Contains parameter or domain specific information related to the error and why it occurred.
+        ref:
+          type: string
+          description: Link to documentation of error type
+          example: https://developers.apideck.com/errors#entitynotfounderror
+    UnprocessableResponse:
+      type: object
+      x-apideck-schema-id: Unprocessable
+      properties:
+        status_code:
+          type: number
+          description: HTTP status code
+          example: 422
+        error:
+          type: string
+          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
+          example: Unprocessable Entity
+        type_name:
+          type: string
+          description: The type of error returned
+          example: InvalidStateError
+        message:
+          type: string
+          description: A human-readable message providing more details about the error.
+          example: Invalid State
+          x-speakeasy-error-message: true
+        detail:
+          anyOf:
+          - type: string
+            example: Unprocessable request, please verify your request headers and body.
+          - type: object
+            x-speakeasy-detail: true
+            example:
+              error: Unprocessable
+              message: Unprocessable request, please verify your request headers and body.
+          description: Contains parameter or domain specific information related to the error and why it occurred.
+        ref:
+          type: string
+          description: Link to documentation of error type
+          example: https://developers.apideck.com/errors#invalidstateerror
+    Links:
+      type: object
+      x-apideck-schema-id: Links
+      description: Links to navigate to previous or next pages through the API
+      properties:
+        previous:
+          type:
+          - string
+          - 'null'
+          description: Link to navigate to the previous page through the API
+          example: https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjE%3D
+        current:
+          type: string
+          description: Link to navigate to the current page through the API
+          example: https://unify.apideck.com/crm/companies
+        next:
+          type:
+          - string
+          - 'null'
+          description: Link to navigate to the previous page through the API
+          example: https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjM
+    UpdateOpportunityResponse:
+      type: object
+      x-apideck-schema-id: UpdateOpportunityResponse
+      required:
+      - status_code
+      - status
+      - service
+      - resource
+      - operation
+      - data
+      properties:
+        status_code:
+          type: integer
+          description: HTTP Response Status Code
+          example: 200
+        status:
+          type: string
+          description: HTTP Response Status
+          example: OK
+        service:
+          type: string
+          description: Apideck ID of service provider
+          example: zoho-crm
+        resource:
+          type: string
+          description: Unified API resource name
+          example: companies
+        operation:
+          type: string
+          description: Operation performed
+          example: update
+        data:
+          $ref: '#/components/schemas/UnifiedId'
+        _raw:
+          $ref: '#/components/schemas/Raw'
+    UnexpectedErrorResponse:
+      type: object
+      x-apideck-schema-id: Error
+      properties:
+        status_code:
+          type: number
+          description: HTTP status code
+          example: 400
+        error:
+          type: string
+          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
+          example: Bad Request
+        type_name:
+          type: string
+          description: The type of error returned
+          example: RequestHeadersValidationError
+        message:
+          type: string
+          description: A human-readable message providing more details about the error.
+          example: Invalid Params
+          x-speakeasy-error-message: true
+        detail:
+          anyOf:
+          - type: string
+            example: 'Missing Header: x-apideck-consumer-id'
+          - type: object
+            x-speakeasy-detail: true
+            example:
+              missing:
+              - x-apideck-consumer-id: required
+          description: Contains parameter or domain specific information related to the error and why it occurred.
+        ref:
+          type: string
+          description: Link to documentation of error type
+          example: https://developers.apideck.com/errors#unauthorizederror
     BadRequestResponse:
       type: object
       x-apideck-schema-id: BadRequest
@@ -433,56 +1546,15 @@ components:
           - message: Account code '100' has been archived or deleted
             detail: Each line item must reference a valid account
             code: VALIDATION_ERROR
-    Links:
+    PassThroughQuery:
       type: object
-      x-apideck-schema-id: Links
-      description: Links to navigate to previous or next pages through the API
+      additionalProperties: true
       properties:
-        previous:
-          type:
-          - string
-          - 'null'
-          description: Link to navigate to the previous page through the API
-          example: https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjE%3D
-        current:
+        example_downstream_property:
           type: string
-          description: Link to navigate to the current page through the API
-          example: https://unify.apideck.com/crm/companies
-        next:
-          type:
-          - string
-          - 'null'
-          description: Link to navigate to the previous page through the API
-          example: https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjM
-    PaymentRequiredResponse:
-      type: object
-      x-apideck-schema-id: PaymentRequired
-      properties:
-        status_code:
-          type: number
-          description: HTTP status code
-          example: 402
-        error:
-          type: string
-          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
-          example: Payment Required
-        type_name:
-          type: string
-          description: The type of error returned
-          example: RequestLimitError
-        message:
-          type: string
-          description: A human-readable message providing more details about the error.
-          example: Request Limit Reached
-          x-speakeasy-error-message: true
-        detail:
-          type: string
-          description: Contains parameter or domain specific information related to the error and why it occurred.
-          example: You have reached your limit of 2000
-        ref:
-          type: string
-          description: Link to documentation of error type
-          example: https://developers.apideck.com/errors#requestlimiterror
+          description: All passthrough query parameters are passed along to the connector as is (?pass_through[search]=leads becomes ?search=leads)
+      example:
+        search: San Francisco
     Currency:
       type:
       - string
@@ -1041,1078 +2113,6 @@ components:
         description: Bitcoin
       - name: ETH
         description: Ether
-    OpportunitiesSort:
-      type: object
-      x-apideck-schema-id: OpportunitiesSort
-      example:
-        by: created_at
-        direction: desc
-      properties:
-        by:
-          type: string
-          x-apideck-enum-id: opportunities.sort_by
-          description: The field on which to sort the Opportunities
-          enum:
-          - created_at
-          - updated_at
-          - title
-          - win_probability
-          - monetary_amount
-          - status
-          example: created_at
-        direction:
-          $ref: '#/components/schemas/SortDirection'
-      additionalProperties: false
-    PassThroughBody:
-      type: array
-      description: The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-      items:
-        type: object
-        properties:
-          service_id:
-            type: string
-            description: Identifier for the service to which this pass_through should be applied.
-          operation_id:
-            type: string
-            description: Optional identifier for a workflow operation to which this pass_through should be applied. This is useful for Unify calls that are making more than one downstream request.
-          extend_object:
-            type: object
-            additionalProperties: true
-            description: Simple object allowing any properties for direct extension.
-          extend_paths:
-            type: array
-            description: Array of objects for structured data modifications via paths.
-            items:
-              type: object
-              properties:
-                path:
-                  type: string
-                  description: JSONPath string specifying where to apply the value.
-                  example: $.nested.property
-                value:
-                  description: The value to set at the specified path, can be any type.
-                  example:
-                    TaxClassificationRef:
-                      value: EUC-99990201-V1-00020000
-              required:
-              - path
-              - value
-              additionalProperties: false
-        required:
-        - service_id
-        additionalProperties: false
-        writeOnly: true
-    Tags:
-      type:
-      - array
-      - 'null'
-      x-apideck-schema-id: Tags
-      items:
-        type: string
-      example:
-      - New
-    UnifiedId:
-      title: UnifiedId
-      type: object
-      x-apideck-schema-id: Id
-      description: A object containing a unique identifier for the resource that was created, updated, or deleted.
-      required:
-      - id
-      properties:
-        id:
-          title: Id
-          description: The unique identifier of the resource
-          type: string
-          readOnly: true
-          example: '12345'
-    UpdateOpportunityResponse:
-      type: object
-      x-apideck-schema-id: UpdateOpportunityResponse
-      required:
-      - status_code
-      - status
-      - service
-      - resource
-      - operation
-      - data
-      properties:
-        status_code:
-          type: integer
-          description: HTTP Response Status Code
-          example: 200
-        status:
-          type: string
-          description: HTTP Response Status
-          example: OK
-        service:
-          type: string
-          description: Apideck ID of service provider
-          example: zoho-crm
-        resource:
-          type: string
-          description: Unified API resource name
-          example: companies
-        operation:
-          type: string
-          description: Operation performed
-          example: update
-        data:
-          $ref: '#/components/schemas/UnifiedId'
-        _raw:
-          $ref: '#/components/schemas/Raw'
-    CreateOpportunityResponse:
-      type: object
-      x-apideck-schema-id: CreateOpportunityResponse
-      required:
-      - status_code
-      - status
-      - service
-      - resource
-      - operation
-      - data
-      properties:
-        status_code:
-          type: integer
-          description: HTTP Response Status Code
-          example: 200
-        status:
-          type: string
-          description: HTTP Response Status
-          example: OK
-        service:
-          type: string
-          description: Apideck ID of service provider
-          example: zoho-crm
-        resource:
-          type: string
-          description: Unified API resource name
-          example: opportunities
-        operation:
-          type: string
-          description: Operation performed
-          example: add
-        data:
-          $ref: '#/components/schemas/UnifiedId'
-        _raw:
-          $ref: '#/components/schemas/Raw'
-    DeleteOpportunityResponse:
-      type: object
-      x-apideck-schema-id: DeleteOpportunityResponse
-      required:
-      - status_code
-      - status
-      - service
-      - resource
-      - operation
-      - data
-      properties:
-        status_code:
-          type: integer
-          description: HTTP Response Status Code
-          example: 200
-        status:
-          type: string
-          description: HTTP Response Status
-          example: OK
-        service:
-          type: string
-          description: Apideck ID of service provider
-          example: zoho-crm
-        resource:
-          type: string
-          description: Unified API resource name
-          example: companies
-        operation:
-          type: string
-          description: Operation performed
-          example: delete
-        data:
-          $ref: '#/components/schemas/UnifiedId'
-        _raw:
-          $ref: '#/components/schemas/Raw'
-    Opportunity:
-      type: object
-      x-apideck-schema-id: Opportunity
-      x-apideck-weights:
-        id: critical
-        title: critical
-        primary_contact_id: critical
-        description: medium
-        type: high
-        monetary_amount: high
-        currency: high
-        win_probability: high
-        expected_revenue: medium
-        close_date: medium
-        loss_reason_id: edge-case
-        loss_reason: edge-case
-        won_reason_id: edge-case
-        won_reason: edge-case
-        pipeline_id: edge-case
-        pipeline_stage_id: edge-case
-        source_id: medium
-        lead_id: medium
-        lead_source: edge-case
-        contact_id: medium
-        company_id: high
-        company_name: medium
-        owner_id: high
-        priority: medium
-        status: high
-        status_id: edge-case
-        tags: low
-        interaction_count: low
-        custom_fields: medium
-        stage_last_changed_at: edge-case
-        last_activity_at: medium
-        deleted: low
-        date_stage_changed: edge-case
-        date_last_contacted: medium
-        date_lead_created: edge-case
-        updated_by: edge-case
-        created_by: edge-case
-        updated_at: medium
-        created_at: medium
-      required:
-      - title
-      additionalProperties: false
-      properties:
-        id:
-          type: string
-          example: '12345'
-          description: A unique identifier for the opportunity.
-          readOnly: true
-        title:
-          type: string
-          description: The title or name of the opportunity.
-          example: New Rocket
-          minLength: 1
-        primary_contact_id:
-          type:
-          - string
-          - 'null'
-          example: '12345'
-          description: The unique identifier of the primary contact associated with the opportunity.
-        description:
-          type:
-          - string
-          - 'null'
-          description: A description of the opportunity.
-          example: Opportunities are created for People and Companies that are interested in buying your products or services. Create Opportunities for People and Companies to move them through one of your Pipelines.
-        type:
-          type:
-          - string
-          - 'null'
-          description: The type of the opportunity
-          example: Existing Customer - Upgrade
-        monetary_amount:
-          type:
-          - number
-          - 'null'
-          description: The monetary value associated with the opportunity
-          example: 75000
-        currency:
-          $ref: '#/components/schemas/Currency'
-        win_probability:
-          type:
-          - number
-          - 'null'
-          description: The probability of winning the opportunity, expressed as a percentage.
-          example: 40
-        expected_revenue:
-          description: The expected revenue from the opportunity
-          type:
-          - number
-          - 'null'
-          example: 75000
-          readOnly: true
-        close_date:
-          type:
-          - string
-          - 'null'
-          description: The actual closing date for the opportunity. If close_date is null, the opportunity is not closed yet.
-          example: '2020-10-30'
-          format: date
-        loss_reason_id:
-          type:
-          - string
-          - 'null'
-          description: The unique identifier of the reason why the opportunity was lost.
-          example: '12345'
-        loss_reason:
-          type:
-          - string
-          - 'null'
-          description: The reason why the opportunity was lost.
-          example: No budget
-        won_reason_id:
-          type:
-          - string
-          - 'null'
-          description: The unique identifier of the reason why the opportunity was won.
-          example: '12345'
-        won_reason:
-          type:
-          - string
-          - 'null'
-          description: The reason why the opportunity was won.
-          example: Best pitch
-        pipeline_id:
-          type:
-          - string
-          - 'null'
-          description: The unique identifier of the pipeline associated with the opportunity
-          example: '12345'
-        pipeline_stage_id:
-          type:
-          - string
-          - 'null'
-          description: The unique identifier of the stage in the pipeline associated with the opportunity.
-          example: '12345'
-        source_id:
-          type:
-          - string
-          - 'null'
-          description: The unique identifier of the source of the opportunity.
-          example: '12345'
-        lead_id:
-          type:
-          - string
-          - 'null'
-          description: The unique identifier of the lead associated with the opportunity.
-          example: '12345'
-        lead_source:
-          description: The source of the lead associated with the opportunity.
-          type:
-          - string
-          - 'null'
-          example: Website
-        contact_id:
-          type:
-          - string
-          - 'null'
-          description: The unique identifier of the contact associated with the opportunity.
-          example: '12345'
-        contact_ids:
-          type: array
-          description: An array of unique identifiers of all contacts associated with the opportunity.
-          items:
-            type: string
-            example: '12345'
-        company_id:
-          type:
-          - string
-          - 'null'
-          description: The unique identifier of the company associated with the opportunity.
-          example: '12345'
-        company_name:
-          type:
-          - string
-          - 'null'
-          description: The name of the company associated with the opportunity.
-          example: Copper
-        owner_id:
-          type:
-          - string
-          - 'null'
-          description: The unique identifier of the user who owns the opportunity.
-          example: '12345'
-        priority:
-          type:
-          - string
-          - 'null'
-          description: The priority level of the opportunity.
-          example: None
-        status:
-          type:
-          - string
-          - 'null'
-          description: The current status of the opportunity.
-          example: Open
-        status_id:
-          type:
-          - string
-          - 'null'
-          description: The unique identifier of the current status of the opportunity.
-          example: '12345'
-        tags:
-          $ref: '#/components/schemas/Tags'
-        interaction_count:
-          type:
-          - number
-          - 'null'
-          example: 0
-          description: The number of interactions with the opportunity.
-          readOnly: true
-        custom_fields:
-          type: array
-          items:
-            $ref: '#/components/schemas/CustomField'
-        stage_last_changed_at:
-          type:
-          - string
-          - 'null'
-          example: '2020-09-30T07:43:32.000Z'
-          description: The date and time when the stage of the opportunity was last changed.
-          format: date-time
-        last_activity_at:
-          type:
-          - string
-          - 'null'
-          example: '2020-09-30T07:43:32.000Z'
-          description: The date and time of the last activity associated with the opportunity.
-          readOnly: true
-        deleted:
-          type: boolean
-          description: Indicates whether the opportunity has been deleted.
-          example: false
-          readOnly: true
-        date_stage_changed:
-          type:
-          - string
-          - 'null'
-          description: The date and time when the stage of the opportunity was last changed.
-          example: '2020-09-30T00:00:00.000Z'
-          format: date-time
-          readOnly: true
-        date_last_contacted:
-          type:
-          - string
-          - 'null'
-          description: The date and time when the opportunity was last contacted.
-          example: '2020-09-30T00:00:00.000Z'
-          format: date-time
-          readOnly: true
-        date_lead_created:
-          type:
-          - string
-          - 'null'
-          example: '2020-09-30T00:00:00.000Z'
-          description: The date and time when the lead associated with the opportunity was created.
-          format: date-time
-          readOnly: true
-        custom_mappings:
-          $ref: '#/components/schemas/CustomMappings'
-        updated_by:
-          type:
-          - string
-          - 'null'
-          example: '12345'
-          description: The unique identifier of the user who last updated the opportunity.
-          readOnly: true
-        created_by:
-          type:
-          - string
-          - 'null'
-          example: '12345'
-          description: The unique identifier of the user who created the opportunity.
-          readOnly: true
-        updated_at:
-          type:
-          - string
-          - 'null'
-          example: '2020-09-30T07:43:32.000Z'
-          format: date-time
-          description: The date and time when the opportunity was last updated.
-          readOnly: true
-        created_at:
-          type:
-          - string
-          - 'null'
-          example: '2020-09-30T07:43:32.000Z'
-          format: date-time
-          description: The date and time when the opportunity was created.
-          readOnly: true
-        pass_through:
-          $ref: '#/components/schemas/PassThroughBody'
-    CustomMappings:
-      type:
-      - object
-      - 'null'
-      x-apideck-schema-id: CustomMappings
-      description: When custom mappings are configured on the resource, the result is included here.
-      readOnly: true
-      additionalProperties: true
-    OpportunitiesFilter:
-      type: object
-      x-apideck-schema-id: OpportunitiesFilter
-      example:
-        status: Completed
-        monetary_amount: 75000
-      properties:
-        title:
-          type: string
-          description: Title of the opportunity to filter on
-          example: Tesla deal
-        status:
-          type: string
-          description: Status to filter on
-          example: Completed
-        monetary_amount:
-          type: number
-          description: Monetary amount to filter on
-          example: 75000
-        win_probability:
-          type: number
-          description: Win probability to filter on
-          example: 50
-        company_id:
-          type: string
-          description: Company ID to filter on
-          example: '1234'
-        owner_id:
-          type: string
-          description: Owner ID to filter on
-          example: '1234'
-        primary_contact_id:
-          type: string
-          description: Primary contact ID to filter on
-          example: '1234'
-      additionalProperties: false
-    PassThroughQuery:
-      type: object
-      additionalProperties: true
-      properties:
-        example_downstream_property:
-          type: string
-          description: All passthrough query parameters are passed along to the connector as is (?pass_through[search]=leads becomes ?search=leads)
-      example:
-        search: San Francisco
-    Raw:
-      title: raw
-      type:
-      - object
-      - 'null'
-      x-apideck-schema-id: Raw
-      description: Raw response from the integration when raw=true query param is provided
-      additionalProperties: true
-    UnauthorizedResponse:
-      type: object
-      x-apideck-schema-id: Unauthorized
-      properties:
-        status_code:
-          type: number
-          description: HTTP status code
-          example: 401
-        error:
-          type: string
-          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
-          example: Unauthorized
-        type_name:
-          type: string
-          description: The type of error returned
-          example: UnauthorizedError
-        message:
-          type: string
-          description: A human-readable message providing more details about the error.
-          example: Unauthorized Request
-          x-speakeasy-error-message: true
-        detail:
-          anyOf:
-          - type: string
-            example: Missing authentication
-          - type: object
-            x-speakeasy-detail: true
-            properties:
-              type:
-                type: string
-                description: Error type identifier
-                example: refresh_token_connector_error
-              message:
-                type: string
-                description: Detailed error message
-                example: Token refresh failed
-              debug:
-                type: object
-                description: Debug information including request/response details and OAuth timing metadata
-                properties:
-                  request:
-                    type: object
-                    description: HTTP request details
-                  response:
-                    type: object
-                    description: HTTP response details
-                  message:
-                    type: string
-                    description: Error message from downstream provider or network layer
-                  code:
-                    type: string
-                    description: Error code (e.g., ETIMEDOUT, ECONNREFUSED)
-                  credentials_expire_at_ms:
-                    type: number
-                    description: Unix timestamp (milliseconds) when credentials will be deleted if not refreshed. Only present for non-recoverable errors (401, 400). Credentials are preserved indefinitely for recoverable/network errors.
-                    example: 1620172800000
-                  retry_after_ms:
-                    type: number
-                    description: Unix timestamp (milliseconds) when token refresh retry is allowed after cooldown period expires.
-                    example: 1620000030000
-                  cooldown_remaining_ms:
-                    type: number
-                    description: Milliseconds remaining in cooldown period before retry is allowed.
-                    example: 30000
-            example:
-              type: refresh_token_connector_error
-              message: Token refresh failed with 401 error
-              debug:
-                response:
-                  statusCode: 401
-                  data:
-                    error: invalid_grant
-                credentials_expire_at_ms: 1620172800000
-                retry_after_ms: 1620000030000
-                cooldown_remaining_ms: 30000
-          description: Contains parameter or domain specific information related to the error and why it occurred.
-        ref:
-          type: string
-          description: Link to documentation of error type
-          example: https://developers.apideck.com/errors#unauthorizederror
-    SortDirection:
-      type: string
-      x-apideck-schema-id: SortDirection
-      description: The direction in which to sort the results
-      x-apideck-enum-id: sort_direction
-      enum:
-      - asc
-      - desc
-      default: asc
-    UnexpectedErrorResponse:
-      type: object
-      x-apideck-schema-id: Error
-      properties:
-        status_code:
-          type: number
-          description: HTTP status code
-          example: 400
-        error:
-          type: string
-          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
-          example: Bad Request
-        type_name:
-          type: string
-          description: The type of error returned
-          example: RequestHeadersValidationError
-        message:
-          type: string
-          description: A human-readable message providing more details about the error.
-          example: Invalid Params
-          x-speakeasy-error-message: true
-        detail:
-          anyOf:
-          - type: string
-            example: 'Missing Header: x-apideck-consumer-id'
-          - type: object
-            x-speakeasy-detail: true
-            example:
-              missing:
-              - x-apideck-consumer-id: required
-          description: Contains parameter or domain specific information related to the error and why it occurred.
-        ref:
-          type: string
-          description: Link to documentation of error type
-          example: https://developers.apideck.com/errors#unauthorizederror
-    UnprocessableResponse:
-      type: object
-      x-apideck-schema-id: Unprocessable
-      properties:
-        status_code:
-          type: number
-          description: HTTP status code
-          example: 422
-        error:
-          type: string
-          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
-          example: Unprocessable Entity
-        type_name:
-          type: string
-          description: The type of error returned
-          example: InvalidStateError
-        message:
-          type: string
-          description: A human-readable message providing more details about the error.
-          example: Invalid State
-          x-speakeasy-error-message: true
-        detail:
-          anyOf:
-          - type: string
-            example: Unprocessable request, please verify your request headers and body.
-          - type: object
-            x-speakeasy-detail: true
-            example:
-              error: Unprocessable
-              message: Unprocessable request, please verify your request headers and body.
-          description: Contains parameter or domain specific information related to the error and why it occurred.
-        ref:
-          type: string
-          description: Link to documentation of error type
-          example: https://developers.apideck.com/errors#invalidstateerror
-    NotFoundResponse:
-      type: object
-      x-apideck-schema-id: NotFound
-      properties:
-        status_code:
-          type: number
-          description: HTTP status code
-          example: 404
-        error:
-          type: string
-          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
-          example: Not Found
-        type_name:
-          type: string
-          description: The type of error returned
-          example: EntityNotFoundError
-        message:
-          type: string
-          description: A human-readable message providing more details about the error.
-          example: Unknown Widget
-          x-speakeasy-error-message: true
-        detail:
-          anyOf:
-          - type: string
-            example: 'Could not find widget with id: ''123'''
-          - type: object
-            x-speakeasy-detail: true
-            example:
-              not_found:
-                entity: widget
-                id: '123'
-          description: Contains parameter or domain specific information related to the error and why it occurred.
-        ref:
-          type: string
-          description: Link to documentation of error type
-          example: https://developers.apideck.com/errors#entitynotfounderror
-    Meta:
-      type: object
-      x-apideck-schema-id: Meta
-      description: Response metadata
-      properties:
-        items_on_page:
-          type: integer
-          description: Number of items returned in the data property of the response
-          example: 50
-        cursors:
-          type: object
-          description: Cursors to navigate to previous or next pages through the API
-          properties:
-            previous:
-              type:
-              - string
-              - 'null'
-              description: Cursor to navigate to the previous page of results through the API
-              example: em9oby1jcm06OnBhZ2U6OjE=
-            current:
-              type:
-              - string
-              - 'null'
-              description: Cursor to navigate to the current page of results through the API
-              example: em9oby1jcm06OnBhZ2U6OjI=
-            next:
-              type:
-              - string
-              - 'null'
-              description: Cursor to navigate to the next page of results through the API
-              example: em9oby1jcm06OnBhZ2U6OjM=
-    GetOpportunityResponse:
-      type: object
-      x-apideck-schema-id: GetOpportunityResponse
-      required:
-      - status_code
-      - status
-      - service
-      - resource
-      - operation
-      - data
-      properties:
-        status_code:
-          type: integer
-          description: HTTP Response Status Code
-          example: 200
-        status:
-          type: string
-          description: HTTP Response Status
-          example: OK
-        service:
-          type: string
-          description: Apideck ID of service provider
-          example: zoho-crm
-        resource:
-          type: string
-          description: Unified API resource name
-          example: opportunities
-        operation:
-          type: string
-          description: Operation performed
-          example: one
-        data:
-          $ref: '#/components/schemas/Opportunity'
-        _raw:
-          $ref: '#/components/schemas/Raw'
-    CustomField:
-      type: object
-      x-apideck-schema-id: CustomField
-      additionalProperties: false
-      anyOf:
-      - required:
-        - id
-      - required:
-        - name
-      x-apideck-strict-any-of:
-      - required:
-        - id
-      - required:
-        - name
-      x-apideck-weights:
-        id: critical
-        value: critical
-        name: medium
-        description: edge-case
-      properties:
-        id:
-          title: ID
-          description: Unique identifier for the custom field.
-          type:
-          - string
-          - 'null'
-          example: '2389328923893298'
-        name:
-          title: Name
-          type:
-          - string
-          - 'null'
-          description: Name of the custom field.
-          example: employee_level
-        description:
-          title: Description
-          type:
-          - string
-          - 'null'
-          description: More information about the custom field
-          example: Employee Level
-        value:
-          anyOf:
-          - type:
-            - string
-            - 'null'
-            example: Uses Salesforce and Marketo
-          - type:
-            - number
-            - 'null'
-            example: 10
-          - type:
-            - boolean
-            - 'null'
-            example: true
-          - type:
-            - object
-            - 'null'
-            example:
-              foo: bar
-            additionalProperties: true
-          - type: array
-            items:
-              anyOf:
-              - type:
-                - string
-                - 'null'
-                example: Uses Salesforce and Marketo
-              - type:
-                - number
-                - 'null'
-                example: 10
-              - type:
-                - boolean
-                - 'null'
-                example: true
-              - type:
-                - object
-                - 'null'
-                example:
-                  foo: bar
-                additionalProperties: true
-  parameters:
-    applicationId:
-      name: x-apideck-app-id
-      in: header
-      required: true
-      description: The ID of your Unify application
-      schema:
-        type: string
-        minLength: 1
-      example: dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX
-      x-speakeasy-name-override: appId
-    opportunitiesSort:
-      name: sort
-      in: query
-      description: Apply sorting
-      style: deepObject
-      explode: true
-      schema:
-        $ref: '#/components/schemas/OpportunitiesSort'
-    id:
-      in: path
-      name: id
-      schema:
-        type: string
-      required: true
-      description: ID of the record you are acting upon.
-    serviceId:
-      name: x-apideck-service-id
-      in: header
-      description: Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
-      schema:
-        type: string
-      example: salesforce
-      x-speakeasy-name-override: serviceId
-    raw:
-      name: raw
-      in: query
-      description: Include raw response. Mostly used for debugging purposes
-      schema:
-        type: boolean
-        default: false
-    fields:
-      name: fields
-      in: query
-      description: 'The ''fields'' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. <br /><br />Example: `fields=name,email,addresses.city`<br /><br />In the example above, the response will only include the fields "name", "email" and "addresses.city". If any other fields are available, they will be excluded.'
-      example: id,updated_at
-      schema:
-        type:
-        - string
-        - 'null'
-    cursor:
-      name: cursor
-      in: query
-      description: Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
-      schema:
-        type:
-        - string
-        - 'null'
-    passThrough:
-      name: pass_through
-      in: query
-      description: 'Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads'
-      style: deepObject
-      explode: true
-      schema:
-        $ref: '#/components/schemas/PassThroughQuery'
-    opportunitiesFilter:
-      name: filter
-      in: query
-      description: Apply filters
-      style: deepObject
-      explode: true
-      schema:
-        $ref: '#/components/schemas/OpportunitiesFilter'
-    consumerId:
-      name: x-apideck-consumer-id
-      in: header
-      required: true
-      description: ID of the consumer which you want to get or push data from
-      schema:
-        type: string
-      example: test-consumer
-      x-speakeasy-name-override: consumerId
-    limit:
-      name: limit
-      in: query
-      description: Number of results to return. Minimum 1, Maximum 200, Default 20
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 200
-        default: 20
-  responses:
-    UnauthorizedResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UnauthorizedResponse'
-      description: Unauthorized
-    UnprocessableResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UnprocessableResponse'
-      description: Unprocessable
-    UnexpectedErrorResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UnexpectedErrorResponse'
-      description: Unexpected error
-    NotFoundResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/NotFoundResponse'
-      description: The specified resource was not found
-    CreateOpportunityResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/CreateOpportunityResponse'
-      description: Opportunity created
-    DeleteOpportunityResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/DeleteOpportunityResponse'
-      description: Opportunity deleted
-    GetOpportunityResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/GetOpportunityResponse'
-      description: Opportunity
-      links:
-        company:
-          operationId: companiesOne
-          parameters:
-            id: $response.body#/data/company_id
-        primarycontact:
-          operationId: contactsOne
-          parameters:
-            id: $response.body#/data/primary_contact_id
-        contact:
-          operationId: contactsOne
-          parameters:
-            id: $response.body#/data/contact_id
-        lead:
-          operationId: leadsOne
-          parameters:
-            id: $response.body#/data/lead_id
-        pipelineById:
-          operationId: pipelinesOne
-          parameters:
-            id: $response.body#/data/pipeline_id
-        owner:
-          operationId: usersOne
-          parameters:
-            id: $response.body#/data/owner_id
-    BadRequestResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/BadRequestResponse'
-      description: Bad Request
-    UpdateOpportunityResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UpdateOpportunityResponse'
-      description: Opportunity updated
-    PaymentRequiredResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/PaymentRequiredResponse'
-      description: Payment Required
-    GetOpportunitiesResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/GetOpportunitiesResponse'
-      description: Opportunities
   securitySchemes:
     apiKey:
       type: apiKey

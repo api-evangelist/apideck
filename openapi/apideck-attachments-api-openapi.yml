@@ -245,141 +245,44 @@ paths:
           referenceId: '123456'
           id: id_example
 components:
-  parameters:
-    contentType:
-      name: content-type
-      in: header
-      description: The content-type of the file being uploaded
-      required: true
-      schema:
-        type: string
-    applicationId:
-      name: x-apideck-app-id
-      in: header
-      required: true
-      description: The ID of your Unify application
-      schema:
-        type: string
-        minLength: 1
-      example: dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX
-      x-speakeasy-name-override: appId
-    id:
-      in: path
-      name: id
-      schema:
-        type: string
-      required: true
-      description: ID of the record you are acting upon.
-    referenceType:
-      in: path
-      name: reference_type
-      schema:
-        $ref: '#/components/schemas/AttachmentReferenceType'
-      required: true
-      description: The reference type of the document.
-      example: invoice
-    serviceId:
-      name: x-apideck-service-id
-      in: header
-      description: Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
-      schema:
-        type: string
-      example: salesforce
-      x-speakeasy-name-override: serviceId
-    attachmentMetadata:
-      name: x-apideck-metadata
-      in: header
-      description: Metadata to attach to the attachment file (JSON string)
-      required: true
-      schema:
-        type: string
-        format: json
-      examples:
-        basic:
-          value: '{"name":"document.pdf","description":"Invoice attachment"}'
-    raw:
-      name: raw
-      in: query
-      description: Include raw response. Mostly used for debugging purposes
-      schema:
-        type: boolean
-        default: false
-    companyId:
-      name: x-apideck-company-id
-      in: header
-      description: The ID of the company to scope requests to. For connectors that support multi-company, this overrides the default company configured in connection settings.
-      schema:
-        type: string
-      example: '12345'
-      x-speakeasy-name-override: companyId
-    fields:
-      name: fields
-      in: query
-      description: 'The ''fields'' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. <br /><br />Example: `fields=name,email,addresses.city`<br /><br />In the example above, the response will only include the fields "name", "email" and "addresses.city". If any other fields are available, they will be excluded.'
-      example: id,updated_at
-      schema:
-        type:
-        - string
-        - 'null'
-    cursor:
-      name: cursor
-      in: query
-      description: Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
-      schema:
-        type:
-        - string
-        - 'null'
-    consumerId:
-      name: x-apideck-consumer-id
-      in: header
-      required: true
-      description: ID of the consumer which you want to get or push data from
-      schema:
-        type: string
-      example: test-consumer
-      x-speakeasy-name-override: consumerId
-    limit:
-      name: limit
-      in: query
-      description: Number of results to return. Minimum 1, Maximum 200, Default 20
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 200
-        default: 20
-    referenceId:
-      in: path
-      name: reference_id
-      schema:
-        $ref: '#/components/schemas/Id'
-      required: true
-      description: The reference id of the object to retrieve.
-      example: '123456'
   responses:
-    CreateAttachmentResponse:
+    NotFoundResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NotFoundResponse'
+      description: The specified resource was not found
+    GetAttachmentsResponse:
       description: Attachments
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/CreateAttachmentResponse'
-    UnauthorizedResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UnauthorizedResponse'
-      description: Unauthorized
+            $ref: '#/components/schemas/GetAttachmentsResponse'
     UnprocessableResponse:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/UnprocessableResponse'
       description: Unprocessable
-    GetAttachmentResponse:
+    PaymentRequiredResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PaymentRequiredResponse'
+      description: Payment Required
+    CreateAttachmentResponse:
       description: Attachments
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/GetAttachmentResponse'
+            $ref: '#/components/schemas/CreateAttachmentResponse'
+    GetAttachmentDownloadResponse:
+      description: Attachment Download
+      content:
+        '*/*':
+          schema:
+            type: string
+            format: binary
     UnexpectedErrorResponse:
       content:
         application/json:
@@ -392,41 +295,138 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/DeleteAttachmentResponse'
-    GetAttachmentDownloadResponse:
-      description: Attachment Download
-      content:
-        '*/*':
-          schema:
-            type: string
-            format: binary
-    NotFoundResponse:
+    UnauthorizedResponse:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/NotFoundResponse'
-      description: The specified resource was not found
+            $ref: '#/components/schemas/UnauthorizedResponse'
+      description: Unauthorized
     BadRequestResponse:
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/BadRequestResponse'
       description: Bad Request
-    PaymentRequiredResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/PaymentRequiredResponse'
-      description: Payment Required
-    GetAttachmentsResponse:
+    GetAttachmentResponse:
       description: Attachments
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/GetAttachmentsResponse'
+            $ref: '#/components/schemas/GetAttachmentResponse'
+  parameters:
+    id:
+      in: path
+      name: id
+      schema:
+        type: string
+      required: true
+      description: ID of the record you are acting upon.
+    serviceId:
+      name: x-apideck-service-id
+      in: header
+      description: Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
+      schema:
+        type: string
+      example: salesforce
+      x-speakeasy-name-override: serviceId
+    applicationId:
+      name: x-apideck-app-id
+      in: header
+      required: true
+      description: The ID of your Unify application
+      schema:
+        type: string
+        minLength: 1
+      example: dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX
+      x-speakeasy-name-override: appId
+    contentType:
+      name: content-type
+      in: header
+      description: The content-type of the file being uploaded
+      required: true
+      schema:
+        type: string
+    raw:
+      name: raw
+      in: query
+      description: Include raw response. Mostly used for debugging purposes
+      schema:
+        type: boolean
+        default: false
+    referenceId:
+      in: path
+      name: reference_id
+      schema:
+        $ref: '#/components/schemas/Id'
+      required: true
+      description: The reference id of the object to retrieve.
+      example: '123456'
+    limit:
+      name: limit
+      in: query
+      description: Number of results to return. Minimum 1, Maximum 200, Default 20
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 200
+        default: 20
+    cursor:
+      name: cursor
+      in: query
+      description: Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
+      schema:
+        type:
+        - string
+        - 'null'
+    fields:
+      name: fields
+      in: query
+      description: 'The ''fields'' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. <br /><br />Example: `fields=name,email,addresses.city`<br /><br />In the example above, the response will only include the fields "name", "email" and "addresses.city". If any other fields are available, they will be excluded.'
+      example: id,updated_at
+      schema:
+        type:
+        - string
+        - 'null'
+    attachmentMetadata:
+      name: x-apideck-metadata
+      in: header
+      description: Metadata to attach to the attachment file (JSON string)
+      required: true
+      schema:
+        type: string
+        format: json
+      examples:
+        basic:
+          value: '{"name":"document.pdf","description":"Invoice attachment"}'
+    referenceType:
+      in: path
+      name: reference_type
+      schema:
+        $ref: '#/components/schemas/AttachmentReferenceType'
+      required: true
+      description: The reference type of the document.
+      example: invoice
+    companyId:
+      name: x-apideck-company-id
+      in: header
+      description: The ID of the company to scope requests to. For connectors that support multi-company, this overrides the default company configured in connection settings.
+      schema:
+        type: string
+      example: '12345'
+      x-speakeasy-name-override: companyId
+    consumerId:
+      name: x-apideck-consumer-id
+      in: header
+      required: true
+      description: ID of the consumer which you want to get or push data from
+      schema:
+        type: string
+      example: test-consumer
+      x-speakeasy-name-override: consumerId
   schemas:
-    DeleteAttachmentResponse:
+    CreateAttachmentResponse:
       type: object
-      x-apideck-schema-id: DeleteAttachmentResponse
+      x-apideck-schema-id: CreateAttachmentResponse
       required:
       - status_code
       - status
@@ -454,115 +454,119 @@ components:
         operation:
           type: string
           description: Operation performed
-          example: delete
+          example: add
         data:
           $ref: '#/components/schemas/UnifiedId'
         _raw:
           $ref: '#/components/schemas/Raw'
-    BadRequestResponse:
+    AttachmentReferenceType:
+      x-apideck-enum-id: attachment.reference_type
+      type: string
+      enum:
+      - invoice
+      - bill
+      - expense
+      - quote
+    GetAttachmentResponse:
       type: object
-      x-apideck-schema-id: BadRequest
+      x-apideck-schema-id: GetAttachmentResponse
+      required:
+      - status_code
+      - status
+      - service
+      - resource
+      - operation
+      - data
       properties:
         status_code:
-          type: number
-          description: HTTP status code
-          example: 400
-        error:
+          type: integer
+          description: HTTP Response Status Code
+          example: 200
+        status:
           type: string
-          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
-          example: Bad Request
-        type_name:
+          description: HTTP Response Status
+          example: OK
+        service:
           type: string
-          description: The type of error returned
-          example: RequestValidationError
-        message:
+          description: Apideck ID of service provider
+          example: xero
+        resource:
           type: string
-          description: A human-readable message providing more details about the error.
-          example: Invalid Params
-          x-speakeasy-error-message: true
-        detail:
-          anyOf:
-          - type: string
-            example: Missing property foobar
-          - type: object
-            x-speakeasy-detail: true
-            example:
-              missing:
-              - foobar: required
-          description: Contains parameter or domain specific information related to the error and why it occurred.
-        ref:
+          description: Unified API resource name
+          example: payments
+        operation:
           type: string
-          description: Link to documentation of error type
-          example: https://developers.apideck.com/errors#requestvalidationerror
-        downstream_errors:
+          description: Operation performed
+          example: one
+        data:
+          $ref: '#/components/schemas/Attachment'
+        _raw:
+          $ref: '#/components/schemas/Raw'
+    Raw:
+      title: raw
+      type:
+      - object
+      - 'null'
+      x-apideck-schema-id: Raw
+      description: Raw response from the integration when raw=true query param is provided
+      additionalProperties: true
+    GetAttachmentsResponse:
+      type: object
+      required:
+      - status_code
+      - status
+      - service
+      - resource
+      - operation
+      - data
+      properties:
+        status_code:
+          type: integer
+          description: HTTP Response Status Code
+          example: 200
+        status:
+          type: string
+          description: HTTP Response Status
+          example: OK
+        service:
+          type: string
+          description: Apideck ID of service provider
+          example: quickbooks
+        resource:
+          type: string
+          description: Unified API resource name
+          example: PurchaseOrders
+        operation:
+          type: string
+          description: Operation performed
+          example: all
+        data:
           type: array
-          description: Contains downstream errors returned from the connector. Only present when type_name is ConnectorExecutionError.
           items:
-            type: object
-            properties:
-              message:
-                type: string
-                description: Error message from the downstream provider
-              detail:
-                type: string
-                description: Additional error details
-              code:
-                type: string
-                description: Error code from the downstream provider
-          example:
-          - message: Account code '100' has been archived or deleted
-            detail: Each line item must reference a valid account
-            code: VALIDATION_ERROR
-    Links:
-      type: object
-      x-apideck-schema-id: Links
-      description: Links to navigate to previous or next pages through the API
-      properties:
-        previous:
-          type:
-          - string
-          - 'null'
-          description: Link to navigate to the previous page through the API
-          example: https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjE%3D
-        current:
-          type: string
-          description: Link to navigate to the current page through the API
-          example: https://unify.apideck.com/crm/companies
-        next:
-          type:
-          - string
-          - 'null'
-          description: Link to navigate to the previous page through the API
-          example: https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjM
-    PaymentRequiredResponse:
-      type: object
-      x-apideck-schema-id: PaymentRequired
-      properties:
-        status_code:
-          type: number
-          description: HTTP status code
-          example: 402
-        error:
-          type: string
-          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
-          example: Payment Required
-        type_name:
-          type: string
-          description: The type of error returned
-          example: RequestLimitError
-        message:
-          type: string
-          description: A human-readable message providing more details about the error.
-          example: Request Limit Reached
-          x-speakeasy-error-message: true
-        detail:
-          type: string
-          description: Contains parameter or domain specific information related to the error and why it occurred.
-          example: You have reached your limit of 2000
-        ref:
-          type: string
-          description: Link to documentation of error type
-          example: https://developers.apideck.com/errors#requestlimiterror
+            $ref: '#/components/schemas/Attachment'
+        meta:
+          $ref: '#/components/schemas/Meta'
+        links:
+          $ref: '#/components/schemas/Links'
+        _raw:
+          $ref: '#/components/schemas/Raw'
+    CreatedBy:
+      type:
+      - string
+      - 'null'
+      title: Created by
+      description: The user who created the object.
+      example: '12345'
+      readOnly: true
+    UpdatedAt:
+      type:
+      - string
+      - 'null'
+      title: Updated at (timestamp)
+      description: The date and time when the object was last updated.
+      format: date-time
+      example: '2020-09-30T07:43:32.000Z'
+      readOnly: true
     CreatedAt:
       type:
       - string
@@ -619,168 +623,6 @@ components:
       description: The user who last updated the object.
       example: '12345'
       readOnly: true
-    UnifiedId:
-      title: UnifiedId
-      type: object
-      x-apideck-schema-id: Id
-      description: A object containing a unique identifier for the resource that was created, updated, or deleted.
-      required:
-      - id
-      properties:
-        id:
-          title: Id
-          description: The unique identifier of the resource
-          type: string
-          readOnly: true
-          example: '12345'
-    UpdatedAt:
-      type:
-      - string
-      - 'null'
-      title: Updated at (timestamp)
-      description: The date and time when the object was last updated.
-      format: date-time
-      example: '2020-09-30T07:43:32.000Z'
-      readOnly: true
-    Attachment:
-      type: object
-      x-apideck-schema-id: Attachment
-      x-apideck-weights:
-        id: critical
-        display_id: edge-case
-        name: critical
-        mime_type: medium
-        size: medium
-        reference: critical
-        description: medium
-        folder_id: edge-case
-        updated_by: edge-case
-        created_by: edge-case
-        updated_at: medium
-        created_at: medium
-      additionalProperties: false
-      properties:
-        id:
-          $ref: '#/components/schemas/Id'
-        display_id:
-          type:
-          - string
-          - 'null'
-          description: The display id of the file
-          example: sample ID
-        name:
-          type:
-          - string
-          - 'null'
-          description: The name of the file
-          example: sample.jpg
-        mime_type:
-          type:
-          - string
-          - 'null'
-          description: The MIME type of the file.
-          example: image/jpeg
-        size:
-          type:
-          - integer
-          - 'null'
-          x-apideck-schema-id: AttachmentSize
-          description: The size of the file in bytes
-          example: 1810673
-        reference:
-          $ref: '#/components/schemas/AttachmentReference'
-        description:
-          type:
-          - string
-          - 'null'
-          description: Optional description of the file
-          example: A sample image
-        parent_folder_id:
-          type:
-          - string
-          - 'null'
-          description: The folder id where this attachment belong to
-          example: '123'
-        updated_by:
-          $ref: '#/components/schemas/UpdatedBy'
-        created_by:
-          $ref: '#/components/schemas/CreatedBy'
-        updated_at:
-          $ref: '#/components/schemas/UpdatedAt'
-        created_at:
-          $ref: '#/components/schemas/CreatedAt'
-        pass_through:
-          $ref: '#/components/schemas/PassThroughBody'
-    GetAttachmentResponse:
-      type: object
-      x-apideck-schema-id: GetAttachmentResponse
-      required:
-      - status_code
-      - status
-      - service
-      - resource
-      - operation
-      - data
-      properties:
-        status_code:
-          type: integer
-          description: HTTP Response Status Code
-          example: 200
-        status:
-          type: string
-          description: HTTP Response Status
-          example: OK
-        service:
-          type: string
-          description: Apideck ID of service provider
-          example: xero
-        resource:
-          type: string
-          description: Unified API resource name
-          example: payments
-        operation:
-          type: string
-          description: Operation performed
-          example: one
-        data:
-          $ref: '#/components/schemas/Attachment'
-        _raw:
-          $ref: '#/components/schemas/Raw'
-    CreateAttachmentResponse:
-      type: object
-      x-apideck-schema-id: CreateAttachmentResponse
-      required:
-      - status_code
-      - status
-      - service
-      - resource
-      - operation
-      - data
-      properties:
-        status_code:
-          type: integer
-          description: HTTP Response Status Code
-          example: 200
-        status:
-          type: string
-          description: HTTP Response Status
-          example: OK
-        service:
-          type: string
-          description: Apideck ID of service provider
-          example: google-drive
-        resource:
-          type: string
-          description: Unified API resource name
-          example: files
-        operation:
-          type: string
-          description: Operation performed
-          example: add
-        data:
-          $ref: '#/components/schemas/UnifiedId'
-        _raw:
-          $ref: '#/components/schemas/Raw'
     UnauthorizedResponse:
       type: object
       x-apideck-schema-id: Unauthorized
@@ -861,107 +703,170 @@ components:
           type: string
           description: Link to documentation of error type
           example: https://developers.apideck.com/errors#unauthorizederror
-    AttachmentReference:
+    DeleteAttachmentResponse:
       type: object
-      x-apideck-schema-id: AttachmentReference
+      x-apideck-schema-id: DeleteAttachmentResponse
+      required:
+      - status_code
+      - status
+      - service
+      - resource
+      - operation
+      - data
       properties:
-        type:
-          $ref: '#/components/schemas/AttachmentReferenceType'
+        status_code:
+          type: integer
+          description: HTTP Response Status Code
+          example: 200
+        status:
+          type: string
+          description: HTTP Response Status
+          example: OK
+        service:
+          type: string
+          description: Apideck ID of service provider
+          example: google-drive
+        resource:
+          type: string
+          description: Unified API resource name
+          example: files
+        operation:
+          type: string
+          description: Operation performed
+          example: delete
+        data:
+          $ref: '#/components/schemas/UnifiedId'
+        _raw:
+          $ref: '#/components/schemas/Raw'
+    Meta:
+      type: object
+      x-apideck-schema-id: Meta
+      description: Response metadata
+      properties:
+        items_on_page:
+          type: integer
+          description: Number of items returned in the data property of the response
+          example: 50
+        cursors:
+          type: object
+          description: Cursors to navigate to previous or next pages through the API
+          properties:
+            previous:
+              type:
+              - string
+              - 'null'
+              description: Cursor to navigate to the previous page of results through the API
+              example: em9oby1jcm06OnBhZ2U6OjE=
+            current:
+              type:
+              - string
+              - 'null'
+              description: Cursor to navigate to the current page of results through the API
+              example: em9oby1jcm06OnBhZ2U6OjI=
+            next:
+              type:
+              - string
+              - 'null'
+              description: Cursor to navigate to the next page of results through the API
+              example: em9oby1jcm06OnBhZ2U6OjM=
+    Attachment:
+      type: object
+      x-apideck-schema-id: Attachment
+      x-apideck-weights:
+        id: critical
+        display_id: edge-case
+        name: critical
+        mime_type: medium
+        size: medium
+        reference: critical
+        description: medium
+        folder_id: edge-case
+        updated_by: edge-case
+        created_by: edge-case
+        updated_at: medium
+        created_at: medium
+      additionalProperties: false
+      properties:
         id:
           $ref: '#/components/schemas/Id'
-      additionalProperties: false
-    Raw:
-      title: raw
-      type:
-      - object
-      - 'null'
-      x-apideck-schema-id: Raw
-      description: Raw response from the integration when raw=true query param is provided
-      additionalProperties: true
-    AttachmentReferenceType:
-      x-apideck-enum-id: attachment.reference_type
-      type: string
-      enum:
-      - invoice
-      - bill
-      - expense
-      - quote
-    UnexpectedErrorResponse:
+        display_id:
+          type:
+          - string
+          - 'null'
+          description: The display id of the file
+          example: sample ID
+        name:
+          type:
+          - string
+          - 'null'
+          description: The name of the file
+          example: sample.jpg
+        mime_type:
+          type:
+          - string
+          - 'null'
+          description: The MIME type of the file.
+          example: image/jpeg
+        size:
+          type:
+          - integer
+          - 'null'
+          x-apideck-schema-id: AttachmentSize
+          description: The size of the file in bytes
+          example: 1810673
+        reference:
+          $ref: '#/components/schemas/AttachmentReference'
+        description:
+          type:
+          - string
+          - 'null'
+          description: Optional description of the file
+          example: A sample image
+        parent_folder_id:
+          type:
+          - string
+          - 'null'
+          description: The folder id where this attachment belong to
+          example: '123'
+        updated_by:
+          $ref: '#/components/schemas/UpdatedBy'
+        created_by:
+          $ref: '#/components/schemas/CreatedBy'
+        updated_at:
+          $ref: '#/components/schemas/UpdatedAt'
+        created_at:
+          $ref: '#/components/schemas/CreatedAt'
+        pass_through:
+          $ref: '#/components/schemas/PassThroughBody'
+    PaymentRequiredResponse:
       type: object
-      x-apideck-schema-id: Error
+      x-apideck-schema-id: PaymentRequired
       properties:
         status_code:
           type: number
           description: HTTP status code
-          example: 400
+          example: 402
         error:
           type: string
           description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
-          example: Bad Request
+          example: Payment Required
         type_name:
           type: string
           description: The type of error returned
-          example: RequestHeadersValidationError
+          example: RequestLimitError
         message:
           type: string
           description: A human-readable message providing more details about the error.
-          example: Invalid Params
+          example: Request Limit Reached
           x-speakeasy-error-message: true
         detail:
-          anyOf:
-          - type: string
-            example: 'Missing Header: x-apideck-consumer-id'
-          - type: object
-            x-speakeasy-detail: true
-            example:
-              missing:
-              - x-apideck-consumer-id: required
+          type: string
           description: Contains parameter or domain specific information related to the error and why it occurred.
+          example: You have reached your limit of 2000
         ref:
           type: string
           description: Link to documentation of error type
-          example: https://developers.apideck.com/errors#unauthorizederror
-    UnprocessableResponse:
-      type: object
-      x-apideck-schema-id: Unprocessable
-      properties:
-        status_code:
-          type: number
-          description: HTTP status code
-          example: 422
-        error:
-          type: string
-          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
-          example: Unprocessable Entity
-        type_name:
-          type: string
-          description: The type of error returned
-          example: InvalidStateError
-        message:
-          type: string
-          description: A human-readable message providing more details about the error.
-          example: Invalid State
-          x-speakeasy-error-message: true
-        detail:
-          anyOf:
-          - type: string
-            example: Unprocessable request, please verify your request headers and body.
-          - type: object
-            x-speakeasy-detail: true
-            example:
-              error: Unprocessable
-              message: Unprocessable request, please verify your request headers and body.
-          description: Contains parameter or domain specific information related to the error and why it occurred.
-        ref:
-          type: string
-          description: Link to documentation of error type
-          example: https://developers.apideck.com/errors#invalidstateerror
-    Id:
-      type: string
-      title: ID
-      description: A unique identifier for an object.
-      example: '12345'
-      readOnly: true
+          example: https://developers.apideck.com/errors#requestlimiterror
     NotFoundResponse:
       type: object
       x-apideck-schema-id: NotFound
@@ -998,85 +903,180 @@ components:
           type: string
           description: Link to documentation of error type
           example: https://developers.apideck.com/errors#entitynotfounderror
-    Meta:
+    UnprocessableResponse:
       type: object
-      x-apideck-schema-id: Meta
-      description: Response metadata
-      properties:
-        items_on_page:
-          type: integer
-          description: Number of items returned in the data property of the response
-          example: 50
-        cursors:
-          type: object
-          description: Cursors to navigate to previous or next pages through the API
-          properties:
-            previous:
-              type:
-              - string
-              - 'null'
-              description: Cursor to navigate to the previous page of results through the API
-              example: em9oby1jcm06OnBhZ2U6OjE=
-            current:
-              type:
-              - string
-              - 'null'
-              description: Cursor to navigate to the current page of results through the API
-              example: em9oby1jcm06OnBhZ2U6OjI=
-            next:
-              type:
-              - string
-              - 'null'
-              description: Cursor to navigate to the next page of results through the API
-              example: em9oby1jcm06OnBhZ2U6OjM=
-    CreatedBy:
-      type:
-      - string
-      - 'null'
-      title: Created by
-      description: The user who created the object.
-      example: '12345'
-      readOnly: true
-    GetAttachmentsResponse:
-      type: object
-      required:
-      - status_code
-      - status
-      - service
-      - resource
-      - operation
-      - data
+      x-apideck-schema-id: Unprocessable
       properties:
         status_code:
-          type: integer
-          description: HTTP Response Status Code
-          example: 200
-        status:
+          type: number
+          description: HTTP status code
+          example: 422
+        error:
           type: string
-          description: HTTP Response Status
-          example: OK
-        service:
+          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
+          example: Unprocessable Entity
+        type_name:
           type: string
-          description: Apideck ID of service provider
-          example: quickbooks
-        resource:
+          description: The type of error returned
+          example: InvalidStateError
+        message:
           type: string
-          description: Unified API resource name
-          example: PurchaseOrders
-        operation:
+          description: A human-readable message providing more details about the error.
+          example: Invalid State
+          x-speakeasy-error-message: true
+        detail:
+          anyOf:
+          - type: string
+            example: Unprocessable request, please verify your request headers and body.
+          - type: object
+            x-speakeasy-detail: true
+            example:
+              error: Unprocessable
+              message: Unprocessable request, please verify your request headers and body.
+          description: Contains parameter or domain specific information related to the error and why it occurred.
+        ref:
           type: string
-          description: Operation performed
-          example: all
-        data:
+          description: Link to documentation of error type
+          example: https://developers.apideck.com/errors#invalidstateerror
+    Links:
+      type: object
+      x-apideck-schema-id: Links
+      description: Links to navigate to previous or next pages through the API
+      properties:
+        previous:
+          type:
+          - string
+          - 'null'
+          description: Link to navigate to the previous page through the API
+          example: https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjE%3D
+        current:
+          type: string
+          description: Link to navigate to the current page through the API
+          example: https://unify.apideck.com/crm/companies
+        next:
+          type:
+          - string
+          - 'null'
+          description: Link to navigate to the previous page through the API
+          example: https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjM
+    AttachmentReference:
+      type: object
+      x-apideck-schema-id: AttachmentReference
+      properties:
+        type:
+          $ref: '#/components/schemas/AttachmentReferenceType'
+        id:
+          $ref: '#/components/schemas/Id'
+      additionalProperties: false
+    UnexpectedErrorResponse:
+      type: object
+      x-apideck-schema-id: Error
+      properties:
+        status_code:
+          type: number
+          description: HTTP status code
+          example: 400
+        error:
+          type: string
+          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
+          example: Bad Request
+        type_name:
+          type: string
+          description: The type of error returned
+          example: RequestHeadersValidationError
+        message:
+          type: string
+          description: A human-readable message providing more details about the error.
+          example: Invalid Params
+          x-speakeasy-error-message: true
+        detail:
+          anyOf:
+          - type: string
+            example: 'Missing Header: x-apideck-consumer-id'
+          - type: object
+            x-speakeasy-detail: true
+            example:
+              missing:
+              - x-apideck-consumer-id: required
+          description: Contains parameter or domain specific information related to the error and why it occurred.
+        ref:
+          type: string
+          description: Link to documentation of error type
+          example: https://developers.apideck.com/errors#unauthorizederror
+    Id:
+      type: string
+      title: ID
+      description: A unique identifier for an object.
+      example: '12345'
+      readOnly: true
+    BadRequestResponse:
+      type: object
+      x-apideck-schema-id: BadRequest
+      properties:
+        status_code:
+          type: number
+          description: HTTP status code
+          example: 400
+        error:
+          type: string
+          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
+          example: Bad Request
+        type_name:
+          type: string
+          description: The type of error returned
+          example: RequestValidationError
+        message:
+          type: string
+          description: A human-readable message providing more details about the error.
+          example: Invalid Params
+          x-speakeasy-error-message: true
+        detail:
+          anyOf:
+          - type: string
+            example: Missing property foobar
+          - type: object
+            x-speakeasy-detail: true
+            example:
+              missing:
+              - foobar: required
+          description: Contains parameter or domain specific information related to the error and why it occurred.
+        ref:
+          type: string
+          description: Link to documentation of error type
+          example: https://developers.apideck.com/errors#requestvalidationerror
+        downstream_errors:
           type: array
+          description: Contains downstream errors returned from the connector. Only present when type_name is ConnectorExecutionError.
           items:
-            $ref: '#/components/schemas/Attachment'
-        meta:
-          $ref: '#/components/schemas/Meta'
-        links:
-          $ref: '#/components/schemas/Links'
-        _raw:
-          $ref: '#/components/schemas/Raw'
+            type: object
+            properties:
+              message:
+                type: string
+                description: Error message from the downstream provider
+              detail:
+                type: string
+                description: Additional error details
+              code:
+                type: string
+                description: Error code from the downstream provider
+          example:
+          - message: Account code '100' has been archived or deleted
+            detail: Each line item must reference a valid account
+            code: VALIDATION_ERROR
+    UnifiedId:
+      title: UnifiedId
+      type: object
+      x-apideck-schema-id: Id
+      description: A object containing a unique identifier for the resource that was created, updated, or deleted.
+      required:
+      - id
+      properties:
+        id:
+          title: Id
+          description: The unique identifier of the resource
+          type: string
+          readOnly: true
+          example: '12345'
   securitySchemes:
     apiKey:
       type: apiKey

@@ -422,17 +422,103 @@ paths:
         source:
           id: id_example
 components:
+  responses:
+    NotFoundResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NotFoundResponse'
+      description: The specified resource was not found
+    GetActivityResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/GetActivityResponse'
+      description: Activity
+      links:
+        company:
+          operationId: companiesOne
+          parameters:
+            id: $response.body#/data/company_id
+        contact:
+          operationId: contactsOne
+          parameters:
+            id: $response.body#/data/contact_id
+        opportunity:
+          operationId: opportunitiesOne
+          parameters:
+            id: $response.body#/data/opportunity_id
+        lead:
+          operationId: leadsOne
+          parameters:
+            id: $response.body#/data/lead_id
+        owner:
+          operationId: usersOne
+          parameters:
+            id: $response.body#/data/owner_id
+    DeleteActivityResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/DeleteActivityResponse'
+      description: Activity deleted
+    UnprocessableResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnprocessableResponse'
+      description: Unprocessable
+    PaymentRequiredResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PaymentRequiredResponse'
+      description: Payment Required
+    CreateActivityResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CreateActivityResponse'
+      description: Activity created
+    UnexpectedErrorResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnexpectedErrorResponse'
+      description: Unexpected error
+    GetActivitiesResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/GetActivitiesResponse'
+      description: Activities
+    UnauthorizedResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnauthorizedResponse'
+      description: Unauthorized
+    UpdateActivityResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UpdateActivityResponse'
+      description: Activity updated
+    BadRequestResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BadRequestResponse'
+      description: Bad Request
   parameters:
-    applicationId:
-      name: x-apideck-app-id
-      in: header
-      required: true
-      description: The ID of your Unify application
+    passThrough:
+      name: pass_through
+      in: query
+      description: 'Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads'
+      style: deepObject
+      explode: true
       schema:
-        type: string
-        minLength: 1
-      example: dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX
-      x-speakeasy-name-override: appId
+        $ref: '#/components/schemas/PassThroughQuery'
     id:
       in: path
       name: id
@@ -448,6 +534,16 @@ components:
         type: string
       example: salesforce
       x-speakeasy-name-override: serviceId
+    applicationId:
+      name: x-apideck-app-id
+      in: header
+      required: true
+      description: The ID of your Unify application
+      schema:
+        type: string
+        minLength: 1
+      example: dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX
+      x-speakeasy-name-override: appId
     raw:
       name: raw
       in: query
@@ -455,48 +551,6 @@ components:
       schema:
         type: boolean
         default: false
-    fields:
-      name: fields
-      in: query
-      description: 'The ''fields'' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. <br /><br />Example: `fields=name,email,addresses.city`<br /><br />In the example above, the response will only include the fields "name", "email" and "addresses.city". If any other fields are available, they will be excluded.'
-      example: id,updated_at
-      schema:
-        type:
-        - string
-        - 'null'
-    cursor:
-      name: cursor
-      in: query
-      description: Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
-      schema:
-        type:
-        - string
-        - 'null'
-    activitiesFilter:
-      name: filter
-      in: query
-      description: Apply filters
-      style: deepObject
-      explode: true
-      schema:
-        $ref: '#/components/schemas/ActivitiesFilter'
-    passThrough:
-      name: pass_through
-      in: query
-      description: 'Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads'
-      style: deepObject
-      explode: true
-      schema:
-        $ref: '#/components/schemas/PassThroughQuery'
-    consumerId:
-      name: x-apideck-consumer-id
-      in: header
-      required: true
-      description: ID of the consumer which you want to get or push data from
-      schema:
-        type: string
-      example: test-consumer
-      x-speakeasy-name-override: consumerId
     activitiesSort:
       name: sort
       in: query
@@ -514,342 +568,41 @@ components:
         minimum: 1
         maximum: 200
         default: 20
+    cursor:
+      name: cursor
+      in: query
+      description: Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
+      schema:
+        type:
+        - string
+        - 'null'
+    fields:
+      name: fields
+      in: query
+      description: 'The ''fields'' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. <br /><br />Example: `fields=name,email,addresses.city`<br /><br />In the example above, the response will only include the fields "name", "email" and "addresses.city". If any other fields are available, they will be excluded.'
+      example: id,updated_at
+      schema:
+        type:
+        - string
+        - 'null'
+    activitiesFilter:
+      name: filter
+      in: query
+      description: Apply filters
+      style: deepObject
+      explode: true
+      schema:
+        $ref: '#/components/schemas/ActivitiesFilter'
+    consumerId:
+      name: x-apideck-consumer-id
+      in: header
+      required: true
+      description: ID of the consumer which you want to get or push data from
+      schema:
+        type: string
+      example: test-consumer
+      x-speakeasy-name-override: consumerId
   schemas:
-    CreateActivityResponse:
-      type: object
-      x-apideck-schema-id: CreateActivityResponse
-      required:
-      - status_code
-      - status
-      - service
-      - resource
-      - operation
-      - data
-      properties:
-        status_code:
-          type: integer
-          description: HTTP Response Status Code
-          example: 200
-        status:
-          type: string
-          description: HTTP Response Status
-          example: OK
-        service:
-          type: string
-          description: Apideck ID of service provider
-          example: zoho-crm
-        resource:
-          type: string
-          description: Unified API resource name
-          example: activities
-        operation:
-          type: string
-          description: Operation performed
-          example: add
-        data:
-          $ref: '#/components/schemas/UnifiedId'
-        _raw:
-          $ref: '#/components/schemas/Raw'
-    DeleteActivityResponse:
-      type: object
-      x-apideck-schema-id: DeleteActivityResponse
-      required:
-      - status_code
-      - status
-      - service
-      - resource
-      - operation
-      - data
-      properties:
-        status_code:
-          type: integer
-          description: HTTP Response Status Code
-          example: 200
-        status:
-          type: string
-          description: HTTP Response Status
-          example: OK
-        service:
-          type: string
-          description: Apideck ID of service provider
-          example: zoho-crm
-        resource:
-          type: string
-          description: Unified API resource name
-          example: activities
-        operation:
-          type: string
-          description: Operation performed
-          example: delete
-        data:
-          $ref: '#/components/schemas/UnifiedId'
-        _raw:
-          $ref: '#/components/schemas/Raw'
-    BadRequestResponse:
-      type: object
-      x-apideck-schema-id: BadRequest
-      properties:
-        status_code:
-          type: number
-          description: HTTP status code
-          example: 400
-        error:
-          type: string
-          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
-          example: Bad Request
-        type_name:
-          type: string
-          description: The type of error returned
-          example: RequestValidationError
-        message:
-          type: string
-          description: A human-readable message providing more details about the error.
-          example: Invalid Params
-          x-speakeasy-error-message: true
-        detail:
-          anyOf:
-          - type: string
-            example: Missing property foobar
-          - type: object
-            x-speakeasy-detail: true
-            example:
-              missing:
-              - foobar: required
-          description: Contains parameter or domain specific information related to the error and why it occurred.
-        ref:
-          type: string
-          description: Link to documentation of error type
-          example: https://developers.apideck.com/errors#requestvalidationerror
-        downstream_errors:
-          type: array
-          description: Contains downstream errors returned from the connector. Only present when type_name is ConnectorExecutionError.
-          items:
-            type: object
-            properties:
-              message:
-                type: string
-                description: Error message from the downstream provider
-              detail:
-                type: string
-                description: Additional error details
-              code:
-                type: string
-                description: Error code from the downstream provider
-          example:
-          - message: Account code '100' has been archived or deleted
-            detail: Each line item must reference a valid account
-            code: VALIDATION_ERROR
-    Links:
-      type: object
-      x-apideck-schema-id: Links
-      description: Links to navigate to previous or next pages through the API
-      properties:
-        previous:
-          type:
-          - string
-          - 'null'
-          description: Link to navigate to the previous page through the API
-          example: https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjE%3D
-        current:
-          type: string
-          description: Link to navigate to the current page through the API
-          example: https://unify.apideck.com/crm/companies
-        next:
-          type:
-          - string
-          - 'null'
-          description: Link to navigate to the previous page through the API
-          example: https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjM
-    PaymentRequiredResponse:
-      type: object
-      x-apideck-schema-id: PaymentRequired
-      properties:
-        status_code:
-          type: number
-          description: HTTP status code
-          example: 402
-        error:
-          type: string
-          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
-          example: Payment Required
-        type_name:
-          type: string
-          description: The type of error returned
-          example: RequestLimitError
-        message:
-          type: string
-          description: A human-readable message providing more details about the error.
-          example: Request Limit Reached
-          x-speakeasy-error-message: true
-        detail:
-          type: string
-          description: Contains parameter or domain specific information related to the error and why it occurred.
-          example: You have reached your limit of 2000
-        ref:
-          type: string
-          description: Link to documentation of error type
-          example: https://developers.apideck.com/errors#requestlimiterror
-    GetActivitiesResponse:
-      type: object
-      x-apideck-schema-id: GetActivitiesResponse
-      required:
-      - status_code
-      - status
-      - service
-      - resource
-      - operation
-      - data
-      properties:
-        status_code:
-          type: integer
-          description: HTTP Response Status Code
-          example: 200
-        status:
-          type: string
-          description: HTTP Response Status
-          example: OK
-        service:
-          type: string
-          description: Apideck ID of service provider
-          example: zoho-crm
-        resource:
-          type: string
-          description: Unified API resource name
-          example: activities
-        operation:
-          type: string
-          description: Operation performed
-          example: all
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Activity'
-        _raw:
-          $ref: '#/components/schemas/Raw'
-        meta:
-          $ref: '#/components/schemas/Meta'
-        links:
-          $ref: '#/components/schemas/Links'
-    ActivityAttendee:
-      type: object
-      x-apideck-schema-id: ActivityAttendee
-      x-pii:
-      - name
-      - first_name
-      - middle_name
-      - last_name
-      - email_address
-      x-apideck-weights:
-        id: critical
-        name: critical
-        first_name: high
-        middle_name: low
-        last_name: high
-        prefix: low
-        suffix: edge-case
-        email_address: medium
-        is_organizer: medium
-        status: medium
-        user_id: low
-      properties:
-        id:
-          description: Unique identifier for the attendee
-          type:
-          - string
-          - 'null'
-          example: '12345'
-          readOnly: true
-        name:
-          description: Full name of the attendee
-          type:
-          - string
-          - 'null'
-          example: Elon Musk
-          minLength: 1
-        first_name:
-          description: First name of the attendee
-          type:
-          - string
-          - 'null'
-          example: Elon
-        middle_name:
-          description: Middle name of the attendee
-          type:
-          - string
-          - 'null'
-          example: D.
-        last_name:
-          description: Last name of the attendee
-          type:
-          - string
-          - 'null'
-          example: Musk
-        prefix:
-          description: Prefix of the attendee
-          type:
-          - string
-          - 'null'
-          example: Mr.
-        suffix:
-          description: Suffix of the attendee
-          type:
-          - string
-          - 'null'
-          example: PhD
-        email_address:
-          description: Email address of the attendee
-          type:
-          - string
-          - 'null'
-          example: elon@musk.com
-        is_organizer:
-          description: Whether the attendee is the organizer of the activity
-          type:
-          - boolean
-          - 'null'
-          example: true
-        status:
-          description: Status of the attendee
-          type:
-          - string
-          - 'null'
-          x-apideck-enum-id: activity-attendees.status
-          enum:
-          - accepted
-          - tentative
-          - declined
-          example: accepted
-        user_id:
-          description: The identifier for a related user
-          type:
-          - string
-          - 'null'
-          example: '12345'
-          readOnly: true
-        contact_id:
-          description: The identifier for a related contact
-          type:
-          - string
-          - 'null'
-          example: '12345'
-          readOnly: true
-        updated_at:
-          description: The last time the attendee was updated (ISO 8601)
-          type:
-          - string
-          - 'null'
-          format: date-time
-          example: '2017-08-12T20:43:21.291Z'
-          readOnly: true
-        created_at:
-          description: The time the attendee was created (ISO 8601)
-          type:
-          - string
-          - 'null'
-          format: date-time
-          example: '2017-08-12T20:43:21.291Z'
-          readOnly: true
-      additionalProperties: false
     Address:
       type: object
       x-apideck-schema-id: Address
@@ -1037,9 +790,9 @@ components:
           example: Address notes or delivery instructions.
         row_version:
           $ref: '#/components/schemas/RowVersion'
-    UpdateActivityResponse:
+    GetActivityResponse:
       type: object
-      x-apideck-schema-id: UpdateActivityResponse
+      x-apideck-schema-id: GetActivityResponse
       required:
       - status_code
       - status
@@ -1067,68 +820,174 @@ components:
         operation:
           type: string
           description: Operation performed
-          example: update
+          example: one
+        data:
+          $ref: '#/components/schemas/Activity'
+        _raw:
+          $ref: '#/components/schemas/Raw'
+    CreateActivityResponse:
+      type: object
+      x-apideck-schema-id: CreateActivityResponse
+      required:
+      - status_code
+      - status
+      - service
+      - resource
+      - operation
+      - data
+      properties:
+        status_code:
+          type: integer
+          description: HTTP Response Status Code
+          example: 200
+        status:
+          type: string
+          description: HTTP Response Status
+          example: OK
+        service:
+          type: string
+          description: Apideck ID of service provider
+          example: zoho-crm
+        resource:
+          type: string
+          description: Unified API resource name
+          example: activities
+        operation:
+          type: string
+          description: Operation performed
+          example: add
         data:
           $ref: '#/components/schemas/UnifiedId'
         _raw:
           $ref: '#/components/schemas/Raw'
-    PassThroughBody:
-      type: array
-      description: The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-      items:
-        type: object
-        properties:
-          service_id:
-            type: string
-            description: Identifier for the service to which this pass_through should be applied.
-          operation_id:
-            type: string
-            description: Optional identifier for a workflow operation to which this pass_through should be applied. This is useful for Unify calls that are making more than one downstream request.
-          extend_object:
-            type: object
-            additionalProperties: true
-            description: Simple object allowing any properties for direct extension.
-          extend_paths:
-            type: array
-            description: Array of objects for structured data modifications via paths.
-            items:
-              type: object
-              properties:
-                path:
-                  type: string
-                  description: JSONPath string specifying where to apply the value.
-                  example: $.nested.property
-                value:
-                  description: The value to set at the specified path, can be any type.
-                  example:
-                    TaxClassificationRef:
-                      value: EUC-99990201-V1-00020000
-              required:
-              - path
-              - value
-              additionalProperties: false
-        required:
-        - service_id
-        additionalProperties: false
-        writeOnly: true
-    ActivitiesSort:
+    ActivityAttendee:
       type: object
-      x-apideck-schema-id: ActivitiesSort
-      example:
-        by: created_at
-        direction: desc
+      x-apideck-schema-id: ActivityAttendee
+      x-pii:
+      - name
+      - first_name
+      - middle_name
+      - last_name
+      - email_address
+      x-apideck-weights:
+        id: critical
+        name: critical
+        first_name: high
+        middle_name: low
+        last_name: high
+        prefix: low
+        suffix: edge-case
+        email_address: medium
+        is_organizer: medium
+        status: medium
+        user_id: low
       properties:
-        by:
-          type: string
-          x-apideck-enum-id: activities.sort_by
-          description: The field on which to sort the Activities
+        id:
+          description: Unique identifier for the attendee
+          type:
+          - string
+          - 'null'
+          example: '12345'
+          readOnly: true
+        name:
+          description: Full name of the attendee
+          type:
+          - string
+          - 'null'
+          example: Elon Musk
+          minLength: 1
+        first_name:
+          description: First name of the attendee
+          type:
+          - string
+          - 'null'
+          example: Elon
+        middle_name:
+          description: Middle name of the attendee
+          type:
+          - string
+          - 'null'
+          example: D.
+        last_name:
+          description: Last name of the attendee
+          type:
+          - string
+          - 'null'
+          example: Musk
+        prefix:
+          description: Prefix of the attendee
+          type:
+          - string
+          - 'null'
+          example: Mr.
+        suffix:
+          description: Suffix of the attendee
+          type:
+          - string
+          - 'null'
+          example: PhD
+        email_address:
+          description: Email address of the attendee
+          type:
+          - string
+          - 'null'
+          example: elon@musk.com
+        is_organizer:
+          description: Whether the attendee is the organizer of the activity
+          type:
+          - boolean
+          - 'null'
+          example: true
+        status:
+          description: Status of the attendee
+          type:
+          - string
+          - 'null'
+          x-apideck-enum-id: activity-attendees.status
           enum:
-          - created_at
-          - updated_at
-          example: created_at
-        direction:
-          $ref: '#/components/schemas/SortDirection'
+          - accepted
+          - tentative
+          - declined
+          example: accepted
+        user_id:
+          description: The identifier for a related user
+          type:
+          - string
+          - 'null'
+          example: '12345'
+          readOnly: true
+        contact_id:
+          description: The identifier for a related contact
+          type:
+          - string
+          - 'null'
+          example: '12345'
+          readOnly: true
+        updated_at:
+          description: The last time the attendee was updated (ISO 8601)
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2017-08-12T20:43:21.291Z'
+          readOnly: true
+        created_at:
+          description: The time the attendee was created (ISO 8601)
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2017-08-12T20:43:21.291Z'
+          readOnly: true
       additionalProperties: false
+    Raw:
+      title: raw
+      type:
+      - object
+      - 'null'
+      x-apideck-schema-id: Raw
+      description: Raw response from the integration when raw=true query param is provided
+      additionalProperties: true
     Activity:
       type: object
       x-apideck-schema-id: Activity
@@ -1501,55 +1360,24 @@ components:
           readOnly: true
         pass_through:
           $ref: '#/components/schemas/PassThroughBody'
-    UnifiedId:
-      title: UnifiedId
+    ActivitiesSort:
       type: object
-      x-apideck-schema-id: Id
-      description: A object containing a unique identifier for the resource that was created, updated, or deleted.
-      required:
-      - id
+      x-apideck-schema-id: ActivitiesSort
+      example:
+        by: created_at
+        direction: desc
       properties:
-        id:
-          title: Id
-          description: The unique identifier of the resource
+        by:
           type: string
-          readOnly: true
-          example: '12345'
-    GetActivityResponse:
-      type: object
-      x-apideck-schema-id: GetActivityResponse
-      required:
-      - status_code
-      - status
-      - service
-      - resource
-      - operation
-      - data
-      properties:
-        status_code:
-          type: integer
-          description: HTTP Response Status Code
-          example: 200
-        status:
-          type: string
-          description: HTTP Response Status
-          example: OK
-        service:
-          type: string
-          description: Apideck ID of service provider
-          example: zoho-crm
-        resource:
-          type: string
-          description: Unified API resource name
-          example: activities
-        operation:
-          type: string
-          description: Operation performed
-          example: one
-        data:
-          $ref: '#/components/schemas/Activity'
-        _raw:
-          $ref: '#/components/schemas/Raw'
+          x-apideck-enum-id: activities.sort_by
+          description: The field on which to sort the Activities
+          enum:
+          - created_at
+          - updated_at
+          example: created_at
+        direction:
+          $ref: '#/components/schemas/SortDirection'
+      additionalProperties: false
     CustomMappings:
       type:
       - object
@@ -1567,15 +1395,6 @@ components:
       - asc
       - desc
       default: asc
-    PassThroughQuery:
-      type: object
-      additionalProperties: true
-      properties:
-        example_downstream_property:
-          type: string
-          description: All passthrough query parameters are passed along to the connector as is (?pass_through[search]=leads becomes ?search=leads)
-      example:
-        search: San Francisco
     UnauthorizedResponse:
       type: object
       x-apideck-schema-id: Unauthorized
@@ -1656,127 +1475,45 @@ components:
           type: string
           description: Link to documentation of error type
           example: https://developers.apideck.com/errors#unauthorizederror
-    Raw:
-      title: raw
-      type:
-      - object
-      - 'null'
-      x-apideck-schema-id: Raw
-      description: Raw response from the integration when raw=true query param is provided
-      additionalProperties: true
-    UnexpectedErrorResponse:
-      type: object
-      x-apideck-schema-id: Error
-      properties:
-        status_code:
-          type: number
-          description: HTTP status code
-          example: 400
-        error:
-          type: string
-          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
-          example: Bad Request
-        type_name:
-          type: string
-          description: The type of error returned
-          example: RequestHeadersValidationError
-        message:
-          type: string
-          description: A human-readable message providing more details about the error.
-          example: Invalid Params
-          x-speakeasy-error-message: true
-        detail:
-          anyOf:
-          - type: string
-            example: 'Missing Header: x-apideck-consumer-id'
-          - type: object
-            x-speakeasy-detail: true
-            example:
-              missing:
-              - x-apideck-consumer-id: required
-          description: Contains parameter or domain specific information related to the error and why it occurred.
-        ref:
-          type: string
-          description: Link to documentation of error type
-          example: https://developers.apideck.com/errors#unauthorizederror
-    UnprocessableResponse:
-      type: object
-      x-apideck-schema-id: Unprocessable
-      properties:
-        status_code:
-          type: number
-          description: HTTP status code
-          example: 422
-        error:
-          type: string
-          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
-          example: Unprocessable Entity
-        type_name:
-          type: string
-          description: The type of error returned
-          example: InvalidStateError
-        message:
-          type: string
-          description: A human-readable message providing more details about the error.
-          example: Invalid State
-          x-speakeasy-error-message: true
-        detail:
-          anyOf:
-          - type: string
-            example: Unprocessable request, please verify your request headers and body.
-          - type: object
-            x-speakeasy-detail: true
-            example:
-              error: Unprocessable
-              message: Unprocessable request, please verify your request headers and body.
-          description: Contains parameter or domain specific information related to the error and why it occurred.
-        ref:
-          type: string
-          description: Link to documentation of error type
-          example: https://developers.apideck.com/errors#invalidstateerror
-    NotFoundResponse:
-      type: object
-      x-apideck-schema-id: NotFound
-      properties:
-        status_code:
-          type: number
-          description: HTTP status code
-          example: 404
-        error:
-          type: string
-          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
-          example: Not Found
-        type_name:
-          type: string
-          description: The type of error returned
-          example: EntityNotFoundError
-        message:
-          type: string
-          description: A human-readable message providing more details about the error.
-          example: Unknown Widget
-          x-speakeasy-error-message: true
-        detail:
-          anyOf:
-          - type: string
-            example: 'Could not find widget with id: ''123'''
-          - type: object
-            x-speakeasy-detail: true
-            example:
-              not_found:
-                entity: widget
-                id: '123'
-          description: Contains parameter or domain specific information related to the error and why it occurred.
-        ref:
-          type: string
-          description: Link to documentation of error type
-          example: https://developers.apideck.com/errors#entitynotfounderror
-    RowVersion:
-      type:
-      - string
-      - 'null'
-      title: Row version
-      description: A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-      example: 1-12345
+    PassThroughBody:
+      type: array
+      description: The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
+      items:
+        type: object
+        properties:
+          service_id:
+            type: string
+            description: Identifier for the service to which this pass_through should be applied.
+          operation_id:
+            type: string
+            description: Optional identifier for a workflow operation to which this pass_through should be applied. This is useful for Unify calls that are making more than one downstream request.
+          extend_object:
+            type: object
+            additionalProperties: true
+            description: Simple object allowing any properties for direct extension.
+          extend_paths:
+            type: array
+            description: Array of objects for structured data modifications via paths.
+            items:
+              type: object
+              properties:
+                path:
+                  type: string
+                  description: JSONPath string specifying where to apply the value.
+                  example: $.nested.property
+                value:
+                  description: The value to set at the specified path, can be any type.
+                  example:
+                    TaxClassificationRef:
+                      value: EUC-99990201-V1-00020000
+              required:
+              - path
+              - value
+              additionalProperties: false
+        required:
+        - service_id
+        additionalProperties: false
+        writeOnly: true
     Meta:
       type: object
       x-apideck-schema-id: Meta
@@ -1808,36 +1545,6 @@ components:
               - 'null'
               description: Cursor to navigate to the next page of results through the API
               example: em9oby1jcm06OnBhZ2U6OjM=
-    ActivitiesFilter:
-      type: object
-      x-apideck-schema-id: ActivitiesFilter
-      example:
-        updated_since: '2020-09-30T07:43:32.000Z'
-      properties:
-        company_id:
-          type: string
-          description: Company ID to filter on
-          example: '1234'
-        owner_id:
-          type: string
-          description: Owner ID to filter on
-          example: '1234'
-        contact_id:
-          type: string
-          description: Primary contact ID to filter on
-          example: '1234'
-        updated_since:
-          type: string
-          title: Updated since (timestamp)
-          format: date-time
-          example: '2020-09-30T07:43:32.000Z'
-        type:
-          type: string
-          title: Type
-          description: Type to filter on
-          format: string
-          example: Task
-      additionalProperties: false
     CustomField:
       type: object
       x-apideck-schema-id: CustomField
@@ -1920,94 +1627,387 @@ components:
                 example:
                   foo: bar
                 additionalProperties: true
-  responses:
-    UnauthorizedResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UnauthorizedResponse'
-      description: Unauthorized
-    UnprocessableResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UnprocessableResponse'
-      description: Unprocessable
-    UnexpectedErrorResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UnexpectedErrorResponse'
-      description: Unexpected error
-    CreateActivityResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/CreateActivityResponse'
-      description: Activity created
-    UpdateActivityResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UpdateActivityResponse'
-      description: Activity updated
-    GetActivityResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/GetActivityResponse'
-      description: Activity
-      links:
-        company:
-          operationId: companiesOne
-          parameters:
-            id: $response.body#/data/company_id
-        contact:
-          operationId: contactsOne
-          parameters:
-            id: $response.body#/data/contact_id
-        opportunity:
-          operationId: opportunitiesOne
-          parameters:
-            id: $response.body#/data/opportunity_id
-        lead:
-          operationId: leadsOne
-          parameters:
-            id: $response.body#/data/lead_id
-        owner:
-          operationId: usersOne
-          parameters:
-            id: $response.body#/data/owner_id
-    NotFoundResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/NotFoundResponse'
-      description: The specified resource was not found
-    BadRequestResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/BadRequestResponse'
-      description: Bad Request
-    DeleteActivityResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/DeleteActivityResponse'
-      description: Activity deleted
     PaymentRequiredResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/PaymentRequiredResponse'
-      description: Payment Required
+      type: object
+      x-apideck-schema-id: PaymentRequired
+      properties:
+        status_code:
+          type: number
+          description: HTTP status code
+          example: 402
+        error:
+          type: string
+          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
+          example: Payment Required
+        type_name:
+          type: string
+          description: The type of error returned
+          example: RequestLimitError
+        message:
+          type: string
+          description: A human-readable message providing more details about the error.
+          example: Request Limit Reached
+          x-speakeasy-error-message: true
+        detail:
+          type: string
+          description: Contains parameter or domain specific information related to the error and why it occurred.
+          example: You have reached your limit of 2000
+        ref:
+          type: string
+          description: Link to documentation of error type
+          example: https://developers.apideck.com/errors#requestlimiterror
+    DeleteActivityResponse:
+      type: object
+      x-apideck-schema-id: DeleteActivityResponse
+      required:
+      - status_code
+      - status
+      - service
+      - resource
+      - operation
+      - data
+      properties:
+        status_code:
+          type: integer
+          description: HTTP Response Status Code
+          example: 200
+        status:
+          type: string
+          description: HTTP Response Status
+          example: OK
+        service:
+          type: string
+          description: Apideck ID of service provider
+          example: zoho-crm
+        resource:
+          type: string
+          description: Unified API resource name
+          example: activities
+        operation:
+          type: string
+          description: Operation performed
+          example: delete
+        data:
+          $ref: '#/components/schemas/UnifiedId'
+        _raw:
+          $ref: '#/components/schemas/Raw'
     GetActivitiesResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/GetActivitiesResponse'
-      description: Activities
+      type: object
+      x-apideck-schema-id: GetActivitiesResponse
+      required:
+      - status_code
+      - status
+      - service
+      - resource
+      - operation
+      - data
+      properties:
+        status_code:
+          type: integer
+          description: HTTP Response Status Code
+          example: 200
+        status:
+          type: string
+          description: HTTP Response Status
+          example: OK
+        service:
+          type: string
+          description: Apideck ID of service provider
+          example: zoho-crm
+        resource:
+          type: string
+          description: Unified API resource name
+          example: activities
+        operation:
+          type: string
+          description: Operation performed
+          example: all
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Activity'
+        _raw:
+          $ref: '#/components/schemas/Raw'
+        meta:
+          $ref: '#/components/schemas/Meta'
+        links:
+          $ref: '#/components/schemas/Links'
+    RowVersion:
+      type:
+      - string
+      - 'null'
+      title: Row version
+      description: A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
+      example: 1-12345
+    ActivitiesFilter:
+      type: object
+      x-apideck-schema-id: ActivitiesFilter
+      example:
+        updated_since: '2020-09-30T07:43:32.000Z'
+      properties:
+        company_id:
+          type: string
+          description: Company ID to filter on
+          example: '1234'
+        owner_id:
+          type: string
+          description: Owner ID to filter on
+          example: '1234'
+        contact_id:
+          type: string
+          description: Primary contact ID to filter on
+          example: '1234'
+        updated_since:
+          type: string
+          title: Updated since (timestamp)
+          format: date-time
+          example: '2020-09-30T07:43:32.000Z'
+        type:
+          type: string
+          title: Type
+          description: Type to filter on
+          format: string
+          example: Task
+      additionalProperties: false
+    UpdateActivityResponse:
+      type: object
+      x-apideck-schema-id: UpdateActivityResponse
+      required:
+      - status_code
+      - status
+      - service
+      - resource
+      - operation
+      - data
+      properties:
+        status_code:
+          type: integer
+          description: HTTP Response Status Code
+          example: 200
+        status:
+          type: string
+          description: HTTP Response Status
+          example: OK
+        service:
+          type: string
+          description: Apideck ID of service provider
+          example: zoho-crm
+        resource:
+          type: string
+          description: Unified API resource name
+          example: activities
+        operation:
+          type: string
+          description: Operation performed
+          example: update
+        data:
+          $ref: '#/components/schemas/UnifiedId'
+        _raw:
+          $ref: '#/components/schemas/Raw'
+    NotFoundResponse:
+      type: object
+      x-apideck-schema-id: NotFound
+      properties:
+        status_code:
+          type: number
+          description: HTTP status code
+          example: 404
+        error:
+          type: string
+          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
+          example: Not Found
+        type_name:
+          type: string
+          description: The type of error returned
+          example: EntityNotFoundError
+        message:
+          type: string
+          description: A human-readable message providing more details about the error.
+          example: Unknown Widget
+          x-speakeasy-error-message: true
+        detail:
+          anyOf:
+          - type: string
+            example: 'Could not find widget with id: ''123'''
+          - type: object
+            x-speakeasy-detail: true
+            example:
+              not_found:
+                entity: widget
+                id: '123'
+          description: Contains parameter or domain specific information related to the error and why it occurred.
+        ref:
+          type: string
+          description: Link to documentation of error type
+          example: https://developers.apideck.com/errors#entitynotfounderror
+    UnprocessableResponse:
+      type: object
+      x-apideck-schema-id: Unprocessable
+      properties:
+        status_code:
+          type: number
+          description: HTTP status code
+          example: 422
+        error:
+          type: string
+          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
+          example: Unprocessable Entity
+        type_name:
+          type: string
+          description: The type of error returned
+          example: InvalidStateError
+        message:
+          type: string
+          description: A human-readable message providing more details about the error.
+          example: Invalid State
+          x-speakeasy-error-message: true
+        detail:
+          anyOf:
+          - type: string
+            example: Unprocessable request, please verify your request headers and body.
+          - type: object
+            x-speakeasy-detail: true
+            example:
+              error: Unprocessable
+              message: Unprocessable request, please verify your request headers and body.
+          description: Contains parameter or domain specific information related to the error and why it occurred.
+        ref:
+          type: string
+          description: Link to documentation of error type
+          example: https://developers.apideck.com/errors#invalidstateerror
+    Links:
+      type: object
+      x-apideck-schema-id: Links
+      description: Links to navigate to previous or next pages through the API
+      properties:
+        previous:
+          type:
+          - string
+          - 'null'
+          description: Link to navigate to the previous page through the API
+          example: https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjE%3D
+        current:
+          type: string
+          description: Link to navigate to the current page through the API
+          example: https://unify.apideck.com/crm/companies
+        next:
+          type:
+          - string
+          - 'null'
+          description: Link to navigate to the previous page through the API
+          example: https://unify.apideck.com/crm/companies?cursor=em9oby1jcm06OnBhZ2U6OjM
+    UnexpectedErrorResponse:
+      type: object
+      x-apideck-schema-id: Error
+      properties:
+        status_code:
+          type: number
+          description: HTTP status code
+          example: 400
+        error:
+          type: string
+          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
+          example: Bad Request
+        type_name:
+          type: string
+          description: The type of error returned
+          example: RequestHeadersValidationError
+        message:
+          type: string
+          description: A human-readable message providing more details about the error.
+          example: Invalid Params
+          x-speakeasy-error-message: true
+        detail:
+          anyOf:
+          - type: string
+            example: 'Missing Header: x-apideck-consumer-id'
+          - type: object
+            x-speakeasy-detail: true
+            example:
+              missing:
+              - x-apideck-consumer-id: required
+          description: Contains parameter or domain specific information related to the error and why it occurred.
+        ref:
+          type: string
+          description: Link to documentation of error type
+          example: https://developers.apideck.com/errors#unauthorizederror
+    BadRequestResponse:
+      type: object
+      x-apideck-schema-id: BadRequest
+      properties:
+        status_code:
+          type: number
+          description: HTTP status code
+          example: 400
+        error:
+          type: string
+          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
+          example: Bad Request
+        type_name:
+          type: string
+          description: The type of error returned
+          example: RequestValidationError
+        message:
+          type: string
+          description: A human-readable message providing more details about the error.
+          example: Invalid Params
+          x-speakeasy-error-message: true
+        detail:
+          anyOf:
+          - type: string
+            example: Missing property foobar
+          - type: object
+            x-speakeasy-detail: true
+            example:
+              missing:
+              - foobar: required
+          description: Contains parameter or domain specific information related to the error and why it occurred.
+        ref:
+          type: string
+          description: Link to documentation of error type
+          example: https://developers.apideck.com/errors#requestvalidationerror
+        downstream_errors:
+          type: array
+          description: Contains downstream errors returned from the connector. Only present when type_name is ConnectorExecutionError.
+          items:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Error message from the downstream provider
+              detail:
+                type: string
+                description: Additional error details
+              code:
+                type: string
+                description: Error code from the downstream provider
+          example:
+          - message: Account code '100' has been archived or deleted
+            detail: Each line item must reference a valid account
+            code: VALIDATION_ERROR
+    PassThroughQuery:
+      type: object
+      additionalProperties: true
+      properties:
+        example_downstream_property:
+          type: string
+          description: All passthrough query parameters are passed along to the connector as is (?pass_through[search]=leads becomes ?search=leads)
+      example:
+        search: San Francisco
+    UnifiedId:
+      title: UnifiedId
+      type: object
+      x-apideck-schema-id: Id
+      description: A object containing a unique identifier for the resource that was created, updated, or deleted.
+      required:
+      - id
+      properties:
+        id:
+          title: Id
+          description: The unique identifier of the resource
+          type: string
+          readOnly: true
+          example: '12345'
   securitySchemes:
     apiKey:
       type: apiKey

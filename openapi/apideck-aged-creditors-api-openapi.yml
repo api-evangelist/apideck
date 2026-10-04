@@ -64,7 +64,66 @@ paths:
         label: Node
         source: {}
 components:
+  responses:
+    NotFoundResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NotFoundResponse'
+      description: The specified resource was not found
+    UnprocessableResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnprocessableResponse'
+      description: Unprocessable
+    PaymentRequiredResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PaymentRequiredResponse'
+      description: Payment Required
+    UnexpectedErrorResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnexpectedErrorResponse'
+      description: Unexpected error
+    GetAgedCreditorsResponse:
+      description: Aged Creditors
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/GetAgedCreditorsResponse'
+    UnauthorizedResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnauthorizedResponse'
+      description: Unauthorized
+    BadRequestResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BadRequestResponse'
+      description: Bad Request
   parameters:
+    passThrough:
+      name: pass_through
+      in: query
+      description: 'Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads'
+      style: deepObject
+      explode: true
+      schema:
+        $ref: '#/components/schemas/PassThroughQuery'
+    serviceId:
+      name: x-apideck-service-id
+      in: header
+      description: Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
+      schema:
+        type: string
+      example: salesforce
+      x-speakeasy-name-override: serviceId
     applicationId:
       name: x-apideck-app-id
       in: header
@@ -75,14 +134,6 @@ components:
         minLength: 1
       example: dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX
       x-speakeasy-name-override: appId
-    serviceId:
-      name: x-apideck-service-id
-      in: header
-      description: Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
-      schema:
-        type: string
-      example: salesforce
-      x-speakeasy-name-override: serviceId
     raw:
       name: raw
       in: query
@@ -90,14 +141,6 @@ components:
       schema:
         type: boolean
         default: false
-    companyId:
-      name: x-apideck-company-id
-      in: header
-      description: The ID of the company to scope requests to. For connectors that support multi-company, this overrides the default company configured in connection settings.
-      schema:
-        type: string
-      example: '12345'
-      x-speakeasy-name-override: companyId
     fields:
       name: fields
       in: query
@@ -115,14 +158,14 @@ components:
       explode: true
       schema:
         $ref: '#/components/schemas/AgedReportFilter'
-    passThrough:
-      name: pass_through
-      in: query
-      description: 'Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads'
-      style: deepObject
-      explode: true
+    companyId:
+      name: x-apideck-company-id
+      in: header
+      description: The ID of the company to scope requests to. For connectors that support multi-company, this overrides the default company configured in connection settings.
       schema:
-        $ref: '#/components/schemas/PassThroughQuery'
+        type: string
+      example: '12345'
+      x-speakeasy-name-override: companyId
     consumerId:
       name: x-apideck-consumer-id
       in: header
@@ -132,50 +175,483 @@ components:
         type: string
       example: test-consumer
       x-speakeasy-name-override: consumerId
-  responses:
-    UnauthorizedResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UnauthorizedResponse'
-      description: Unauthorized
-    UnprocessableResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UnprocessableResponse'
-      description: Unprocessable
-    GetAgedCreditorsResponse:
-      description: Aged Creditors
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/GetAgedCreditorsResponse'
-    UnexpectedErrorResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UnexpectedErrorResponse'
-      description: Unexpected error
-    NotFoundResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/NotFoundResponse'
-      description: The specified resource was not found
-    BadRequestResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/BadRequestResponse'
-      description: Bad Request
-    PaymentRequiredResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/PaymentRequiredResponse'
-      description: Payment Required
   schemas:
+    PeriodCount:
+      type: integer
+      title: Period Count
+      description: Number of aging periods shown in the report.
+      example: 4
+      default: 4
+    AgedReportFilter:
+      type: object
+      x-apideck-schema-id: AgedReportFilter
+      example:
+        supplier_id: 123abc
+        customer_id: 123abc
+        report_as_of_date: '2024-01-01'
+        period_count: 3
+        period_length: 30
+      properties:
+        customer_id:
+          type: string
+          title: Customer Id
+          description: Filter by customer id
+          example: 123abc
+        supplier_id:
+          type: string
+          title: Supplier Id
+          description: Filter by supplier id
+          example: 123abc
+        report_as_of_date:
+          type: string
+          title: Report As Of Date
+          description: The cutoff date for considering transactions
+          example: '2024-01-01'
+        period_count:
+          title: Period Count
+          description: Number of periods to split the aged creditors report into
+          example: 3
+          type: integer
+          minimum: 1
+          maximum: 12
+        period_length:
+          title: Period Length
+          description: Length of each period in days
+          example: 30
+          type: integer
+          minimum: 1
+          maximum: 365
+      additionalProperties: false
+    Raw:
+      title: raw
+      type:
+      - object
+      - 'null'
+      x-apideck-schema-id: Raw
+      description: Raw response from the integration when raw=true query param is provided
+      additionalProperties: true
+    UnauthorizedResponse:
+      type: object
+      x-apideck-schema-id: Unauthorized
+      properties:
+        status_code:
+          type: number
+          description: HTTP status code
+          example: 401
+        error:
+          type: string
+          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
+          example: Unauthorized
+        type_name:
+          type: string
+          description: The type of error returned
+          example: UnauthorizedError
+        message:
+          type: string
+          description: A human-readable message providing more details about the error.
+          example: Unauthorized Request
+          x-speakeasy-error-message: true
+        detail:
+          anyOf:
+          - type: string
+            example: Missing authentication
+          - type: object
+            x-speakeasy-detail: true
+            properties:
+              type:
+                type: string
+                description: Error type identifier
+                example: refresh_token_connector_error
+              message:
+                type: string
+                description: Detailed error message
+                example: Token refresh failed
+              debug:
+                type: object
+                description: Debug information including request/response details and OAuth timing metadata
+                properties:
+                  request:
+                    type: object
+                    description: HTTP request details
+                  response:
+                    type: object
+                    description: HTTP response details
+                  message:
+                    type: string
+                    description: Error message from downstream provider or network layer
+                  code:
+                    type: string
+                    description: Error code (e.g., ETIMEDOUT, ECONNREFUSED)
+                  credentials_expire_at_ms:
+                    type: number
+                    description: Unix timestamp (milliseconds) when credentials will be deleted if not refreshed. Only present for non-recoverable errors (401, 400). Credentials are preserved indefinitely for recoverable/network errors.
+                    example: 1620172800000
+                  retry_after_ms:
+                    type: number
+                    description: Unix timestamp (milliseconds) when token refresh retry is allowed after cooldown period expires.
+                    example: 1620000030000
+                  cooldown_remaining_ms:
+                    type: number
+                    description: Milliseconds remaining in cooldown period before retry is allowed.
+                    example: 30000
+            example:
+              type: refresh_token_connector_error
+              message: Token refresh failed with 401 error
+              debug:
+                response:
+                  statusCode: 401
+                  data:
+                    error: invalid_grant
+                credentials_expire_at_ms: 1620172800000
+                retry_after_ms: 1620000030000
+                cooldown_remaining_ms: 30000
+          description: Contains parameter or domain specific information related to the error and why it occurred.
+        ref:
+          type: string
+          description: Link to documentation of error type
+          example: https://developers.apideck.com/errors#unauthorizederror
+    OutstandingBalanceBySupplier:
+      type: object
+      title: Outstanding Balance
+      x-apideck-schema-id: OutstandingBalanceBySupplier
+      additionalProperties: false
+      x-apideck-weights:
+        supplier_id: high
+        supplier_name: high
+        outstanding_balances_by_currency: critical
+      properties:
+        supplier_id:
+          type: string
+          title: Supplier ID
+          description: Unique identifier for the supplier.
+          example: '123'
+        supplier_name:
+          type: string
+          title: Supplier Name
+          description: Full name of the supplier.
+          example: Super Store
+        outstanding_balances_by_currency:
+          type: array
+          items:
+            $ref: '#/components/schemas/OutstandingBalanceByCurrency'
+    PaymentRequiredResponse:
+      type: object
+      x-apideck-schema-id: PaymentRequired
+      properties:
+        status_code:
+          type: number
+          description: HTTP status code
+          example: 402
+        error:
+          type: string
+          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
+          example: Payment Required
+        type_name:
+          type: string
+          description: The type of error returned
+          example: RequestLimitError
+        message:
+          type: string
+          description: A human-readable message providing more details about the error.
+          example: Request Limit Reached
+          x-speakeasy-error-message: true
+        detail:
+          type: string
+          description: Contains parameter or domain specific information related to the error and why it occurred.
+          example: You have reached your limit of 2000
+        ref:
+          type: string
+          description: Link to documentation of error type
+          example: https://developers.apideck.com/errors#requestlimiterror
+    ReportGeneratedAt:
+      type: string
+      title: Report Generated At
+      description: The exact date and time the report was generated.
+      format: date-time
+      example: '2024-11-14T12:00:00.000Z'
+    GetAgedCreditorsResponse:
+      type: object
+      x-apideck-schema-id: GetAgedCreditorsResponse
+      required:
+      - status_code
+      - status
+      - service
+      - resource
+      - operation
+      - data
+      properties:
+        status_code:
+          type: integer
+          description: HTTP Response Status Code
+          example: 200
+        status:
+          type: string
+          description: HTTP Response Status
+          example: OK
+        service:
+          type: string
+          description: Apideck ID of service provider
+          example: quickbooks
+        resource:
+          type: string
+          description: Unified API resource name
+          example: AgedCreditors
+        operation:
+          type: string
+          description: Operation performed
+          example: one
+        data:
+          $ref: '#/components/schemas/AgedCreditors'
+        _raw:
+          $ref: '#/components/schemas/Raw'
+    NotFoundResponse:
+      type: object
+      x-apideck-schema-id: NotFound
+      properties:
+        status_code:
+          type: number
+          description: HTTP status code
+          example: 404
+        error:
+          type: string
+          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
+          example: Not Found
+        type_name:
+          type: string
+          description: The type of error returned
+          example: EntityNotFoundError
+        message:
+          type: string
+          description: A human-readable message providing more details about the error.
+          example: Unknown Widget
+          x-speakeasy-error-message: true
+        detail:
+          anyOf:
+          - type: string
+            example: 'Could not find widget with id: ''123'''
+          - type: object
+            x-speakeasy-detail: true
+            example:
+              not_found:
+                entity: widget
+                id: '123'
+          description: Contains parameter or domain specific information related to the error and why it occurred.
+        ref:
+          type: string
+          description: Link to documentation of error type
+          example: https://developers.apideck.com/errors#entitynotfounderror
+    AgedCreditors:
+      type: object
+      x-apideck-schema-id: AgedCreditors
+      additionalProperties: false
+      x-apideck-weights:
+        report_generated_at: critical
+        report_as_of_date: high
+        period_count: medium
+        period_length: medium
+        outstanding_balances: critical
+      properties:
+        report_generated_at:
+          $ref: '#/components/schemas/ReportGeneratedAt'
+        report_as_of_date:
+          $ref: '#/components/schemas/ReportAsOfDate'
+        period_count:
+          $ref: '#/components/schemas/PeriodCount'
+        period_length:
+          $ref: '#/components/schemas/PeriodLength'
+        outstanding_balances:
+          type: array
+          items:
+            $ref: '#/components/schemas/OutstandingBalanceBySupplier'
+    UnprocessableResponse:
+      type: object
+      x-apideck-schema-id: Unprocessable
+      properties:
+        status_code:
+          type: number
+          description: HTTP status code
+          example: 422
+        error:
+          type: string
+          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
+          example: Unprocessable Entity
+        type_name:
+          type: string
+          description: The type of error returned
+          example: InvalidStateError
+        message:
+          type: string
+          description: A human-readable message providing more details about the error.
+          example: Invalid State
+          x-speakeasy-error-message: true
+        detail:
+          anyOf:
+          - type: string
+            example: Unprocessable request, please verify your request headers and body.
+          - type: object
+            x-speakeasy-detail: true
+            example:
+              error: Unprocessable
+              message: Unprocessable request, please verify your request headers and body.
+          description: Contains parameter or domain specific information related to the error and why it occurred.
+        ref:
+          type: string
+          description: Link to documentation of error type
+          example: https://developers.apideck.com/errors#invalidstateerror
+    UnexpectedErrorResponse:
+      type: object
+      x-apideck-schema-id: Error
+      properties:
+        status_code:
+          type: number
+          description: HTTP status code
+          example: 400
+        error:
+          type: string
+          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
+          example: Bad Request
+        type_name:
+          type: string
+          description: The type of error returned
+          example: RequestHeadersValidationError
+        message:
+          type: string
+          description: A human-readable message providing more details about the error.
+          example: Invalid Params
+          x-speakeasy-error-message: true
+        detail:
+          anyOf:
+          - type: string
+            example: 'Missing Header: x-apideck-consumer-id'
+          - type: object
+            x-speakeasy-detail: true
+            example:
+              missing:
+              - x-apideck-consumer-id: required
+          description: Contains parameter or domain specific information related to the error and why it occurred.
+        ref:
+          type: string
+          description: Link to documentation of error type
+          example: https://developers.apideck.com/errors#unauthorizederror
+    OutstandingBalanceByCurrency:
+      type: object
+      title: Outstanding Balance by Currency
+      x-apideck-schema-id: OutstandingBalanceByCurrency
+      additionalProperties: false
+      x-apideck-weights:
+        currency: high
+        balances_by_period: critical
+      properties:
+        currency:
+          $ref: '#/components/schemas/Currency'
+        total_amount:
+          type: number
+          title: Total Amount
+          description: Total amount of the outstanding balance.
+        balances_by_period:
+          type: array
+          items:
+            $ref: '#/components/schemas/BalanceByPeriod'
+    ReportAsOfDate:
+      type: string
+      title: Report As Of Date
+      description: The cutoff date for transactions included in the report.
+      format: date
+      example: '2024-11-13'
+    BalanceByTransaction:
+      type: object
+      title: Balance by Transaction
+      x-apideck-schema-id: BalanceByTransaction
+      additionalProperties: false
+      x-apideck-weights:
+        transaction_id: critical
+        transaction_date: high
+        transaction_type: high
+        transaction_number: medium
+        due_date: high
+        original_amount: high
+        outstanding_balance: critical
+      properties:
+        transaction_id:
+          type: string
+          title: Transaction ID
+          description: Unique identifier for the transaction.
+          example: INV-1001
+        transaction_date:
+          type: string
+          format: date
+          title: Transaction Date
+          description: Date of the transaction.
+          example: '2024-01-15'
+        transaction_type:
+          type: string
+          title: Transaction Type
+          description: Type of the transaction.
+          example: invoice
+          x-apideck-enum-id: balances_by_transactions.transaction_type
+          enum:
+          - invoice
+          - credit_note
+          - bill
+          - payment
+          - bill_payment
+        due_date:
+          type: string
+          format: date
+          title: Due Date
+          description: Due date of the transaction.
+          example: '2024-02-15'
+        original_amount:
+          type: number
+          title: Original Amount
+          description: Original amount of the transaction.
+          example: 1000
+        outstanding_balance:
+          type: number
+          title: Outstanding Balance
+          description: Outstanding balance of the transaction.
+          example: 800
+        transaction_number:
+          type: string
+          title: Transaction Number
+          description: Transaction number of the transaction.
+          example: INV-1001
+    BalanceByPeriod:
+      type: object
+      title: Balance by Period
+      x-apideck-schema-id: BalanceByPeriod
+      additionalProperties: false
+      x-apideck-weights:
+        start_date: high
+        end_date: high
+        total_amount: critical
+        balances_by_transaction: high
+      properties:
+        start_date:
+          type:
+          - string
+          - 'null'
+          title: Start Date
+          description: The starting date of the period. If not provided, it represents the oldest period, where all transactions due before the specified `end_date` are included.
+          format: date
+          example: '2024-01-01'
+        end_date:
+          type:
+          - string
+          - 'null'
+          title: End Date
+          description: The ending date of the period. If not provided, it represents an open-ended period starting from the `start_date`, typically capturing future-dated transactions that are not yet aged.
+          format: date
+          example: '2024-01-30'
+        total_amount:
+          type: number
+          title: Total Amount
+          description: Total amount of the period.
+          example: 1500
+        balances_by_transaction:
+          type: array
+          items:
+            $ref: '#/components/schemas/BalanceByTransaction'
     PeriodLength:
       type: integer
       title: Period Length
@@ -236,111 +712,15 @@ components:
           - message: Account code '100' has been archived or deleted
             detail: Each line item must reference a valid account
             code: VALIDATION_ERROR
-    AgedReportFilter:
+    PassThroughQuery:
       type: object
-      x-apideck-schema-id: AgedReportFilter
+      additionalProperties: true
+      properties:
+        example_downstream_property:
+          type: string
+          description: All passthrough query parameters are passed along to the connector as is (?pass_through[search]=leads becomes ?search=leads)
       example:
-        supplier_id: 123abc
-        customer_id: 123abc
-        report_as_of_date: '2024-01-01'
-        period_count: 3
-        period_length: 30
-      properties:
-        customer_id:
-          type: string
-          title: Customer Id
-          description: Filter by customer id
-          example: 123abc
-        supplier_id:
-          type: string
-          title: Supplier Id
-          description: Filter by supplier id
-          example: 123abc
-        report_as_of_date:
-          type: string
-          title: Report As Of Date
-          description: The cutoff date for considering transactions
-          example: '2024-01-01'
-        period_count:
-          title: Period Count
-          description: Number of periods to split the aged creditors report into
-          example: 3
-          type: integer
-          minimum: 1
-          maximum: 12
-        period_length:
-          title: Period Length
-          description: Length of each period in days
-          example: 30
-          type: integer
-          minimum: 1
-          maximum: 365
-      additionalProperties: false
-    PaymentRequiredResponse:
-      type: object
-      x-apideck-schema-id: PaymentRequired
-      properties:
-        status_code:
-          type: number
-          description: HTTP status code
-          example: 402
-        error:
-          type: string
-          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
-          example: Payment Required
-        type_name:
-          type: string
-          description: The type of error returned
-          example: RequestLimitError
-        message:
-          type: string
-          description: A human-readable message providing more details about the error.
-          example: Request Limit Reached
-          x-speakeasy-error-message: true
-        detail:
-          type: string
-          description: Contains parameter or domain specific information related to the error and why it occurred.
-          example: You have reached your limit of 2000
-        ref:
-          type: string
-          description: Link to documentation of error type
-          example: https://developers.apideck.com/errors#requestlimiterror
-    OutstandingBalanceBySupplier:
-      type: object
-      title: Outstanding Balance
-      x-apideck-schema-id: OutstandingBalanceBySupplier
-      additionalProperties: false
-      x-apideck-weights:
-        supplier_id: high
-        supplier_name: high
-        outstanding_balances_by_currency: critical
-      properties:
-        supplier_id:
-          type: string
-          title: Supplier ID
-          description: Unique identifier for the supplier.
-          example: '123'
-        supplier_name:
-          type: string
-          title: Supplier Name
-          description: Full name of the supplier.
-          example: Super Store
-        outstanding_balances_by_currency:
-          type: array
-          items:
-            $ref: '#/components/schemas/OutstandingBalanceByCurrency'
-    ReportAsOfDate:
-      type: string
-      title: Report As Of Date
-      description: The cutoff date for transactions included in the report.
-      format: date
-      example: '2024-11-13'
-    PeriodCount:
-      type: integer
-      title: Period Count
-      description: Number of aging periods shown in the report.
-      example: 4
-      default: 4
+        search: San Francisco
     Currency:
       type:
       - string
@@ -899,386 +1279,6 @@ components:
         description: Bitcoin
       - name: ETH
         description: Ether
-    OutstandingBalanceByCurrency:
-      type: object
-      title: Outstanding Balance by Currency
-      x-apideck-schema-id: OutstandingBalanceByCurrency
-      additionalProperties: false
-      x-apideck-weights:
-        currency: high
-        balances_by_period: critical
-      properties:
-        currency:
-          $ref: '#/components/schemas/Currency'
-        total_amount:
-          type: number
-          title: Total Amount
-          description: Total amount of the outstanding balance.
-        balances_by_period:
-          type: array
-          items:
-            $ref: '#/components/schemas/BalanceByPeriod'
-    BalanceByTransaction:
-      type: object
-      title: Balance by Transaction
-      x-apideck-schema-id: BalanceByTransaction
-      additionalProperties: false
-      x-apideck-weights:
-        transaction_id: critical
-        transaction_date: high
-        transaction_type: high
-        transaction_number: medium
-        due_date: high
-        original_amount: high
-        outstanding_balance: critical
-      properties:
-        transaction_id:
-          type: string
-          title: Transaction ID
-          description: Unique identifier for the transaction.
-          example: INV-1001
-        transaction_date:
-          type: string
-          format: date
-          title: Transaction Date
-          description: Date of the transaction.
-          example: '2024-01-15'
-        transaction_type:
-          type: string
-          title: Transaction Type
-          description: Type of the transaction.
-          example: invoice
-          x-apideck-enum-id: balances_by_transactions.transaction_type
-          enum:
-          - invoice
-          - credit_note
-          - bill
-          - payment
-          - bill_payment
-        due_date:
-          type: string
-          format: date
-          title: Due Date
-          description: Due date of the transaction.
-          example: '2024-02-15'
-        original_amount:
-          type: number
-          title: Original Amount
-          description: Original amount of the transaction.
-          example: 1000
-        outstanding_balance:
-          type: number
-          title: Outstanding Balance
-          description: Outstanding balance of the transaction.
-          example: 800
-        transaction_number:
-          type: string
-          title: Transaction Number
-          description: Transaction number of the transaction.
-          example: INV-1001
-    BalanceByPeriod:
-      type: object
-      title: Balance by Period
-      x-apideck-schema-id: BalanceByPeriod
-      additionalProperties: false
-      x-apideck-weights:
-        start_date: high
-        end_date: high
-        total_amount: critical
-        balances_by_transaction: high
-      properties:
-        start_date:
-          type:
-          - string
-          - 'null'
-          title: Start Date
-          description: The starting date of the period. If not provided, it represents the oldest period, where all transactions due before the specified `end_date` are included.
-          format: date
-          example: '2024-01-01'
-        end_date:
-          type:
-          - string
-          - 'null'
-          title: End Date
-          description: The ending date of the period. If not provided, it represents an open-ended period starting from the `start_date`, typically capturing future-dated transactions that are not yet aged.
-          format: date
-          example: '2024-01-30'
-        total_amount:
-          type: number
-          title: Total Amount
-          description: Total amount of the period.
-          example: 1500
-        balances_by_transaction:
-          type: array
-          items:
-            $ref: '#/components/schemas/BalanceByTransaction'
-    GetAgedCreditorsResponse:
-      type: object
-      x-apideck-schema-id: GetAgedCreditorsResponse
-      required:
-      - status_code
-      - status
-      - service
-      - resource
-      - operation
-      - data
-      properties:
-        status_code:
-          type: integer
-          description: HTTP Response Status Code
-          example: 200
-        status:
-          type: string
-          description: HTTP Response Status
-          example: OK
-        service:
-          type: string
-          description: Apideck ID of service provider
-          example: quickbooks
-        resource:
-          type: string
-          description: Unified API resource name
-          example: AgedCreditors
-        operation:
-          type: string
-          description: Operation performed
-          example: one
-        data:
-          $ref: '#/components/schemas/AgedCreditors'
-        _raw:
-          $ref: '#/components/schemas/Raw'
-    AgedCreditors:
-      type: object
-      x-apideck-schema-id: AgedCreditors
-      additionalProperties: false
-      x-apideck-weights:
-        report_generated_at: critical
-        report_as_of_date: high
-        period_count: medium
-        period_length: medium
-        outstanding_balances: critical
-      properties:
-        report_generated_at:
-          $ref: '#/components/schemas/ReportGeneratedAt'
-        report_as_of_date:
-          $ref: '#/components/schemas/ReportAsOfDate'
-        period_count:
-          $ref: '#/components/schemas/PeriodCount'
-        period_length:
-          $ref: '#/components/schemas/PeriodLength'
-        outstanding_balances:
-          type: array
-          items:
-            $ref: '#/components/schemas/OutstandingBalanceBySupplier'
-    UnauthorizedResponse:
-      type: object
-      x-apideck-schema-id: Unauthorized
-      properties:
-        status_code:
-          type: number
-          description: HTTP status code
-          example: 401
-        error:
-          type: string
-          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
-          example: Unauthorized
-        type_name:
-          type: string
-          description: The type of error returned
-          example: UnauthorizedError
-        message:
-          type: string
-          description: A human-readable message providing more details about the error.
-          example: Unauthorized Request
-          x-speakeasy-error-message: true
-        detail:
-          anyOf:
-          - type: string
-            example: Missing authentication
-          - type: object
-            x-speakeasy-detail: true
-            properties:
-              type:
-                type: string
-                description: Error type identifier
-                example: refresh_token_connector_error
-              message:
-                type: string
-                description: Detailed error message
-                example: Token refresh failed
-              debug:
-                type: object
-                description: Debug information including request/response details and OAuth timing metadata
-                properties:
-                  request:
-                    type: object
-                    description: HTTP request details
-                  response:
-                    type: object
-                    description: HTTP response details
-                  message:
-                    type: string
-                    description: Error message from downstream provider or network layer
-                  code:
-                    type: string
-                    description: Error code (e.g., ETIMEDOUT, ECONNREFUSED)
-                  credentials_expire_at_ms:
-                    type: number
-                    description: Unix timestamp (milliseconds) when credentials will be deleted if not refreshed. Only present for non-recoverable errors (401, 400). Credentials are preserved indefinitely for recoverable/network errors.
-                    example: 1620172800000
-                  retry_after_ms:
-                    type: number
-                    description: Unix timestamp (milliseconds) when token refresh retry is allowed after cooldown period expires.
-                    example: 1620000030000
-                  cooldown_remaining_ms:
-                    type: number
-                    description: Milliseconds remaining in cooldown period before retry is allowed.
-                    example: 30000
-            example:
-              type: refresh_token_connector_error
-              message: Token refresh failed with 401 error
-              debug:
-                response:
-                  statusCode: 401
-                  data:
-                    error: invalid_grant
-                credentials_expire_at_ms: 1620172800000
-                retry_after_ms: 1620000030000
-                cooldown_remaining_ms: 30000
-          description: Contains parameter or domain specific information related to the error and why it occurred.
-        ref:
-          type: string
-          description: Link to documentation of error type
-          example: https://developers.apideck.com/errors#unauthorizederror
-    PassThroughQuery:
-      type: object
-      additionalProperties: true
-      properties:
-        example_downstream_property:
-          type: string
-          description: All passthrough query parameters are passed along to the connector as is (?pass_through[search]=leads becomes ?search=leads)
-      example:
-        search: San Francisco
-    ReportGeneratedAt:
-      type: string
-      title: Report Generated At
-      description: The exact date and time the report was generated.
-      format: date-time
-      example: '2024-11-14T12:00:00.000Z'
-    Raw:
-      title: raw
-      type:
-      - object
-      - 'null'
-      x-apideck-schema-id: Raw
-      description: Raw response from the integration when raw=true query param is provided
-      additionalProperties: true
-    UnexpectedErrorResponse:
-      type: object
-      x-apideck-schema-id: Error
-      properties:
-        status_code:
-          type: number
-          description: HTTP status code
-          example: 400
-        error:
-          type: string
-          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
-          example: Bad Request
-        type_name:
-          type: string
-          description: The type of error returned
-          example: RequestHeadersValidationError
-        message:
-          type: string
-          description: A human-readable message providing more details about the error.
-          example: Invalid Params
-          x-speakeasy-error-message: true
-        detail:
-          anyOf:
-          - type: string
-            example: 'Missing Header: x-apideck-consumer-id'
-          - type: object
-            x-speakeasy-detail: true
-            example:
-              missing:
-              - x-apideck-consumer-id: required
-          description: Contains parameter or domain specific information related to the error and why it occurred.
-        ref:
-          type: string
-          description: Link to documentation of error type
-          example: https://developers.apideck.com/errors#unauthorizederror
-    UnprocessableResponse:
-      type: object
-      x-apideck-schema-id: Unprocessable
-      properties:
-        status_code:
-          type: number
-          description: HTTP status code
-          example: 422
-        error:
-          type: string
-          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
-          example: Unprocessable Entity
-        type_name:
-          type: string
-          description: The type of error returned
-          example: InvalidStateError
-        message:
-          type: string
-          description: A human-readable message providing more details about the error.
-          example: Invalid State
-          x-speakeasy-error-message: true
-        detail:
-          anyOf:
-          - type: string
-            example: Unprocessable request, please verify your request headers and body.
-          - type: object
-            x-speakeasy-detail: true
-            example:
-              error: Unprocessable
-              message: Unprocessable request, please verify your request headers and body.
-          description: Contains parameter or domain specific information related to the error and why it occurred.
-        ref:
-          type: string
-          description: Link to documentation of error type
-          example: https://developers.apideck.com/errors#invalidstateerror
-    NotFoundResponse:
-      type: object
-      x-apideck-schema-id: NotFound
-      properties:
-        status_code:
-          type: number
-          description: HTTP status code
-          example: 404
-        error:
-          type: string
-          description: Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
-          example: Not Found
-        type_name:
-          type: string
-          description: The type of error returned
-          example: EntityNotFoundError
-        message:
-          type: string
-          description: A human-readable message providing more details about the error.
-          example: Unknown Widget
-          x-speakeasy-error-message: true
-        detail:
-          anyOf:
-          - type: string
-            example: 'Could not find widget with id: ''123'''
-          - type: object
-            x-speakeasy-detail: true
-            example:
-              not_found:
-                entity: widget
-                id: '123'
-          description: Contains parameter or domain specific information related to the error and why it occurred.
-        ref:
-          type: string
-          description: Link to documentation of error type
-          example: https://developers.apideck.com/errors#entitynotfounderror
   securitySchemes:
     apiKey:
       type: apiKey
