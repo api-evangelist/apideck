@@ -1,0 +1,12 @@
+{
+ "url": "https://raw.githubusercontent.com/apideck-libraries/openapi-specs/master/file-storage.yml",
+ "requested_url": "https://raw.githubusercontent.com/apideck-libraries/openapi-specs/master/file-storage.yml",
+ "status": 200,
+ "content_type": "text/plain; charset=utf-8",
+ "bytes": 167431,
+ "sha256": "1dd3747ebb97f4ae9614b7ef3dd3b3be999affef5738824af371c0b30f40f945",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "equivalent",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the provider's current document describes the same operations (Jaccard 1.0), but the bytes differ, so the archive is an earlier or reformatted copy."
+}
