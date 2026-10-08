@@ -45,3 +45,35 @@ plans:
   included_quota: Everything in Scale plus unlimited Unified API categories, SSO, Whitelabel Vault, Premium
     support, Dedicated CSM, Uptime SLA
   overage: Volume discounts continue, annual contract
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - hybrid
+  - metered
+  units: []
+  plans:
+  - name: Launch
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - other
+    periods:
+    - month
+  - name: Scale
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - other
+    periods:
+    - month
+  - name: Enterprise
+    access: other
+    model: metered
+    model_how: derived
+    units:
+    - other
+    periods:
+    - none
