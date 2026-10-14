@@ -10,11 +10,70 @@ checked:
 - greenhouse/integrations/greenhouse-integration-edges.yml
 - https://composio.dev/toolkits/apideck
 - https://monid.ai/tools/apideck
+- https://mpl-pusa01.app.blackbaud.net/mktpl/v1/public/marketplace/applications
 - https://n8n.io/integrations/apideck/
+- https://registry.modelcontextprotocol.io/v0/servers
 - https://zapier.com/apps/apideck/integrations
 summary: null
 marketplace_apps: []
 edges:
+- partner_name: Blackbaud (Blackbaud Marketplace)
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  partner_note: Blackbaud has no all/* repo (catalog gap); publisher side only
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: blackbaud-marketplace
+  evidence: https://app.blackbaud.com/marketplace/applications/c8f2ae8e-48d5-4919-b9e6-06f8e8bf4e24
+  store: https://app.blackbaud.com/marketplace
+  store_api: https://mpl-pusa01.app.blackbaud.net/mktpl/v1/public/marketplace/applications
+  publisher: Apideck
+  publisher_match: domain
+  publisher_domain: apideck.com
+  apps:
+  - Apideck
+  listing_count: 1
+  compatible_solutions:
+  - bbcrm
+  badges:
+  - Reviewed by Blackbaud
+  detected_by: sweep-nonprofit.py
+  detected: '2026-10-14'
+- partner_name: MCP Registry
+  partner: mcp
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://registry.modelcontextprotocol.io/v0/servers?search=com.apideck
+  contract_reference:
+    register: registry.modelcontextprotocol.io
+    spec_file: null
+    role: mcp-server-listing
+    registered_name: com.apideck/mcp
+    register_id: com.apideck/mcp
+    detected_by: sweep-agent-tools.py
+    detected: '2026-10-14'
+  mcp_registry:
+    servers:
+    - com.apideck/mcp
+    hosted_remote: 1
+    local_package: 1
+    transports:
+      stdio: 1
+      streamable-http: 1
+    auth_declared: 1
+    catalog_declared: true
+    namespace_domains:
+    - apideck.com
+  matched_by:
+  - namespace-domain
+  detected_by: sweep-agent-tools.py
+  first_seen: '2026-10-14'
 - partner_name: FreshBooks (own)
   partner: freshbooks
   partner_match: mirror
