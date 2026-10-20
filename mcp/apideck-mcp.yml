@@ -52,3 +52,20 @@ tool_quality:
   scored: false
   note: Facts from the saved tools/list capture (mcp_tool_quality.py); recorded, not scored. Checks learned
     from Glimind's agent-readiness audit.
+tools:
+- name: search_docs
+  description: Full-text search over the documentation. Returns matching sections with a snippet, the
+    page path and heading anchor. Call get_doc with a returned path to read the full page or a single
+    section.
+- name: get_doc
+  description: Return the full markdown of a documentation page by path, or a single section of it. Use
+    search_docs or list_docs to find paths.
+- name: list_docs
+  description: List documentation pages with their path, title, description and last-modified date. Useful
+    to browse the structure before searching or to find pages under a prefix.
+- name: get_operation_context
+  description: 'Read one API operation: authentication, complete published request parameters and body
+    requirements, plus a compact response envelope. Use an operation path from search_docs. Nested response
+    schemas and code examples remain available through get_doc. Documentation only; does not verify connector
+    coverage or execute requests.'
+tools_count: 4
