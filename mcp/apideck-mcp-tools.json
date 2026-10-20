@@ -1,0 +1,129 @@
+{
+  "endpoint": "https://developers.apideck.com/mcp",
+  "captured": "2026-10-20",
+  "method": "initialize + tools/list (anonymous, no tool called; roadmap#992)",
+  "protocol_version": "2025-06-18",
+  "server_info": {
+    "name": "apideck-docs",
+    "version": "f80d056"
+  },
+  "result": {
+    "tools": [
+      {
+        "name": "search_docs",
+        "title": "Search documentation",
+        "description": "Full-text search over the documentation. Returns matching sections with a snippet, the page path and heading anchor. Call get_doc with a returned path to read the full page or a single section.",
+        "inputSchema": {
+          "type": "object",
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "properties": {
+            "query": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Free-text query. Prefix matching and light fuzzy matching are applied per term."
+            },
+            "limit": {
+              "default": 8,
+              "description": "Maximum number of results.",
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 25
+            },
+            "path_prefix": {
+              "description": "Only search pages whose path starts with this prefix, e.g. \"guides\" or \"api/reference\".",
+              "type": "string"
+            }
+          },
+          "required": [
+            "query"
+          ]
+        },
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        }
+      },
+      {
+        "name": "get_doc",
+        "title": "Get documentation page",
+        "description": "Return the full markdown of a documentation page by path, or a single section of it. Use search_docs or list_docs to find paths.",
+        "inputSchema": {
+          "type": "object",
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "properties": {
+            "path": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Page path from search_docs or list_docs, e.g. \"guides/getting-started\" (extensions and \"docs://\" prefix are accepted), or a full https:// URL to the page, optionally with a #fragment."
+            },
+            "section": {
+              "description": "Return only this section: an anchor (\"#install\" or \"install\") or the heading text. Defaults to the #fragment of `path` when `path` is a URL.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "path"
+          ]
+        },
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        }
+      },
+      {
+        "name": "list_docs",
+        "title": "List documentation pages",
+        "description": "List documentation pages with their path, title, description and last-modified date. Useful to browse the structure before searching or to find pages under a prefix.",
+        "inputSchema": {
+          "type": "object",
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "properties": {
+            "path_prefix": {
+              "description": "Only list pages under this path prefix.",
+              "type": "string"
+            },
+            "limit": {
+              "default": 200,
+              "description": "Maximum number of pages to list.",
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1000
+            }
+          }
+        },
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        }
+      },
+      {
+        "name": "get_operation_context",
+        "title": "Get API operation request context",
+        "description": "Read one API operation: authentication, complete published request parameters and body requirements, plus a compact response envelope. Use an operation path from search_docs. Nested response schemas and code examples remain available through get_doc. Documentation only; does not verify connector coverage or execute requests.",
+        "inputSchema": {
+          "type": "object",
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "properties": {
+            "path": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2048,
+              "description": "Operation documentation path returned by search_docs, e.g. apis/hris/reference/employees/employeesAll"
+            }
+          },
+          "required": [
+            "path"
+          ]
+        },
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        }
+      }
+    ]
+  }
+}
