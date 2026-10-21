@@ -16,6 +16,11 @@ checked:
 - https://n8n.io/integrations/apideck/
 - https://registry.modelcontextprotocol.io/v0/servers
 - https://zapier.com/apps/apideck/integrations
+- https://github.com/graphql-kit/graphql-apis
+- https://github.com/graphql/graphql.github.io/tree/source/src/code
+- https://graphql.landscape2.io/data/full.json
+- https://graphql.org/community/tools-and-libraries/
+- https://graphql.org/foundation/members/
 summary: null
 marketplace_apps: []
 edges:
@@ -85,7 +90,7 @@ edges:
     registered_name: com.apideck/mcp
     register_id: com.apideck/mcp
     detected_by: sweep-agent-tools.py
-    detected: '2026-10-15'
+    detected: '2026-10-19'
   mcp_registry:
     servers:
     - com.apideck/mcp
@@ -133,7 +138,36 @@ edges:
     matched_domain: apideck.com
     matched_by: own-domain
     detected_by: sweep-ai-agents.py
-    detected: '2026-10-15'
+    detected: '2026-10-19'
   detected_by: sweep-ai-agents.py
   first_seen: '2026-10-15'
+- partner_name: GraphQL.org tools and libraries
+  partner: null
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://graphql.org/community/tools-and-libraries/
+  category: GraphQL tooling listing
+  contract_reference:
+    register: GraphQL.org tools and libraries (graphql.org/community/tools-and-libraries; github.com/graphql/graphql.github.io
+      src/code)
+    standard: GraphQL
+    spec_file: null
+    role: graphql-org-listed-vendor
+    registered_name: Apideck
+    register_id: src/code/services/apideck.md
+    matched_domain: apideck.com
+    matched_by: domain
+    listed_products:
+    - product_type: services
+      entries:
+      - Apideck
+    signal_note: 'participation only: a reviewed listing on graphql.org, not a conformance certification; listed
+      products (one per section) are context, never counted'
+    detected_by: sweep-graphql-ecosystem.py
+    detected: '2026-10-21'
+  detected_by: sweep-graphql-ecosystem.py
+  first_seen: '2026-10-21'
 templates: []
