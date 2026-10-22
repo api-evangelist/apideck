@@ -21,6 +21,8 @@ checked:
 - https://graphql.landscape2.io/data/full.json
 - https://graphql.org/community/tools-and-libraries/
 - https://graphql.org/foundation/members/
+- https://api.apis.guru/v2/list.json
+- https://api.apis.guru/v2/providers.json
 summary: null
 marketplace_apps: []
 edges:
@@ -170,4 +172,150 @@ edges:
     detected: '2026-10-21'
   detected_by: sweep-graphql-ecosystem.py
   first_seen: '2026-10-21'
+- partner_name: APIs.guru OpenAPI Directory
+  partner: apis-guru
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: third-party
+  evidence: https://apis.guru/
+  category: API definition directory listing (OpenAPI)
+  contract_reference:
+    register: APIs.guru OpenAPI Directory
+    spec_file: null
+    standard: APIs.guru OpenAPI Directory
+    role: listed-in-directory
+    directory_provider: apideck.com
+    matched_domain: apideck.com
+    matched_by: domain
+    apis_listed: 16
+    version_count: 16
+    first_added: '2021-02-04'
+    last_updated: '2023-04-21'
+    origin_publisher_hosted: false
+    origin_hosts:
+    - raw.githubusercontent.com
+    categories:
+    - developer_tools
+    own_openapi_files: 54
+    listings:
+    - key: apideck.com:accounting
+      title: Accounting API
+      preferred: 9.3.0
+      versions: 1
+      swagger_url: https://api.apis.guru/v2/specs/apideck.com/accounting/9.3.0/openapi.json
+      origin_url: https://raw.githubusercontent.com/apideck-libraries/openapi-specs/master/accounting.yml
+      openapi_version: 3.0.3
+    - key: apideck.com:ats
+      title: ATS API
+      preferred: 9.3.0
+      versions: 1
+      swagger_url: https://api.apis.guru/v2/specs/apideck.com/ats/9.3.0/openapi.json
+      origin_url: https://raw.githubusercontent.com/apideck-libraries/openapi-specs/master/ats.yml
+      openapi_version: 3.0.0
+    - key: apideck.com:connector
+      title: Connector API
+      preferred: 9.3.0
+      versions: 1
+      swagger_url: https://api.apis.guru/v2/specs/apideck.com/connector/9.3.0/openapi.json
+      origin_url: https://raw.githubusercontent.com/apideck-libraries/openapi-specs/master/connector.yml
+      openapi_version: 3.0.0
+    - key: apideck.com:crm
+      title: CRM API
+      preferred: 9.3.0
+      versions: 1
+      swagger_url: https://api.apis.guru/v2/specs/apideck.com/crm/9.3.0/openapi.json
+      origin_url: https://raw.githubusercontent.com/apideck-libraries/openapi-specs/master/crm.yml
+      openapi_version: 3.0.3
+    - key: apideck.com:customer-support
+      title: Customer Support
+      preferred: 9.3.0
+      versions: 1
+      swagger_url: https://api.apis.guru/v2/specs/apideck.com/customer-support/9.3.0/openapi.json
+      origin_url: https://raw.githubusercontent.com/apideck-libraries/openapi-specs/master/customer-support.yml
+      openapi_version: 3.0.0
+    - key: apideck.com:ecommerce
+      title: Ecommerce API
+      preferred: 9.3.0
+      versions: 1
+      swagger_url: https://api.apis.guru/v2/specs/apideck.com/ecommerce/9.3.0/openapi.json
+      origin_url: https://raw.githubusercontent.com/apideck-libraries/openapi-specs/master/ecommerce.yml
+      openapi_version: 3.0.0
+    - key: apideck.com:ecosystem
+      title: Ecosystem API
+      preferred: 0.0.6
+      versions: 1
+      swagger_url: https://api.apis.guru/v2/specs/apideck.com/ecosystem/0.0.6/openapi.json
+      origin_url: https://raw.githubusercontent.com/apideck-libraries/openapi-specs/master/ecosystem.yml
+      openapi_version: 3.0.3
+    - key: apideck.com:file-storage
+      title: File storage API
+      preferred: 9.3.0
+      versions: 1
+      swagger_url: https://api.apis.guru/v2/specs/apideck.com/file-storage/9.3.0/openapi.json
+      origin_url: https://raw.githubusercontent.com/apideck-libraries/openapi-specs/master/file-storage.yml
+      openapi_version: 3.0.3
+    - key: apideck.com:hris
+      title: HRIS API
+      preferred: 9.3.0
+      versions: 1
+      swagger_url: https://api.apis.guru/v2/specs/apideck.com/hris/9.3.0/openapi.json
+      origin_url: https://raw.githubusercontent.com/apideck-libraries/openapi-specs/master/hris.yml
+      openapi_version: 3.0.0
+    - key: apideck.com:issue-tracking
+      title: Issue Tracking API
+      preferred: 9.3.0
+      versions: 1
+      swagger_url: https://api.apis.guru/v2/specs/apideck.com/issue-tracking/9.3.0/openapi.json
+      origin_url: https://raw.githubusercontent.com/apideck-libraries/openapi-specs/master/issue-tracking.yml
+      openapi_version: 3.0.0
+    - key: apideck.com:lead
+      title: Lead API
+      preferred: 9.3.0
+      versions: 1
+      swagger_url: https://api.apis.guru/v2/specs/apideck.com/lead/9.3.0/openapi.json
+      origin_url: https://raw.githubusercontent.com/apideck-libraries/openapi-specs/master/lead.yml
+      openapi_version: 3.0.3
+    - key: apideck.com:pos
+      title: POS API
+      preferred: 9.3.0
+      versions: 1
+      swagger_url: https://api.apis.guru/v2/specs/apideck.com/pos/9.3.0/openapi.json
+      origin_url: https://raw.githubusercontent.com/apideck-libraries/openapi-specs/master/pos.yml
+      openapi_version: 3.0.0
+    - key: apideck.com:proxy
+      title: Proxy API
+      preferred: 9.3.0
+      versions: 1
+      swagger_url: https://api.apis.guru/v2/specs/apideck.com/proxy/9.3.0/openapi.json
+      origin_url: https://raw.githubusercontent.com/apideck-libraries/openapi-specs/master/proxy.yml
+      openapi_version: 3.0.3
+    - key: apideck.com:sms
+      title: SMS API
+      preferred: 9.3.0
+      versions: 1
+      swagger_url: https://api.apis.guru/v2/specs/apideck.com/sms/9.3.0/openapi.json
+      origin_url: https://raw.githubusercontent.com/apideck-libraries/openapi-specs/master/sms.yml
+      openapi_version: 3.0.0
+    - key: apideck.com:vault
+      title: Vault API
+      preferred: 9.3.0
+      versions: 1
+      swagger_url: https://api.apis.guru/v2/specs/apideck.com/vault/9.3.0/openapi.json
+      origin_url: https://raw.githubusercontent.com/apideck-libraries/openapi-specs/master/vault.yml
+      openapi_version: 3.0.3
+    - key: apideck.com:webhook
+      title: Webhook API
+      preferred: 9.3.0
+      versions: 1
+      swagger_url: https://api.apis.guru/v2/specs/apideck.com/webhook/9.3.0/openapi.json
+      origin_url: https://raw.githubusercontent.com/apideck-libraries/openapi-specs/master/webhook.yml
+      openapi_version: 3.0.3
+    signal_note: 'participation only: a community directory listing (APIs.guru collects definitions; the provider
+      did not file them). Signals: version_count, apis_listed, origin_publisher_hosted.'
+    detected_by: sweep-openapi-directory-apis-guru.py
+    detected: '2026-10-22'
+  detected_by: sweep-openapi-directory-apis-guru.py
+  first_seen: '2026-10-22'
 templates: []
