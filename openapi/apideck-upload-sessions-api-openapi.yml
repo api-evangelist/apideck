@@ -1219,3 +1219,9 @@ components:
 externalDocs:
   description: Apideck Developer Docs
   url: https://developers.apideck.com
+x-provenance:
+  method: harvested
+  publisher: Apideck
+  source: https://raw.githubusercontent.com/apideck-libraries/openapi-specs/master/file-storage.yml
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)
