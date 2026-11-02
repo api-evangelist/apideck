@@ -1,0 +1,79 @@
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-09-20'
+method: searched
+source: https://www.apideck.com/pricing
+sources:
+- https://www.apideck.com/pricing
+provenance:
+  tool: planning/api-economics/harvest_pricing.py
+  run: 20260920T130003
+  grounding: every price_text was found verbatim in the fetched page text
+audience: developer-api
+pricing_basis: tiered-subscription
+delivery:
+  delivery: managed
+  method: keyword-prefilter
+  read: '2026-09-20'
+published: true
+note: Yearly billing 10% off (e.g. Scale 200 consumers $1,979/mo, $23,749/yr). Per-consumer price falls
+  from $23.96 to $8.50. New connector requests are a paid add-on with no listed price.
+plan_count: 3
+currency: USD
+plans:
+- name: Launch
+  price_text: $ 599 /mo
+  price: 599
+  currency: USD
+  period: month
+  unit: per month, 25 consumers
+  included_quota: 1 Unified API category, Passthrough, Webhook Support, MCP server, Standard support;
+    starts at 25 consumers
+  overage: 50 consumers $999/mo
+- name: Scale
+  price_text: $ 1,299 /mo
+  price: 1299
+  currency: USD
+  period: month
+  unit: per month, 100 consumers
+  included_quota: Everything in Launch plus 3 Unified API categories, Custom Field Mapping, Data Scopes;
+    up to 500 consumers
+  overage: '150: $1,799; 200: $2,199; 250: $2,499; 300: $2,850; 400: $3,600; 500: $4,250'
+- name: Enterprise
+  price_text: Custom
+  period: none
+  unit: any consumer volume
+  included_quota: Everything in Scale plus unlimited Unified API categories, SSO, Whitelabel Vault, Premium
+    support, Dedicated CSM, Uptime SLA
+  overage: Volume discounts continue, annual contract
+x-canonical:
+  generated: '2026-11-01'
+  vocabulary: engine/economics/plans-canonical.yml
+  models:
+  - hybrid
+  - metered
+  units: []
+  plans:
+  - name: Launch
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - other
+    periods:
+    - month
+  - name: Scale
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - other
+    periods:
+    - month
+  - name: Enterprise
+    access: other
+    model: metered
+    model_how: derived
+    units:
+    - other
+    periods:
+    - none
