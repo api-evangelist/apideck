@@ -46,19 +46,20 @@ plans:
     support, Dedicated CSM, Uptime SLA
   overage: Volume discounts continue, annual contract
 x-canonical:
-  generated: '2026-11-02'
+  generated: '2026-11-06'
   vocabulary: engine/economics/plans-canonical.yml
   models:
   - hybrid
   - metered
-  units: []
+  units:
+  - period
   plans:
   - name: Launch
     access: other
     model: hybrid
     model_how: derived
     units:
-    - other
+    - period
     periods:
     - month
   - name: Scale
@@ -66,7 +67,7 @@ x-canonical:
     model: hybrid
     model_how: derived
     units:
-    - other
+    - period
     periods:
     - month
   - name: Enterprise
